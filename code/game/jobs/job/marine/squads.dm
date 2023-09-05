@@ -212,10 +212,10 @@
 
 /datum/squad/marine/cbrn
 	name = SQUAD_CBRN
-	equipment_color = "#3B2A7B" //Chemical Corps Purple
-	chat_color = "#553EB2"
+	equipment_color = "#400000"
+	chat_color = "#FFFFFF"
 	radio_freq = CBRN_FREQ
-	minimap_color = "#3B2A7B"
+	minimap_color = MINIMAP_SQUAD_SOF
 
 	active = FALSE
 	roundstart = FALSE

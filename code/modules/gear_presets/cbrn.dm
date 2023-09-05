@@ -8,6 +8,8 @@
 	auto_squad_name = SQUAD_CBRN
 	ert_squad = TRUE
 	skills = /datum/skills/pmc //More trained than the average rifleman
+	var/headset_type = /obj/item/device/radio/headset/distress/cbrn
+	var/uniform_type = /obj/item/clothing/under/marine
 
 /datum/equipment_preset/uscm/cbrn/New()
 	. = ..()
@@ -17,16 +19,17 @@
 	new_human.nutrition = NUTRITION_NORMAL
 
 /datum/equipment_preset/uscm/cbrn/load_gear(mob/living/carbon/human/new_human)
-	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/cbrn(new_human), WEAR_L_EAR)
-	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/cbrn(new_human), WEAR_BODY)
-	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/cbrn(new_human), WEAR_JACKET)
-	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/cbrn(new_human), WEAR_HANDS)
-	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/pmc/commando/cbrn(new_human), WEAR_FEET)
+	new_human.equip_to_slot_or_del(new uniform_type(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new headset_type(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/m3cr(new_human), WEAR_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran(new_human), WEAR_HANDS)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/pmc/commando/knife(new_human), WEAR_FEET)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/box/MRE(new_human), WEAR_IN_JACKET)
 
 /datum/equipment_preset/uscm/cbrn/standard
 	name = "CBRN Rifleman"
 	role_comm_title = "RFN"
+	role_comm_title = "CBRN RFN"
 
 /datum/equipment_preset/uscm/cbrn/standard/load_gear(mob/living/carbon/human/new_human)
 	. = ..()
@@ -56,6 +59,8 @@
 			new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/marine(new_human), WEAR_BACK)
 			new_human.equip_to_slot_or_del(new /obj/item/storage/belt/marine/m41a(new_human), WEAR_WAIST)
 			new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(new_human), WEAR_IN_ACCESSORY)
+			new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(new_human), WEAR_IN_ACCESSORY)
+			new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(new_human), WEAR_IN_ACCESSORY)
 			new_human.equip_to_slot_or_del(new /obj/item/device/analyzer(new_human), WEAR_IN_BACK)
 			new_human.equip_to_slot_or_del(new /obj/item/device/reagent_scanner(new_human), WEAR_IN_BACK)
 			new_human.equip_to_slot_or_del(new /obj/item/prop/geiger_counter(new_human), WEAR_IN_BACK)
@@ -70,9 +75,9 @@
 	paygrade = "ME4"
 	assignment = JOB_SQUAD_ENGI
 	rank = JOB_SQUAD_ENGI
-	role_comm_title = "ComTech"
-	minimap_icon = "engi"
+	role_comm_title = "CBRN ComTech"
 	skills = /datum/skills/pmc/engineer
+	uniform_type = /obj/item/clothing/under/marine/engineer
 
 /datum/equipment_preset/uscm/cbrn/engineer/load_gear(mob/living/carbon/human/new_human)
 	. = ..()
@@ -114,9 +119,9 @@
 	paygrade = "ME4"
 	assignment = JOB_SQUAD_MEDIC
 	rank = JOB_SQUAD_MEDIC
-	role_comm_title = "HM"
-	minimap_icon = "medic"
+	role_comm_title = "CBRN HM"
 	skills = /datum/skills/pmc/medic
+	uniform_type = /obj/item/clothing/under/marine/medic
 
 /datum/equipment_preset/uscm/cbrn/medic/load_gear(mob/living/carbon/human/new_human)
 	. = ..()
@@ -153,12 +158,11 @@
 	new_human.equip_to_slot_or_del(new /obj/item/tool/surgery/synthgraft(new_human), WEAR_IN_ACCESSORY)
 
 /datum/equipment_preset/uscm/cbrn/leader
-	name = "CBRN Fireteam Leader"
+	name = "CBRN Squad Leader"
 	paygrade = "ME5"
-	assignment = JOB_SQUAD_TEAM_LEADER
-	rank = JOB_SQUAD_TEAM_LEADER
-	role_comm_title = "TL"
-	minimap_icon = "tl"
+	assignment = JOB_SQUAD_LEADER
+	rank = JOB_SQUAD_LEADER
+	role_comm_title = "CBRN SL"
 	skills = /datum/skills/pmc/SL
 
 /datum/equipment_preset/uscm/cbrn/leader/load_gear(mob/living/carbon/human/new_human)
@@ -192,8 +196,7 @@
 	paygrade = "O"
 	assignment = JOB_SQUAD_SPECIALIST
 	rank = JOB_SQUAD_SPECIALIST
-	role_comm_title = "Spc"
-	minimap_icon = "spec"
+	role_comm_title = "CBRN Spc"
 	languages = list(LANGUAGE_ENGLISH, LANGUAGE_TSL)
 	skills = /datum/skills/commando/deathsquad
 
@@ -202,11 +205,11 @@
 	access = get_access(ACCESS_LIST_GLOBAL)
 
 /datum/equipment_preset/uscm/cbrn/specialist/load_gear(mob/living/carbon/human/new_human)
-	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/cbrn(new_human), WEAR_L_EAR)
-	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/cbrn/advanced(new_human), WEAR_BODY)
-	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/cbrn/advanced(new_human), WEAR_JACKET)
-	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/cbrn(new_human), WEAR_HANDS)
-	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/pmc/commando/cbrn(new_human), WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new headset_type(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/m3cr/advanced(new_human), WEAR_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran(new_human), WEAR_HANDS)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/pmc/commando/knife(new_human), WEAR_FEET)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/accessory/storage/webbing/five_slots(new_human), WEAR_ACCESSORY)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/flamertank(new_human), WEAR_L_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/flamertank(new_human), WEAR_R_STORE)
@@ -224,11 +227,11 @@
 	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/B(new_human), WEAR_IN_R_STORE)
 
 	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41aMK1/tactical(new_human), WEAR_J_STORE)
-	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41aMK1/incendiary(new_human), WEAR_IN_ACCESSORY)
-	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41aMK1/incendiary(new_human), WEAR_IN_ACCESSORY)
-	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41aMK1/ap(new_human), WEAR_IN_ACCESSORY)
-	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41aMK1/ap(new_human), WEAR_IN_ACCESSORY)
-	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41aMK1/ap(new_human), WEAR_IN_ACCESSORY)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41aMK1/heap(new_human), WEAR_IN_ACCESSORY)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41aMK1/heap(new_human), WEAR_IN_ACCESSORY)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41aMK1/heap(new_human), WEAR_IN_ACCESSORY)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41aMK1/ap(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41aMK1/ap(new_human), WEAR_IN_JACKET)
 
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus(new_human), WEAR_IN_JACKET)
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus(new_human), WEAR_IN_JACKET)
@@ -238,9 +241,9 @@
 	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/glass/bottle/labeled_black_goo_cure(new_human), WEAR_IN_BELT)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/box/syringes(new_human), WEAR_IN_BELT)
 
-/datum/equipment_preset/uscm/cbrn/specialist/lead //Same gear, better title
+/datum/equipment_preset/uscm/cbrn/specialist/lead //Same gear, just better skills
 	name = "CBRN Specialist SL"
 	assignment = JOB_SQUAD_LEADER
 	rank = JOB_SQUAD_LEADER
-	role_comm_title = "Spc SL"
+	role_comm_title = "CBRN Spc SL"
 	skills = /datum/skills/commando/deathsquad/leader
