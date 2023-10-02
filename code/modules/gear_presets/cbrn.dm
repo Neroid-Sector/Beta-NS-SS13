@@ -29,7 +29,6 @@
 /datum/equipment_preset/uscm/cbrn/standard
 	name = "CBRN Rifleman"
 	role_comm_title = "RFN"
-	role_comm_title = "CBRN RFN"
 
 /datum/equipment_preset/uscm/cbrn/standard/load_gear(mob/living/carbon/human/new_human)
 	. = ..()
@@ -75,7 +74,7 @@
 	paygrade = "ME4"
 	assignment = JOB_SQUAD_ENGI
 	rank = JOB_SQUAD_ENGI
-	role_comm_title = "CBRN ComTech"
+	role_comm_title = "ComTech"
 	skills = /datum/skills/pmc/engineer
 	uniform_type = /obj/item/clothing/under/marine/engineer
 
@@ -119,7 +118,7 @@
 	paygrade = "ME4"
 	assignment = JOB_SQUAD_MEDIC
 	rank = JOB_SQUAD_MEDIC
-	role_comm_title = "CBRN HM"
+	role_comm_title = "HM"
 	skills = /datum/skills/pmc/medic
 	uniform_type = /obj/item/clothing/under/marine/medic
 
@@ -162,7 +161,7 @@
 	paygrade = "ME5"
 	assignment = JOB_SQUAD_LEADER
 	rank = JOB_SQUAD_LEADER
-	role_comm_title = "CBRN SL"
+	role_comm_title = "SL"
 	skills = /datum/skills/pmc/SL
 
 /datum/equipment_preset/uscm/cbrn/leader/load_gear(mob/living/carbon/human/new_human)
@@ -196,7 +195,7 @@
 	paygrade = "O"
 	assignment = JOB_SQUAD_SPECIALIST
 	rank = JOB_SQUAD_SPECIALIST
-	role_comm_title = "CBRN Spc"
+	role_comm_title = "Spc"
 	languages = list(LANGUAGE_ENGLISH, LANGUAGE_TSL)
 	skills = /datum/skills/commando/deathsquad
 
@@ -245,5 +244,5 @@
 	name = "CBRN Specialist SL"
 	assignment = JOB_SQUAD_LEADER
 	rank = JOB_SQUAD_LEADER
-	role_comm_title = "CBRN Spc SL"
+	role_comm_title = "Spc SL"
 	skills = /datum/skills/commando/deathsquad/leader
