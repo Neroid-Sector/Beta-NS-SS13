@@ -1816,7 +1816,6 @@
 	uniform_restricted = list(/obj/item/clothing/under/marine/cbrn)
 
 /obj/item/clothing/suit/storage/marine/cbrn/advanced
-	name = "advanced M3-M Armor"
 	slowdown = SLOWDOWN_ARMOR_LOWHEAVY
 	armor_melee = CLOTHING_ARMOR_HIGH
 	armor_bullet = CLOTHING_ARMOR_MEDIUMHIGH
