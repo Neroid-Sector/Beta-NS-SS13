@@ -189,6 +189,16 @@
 			if(JOB_CMB_OBS)
 				marine_rk = "obs"
 				icon_prefix = "cmb_"
+			// UACM
+			if(JOB_UACM_GRAD)
+				marine_rk = "so"
+				border_rk = "command"
+			if(JOB_UACM_RDML)
+				marine_rk = "general"
+				border_rk = "command"
+			if(JOB_UACM_CMISRS_LT)
+				marine_rk = "pvi"
+				border_rk = "command"
 
 		if(marine_rk)
 			var/image/I = image('icons/mob/hud/marine_hud.dmi', current_human, "hudsquad")

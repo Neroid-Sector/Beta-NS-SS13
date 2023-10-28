@@ -347,6 +347,12 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 
 #define DUTCH_JOB_LIST list(JOB_DUTCH_ARNOLD, JOB_DUTCH_RIFLEMAN, JOB_DUTCH_MINIGUNNER, JOB_DUTCH_FLAMETHROWER, JOB_DUTCH_MEDIC)
 
+//Sector Patrol Graduation Event Inserts
+
+#define JOB_UACM_GRAD "UACM JRFSTP Graduate"
+#define JOB_UACM_RDML "UACM Read Admiral (lower half)"
+#define JOB_UACM_CMISRS_LT "CMISRS Intelligence Liaison"
+
 #define JOB_PREDATOR "Predator"
 #define JOB_XENOMORPH    "Xenomorph"
 #define JOB_XENOMORPH_QUEEN  "Queen"
