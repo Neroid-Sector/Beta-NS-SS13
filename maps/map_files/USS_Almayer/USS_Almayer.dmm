@@ -11313,13 +11313,11 @@
 	icon_state = "pipe-c"
 	},
 /obj/effect/landmark/start/marine/smartgunner/alpha,
-/obj/effect/landmark/late_join/alpha,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/alpha)
 "aMI" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/start/marine/spec/delta,
-/obj/effect/landmark/late_join/delta,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/delta)
 "aMM" = (
@@ -14919,7 +14917,6 @@
 "beV" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/start/marine/leader/alpha,
-/obj/effect/landmark/late_join/alpha,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/alpha)
 "beW" = (
@@ -15908,7 +15905,6 @@
 /obj/effect/decal/warning_stripes{
 	icon_state = "W"
 	},
-/obj/effect/landmark/late_join,
 /obj/effect/landmark/ert_spawns/distress_cryo,
 /obj/effect/landmark/start/senior,
 /turf/open/floor/almayer{
@@ -18286,7 +18282,6 @@
 	dir = 10
 	},
 /obj/effect/landmark/start/marine/alpha,
-/obj/effect/landmark/late_join/alpha,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/alpha)
 "bxC" = (
@@ -18461,7 +18456,6 @@
 /area/almayer/hallways/hangar)
 "byn" = (
 /obj/effect/landmark/start/marine/leader/bravo,
-/obj/effect/landmark/late_join/bravo,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/bravo)
 "byp" = (
@@ -18704,7 +18698,6 @@
 	icon_state = "W"
 	},
 /obj/effect/landmark/ert_spawns/distress_cryo,
-/obj/effect/landmark/late_join,
 /turf/open/floor/almayer{
 	dir = 4;
 	icon_state = "silver"
@@ -19648,7 +19641,6 @@
 	icon_state = "SW-out"
 	},
 /obj/effect/landmark/ert_spawns/distress_cryo,
-/obj/effect/landmark/late_join,
 /turf/open/floor/almayer{
 	dir = 6;
 	icon_state = "silver"
@@ -21235,7 +21227,6 @@
 /area/almayer/hallways/starboard_hallway)
 "bKM" = (
 /obj/effect/landmark/start/marine/medic/charlie,
-/obj/effect/landmark/late_join/charlie,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/charlie)
 "bKO" = (
@@ -22538,7 +22529,6 @@
 	name = "ship-grade camera"
 	},
 /obj/effect/landmark/ert_spawns/distress_cryo,
-/obj/effect/landmark/late_join,
 /turf/open/floor/almayer,
 /area/almayer/living/cryo_cells)
 "bPM" = (
@@ -22849,7 +22839,6 @@
 	},
 /area/almayer/shipboard/brig/lobby)
 "bRo" = (
-/obj/effect/landmark/late_join/working_joe,
 /obj/effect/landmark/start/working_joe,
 /obj/structure/machinery/light{
 	dir = 8
@@ -25505,7 +25494,6 @@
 /area/almayer/hallways/port_hallway)
 "ccQ" = (
 /obj/effect/landmark/ert_spawns/distress_cryo,
-/obj/effect/landmark/late_join,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/cryo_cells)
 "ccR" = (
@@ -25616,18 +25604,10 @@
 /area/almayer/shipboard/brig/main_office)
 "cdm" = (
 /obj/effect/landmark/ert_spawns/distress_cryo,
-/obj/effect/landmark/late_join,
 /obj/structure/machinery/power/apc/almayer{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/almayer/living/cryo_cells)
-"cdn" = (
-/obj/effect/landmark/ert_spawns/distress_cryo,
-/obj/effect/landmark/late_join,
-/turf/open/floor/almayer{
-	icon_state = "cargo"
-	},
 /area/almayer/living/cryo_cells)
 "cdo" = (
 /obj/structure/machinery/light{
@@ -26485,7 +26465,6 @@
 /area/almayer/hallways/port_hallway)
 "cjc" = (
 /obj/effect/landmark/start/marine/alpha,
-/obj/effect/landmark/late_join/alpha,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/alpha)
 "cjd" = (
@@ -32300,7 +32279,6 @@
 /area/almayer/lifeboat_pumps/south1)
 "ehx" = (
 /obj/effect/landmark/start/marine/tl/alpha,
-/obj/effect/landmark/late_join/alpha,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/alpha)
 "ehH" = (
@@ -32855,7 +32833,6 @@
 	icon_state = "pipe-j2"
 	},
 /obj/effect/landmark/start/marine/smartgunner/delta,
-/obj/effect/landmark/late_join/delta,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/delta)
 "erN" = (
@@ -35627,7 +35604,6 @@
 /area/almayer/engineering/upper_engineering)
 "fDJ" = (
 /obj/effect/landmark/start/marine/engineer/charlie,
-/obj/effect/landmark/late_join/charlie,
 /turf/open/floor/almayer{
 	icon_state = "plate"
 	},
@@ -35893,7 +35869,6 @@
 /area/almayer/hull/lower_hull/l_f_p)
 "fIM" = (
 /obj/effect/landmark/start/marine/tl/bravo,
-/obj/effect/landmark/late_join/bravo,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/bravo)
 "fIX" = (
@@ -36489,7 +36464,6 @@
 /area/almayer/command/combat_correspondent)
 "fXN" = (
 /obj/effect/landmark/start/marine/delta,
-/obj/effect/landmark/late_join/delta,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/delta)
 "fYb" = (
@@ -36579,7 +36553,6 @@
 /area/almayer/hull/upper_hull/u_m_s)
 "fZZ" = (
 /obj/effect/landmark/start/marine/medic/bravo,
-/obj/effect/landmark/late_join/bravo,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/bravo)
 "gac" = (
@@ -37435,7 +37408,6 @@
 	pixel_x = -32
 	},
 /obj/effect/landmark/ert_spawns/distress_cryo,
-/obj/effect/landmark/late_join,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/cryo_cells)
 "gsH" = (
@@ -38772,7 +38744,6 @@
 "gWE" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/start/marine/spec/alpha,
-/obj/effect/landmark/late_join/alpha,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/alpha)
 "gWG" = (
@@ -40384,7 +40355,6 @@
 /area/almayer/medical/lower_medical_lobby)
 "hEb" = (
 /obj/effect/landmark/start/marine/medic/bravo,
-/obj/effect/landmark/late_join/bravo,
 /turf/open/floor/almayer{
 	icon_state = "plate"
 	},
@@ -41146,7 +41116,6 @@
 /area/almayer/hallways/hangar)
 "hWr" = (
 /obj/effect/landmark/start/marine/smartgunner/bravo,
-/obj/effect/landmark/late_join/bravo,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/bravo)
 "hWs" = (
@@ -48914,7 +48883,6 @@
 /area/almayer/living/gym)
 "ljs" = (
 /obj/effect/landmark/start/marine/spec/bravo,
-/obj/effect/landmark/late_join/bravo,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/bravo)
 "ljG" = (
@@ -49931,7 +49899,6 @@
 /area/almayer/medical/hydroponics)
 "lDV" = (
 /obj/effect/landmark/start/marine/medic/bravo,
-/obj/effect/landmark/late_join/bravo,
 /obj/structure/sign/safety/cryo{
 	pixel_y = 26
 	},
@@ -51715,7 +51682,6 @@
 /area/almayer/engineering/upper_engineering)
 "muy" = (
 /obj/effect/landmark/start/marine/engineer/alpha,
-/obj/effect/landmark/late_join/alpha,
 /turf/open/floor/almayer{
 	icon_state = "plate"
 	},
@@ -54128,7 +54094,6 @@
 /area/almayer/living/briefing)
 "nuN" = (
 /obj/effect/landmark/start/marine/medic/alpha,
-/obj/effect/landmark/late_join/alpha,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/alpha)
 "nuY" = (
@@ -54447,7 +54412,6 @@
 /area/almayer/hallways/aft_hallway)
 "nCf" = (
 /obj/effect/landmark/start/marine/tl/charlie,
-/obj/effect/landmark/late_join/charlie,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/charlie)
 "nCp" = (
@@ -55953,7 +55917,6 @@
 /area/almayer/medical/lower_medical_medbay)
 "oka" = (
 /obj/effect/landmark/start/marine/medic/charlie,
-/obj/effect/landmark/late_join/charlie,
 /turf/open/floor/almayer{
 	icon_state = "plate"
 	},
@@ -56976,7 +56939,6 @@
 /area/almayer/lifeboat_pumps/north1)
 "oEo" = (
 /obj/effect/landmark/start/marine/medic/delta,
-/obj/effect/landmark/late_join/delta,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/delta)
 "oEw" = (
@@ -57233,7 +57195,6 @@
 /area/almayer/hull/upper_hull/u_a_p)
 "oLi" = (
 /obj/effect/landmark/start/marine/medic/bravo,
-/obj/effect/landmark/late_join/bravo,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/alpha)
 "oLm" = (
@@ -57751,7 +57712,6 @@
 /area/almayer/shipboard/brig/cryo)
 "oXb" = (
 /obj/effect/landmark/start/marine/charlie,
-/obj/effect/landmark/late_join/charlie,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/charlie)
 "oXd" = (
@@ -59881,7 +59841,6 @@
 /area/almayer/hull/upper_hull/u_a_s)
 "pWb" = (
 /obj/effect/landmark/start/marine/tl/delta,
-/obj/effect/landmark/late_join/delta,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/delta)
 "pWf" = (
@@ -60017,7 +59976,6 @@
 /area/almayer/squads/req)
 "pXZ" = (
 /obj/effect/landmark/start/marine/spec/charlie,
-/obj/effect/landmark/late_join/charlie,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/charlie)
 "pYi" = (
@@ -60639,7 +60597,6 @@
 /area/almayer/hull/upper_hull/u_f_p)
 "qki" = (
 /obj/effect/landmark/start/marine/smartgunner/charlie,
-/obj/effect/landmark/late_join/charlie,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/charlie)
 "qkn" = (
@@ -61482,7 +61439,6 @@
 /area/almayer/hallways/hangar)
 "qDq" = (
 /obj/effect/landmark/start/marine/bravo,
-/obj/effect/landmark/late_join/bravo,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/bravo)
 "qDt" = (
@@ -62616,11 +62572,6 @@
 	icon_state = "silvercorner"
 	},
 /area/almayer/command/computerlab)
-"rbF" = (
-/obj/effect/landmark/late_join,
-/obj/effect/landmark/ert_spawns/distress_cryo,
-/turf/open/floor/plating/plating_catwalk,
-/area/almayer/living/cryo_cells)
 "rbH" = (
 /obj/structure/pipes/standard/simple/hidden/supply{
 	dir = 4
@@ -62781,7 +62732,6 @@
 /area/almayer/living/grunt_rnr)
 "rfa" = (
 /obj/effect/landmark/start/marine/medic/alpha,
-/obj/effect/landmark/late_join/alpha,
 /turf/open/floor/almayer{
 	icon_state = "plate"
 	},
@@ -63661,7 +63611,6 @@
 	},
 /area/almayer/command/cic)
 "rzf" = (
-/obj/effect/landmark/late_join/working_joe,
 /obj/effect/landmark/start/working_joe,
 /turf/open/floor/almayer/no_build{
 	icon_state = "ai_floors"
@@ -64809,7 +64758,6 @@
 /area/almayer/hallways/port_hallway)
 "rYp" = (
 /obj/effect/landmark/start/marine/medic/delta,
-/obj/effect/landmark/late_join/delta,
 /turf/open/floor/almayer{
 	icon_state = "plate"
 	},
@@ -66993,7 +66941,6 @@
 /area/almayer/squads/alpha)
 "sXw" = (
 /obj/effect/landmark/start/marine/engineer/bravo,
-/obj/effect/landmark/late_join/bravo,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/bravo)
 "sXB" = (
@@ -67394,7 +67341,6 @@
 /area/almayer/squads/charlie_delta_shared)
 "tez" = (
 /obj/effect/landmark/ert_spawns/distress_cryo,
-/obj/effect/landmark/late_join,
 /turf/open/floor/almayer,
 /area/almayer/living/cryo_cells)
 "teB" = (
@@ -68646,7 +68592,6 @@
 /area/almayer/command/combat_correspondent)
 "tEO" = (
 /obj/effect/landmark/start/marine/medic/charlie,
-/obj/effect/landmark/late_join/charlie,
 /obj/structure/sign/safety/cryo{
 	pixel_x = 8;
 	pixel_y = -26
@@ -70378,7 +70323,6 @@
 /area/almayer/engineering/upper_engineering)
 "urN" = (
 /obj/effect/landmark/start/marine/leader/charlie,
-/obj/effect/landmark/late_join/charlie,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/charlie)
 "ush" = (
@@ -72624,7 +72568,6 @@
 /area/almayer/living/briefing)
 "viS" = (
 /obj/effect/landmark/start/marine/engineer/bravo,
-/obj/effect/landmark/late_join/bravo,
 /turf/open/floor/almayer{
 	icon_state = "plate"
 	},
@@ -73216,7 +73159,6 @@
 /area/almayer/shipboard/sea_office)
 "vug" = (
 /obj/effect/landmark/start/marine/engineer/alpha,
-/obj/effect/landmark/late_join/alpha,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/alpha)
 "vuv" = (
@@ -74511,7 +74453,6 @@
 /area/almayer/living/cryo_cells)
 "vUb" = (
 /obj/effect/landmark/start/marine/alpha,
-/obj/effect/landmark/late_join/alpha,
 /turf/open/floor/almayer{
 	icon_state = "plate"
 	},
@@ -75076,7 +75017,6 @@
 /area/almayer/shipboard/brig/main_office)
 "wdz" = (
 /obj/effect/landmark/start/marine/engineer/charlie,
-/obj/effect/landmark/late_join/charlie,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/charlie)
 "wdF" = (
@@ -76112,7 +76052,6 @@
 	pixel_y = -8;
 	req_one_access_txt = "91;92"
 	},
-/obj/effect/landmark/late_join/working_joe,
 /obj/effect/landmark/start/working_joe,
 /turf/open/floor/almayer/no_build{
 	icon_state = "ai_floors"
@@ -76445,7 +76384,6 @@
 "wGE" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/start/marine/leader/delta,
-/obj/effect/landmark/late_join/delta,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/delta)
 "wGI" = (
@@ -77294,7 +77232,6 @@
 /area/almayer/hull/upper_hull/u_f_p)
 "wWX" = (
 /obj/effect/landmark/start/marine/engineer/delta,
-/obj/effect/landmark/late_join/delta,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/delta)
 "wXh" = (
@@ -79575,7 +79512,6 @@
 	pixel_x = -17
 	},
 /obj/effect/landmark/ert_spawns/distress_cryo,
-/obj/effect/landmark/late_join,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/cryo_cells)
 "xSW" = (
@@ -80210,7 +80146,6 @@
 /area/almayer/shipboard/brig/chief_mp_office)
 "yfm" = (
 /obj/effect/landmark/start/marine/delta,
-/obj/effect/landmark/late_join/delta,
 /turf/open/floor/almayer{
 	icon_state = "plate"
 	},
@@ -80457,7 +80392,6 @@
 /area/almayer/medical/containment)
 "yle" = (
 /obj/effect/landmark/start/marine/engineer/delta,
-/obj/effect/landmark/late_join/delta,
 /turf/open/floor/almayer{
 	icon_state = "plate"
 	},
@@ -125719,7 +125653,7 @@ xYP
 bbs
 gsm
 bCM
-rbF
+ccQ
 cJE
 bOT
 dLt
@@ -125922,7 +125856,7 @@ vTS
 bbs
 ccQ
 bCN
-rbF
+ccQ
 qlz
 xYf
 skn
@@ -126124,8 +126058,8 @@ ydM
 xYP
 bbs
 ccQ
-cdn
-rbF
+bpV
+ccQ
 qlz
 gYe
 skn
@@ -126138,7 +126072,7 @@ bpV
 ccQ
 tez
 ccQ
-cdn
+bpV
 bbr
 buH
 iEb
@@ -126328,7 +126262,7 @@ xYP
 bbs
 cdm
 bCM
-rbF
+ccQ
 qlz
 fOz
 skn
@@ -126531,7 +126465,7 @@ bDL
 bbs
 ccQ
 bCN
-rbF
+ccQ
 vub
 odN
 odN
