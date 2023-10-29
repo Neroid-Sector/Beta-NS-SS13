@@ -48,10 +48,10 @@
 
 	ooc_allowed = !ooc_allowed
 	if(ooc_allowed)
-		to_world("<B>The OOC channel has been globally enabled!</B>")
+		to_world("<B>OOC mode. PLease stop IC interactions. OOC is global. Avoid spoilers/metagaming.</B>")
 	else
-		to_world("<B>The OOC channel has been globally disabled!</B>")
-	message_admins("[key_name_admin(usr)] toggled OOC.")
+		to_world("<B>IC mode. All interactions should be IC. Global OOC is disabled.</B>")
+	message_admins("[key_name_admin(usr)] toggled OOC Mode.")
 
 /datum/admins/proc/togglelooc()
 	set name = "Toggle LOOC"
