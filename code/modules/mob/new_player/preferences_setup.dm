@@ -311,6 +311,8 @@
 				var/datum/job/J = RoleAuthority.roles_by_name[JOB_PREDATOR]
 				return J.gear_preset_whitelist["[JOB_PREDATOR][J.get_whitelist_status(RoleAuthority.roles_whitelist, owner)]"]
 			return /datum/equipment_preset/yautja/blooded
+		if(JOB_UACM_GRAD)
+			return /datum/equipment_preset/uacm/grad
 
 	return /datum/equipment_preset/uscm/private_equipped
 

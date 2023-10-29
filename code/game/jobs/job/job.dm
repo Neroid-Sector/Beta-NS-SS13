@@ -200,22 +200,18 @@
 		entry_message_intro = "You are the [title]!"
 	if(!entry_message_end)
 		entry_message_end = "As the [title] you answer to [supervisors]. Special circumstances may change this!"
-	return "[entry_message_intro]<br>[entry_message_body]<br>[entry_message_end]"
+	return "[entry_message_intro]<br><br>[entry_message_body]<br><br>[entry_message_end]"
 
 /datum/job/proc/announce_entry_message(mob/living/carbon/human/H, datum/money_account/M, whitelist_status) //The actual message that is displayed to the mob when they enter the game as a new player.
 	set waitfor = 0
 	sleep(10)
 	if(H && H.loc && H.client)
-		var/title_given
-		title_given = lowertext(disp_title)
 
 		//Document syntax cannot have tabs for proper formatting.
 		var/entrydisplay = " \
-			[SPAN_ROLE_BODY("|______________________|")] \n\
-			[SPAN_ROLE_HEADER("You are \a [title_given]")] \n\
+
 			[flags_startup_parameters & ROLE_ADMIN_NOTIFY ? SPAN_ROLE_HEADER("You are playing a job that is important for game progression. If you have to disconnect, please notify the admins via adminhelp.") : ""] \n\
-			[SPAN_ROLE_BODY("[generate_entry_message(H)]<br>[M ? "Your account number is: <b>[M.account_number]</b>. Your account pin is: <b>[M.remote_access_pin]</b>." : "You do not have a bank account."]")] \n\
-			[SPAN_ROLE_BODY("|______________________|")] \
+			[SPAN_ROLE_BODY("[generate_entry_message(H)]")] \n\
 		"
 		to_chat_spaced(H, html = entrydisplay)
 
