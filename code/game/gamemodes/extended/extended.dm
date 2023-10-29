@@ -1,6 +1,6 @@
 /datum/game_mode/extended
-	name = "Sector Patrol Alpha"
-	config_tag = "Sector Patrol Alpha"
+	name = "Extended"
+	config_tag = "Extended"
 	required_players = 0
 	latejoin_larva_drop = 0
 	votable = FALSE
@@ -12,7 +12,7 @@
 	to_world("<B>The current game mode is - Extended!</B>")
 
 /datum/game_mode/extended/get_roles_list()
-	return ROLES_UACM_GRADUATION
+	return ROLES_USCM
 
 /datum/game_mode/extended/post_setup()
 	initialize_post_marine_gear_list()

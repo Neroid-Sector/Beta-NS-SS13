@@ -1383,6 +1383,25 @@
 "FB" = (
 /turf/open/floor/plating,
 /area/adminlevel/ert_station)
+"FO" = (
+/obj/structure/machinery/door/airlock/almayer/generic{
+	damage_cap = 50000;
+	name = "\improper Hangar";
+	no_panel = 1
+	},
+/obj/structure/sign/safety/debark_lounge{
+	pixel_x = 15;
+	pixel_y = -32
+	},
+/obj/structure/machinery/door/poddoor/almayer{
+	dir = 4;
+	id = "ERT Lock 1";
+	unacidable = 1
+	},
+/turf/open/floor/almayer{
+	icon_state = "tcomms"
+	},
+/area/adminlevel/ert_station)
 "FT" = (
 /turf/open/floor/almayer{
 	icon_state = "silver"
@@ -4937,7 +4956,7 @@ wW
 wW
 PT
 wW
-PT
+FO
 wW
 wW
 wW

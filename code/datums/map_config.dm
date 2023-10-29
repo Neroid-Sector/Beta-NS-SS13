@@ -374,10 +374,10 @@
 			if(!(g in gamemode_names))
 				log_world("map_config has an invalid gamemode name!")
 				return
-			if(g == "Sector Patrol Alpha") // always allow extended
+			if(g == "Extended") // always allow extended
 				continue
 			gamemodes += g
-		gamemodes += "Sector Patrol Alpha"
+		gamemodes += "Extended"
 	else if(!isnull(json["gamemodes"]))
 		log_world("map_config gamemodes is not a list!")
 		return
