@@ -169,6 +169,53 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 
 //------------------------------------
 
+//-------------Mudskipper roles---------------
+
+
+//----Command----
+
+#define JOB_MS_CO "Commanding Officer"
+#define JOB_MS_XO "Adjunct"
+#define JOB_MS_CPT "Captain"
+#define JOB_MS_LT "Lieutenant"
+#define JOB_MS_GC "Ground Commander"
+#define JOB_MS_PC "Platoon Commander"
+#define JOB_MS_ASO "Auxillery Support Officer"
+
+#define JOB_MUDSKIPPER_COMMAND_LIST list(JOB_MS_CO, JOB_MS_XO, JOB_MS_CPT, JOB_MS_LT, JOB_MS_GC, JOB_MS_PC, JOB_MS_ASO)
+
+//----Squad-----
+#define JOB_MS_RFM "Mudskippers Squad Rifleman"
+#define JOB_MS_MEDIC "Mudskippers Squad Hospital Corpsman"
+#define JOB_MS_ENGINEER "Mudskippers Squad Combat Technician"
+#define JOB_MS_SMARTGUNNER "Mudskippers Squad Smartgunner"
+#define JOB_MS_SL "Mudskippers Squad Leader"
+
+#define JOB_MUDSKIPPER_SQUAD_LIST list(JOB_MS_RFM, JOB_MS_MEDIC, JOB_MS_ENGINEER, JOB_MS_SMARTGUNNER, JOB_MS_SL)
+
+//----Support----
+
+#define JOB_MS_PILOT "Pilot Officer"
+#define JOB_MS_WO "Warrant Officer"
+#define JOB_MS_CREWMAN "Vehicle Crewman"
+#define JOB_MS_INTEL "Intelligence Officer"
+
+#define JOB_MS_CMO "Chief Medical Officer"
+#define JOB_MS_SURGEON "USCM Surgeon"
+
+#define JOB_MUDSKIPPER_SUPPORT_LIST list(JOB_MS_PILOT, JOB_MS_WO, JOB_MS_CREWMAN, JOB_MS_INTEL, JOB_MS_CMO, JOB_MS_SURGEON)
+
+//----Weyland REPs----
+#define JOB_WYREP_BG "Corporate Laison"
+#define JOB_PMC_LEADER "PMC Leader"
+#define JOB_PMC_BG "Weyland-Yutani PMC (Standard)"
+#define JOB_SCI_BG "Weyland-Yutani Researcher"
+#define JOB_PMC_SYNTH_BG "PMC Support Synthetic"
+
+#define JOB_WYREPS_LIST list(JOB_WYREP_BG, JOB_PMC_LEADER, JOB_PMC_BG, JOB_PMC_SYNTH_BG)
+
+//----------------------//
+
 //-------- PMC --------//
 #define JOB_PMC_STANDARD "Weyland-Yutani PMC (Standard)"
 #define JOB_PMC_ENGINEER "PMC Corporate Technician"
