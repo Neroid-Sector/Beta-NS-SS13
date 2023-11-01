@@ -207,7 +207,7 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 
 //----Weyland REPs----
 #define JOB_WYREP_BG "Corporate Laison"
-#define JOB_PMC_LEADER "PMC Leader"
+#define JOB_PMC_LEADER_BG "PMC Leader"
 #define JOB_PMC_BG "Weyland-Yutani PMC (Standard)"
 #define JOB_SCI_BG "Weyland-Yutani Researcher"
 #define JOB_PMC_SYNTH_BG "PMC Support Synthetic"

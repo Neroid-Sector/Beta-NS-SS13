@@ -29,7 +29,7 @@
 
 //---CO---//
 
-/datum/equipment_preset/MS/commander
+/datum/equipment_preset/uscm_mudskippers/commander
 	name = "Commanding Officer (Mudskippers)"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
 
@@ -63,14 +63,12 @@
 	. = ..()
 	access = get_access(ACCESS_LIST_MARINE_ALL)
 
-/datum/equipment_preset/MS/commander/load_race(mob/living/carbon/human/new_human, client/mob_client)
+/datum/equipment_preset/uscm_mudskippers/commander/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
 	ADD_TRAIT(new_human, TRAIT_EMOTE_CD_EXEMPT, TRAIT_SOURCE_JOB)
 
 /datum/equipment_preset/uscm_mudskippers/commander/load_gear(mob/living/carbon/human/new_human)
-	var/sidearm = "Mateba"
-	var/kit = null
-	var/sidearmpath = /obj/item/storage/belt/gun/mateba/cmateba/full
+
 	var/back_item = /obj/item/storage/backpack/satchel/lockable
 
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom/cdrcom(new_human), WEAR_L_EAR)
@@ -82,14 +80,13 @@
 	new_human.equip_to_slot_or_del(new back_item(new_human), WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(new_human), WEAR_R_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/pistol/command(new_human), WEAR_L_STORE)
-	if(kit)
-		new_human.equip_to_slot_or_del(new kit(new_human), WEAR_IN_BACK)
+
 
 //--Ground Commander---//
 
-/datum/equipment_preset/MS/gcommander
+/datum/equipment_preset/uscm_mudskippers/gcommander
 	name = "Ground Commander (Mudskippers)"
-	flags = flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
+	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
 
 	assignment = JOB_MS_GC
 	rank = JOB_MS_GC
@@ -120,22 +117,19 @@
 	access = get_access(ACCESS_LIST_MARINE_ALL)
 
 /datum/equipment_preset/uscm_mudskippers/gcommander/load_gear(mob/living/carbon/human/new_human)
-	var/sidearm = "Mateba"
-	var/kit = null
-	var/sidearmpath = /obj/item/storage/belt/gun/mateba/cmateba/full
-	var/back_item = /obj/item/storage/backpack/satchel/lockable
-
 
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/beret/cm(new_human), WEAR_HEAD)
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom/cdrcom(new_human), WEAR_L_EAR)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/boiler(new_human), WEAR_BODY)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/webbing(new_human), WEAR_JACKET)
-	new_human.equip_to_slot_or_del(new sidearmpath/obj/item/storage/belt/gun/mateba/cmateba/full(new_human), WEAR_WAIST)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/belt/gun/mateba/cmateba/full(new_human), WEAR_WAIST)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(new_human), WEAR_FEET)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(new_human), WEAR_R_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/pistol/command(new_human), WEAR_L_STORE)
 
 //---Adjunct---//
+/datum/equipment_preset/uscm_mudskippers/xo
 	name = "Adjunct(Mudskippers)"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
 
@@ -157,23 +151,20 @@
 	access = get_access(ACCESS_LIST_MARINE_MAIN)
 
 /datum/equipment_preset/uscm_mudskippers/xo/load_gear(mob/living/carbon/human/new_human)
-	var/back_item = /obj/item/storage/backpack/satchel
-	if (new_human.client && new_human.client.prefs && (new_human.client.prefs.backbag == 1))
-		back_item = /obj/item/storage/backpack/marine
 
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom/cdrcom(new_human), WEAR_L_EAR)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/bridge(new_human), WEAR_BODY)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/jacket/marine/service(new_human), WEAR_JACKET)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/dress(new_human), WEAR_FEET)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap(new_human), WEAR_HEAD)
-	new_human.equip_to_slot_or_del(new back_item(new_human), WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(new_human), WEAR_L_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(new_human), WEAR_R_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/device/binoculars/range(new_human), WEAR_L_STORE)
 
 //---Captain---//
-
-	name = "Adjunct(Mudskippers)"
+/datum/equipment_preset/uscm_mudskippers/cpt
+	name = "Captain(Mudskippers)"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
 
 	idtype = /obj/item/card/id/silver
