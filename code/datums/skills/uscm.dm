@@ -427,7 +427,7 @@ COMMAND STAFF
 		SKILL_INTEL = SKILL_INTEL_EXPERT,
 		SKILL_NAVIGATIONS = SKILL_NAVIGATIONS_TRAINED //can change ship alt
 	)
-/datum/skills/LT
+/datum/skills/ms/LT
 	name = "Staff Officer"
 	skills = list(
 		SKILL_ENGINEER = SKILL_ENGINEER_ENGI,
