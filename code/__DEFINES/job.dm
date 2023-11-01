@@ -180,9 +180,8 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_MS_LT "Lieutenant"
 #define JOB_MS_GC "Ground Commander"
 #define JOB_MS_PC "Platoon Commander"
-#define JOB_MS_ASO "Auxillery Support Officer"
 
-#define JOB_MUDSKIPPER_COMMAND_LIST list(JOB_MS_CO, JOB_MS_XO, JOB_MS_CPT, JOB_MS_LT, JOB_MS_GC, JOB_MS_PC, JOB_MS_ASO)
+#define JOB_MUDSKIPPER_COMMAND_LIST list(JOB_MS_CO, JOB_MS_XO, JOB_MS_CPT, JOB_MS_LT, JOB_MS_GC, JOB_MS_PC)
 
 //----Squad-----
 #define JOB_MS_RFM "Mudskippers Squad Rifleman"
@@ -197,7 +196,7 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 
 #define JOB_MS_PILOT "Pilot Officer"
 #define JOB_MS_WO "Warrant Officer"
-#define JOB_MS_CREWMAN "Vehicle Crewman"
+#define JOB_MS_CREWMAN "Tank Crewman"
 #define JOB_MS_INTEL "Intelligence Officer"
 
 #define JOB_MS_CMO "Chief Medical Officer"
@@ -210,9 +209,8 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_PMC_LEADER_BG "PMC Leader"
 #define JOB_PMC_BG "Weyland-Yutani PMC (Standard)"
 #define JOB_SCI_BG "Weyland-Yutani Researcher"
-#define JOB_PMC_SYNTH_BG "PMC Support Synthetic"
 
-#define JOB_WYREPS_LIST list(JOB_WYREP_BG, JOB_PMC_LEADER, JOB_PMC_BG, JOB_PMC_SYNTH_BG)
+#define JOB_WYREPS_LIST list(JOB_WYREP_BG, JOB_PMC_LEADER, JOB_PMC_BG)
 
 //----------------------//
 
