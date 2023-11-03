@@ -271,10 +271,30 @@
 //------Squad------//
 
 //---SL---//
+/datum/equipment_preset/uscm_mudskippers/leader
+	name = "Squad Leader(mudskippers)"
+	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
+
+	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
+	assignment = JOB_MS_SL
+	rank = JOB_MS_SL
+	paygrade = "ME5"
+	role_comm_title = "SL"
+	minimum_age = 27
+	skills = /datum/skills/SL
+
+	minimap_icon = "leader"
+
+/datum/equipment_preset/uscm_mudskippers/leader/load_gear(mob/living/carbon/human/new_human)
+	var/back_item = /obj/item/storage/backpack/marine/satchel
+	if (new_human.client && new_human.client.prefs && (new_human.client.prefs.backbag == 1))
+		back_item = /obj/item/storage/backpack/marine
+
+	new_human.equip_to_slot_or_del(new back_item(new_human), WEAR_BACK)
 
 //---SG---//
 /datum/equipment_preset/uscm_mudskippers/sg
-	name = "USCM Squad Smartgunner"
+	name = "Squad Smartgunner(mudskippers)"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
 
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP)
@@ -292,11 +312,72 @@
 		back_item = /obj/item/storage/backpack/marine
 
 	new_human.equip_to_slot_or_del(new back_item(new_human), WEAR_BACK)
-//---Medic---//
 
+//---Medic---//
+/datum/equipment_preset/uscm_mudskippers/medic
+	name = "Squad Hospital Corpsman(mudskippers)"
+	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
+
+	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
+	assignment = JOB_MS_MEDIC
+	rank = JOB_MS_MEDIC
+	paygrade = "ME3"
+	role_comm_title = "HM"
+	skills = /datum/skills/combat_medic
+
+	minimap_icon = "medic"
+
+	utility_under = list(/obj/item/clothing/under/marine/medic)
+
+/datum/equipment_preset/uscm_mudskippers/medic/load_gear(mob/living/carbon/human/new_human)
+	var/back_item = /obj/item/storage/backpack/marine/satchel/medic
+	if (new_human.client && new_human.client.prefs && (new_human.client.prefs.backbag == 1))
+		back_item = /obj/item/storage/backpack/marine/medic
+
+	new_human.equip_to_slot_or_del(new back_item(new_human), WEAR_BACK)
 //---Engi---//
+/datum/equipment_preset/uscm_mudskippers/engineer
+	name = "Squad Combat Technician(mudskippers)"
+	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
+
+	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING)
+	assignment = JOB_MS_ENGINEER
+	rank = JOB_MS_ENGINEER
+	paygrade = "ME3"
+	role_comm_title = "ComTech"
+	skills = /datum/skills/combat_engineer
+
+	minimap_icon = "engi"
+
+	utility_under = list(/obj/item/clothing/under/marine/engineer)
+
+/datum/equipment_preset/uscm_mudskippers/engineer/load_gear(mob/living/carbon/human/new_human)
+	var/back_item = /obj/item/storage/backpack/marine/satchel/tech
+	if (new_human.client && new_human.client.prefs && (new_human.client.prefs.backbag == 1))
+		back_item = /obj/item/storage/backpack/marine/tech
+
+	new_human.equip_to_slot_or_del(new back_item(new_human), WEAR_BACK)
 
 //---RFM---//
+/datum/equipment_preset/uscm_mudskippers/spec
+	name = "Squad Rifleman(mudskippers)"
+	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
+
+	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_SPECPREP)
+	assignment = JOB_MS_RFM
+	rank = JOB_MS_RFM
+	paygrade = "ME3"
+	role_comm_title = "Rfm"
+	skills = /datum/skills/ms/rifleman
+
+	minimap_icon = "private"
+
+/datum/equipment_preset/uscm/uscm_mudskippers/load_gear(mob/living/carbon/human/new_human)
+	var/back_item = /obj/item/storage/backpack/marine/satchel
+	if (new_human.client && new_human.client.prefs && (new_human.client.prefs.backbag == 1))
+		back_item = /obj/item/storage/backpack/marine
+
+	new_human.equip_to_slot_or_del(new back_item(new_human), WEAR_BACK)
 
 
 //------Support------//
