@@ -281,7 +281,7 @@
 	paygrade = "ME5"
 	role_comm_title = "SL"
 	minimum_age = 27
-	skills = /datum/skills/SL
+	skills = /datum/skills/ms/sl
 
 	minimap_icon = "leader"
 
@@ -302,7 +302,7 @@
 	rank = JOB_MS_SMARTGUNNER
 	paygrade = "ME3"
 	role_comm_title = "SG"
-	skills = /datum/skills/smartgunner
+	skills = /datum/skills/ms/rifleman
 
 	minimap_icon = "smartgunner"
 
@@ -323,7 +323,7 @@
 	rank = JOB_MS_MEDIC
 	paygrade = "ME3"
 	role_comm_title = "HM"
-	skills = /datum/skills/combat_medic
+	skills = /datum/skills/ms/medic
 
 	minimap_icon = "medic"
 
@@ -345,7 +345,7 @@
 	rank = JOB_MS_ENGINEER
 	paygrade = "ME3"
 	role_comm_title = "ComTech"
-	skills = /datum/skills/combat_engineer
+	skills = /datum/skills/ms/engi
 
 	minimap_icon = "engi"
 
@@ -359,7 +359,7 @@
 	new_human.equip_to_slot_or_del(new back_item(new_human), WEAR_BACK)
 
 //---RFM---//
-/datum/equipment_preset/uscm_mudskippers/spec
+/datum/equipment_preset/uscm_mudskippers/rfm
 	name = "Squad Rifleman(mudskippers)"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
 
@@ -372,7 +372,7 @@
 
 	minimap_icon = "private"
 
-/datum/equipment_preset/uscm/uscm_mudskippers/load_gear(mob/living/carbon/human/new_human)
+/datum/equipment_preset/uscm_mudskippers/rfm/load_gear(mob/living/carbon/human/new_human)
 	var/back_item = /obj/item/storage/backpack/marine/satchel
 	if (new_human.client && new_human.client.prefs && (new_human.client.prefs.backbag == 1))
 		back_item = /obj/item/storage/backpack/marine
