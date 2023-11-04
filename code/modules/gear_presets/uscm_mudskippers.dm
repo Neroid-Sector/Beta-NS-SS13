@@ -500,6 +500,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/nailgun(new_human), WEAR_IN_ACCESSORY)
 	new_human.equip_to_slot_or_del(new /obj/item/device/sentry_computer(new_human), WEAR_IN_ACCESSORY)
 	new_human.equip_to_slot_or_del(new /obj/item/device/binoculars/range(new_human), WEAR_IN_ACCESSORY)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/kit/engineering_supply_kit(new_human), WEAR_L_HAND)
 	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41aMK1(new_human), WEAR_J_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/large(new_human), WEAR_L_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41aMK1/heap(new_human), WEAR_IN_L_STORE)
@@ -528,7 +529,43 @@
 
 	new_human.equip_to_slot_or_del(new back_item(new_human), WEAR_BACK)
 
-/obj/item/storage/belt/marine/m41amk1heap
+/datum/equipment_preset/uscm_mudskippers/rfm/full
+	name = "Squad Rifleman(mudskippers)"
+	flags = EQUIPMENT_PRESET_EXTRA|EQUIPMENT_PRESET_MARINE
+
+
+/datum/equipment_preset/uscm_mudskippers/rfm/full/load_gear(mob/living/carbon/human/new_human)
+	var/back_item = /obj/item/storage/backpack/marine/satchel
+	if (new_human.client && new_human.client.prefs && (new_human.client.prefs.backbag == 1))
+		back_item = /obj/item/storage/backpack/marine
+
+	new_human.equip_to_slot_or_del(new back_item(new_human), WEAR_BACK)
+
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine/knife(new_human), WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine(new_human), WEAR_HANDS)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/accessory/patch/mudskippers(new_human), WEAR_ACCESSORY)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/czsp/medical(new_human), WEAR_L_HAND)
+
+
+spawn_ms_randmspec(new_human)
+
+	/obj/item/storage/belt/marine/m41amk1heap
+
+
+/datum/equipment_preset/proc/spawn_ms_randmspec(mob/living/carbon/human/new_human)
+	if(!istype(new_human)) return
+	var/boxpath = pick(
+		/obj/item/storage/box/spec/pyro,
+		/obj/item/storage/box/spec/heavy_grenadier,
+		/obj/item/storage/box/spec/sniper,
+		/obj/item/storage/box/spec/scout,
+		/obj/item/storage/box/spec/demolitionist,
+		/obj/item/storage/box/kit/heavy_support,
+		/obj/item/storage/box/kit/pursuit,
+		/obj/item/storage/box/kit/mini_jtac)
+	new_human.equip_to_slot_or_del(new boxpath, WEAR_L_HAND)
+
 //------Support------//
 
 //----Combat----//
