@@ -545,27 +545,26 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine/knife(new_human), WEAR_FEET)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine(new_human), WEAR_HANDS)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/accessory/patch/mudskippers(new_human), WEAR_ACCESSORY)
-	new_human.equip_to_slot_or_del(new /obj/item/storage/box/czsp/medical(new_human), WEAR_L_HAND)
+	pick_rfm_kit(new_human)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/accessory/patch/mudskippers(new_human), WEAR_ACCESSORY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/medhud(new_human), WEAR_EYES)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/accessory/storage/black_vest/brown_vest(new_human), WEAR_ACCESSORY)
 
 
-spawn_ms_randmspec(new_human)
 
-	/obj/item/storage/belt/marine/m41amk1heap
-
-
-/datum/equipment_preset/proc/spawn_ms_randmspec(mob/living/carbon/human/new_human)
+/datum/equipment_preset/proc/pick_rfm_kit(mob/living/carbon/human/new_human)
 	if(!istype(new_human)) return
-	var/boxpath = pick(
+	var/rfm_kit = pick(
 		/obj/item/storage/box/spec/pyro,
 		/obj/item/storage/box/spec/heavy_grenadier,
-		/obj/item/storage/box/spec/sniper,
 		/obj/item/storage/box/spec/scout,
 		/obj/item/storage/box/spec/demolitionist,
+		/obj/item/storage/box/spec/sniper,
 		/obj/item/storage/box/kit/heavy_support,
 		/obj/item/storage/box/kit/pursuit,
-		/obj/item/storage/box/kit/mini_jtac)
-	new_human.equip_to_slot_or_del(new boxpath, WEAR_L_HAND)
-
+		/obj/item/storage/box/kit/mini_jtac,
+		)
+	new_human.equip_to_slot_or_del(new rfm_kit, WEAR_L_HAND)
 //------Support------//
 
 //----Combat----//
