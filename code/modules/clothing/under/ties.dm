@@ -358,6 +358,10 @@
 	name = "USCM Solar Devils patch"
 	desc = "A fire-resistant shoulder patch, worn by the men and women of the Solar Devils, the 3rd battalion of the 2nd division of the USCM."
 	icon_state = "solardevilspatch"
+/obj/item/clothing/accessory/patch/mudskippers
+	name = "USCM Mudskippers patch"
+	desc = "A fire-resistant shoulder patch, worn by the men and women of the Mudskippers, the 4th Division 3rd brigade 15th Bat of the USCM."
+	icon_state = "mudskipperspatch"
 
 /obj/item/clothing/accessory/patch/forecon
 	name = "USCM Force Reconnaissance patch"
