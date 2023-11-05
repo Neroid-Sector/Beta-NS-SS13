@@ -351,7 +351,7 @@
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP)
 	assignment = JOB_MS_SMARTGUNNER
 	rank = JOB_MS_SMARTGUNNER
-	paygrade = "ME4"
+	paygrade = "ME3"
 	role_comm_title = "SG"
 	skills = /datum/skills/ms/rifleman
 
@@ -463,7 +463,7 @@
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING)
 	assignment = JOB_MS_ENGINEER
 	rank = JOB_MS_ENGINEER
-	paygrade = "ME3"
+	paygrade = "ME4"
 	role_comm_title = "ComTech"
 	skills = /datum/skills/ms/engi
 
