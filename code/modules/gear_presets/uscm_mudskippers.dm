@@ -5,7 +5,7 @@
 	languages = list(LANGUAGE_ENGLISH)
 	idtype = /obj/item/card/id/dogtag
 
-/datum/equipment_preset/ms/load_status(mob/living/carbon/human/new_human)
+/datum/equipment_preset/uscm_mudskippers/load_status(mob/living/carbon/human/new_human)
 	new_human.nutrition = NUTRITION_NORMAL
 
 	utility_under = list(/obj/item/clothing/under/marine/officer/command)
