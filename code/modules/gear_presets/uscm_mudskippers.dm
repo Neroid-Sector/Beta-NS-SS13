@@ -1,4 +1,4 @@
-/datum/equipment_preset/ms
+/datum/equipment_preset/uscm_mudskippers
 	name = "Mudskippers"
 	faction = FACTION_MARINE
 	faction_group = FACTION_LIST_MARINE
