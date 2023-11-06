@@ -295,6 +295,10 @@
 
 	minimap_icon = "leader"
 
+/datum/equipment_preset/uscm_mudskippers/leader/New()
+	. = ..()
+	access = get_access(ACCESS_LIST_MARINE_MAIN)
+
 /datum/equipment_preset/uscm_mudskippers/leader/load_gear(mob/living/carbon/human/new_human)
 	var/back_item = /obj/item/storage/backpack/marine/satchel
 	if (new_human.client && new_human.client.prefs && (new_human.client.prefs.backbag == 1))
@@ -357,6 +361,10 @@
 
 	minimap_icon = "smartgunner"
 
+/datum/equipment_preset/uscm_mudskippers/sg/New()
+	. = ..()
+	access = get_access(ACCESS_LIST_MARINE_MAIN)
+
 /datum/equipment_preset/uscm_mudskippers/sg/load_gear(mob/living/carbon/human/new_human)
 	var/back_item = /obj/item/storage/backpack/marine/satchel
 	if (new_human.client && new_human.client.prefs && (new_human.client.prefs.backbag == 1))
@@ -409,6 +417,10 @@
 	skills = /datum/skills/ms/medic
 
 	minimap_icon = "medic"
+
+/datum/equipment_preset/uscm_mudskippers/medic/New()
+	. = ..()
+	access = get_access(ACCESS_LIST_MARINE_MAIN)
 
 	utility_under = list(/obj/item/clothing/under/marine/medic)
 
@@ -472,6 +484,10 @@
 
 	minimap_icon = "engi"
 
+/datum/equipment_preset/uscm_mudskippers/engineer/New()
+	. = ..()
+	access = get_access(ACCESS_LIST_MARINE_MAIN)
+
 	utility_under = list(/obj/item/clothing/under/marine/engineer)
 
 /datum/equipment_preset/uscm_mudskippers/engineer/load_gear(mob/living/carbon/human/new_human)
@@ -533,6 +549,10 @@
 	skills = /datum/skills/ms/rifleman
 
 	minimap_icon = "private"
+
+/datum/equipment_preset/uscm_mudskippers/rfm/New()
+	. = ..()
+	access = get_access(ACCESS_LIST_MARINE_MAIN)
 
 /datum/equipment_preset/uscm_mudskippers/rfm/load_gear(mob/living/carbon/human/new_human)
 	var/back_item = /obj/item/storage/backpack/marine/satchel
