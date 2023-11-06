@@ -195,6 +195,8 @@
 	},
 /obj/structure/bed/chair/office/dark,
 /obj/structure/closet/secure_closet/cmdcabinet{
+	desc = "A bulletproof cabinet containing whatever marines stock in it.";
+	name = "equipment storage cabinet";
 	pixel_x = 6;
 	pixel_y = 28;
 	req_access = null
