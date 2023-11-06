@@ -1735,6 +1735,14 @@
 	new /obj/item/device/multitool(src)
 	new	/obj/item/tool/crowbar(src)
 
+/obj/item/storage/belt/gun/utility/full/ms/fill_preset_inventory()
+	handle_item_insertion(new /obj/item/weapon/gun/smg/nailgun/compact())
+	new /obj/item/tool/screwdriver(src)
+	new /obj/item/tool/wrench(src)
+	new /obj/item/tool/weldingtool(src)
+	new /obj/item/tool/wirecutters(src)
+	new /obj/item/device/multitool(src)
+	new	/obj/item/tool/crowbar(src)
 ////////////OTHER BELTS//////////////
 
 /obj/item/storage/belt/tank

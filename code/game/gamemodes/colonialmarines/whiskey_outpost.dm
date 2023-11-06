@@ -755,8 +755,8 @@
 							/obj/item/ammo_magazine/rifle/m4ra/custom/incendiary,
 							/obj/item/ammo_magazine/rifle/m4ra/custom/impact)
 		if(7) // Medical
-			spawnitems = list(/obj/item/clothing/glasses/hud/health,
-			/obj/item/clothing/glasses/hud/health,
+			spawnitems = list(/obj/item/tool/surgery/surgical_line,
+			/obj/item/tool/surgery/synthgraft,
 			/obj/item/device/healthanalyzer,
 			/obj/item/device/healthanalyzer,
 			/obj/item/storage/belt/medical/full,
