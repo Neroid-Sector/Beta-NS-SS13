@@ -771,17 +771,12 @@
 			/obj/item/storage/pouch/firstaid/full)
 		if(8) //Engi
 			spawnitems = list( /obj/item/storage/pouch/construction/full,
-			/obj/item/storage/pouch/construction/full,
-			/obj/item/stack/sandbags_empty/full,
-			/obj/item/stack/sandbags_empty/full,
 			/obj/item/stack/sandbags_empty/full,
 			/obj/item/stack/sandbags_empty/full,
 			/obj/item/tool/shovel/etool/folded,
 			/obj/item/tool/shovel/etool/folded,
 			/obj/item/stack/folding_barricade/three,
 			/obj/item/stack/folding_barricade/three,
-			/obj/item/cell/high,
-			/obj/item/cell/high,
 			/obj/item/storage/toolbox/mechanical,
 			/obj/item/storage/box/kit/defensegunner,
 			/obj/item/storage/box/kit/engineering_supply_kit)
@@ -789,16 +784,13 @@
 			spawnitems = list(/obj/item/device/radio,
 			/obj/item/device/radio,
 			/obj/item/device/radio,
-			/obj/item/device/radio,
-			/obj/item/device/radio,
-			/obj/item/storage/box/donkpockets,
-			/obj/item/storage/box/donkpockets,
+			/obj/item/storage/firstaid/regular,
 			/obj/item/storage/box/donkpockets,
 			/obj/item/storage/box/donkpockets,
 			/obj/item/storage/box/m94,
 			/obj/item/storage/box/m94,
 			/obj/item/storage/box/m94/signal,
-			/obj/item/storage/box/uscm_mre,
+			/obj/item/ammo_box/magazine/misc/mre,
 			/obj/item/device/whiskey_supply_beacon)
 	crate.storage_capacity = 60
 	for(var/path in spawnitems)
