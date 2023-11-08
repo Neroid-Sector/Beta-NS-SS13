@@ -1743,6 +1743,7 @@
 	new /obj/item/tool/wirecutters(src)
 	new /obj/item/device/multitool(src)
 	new	/obj/item/tool/crowbar(src)
+	new /obj/item/tool/shovel/etool/folded(src)
 ////////////OTHER BELTS//////////////
 
 /obj/item/storage/belt/tank
