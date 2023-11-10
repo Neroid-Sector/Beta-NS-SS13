@@ -218,6 +218,7 @@
 		list("Scout Specialization Kit", round(scale * 1),/obj/item/storage/box/spec/scout, VENDOR_ITEM_REGULAR),
 		list("Pyro Specialization Kit", round(scale * 1), /obj/item/storage/box/spec/pyro, VENDOR_ITEM_REGULAR),
 		list("Grenadier Specialization Kit", round(scale * 1), /obj/item/storage/box/spec/heavy_grenadier, VENDOR_ITEM_REGULAR),
+		list("Smartgunner m56 weapon system Kit", round(scale * 1),/obj/item/storage/box/m56_system,, VENDOR_ITEM_REGULAR),
 		list("Heavy Armor Specialization Kit", round(scale * 4), /obj/item/storage/box/spec/B18, VENDOR_ITEM_REGULAR),
 
 		list("EXPLOSIVES", -1, null, null),
