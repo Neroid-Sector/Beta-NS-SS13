@@ -218,7 +218,7 @@
 		list("Scout Specialization Kit", round(scale * 1),/obj/item/storage/box/spec/scout, VENDOR_ITEM_REGULAR),
 		list("Pyro Specialization Kit", round(scale * 1), /obj/item/storage/box/spec/pyro, VENDOR_ITEM_REGULAR),
 		list("Grenadier Specialization Kit", round(scale * 1), /obj/item/storage/box/spec/heavy_grenadier, VENDOR_ITEM_REGULAR),
-		list("Smartgunner m56 weapon system Kit", round(scale * 1),/obj/item/storage/box/m56_system,, VENDOR_ITEM_REGULAR),
+		list("Smartgunner m56 weapon system Kit", round(scale * 1),/obj/item/storage/box/m56_system, VENDOR_ITEM_REGULAR),
 		list("Heavy Armor Specialization Kit", round(scale * 4), /obj/item/storage/box/spec/B18, VENDOR_ITEM_REGULAR),
 
 		list("EXPLOSIVES", -1, null, null),
@@ -274,5 +274,6 @@
 		list("M89-S Signal Flare Pack", round(scale * 2), /obj/item/storage/box/m94/signal, VENDOR_ITEM_REGULAR),
 		list("M94 Marking Flare Pack", round(scale * 10), /obj/item/storage/box/m94, VENDOR_ITEM_REGULAR),
 		list("Machete Scabbard (Full)", round(scale * 20), /obj/item/storage/large_holster/machete/full, VENDOR_ITEM_REGULAR),
+		list("Automated Supply Beacon (Full)", round(scale * 1), /obj/item/device/whiskey_supply_beacon, VENDOR_ITEM_REGULAR),
 		list("MB-6 Folding Barricades (x3)", round(scale * 1), /obj/item/stack/folding_barricade/three, VENDOR_ITEM_REGULAR)
 		)
