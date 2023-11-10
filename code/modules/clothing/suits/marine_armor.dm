@@ -292,7 +292,7 @@
 		/obj/item/storage/backpack/general_belt,
 		/obj/item/device/hailer,
 		/obj/item/storage/belt/gun,
-		/obj/item/weapon/claymore/mercsword/ceremonial,
+		/obj/item/weapon/sword/ceremonial,
 		/obj/item/device/motiondetector,
 		/obj/item/device/walkman,
 	)
@@ -1052,7 +1052,7 @@
 		/obj/item/tool/crowbar,
 		/obj/item/storage/large_holster/katana,
 		/obj/item/storage/large_holster/machete,
-		/obj/item/weapon/claymore/mercsword/machete,
+		/obj/item/weapon/sword/machete,
 		/obj/item/attachable/bayonet,
 		/obj/item/device/motiondetector,
 		/obj/item/tool/crew_monitor,
@@ -1569,7 +1569,7 @@
 		/obj/item/tool/lighter,
 		/obj/item/explosive/grenade,
 		/obj/item/storage/bible,
-		/obj/item/weapon/claymore/mercsword/machete,
+		/obj/item/weapon/sword/machete,
 		/obj/item/attachable/bayonet,
 		/obj/item/device/motiondetector,
 		/obj/item/device/walkman,
@@ -1604,7 +1604,7 @@
 		/obj/item/tool/lighter,
 		/obj/item/explosive/grenade,
 		/obj/item/storage/bible,
-		/obj/item/weapon/claymore/mercsword/machete,
+		/obj/item/weapon/sword/machete,
 		/obj/item/attachable/bayonet,
 		/obj/item/device/motiondetector,
 		/obj/item/device/walkman,
@@ -1636,46 +1636,46 @@
 
 /obj/item/clothing/suit/storage/marine/MP/provost
 	name = "\improper M3 pattern Provost armor"
+	desc = "A standard Provost M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
+	icon_state = "pvmedium"
+	item_state_slots = list(WEAR_JACKET = "pvmedium")
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	armor_bullet = CLOTHING_ARMOR_MEDIUM
+	armor_laser = CLOTHING_ARMOR_MEDIUMLOW
+	armor_bomb = CLOTHING_ARMOR_MEDIUMHIGH
+	armor_bio = CLOTHING_ARMOR_MEDIUMHIGH
+	armor_internaldamage = CLOTHING_ARMOR_MEDIUM
+	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
+	storage_slots = 3
+
+/obj/item/clothing/suit/storage/marine/MP/provost/tml
+	name = "\improper M3 pattern Senior Provost armor"
+	desc = "A more refined Provost M3 Pattern Chestplate for senior officers. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
+	icon_state = "pvleader"
+	item_state_slots = list(WEAR_JACKET = "pvleader")
+
+/obj/item/clothing/suit/storage/marine/MP/provost/marshal
+	name = "\improper M5 pattern Provost Marshal armor"
+	desc = "A custom fit luxury armor suit for Provost Marshals. Useful for letting your men know who is in charge when taking to the field."
+	icon_state = "pvmarshal"
+	item_state_slots = list(WEAR_JACKET = "pvmarshal")
+	w_class = SIZE_MEDIUM
+	storage_slots = 4
+
+/obj/item/clothing/suit/storage/marine/MP/provost/light
+	name = "\improper M3 pattern Provost light armor"
 	desc = "A lighter Provost M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon_state = "pvlight"
 	item_state_slots = list(WEAR_JACKET = "pvlight")
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
-	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
+
+/obj/item/clothing/suit/storage/marine/MP/provost/light/flexi
+	name = "\improper M3 pattern Provost flexi-armor"
+	desc = "A flexible and easy to store M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	w_class = SIZE_MEDIUM
-
-/obj/item/clothing/suit/storage/marine/MP/provost/enforcer
-	name = "\improper M3 pattern Provost armor"
-	desc = "A standard Provost M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
-	icon_state = "pvmedium"
-	item_state_slots = list(WEAR_JACKET = "pvmedium")
-	slowdown = SLOWDOWN_ARMOR_MEDIUM
-	armor_melee = CLOTHING_ARMOR_MEDIUM
-	armor_bullet = CLOTHING_ARMOR_MEDIUM
-	armor_laser = CLOTHING_ARMOR_MEDIUMLOW
-	armor_bomb = CLOTHING_ARMOR_MEDIUMLOW
-	armor_bio = CLOTHING_ARMOR_MEDIUM
-	armor_internaldamage = CLOTHING_ARMOR_MEDIUM
-
-/obj/item/clothing/suit/storage/marine/MP/provost/tml
-	name = "\improper M3 pattern Senior Provost armor"
-	icon_state = "pvleader"
-	item_state_slots = list(WEAR_JACKET = "pvleader")
-	desc = "A more refined Provost M3 Pattern Chestplate for senior officers. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
-
-	slowdown = SLOWDOWN_ARMOR_MEDIUM
-	armor_bullet = CLOTHING_ARMOR_MEDIUM
-	armor_laser = CLOTHING_ARMOR_MEDIUMLOW
-	armor_bio = CLOTHING_ARMOR_MEDIUMHIGH
-	armor_internaldamage = CLOTHING_ARMOR_MEDIUMHIGH
-
-/obj/item/clothing/suit/storage/marine/MP/provost/marshal
-	icon_state = "pvmarshal"
-	item_state_slots = list(WEAR_JACKET = "pvmarshal")
-	name = "\improper M3 pattern Provost Marshal armor"
-	desc = "A custom fit luxury armor suit for Provost Marshals. Useful for letting your men know who is in charge when taking to the field."
-
-/obj/item/clothing/suit/storage/marine/MP/provost/marshal/chief
-	name = "\improper M3 pattern Provost Chief Marshal armor"
+	icon_state = "pvlight_2"
+	item_state_slots = list(WEAR_JACKET = "pvlight_2")
+	storage_slots = 2
 
 //================//UNITED AMERICAS ALLIED COMMAND\\=====================\\
 //=======================================================================\\
@@ -1709,7 +1709,7 @@
 		/obj/item/storage/backpack/general_belt,
 		/obj/item/device/hailer,
 		/obj/item/storage/belt/gun,
-		/obj/item/weapon/claymore/mercsword/ceremonial,
+		/obj/item/weapon/sword/ceremonial,
 		/obj/item/device/motiondetector,
 		/obj/item/device/walkman,
 	)
@@ -1765,7 +1765,7 @@
 		/obj/item/tool/lighter,
 		/obj/item/explosive/grenade,
 		/obj/item/storage/bible,
-		/obj/item/weapon/claymore/mercsword/machete,
+		/obj/item/weapon/sword/machete,
 		/obj/item/attachable/bayonet,
 		/obj/item/device/motiondetector,
 		/obj/item/device/walkman,
@@ -1809,3 +1809,33 @@
 
 /atom/movable/marine_light
 	light_system = DIRECTIONAL_LIGHT
+
+//CBRN
+/obj/item/clothing/suit/storage/marine/cbrn
+	name = "\improper M3-M armor"
+	desc = "While lacking the appearance of the M3 pattern armor worn in regular service, this armor piece is still a derivative of it. It has been heavily modified to fit over the MOPP suit with additional padding and Venlar composite layers removed, so as not to restrict the wearer’s movement. However, with the reduction of composite layers, the personal protection offered is less than desired with complaints having been lodged since 2165."
+	icon_state = "cbrn"
+	item_state = "cbrn"
+	slowdown = SLOWDOWN_ARMOR_HEAVY
+	armor_melee = CLOTHING_ARMOR_MEDIUM
+	armor_bullet = CLOTHING_ARMOR_MEDIUM
+	armor_bomb = CLOTHING_ARMOR_MEDIUM
+	armor_bio = CLOTHING_ARMOR_LOW
+	armor_rad =CLOTHING_ARMOR_MEDIUMLOW
+	armor_internaldamage = CLOTHING_ARMOR_LOW
+	flags_marine_armor = NO_FLAGS
+	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+	flags_inventory = BLOCKSHARPOBJ
+	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN
+	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN
+	flags_heat_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN
+	uniform_restricted = list(/obj/item/clothing/under/marine/cbrn)
+
+/obj/item/clothing/suit/storage/marine/cbrn/advanced
+	slowdown = SLOWDOWN_ARMOR_LOWHEAVY
+	armor_melee = CLOTHING_ARMOR_HIGH
+	armor_bullet = CLOTHING_ARMOR_MEDIUMHIGH
+	armor_bomb = CLOTHING_ARMOR_ULTRAHIGH
+	armor_bio = CLOTHING_ARMOR_GIGAHIGHPLUS
+	armor_rad = CLOTHING_ARMOR_GIGAHIGHPLUS
+	armor_internaldamage = CLOTHING_ARMOR_HIGHPLUS
