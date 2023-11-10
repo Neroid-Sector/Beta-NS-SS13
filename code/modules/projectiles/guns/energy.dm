@@ -215,8 +215,8 @@
 
 /obj/item/weapon/gun/energy/laz_rifle/set_gun_config_values()
 	..()
-	set_fire_delay(SCATTER_AMOUNT_TIER_2)
-	set_burst_delay(SCATTER_AMOUNT_TIER_2)
+	set_fire_delay(SCATTER_AMOUNT_TIER_10)
+	set_burst_delay(FIRE_DELAY_TIER_10)
 	set_burst_amount(BURST_AMOUNT_TIER_2)
 	accuracy_mult = BASE_ACCURACY_MULT - HIT_ACCURACY_MULT_TIER_3
 	accuracy_mult_unwielded = BASE_ACCURACY_MULT - HIT_ACCURACY_MULT_TIER_7
