@@ -20,6 +20,7 @@ map bigredv2
 endmap
 
 map prison_station_fop
+	voteweight 0
 endmap
 
 map fiorina_sciannex
@@ -41,6 +42,7 @@ endmap
 
 map ice_colony_v2
 	minplayers 130
+	voteweight 0
 endmap
 
 map shivas_snowball
