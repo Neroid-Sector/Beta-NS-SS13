@@ -35,6 +35,7 @@
 /datum/equipment_preset/uscm_mudskippers/commander
 	name = "Commanding Officer (Mudskippers)"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
+	languages = list(LANGUAGE_ENGLISH, LANGUAGE_RUSSIAN, LANGUAGE_GERMAN, LANGUAGE_JAPANESE)
 
 	idtype = /obj/item/card/id/gold
 	assignment = JOB_MS_CO

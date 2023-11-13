@@ -178,7 +178,7 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_MS_XO "Adjunct"
 #define JOB_MS_CPT "Captain"
 #define JOB_MS_LT "Lieutenant"
-#define JOB_MS_GC "Ground Commander"
+#define JOB_MS_GC "Company Commander"
 #define JOB_MS_PC "Platoon Commander"
 
 #define JOB_MUDSKIPPER_COMMAND_LIST list(JOB_MS_CO, JOB_MS_XO, JOB_MS_CPT, JOB_MS_LT, JOB_MS_GC, JOB_MS_PC)
