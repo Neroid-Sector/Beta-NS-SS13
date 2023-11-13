@@ -56,9 +56,10 @@
 		list("M3-EOD Pattern Heavy Armor", 10, /obj/item/clothing/suit/storage/marine/heavy, VENDOR_ITEM_REGULAR),
 		list("M3-L Pattern Light Armor", 10, /obj/item/clothing/suit/storage/marine/light, VENDOR_ITEM_REGULAR),
 
-		list("MASKS", -1, null, null, null),
+		list("ENVIROMENTAL GEAR", -1, null, null, null),
 		list("Gas Mask", 20, /obj/item/clothing/mask/gas, VENDOR_ITEM_REGULAR),
 		list("Heat Absorbent Coif", 10, /obj/item/clothing/mask/rebreather/scarf, VENDOR_ITEM_REGULAR),
+		list("USCM Poncho", round(scale * 10), /obj/item/clothing/accessory/poncho, VENDOR_ITEM_REGULAR),
 		)
 
 //------------WEAPON RACKS---------------
@@ -219,7 +220,7 @@
 		list("Pyro Specialization Kit", round(scale * 1), /obj/item/storage/box/spec/pyro, VENDOR_ITEM_REGULAR),
 		list("Grenadier Specialization Kit", round(scale * 1), /obj/item/storage/box/spec/heavy_grenadier, VENDOR_ITEM_REGULAR),
 		list("Smartgunner m56 weapon system Kit", round(scale * 1),/obj/item/storage/box/m56_system, VENDOR_ITEM_REGULAR),
-		list("Heavy Armor Specialization Kit", round(scale * 4), /obj/item/storage/box/spec/B18, VENDOR_ITEM_REGULAR),
+		list("Heavy Armor Specialization Kit", round(scale * 0.5), /obj/item/storage/box/spec/B18, VENDOR_ITEM_REGULAR),
 
 		list("EXPLOSIVES", -1, null, null),
 		list("M15 Fragmentation Grenade", round(scale * 2), /obj/item/explosive/grenade/high_explosive/m15, VENDOR_ITEM_REGULAR),
@@ -275,5 +276,6 @@
 		list("M94 Marking Flare Pack", round(scale * 10), /obj/item/storage/box/m94, VENDOR_ITEM_REGULAR),
 		list("Machete Scabbard (Full)", round(scale * 20), /obj/item/storage/large_holster/machete/full, VENDOR_ITEM_REGULAR),
 		list("Automated Supply Beacon (Full)", round(scale * 1), /obj/item/device/whiskey_supply_beacon, VENDOR_ITEM_REGULAR),
-		list("MB-6 Folding Barricades (x3)", round(scale * 1), /obj/item/stack/folding_barricade/three, VENDOR_ITEM_REGULAR)
+		list("MB-6 Folding Barricades (x3)", round(scale * 1), /obj/item/stack/folding_barricade/three, VENDOR_ITEM_REGULAR),
+		list("standard Poncho", round(scale * 10), /obj/item/clothing/accessory/poncho, VENDOR_ITEM_REGULAR),
 		)
