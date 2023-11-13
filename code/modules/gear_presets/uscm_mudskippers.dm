@@ -89,7 +89,7 @@
 //--Ground Commander---//
 
 /datum/equipment_preset/uscm_mudskippers/gcommander
-	name = "Ground Commander (Mudskippers)"
+	name = "Company Commander (Mudskippers)"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
 
 	assignment = JOB_MS_GC
