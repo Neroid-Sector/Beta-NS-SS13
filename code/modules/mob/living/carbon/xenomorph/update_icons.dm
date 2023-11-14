@@ -2,42 +2,42 @@
 //Abby
 
 //Xeno Overlays Indexes//////////
-#define X_BACK_LAYER			10
-#define X_HEAD_LAYER			9
-#define X_SUIT_LAYER			8
-#define X_L_HAND_LAYER			7
-#define X_R_HAND_LAYER			6
-#define X_BACK_FRONT_LAYER		5
-#define X_RESOURCE_LAYER		4
-#define X_TARGETED_LAYER		3
-#define X_LEGCUFF_LAYER			2
-#define X_FIRE_LAYER			1
-#define X_TOTAL_LAYERS			10
+#define X_BACK_LAYER 10
+#define X_HEAD_LAYER 9
+#define X_SUIT_LAYER 8
+#define X_L_HAND_LAYER 7
+#define X_R_HAND_LAYER 6
+#define X_BACK_FRONT_LAYER 5
+#define X_RESOURCE_LAYER 4
+#define X_TARGETED_LAYER 3
+#define X_LEGCUFF_LAYER 2
+#define X_FIRE_LAYER 1
+#define X_TOTAL_LAYERS 10
 /////////////////////////////////
 
 
-/mob/living/carbon/Xenomorph/apply_overlay(cache_index)
+/mob/living/carbon/xenomorph/apply_overlay(cache_index)
 	var/image/I = overlays_standing[cache_index]
 	if(I)
 		I.appearance_flags |= RESET_COLOR
 		overlays += I
 
-/mob/living/carbon/Xenomorph/remove_overlay(cache_index)
+/mob/living/carbon/xenomorph/remove_overlay(cache_index)
 	if(overlays_standing[cache_index])
 		overlays -= overlays_standing[cache_index]
 		overlays_standing[cache_index] = null
 
-/mob/living/carbon/Xenomorph/proc/update_icon_source()
+/mob/living/carbon/xenomorph/proc/update_icon_source()
 	if(HAS_TRAIT(src, TRAIT_XENONID))
 		icon = icon_xenonid
-		if(isXenoQueen(src))
-			var/mob/living/carbon/Xenomorph/Queen/Q = src
+		if(isqueen(src))
+			var/mob/living/carbon/xenomorph/queen/Q = src
 			Q.queen_standing_icon = icon_xenonid
 			Q.queen_ovipositor_icon = 'icons/mob/xenonids/ovipositor.dmi'
 	else
 		icon = icon_xeno
-		if(isXenoQueen(src))
-			var/mob/living/carbon/Xenomorph/Queen/Q = src
+		if(isqueen(src))
+			var/mob/living/carbon/xenomorph/queen/Q = src
 			Q.queen_standing_icon = icon_xeno
 			Q.queen_ovipositor_icon = 'icons/mob/xenos/ovipositor.dmi'
 
@@ -52,7 +52,7 @@
 	has_walking_icon_state = walking_state_cache[mutation_caste_state]
 	update_icons()
 
-/mob/living/carbon/Xenomorph/update_icons()
+/mob/living/carbon/xenomorph/update_icons()
 	if(!caste)
 		return
 
@@ -85,7 +85,7 @@
 			icon_state = "Normal [caste.caste_type] [movement_state]"
 
 
-/mob/living/carbon/Xenomorph/regenerate_icons()
+/mob/living/carbon/xenomorph/regenerate_icons()
 	..()
 	update_inv_r_hand()
 	update_inv_l_hand()
@@ -93,23 +93,23 @@
 	update_inv_resource()
 	update_icons()
 
-/mob/living/carbon/Xenomorph/update_inv_pockets()
+/mob/living/carbon/xenomorph/update_inv_pockets()
 	var/datum/custom_hud/alien/ui_datum = GLOB.custom_huds_list[HUD_ALIEN]
 	if(l_store)
 		if(client && hud_used && hud_used.hud_shown)
-			client.screen += l_store
+			client.add_to_screen(l_store)
 			l_store.screen_loc = ui_datum.hud_slot_offset(l_store, ui_datum.ui_storage1)
 	if(r_store)
 		if(client && hud_used && hud_used.hud_shown)
-			client.screen += r_store
+			client.add_to_screen(r_store)
 			r_store.screen_loc = ui_datum.hud_slot_offset(r_store, ui_datum.ui_storage2)
 
-/mob/living/carbon/Xenomorph/update_inv_r_hand()
+/mob/living/carbon/xenomorph/update_inv_r_hand()
 	remove_overlay(X_R_HAND_LAYER)
 	if(r_hand)
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 			var/datum/custom_hud/alien/ui_datum = GLOB.custom_huds_list[HUD_ALIEN]
-			client.screen += r_hand
+			client.add_to_screen(r_hand)
 			r_hand.screen_loc = ui_datum.hud_slot_offset(r_hand, ui_datum.ui_rhand)
 		var/t_state = r_hand.item_state
 		if(!t_state)
@@ -117,12 +117,12 @@
 		overlays_standing[X_R_HAND_LAYER] = r_hand.get_mob_overlay(src, WEAR_R_HAND)
 		apply_overlay(X_R_HAND_LAYER)
 
-/mob/living/carbon/Xenomorph/update_inv_l_hand()
+/mob/living/carbon/xenomorph/update_inv_l_hand()
 	remove_overlay(X_L_HAND_LAYER)
 	if(l_hand)
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 			var/datum/custom_hud/alien/ui_datum = GLOB.custom_huds_list[HUD_ALIEN]
-			client.screen += l_hand
+			client.add_to_screen(l_hand)
 			l_hand.screen_loc = ui_datum.hud_slot_offset(l_hand, ui_datum.ui_lhand)
 		var/t_state = l_hand.item_state
 		if(!t_state)
@@ -130,7 +130,7 @@
 		overlays_standing[X_L_HAND_LAYER] = l_hand.get_mob_overlay(src, WEAR_L_HAND)
 		apply_overlay(X_L_HAND_LAYER)
 
-/mob/living/carbon/Xenomorph/update_inv_back()
+/mob/living/carbon/xenomorph/update_inv_back()
 	if(!backpack_icon_carrier)
 		return // Xenos will only have a vis_obj if they've been equipped with a pack before
 
@@ -156,30 +156,19 @@
 	if(dir == NORTH && (back.flags_item & ITEM_OVERRIDE_NORTHFACE))
 		backpack_icon_carrier.layer = -X_BACK_FRONT_LAYER
 
-/mob/living/carbon/Xenomorph/proc/update_inv_resource()
+/mob/living/carbon/xenomorph/proc/update_inv_resource()
 	remove_overlay(X_RESOURCE_LAYER)
 	if(crystal_stored)
 		overlays_standing[X_RESOURCE_LAYER] = image("icon" = icon, "icon_state" = "[caste_type]_resources", "layer" =-X_RESOURCE_LAYER)
 		apply_overlay(X_RESOURCE_LAYER)
 
-//Call when target overlay should be added/removed
-/mob/living/carbon/Xenomorph/update_targeted()
-	remove_overlay(X_TARGETED_LAYER)
-	if(targeted_by && target_locked)
-		overlays_standing[X_TARGETED_LAYER]	= image("icon" = target_locked, "layer" =-X_TARGETED_LAYER)
-	else if(!targeted_by && target_locked)
-		QDEL_NULL(target_locked)
-	if(!targeted_by || src.stat == DEAD)
-		overlays_standing[X_TARGETED_LAYER]	= null
-	apply_overlay(X_TARGETED_LAYER)
-
-/mob/living/carbon/Xenomorph/update_inv_legcuffed()
+/mob/living/carbon/xenomorph/update_inv_legcuffed()
 	remove_overlay(X_LEGCUFF_LAYER)
 	if(legcuffed)
-		overlays_standing[X_LEGCUFF_LAYER]	= image("icon" = 'icons/mob/xenos/effects.dmi', "icon_state" = "legcuff", "layer" =-X_LEGCUFF_LAYER)
+		overlays_standing[X_LEGCUFF_LAYER] = image("icon" = 'icons/mob/xenos/effects.dmi', "icon_state" = "legcuff", "layer" =-X_LEGCUFF_LAYER)
 		apply_overlay(X_LEGCUFF_LAYER)
 
-/mob/living/carbon/Xenomorph/proc/create_shriekwave(var/color = null)
+/mob/living/carbon/xenomorph/proc/create_shriekwave(color = null)
 	var/image/screech_image
 
 	var/offset_x = 0
@@ -203,23 +192,23 @@
 
 	overlays_standing[X_SUIT_LAYER] = screech_image
 	apply_overlay(X_SUIT_LAYER)
-	addtimer(CALLBACK(src, .proc/remove_overlay, X_SUIT_LAYER), 30)
+	addtimer(CALLBACK(src, PROC_REF(remove_overlay), X_SUIT_LAYER), 30)
 
-/mob/living/carbon/Xenomorph/proc/create_stomp()
+/mob/living/carbon/xenomorph/proc/create_stomp()
 	remove_suit_layer()
 
 	overlays_standing[X_SUIT_LAYER] = image("icon"='icons/mob/xenos/overlay_effects64x64.dmi', "icon_state" = "stomp") //Ehh, suit layer's not being used.
 	apply_overlay(X_SUIT_LAYER)
-	addtimer(CALLBACK(src, .proc/remove_overlay, X_SUIT_LAYER), 12)
+	addtimer(CALLBACK(src, PROC_REF(remove_overlay), X_SUIT_LAYER), 12)
 
-/mob/living/carbon/Xenomorph/proc/create_empower()
+/mob/living/carbon/xenomorph/proc/create_empower()
 	remove_suit_layer()
 
 	overlays_standing[X_SUIT_LAYER] = image("icon"='icons/mob/xenos/overlay_effects64x64.dmi', "icon_state" = "empower")
 	apply_overlay(X_SUIT_LAYER)
-	addtimer(CALLBACK(src, .proc/remove_overlay, X_SUIT_LAYER), 20)
+	addtimer(CALLBACK(src, PROC_REF(remove_overlay), X_SUIT_LAYER), 20)
 
-/mob/living/carbon/Xenomorph/proc/create_custom_empower(var/icolor, var/ialpha = 255, var/small_xeno = FALSE)
+/mob/living/carbon/xenomorph/proc/create_custom_empower(icolor, ialpha = 255, small_xeno = FALSE)
 	remove_suit_layer()
 
 	var/image/empower_image = image("icon"='icons/mob/xenos/overlay_effects64x64.dmi', "icon_state" = "empower_custom")
@@ -231,19 +220,19 @@
 
 	overlays_standing[X_SUIT_LAYER] = empower_image
 	apply_overlay(X_SUIT_LAYER)
-	addtimer(CALLBACK(src, .proc/remove_overlay, X_SUIT_LAYER), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(remove_overlay), X_SUIT_LAYER), 2 SECONDS)
 
-/mob/living/carbon/Xenomorph/proc/create_shield(var/duration = 10)
+/mob/living/carbon/xenomorph/proc/create_shield(duration = 10)
 	remove_suit_layer()
 
 	overlays_standing[X_SUIT_LAYER] = image("icon"='icons/mob/xenos/overlay_effects64x64.dmi', "icon_state" = "shield2")
 	apply_overlay(X_SUIT_LAYER)
-	addtimer(CALLBACK(src, .proc/remove_overlay, X_SUIT_LAYER), duration)
+	addtimer(CALLBACK(src, PROC_REF(remove_overlay), X_SUIT_LAYER), duration)
 
-/mob/living/carbon/Xenomorph/proc/remove_suit_layer()
+/mob/living/carbon/xenomorph/proc/remove_suit_layer()
 	remove_overlay(X_SUIT_LAYER)
 
-/mob/living/carbon/Xenomorph/update_fire()
+/mob/living/carbon/xenomorph/update_fire()
 	remove_overlay(X_FIRE_LAYER)
 	if(on_fire && fire_reagent)
 		var/image/I
@@ -260,26 +249,26 @@
 		overlays_standing[X_FIRE_LAYER] = I
 		apply_overlay(X_FIRE_LAYER)
 
-/mob/living/carbon/Xenomorph/proc/create_crusher_shield()
+/mob/living/carbon/xenomorph/proc/create_crusher_shield()
 	remove_overlay(X_HEAD_LAYER)
 
 	var/image/shield = image("icon"='icons/mob/xenos/overlay_effects64x64.dmi', "icon_state" = "empower")
 	shield.color = rgb(87, 73, 144)
 	overlays_standing[X_HEAD_LAYER] = shield
 	apply_overlay(X_HEAD_LAYER)
-	addtimer(CALLBACK(src, .proc/remove_overlay, X_HEAD_LAYER), 20)
+	addtimer(CALLBACK(src, PROC_REF(remove_overlay), X_HEAD_LAYER), 20)
 
-/mob/living/carbon/Xenomorph/proc/handle_special_state()
+/mob/living/carbon/xenomorph/proc/handle_special_state()
 	return FALSE
 
-/mob/living/carbon/Xenomorph/proc/handle_special_wound_states()
+/mob/living/carbon/xenomorph/proc/handle_special_wound_states()
 	return FALSE
 
-/mob/living/carbon/Xenomorph/proc/handle_special_backpack_states()
+/mob/living/carbon/xenomorph/proc/handle_special_backpack_states()
 	return ""
 
 // Shamelessly inspired from the equivalent proc on TGCM
-/mob/living/carbon/Xenomorph/proc/update_wounds()
+/mob/living/carbon/xenomorph/proc/update_wounds()
 	if(!wound_icon_carrier)
 		return
 

@@ -50,7 +50,7 @@
 	if(uses_left)
 		overlays += "[chemname]_[uses_left]"
 	if((isstorage(loc) || ismob(loc)) && display_maptext)
-		maptext = "<span class='langchat'>[maptext_label]</span>"
+		maptext = SPAN_LANGCHAT("[maptext_label]")
 	else
 		maptext = ""
 
@@ -89,15 +89,6 @@
 	icon_state = "emptyskill"
 	item_state = "emptyskill"
 	skilllock = SKILL_MEDICAL_DEFAULT
-
-/obj/item/reagent_container/hypospray/autoinjector/quickclot
-	name = "quick clot autoinjector"
-	chemname = "quickclot"
-	desc = "An autoinjector loaded with 3 uses of Quick Clot, a chemical designed to pause all bleeding. Renew doses as needed."
-	amount_per_transfer_from_this = LOWH_REAGENTS_OVERDOSE * INJECTOR_PERCENTAGE_OF_OD
-	volume = (LOWH_REAGENTS_OVERDOSE * INJECTOR_PERCENTAGE_OF_OD) * INJECTOR_USES
-	display_maptext = TRUE
-	maptext_label = "Qc"
 
 /obj/item/reagent_container/hypospray/autoinjector/adrenaline
 	name = "epinephrine autoinjector"
@@ -200,8 +191,10 @@
 
 /obj/item/reagent_container/hypospray/autoinjector/emergency
 	name = "emergency autoinjector (CAUTION)"
+	desc = "An auto-injector loaded with a special cocktail of chemicals, to be used in life-threatening situations. Doesn't require any training to use."
+	icon_state = "emptyskill"
+	item_state = "emptyskill"
 	chemname = "emergency"
-	desc = "An auto-injector loaded with a special cocktail of chemicals, to be used in life-threatening situations."
 	amount_per_transfer_from_this = (REAGENTS_OVERDOSE-1)*2 + (MED_REAGENTS_OVERDOSE-1)
 	volume = (REAGENTS_OVERDOSE-1)*2 + (MED_REAGENTS_OVERDOSE-1)
 	mixed_chem = TRUE
@@ -210,12 +203,6 @@
 	injectVOL = 70//limited-supply emergency injector with v.large injection of drugs. Variable sfx freq sometimes rolls too quiet.
 	display_maptext = TRUE //see anaesthetic injector
 	maptext_label = "!!"
-
-/obj/item/reagent_container/hypospray/autoinjector/emergency/skillless
-	name = "EZ emergency autoinjector (CAUTION)"
-	desc = "An auto-injector loaded with a special cocktail of chemicals, to be used in life-threatening situations. Doesn't require any training to use."
-	icon_state = "emptyskill"
-	item_state = "emptyskill"
 	skilllock = SKILL_MEDICAL_DEFAULT
 
 /obj/item/reagent_container/hypospray/autoinjector/emergency/Initialize()
@@ -242,7 +229,7 @@
 	name = "white autoinjector"
 	desc = "You know what they say, don't jab yourself with suspicious syringes."
 	maptext_label = "??"
-	
+
 /obj/item/reagent_container/hypospray/autoinjector/yautja
 	name = "unusual crystal"
 	chemname = "thwei"
@@ -252,6 +239,7 @@
 	amount_per_transfer_from_this = REAGENTS_OVERDOSE
 	volume = REAGENTS_OVERDOSE
 	uses_left = 1
+	black_market_value = 25
 
 /obj/item/reagent_container/hypospray/autoinjector/yautja/attack(mob/M as mob, mob/user as mob)
 	if(HAS_TRAIT(user, TRAIT_YAUTJA_TECH))
@@ -373,7 +361,7 @@
 	volume = 60
 	amount_per_transfer_from_this = 60
 
-/obj/item/reagent_container/hypospray/autoinjector/empty/medic/
+/obj/item/reagent_container/hypospray/autoinjector/empty/medic
 	name = "Medic Autoinjector (M-M)"
 	desc = "A custom-made professional injector, likely from research. Has a similar lock to pill bottles, and fits up to 6 injections."
 	skilllock = SKILL_MEDICAL_MEDIC

@@ -1,5 +1,6 @@
 /obj/item/clothing/glasses/hud
 	name = "HUD"
+	gender = NEUTER
 	desc = "A heads-up display that provides important info in (almost) real time."
 	flags_atom = null //doesn't protect eyes because it's a monocle, duh
 
@@ -108,7 +109,7 @@
 	deactive_state = "sensorhud_d"
 	flags_armor_protection = 0
 	toggleable = TRUE
-	hud_type = MOB_HUD_MEDICAL_BASIC
+	hud_type = MOB_HUD_MEDICAL_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
 	req_skill = SKILL_MEDICAL
 	req_skill_level = SKILL_MEDICAL_DEFAULT
@@ -135,6 +136,7 @@
 
 /obj/item/clothing/glasses/hud/security/jensenshades
 	name = "augmented shades"
+	gender = PLURAL
 	desc = "Polarized bioneural eyewear, designed to augment your vision. Why don't you try getting a job?"
 	icon_state = "jensenshades"
 	item_state = "jensenshades"

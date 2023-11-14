@@ -13,6 +13,7 @@
 	evasion = XENO_EVASION_NONE
 	speed = XENO_SPEED_RUNNER
 	attack_delay = -4
+	behavior_delegate_type = /datum/behavior_delegate/runner_base
 	evolves_to = list(XENO_CASTE_LURKER)
 	deevolves_to = list("Larva")
 
@@ -24,7 +25,11 @@
 
 	heal_resting = 1.75
 
-/mob/living/carbon/Xenomorph/Runner
+	minimum_evolve_time = 5 MINUTES
+
+	minimap_icon = "runner"
+
+/mob/living/carbon/xenomorph/runner
 	caste_type = XENO_CASTE_RUNNER
 	name = XENO_CASTE_RUNNER
 	desc = "A small red alien that looks like it could run fairly quickly..."
@@ -52,9 +57,10 @@
 		/datum/action/xeno_action/activable/pounce/runner,
 		/datum/action/xeno_action/activable/runner_skillshot,
 		/datum/action/xeno_action/onclick/toggle_long_range/runner,
+		/datum/action/xeno_action/onclick/tacmap,
 	)
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/vent_crawl,
+		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
 	mutation_type = RUNNER_NORMAL
 
@@ -62,7 +68,17 @@
 	icon_xenonid = 'icons/mob/xenonids/runner.dmi'
 
 
-/mob/living/carbon/Xenomorph/Runner/initialize_pass_flags(var/datum/pass_flags_container/PF)
+/mob/living/carbon/xenomorph/runner/initialize_pass_flags(datum/pass_flags_container/PF)
 	..()
 	if (PF)
-		PF.flags_pass = PASS_FLAGS_CRAWLER
+		PF.flags_pass |= PASS_FLAGS_CRAWLER
+
+/datum/behavior_delegate/runner_base
+	name = "Base Runner Behavior Delegate"
+
+/datum/behavior_delegate/runner_base/melee_attack_additional_effects_self()
+	..()
+
+	var/datum/action/xeno_action/onclick/xenohide/hide = get_xeno_action_by_type(bound_xeno, /datum/action/xeno_action/onclick/xenohide)
+	if(hide)
+		hide.post_attack()

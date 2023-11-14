@@ -7,17 +7,17 @@
 	name = "Palm tree"
 	icon = 'icons/turf/beach2.dmi'
 	icon_state = "palm1"
-	density = 1
+	density = TRUE
 	layer = FLY_LAYER
-	anchored = 1
+	anchored = TRUE
 
 /obj/effect/overlay/palmtree_l
 	name = "Palm tree"
 	icon = 'icons/turf/beach2.dmi'
 	icon_state = "palm2"
-	density = 1
+	density = TRUE
 	layer = FLY_LAYER
-	anchored = 1
+	anchored = TRUE
 
 /obj/effect/overlay/coconut
 	name = "Coconuts"
@@ -33,9 +33,9 @@
 	appearance_flags = RESET_COLOR|KEEP_APART
 
 /obj/effect/overlay/temp
-	anchored = 1
+	anchored = TRUE
 	layer = ABOVE_FLY_LAYER //above mobs
-	mouse_opacity = 0 //can't click to examine it
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT //can't click to examine it
 	var/effect_duration = 10 //in deciseconds
 
 	var/start_on_spawn = TRUE
@@ -51,14 +51,18 @@
 	desc = "It's an arrow hanging in mid-air. There may be a wizard about."
 	icon = 'icons/mob/hud/screen1.dmi'
 	icon_state = "arrow"
-	anchored = 1
+	anchored = TRUE
 	effect_duration = 2.5 SECONDS
 	var/glide_time = 0.5 SECONDS
 
 	start_on_spawn = FALSE
 
-/obj/effect/overlay/temp/point/Initialize(mapload, var/mob/M, atom/actual_pointed_atom)
+/obj/effect/overlay/temp/point/Initialize(mapload, mob/M, atom/actual_pointed_atom)
 	. = ..()
+
+	if(!M)
+		return INITIALIZE_HINT_QDEL
+
 	var/turf/T1 = loc
 	var/turf/T2 = M.loc
 
@@ -96,7 +100,7 @@
 	var/list/client/clients
 	var/image/self_icon
 
-/obj/effect/overlay/temp/point/big/queen/proc/show_to_client(var/client/C)
+/obj/effect/overlay/temp/point/big/queen/proc/show_to_client(client/C)
 	if(!C)
 		return
 
@@ -106,6 +110,9 @@
 
 /obj/effect/overlay/temp/point/big/queen/Initialize(mapload, mob/owner)
 	. = ..()
+
+	if(!owner)
+		return INITIALIZE_HINT_QDEL
 
 	self_icon = image(icon, src, icon_state = icon_state)
 	LAZYINITLIST(clients)
@@ -137,8 +144,8 @@
 /obj/effect/overlay/temp/laser_coordinate
 	name = "laser"
 	anchored = TRUE
-	mouse_opacity = 1
-	luminosity = 2
+	mouse_opacity = MOUSE_OPACITY_ICON
+	light_range = 2
 	icon = 'icons/obj/items/weapons/projectiles.dmi'
 	icon_state = "laser_target_coordinate"
 	effect_duration = 600
@@ -149,14 +156,13 @@
 		source_binoc.laser_cooldown = world.time + source_binoc.cooldown_duration
 		source_binoc.coord = null
 		source_binoc = null
-	SetLuminosity(0)
 	. = ..()
 
 /obj/effect/overlay/temp/laser_target
 	name = "laser"
 	anchored = TRUE
-	mouse_opacity = 1
-	luminosity = 2
+	mouse_opacity = MOUSE_OPACITY_ICON
+	light_range = 2
 	icon = 'icons/obj/items/weapons/projectiles.dmi'
 	icon_state = "laser_target2"
 	effect_duration = 600
@@ -191,7 +197,6 @@
 		source_binoc.laser = null
 		source_binoc = null
 
-	SetLuminosity(0)
 	. = ..()
 
 /obj/effect/overlay/temp/laser_target/ex_act(severity) //immune to explosions
@@ -207,15 +212,11 @@
 /obj/effect/overlay/temp/blinking_laser
 	name = "blinking laser"
 	anchored = TRUE
-	luminosity = 2
+	light_range = 2
 	effect_duration = 10
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	icon = 'icons/obj/items/weapons/projectiles.dmi'
 	icon_state = "laser_target3"
-
-/obj/effect/overlay/temp/blinking_laser/Destroy()
-	SetLuminosity(0)
-	. = ..()
 
 /obj/effect/overlay/temp/emp_sparks
 	icon = 'icons/effects/effects.dmi'
@@ -223,9 +224,9 @@
 	name = "emp sparks"
 	effect_duration = 10
 
-	New(loc)
-		setDir(pick(cardinal))
-		..()
+/obj/effect/overlay/temp/emp_sparks/New(loc)
+	setDir(pick(cardinal))
+	..()
 
 /obj/effect/overlay/temp/emp_pulse
 	name = "emp pulse"
@@ -243,6 +244,9 @@
 	effect_duration = 14
 
 /obj/effect/overlay/temp/gib_animation/New(Loc, mob/source_mob, gib_icon)
+	if(!source_mob)
+		return
+
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
 	icon_state = gib_icon
@@ -273,6 +277,9 @@
 	effect_duration = 12
 
 /obj/effect/overlay/temp/dust_animation/New(Loc, mob/source_mob, gib_icon)
+	if(!source_mob)
+		return
+
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
 	icon_state = gib_icon

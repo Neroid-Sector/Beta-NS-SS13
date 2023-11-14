@@ -5,10 +5,9 @@
 	name = "body scanner"
 	icon_state = "body_scanner"
 
-
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 60
-	active_power_usage = 10000	//10 kW. It's a big all-body scanner.
+	active_power_usage = 10000 //10 kW. It's a big all-body scanner.
 
 	push_in_timer = null
 
@@ -47,7 +46,7 @@
 		return
 	go_out()
 
-/obj/structure/machinery/medical_pod/bodyscanner/ex_act(var/severity, var/datum/cause_data/cause_data)
+/obj/structure/machinery/medical_pod/bodyscanner/ex_act(severity, datum/cause_data/cause_data)
 	for(var/atom/movable/A as mob|obj in src)
 		A.forceMove(loc)
 		A.ex_act(severity, , cause_data)
@@ -63,8 +62,6 @@
 		if(EXPLOSION_THRESHOLD_MEDIUM to INFINITY)
 			deconstruct(FALSE)
 			return
-		else
-	return
 
 #ifdef OBJECTS_PROXY_SPEECH
 // Transfers speech to occupant
@@ -79,7 +76,7 @@
 	name = "body scanner console"
 	icon = 'icons/obj/structures/machinery/cryogenics.dmi'
 	icon_state = "body_scannerconsole"
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	dir = SOUTH
 	unslashable = TRUE
@@ -125,8 +122,6 @@
 		if(EXPLOSION_THRESHOLD_MEDIUM to INFINITY)
 			deconstruct(FALSE)
 			return
-		else
-	return
 
 /obj/structure/machinery/body_scanconsole/power_change()
 	..()
@@ -144,7 +139,7 @@
 /obj/structure/machinery/body_scanconsole/attack_remote(user as mob)
 	return src.attack_hand(user)
 
-/obj/structure/machinery/body_scanconsole/attack_hand(var/mob/living/user)
+/obj/structure/machinery/body_scanconsole/attack_hand(mob/living/user)
 	if(..())
 		return
 	if(inoperable())
@@ -228,7 +223,7 @@
 	return occupant_data
 
 
-/obj/structure/machinery/body_scanconsole/proc/format_occupant_data(var/list/occ)
+/obj/structure/machinery/body_scanconsole/proc/format_occupant_data(list/occ)
 	var/dat = "<html><head><style>"
 	dat += "table {border: 2px solid; border-collapse: collapse;}"
 	dat += "td, th {border: 1px solid; padding-left: 5 px; padding-right: 5px;}"

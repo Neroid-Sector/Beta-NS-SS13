@@ -1,9 +1,9 @@
 //There has to be a better way to define this shit. ~ Z
 //can't equip anything
-/mob/living/carbon/Xenomorph/attack_ui(slot_id)
+/mob/living/carbon/xenomorph/attack_ui(slot_id)
 	return
 
-/mob/living/carbon/Xenomorph/attack_animal(mob/living/M as mob)
+/mob/living/carbon/xenomorph/attack_animal(mob/living/M as mob)
 
 	if(isanimal(M))
 		var/mob/living/simple_animal/S = M
@@ -20,7 +20,7 @@
 			attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [key_name(S)]</font>")
 			updatehealth()
 
-/mob/living/carbon/Xenomorph/attack_hand(mob/living/carbon/human/M)
+/mob/living/carbon/xenomorph/attack_hand(mob/living/carbon/human/M)
 	if(..())
 		return TRUE
 
@@ -59,7 +59,7 @@
 			if(M == src || anchored)
 				return 0
 
-			if(stat != DEAD && isHumanStrict(M))
+			if(stat != DEAD && ishuman_strict(M))
 				return 0
 
 			M.start_pulling(src)
@@ -89,11 +89,14 @@
 
 //Hot hot Aliens on Aliens action.
 //Actually just used for eating people.
-/mob/living/carbon/Xenomorph/attack_alien(mob/living/carbon/Xenomorph/M)
+/mob/living/carbon/xenomorph/attack_alien(mob/living/carbon/xenomorph/M)
 	if (M.fortify || M.burrow)
 		return XENO_NO_DELAY_ACTION
 
-	if(isXenoLarva(M)) //Larvas can't eat people
+	if(HAS_TRAIT(src, TRAIT_ABILITY_BURROWED))
+		return XENO_NO_DELAY_ACTION
+
+	if(islarva(M)) //Larvas can't eat people
 		M.visible_message(SPAN_DANGER("[M] nudges its head against \the [src]."), \
 		SPAN_DANGER("You nudge your head against \the [src]."), null, null, CHAT_TYPE_XENO_FLUFF)
 		return
@@ -163,7 +166,10 @@
 			log_attack("[key_name(M)] [slash_verb]ed [key_name(src)]")
 
 			M.flick_attack_overlay(src, "slash")
-			playsound(loc, slash_sound, 25, 1)
+			if(custom_slashed_sound)
+				playsound(loc, custom_slashed_sound, 25, 1)
+			else
+				playsound(loc, slash_sound, 25, 1)
 			apply_armoured_damage(damage, ARMOR_MELEE, BRUTE, effectiveness_mult = XVX_ARMOR_EFFECTIVEMULT)
 
 			if(M.behavior_delegate)
@@ -176,10 +182,10 @@
 		if(INTENT_DISARM)
 			M.animation_attack_on(src)
 			M.flick_attack_overlay(src, "disarm")
-			var/is_shover_queen = isXenoQueen(M)
-			var/can_resist_shove = M.hivenumber != src.hivenumber || ((isXenoQueen(src) || IS_XENO_LEADER(src)) && !is_shover_queen)
+			var/is_shover_queen = isqueen(M)
+			var/can_resist_shove = M.hivenumber != src.hivenumber || ((isqueen(src) || IS_XENO_LEADER(src)) && !is_shover_queen)
 			var/can_mega_shove = is_shover_queen || IS_XENO_LEADER(M)
-			if(can_mega_shove && !can_resist_shove)
+			if(can_mega_shove && !can_resist_shove || (mob_size < MOB_SIZE_XENO_SMALL && M.mob_size >= MOB_SIZE_XENO_SMALL))
 				playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
 				M.visible_message(SPAN_WARNING("\The [M] shoves \the [src] out of her way!"), \
 				SPAN_WARNING("You shove \the [src] out of your way!"), null, 5, CHAT_TYPE_XENO_COMBAT)
@@ -190,7 +196,7 @@
 				SPAN_WARNING("You shove \the [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
 	return XENO_ATTACK_ACTION
 
-/mob/living/carbon/Xenomorph/proc/attempt_headbutt(var/mob/living/carbon/Xenomorph/target)
+/mob/living/carbon/xenomorph/proc/attempt_headbutt(mob/living/carbon/xenomorph/target)
 	//Responding to a raised head
 	if(target.flags_emote & EMOTING_HEADBUTT && do_after(src, 5, INTERRUPT_MOVED, EMOTE_ICON_HEADBUTT))
 		if(!(target.flags_emote & EMOTING_HEADBUTT)) //Additional check for if the target moved or was already headbutted.
@@ -218,7 +224,7 @@
 		to_chat(src, SPAN_NOTICE("You were left hanging!"))
 	flags_emote &= ~EMOTING_HEADBUTT
 
-/mob/living/carbon/Xenomorph/proc/attempt_tailswipe(var/mob/living/carbon/Xenomorph/target)
+/mob/living/carbon/xenomorph/proc/attempt_tailswipe(mob/living/carbon/xenomorph/target)
 	//Responding to a raised tail
 	if(target.flags_emote & EMOTING_TAIL_SWIPE && do_after(src, 5, INTERRUPT_MOVED, EMOTE_ICON_TAILSWIPE))
 		if(!(target.flags_emote & EMOTING_TAIL_SWIPE)) //Additional check for if the target moved or was already tail swiped.
