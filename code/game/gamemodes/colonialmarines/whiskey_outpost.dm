@@ -768,6 +768,10 @@
 			/obj/item/storage/firstaid/toxin,
 			/obj/item/storage/firstaid/rad,
 			/obj/item/storage/pouch/medical,
+			/obj/item/reagent_container/blood/OMinus,
+			/obj/item/reagent_container/blood/OMinus,
+			/obj/item/reagent_container/blood/OMinus,
+			/obj/item/reagent_container/blood/OMinus,
 			/obj/item/storage/pouch/firstaid/full)
 		if(8) //Engi
 			spawnitems = list( /obj/item/storage/pouch/construction/full,

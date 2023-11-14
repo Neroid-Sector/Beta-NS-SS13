@@ -198,4 +198,5 @@ GLOBAL_LIST_INIT(cm_vending_clothing_engi, list(
 		/obj/item/cell/high,
 		/obj/item/tool/shovel/etool/folded,
 		/obj/item/device/lightreplacer,
+		/obj/item/device/helmet_visor/night_vision,
 	)

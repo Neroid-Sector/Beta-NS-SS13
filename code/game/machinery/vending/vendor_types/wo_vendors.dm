@@ -278,4 +278,5 @@
 		list("Automated Supply Beacon (Full)", round(scale * 1), /obj/item/device/whiskey_supply_beacon, VENDOR_ITEM_REGULAR),
 		list("MB-6 Folding Barricades (x3)", round(scale * 1), /obj/item/stack/folding_barricade/three, VENDOR_ITEM_REGULAR),
 		list("standard Poncho", round(scale * 10), /obj/item/clothing/accessory/poncho, VENDOR_ITEM_REGULAR),
-		)
+		list("standard Poncho", round(scale * 10), /obj/item/device/helmet_visor/night_vision, VENDOR_ITEM_REGULAR),
+			)
