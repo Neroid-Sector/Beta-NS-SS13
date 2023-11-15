@@ -365,6 +365,11 @@
 
 	access = list(
 		ACCESS_MARINE_COMMAND,
+		ACCESS_MARINE_CHEMISTRY,
+		ACCESS_MARINE_DROPSHIP,
+		ACCESS_MARINE_MEDBAY,
+		ACCESS_MARINE_MORGUE,
+		ACCESS_MARINE_KITCHEN,
 		ACCESS_MARINE_ALPHA,
 		ACCESS_MARINE_BRAVO,
 		ACCESS_MARINE_CHARLIE,
@@ -378,10 +383,6 @@
 	skills = /datum/skills/ms/rifleman
 
 	minimap_icon = "smartgunner"
-
-/datum/equipment_preset/uscm_mudskippers/sg/New()
-	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_MAIN)
 
 /datum/equipment_preset/uscm_mudskippers/sg/load_gear(mob/living/carbon/human/new_human)
 	var/back_item = /obj/item/storage/backpack/marine/satchel
@@ -429,6 +430,11 @@
 
 	access = list(
 		ACCESS_MARINE_COMMAND,
+		ACCESS_MARINE_CHEMISTRY,
+		ACCESS_MARINE_DROPSHIP,
+		ACCESS_MARINE_MEDBAY,
+		ACCESS_MARINE_MORGUE,
+		ACCESS_MARINE_KITCHEN,
 		ACCESS_MARINE_ALPHA,
 		ACCESS_MARINE_BRAVO,
 		ACCESS_MARINE_CHARLIE,
@@ -442,10 +448,6 @@
 	skills = /datum/skills/ms/medic
 
 	minimap_icon = "medic"
-
-/datum/equipment_preset/uscm_mudskippers/medic/New()
-	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_MAIN)
 
 	utility_under = list(/obj/item/clothing/under/marine/medic)
 
@@ -501,6 +503,11 @@
 
 	access = list(
 		ACCESS_MARINE_COMMAND,
+		ACCESS_MARINE_CHEMISTRY,
+		ACCESS_MARINE_DROPSHIP,
+		ACCESS_MARINE_MEDBAY,
+		ACCESS_MARINE_MORGUE,
+		ACCESS_MARINE_KITCHEN,
 		ACCESS_MARINE_ALPHA,
 		ACCESS_MARINE_BRAVO,
 		ACCESS_MARINE_CHARLIE,
@@ -514,10 +521,6 @@
 	skills = /datum/skills/ms/engi
 
 	minimap_icon = "engi"
-
-/datum/equipment_preset/uscm_mudskippers/engineer/New()
-	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_MAIN)
 
 	utility_under = list(/obj/item/clothing/under/marine/engineer)
 
@@ -571,6 +574,11 @@
 
 	access = list(
 		ACCESS_MARINE_COMMAND,
+		ACCESS_MARINE_CHEMISTRY,
+		ACCESS_MARINE_DROPSHIP,
+		ACCESS_MARINE_MEDBAY,
+		ACCESS_MARINE_MORGUE,
+		ACCESS_MARINE_KITCHEN,
 		ACCESS_MARINE_ALPHA,
 		ACCESS_MARINE_BRAVO,
 		ACCESS_MARINE_CHARLIE,
@@ -584,10 +592,6 @@
 	skills = /datum/skills/ms/rifleman
 
 	minimap_icon = "private"
-
-/datum/equipment_preset/uscm_mudskippers/rfm/New()
-	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_MAIN)
 
 /datum/equipment_preset/uscm_mudskippers/rfm/load_gear(mob/living/carbon/human/new_human)
 	var/back_item = /obj/item/storage/backpack/marine/satchel
