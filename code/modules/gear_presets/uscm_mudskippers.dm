@@ -363,7 +363,7 @@
 	name = "Squad Smartgunner(mudskippers)"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
 
-access = list(
+	access = list(
 		ACCESS_MARINE_COMMAND,
 		ACCESS_MARINE_ALPHA,
 		ACCESS_MARINE_BRAVO,
@@ -427,7 +427,7 @@ access = list(
 	name = "Squad Hospital Corpsman(mudskippers)"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
 
-access = list(
+	access = list(
 		ACCESS_MARINE_COMMAND,
 		ACCESS_MARINE_ALPHA,
 		ACCESS_MARINE_BRAVO,
@@ -499,7 +499,7 @@ access = list(
 	name = "Squad Combat Technician(mudskippers)"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
 
-access = list(
+	access = list(
 		ACCESS_MARINE_COMMAND,
 		ACCESS_MARINE_ALPHA,
 		ACCESS_MARINE_BRAVO,
@@ -569,7 +569,7 @@ access = list(
 	name = "Squad Rifleman(mudskippers)"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
 
-access = list(
+	access = list(
 		ACCESS_MARINE_COMMAND,
 		ACCESS_MARINE_ALPHA,
 		ACCESS_MARINE_BRAVO,
