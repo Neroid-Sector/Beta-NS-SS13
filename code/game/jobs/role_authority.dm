@@ -166,7 +166,6 @@ var/global/players_preassigned = 0
 
 		W[ckey] = role
 
-	W[ckey] = WHITELIST_EVERYTHING
 	roles_whitelist = W
 
 //#undef FACTION_TO_JOIN
