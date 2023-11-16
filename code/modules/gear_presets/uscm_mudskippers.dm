@@ -852,8 +852,6 @@
 
 
 //----Medical----//
-
-//---CMO---//
 /datum/equipment_preset/uscm_ship/uscm_mudskippers/medical
 
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
@@ -876,6 +874,7 @@
 	dress_gloves = list(/obj/item/clothing/gloves/marine/dress)
 	dress_shoes = list(/obj/item/clothing/shoes/laceup)
 
+//---CMO---//
 /datum/equipment_preset/uscm_ship/uscm_mudskippers/medical/cmo
 	name = "USCM Chief Medical Officer (CMO)"
 
@@ -971,3 +970,41 @@
 //---PMC---//
 
 //---WY-Sci---//
+/datum/equipment_preset/uscm_ship/uscm_mudskippers/medical/researcher
+	name = "USCM Researcher"
+
+	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MORGUE)
+	assignment = JOB_RESEARCHER
+	rank = JOB_RESEARCHER
+	paygrade = "MO1"
+	role_comm_title = "Rsr"
+	skills = /datum/skills/researcher
+
+	minimap_icon = "researcher"
+
+	utility_under = list(/obj/item/clothing/under/marine/officer/researcher)
+	utility_hat = list()
+	utility_gloves = list()
+	utility_shoes = list(/obj/item/clothing/shoes/laceup)
+	utility_extra = list(/obj/item/clothing/suit/storage/labcoat/researcher)
+
+	service_under = list(/obj/item/clothing/under/marine/officer/researcher)
+
+/datum/equipment_preset/uscm_ship/uscm_medical/researcher/load_gear(mob/living/carbon/human/new_human)
+	var/back_item = /obj/item/storage/backpack/marine/satchel
+	if (new_human.client && new_human.client.prefs && (new_human.client.prefs.backbag == 1))
+		back_item = /obj/item/storage/backpack/marine
+
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/research(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/researcher(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(new_human), WEAR_FEET)
+
+	if(new_human.disabilities & NEARSIGHTED)
+		new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/science/prescription(new_human), WEAR_EYES)
+	else
+		new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/science(new_human), WEAR_EYES)
+
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat/researcher(new_human), WEAR_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/paper/research_notes/bad(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/syringe(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot_or_del(new back_item(new_human), WEAR_BACK)

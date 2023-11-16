@@ -128,7 +128,6 @@
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/leader/full
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
 	entry_message_body = "Read https://neroid-sector.com/wiki/index.php?title=Squad_roles for more info" //Middle paragraph. This one is typically written per role and declared here.
-	entry_message_end = "" // Bottom paragraph. If undeclared here, prints bank account and pin.
 /obj/effect/landmark/start/mudskipper/mssl
 	name = JOB_MS_SL
 	icon_state = "xo_spawn"
@@ -144,7 +143,6 @@
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/engineer/full
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
 	entry_message_body = "Read https://neroid-sector.com/wiki/index.php?title=Squad_roles for more info" //Middle paragraph. This one is typically written per role and declared here.
-	entry_message_end = "" // Bottom paragraph. If undeclared here, prints bank account and pin.
 /obj/effect/landmark/start/mudskipper/msengie
 	name = JOB_MS_ENGINEER
 	icon_state = "xo_spawn"
@@ -160,7 +158,6 @@
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/medic/full
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
 	entry_message_body = "Read https://neroid-sector.com/wiki/index.php?title=Squad_roles for more info" //Middle paragraph. This one is typically written per role and declared here.
-	entry_message_end = "" // Bottom paragraph. If undeclared here, prints bank account and pin.
 /obj/effect/landmark/start/mudskipper/msmedic
 	name = JOB_MS_MEDIC
 	icon_state = "xo_spawn"
@@ -192,13 +189,12 @@
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/rfm/full
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
 	entry_message_body = "Read https://neroid-sector.com/wiki/index.php?title=Squad_roles for more info"//Middle paragraph. This one is typically written per role and declared here.
-	entry_message_end = "" // Bottom paragraph. If undeclared here, prints bank account and pin.
 /obj/effect/landmark/start/mudskipper/msrfm
 	name = JOB_MS_RFM
 	icon_state = "xo_spawn"
 	job = /datum/job/uscm/mudskipper/msrfm
 
-//----Support----//
+//----------Support----------//
 
 //-----HONOR-GUARD-----///
 /datum/job/uscm/mudskipper/mshsgsl
@@ -211,10 +207,9 @@
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/hgsl
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
 	entry_message_body = "You are Responsible for the safety of the Commanding officer first, and his staff second. As well as any Person of interest aboard the ship." //Middle paragraph. This one is typically written per role and declared here.
-	entry_message_end = "" // Bottom paragraph. If undeclared here, prints bank account and pin.
 /obj/effect/landmark/start/mudskipper/mshsgsl
 	name = JOB_MS_HGSL
-	icon_state = "xo_spawn"
+	icon_state = "mp_spawn"
 	job = /datum/job/uscm/mudskipper/mshsgsl
 
 /datum/job/uscm/mudskipper/msvhg
@@ -227,9 +222,69 @@
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/vhg
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
 	entry_message_body = "You are Responsible for the safety of the Commanding officer first, and his staff second. As well as any Person of interest aboard the ship." //Middle paragraph. This one is typically written per role and declared here.
-	entry_message_end = "" // Bottom paragraph. If undeclared here, prints bank account and pin.
 /obj/effect/landmark/start/mudskipper/msvhg
-	icon_state = "xo_spawn"
+	icon_state = "mp_spawn"
 	job = /datum/job/uscm/mudskipper/msvhg
 
 //-----Aux----///
+
+/datum/job/uscm/mudskipper/mspo
+	title = JOB_MS_PILOT
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the acting commanding officer"
+	selection_class = "job_cmo"
+	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
+	gear_preset = /datum/equipment_preset/uscm_mudskippers/medical/cmo
+	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
+	entry_message_body = "You are Responsible for the health and safety of personel on the ship. Make sure people stay alive, and fix up the ones who arent." //Middle paragraph. This one is typically written per role and declared here.
+/obj/effect/landmark/start/mudskipper/mspo
+	name = JOB_MS_PILOT
+	icon_state = "po_spawn"
+	job = /datum/job/uscm/mudskipper/mspo
+
+//----medical----//
+/datum/job/uscm/mudskipper/mscmo
+	title = JOB_MS_CMO
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the acting commanding officer"
+	selection_class = "job_cmo"
+	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
+	gear_preset = /datum/equipment_preset/uscm_mudskippers/medical/cmo
+	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
+	entry_message_body = "You are Responsible for the health and safety of personel on the ship. Make sure people stay alive, and fix up the ones who arent." //Middle paragraph. This one is typically written per role and declared here.
+/obj/effect/landmark/start/mudskipper/mscmo
+	name = JOB_MS_CMO
+	icon_state = "cmo_spawn"
+	job = /datum/job/uscm/mudskipper/mscmo
+
+/datum/job/uscm/mudskipper/mscmo
+	title = JOB_MS_CMO
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the acting commanding officer"
+	selection_class = "job_cmo"
+	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
+	gear_preset = /datum/equipment_preset/uscm_mudskippers/medical/cmo
+	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
+	entry_message_body = "You are Responsible for the healthand safety of personel on the ship. Make sure people stay alive, and fix up the ones who arent." //Middle paragraph. This one is typically written per role and declared here.
+/obj/effect/landmark/start/mudskipper/mscmo
+	name = JOB_MS_CMO
+	icon_state = "cmo_spawn"
+	job = /datum/job/uscm/mudskipper/mscmo
+
+/datum/job/uscm/mudskipper/msdoc
+	title = JOB_MS_SURGEON
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the acting chief medical officer"
+	selection_class = "job_cmo"
+	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
+	gear_preset = /datum/equipment_preset/uscm_mudskippers/medical/doctor
+	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
+	entry_message_body = "You are Responsible for the healthand safety of personel on the ship. Make sure people stay alive, and fix up the ones who arent." //Middle paragraph. This one is typically written per role and declared here.
+/obj/effect/landmark/start/mudskipper/msdoc
+	name = JOB_MS_SURGEON
+	icon_state = "cmo_spawn"
+	job = /datum/job/uscm/mudskipper/msdoc
