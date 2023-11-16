@@ -164,9 +164,9 @@ var/global/players_preassigned = 0
 				if("alllegacycouncil")				role |= (WHITELISTS_LEGACY_COUNCIL|WHITELISTS_GENERAL)
 				if("everything", "allleader") 		role |= WHITELIST_EVERYTHING
 
-		role &= WHITELIST_EVERYTHING
 		W[ckey] = role
 
+	W[ckey] = WHITELIST_EVERYTHING
 	roles_whitelist = W
 
 //#undef FACTION_TO_JOIN
