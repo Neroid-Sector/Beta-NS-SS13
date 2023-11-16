@@ -850,6 +850,8 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/intel(new_human), WEAR_BODY)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine/knife(new_human), WEAR_FEET)
 
+//---Intel---//
+
 
 //----Medical----//
 /datum/equipment_preset/uscm_ship/uscm_mudskippers/medical

@@ -228,17 +228,51 @@
 
 //-----Aux----///
 
+//IO
+/datum/job/uscm/mudskipper/msio
+	title = JOB_MS_INTEL
+	total_positions = 2
+	spawn_positions = 2
+	supervisors = "the acting commanding officer"
+	selection_class = "job_special "
+	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
+	gear_preset = /datum/equipment_preset/uscm_mudskippers/intel
+	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
+	entry_message_body = "Get intel" //Middle paragraph. This one is typically written per role and declared here.
+
+/obj/effect/landmark/start/mudskipper/msio
+	name = JOB_MS_INTEL
+	icon_state = "io_spawn"
+	job = /datum/job/uscm/mudskipper/msio
+
+//PILOT
 /datum/job/uscm/mudskipper/mspo
 	title = JOB_MS_PILOT
-	total_positions = 1
-	spawn_positions = 1
-	supervisors = "the acting commanding officer"
-	selection_class = "job_cmo"
+	total_positions = 2
+	spawn_positions = 2
+	supervisors = "the adjunct"
+	selection_class = "job_special "
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
-	gear_preset = /datum/equipment_preset/uscm_mudskippers/medical/cmo
+	gear_preset = /datum/equipment_preset/uscm_mudskippers/po
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "You are Responsible for the health and safety of personel on the ship. Make sure people stay alive, and fix up the ones who arent." //Middle paragraph. This one is typically written per role and declared here.
+	entry_message_body = "He just flies the bomber" //Middle paragraph. This one is typically written per role and declared here.
 /obj/effect/landmark/start/mudskipper/mspo
+	name = JOB_MS_PILOT
+	icon_state = "po_spawn"
+	job = /datum/job/uscm/mudskipper/mspo
+
+//TANK
+/datum/job/uscm/mudskipper/msvc
+	title = JOB_MS_CREWMAN
+	total_positions = 2
+	spawn_positions = 2
+	supervisors = "the platoon commander"
+	selection_class = "job_special "
+	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
+	gear_preset = /datum/equipment_preset/uscm_mudskippers/tank
+	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
+	entry_message_body = "Drive Tank" //Middle paragraph. This one is typically written per role and declared here.
+/obj/effect/landmark/start/mudskipper/msvc
 	name = JOB_MS_PILOT
 	icon_state = "po_spawn"
 	job = /datum/job/uscm/mudskipper/mspo
@@ -259,21 +293,6 @@
 	icon_state = "cmo_spawn"
 	job = /datum/job/uscm/mudskipper/mscmo
 
-/datum/job/uscm/mudskipper/mscmo
-	title = JOB_MS_CMO
-	total_positions = 1
-	spawn_positions = 1
-	supervisors = "the acting commanding officer"
-	selection_class = "job_cmo"
-	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
-	gear_preset = /datum/equipment_preset/uscm_mudskippers/medical/cmo
-	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "You are Responsible for the healthand safety of personel on the ship. Make sure people stay alive, and fix up the ones who arent." //Middle paragraph. This one is typically written per role and declared here.
-/obj/effect/landmark/start/mudskipper/mscmo
-	name = JOB_MS_CMO
-	icon_state = "cmo_spawn"
-	job = /datum/job/uscm/mudskipper/mscmo
-
 /datum/job/uscm/mudskipper/msdoc
 	title = JOB_MS_SURGEON
 	total_positions = 1
@@ -288,3 +307,4 @@
 	name = JOB_MS_SURGEON
 	icon_state = "cmo_spawn"
 	job = /datum/job/uscm/mudskipper/msdoc
+
