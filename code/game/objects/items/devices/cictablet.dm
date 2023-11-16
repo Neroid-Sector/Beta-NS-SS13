@@ -64,7 +64,7 @@
 	var/list/data = list()
 
 	data["alert_level"] = security_level
-	data["evac_status"] = SShijack.evac_status
+	data["evac_status"] = EvacuationAuthority.evac_status
 	data["endtime"] = announcement_cooldown
 	data["distresstime"] = distress_cooldown
 	data["worldtime"] = world.time
@@ -138,11 +138,11 @@
 				to_chat(usr, SPAN_WARNING("The ship must be under red alert in order to enact evacuation procedures."))
 				return FALSE
 
-			if(SShijack.evac_admin_denied)
+			if(EvacuationAuthority.flags_scuttle & FLAGS_EVACUATION_DENY)
 				to_chat(usr, SPAN_WARNING("The USCM has placed a lock on deploying the evacuation pods."))
 				return FALSE
 
-			if(!SShijack.initiate_evacuation())
+			if(!EvacuationAuthority.initiate_evacuation())
 				to_chat(usr, SPAN_WARNING("You are unable to initiate an evacuation procedure right now!"))
 				return FALSE
 

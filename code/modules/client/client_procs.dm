@@ -145,6 +145,7 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 		if(!receiver_client)
 			to_chat(src, SPAN_WARNING("The person you were attempting to PM has gone offline!"))
 			return
+		if(unansweredAhelps[receiver_client.computer_id]) unansweredAhelps.Remove(receiver_client.computer_id)
 		cmd_admin_pm(receiver_client, null)
 		return
 	else if(href_list["FaxView"])
@@ -474,6 +475,7 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 	GLOB.clients -= src
 	SSping.currentrun -= src
 
+	unansweredAhelps?.Remove(computer_id)
 	log_access("Logout: [key_name(src)]")
 	if(CLIENT_IS_STAFF(src))
 		message_admins("Admin logout: [key_name(src)]")

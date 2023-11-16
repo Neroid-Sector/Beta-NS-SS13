@@ -72,7 +72,6 @@
 				break
 		sleep(10)
 
-	SShijack.announce_status_on_crash()
 	SSticker.hijack_ocurred()
 
 /datum/dropship_hijack/almayer/proc/fire()

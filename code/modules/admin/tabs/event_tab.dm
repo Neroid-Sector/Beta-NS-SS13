@@ -250,7 +250,7 @@
 	if(!SSticker.mode || !check_rights(R_ADMIN))
 		return
 	set_security_level(SEC_LEVEL_RED)
-	SShijack.initiate_evacuation()
+	EvacuationAuthority.initiate_evacuation()
 
 	message_admins("[key_name_admin(usr)] forced an emergency evacuation.")
 
@@ -261,7 +261,7 @@
 
 	if(!SSticker.mode || !check_rights(R_ADMIN))
 		return
-	SShijack.cancel_evacuation()
+	EvacuationAuthority.cancel_evacuation()
 
 	message_admins("[key_name_admin(usr)] canceled an emergency evacuation.")
 

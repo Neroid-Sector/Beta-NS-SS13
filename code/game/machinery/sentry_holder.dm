@@ -10,12 +10,13 @@
 	idle_power_usage = 1000
 	power_channel = 1
 	use_power = USE_POWER_IDLE
+	machine_processing = 1
 	var/deployment_cooldown
 	var/turret_path = /obj/structure/machinery/defenses/sentry/premade/deployable // Path of the turret used
 	var/obj/structure/machinery/defenses/sentry/premade/deployable/deployed_turret
 	var/ox = 0
 	var/oy = 0
-	var/require_red_alert = FALSE
+	var/ind = FALSE
 
 /obj/structure/machinery/sentry_holder/Initialize()
 	. = ..()
@@ -35,38 +36,34 @@
 		. += "It's offline."
 
 /obj/structure/machinery/sentry_holder/attack_hand(mob/user)
-	if(!deployed_turret)
+	if(deployed_turret)
+		if(deployment_cooldown > world.time)
+			to_chat(user, SPAN_WARNING("[src] is busy."))
+			return //prevents spamming deployment/undeployment
+		if(deployed_turret.loc == src) //not deployed
+			if(stat & NOPOWER)
+				to_chat(user, SPAN_WARNING("[src] is non-functional."))
+			else
+				to_chat(user, SPAN_NOTICE("You deploy [src]."))
+				deploy_sentry()
+		else
+			to_chat(user, SPAN_NOTICE("You retract [src]."))
+			undeploy_sentry()
+	else
 		to_chat(user, SPAN_WARNING("[src] is unresponsive."))
-		return
 
-	if(deployment_cooldown > world.time)
-		to_chat(user, SPAN_WARNING("[src] is busy."))
-		return
-
-	if(deployed_turret.loc == src) //not deployed
-		if(stat & NOPOWER)
-			to_chat(user, SPAN_WARNING("[src] is non-functional."))
-			return
-
-		if(require_red_alert && (seclevel2num(get_security_level()) < SEC_LEVEL_RED))
-			to_chat(user, SPAN_WARNING("[src] can only be activated in emergencies."))
-			return
-
-		to_chat(user, SPAN_NOTICE("You deploy [src]."))
-		deploy_sentry()
-		return
-
-	to_chat(user, SPAN_NOTICE("You retract [src]."))
-	undeploy_sentry()
-	return
-
-/obj/structure/machinery/sentry_holder/update_use_power(new_use_power)
-	..()
-
-	if(!(stat & NOPOWER))
-		return
-
-	undeploy_sentry()
+/obj/structure/machinery/sentry_holder/process()
+	if(stat & NOPOWER)
+		if(deployed_turret)
+			undeploy_sentry()
+			ind = FALSE
+		else
+			icon_state = "sentry_system_destroyed"
+	else
+		update_use_power(USE_POWER_IDLE)
+		if(!ind)
+			deploy_sentry()
+			ind = TRUE
 
 /obj/structure/machinery/sentry_holder/proc/deploy_sentry()
 	if(!deployed_turret)
@@ -114,6 +111,3 @@
 	desc = "A box that deploys a sentry turret for protection of the residents in the area."
 	turret_path = /obj/structure/machinery/defenses/sentry/premade/deployable/colony
 
-/obj/structure/machinery/sentry_holder/almayer
-	turret_path = /obj/structure/machinery/defenses/sentry/premade/deployable/almayer
-	require_red_alert = TRUE

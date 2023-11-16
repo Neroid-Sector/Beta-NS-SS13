@@ -28067,7 +28067,7 @@
 /area/ice_colony/surface/bar/canteen)
 "bFZ" = (
 /obj/structure/surface/table/reinforced,
-/obj/item/toy/plush/farwa,
+/obj/item/toy/farwadoll,
 /turf/open/floor{
 	icon_state = "darkblue2"
 	},

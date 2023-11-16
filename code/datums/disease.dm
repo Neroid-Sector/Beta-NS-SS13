@@ -131,7 +131,7 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 
 /datum/disease/process()
 	if(!holder)
-		SSdisease.all_diseases -= src
+		active_diseases -= src
 		return
 	if(prob(65))
 		spread(holder)
@@ -176,7 +176,7 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 /datum/disease/New(process=TRUE)//process = 1 - adding the object to global list. List is processed by master controller.
 	cure_list = list(cure_id) // to add more cures, add more vars to this list in the actual disease's New()
 	if(process)  // Viruses in list are considered active.
-		SSdisease.all_diseases += src
+		active_diseases += src
 	initial_spread = spread
 
 /datum/disease/proc/IsSame(datum/disease/D)
@@ -191,5 +191,5 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 /datum/disease/Destroy()
 	affected_mob = null
 	holder = null
-	SSdisease.all_diseases -= src
+	active_diseases -= src
 	. = ..()

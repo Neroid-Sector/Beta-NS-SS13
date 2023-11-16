@@ -474,23 +474,23 @@ cases. Override_icon_state should be a list.*/
 // If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
 // Set disable_warning to TRUE if you wish it to not give you outputs.
 // warning_text is used in the case that you want to provide a specific warning for why the item cannot be equipped.
-/obj/item/proc/mob_can_equip(mob/equipping_mob, slot, disable_warning = FALSE)
+/obj/item/proc/mob_can_equip(mob/M, slot, disable_warning = FALSE)
 	if(!slot)
 		return FALSE
-	if(!equipping_mob)
+	if(!M)
 		return FALSE
 
-	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTEMPTING_EQUIP, equipping_mob, slot) & COMPONENT_CANCEL_EQUIP)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTEMPTING_EQUIP, M) & COMPONENT_CANCEL_EQUIP)
 		return FALSE
 
-	if(ishuman(equipping_mob))
+	if(ishuman(M))
 		//START HUMAN
-		var/mob/living/carbon/human/human = equipping_mob
+		var/mob/living/carbon/human/H = M
 		var/list/mob_equip = list()
-		if(human.hud_used && human.hud_used.equip_slots)
-			mob_equip = human.hud_used.equip_slots
+		if(H.hud_used && H.hud_used.equip_slots)
+			mob_equip = H.hud_used.equip_slots
 
-		if(human.species && !(slot in mob_equip))
+		if(H.species && !(slot in mob_equip))
 			return FALSE
 
 		if(uniform_restricted)
@@ -501,136 +501,136 @@ cases. Override_icon_state should be a list.*/
 				required_clothing += initial(restriction_type.name)
 				// You can't replace this with a switch(), flags_equip_slot is a bitfield
 				if(valid_equip_slots & SLOT_ICLOTHING)
-					if(istype(human.w_uniform, restriction_type))
+					if(istype(H.w_uniform, restriction_type))
 						restriction_satisfied = TRUE
 						break
 				if(valid_equip_slots & SLOT_OCLOTHING)
-					if(istype(human.wear_suit, restriction_type))
+					if(istype(H.wear_suit, restriction_type))
 						restriction_satisfied = TRUE
 						break
 			if(!restriction_satisfied)
 				if(!disable_warning)
-					to_chat(human, SPAN_WARNING("You cannot wear this without wearing one of the following; [required_clothing.Join(", ")]."))
+					to_chat(H, SPAN_WARNING("You cannot wear this without wearing one of the following; [required_clothing.Join(", ")]."))
 				return FALSE
 
 		switch(slot)
 			if(WEAR_L_HAND)
-				if(human.l_hand)
+				if(H.l_hand)
 					return FALSE
-				if(human.lying)
-					to_chat(human, SPAN_WARNING("You can't equip that while lying down."))
+				if(H.lying)
+					to_chat(H, SPAN_WARNING("You can't equip that while lying down."))
 					return
 				return TRUE
 			if(WEAR_R_HAND)
-				if(human.r_hand)
+				if(H.r_hand)
 					return FALSE
-				if(human.lying)
-					to_chat(human, SPAN_WARNING("You can't equip that while lying down."))
+				if(H.lying)
+					to_chat(H, SPAN_WARNING("You can't equip that while lying down."))
 					return
 				return TRUE
 			if(WEAR_FACE)
-				if(human.wear_mask)
+				if(H.wear_mask)
 					return FALSE
 				if(!(flags_equip_slot & SLOT_FACE))
 					return FALSE
 				return TRUE
 			if(WEAR_BACK)
-				if(human.back)
+				if(H.back)
 					return FALSE
 				if(!(flags_equip_slot & SLOT_BACK))
 					return FALSE
 				return TRUE
 			if(WEAR_JACKET)
-				if(human.wear_suit)
+				if(H.wear_suit)
 					return FALSE
 				if(!(flags_equip_slot & SLOT_OCLOTHING))
 					return FALSE
 				return TRUE
 			if(WEAR_HANDS)
-				if(human.gloves)
+				if(H.gloves)
 					return FALSE
 				if(!(flags_equip_slot & SLOT_HANDS))
 					return FALSE
 				return TRUE
 			if(WEAR_FEET)
-				if(human.shoes)
+				if(H.shoes)
 					return FALSE
 				if(!(flags_equip_slot & SLOT_FEET))
 					return FALSE
 				return TRUE
 			if(WEAR_WAIST)
-				if(human.belt)
+				if(H.belt)
 					return FALSE
-				if(!human.w_uniform && (WEAR_BODY in mob_equip))
+				if(!H.w_uniform && (WEAR_BODY in mob_equip))
 					if(!disable_warning)
-						to_chat(human, SPAN_WARNING("You need a jumpsuit before you can attach this [name]."))
+						to_chat(H, SPAN_WARNING("You need a jumpsuit before you can attach this [name]."))
 					return FALSE
 				if(!(flags_equip_slot & SLOT_WAIST))
 					return
 				return TRUE
 			if(WEAR_EYES)
-				if(human.glasses)
+				if(H.glasses)
 					return FALSE
 				if(!(flags_equip_slot & SLOT_EYES))
 					return FALSE
 				return TRUE
 			if(WEAR_HEAD)
-				if(human.head)
+				if(H.head)
 					return FALSE
 				if(!(flags_equip_slot & SLOT_HEAD))
 					return FALSE
 				return TRUE
 			if(WEAR_L_EAR)
-				if(human.wear_l_ear)
+				if(H.wear_l_ear)
 					return FALSE
 				if(HAS_TRAIT(src, TRAIT_ITEM_EAR_EXCLUSIVE))
-					if(human.wear_r_ear && HAS_TRAIT(human.wear_r_ear, TRAIT_ITEM_EAR_EXCLUSIVE))
+					if(H.wear_r_ear && HAS_TRAIT(H.wear_r_ear, TRAIT_ITEM_EAR_EXCLUSIVE))
 						if(!disable_warning)
-							to_chat(human, SPAN_WARNING("You can't wear [src] while you have [human.wear_r_ear] in your right ear!"))
+							to_chat(H, SPAN_WARNING("You can't wear [src] while you have [H.wear_r_ear] in your right ear!"))
 						return FALSE
 				if(!(flags_equip_slot & SLOT_EAR))
 					return FALSE
 				return TRUE
 			if(WEAR_R_EAR)
-				if(human.wear_r_ear)
+				if(H.wear_r_ear)
 					return FALSE
 				if(HAS_TRAIT(src, TRAIT_ITEM_EAR_EXCLUSIVE))
-					if(human.wear_l_ear && HAS_TRAIT(human.wear_l_ear, TRAIT_ITEM_EAR_EXCLUSIVE))
+					if(H.wear_l_ear && HAS_TRAIT(H.wear_l_ear, TRAIT_ITEM_EAR_EXCLUSIVE))
 						if(!disable_warning)
-							to_chat(human, SPAN_WARNING("You can't wear [src] while you have [human.wear_l_ear] in your left ear!"))
+							to_chat(H, SPAN_WARNING("You can't wear [src] while you have [H.wear_l_ear] in your left ear!"))
 						return FALSE
 				if(!(flags_equip_slot & SLOT_EAR))
 					return FALSE
 				return TRUE
 			if(WEAR_BODY)
-				if(human.w_uniform)
+				if(H.w_uniform)
 					return FALSE
 				if(!(flags_equip_slot & SLOT_ICLOTHING))
 					return FALSE
 				return TRUE
 			if(WEAR_ID)
-				if(human.wear_id)
+				if(H.wear_id)
 					return FALSE
 				if(!(flags_equip_slot & SLOT_ID))
 					return FALSE
 				return TRUE
 			if(WEAR_L_STORE)
-				if(human.l_store)
+				if(H.l_store)
 					return FALSE
-				if(!human.w_uniform && (WEAR_BODY in mob_equip))
+				if(!H.w_uniform && (WEAR_BODY in mob_equip))
 					if(!disable_warning)
-						to_chat(human, SPAN_WARNING("You need a jumpsuit before you can attach this [name]."))
+						to_chat(H, SPAN_WARNING("You need a jumpsuit before you can attach this [name]."))
 					return FALSE
 				if(flags_equip_slot & SLOT_NO_STORE)
 					return FALSE
 				if(w_class <= SIZE_SMALL || (flags_equip_slot & SLOT_STORE))
 					return TRUE
 			if(WEAR_R_STORE)
-				if(human.r_store)
+				if(H.r_store)
 					return FALSE
-				if(!human.w_uniform && (WEAR_BODY in mob_equip))
+				if(!H.w_uniform && (WEAR_BODY in mob_equip))
 					if(!disable_warning)
-						to_chat(human, SPAN_WARNING("You need a jumpsuit before you can attach this [name]."))
+						to_chat(H, SPAN_WARNING("You need a jumpsuit before you can attach this [name]."))
 					return FALSE
 				if(flags_equip_slot & SLOT_NO_STORE)
 					return FALSE
@@ -638,107 +638,109 @@ cases. Override_icon_state should be a list.*/
 					return TRUE
 				return FALSE
 			if(WEAR_ACCESSORY)
-				for(var/obj/item/clothing/clothes in human.contents)
-					if(clothes.can_attach_accessory(src))
+				for(var/obj/item/clothing/C in H.contents)
+					if(C.can_attach_accessory(src))
 						return TRUE
 				return FALSE
 			if(WEAR_J_STORE)
-				if(human.s_store)
+				if(H.s_store)
 					return FALSE
 				if(flags_equip_slot & SLOT_SUIT_STORE)
 					return TRUE
 				if(flags_equip_slot & SLOT_BLOCK_SUIT_STORE)
 					return FALSE
-				if(!human.wear_suit && (WEAR_JACKET in mob_equip))
+				if(!H.wear_suit && (WEAR_JACKET in mob_equip))
 					if(!disable_warning)
-						to_chat(human, SPAN_WARNING("You need a suit before you can attach this [name]."))
+						to_chat(H, SPAN_WARNING("You need a suit before you can attach this [name]."))
 					return FALSE
-				if(human.wear_suit && !human.wear_suit.allowed)
+				if(H.wear_suit && !H.wear_suit.allowed)
 					if(!disable_warning)
 						to_chat(usr, "You somehow have a suit with no defined allowed items for suit storage, stop that.")
 					return FALSE
-				if(human.wear_suit && is_type_in_list(src, human.wear_suit.allowed))
+				if(H.wear_suit && is_type_in_list(src, H.wear_suit.allowed))
 					return TRUE
 				return FALSE
 			if(WEAR_HANDCUFFS)
-				if(human.handcuffed)
+				if(H.handcuffed)
 					return FALSE
 				if(!istype(src, /obj/item/handcuffs))
 					return FALSE
 				return TRUE
 			if(WEAR_LEGCUFFS)
-				if(human.legcuffed)
+				if(H.legcuffed)
 					return FALSE
 				if(!istype(src, /obj/item/legcuffs))
 					return FALSE
 				return TRUE
 			if(WEAR_IN_ACCESSORY)
-				if(human.w_uniform)
-					for(var/accessory in human.w_uniform.accessories)
-						if(istype(accessory, /obj/item/clothing/accessory/storage))
-							var/obj/item/clothing/accessory/storage/holster = accessory
-							if(holster.hold.can_be_inserted(src, human, TRUE))
+				if(H.w_uniform)
+					for(var/A in H.w_uniform.accessories)
+						if(istype(A, /obj/item/clothing/accessory/storage))
+							var/obj/item/clothing/accessory/storage/S = A
+							if(S.hold.can_be_inserted(src, M, TRUE))
 								return TRUE
-						else if(istype(accessory, /obj/item/storage/internal/accessory/holster))
-							var/obj/item/storage/internal/accessory/holster/internal_storage = accessory
-							if(!(internal_storage.current_gun) && internal_storage.can_be_inserted(src, human))
+						else if(istype(A, /obj/item/storage/internal/accessory/holster))
+							var/obj/item/storage/internal/accessory/holster/AH = A
+							if(!(AH.current_gun) && AH.can_be_inserted(src, M))
 								return TRUE
 				return FALSE
 			if(WEAR_IN_JACKET)
-				if(human.wear_suit)
-					var/obj/item/clothing/suit/storage/storage = human.wear_suit
-					if(istype(storage) && storage.pockets)//not all suits have pockits
-						var/obj/item/storage/internal/internal_storage = storage.pockets
-						if(internal_storage.can_be_inserted(src, human, TRUE))
+				if(H.wear_suit)
+					var/obj/item/clothing/suit/storage/S = H.wear_suit
+					if(istype(S) && S.pockets)//not all suits have pockits
+						var/obj/item/storage/internal/I = S.pockets
+						if(I.can_be_inserted(src, M, TRUE))
 							return TRUE
 				return FALSE
 			if(WEAR_IN_HELMET)
-				if(human.head)
-					var/obj/item/clothing/head/helmet/marine/helmet = human.head
-					if(istype(helmet) && helmet.pockets)//not all helmuts have pockits
-						var/obj/item/storage/internal/internal_storage = helmet.pockets
-						if(internal_storage.can_be_inserted(src, human, TRUE))
+				if(H.head)
+					var/obj/item/clothing/head/helmet/marine/HM = H.head
+					if(istype(HM) && HM.pockets)//not all helmuts have pockits
+						var/obj/item/storage/internal/I = HM.pockets
+						if(I.can_be_inserted(src, M, TRUE))
 							return TRUE
 			if(WEAR_IN_BACK)
-				if (human.back && isstorage(human.back))
-					var/obj/item/storage/backpack = human.back
-					if(backpack.can_be_inserted(src, human, TRUE))
+				if (H.back && isstorage(H.back))
+					var/obj/item/storage/B = H.back
+					if(B.can_be_inserted(src, M, TRUE))
 						return TRUE
 				return FALSE
 			if(WEAR_IN_SHOES)
-				if(human.shoes && istype(human.shoes, /obj/item/clothing/shoes))
-					var/obj/item/clothing/shoes/shoes = human.shoes
-					if(shoes.attempt_insert_item(human, src))
-						return TRUE
+				if(H.shoes && istype(H.shoes, /obj/item/clothing/shoes))
+					var/obj/item/clothing/shoes/S = H.shoes
+					if(!S.stored_item && S.items_allowed && S.items_allowed.len)
+						for (var/i in S.items_allowed)
+							if(istype(src, i))
+								return TRUE
 				return FALSE
 			if(WEAR_IN_SCABBARD)
-				if(human.back && istype(human.back, /obj/item/storage/large_holster))
-					var/obj/item/storage/large_holster/backpack = human.back
-					if(backpack.can_be_inserted(src, human, TRUE))
+				if(H.back && istype(H.back, /obj/item/storage/large_holster))
+					var/obj/item/storage/large_holster/B = H.back
+					if(B.can_be_inserted(src, M, TRUE))
 						return TRUE
 				return FALSE
 			if(WEAR_IN_BELT)
-				if(human.belt &&  isstorage(human.belt))
-					var/obj/item/storage/belt = human.belt
-					if(belt.can_be_inserted(src, human, TRUE))
+				if(H.belt &&  isstorage(H.belt))
+					var/obj/item/storage/B = H.belt
+					if(B.can_be_inserted(src, M, TRUE))
 						return TRUE
 				return FALSE
 			if(WEAR_IN_J_STORE)
-				if(human.s_store && isstorage(human.s_store))
-					var/obj/item/storage/armor = human.s_store
-					if(armor.can_be_inserted(src, human, TRUE))
+				if(H.s_store && isstorage(H.s_store))
+					var/obj/item/storage/B = H.s_store
+					if(B.can_be_inserted(src, M, TRUE))
 						return TRUE
 				return FALSE
 			if(WEAR_IN_L_STORE)
-				if(human.l_store && istype(human.l_store, /obj/item/storage/pouch))
-					var/obj/item/storage/pouch/pouch = human.l_store
-					if(pouch.can_be_inserted(src, human, TRUE))
+				if(H.l_store && istype(H.l_store, /obj/item/storage/pouch))
+					var/obj/item/storage/pouch/P = H.l_store
+					if(P.can_be_inserted(src, M, TRUE))
 						return TRUE
 				return FALSE
 			if(WEAR_IN_R_STORE)
-				if(human.r_store && istype(human.r_store, /obj/item/storage/pouch))
-					var/obj/item/storage/pouch/pouch = human.r_store
-					if(pouch.can_be_inserted(src, human, TRUE))
+				if(H.r_store && istype(H.r_store, /obj/item/storage/pouch))
+					var/obj/item/storage/pouch/P = H.r_store
+					if(P.can_be_inserted(src, M, TRUE))
 						return TRUE
 				return FALSE
 		return FALSE //Unsupported slot

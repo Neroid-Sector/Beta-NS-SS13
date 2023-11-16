@@ -31,13 +31,13 @@
 		amount = oldamount - 1
 	cause_data = new_cause_data
 	time_to_live += rand(-1,1)
-	START_PROCESSING(SSeffects, src)
+	active_smoke_effects += src
 
 /obj/effect/particle_effect/smoke/Destroy()
 	. = ..()
 	if(opacity)
 		set_opacity(0)
-	STOP_PROCESSING(SSeffects, src)
+	active_smoke_effects -= src
 	cause_data = null
 
 /obj/effect/particle_effect/smoke/initialize_pass_flags(datum/pass_flags_container/PF)

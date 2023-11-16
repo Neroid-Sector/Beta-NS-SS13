@@ -151,12 +151,12 @@
 /obj/structure/machinery/defenses/start_processing()
 	if(!machine_processing)
 		machine_processing = TRUE
-	START_PROCESSING(SSdefprocess, src)
+		fast_machines += src
 
 /obj/structure/machinery/defenses/stop_processing()
 	if(machine_processing)
 		machine_processing = FALSE
-	STOP_PROCESSING(SSdefprocess, src)
+		fast_machines -= src
 
 /obj/structure/machinery/defenses/proc/earn_kill()
 	kills++

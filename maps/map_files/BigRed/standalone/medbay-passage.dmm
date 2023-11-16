@@ -61,31 +61,6 @@
 "m" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/oil,
-/obj/structure/stairs/perspective{
-	dir = 5;
-	icon_state = "p_stair_full"
-	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "asteroidfloor"
-	},
-/area/bigredv2/outside/c)
-"n" = (
-/obj/structure/stairs/perspective{
-	dir = 9;
-	icon_state = "p_stair_full"
-	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "asteroidfloor"
-	},
-/area/bigredv2/outside/c)
-"w" = (
-/obj/structure/pipes/standard/simple/hidden/green,
-/obj/structure/stairs/perspective{
-	dir = 1;
-	icon_state = "p_stair_full"
-	},
 /turf/open/floor{
 	dir = 1;
 	icon_state = "asteroidfloor"
@@ -108,16 +83,6 @@
 	icon_state = "white"
 	},
 /area/bigredv2/outside/admin_building)
-"X" = (
-/obj/structure/stairs/perspective{
-	dir = 1;
-	icon_state = "p_stair_full"
-	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "asteroidfloor"
-	},
-/area/bigredv2/outside/c)
 
 (1,1,1) = {"
 a
@@ -132,7 +97,7 @@ a
 a
 c
 h
-n
+l
 R
 "}
 (3,1,1) = {"
@@ -140,7 +105,7 @@ a
 a
 d
 i
-w
+d
 S
 "}
 (4,1,1) = {"
@@ -148,7 +113,7 @@ a
 a
 e
 l
-X
+l
 T
 "}
 (5,1,1) = {"

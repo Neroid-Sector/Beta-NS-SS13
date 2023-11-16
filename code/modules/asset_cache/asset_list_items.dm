@@ -147,7 +147,6 @@
 		"cmblogo.png" = 'html/images/cmblogo.png',
 		"faxwylogo.png" = 'html/images/faxwylogo.png',
 		"faxbackground.jpg" = 'html/images/faxbackground.jpg',
-		"colonialspacegruntsEZ.png" = 'html/images/colonialspacegruntsEZ.png',
 	)
 
 /datum/asset/spritesheet/chat

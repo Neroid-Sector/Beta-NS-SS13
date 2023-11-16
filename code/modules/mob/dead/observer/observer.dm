@@ -1223,13 +1223,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		else
 			. += "Hijack Over"
 
-	if(SShijack)
-		var/eta_status = SShijack.get_evac_eta()
+	if(EvacuationAuthority)
+		var/eta_status = EvacuationAuthority.get_status_panel_eta()
 		if(eta_status)
-			. += "Evacuation Goal: [eta_status]"
-
-		if(SShijack.sd_unlocked)
-			. += "Self Destruct Goal: [SShijack.get_sd_eta()]"
+			. += "Evacuation: [eta_status]"
 
 	if(client.prefs?.be_special & BE_ALIEN_AFTER_DEATH)
 		if(larva_queue_cached_message)

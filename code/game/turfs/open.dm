@@ -185,7 +185,6 @@
 	name = "cave"
 	icon = 'icons/turf/floors/bigred.dmi'
 	icon_state = "mars_cave_1"
-	is_groundmap_turf = TRUE
 
 
 /turf/open/mars_cave/Initialize(mapload, ...)
@@ -284,7 +283,6 @@
 	name = "ground dirt"
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "desert"
-	is_groundmap_turf = TRUE
 
 /turf/open/gm/attackby(obj/item/I, mob/user)
 
@@ -648,7 +646,6 @@
 	baseturfs = /turf/open/gm/riverdeep
 	supports_surgery = FALSE
 	minimap_color = MINIMAP_WATER
-	is_groundmap_turf = FALSE // Not real ground
 
 
 /turf/open/gm/riverdeep/Initialize(mapload, ...)
@@ -727,7 +724,6 @@
 	allow_construction = FALSE
 	var/bushes_spawn = 1
 	var/plants_spawn = 1
-	is_groundmap_turf = TRUE
 	name = "wet grass"
 	desc = "Thick, long, wet grass."
 	icon = 'icons/turf/floors/jungle.dmi'
