@@ -234,7 +234,7 @@
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the acting commanding officer"
-	selection_class = "job_special "
+	selection_class = "job_synth"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/intel
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
@@ -251,7 +251,7 @@
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the adjunct"
-	selection_class = "job_special "
+	selection_class = "job_synth "
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/po
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
@@ -267,7 +267,7 @@
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the platoon commander"
-	selection_class = "job_special "
+	selection_class = "job_synth "
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/tank
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
@@ -285,7 +285,7 @@
 	supervisors = "the acting commanding officer"
 	selection_class = "job_cmo"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
-	gear_preset = /datum/equipment_preset/uscm_mudskippers/medical/cmo
+	gear_preset = /datum/equipment_preset/uscm_ship/uscm_mudskippers/medical/cmo
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
 	entry_message_body = "You are Responsible for the health and safety of personel on the ship. Make sure people stay alive, and fix up the ones who arent." //Middle paragraph. This one is typically written per role and declared here.
 /obj/effect/landmark/start/mudskipper/mscmo
@@ -300,7 +300,7 @@
 	supervisors = "the acting chief medical officer"
 	selection_class = "job_cmo"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
-	gear_preset = /datum/equipment_preset/uscm_mudskippers/medical/doctor
+	gear_preset = /datum/equipment_preset/uscm_ship/uscm_mudskippers/medical/doctor
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
 	entry_message_body = "You are Responsible for the healthand safety of personel on the ship. Make sure people stay alive, and fix up the ones who arent." //Middle paragraph. This one is typically written per role and declared here.
 /obj/effect/landmark/start/mudskipper/msdoc
