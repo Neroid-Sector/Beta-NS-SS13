@@ -10,11 +10,6 @@
 	vendor_theme = VENDOR_THEME_USCM
 	vend_flags = VEND_CLUTTER_PROTECTION | VEND_LIMITED_INVENTORY | VEND_TO_HAND | VEND_LOAD_AMMO_BOXES
 
-/obj/structure/machinery/cm_vending/sorted/cargo_guns/Initialize()
-	. = ..()
-	if(z in SSmapping.levels_by_trait(ZTRAIT_GROUND))
-		malfunction()
-
 /obj/structure/machinery/cm_vending/sorted/cargo_guns/vend_fail()
 	return
 
@@ -106,6 +101,7 @@
 		list("Electronics Pouch", round(scale * 2), /obj/item/storage/pouch/electronics, VENDOR_ITEM_REGULAR),
 		list("Explosive Pouch", round(scale * 2), /obj/item/storage/pouch/explosive, VENDOR_ITEM_REGULAR),
 		list("Flare Pouch (Full)", round(scale * 5), /obj/item/storage/pouch/flare/full, VENDOR_ITEM_REGULAR),
+		list("Document Pouch", round(scale * 2), /obj/item/storage/pouch/document/small, VENDOR_ITEM_REGULAR),
 		list("Sling Pouch", round(scale * 2), /obj/item/storage/pouch/sling, VENDOR_ITEM_REGULAR),
 		list("Machete Pouch (Full)", round(scale * 0.5), /obj/item/storage/pouch/machete/full, VENDOR_ITEM_REGULAR),
 		list("Bayonet Pouch", round(scale * 2), /obj/item/storage/pouch/bayonet, VENDOR_ITEM_REGULAR),
@@ -201,11 +197,6 @@
 	vend_flags = VEND_CLUTTER_PROTECTION | VEND_LIMITED_INVENTORY | VEND_TO_HAND | VEND_LOAD_AMMO_BOXES
 	vend_dir = WEST
 	vend_dir_whitelist = list(SOUTHWEST, NORTHWEST)
-
-/obj/structure/machinery/cm_vending/sorted/cargo_ammo/Initialize()
-	. = ..()
-	if(z in SSmapping.levels_by_trait(ZTRAIT_GROUND))
-		malfunction()
 
 /obj/structure/machinery/cm_vending/sorted/cargo_ammo/vend_fail()
 	return
@@ -316,11 +307,6 @@
 	vend_dir_whitelist = list(SOUTHEAST, NORTHEAST)
 	vend_flags = VEND_CLUTTER_PROTECTION | VEND_LIMITED_INVENTORY //We want to vend to turf not hand, since we are in requisitions
 
-/obj/structure/machinery/cm_vending/sorted/attachments/Initialize()
-	. = ..()
-	if(z in SSmapping.levels_by_trait(ZTRAIT_GROUND))
-		malfunction()
-
 /obj/structure/machinery/cm_vending/sorted/attachments/vend_fail()
 	return
 
@@ -427,9 +413,6 @@
 		list("MASKS", -1, null, null, null),
 		list("Gas Mask", 20, /obj/item/clothing/mask/gas, VENDOR_ITEM_REGULAR),
 		list("Heat Absorbent Coif", 10, /obj/item/clothing/mask/rebreather/scarf, VENDOR_ITEM_REGULAR),
-
-		list("MISCELLANEOUS", -1, null, null),
-		list("Bedroll", 30, /obj/item/roller/bedroll, VENDOR_ITEM_REGULAR),
 		)
 
 /obj/structure/machinery/cm_vending/sorted/uniform_supply/ui_state(mob/user)

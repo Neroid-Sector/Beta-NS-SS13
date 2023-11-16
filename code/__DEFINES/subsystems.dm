@@ -109,7 +109,6 @@
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
 
-#define SS_INIT_PROFILER 86
 #define SS_INIT_INPUT   85
 #define SS_INIT_TOPIC 83
 #define SS_INIT_LOBBYART 82
@@ -160,7 +159,6 @@
 #define SS_PRIORITY_AUTOFIRE 450
 #define SS_PRIORITY_SOUND   250
 #define SS_PRIORITY_TICKER  200
-#define SS_PRIORITY_XENO_AI 185
 #define SS_PRIORITY_NIGHTMARE   180
 #define SS_PRIORITY_QUADTREE    160
 #define SS_PRIORITY_CHAT    155
@@ -170,7 +168,6 @@
 #define SS_PRIORITY_MOB 150
 #define SS_PRIORITY_XENO    149
 #define SS_PRIORITY_HUMAN   148
-#define SS_PRIORITY_XENO_PATHFINDING 130
 #define SS_PRIORITY_STAMINA 126
 #define SS_PRIORITY_COMPONENT   125
 #define SS_PRIORITY_NANOUI  120

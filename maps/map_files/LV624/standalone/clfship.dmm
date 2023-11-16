@@ -107,26 +107,6 @@
 	icon_state = "emerald"
 	},
 /area/lv624/lazarus/crashed_ship)
-"cl" = (
-/obj/structure/phone_base/clf_net{
-	phone_category = "CR-116";
-	phone_id = "Cargo Bay";
-	pixel_y = 32
-	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged3"
-	},
-/area/lv624/lazarus/crashed_ship)
-"cD" = (
-/obj/structure/surface/table/woodentable,
-/obj/effect/spawner/random/toolbox,
-/obj/item/toy/deck/uno{
-	pixel_x = -3;
-	pixel_y = 4
-	},
-/turf/open/floor/wood,
-/area/lv624/lazarus/crashed_ship)
 "dt" = (
 /obj/structure/barricade/metal/wired{
 	dir = 4;
@@ -134,19 +114,6 @@
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
-	},
-/area/lv624/lazarus/crashed_ship)
-"dK" = (
-/obj/structure/bed,
-/obj/item/bedsheet/green,
-/obj/structure/machinery/light/small{
-	dir = 1;
-	pixel_y = 20
-	},
-/obj/item/toy/plush/farwa,
-/turf/open/floor/almayer{
-	dir = 9;
-	icon_state = "green"
 	},
 /area/lv624/lazarus/crashed_ship)
 "dN" = (
@@ -159,6 +126,16 @@
 	},
 /obj/structure/surface/table/reinforced/prison,
 /turf/open/gm/dirt,
+/area/lv624/lazarus/crashed_ship)
+"eD" = (
+/obj/structure/surface/table/woodentable,
+/obj/effect/spawner/random/toolbox,
+/obj/item/toy/deck/uno{
+	pixel_x = -3;
+	pixel_y = 4
+	},
+/obj/effect/landmark/objective_landmark/medium,
+/turf/open/floor/wood,
 /area/lv624/lazarus/crashed_ship)
 "eG" = (
 /obj/structure/largecrate/random/barrel/red,
@@ -191,6 +168,17 @@
 /obj/item/stool,
 /turf/open/floor{
 	icon_state = "platingdmg1"
+	},
+/area/lv624/lazarus/crashed_ship)
+"fA" = (
+/obj/structure/transmitter/clf_net{
+	phone_category = "CR-116";
+	phone_id = "Armoury";
+	pixel_y = 32
+	},
+/turf/open/floor/almayer{
+	dir = 1;
+	icon_state = "bluecorner"
 	},
 /area/lv624/lazarus/crashed_ship)
 "fX" = (
@@ -310,6 +298,21 @@
 /obj/item/weapon/gun/smg/fp9000,
 /turf/open/floor/plating,
 /area/lv624/lazarus/crashed_ship)
+"hZ" = (
+/obj/structure/bed,
+/obj/item/bedsheet/blue,
+/obj/item/weapon/gun/pistol/heavy,
+/obj/item/ammo_magazine/pistol/heavy,
+/obj/item/ammo_magazine/pistol/heavy,
+/obj/item/ammo_magazine/pistol/heavy,
+/obj/item/ammo_magazine/pistol/heavy,
+/obj/item/clothing/accessory/storage/webbing,
+/obj/effect/landmark/objective_landmark/close,
+/turf/open/floor/almayer{
+	dir = 5;
+	icon_state = "green"
+	},
+/area/lv624/lazarus/crashed_ship)
 "id" = (
 /turf/open/floor/plating{
 	dir = 5;
@@ -400,17 +403,6 @@
 /obj/structure/largecrate/random/barrel/white,
 /turf/open/gm/dirt,
 /area/lv624/ground/caves/south_west_caves)
-"ko" = (
-/obj/structure/phone_base/clf_net{
-	phone_category = "CR-116";
-	phone_id = "Armoury";
-	pixel_y = 32
-	},
-/turf/open/floor/almayer{
-	dir = 1;
-	icon_state = "bluecorner"
-	},
-/area/lv624/lazarus/crashed_ship)
 "kp" = (
 /obj/item/stack/rods,
 /obj/structure/girder,
@@ -437,6 +429,19 @@
 	},
 /turf/open/floor{
 	icon_state = "platingdmg1"
+	},
+/area/lv624/lazarus/crashed_ship)
+"kO" = (
+/obj/structure/bed,
+/obj/item/bedsheet/green,
+/obj/structure/machinery/light/small{
+	dir = 1;
+	pixel_y = 20
+	},
+/obj/item/toy/plush/farwa,
+/turf/open/floor/almayer{
+	dir = 9;
+	icon_state = "green"
 	},
 /area/lv624/lazarus/crashed_ship)
 "kY" = (
@@ -888,14 +893,6 @@
 	icon_state = "green"
 	},
 /area/lv624/lazarus/crashed_ship)
-"xV" = (
-/obj/structure/surface/table/reinforced/prison,
-/obj/item/storage/firstaid/regular,
-/turf/open/floor/almayer{
-	dir = 1;
-	icon_state = "emerald"
-	},
-/area/lv624/lazarus/crashed_ship)
 "xX" = (
 /obj/structure/machinery/light/small{
 	dir = 1;
@@ -966,6 +963,13 @@
 	icon_state = "whitebluefull"
 	},
 /area/lv624/lazarus/crashed_ship)
+"zJ" = (
+/obj/item/stack/rods,
+/obj/effect/landmark/objective_landmark/close,
+/turf/open/floor{
+	icon_state = "platingdmg1"
+	},
+/area/lv624/lazarus/crashed_ship)
 "Aa" = (
 /obj/effect/vehicle_spawner/van/fixed{
 	color = "#4a9eed";
@@ -1014,15 +1018,6 @@
 	range = 20
 	},
 /turf/open/floor/plating,
-/area/lv624/lazarus/crashed_ship)
-"AS" = (
-/obj/structure/surface/table/almayer,
-/obj/item/tank/oxygen/red,
-/obj/item/storage/bag/trash,
-/obj/item/tool/screwdriver,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
 /area/lv624/lazarus/crashed_ship)
 "AT" = (
 /obj/structure/barricade/plasteel/wired{
@@ -1138,6 +1133,15 @@
 	icon_state = "green"
 	},
 /area/lv624/lazarus/crashed_ship)
+"DO" = (
+/obj/structure/surface/table/reinforced/prison,
+/obj/item/storage/firstaid/regular,
+/obj/effect/landmark/objective_landmark/science,
+/turf/open/floor/almayer{
+	dir = 1;
+	icon_state = "emerald"
+	},
+/area/lv624/lazarus/crashed_ship)
 "DS" = (
 /obj/structure/surface/table/woodentable,
 /obj/item/storage/firstaid/regular{
@@ -1251,24 +1255,6 @@
 /turf/open/floor/almayer{
 	dir = 1;
 	icon_state = "emerald"
-	},
-/area/lv624/lazarus/crashed_ship)
-"GE" = (
-/obj/structure/surface/table/reinforced/prison,
-/obj/effect/spawner/random/toolbox,
-/obj/structure/phone_base/clf_net/rotary{
-	phone_category = "CR-116";
-	phone_color = "yellow";
-	phone_id = "Engineering"
-	},
-/turf/open/floor/almayer{
-	icon_state = "orangecorner"
-	},
-/area/lv624/lazarus/crashed_ship)
-"GN" = (
-/obj/item/stack/rods,
-/turf/open/floor{
-	icon_state = "platingdmg1"
 	},
 /area/lv624/lazarus/crashed_ship)
 "GQ" = (
@@ -1414,20 +1400,6 @@
 	icon_state = "platingdmg3"
 	},
 /area/lv624/lazarus/crashed_ship)
-"Lx" = (
-/obj/structure/bed,
-/obj/item/bedsheet/blue,
-/obj/item/weapon/gun/pistol/heavy,
-/obj/item/ammo_magazine/pistol/heavy,
-/obj/item/ammo_magazine/pistol/heavy,
-/obj/item/ammo_magazine/pistol/heavy,
-/obj/item/ammo_magazine/pistol/heavy,
-/obj/item/clothing/accessory/storage/webbing,
-/turf/open/floor/almayer{
-	dir = 5;
-	icon_state = "green"
-	},
-/area/lv624/lazarus/crashed_ship)
 "LD" = (
 /obj/item/stack/rods,
 /turf/open/floor/plating{
@@ -1565,19 +1537,6 @@
 	icon_state = "emeraldcorner"
 	},
 /area/lv624/lazarus/crashed_ship)
-"Om" = (
-/obj/structure/machinery/body_scanconsole,
-/obj/structure/phone_base/clf_net{
-	phone_category = "CR-116";
-	phone_color = "green";
-	phone_id = "Medical Bay";
-	pixel_y = 32
-	},
-/turf/open/floor/almayer{
-	dir = 1;
-	icon_state = "emerald"
-	},
-/area/lv624/lazarus/crashed_ship)
 "Op" = (
 /obj/structure/surface/rack,
 /obj/item/storage/backpack/general_belt{
@@ -1622,6 +1581,19 @@
 /obj/structure/machinery/floodlight,
 /turf/open/gm/dirt,
 /area/lv624/ground/caves/south_west_caves)
+"OZ" = (
+/obj/structure/surface/table/reinforced/prison,
+/obj/effect/spawner/random/toolbox,
+/obj/structure/transmitter/clf_net/rotary{
+	phone_category = "CR-116";
+	phone_color = "yellow";
+	phone_id = "Engineering"
+	},
+/obj/effect/landmark/objective_landmark/close,
+/turf/open/floor/almayer{
+	icon_state = "orangecorner"
+	},
+/area/lv624/lazarus/crashed_ship)
 "Pu" = (
 /obj/effect/landmark/corpsespawner/clf,
 /turf/open/floor{
@@ -1685,6 +1657,19 @@
 "Qf" = (
 /turf/open/floor{
 	icon_state = "platingdmg1"
+	},
+/area/lv624/lazarus/crashed_ship)
+"Qj" = (
+/obj/structure/machinery/body_scanconsole,
+/obj/structure/transmitter/clf_net{
+	phone_category = "CR-116";
+	phone_color = "green";
+	phone_id = "Medical Bay";
+	pixel_y = 32
+	},
+/turf/open/floor/almayer{
+	dir = 1;
+	icon_state = "emerald"
 	},
 /area/lv624/lazarus/crashed_ship)
 "Qp" = (
@@ -1831,6 +1816,16 @@
 /turf/open/floor/almayer{
 	dir = 8;
 	icon_state = "emeraldcorner"
+	},
+/area/lv624/lazarus/crashed_ship)
+"Up" = (
+/obj/structure/surface/table/almayer,
+/obj/item/tank/oxygen/red,
+/obj/item/storage/bag/trash,
+/obj/item/tool/screwdriver,
+/obj/effect/landmark/objective_landmark/science,
+/turf/open/floor{
+	icon_state = "platingdmg1"
 	},
 /area/lv624/lazarus/crashed_ship)
 "Uv" = (
@@ -1995,6 +1990,17 @@
 /turf/open/floor/plating{
 	dir = 1;
 	icon_state = "warnplate"
+	},
+/area/lv624/lazarus/crashed_ship)
+"XM" = (
+/obj/structure/transmitter/clf_net{
+	phone_category = "CR-116";
+	phone_id = "Cargo Bay";
+	pixel_y = 32
+	},
+/turf/open/floor{
+	dir = 8;
+	icon_state = "damaged3"
 	},
 /area/lv624/lazarus/crashed_ship)
 "XX" = (
@@ -2479,9 +2485,9 @@ xh
 wV
 lr
 gQ
-GE
+OZ
 Xq
-Om
+Qj
 lr
 lr
 Yz
@@ -2528,7 +2534,7 @@ lr
 DY
 HR
 Xq
-xV
+DO
 Ud
 lr
 ch
@@ -2565,7 +2571,7 @@ te
 UV
 Ro
 Sy
-AS
+Up
 ok
 dN
 Bc
@@ -2948,7 +2954,7 @@ wx
 LG
 ln
 Bg
-cD
+eD
 uX
 Xq
 Mz
@@ -2956,7 +2962,7 @@ ag
 gD
 QQ
 Xq
-cl
+XM
 dN
 dN
 Bc
@@ -2998,7 +3004,7 @@ Ar
 Ar
 Ar
 Xq
-ko
+fA
 OL
 fe
 jr
@@ -3181,7 +3187,7 @@ vo
 lr
 RS
 Xq
-dK
+kO
 Dv
 sH
 IG
@@ -3193,7 +3199,7 @@ jr
 Xq
 ou
 dN
-GN
+zJ
 Qf
 Hg
 dN
@@ -3371,7 +3377,7 @@ Ab
 Ab
 Ab
 Ns
-Lx
+hZ
 IP
 Xq
 Nw
