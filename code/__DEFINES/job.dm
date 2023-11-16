@@ -198,14 +198,16 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_MS_WO "Warrant Officer"
 #define JOB_MS_CREWMAN "Tank Crewman"
 #define JOB_MS_INTEL "Intelligence Officer"
+#define JOB_MS_HGSL "Honorguard Squad leader"
+#define JOB_MS_VHG "Veteran Honorguard"
 
 #define JOB_MS_CMO "Chief Medical Officer"
 #define JOB_MS_SURGEON "USCM Surgeon"
 
-#define JOB_MUDSKIPPER_SUPPORT_LIST list(JOB_MS_PILOT, JOB_MS_WO, JOB_MS_CREWMAN, JOB_MS_INTEL, JOB_MS_CMO, JOB_MS_SURGEON)
+#define JOB_MUDSKIPPER_SUPPORT_LIST list(JOB_MS_PILOT, JOB_MS_WO, JOB_MS_CREWMAN, JOB_MS_INTEL, JOB_MS_CMO, JOB_MS_SURGEON, JOB_MS_VHG, JOB_MS_HGSL)
 
 //----Weyland REPs----
-#define JOB_WYREP_BG "Corporate Laison"
+#define JOB_WYREP_BG "Corporate Liason"
 #define JOB_PMC_LEADER_BG "PMC Leader"
 #define JOB_PMC_BG "Weyland-Yutani PMC (Standard)"
 #define JOB_SCI_BG "Weyland-Yutani Researcher"
