@@ -275,7 +275,7 @@
 /obj/effect/landmark/start/mudskipper/msvc
 	name = JOB_MS_PILOT
 	icon_state = "po_spawn"
-	job = /datum/job/uscm/mudskipper/mspo
+	job = /datum/job/uscm/mudskipper/msvc
 
 //----medical----//
 /datum/job/uscm/mudskipper/mscmo
