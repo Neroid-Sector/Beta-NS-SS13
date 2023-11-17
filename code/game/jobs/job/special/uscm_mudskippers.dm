@@ -317,7 +317,7 @@
 	supervisors = "the Commanding officer"
 	selection_class = "job_cl"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
-	gear_preset = /datum/equipment_preset/uscm_mudskippers/liaison
+	gear_preset = /datum/equipment_preset/uscm_mudskippers/pmc/liaison
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
 	entry_message_body = "You were sent to the W-Y USCM joint operations vessel USS-Black Gold, by Director Donnagan Takashi, to oversee the use and development of new experimental weapons and bioweapons. You are to work close alongside the ship's command staff to ensure Corporate directives are met."
 

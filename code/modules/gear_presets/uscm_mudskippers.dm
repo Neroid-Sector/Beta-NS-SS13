@@ -974,9 +974,15 @@
 	assignment = JOB_MS_SURGEON
 
 //------Wey-Yu------//
+/datum/equipment_preset/uscm_mudskippers/pmc
+	name = "Wey-Yu Reps"
+	faction = FACTION_PMC
+	faction_group = FACTION_LIST_MARINE_WY
+	languages = list(LANGUAGE_ENGLISH, LANGUAGE_JAPANESE)
+	idtype = /obj/item/card/id/silver/cl
 
 //---CL ---//
-/datum/equipment_preset/uscm_mudskippers/liaison
+/datum/equipment_preset/uscm_mudskippers/pmc/liaison
 	name = "Weyaldn Yutani Corporate Liaison (BlackGold)"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND
 
@@ -1026,7 +1032,7 @@
 	. = ..()
 	access = get_access(ACCESS_LIST_MARINE_LIAISON)
 
-/datum/equipment_preset/uscm_mudskippers/liaison/load_gear(mob/living/carbon/human/new_human)
+/datum/equipment_preset/uscm_mudskippers/pmc/liaison/load_gear(mob/living/carbon/human/new_human)
 	var/back_item = /obj/item/storage/backpack/satchel/lockable/liaison
 	//There is no suitable backpack for a CL really...
 	//if (new_human.client && new_human.client.prefs && (new_human.client.prefs.backbag == 1))
