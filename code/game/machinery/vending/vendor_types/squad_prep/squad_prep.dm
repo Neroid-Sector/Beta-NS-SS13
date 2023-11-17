@@ -26,9 +26,9 @@
 		list("Box of Flechette Shells (12g)", round(scale * 4), /obj/item/ammo_magazine/shotgun/flechette, VENDOR_ITEM_REGULAR),
 		list("Box of Buckshot Shells (12g)", round(scale * 10), /obj/item/ammo_magazine/shotgun/buckshot, VENDOR_ITEM_REGULAR),
 		list("Box of Shotgun Slugs (12g)", round(scale * 10), /obj/item/ammo_magazine/shotgun/slugs, VENDOR_ITEM_REGULAR),
-		list("M4RA Magazine (10x24mm)", round(scale * 15), /obj/item/ammo_magazine/rifle/m4ra/ap, VENDOR_ITEM_REGULAR),
-		list("M39 HV Magazine (10x20mm)", round(scale * 25), /obj/item/ammo_magazine/smg/m39/ap, VENDOR_ITEM_REGULAR),
-		list("M41A Magazine (10x24mm)", round(scale * 25), /obj/item/ammo_magazine/rifle/m41aMK1/ap, VENDOR_ITEM_REGULAR),
+		list("M4RA AP Magazine (10x24mm)", round(scale * 15), /obj/item/ammo_magazine/rifle/m4ra/ap, VENDOR_ITEM_REGULAR),
+		list("M39 HEAP Magazine (10x20mm)", round(scale * 25), /obj/item/ammo_magazine/smg/m39/heap, VENDOR_ITEM_REGULAR),
+		list("M41A HEAP Magazine (10x24mm)", round(scale * 25), /obj/item/ammo_magazine/rifle/m41aMK1/heap, VENDOR_ITEM_REGULAR),
 
 		list("SIDEARMS", -1, null, null),
 		list("88 Mod 4 Combat Pistol", round(scale * 25), /obj/item/weapon/gun/pistol/mod88, VENDOR_ITEM_REGULAR),
