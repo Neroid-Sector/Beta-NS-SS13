@@ -214,11 +214,10 @@
 		list("M56D Heavy Machine Gun", round(scale * 2), /obj/item/storage/box/guncase/m56d, VENDOR_ITEM_REGULAR),
 		list("M2C Heavy Machine Gun", round(scale * 2), /obj/item/storage/box/guncase/m2c, VENDOR_ITEM_REGULAR),
 		list("M240 Incinerator Unit", round(scale * 2), /obj/item/storage/box/guncase/flamer, VENDOR_ITEM_REGULAR),
-		list("SniperSpecialization Kit", round(scale * 1), /obj/item/storage/box/spec/sniper, VENDOR_ITEM_REGULAR),
-		list("Demo Specialization Kit", round(scale * 1), /obj/item/storage/box/spec/demolitionist, VENDOR_ITEM_REGULAR),
-		list("Scout Specialization Kit", round(scale * 1),/obj/item/storage/box/spec/scout, VENDOR_ITEM_REGULAR),
+		list("M42A Sniper Rifle", round(scale * 2), /obj/item/weapon/gun/rifle/sniper/M42A, VENDOR_ITEM_REGULAR),
+		list("M5 RPG", round(scale * 2), /obj/item/weapon/gun/launcher/rocket, VENDOR_ITEM_REGULAR),
 		list("Pyro Specialization Kit", round(scale * 1), /obj/item/storage/box/spec/pyro, VENDOR_ITEM_REGULAR),
-		list("Grenadier Specialization Kit", round(scale * 1), /obj/item/storage/box/spec/heavy_grenadier, VENDOR_ITEM_REGULAR),
+		list("M92 Grenade Launcher", round(scale * 1), /obj/item/weapon/gun/launcher/grenade/m92, VENDOR_ITEM_REGULAR),
 		list("Smartgunner m56 weapon system Kit", round(scale * 1),/obj/item/storage/box/m56_system, VENDOR_ITEM_REGULAR),
 		list("Heavy Armor Specialization Kit", round(scale * 0.5), /obj/item/storage/box/spec/B18, VENDOR_ITEM_REGULAR),
 
@@ -278,5 +277,5 @@
 		list("Automated Supply Beacon (Full)", round(scale * 1), /obj/item/device/whiskey_supply_beacon, VENDOR_ITEM_REGULAR),
 		list("MB-6 Folding Barricades (x3)", round(scale * 1), /obj/item/stack/folding_barricade/three, VENDOR_ITEM_REGULAR),
 		list("standard Poncho", round(scale * 10), /obj/item/clothing/accessory/poncho, VENDOR_ITEM_REGULAR),
-		list("standard Poncho", round(scale * 10), /obj/item/device/helmet_visor/night_vision, VENDOR_ITEM_REGULAR),
+		list("Night Vision Visor", round(scale * 10), /obj/item/device/helmet_visor/night_vision, VENDOR_ITEM_REGULAR),
 			)
