@@ -347,7 +347,7 @@
 	title =  JOB_PMC_BG
 	total_positions = 3
 	spawn_positions = 3
-	supervisors = "the Corporate Liason"
+	supervisors = "the Corporate Liason, and PMC Team Leader"
 	selection_class = "job_cl"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/pmc/pmc_standard
