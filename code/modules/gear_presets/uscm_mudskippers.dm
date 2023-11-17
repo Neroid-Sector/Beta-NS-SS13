@@ -892,8 +892,8 @@
 		ACCESS_MARINE_CHEMISTRY,
 		ACCESS_MARINE_MORGUE,
 	)
-	assignment = JOB_CMO
-	rank = JOB_CMO
+	assignment = JOB_MS_CMO
+	rank = JOB_MS_CMO
 	paygrade = "MO2"
 	role_comm_title = "CMO"
 	skills = /datum/skills/CMO
@@ -1148,8 +1148,8 @@
 	flags = EQUIPMENT_PRESET_START_OF_ROUND
 
 	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MORGUE)
-	assignment = JOB_RESEARCHER
-	rank = JOB_RESEARCHER
+	assignment = JOB_SCI_BG
+	rank = JOB_SCI_BG
 	paygrade = "MO1"
 	role_comm_title = "Rsr"
 	skills = /datum/skills/researcher
