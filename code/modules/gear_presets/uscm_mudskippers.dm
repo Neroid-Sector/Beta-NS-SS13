@@ -975,6 +975,7 @@
 	idtype = /obj/item/card/id/silver/cl
 	access = list(
 		ACCESS_WY_GENERAL,
+		ACCESS_WY_EXEC,
 		ACCESS_MARINE_COMMAND,
 		ACCESS_MARINE_RESEARCH,
 		ACCESS_MARINE_MEDBAY,
@@ -1098,7 +1099,7 @@
 /datum/equipment_preset/uscm_mudskippers/pmc/pmc_standard/load_gear(mob/living/carbon/human/new_human)
 
 	var/choice = rand(1,5)
-	new_human.equip_to_slot_or_del(new headset_type(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/pmc(new_human), WEAR_L_EAR)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/pmc(new_human), WEAR_BODY)
 	if(prob(50))
 		new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/pmc(new_human), WEAR_JACKET)
