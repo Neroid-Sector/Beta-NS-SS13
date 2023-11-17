@@ -780,7 +780,7 @@
 	new_human.equip_to_slot_or_del(new back_item(new_human), WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/pilot(new_human), WEAR_BODY)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine/knife(new_human), WEAR_FEET)
-//---WO---//
+//---Warrant Officer--//
 
 //this space left intentionally blank
 
@@ -1017,7 +1017,7 @@
 	. = ..()
 	access = get_access(ACCESS_LIST_MARINE_LIAISON)
 
-/datum/equipment_preset/uscm_ship/liaison/load_gear(mob/living/carbon/human/new_human)
+/datum/equipment_preset/uscm_mudskippers/liaison/load_gear(mob/living/carbon/human/new_human)
 	var/back_item = /obj/item/storage/backpack/satchel/lockable/liaison
 	//There is no suitable backpack for a CL really...
 	//if (new_human.client && new_human.client.prefs && (new_human.client.prefs.backbag == 1))
@@ -1039,11 +1039,11 @@
 	role_comm_title = "SL"
 	skills = /datum/skills/pmc/SL
 
-/datum/equipment_preset/pmc/pmc_leader/New()
+/datum/equipment_preset/uscm_mudskippers/pmc/pmc_leader/New()
 	. = ..()
 	access = get_access(ACCESS_LIST_WY_PMC) + list(ACCESS_WY_LEADERSHIP, ACCESS_WY_PMC_TL)
 
-/datum/equipment_preset/pmc/pmc_leader/load_gear(mob/living/carbon/human/new_human)
+/datum/equipment_preset/uscm_mudskippers/pmc/pmc_leader/load_gear(mob/living/carbon/human/new_human)
 	//TODO: add backpacks and satchels
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/pmc/command(new_human), WEAR_L_EAR)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/pmc/leader(new_human), WEAR_BODY)
@@ -1095,7 +1095,7 @@
 	paygrade = "PMC-OP"
 	skills = /datum/skills/pmc
 
-/datum/equipment_preset/pmc/pmc_standard/load_gear(mob/living/carbon/human/new_human)
+/datum/equipment_preset/uscm_mudskippers/pmc/pmc_standard/load_gear(mob/living/carbon/human/new_human)
 
 	var/choice = rand(1,5)
 	new_human.equip_to_slot_or_del(new headset_type(new_human), WEAR_L_EAR)
@@ -1164,7 +1164,7 @@
 
 	service_under = list(/obj/item/clothing/under/marine/officer/researcher)
 
-/datum/equipment_preset/uscm_ship/uscm_medical/researcher/load_gear(mob/living/carbon/human/new_human)
+/datum/equipment_preset/uscm_ship/uscm_mudskippers/medical/researcher/load_gear(mob/living/carbon/human/new_human)
 	var/back_item = /obj/item/storage/backpack/marine/satchel
 	if (new_human.client && new_human.client.prefs && (new_human.client.prefs.backbag == 1))
 		back_item = /obj/item/storage/backpack/marine

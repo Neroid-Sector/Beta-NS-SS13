@@ -310,17 +310,39 @@
 
 //-------Weyland-------//
 
-/datum/job/uscm/mudskipper/mscl
-	title = JOB_MS_SURGEON
+/datum/job/civilian/mudskipper/mscl
+	title = JOB_WYREP_BG
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the acting chief medical officer"
+	supervisors = "the Commanding officer"
+	selection_class = "job_cl"
+	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
+	gear_preset = /datum/equipment_preset/uscm_mudskippers/liaison
+	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
+	entry_message_body = "You were sent to the W-Y USCM joint operations vessel USS-Black Gold, by Director Donnagan Takashi, to oversee the use and development of new experimental weapons and bioweapons. You are to work close alongside the ship's command staff to ensure Corporate directives are met."
+
+/obj/effect/landmark/start/mudskipper/mscl
+	name = JOB_WYREP_BG
+	icon_state = "cl_spawn"
+	job = /datum/job/civilian/mudskipper/mscl
+
+//pmc lead
+
+//pmc standard
+
+//r&d
+/datum/job/uscm/mudskipper/mssci
+	title = JOB_SCI_BG
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the Corporate Liason, or ranking Weyland Rep"
 	selection_class = "job_cmo"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
-	gear_preset = /datum/equipment_preset/uscm_ship/uscm_mudskippers/medical/doctor
+	gear_preset = /datum/equipment_preset/uscm_ship/uscm_mudskippers/medical/researcher
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "You are Responsible for the healthand safety of personel on the ship. Make sure people stay alive, and fix up the ones who arent." //Middle paragraph. This one is typically written per role and declared here.
-/obj/effect/landmark/start/mudskipper/msdoc
-	name = JOB_MS_SURGEON
+	entry_message_body = "You are Responsible for the Development of weapons, and chemicals to aid the marines."
+
+/obj/effect/landmark/start/mudskipper/mssci
+	name = JOB_SCI_BG
 	icon_state = "cmo_spawn"
-	job = /datum/job/uscm/mudskipper/msdoc
+	job = /datum/job/uscm/mudskipper/mssci
