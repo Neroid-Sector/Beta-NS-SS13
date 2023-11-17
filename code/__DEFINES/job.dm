@@ -331,13 +331,13 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_UPP_CREWMAN "UPP Tank Crewman"
 
 //-------- CLF --------//
-#define JOB_CLF "CLF Guerilla"
-#define JOB_CLF_ENGI "CLF Field Technician"
-#define JOB_CLF_MEDIC "CLF Field Medic"
-#define JOB_CLF_SPECIALIST "CLF Field Specialist"
-#define JOB_CLF_LEADER "CLF Cell Leader"
-#define JOB_CLF_COMMANDER "CLF Cell Commander"
-#define JOB_CLF_SYNTH "CLF Multipurpose Synthetic"
+#define JOB_CLF "Insurgent Guerilla"
+#define JOB_CLF_ENGI "Insurgent Field Technician"
+#define JOB_CLF_MEDIC "Insurgent Field Medic"
+#define JOB_CLF_SPECIALIST "Insurgent Field Specialist"
+#define JOB_CLF_LEADER "Insurgent Cell Leader"
+#define JOB_CLF_COMMANDER "Insurgent Cell Commander"
+#define JOB_CLF_SYNTH "Insurgent Multipurpose Synthetic"
 
 #define CLF_JOB_LIST list(JOB_CLF, JOB_CLF_ENGI, JOB_CLF_MEDIC, JOB_CLF_SPECIALIST, JOB_CLF_LEADER, JOB_CLF_COMMANDER, JOB_CLF_SYNTH)
 

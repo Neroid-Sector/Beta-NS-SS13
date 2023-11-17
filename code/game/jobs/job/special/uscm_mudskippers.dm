@@ -308,3 +308,19 @@
 	icon_state = "cmo_spawn"
 	job = /datum/job/uscm/mudskipper/msdoc
 
+//-------Weyland-------//
+
+/datum/job/uscm/mudskipper/mscl
+	title = JOB_MS_SURGEON
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the acting chief medical officer"
+	selection_class = "job_cmo"
+	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
+	gear_preset = /datum/equipment_preset/uscm_ship/uscm_mudskippers/medical/doctor
+	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
+	entry_message_body = "You are Responsible for the healthand safety of personel on the ship. Make sure people stay alive, and fix up the ones who arent." //Middle paragraph. This one is typically written per role and declared here.
+/obj/effect/landmark/start/mudskipper/msdoc
+	name = JOB_MS_SURGEON
+	icon_state = "cmo_spawn"
+	job = /datum/job/uscm/mudskipper/msdoc
