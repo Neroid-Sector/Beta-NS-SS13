@@ -212,7 +212,7 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_PMC_BG "Weyland-Yutani PMC (Standard)"
 #define JOB_SCI_BG "Weyland-Yutani Researcher"
 
-#define JOB_WYREPS_LIST list(JOB_WYREP_BG, JOB_PMC_LEADER, JOB_PMC_BG)
+#define JOB_WYREPS_LIST list(JOB_WYREP_BG, JOB_PMC_LEADER_BG, JOB_PMC_BG)
 
 //----------------------//
 

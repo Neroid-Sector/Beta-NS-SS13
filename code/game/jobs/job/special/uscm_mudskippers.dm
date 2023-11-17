@@ -295,8 +295,8 @@
 
 /datum/job/uscm/mudskipper/msdoc
 	title = JOB_MS_SURGEON
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the acting chief medical officer"
 	selection_class = "job_cmo"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
