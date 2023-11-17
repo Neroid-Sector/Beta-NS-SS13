@@ -307,6 +307,9 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 
 	player_entity = setup_player_entity(ckey)
 
+	//Give eveyone all WLs
+	RoleAuthority.roles_whitelist[ckey] = WHITELIST_EVERYTHING
+
 	if(!CONFIG_GET(flag/no_localhost_rank))
 		var/static/list/localhost_addresses = list("127.0.0.1", "::1")
 		if(isnull(address) || (address in localhost_addresses))
