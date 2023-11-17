@@ -878,7 +878,7 @@
 
 //---CMO---//
 /datum/equipment_preset/uscm_ship/uscm_mudskippers/medical/cmo
-	name = "USCM Chief Medical Officer (CMO)"
+	name = "USCM Chief Medical Officer (Mudskippers)"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
 
 	idtype = /obj/item/card/id/silver
@@ -933,7 +933,7 @@
 
 //---Surgeon---//
 /datum/equipment_preset/uscm_ship/uscm_mudskippers/medical/doctor
-	name = "USCM Surgeon"
+	name = "USCM Surgeon(mudskippers)"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
 
 	assignment = JOB_MS_SURGEON
