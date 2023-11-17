@@ -84,11 +84,11 @@
 			if(JOB_GENERAL, JOB_COLONEL, JOB_ACMC, JOB_CMC)
 				marine_rk = "general"
 				border_rk = "command"
-			if(JOB_INTEL)
+			if(JOB_INTEL, JOB_MS_INTEL)
 				marine_rk = "io"
-			if(JOB_PILOT)
+			if(JOB_PILOT, JOB_MS_PILOT)
 				marine_rk = "po"
-			if(JOB_DROPSHIP_CREW_CHIEF)
+			if(JOB_DROPSHIP_CREW_CHIEF, JOB_MS_CREWMAN)
 				marine_rk = "dcc"
 			if(JOB_CHIEF_POLICE)
 				marine_rk = "cmp"
@@ -109,13 +109,13 @@
 				marine_rk = "mt"
 			if(JOB_ORDNANCE_TECH)
 				marine_rk = "ot"
-			if(JOB_CMO)
+			if(JOB_CMO, JOB_MS_CMO)
 				marine_rk = "cmo"
 				border_rk = "command"
-			if(JOB_DOCTOR)
+			if(JOB_DOCTOR, JOB_MS_SURGEON)
 				marine_rk = "doctor"
 				border_rk = "command"
-			if(JOB_RESEARCHER)
+			if(JOB_RESEARCHER, JOB_SCI_BG)
 				marine_rk = "researcher"
 				border_rk = "command"
 			if(JOB_NURSE)
@@ -156,9 +156,9 @@
 				marine_rk = "wo_co"
 			if(JOB_WO_XO)
 				marine_rk = "wo_xo"
-			if(JOB_WO_CHIEF_POLICE)
+			if(JOB_WO_CHIEF_POLICE, JOB_MS_HGSL)
 				marine_rk = "hgsl"
-			if(JOB_WO_SO)
+			if(JOB_WO_SO, JOB_MS_VHG)
 				marine_rk = "vhg"
 			if(JOB_WO_CREWMAN)
 				marine_rk = "hgspec"
