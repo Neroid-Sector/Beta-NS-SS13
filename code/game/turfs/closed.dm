@@ -259,6 +259,14 @@
 /turf/closed/shuttle/dropship2/transparent
 	opacity = FALSE
 
+/turf/closed/shuttle/waco
+	name = "\improper Waco"
+	icon = 'icons/turf/waco.dmi'
+	icon_state = "1"
+
+/turf/closed/shuttle/waco/transparent
+	opacity = FALSE
+
 /turf/closed/shuttle/twe_dropship
 	name = "\improper UD4-UK"
 	icon = 'icons/turf/twedropship.dmi'

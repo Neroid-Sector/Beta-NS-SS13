@@ -5,6 +5,7 @@
 #define CAMERA_NET_RESEARCH "Research"
 #define CAMERA_NET_ALAMO "Alamo"
 #define CAMERA_NET_NORMANDY "Normandy"
+#define CAMERA_NET_WACO "Waco"
 #define CAMERA_NET_COLONY "Colony"
 #define CAMERA_NET_ARES "ARES"
 

@@ -1,0 +1,809 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"af" = (
+/turf/closed/shuttle/waco/transparent{
+	icon_state = "34"
+	},
+/area/shuttle/waco)
+"bm" = (
+/obj/structure/shuttle/part/dropship1/transparent/engine_right_exhaust{
+	icon = 'icons/turf/waco.dmi';
+	name = "\improper Waco"
+	},
+/turf/template_noop,
+/area/shuttle/waco)
+"bs" = (
+/obj/structure/machinery/cm_vending/sorted/medical/wall_med{
+	pixel_x = -30
+	},
+/obj/structure/bed/chair/vehicle{
+	dir = 1;
+	pixel_x = 8
+	},
+/obj/structure/bed/chair/vehicle{
+	dir = 1;
+	pixel_x = -8
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin6"
+	},
+/area/shuttle/waco)
+"dB" = (
+/obj/structure/shuttle/part/dropship1/left_inner_wing_connector{
+	icon = 'icons/turf/waco.dmi';
+	name = "\improper Waco"
+	},
+/turf/template_noop,
+/area/shuttle/waco)
+"dD" = (
+/turf/closed/shuttle/waco/transparent{
+	icon_state = "22"
+	},
+/area/shuttle/waco)
+"dE" = (
+/turf/closed/shuttle/waco{
+	icon_state = "42"
+	},
+/area/shuttle/waco)
+"eu" = (
+/obj/structure/shuttle/part/dropship1/transparent/left_outer_bottom_wing{
+	icon = 'icons/turf/waco.dmi';
+	name = "\improper Waco"
+	},
+/turf/template_noop,
+/area/shuttle/waco)
+"eD" = (
+/obj/structure/shuttle/part/dropship1/transparent/nose_center{
+	icon = 'icons/turf/waco.dmi';
+	name = "\improper Waco";
+	icon_state = "101T"
+	},
+/turf/template_noop,
+/area/shuttle/waco)
+"eN" = (
+/obj/structure/machinery/door_control{
+	id = "dropship_waco";
+	name = "Dropship Lockdown";
+	normaldoorcontrol = 3;
+	pixel_y = -19;
+	req_one_access_txt = "3;22"
+	},
+/turf/closed/shuttle/waco{
+	icon_state = "24"
+	},
+/area/shuttle/waco)
+"fv" = (
+/obj/structure/bed/chair/vehicle{
+	dir = 1;
+	pixel_x = 8
+	},
+/obj/structure/bed/chair/vehicle{
+	dir = 1;
+	pixel_x = -8
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/waco)
+"go" = (
+/obj/structure/blocker/invisible_wall,
+/obj/structure/machinery/computer/dropship_weapons/waco,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/waco)
+"gw" = (
+/obj/structure/shuttle/part/dropship2/transparent/engine_right_cap{
+	icon = 'icons/turf/waco.dmi';
+	name = "\improper Waco"
+	},
+/turf/template_noop,
+/area/shuttle/waco)
+"hl" = (
+/turf/closed/shuttle/waco{
+	icon_state = "24"
+	},
+/area/shuttle/waco)
+"hI" = (
+/turf/closed/shuttle/waco/transparent{
+	icon_state = "39T"
+	},
+/area/shuttle/waco)
+"hL" = (
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin2"
+	},
+/area/shuttle/waco)
+"hO" = (
+/turf/closed/shuttle/waco/transparent{
+	icon_state = "86"
+	},
+/area/shuttle/waco)
+"if" = (
+/turf/closed/shuttle/waco/transparent{
+	icon_state = "27"
+	},
+/area/shuttle/waco)
+"im" = (
+/obj/structure/shuttle/part/dropship1/transparent/nose_top_left{
+	name = "\improper Waco"
+	},
+/turf/template_noop,
+/area/shuttle/waco)
+"jW" = (
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin3"
+	},
+/area/shuttle/waco)
+"kC" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes{
+	icon_state = "N";
+	pixel_y = 1
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "floor8"
+	},
+/area/shuttle/waco)
+"ls" = (
+/turf/closed/shuttle/waco/transparent{
+	icon_state = "35"
+	},
+/area/shuttle/waco)
+"lC" = (
+/turf/closed/shuttle/waco{
+	icon_state = "104"
+	},
+/area/shuttle/waco)
+"mh" = (
+/obj/structure/shuttle/part/dropship1/right_inner_wing_connector{
+	icon = 'icons/turf/waco.dmi';
+	name = "s"
+	},
+/turf/template_noop,
+/area/shuttle/waco)
+"my" = (
+/obj/structure/bed/chair/vehicle{
+	pixel_x = -8
+	},
+/obj/structure/bed/chair/vehicle{
+	pixel_x = 8
+	},
+/obj/structure/machinery/camera/autoname/almayer/waco,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin14"
+	},
+/area/shuttle/waco)
+"mE" = (
+/obj/structure/shuttle/part/dropship1/transparent/left_inner_bottom_wing{
+	icon = 'icons/turf/waco.dmi';
+	name = "\improper Waco"
+	},
+/turf/template_noop,
+/area/shuttle/waco)
+"mG" = (
+/turf/closed/shuttle/waco/transparent{
+	icon_state = "28"
+	},
+/area/shuttle/waco)
+"mL" = (
+/obj/structure/platform_decoration{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes{
+	icon_state = "N";
+	pixel_y = 1
+	},
+/obj/structure/machinery/camera/autoname/almayer/waco{
+	dir = 8
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin7"
+	},
+/area/shuttle/waco)
+"mR" = (
+/obj/structure/shuttle/part/dropship1/nose_front_left{
+	name = "\improper Waco";
+	icon = 'icons/turf/waco.dmi'
+	},
+/turf/template_noop,
+/area/shuttle/waco)
+"nH" = (
+/obj/structure/shuttle/part/dropship1/transparent/nose_center{
+	icon = 'icons/turf/waco.dmi';
+	name = "\improper Waco"
+	},
+/turf/template_noop,
+/area/shuttle/waco)
+"ro" = (
+/turf/closed/shuttle/waco/transparent{
+	icon_state = "80"
+	},
+/area/shuttle/waco)
+"rr" = (
+/turf/closed/shuttle/waco{
+	icon_state = "103"
+	},
+/area/shuttle/waco)
+"rR" = (
+/turf/closed/shuttle/waco/transparent{
+	icon_state = "32"
+	},
+/area/shuttle/waco)
+"sl" = (
+/turf/closed/shuttle/waco{
+	icon_state = "31"
+	},
+/area/shuttle/waco)
+"tf" = (
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/waco)
+"ti" = (
+/obj/structure/extinguisher_cabinet/lifeboat{
+	pixel_x = 12
+	},
+/turf/closed/shuttle/waco/transparent{
+	icon_state = "78"
+	},
+/area/shuttle/waco)
+"tG" = (
+/obj/structure/machinery/cm_vending/sorted/medical/wall_med{
+	pixel_x = 30
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin3"
+	},
+/area/shuttle/waco)
+"tP" = (
+/obj/structure/shuttle/part/dropship1/transparent/right_outer_bottom_wing{
+	icon = 'icons/turf/waco.dmi';
+	name = "\improper Waco"
+	},
+/turf/template_noop,
+/area/shuttle/waco)
+"ul" = (
+/obj/structure/shuttle/part/dropship2/transparent/engine_left_cap{
+	icon = 'icons/turf/waco.dmi';
+	name = "\improper Waco"
+	},
+/turf/template_noop,
+/area/shuttle/waco)
+"ux" = (
+/obj/structure/bed/chair/vehicle{
+	pixel_x = -8
+	},
+/obj/structure/bed/chair/vehicle{
+	pixel_x = 8
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin14"
+	},
+/area/shuttle/waco)
+"vJ" = (
+/turf/closed/shuttle/waco{
+	icon_state = "92"
+	},
+/area/shuttle/waco)
+"wb" = (
+/obj/effect/attach_point/weapon/waco/left_fore{
+	ship_tag = "dropship_waco"
+	},
+/obj/structure/shuttle/part/dropship1/transparent/outer_left_weapons{
+	icon = 'icons/turf/waco.dmi';
+	name = "\improper Waco"
+	},
+/turf/template_noop,
+/area/shuttle/waco)
+"yB" = (
+/turf/closed/shuttle/waco{
+	icon_state = "54"
+	},
+/area/shuttle/waco)
+"yN" = (
+/obj/structure/shuttle/part/dropship1/right_outer_wing_connector{
+	icon = 'icons/turf/waco.dmi';
+	name = "\improper Waco"
+	},
+/turf/template_noop,
+/area/shuttle/waco)
+"yO" = (
+/turf/closed/shuttle/waco{
+	icon_state = "94T"
+	},
+/area/shuttle/waco)
+"zm" = (
+/turf/closed/shuttle/waco/transparent{
+	icon_state = "23"
+	},
+/area/shuttle/waco)
+"Aw" = (
+/turf/closed/shuttle/waco/transparent{
+	icon_state = "97"
+	},
+/area/shuttle/waco)
+"Bn" = (
+/turf/closed/shuttle/waco{
+	icon_state = "30"
+	},
+/area/shuttle/waco)
+"BS" = (
+/turf/closed/shuttle/waco/transparent{
+	icon_state = "38"
+	},
+/area/shuttle/waco)
+"BU" = (
+/obj/structure/shuttle/part/dropship1/transparent/engine_left_exhaust{
+	icon = 'icons/turf/waco.dmi';
+	name = "\improper Waco"
+	},
+/turf/template_noop,
+/area/shuttle/waco)
+"Cm" = (
+/obj/effect/attach_point/fuel/waco,
+/turf/closed/shuttle/waco/transparent{
+	icon_state = "28"
+	},
+/area/shuttle/waco)
+"Cr" = (
+/obj/structure/prop/ice_colony/hula_girl{
+	pixel_x = -10;
+	pixel_y = 16;
+	name = "Bluebonnet Belle";
+	desc = "A souvenir all the way from texas, no idea how it wound up in neroid. Apparently Shes named after a old warbird."
+	},
+/obj/structure/blocker/invisible_wall,
+/obj/structure/machinery/computer/cameras/dropship/waco,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/waco)
+"Db" = (
+/turf/closed/shuttle/waco/transparent{
+	icon_state = "26"
+	},
+/area/shuttle/waco)
+"Dg" = (
+/turf/open/shuttle/dropship,
+/area/shuttle/waco)
+"Ds" = (
+/obj/structure/stairs/perspective,
+/obj/structure/platform{
+	dir = 4;
+	layer = 2.7
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin3"
+	},
+/area/shuttle/waco)
+"DH" = (
+/turf/closed/shuttle/waco/transparent{
+	icon_state = "89"
+	},
+/area/shuttle/waco)
+"Ed" = (
+/turf/closed/shuttle/waco{
+	icon_state = "25"
+	},
+/area/shuttle/waco)
+"EN" = (
+/obj/structure/shuttle/part/dropship1/nose_front_right{
+	icon = 'icons/turf/waco.dmi';
+	name = "\improper Waco"
+	},
+/turf/template_noop,
+/area/shuttle/waco)
+"Gf" = (
+/obj/structure/machinery/camera/autoname/almayer/waco{
+	dir = 8
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin2"
+	},
+/area/shuttle/waco)
+"Gh" = (
+/obj/structure/bed/chair/vehicle{
+	dir = 1;
+	pixel_x = 8
+	},
+/obj/structure/bed/chair/vehicle{
+	dir = 1;
+	pixel_x = -8
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin7"
+	},
+/area/shuttle/waco)
+"Go" = (
+/obj/structure/shuttle/part/dropship1/transparent/inner_left_weapons{
+	name = "\improper Waco"
+	},
+/obj/effect/attach_point/weapon/waco/left_fore{
+	ship_tag = "dropship_waco";
+	attach_id = 1
+	},
+/turf/template_noop,
+/area/shuttle/waco)
+"Hz" = (
+/obj/structure/shuttle/part/dropship1/left_outer_wing_connector{
+	icon = 'icons/turf/waco.dmi';
+	name = "\improper Waco"
+	},
+/turf/template_noop,
+/area/shuttle/waco)
+"HY" = (
+/obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1{
+	id = "aft_door";
+	name = "\improper Waco cargo door"
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/waco)
+"Id" = (
+/obj/effect/attach_point/crew_weapon/waco,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/waco)
+"Jt" = (
+/obj/structure/machinery/door/airlock/dropship_hatch{
+	id = "dropship_waco"
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/waco)
+"Kw" = (
+/turf/template_noop,
+/area/space)
+"Le" = (
+/obj/structure/machinery/door_control{
+	id = "dropship_waco";
+	name = "Dropship Lockdown";
+	normaldoorcontrol = 3;
+	pixel_y = -19;
+	req_one_access_txt = "3;22"
+	},
+/turf/closed/shuttle/waco{
+	icon_state = "25"
+	},
+/area/shuttle/waco)
+"LY" = (
+/obj/structure/blocker/invisible_wall,
+/obj/structure/machinery/computer/shuttle/dropship/flight,
+/obj/item/clothing/head/helmet/marine/pilottex{
+	pixel_x = 11;
+	pixel_y = 11;
+	specialty = "M30 tactical helmet";
+	desc = "The M30 tactical helmet has a left eyepiece filter used to filter tactical data. It is required to fly the dropships manually and in safety. This one belongs to the Wacos pilot, fucker loves texas and proudly displays it."
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/waco)
+"LZ" = (
+/turf/closed/shuttle/waco/transparent{
+	icon_state = "33T"
+	},
+/area/shuttle/waco)
+"Me" = (
+/obj/structure/shuttle/part/dropship1/transparent/nose_center{
+	icon = 'icons/turf/waco.dmi';
+	name = "\improper Waco";
+	icon_state = "101TI"
+	},
+/turf/template_noop,
+/area/shuttle/waco)
+"Mf" = (
+/obj/structure/machinery/door/airlock/dropship_hatch{
+	dir = 8;
+	id = "dropship_waco"
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/waco)
+"Mz" = (
+/obj/structure/stairs/perspective,
+/obj/structure/platform{
+	dir = 8;
+	layer = 2.7
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin3"
+	},
+/area/shuttle/waco)
+"ME" = (
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/waco)
+"OB" = (
+/turf/closed/shuttle/waco/transparent{
+	icon_state = "96"
+	},
+/area/shuttle/waco)
+"Pc" = (
+/turf/closed/shuttle/waco/transparent{
+	icon_state = "98"
+	},
+/area/shuttle/waco)
+"PP" = (
+/obj/structure/machinery/door/airlock/hatch/cockpit,
+/obj/structure/blocker/forcefield/multitile_vehicles,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/waco)
+"Qk" = (
+/obj/docking_port/mobile/marine_dropship/waco,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/waco)
+"Rm" = (
+/obj/structure/platform_decoration{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes{
+	icon_state = "N";
+	pixel_y = 1
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin6"
+	},
+/area/shuttle/waco)
+"SZ" = (
+/obj/structure/shuttle/part/dropship1/transparent/right_inner_bottom_wing{
+	icon = 'icons/turf/waco.dmi';
+	name = "\improper Waco"
+	},
+/turf/template_noop,
+/area/shuttle/waco)
+"Tl" = (
+/obj/structure/shuttle/part/dropship1/transparent/nose_top_right{
+	icon = 'icons/turf/waco.dmi';
+	name = "\improper Waco"
+	},
+/turf/template_noop,
+/area/shuttle/waco)
+"Ws" = (
+/turf/closed/shuttle/waco/transparent{
+	icon_state = "27T"
+	},
+/area/shuttle/waco)
+"WN" = (
+/obj/structure/bed/chair/vehicle{
+	dir = 1;
+	pixel_x = -8
+	},
+/obj/structure/bed/chair/vehicle{
+	dir = 1;
+	pixel_x = 8
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/waco)
+"Xr" = (
+/obj/effect/attach_point/weapon/waco/right_fore{
+	ship_tag = "dropship_waco"
+	},
+/obj/structure/shuttle/part/dropship1/transparent/outer_right_weapons{
+	icon = 'icons/turf/waco.dmi';
+	name = "\improper Waco"
+	},
+/turf/template_noop,
+/area/shuttle/waco)
+"XH" = (
+/obj/effect/attach_point/fuel/waco{
+	pixel_x = -32
+	},
+/turf/closed/shuttle/waco/transparent{
+	icon_state = "33"
+	},
+/area/shuttle/waco)
+"Zr" = (
+/obj/effect/attach_point/electronics/waco,
+/obj/structure/shuttle/part/dropship1/transparent/inner_right_weapons{
+	name = "\improper Waco"
+	},
+/turf/template_noop,
+/area/shuttle/waco)
+"Zu" = (
+/turf/closed/shuttle/waco/transparent{
+	icon_state = "29"
+	},
+/area/shuttle/waco)
+"ZZ" = (
+/turf/closed/shuttle/waco/transparent{
+	icon_state = "39"
+	},
+/area/shuttle/waco)
+
+(1,1,1) = {"
+Kw
+Kw
+Kw
+wb
+af
+mG
+dD
+BU
+Kw
+Kw
+Kw
+ul
+af
+Cm
+dD
+BU
+Kw
+mE
+"}
+(2,1,1) = {"
+Kw
+Kw
+Kw
+Go
+ls
+Zu
+zm
+bm
+Kw
+Kw
+Kw
+gw
+ls
+Zu
+zm
+bm
+Kw
+eu
+"}
+(3,1,1) = {"
+im
+mR
+vJ
+hO
+dE
+Bn
+eN
+dE
+Mf
+Mf
+dE
+dE
+dE
+Bn
+hl
+rr
+dB
+Hz
+"}
+(4,1,1) = {"
+Me
+OB
+Cr
+hL
+ti
+my
+bs
+jW
+jW
+jW
+Ds
+Rm
+jW
+jW
+jW
+HY
+Kw
+Kw
+"}
+(5,1,1) = {"
+nH
+Aw
+LY
+tf
+PP
+jW
+Dg
+WN
+fv
+Qk
+Id
+kC
+ME
+ME
+ME
+ME
+Kw
+Kw
+"}
+(6,1,1) = {"
+eD
+Pc
+go
+Gf
+ro
+ux
+Gh
+jW
+jW
+jW
+Mz
+mL
+tG
+jW
+jW
+ME
+Kw
+Kw
+"}
+(7,1,1) = {"
+Tl
+EN
+yO
+DH
+yB
+sl
+Le
+yB
+Jt
+Jt
+yB
+yB
+yB
+sl
+Ed
+lC
+mh
+yN
+"}
+(8,1,1) = {"
+Kw
+Kw
+Kw
+Zr
+BS
+rR
+Db
+BU
+Kw
+Kw
+Kw
+ul
+BS
+rR
+Db
+BU
+Kw
+SZ
+"}
+(9,1,1) = {"
+Kw
+Kw
+Kw
+Xr
+hI
+LZ
+Ws
+bm
+Kw
+Kw
+Kw
+gw
+ZZ
+XH
+if
+bm
+Kw
+tP
+"}
