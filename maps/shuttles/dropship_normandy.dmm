@@ -1,5 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ac" = (
+/obj/structure/machinery/cm_vending/sorted/medical/wall_med/vehicle{
+	pixel_x = 5;
+	pixel_y = -6
+	},
 /turf/closed/shuttle/dropship2/transparent{
 	icon_state = "80"
 	},
@@ -19,17 +23,12 @@
 /obj/structure/shuttle/part/dropship2/transparent/left_outer_bottom_wing,
 /turf/template_noop,
 /area/shuttle/drop2/sulaco)
-"bJ" = (
-/turf/closed/shuttle/dropship2{
-	icon_state = "68"
-	},
-/area/shuttle/drop2/sulaco)
-"bN" = (
-/obj/item/device/radio/intercom/normandy{
-	pixel_y = 24
+"bA" = (
+/obj/effect/decal/warning_stripes{
+	icon_state = "W"
 	},
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin7"
+	icon_state = "rasputin15"
 	},
 /area/shuttle/drop2/sulaco)
 "cj" = (
@@ -37,9 +36,20 @@
 /turf/template_noop,
 /area/shuttle/drop2/sulaco)
 "do" = (
-/obj/effect/attach_point/crew_weapon/dropship2,
+/obj/item/device/radio/intercom/normandy{
+	pixel_y = 24
+	},
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin3"
+	icon_state = "rasputin15"
+	},
+/area/shuttle/drop2/sulaco)
+"dY" = (
+/obj/structure/platform{
+	dir = 1;
+	layer = 2.8
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
 	},
 /area/shuttle/drop2/sulaco)
 "es" = (
@@ -174,10 +184,6 @@
 	},
 /area/shuttle/drop2/sulaco)
 "mz" = (
-/obj/structure/machinery/camera/autoname/almayer/dropship_two{
-	dir = 4;
-	pixel_x = -16
-	},
 /obj/structure/bed/chair/vehicle{
 	dir = 1;
 	pixel_x = 8
@@ -185,6 +191,10 @@
 /obj/structure/bed/chair/vehicle{
 	dir = 1;
 	pixel_x = -8
+	},
+/obj/structure/machinery/camera/autoname/almayer/dropship_two{
+	dir = 4;
+	pixel_x = -16
 	},
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin15"
@@ -224,15 +234,21 @@
 /area/shuttle/drop2/sulaco)
 "qg" = (
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin8"
+	icon_state = "rasputin7"
 	},
 /area/shuttle/drop2/sulaco)
 "rc" = (
-/obj/item/device/radio/intercom/normandy{
-	pixel_y = 24
-	},
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin5"
+	},
+/area/shuttle/drop2/sulaco)
+"rn" = (
+/obj/effect/decal/warning_stripes{
+	icon_state = "E";
+	pixel_x = 1
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin3"
 	},
 /area/shuttle/drop2/sulaco)
 "rw" = (
@@ -247,11 +263,6 @@
 "uk" = (
 /obj/structure/shuttle/part/dropship2/transparent/upper_left_wing,
 /turf/template_noop,
-/area/shuttle/drop2/sulaco)
-"vd" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin3"
-	},
 /area/shuttle/drop2/sulaco)
 "vw" = (
 /obj/effect/attach_point/fuel/dropship2,
@@ -278,12 +289,25 @@
 /area/shuttle/drop2/sulaco)
 "xx" = (
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin5"
+	icon_state = "rasputin6"
 	},
 /area/shuttle/drop2/sulaco)
 "xU" = (
 /turf/closed/shuttle/dropship2{
 	icon_state = "94"
+	},
+/area/shuttle/drop2/sulaco)
+"ya" = (
+/obj/structure/platform{
+	dir = 1;
+	layer = 2.8
+	},
+/obj/effect/decal/warning_stripes{
+	icon_state = "E";
+	pixel_x = 1
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin3"
 	},
 /area/shuttle/drop2/sulaco)
 "yh" = (
@@ -306,8 +330,8 @@
 	},
 /area/shuttle/drop2/sulaco)
 "Bb" = (
-/turf/closed/shuttle/dropship2{
-	icon_state = "56"
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin3"
 	},
 /area/shuttle/drop2/sulaco)
 "Bi" = (
@@ -315,9 +339,32 @@
 	icon_state = "97"
 	},
 /area/shuttle/drop2/sulaco)
+"Bm" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/obj/structure/machinery/camera/autoname/almayer/dropship_two{
+	dir = 8;
+	pixel_x = 16
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/drop2/sulaco)
 "Bs" = (
-/turf/closed/shuttle/dropship2{
-	icon_state = "59"
+/obj/effect/attach_point/crew_weapon/dropship2,
+/obj/effect/decal/warning_stripes,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/drop2/sulaco)
+"BB" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/obj/structure/platform,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
 	},
 /area/shuttle/drop2/sulaco)
 "BC" = (
@@ -349,6 +396,18 @@
 /obj/structure/shuttle/part/dropship2/transparent/lower_right_wing,
 /turf/template_noop,
 /area/shuttle/drop2/sulaco)
+"Ef" = (
+/obj/structure/platform{
+	dir = 1;
+	layer = 2.8
+	},
+/obj/effect/decal/warning_stripes{
+	icon_state = "W"
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin3"
+	},
+/area/shuttle/drop2/sulaco)
 "En" = (
 /obj/structure/machinery/door/airlock/dropship_hatch/two{
 	dir = 8;
@@ -367,16 +426,19 @@
 /obj/structure/machinery/cm_vending/sorted/medical/wall_med{
 	pixel_x = -30
 	},
-/obj/structure/bed/chair/vehicle{
-	dir = 1;
-	pixel_x = 8
-	},
-/obj/structure/bed/chair/vehicle{
-	dir = 1;
-	pixel_x = -8
+/obj/structure/platform{
+	dir = 8
 	},
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin15"
+	},
+/area/shuttle/drop2/sulaco)
+"Gx" = (
+/obj/effect/decal/warning_stripes{
+	icon_state = "W"
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin3"
 	},
 /area/shuttle/drop2/sulaco)
 "GE" = (
@@ -385,6 +447,11 @@
 	},
 /area/shuttle/drop2/sulaco)
 "GN" = (
+/turf/open/shuttle/dropship{
+	icon_state = "floor8"
+	},
+/area/shuttle/drop2/sulaco)
+"HB" = (
 /obj/structure/machinery/door_control{
 	id = "dropship_normandy";
 	name = "Dropship Lockdown";
@@ -393,19 +460,16 @@
 	req_one_access_txt = "3;22";
 	throw_range = 15
 	},
-/turf/open/shuttle/dropship{
-	icon_state = "floor8"
-	},
-/area/shuttle/drop2/sulaco)
-"HB" = (
 /turf/closed/shuttle/dropship2/transparent{
 	icon_state = "78"
 	},
 /area/shuttle/drop2/sulaco)
 "Iv" = (
+/obj/effect/attach_point/crew_weapon/dropship2,
+/obj/effect/decal/warning_stripes,
 /obj/docking_port/mobile/marine_dropship/normandy,
-/turf/closed/shuttle/dropship2{
-	icon_state = "53"
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
 	},
 /area/shuttle/drop2/sulaco)
 "Kl" = (
@@ -426,11 +490,17 @@
 	},
 /area/shuttle/drop2/sulaco)
 "Lh" = (
+/obj/structure/bed/chair/vehicle{
+	pixel_x = -8
+	},
+/obj/structure/bed/chair/vehicle{
+	pixel_x = 8
+	},
 /obj/item/device/radio/intercom/normandy{
 	pixel_y = 24
 	},
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin6"
+	icon_state = "rasputin15"
 	},
 /area/shuttle/drop2/sulaco)
 "Lk" = (
@@ -490,6 +560,14 @@
 	icon_state = "37"
 	},
 /area/shuttle/drop2/sulaco)
+"Nx" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/drop2/sulaco)
 "NM" = (
 /obj/structure/shuttle/part/dropship2/left_outer_wing_connector,
 /turf/open/space/basic,
@@ -507,13 +585,8 @@
 /obj/structure/machinery/cm_vending/sorted/medical/wall_med{
 	pixel_x = 30
 	},
-/obj/structure/bed/chair/vehicle{
-	dir = 1;
-	pixel_x = 8
-	},
-/obj/structure/bed/chair/vehicle{
-	dir = 1;
-	pixel_x = -8
+/obj/structure/platform{
+	dir = 4
 	},
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin15"
@@ -530,15 +603,8 @@
 	},
 /area/shuttle/drop2/sulaco)
 "Qd" = (
-/obj/structure/machinery/camera/autoname/almayer/dropship_two{
-	dir = 8;
-	pixel_x = 16
-	},
-/obj/structure/bed/chair/vehicle{
-	pixel_x = 8
-	},
-/obj/structure/bed/chair/vehicle{
-	pixel_x = -8
+/obj/structure/platform{
+	dir = 4
 	},
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin15"
@@ -565,6 +631,10 @@
 /obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2{
 	id = "aft_door"
 	},
+/obj/effect/decal/warning_stripes{
+	icon_state = "E";
+	pixel_x = 1
+	},
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin15"
 	},
@@ -572,6 +642,15 @@
 "RG" = (
 /turf/closed/shuttle/dropship2{
 	icon_state = "51"
+	},
+/area/shuttle/drop2/sulaco)
+"RH" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/obj/structure/stairs,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
 	},
 /area/shuttle/drop2/sulaco)
 "RJ" = (
@@ -602,10 +681,10 @@
 /area/shuttle/drop2/sulaco)
 "SY" = (
 /obj/structure/bed/chair/vehicle{
-	pixel_x = 8
+	pixel_x = -8
 	},
 /obj/structure/bed/chair/vehicle{
-	pixel_x = -8
+	pixel_x = 8
 	},
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin15"
@@ -617,6 +696,10 @@
 	},
 /area/shuttle/drop2/sulaco)
 "TZ" = (
+/obj/structure/extinguisher_cabinet/alt{
+	pixel_x = -14;
+	pixel_y = -9
+	},
 /turf/closed/shuttle/dropship2{
 	icon_state = "81"
 	},
@@ -649,6 +732,15 @@
 	icon_state = "25"
 	},
 /area/shuttle/drop2/sulaco)
+"VH" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/structure/stairs,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/drop2/sulaco)
 "VW" = (
 /obj/structure/machinery/door/airlock/hatch/cockpit/two,
 /obj/structure/blocker/forcefield/multitile_vehicles,
@@ -670,9 +762,18 @@
 /obj/structure/shuttle/part/dropship2/transparent/engine_left_exhaust,
 /turf/template_noop,
 /area/shuttle/drop2/sulaco)
+"Zk" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/structure/platform,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/drop2/sulaco)
 "ZK" = (
-/turf/closed/shuttle/dropship2{
-	icon_state = "63"
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin8"
 	},
 /area/shuttle/drop2/sulaco)
 
@@ -752,18 +853,18 @@ jq
 oS
 ML
 Lh
-vd
-vd
-vd
-vd
-vd
-Co
+it
 SY
+PJ
+PJ
+PJ
+PJ
+VH
 Fq
-SY
-it
-SY
-it
+Nx
+Nx
+Nx
+Zk
 Kl
 fQ
 NM
@@ -775,18 +876,18 @@ aH
 LJ
 HB
 xx
-SY
-it
-SY
-it
-SY
-xx
-vd
-vd
-vd
-vd
-vd
-vd
+Bb
+Bb
+Bb
+Bb
+Bb
+Co
+ya
+rn
+rn
+rn
+rn
+rn
 RE
 Rr
 Rr
@@ -798,18 +899,18 @@ MQ
 VZ
 VW
 GN
-bJ
-ZK
 Bs
-Bb
+PJ
+Bs
+PJ
 Iv
 rc
-vd
+dY
 do
-vd
-do
-vd
-do
+PJ
+PJ
+PJ
+PJ
 PJ
 Rr
 Rr
@@ -820,20 +921,20 @@ Le
 lH
 gP
 ac
-xx
-SY
-it
-SY
-it
-SY
-xx
-vd
-vd
-vd
-vd
-vd
-vd
-PJ
+qg
+Bb
+Bb
+Bb
+Bb
+Bb
+ZK
+Ef
+Gx
+Gx
+Gx
+Gx
+Gx
+bA
 Rr
 Rr
 "}
@@ -843,19 +944,19 @@ rw
 xU
 Vs
 TZ
-bN
-vd
-vd
-vd
-vd
-vd
-qg
+Lh
+it
 SY
+PJ
+PJ
+PJ
+PJ
+RH
 OJ
 Qd
-it
-SY
-it
+Bm
+Qd
+BB
 QF
 iI
 RJ
