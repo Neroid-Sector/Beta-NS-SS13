@@ -692,7 +692,7 @@
 	name = "Rock"
 	icon_state = "cave"
 
-//Landing Pad for the Alamo. THIS IS NOT THE SHUTTLE AREA
+//Landing Pad for the verdun. THIS IS NOT THE SHUTTLE AREA
 /area/desert_dam/exterior/landing_pad_one
 	name = "Airstrip Landing Pad"
 	icon_state = "landing_pad"

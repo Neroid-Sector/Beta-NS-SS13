@@ -485,7 +485,7 @@
 	icon = 'icons/obj/structures/machinery/computer.dmi'
 	icon_state = "shuttle"
 	linked_lz = DROPSHIP_LZ1
-	shuttleId = DROPSHIP_ALAMO
+	shuttleId = DROPSHIP_verdun
 	is_remote = TRUE
 
 /obj/structure/machinery/computer/shuttle/dropship/flight/lz2

@@ -226,7 +226,7 @@
   - tweak: tweaked synth survivor loadout to include station bounced radio
   - tweak: 'removed PMC survivor access to dropship '
   - tweak: 'Created new access level WY_Corporate_DS with help of Day / Rebecca Sterling '
-  - tweak: Alamo and Normandy console to no longer work for survivors with WY_CORPORATE
+  - tweak: verdun and Normandy console to no longer work for survivors with WY_CORPORATE
       access
   - tweak: Tweaked secure gun locker in big red to normal lockers since PMC survivor
       lost access to it

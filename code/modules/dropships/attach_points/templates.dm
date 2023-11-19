@@ -1,5 +1,5 @@
 /obj/effect/attach_point/weapon/dropship1
-	ship_tag = DROPSHIP_ALAMO
+	ship_tag = DROPSHIP_verdun
 
 /obj/effect/attach_point/weapon/dropship1/left_wing
 	name = "port wing weapon attach point"
@@ -126,7 +126,7 @@
 	base_category = DROPSHIP_CREW_WEAPON
 
 /obj/effect/attach_point/crew_weapon/dropship1
-	ship_tag = DROPSHIP_ALAMO
+	ship_tag = DROPSHIP_verdun
 
 /obj/effect/attach_point/crew_weapon/dropship2
 	ship_tag = DROPSHIP_NORMANDY
@@ -141,7 +141,7 @@
 	layer = ABOVE_OBJ_LAYER
 
 /obj/effect/attach_point/electronics/dropship1
-	ship_tag = DROPSHIP_ALAMO
+	ship_tag = DROPSHIP_verdun
 
 /obj/effect/attach_point/electronics/dropship2
 	ship_tag = DROPSHIP_NORMANDY
@@ -156,7 +156,7 @@
 	base_category = DROPSHIP_FUEL_EQP
 
 /obj/effect/attach_point/fuel/dropship1
-	ship_tag = DROPSHIP_ALAMO
+	ship_tag = DROPSHIP_verdun
 
 /obj/effect/attach_point/fuel/dropship2
 	ship_tag = DROPSHIP_NORMANDY
@@ -168,7 +168,7 @@
 	base_category = DROPSHIP_COMPUTER
 
 /obj/effect/attach_point/computer/dropship1
-	ship_tag = DROPSHIP_ALAMO
+	ship_tag = DROPSHIP_verdun
 
 /obj/effect/attach_point/computer/dropship2
 	ship_tag = DROPSHIP_NORMANDY

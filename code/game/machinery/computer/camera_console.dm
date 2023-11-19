@@ -326,7 +326,7 @@
 	name = "Dropship Security Cameras Console"
 	icon_state = "security_cam"
 	density = FALSE
-	network = list(CAMERA_NET_ALAMO, CAMERA_NET_NORMANDY)
+	network = list(CAMERA_NET_verdun, CAMERA_NET_NORMANDY)
 
 /obj/structure/machinery/computer/cameras/containment
 	name = "Containment Cameras"
@@ -370,8 +370,8 @@
 
 
 /obj/structure/machinery/computer/cameras/dropship/one
-	name = "\improper 'Alamo' camera controls"
-	network = list(CAMERA_NET_ALAMO, CAMERA_NET_LASER_TARGETS)
+	name = "\improper 'verdun' camera controls"
+	network = list(CAMERA_NET_verdun, CAMERA_NET_LASER_TARGETS)
 
 /obj/structure/machinery/computer/cameras/dropship/two
 	name = "\improper 'Normandy' camera controls"

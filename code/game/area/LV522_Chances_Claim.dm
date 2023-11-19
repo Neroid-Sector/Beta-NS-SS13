@@ -49,12 +49,12 @@
 	ceiling = CEILING_METAL
 
 /area/shuttle/drop1/lv522
-	name = "Chance's Claim - Dropship Alamo Landing Zone"
+	name = "Chance's Claim - Dropship verdun Landing Zone"
 	icon_state = "shuttle"
 	icon = 'icons/turf/area_shiva.dmi'
 
 /area/lv522/landing_zone_1/lz1_console
-	name = "Chance's Claim - Dropship Alamo Console"
+	name = "Chance's Claim - Dropship verdun Console"
 	icon_state = "tcomsatcham"
 	requires_power = FALSE
 

@@ -205,7 +205,7 @@
   harryob:
   - bugfix: eye blur now actually saves as a preference, instead of being discarded
   realforest2001:
-  - bugfix: Alamo and Normandy now use their correct intercom frequencies.
+  - bugfix: verdun and Normandy now use their correct intercom frequencies.
   - rscadd: Added subtypes of intercoms for use on the dropships, so they're not instances
       that will endlessly break if frequencies change again.
   stanalbatross:

@@ -89,7 +89,7 @@
 	requires_power = 0
 
 /area/shuttle/drop1/prison_v3
-	name = "Fiorina - Dropship Alamo Landing Zone"
+	name = "Fiorina - Dropship verdun Landing Zone"
 	icon_state = "shuttle"
 	is_resin_allowed = FALSE
 
