@@ -174,7 +174,7 @@ export const RADIO_CHANNELS = [
     color: '#1ecc43',
   },
   {
-    name: 'Alamo',
+    name: 'verdun',
     freq: 1441,
     color: '#1ecc43',
   },

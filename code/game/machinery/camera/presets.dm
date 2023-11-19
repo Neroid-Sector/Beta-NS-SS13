@@ -88,7 +88,7 @@
 
 //cameras installed inside the dropships, accessible via both cockpit monitor and Almayer camera computers
 /obj/structure/machinery/camera/autoname/almayer/dropship_one
-	network = list(CAMERA_NET_ALMAYER, CAMERA_NET_ALAMO)
+	network = list(CAMERA_NET_ALMAYER, CAMERA_NET_verdun)
 
 /obj/structure/machinery/camera/autoname/almayer/dropship_two
 	network = list(CAMERA_NET_ALMAYER, CAMERA_NET_NORMANDY)

@@ -8233,8 +8233,8 @@
 	},
 /obj/structure/machinery/computer/shuttle/dropship/flight/remote_control{
 	dir = 8;
-	name = "Alamo Remote Control Console";
-	shuttleId = "dropship_alamo"
+	name = "verdun Remote Control Console";
+	shuttleId = "dropship_verdun"
 	},
 /turf/open/floor/almayer{
 	icon_state = "plate"
@@ -29826,7 +29826,7 @@
 	dir = 4
 	},
 /obj/structure/surface/table/almayer,
-/obj/item/device/radio/intercom/alamo{
+/obj/item/device/radio/intercom/verdun{
 	layer = 2.9
 	},
 /turf/open/floor/almayer{
@@ -65157,9 +65157,9 @@
 	},
 /obj/structure/machinery/computer/shuttle/dropship/flight/remote_control{
 	dir = 8;
-	name = "Alamo Remote Control Console";
+	name = "verdun Remote Control Console";
 	pixel_y = 12;
-	shuttleId = "dropship_alamo"
+	shuttleId = "dropship_verdun"
 	},
 /turf/open/floor/almayer{
 	icon_state = "redfull"

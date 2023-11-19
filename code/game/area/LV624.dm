@@ -281,7 +281,7 @@
 	is_landing_zone = TRUE
 
 /area/lv624/lazarus/landing_zones/lz1
-	name = "\improper Alamo Landing Zone"
+	name = "\improper verdun Landing Zone"
 
 /area/lv624/lazarus/landing_zones/lz2
 	name = "\improper Normandy Landing Zone"
