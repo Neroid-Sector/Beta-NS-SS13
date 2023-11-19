@@ -16,7 +16,7 @@ EXTERIOR is FUCKING FREEZING, and refers to areas out in the open and or exposed
 	minimap_color = MINIMAP_AREA_COLONY
 
 /area/shuttle/drop1/strata //Not in Sulaco.DM because holy shit we need to sort things.
-	name = "Dropship verdun Landing Zone"
+	name = "Dropship Alamo Landing Zone"
 	icon_state = "shuttle"
 	base_lighting_alpha = 255
 	minimap_color = MINIMAP_AREA_LZ

@@ -13,7 +13,7 @@
 //shuttle stuff
 
 /area/shuttle/drop1/varadero
-	name = "New Varadero - Dropship verdun Landing Zone"
+	name = "New Varadero - Dropship Alamo Landing Zone"
 	icon_state = "shuttle"
 	icon = 'icons/turf/area_varadero.dmi'
 	is_resin_allowed = FALSE

@@ -11,7 +11,7 @@
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/shuttle/drop1/kutjevo
-	name = "Kutjevo - Dropship verdun Landing Zone"
+	name = "Kutjevo - Dropship Alamo Landing Zone"
 	icon_state = "shuttle"
 	icon = 'icons/turf/area_kutjevo.dmi'
 

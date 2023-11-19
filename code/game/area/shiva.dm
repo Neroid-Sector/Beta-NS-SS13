@@ -10,7 +10,7 @@
 	minimap_color = MINIMAP_AREA_COLONY
 
 /area/shuttle/drop1/shiva
-	name = "Shiva's Snowball - Dropship verdun Landing Zone"
+	name = "Shiva's Snowball - Dropship Alamo Landing Zone"
 	icon_state = "shuttle"
 	icon = 'icons/turf/area_shiva.dmi'
 	is_resin_allowed = FALSE
@@ -24,7 +24,7 @@
 	minimap_color = MINIMAP_AREA_LZ
 
 /area/shiva/exterior/lz1_console
-	name = "Shiva's Snowball - Dropship verdun Console"
+	name = "Shiva's Snowball - Dropship Alamo Console"
 	requires_power = FALSE
 	minimap_color = MINIMAP_AREA_LZ
 
