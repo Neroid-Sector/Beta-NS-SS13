@@ -233,6 +233,7 @@
 		list("Shotgun Scabbard", round(scale * 10), /obj/item/storage/large_holster/m37, VENDOR_ITEM_REGULAR),
 		list("USCM Pyrotechnician G4-1 Fueltank", round(scale * 2), /obj/item/storage/backpack/marine/engineerpack/flamethrower/kit, VENDOR_ITEM_REGULAR),
 		list("USCM Technician Welderpack", round(scale * 2), /obj/item/storage/backpack/marine/engineerpack, VENDOR_ITEM_REGULAR),
+		list("USCM Thermal Cloak", round(scale * .25), /obj/item/storage/backpack/marine/satchel/scout_cloak, VENDOR_ITEM_REGULAR),
 
 		list("BELTS", -1, null, null),
 		list("G8-A General Utility Pouch", round(scale * 3), /obj/item/storage/backpack/general_belt, VENDOR_ITEM_REGULAR),
