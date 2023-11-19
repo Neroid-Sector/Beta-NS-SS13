@@ -407,11 +407,6 @@
 	icon_state = "rasputin15"
 	},
 /area/shuttle/drop1/sulaco)
-"BS" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "48"
-	},
-/area/shuttle/drop1/sulaco)
 "Ce" = (
 /obj/structure/blocker/forcefield/multitile_vehicles,
 /turf/open/shuttle/dropship{
@@ -652,11 +647,6 @@
 	icon_state = "31"
 	},
 /area/shuttle/drop1/sulaco)
-"SM" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "47"
-	},
-/area/shuttle/drop1/sulaco)
 "Ta" = (
 /obj/structure/shuttle/part/dropship1/right_inner_wing_connector,
 /turf/open/space/basic,
@@ -891,7 +881,7 @@ il
 il
 ug
 at
-SM
+WQ
 de
 de
 Xf
@@ -1029,7 +1019,7 @@ il
 BK
 YS
 RE
-BS
+WQ
 Zv
 Zv
 RI
