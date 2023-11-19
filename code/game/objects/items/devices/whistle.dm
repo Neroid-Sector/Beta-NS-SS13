@@ -53,7 +53,7 @@
 /obj/item/device/trench_whistle
 	name = "\improper trench whistle"
 	desc = "An old metal whistle. Favored by officers who frequently find themselves in loud enviroments. Can be blown while held, or worn in the mouth"
-	icon_state = "whistle"
+	icon_state = "twhistle"
 	w_class = SIZE_TINY
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_FACE
