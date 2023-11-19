@@ -21,41 +21,41 @@
 	return TRUE
 
 /area/shuttle/drop1/sulaco
-	name = "\improper Dropship verdun"
+	name = "\improper Dropship Alamo"
 	icon_state = "shuttlered"
 	base_muffle = MUFFLE_HIGH
 
 /area/shuttle/drop1/LV624
-	name = "\improper Dropship verdun"
+	name = "\improper Dropship Alamo"
 	ambience_exterior = AMBIENCE_LV624
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/prison
-	name = "\improper Dropship verdun"
+	name = "\improper Dropship Alamo"
 	ambience_exterior = AMBIENCE_PRISON
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/BigRed
-	name = "\improper Dropship verdun"
+	name = "\improper Dropship Alamo"
 	ambience_exterior = AMBIENCE_BIGRED
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/ice_colony
-	name = "\improper Dropship verdun"
+	name = "\improper Dropship Alamo"
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/DesertDam
-	name = "\improper Dropship verdun"
+	name = "\improper Dropship Alamo"
 	ambience_exterior = AMBIENCE_TRIJENT
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/transit
 	ambience_exterior = 'sound/ambience/dropship_ambience_loop.ogg'
-	name = "\improper Dropship verdun Transit"
+	name = "\improper Dropship Alamo Transit"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop1/lz1
-	name = "\improper verdun Landing Zone"
+	name = "\improper Alamo Landing Zone"
 	icon_state = "away1"
 
 

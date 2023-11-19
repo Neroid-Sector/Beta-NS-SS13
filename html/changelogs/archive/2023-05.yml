@@ -144,7 +144,7 @@
   - bugfix: Added 10 second timeout on hijack "landing" options to avoid multiple
       windows at the same time
   Hopek:
-  - balance: verdun and Normandy now have a Reinforced Metal Ceiling meaning that CAS
+  - balance: Alamo and Normandy now have a Reinforced Metal Ceiling meaning that CAS
       and OB's can't penetrate it.
   LTNTS:
   - bugfix: apc on window in medbay lobby

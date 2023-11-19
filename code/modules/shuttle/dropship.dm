@@ -7,7 +7,7 @@
 	indestructible = TRUE
 
 /obj/structure/shuttle/part/dropship1
-	name = "\improper verdun"
+	name = "\improper Alamo"
 	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
 

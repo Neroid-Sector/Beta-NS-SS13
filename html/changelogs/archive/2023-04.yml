@@ -275,7 +275,7 @@
   TeDGamer:
   - bugfix: Fixes ointment not healing new amount
   - spellcheck: Fixed item name in areas that was using generic bandage message
-  - maptweak: verdun and Normandy cockpits have windows to passenger area now
+  - maptweak: Alamo and Normandy cockpits have windows to passenger area now
   harryob:
   - code_imp: vendor subtypes can now be made to vend without an id
   - bugfix: the id scanning wire in vendors does something again
@@ -412,9 +412,9 @@
       the latter shared many icon states with the former.
   - code_imp: Generic doors and airlocks share the same icon file path now.
   - spellcheck: Fixed a case-sensitive file path.
-  - bugfix: verdun and Normandy side dropship doors no longer display as Xs when they
+  - bugfix: Alamo and Normandy side dropship doors no longer display as Xs when they
       are examined or after crash landing on the Almayer.
-  - bugfix: Fixed an animation error on several verdun door's icon states.
+  - bugfix: Fixed an animation error on several Alamo door's icon states.
   harryob:
   - server: GLOB.round_id is now available for an incrementing id of rounds
   usnpeepoo:
