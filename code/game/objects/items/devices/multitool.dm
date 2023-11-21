@@ -4,7 +4,7 @@
 
 /obj/item/device/multitool
 	name = "\improper Security Access Tuner" //Thats what is is in-universe. From Alien: Isolation.
-	desc = "A small handheld tool with its own leather case. Used to override various machine functions. Contains loose wires for tapping in and a small computer terminal. Primarily used to pulse Airlock and APC wires on a shortwave frequency. It contains a small data buffer as well."
+	desc = "A small handheld tool used to override various machine functions. Primarily used to pulse Airlock and APC wires on a shortwave frequency. It contains a small data buffer as well."
 	icon_state = "multitool"
 	item_state = "multitool"
 	pickup_sound = 'sound/handling/multitool_pickup.ogg'
