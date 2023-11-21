@@ -1,5 +1,5 @@
 /obj/vehicle/multitile/miltruck
-	name = "military truck"
+	name = "military towing truck"
 	desc = "A rather new hunk of metal with some locomotion, you know what to do. Entrance on the sides."
 
 	layer = ABOVE_XENO_LAYER
@@ -37,16 +37,18 @@
 	)
 
 /obj/vehicle/multitile/miltruck/miltruck_2
-	name = "military truck"
+	name = "military flatbed truck"
 	desc = "A rather new hunk of metal with some locomotion, you know what to do. Entrance on the sides."
 	icon_state = "miltruck_2"
 
 /obj/vehicle/multitile/miltruck/miltruck_3
-	name = "military truck"
+	name = "military covered truck"
 	desc = "A rather new hunk of metal with some locomotion, you know what to do. Entrance on the back and sides."
 	icon_state = "miltruck_3"
 	passengers_slots = 8
 	xenos_slots = 8
+	interior_map = /datum/map_template/interior/van
+
 	entrances = list(
 		"left" = list(2, 0),
 		"right" = list(-1, 0),
@@ -125,3 +127,5 @@
 /obj/effect/vehicle_spawner/miltruck/random/load_hardpoints(obj/vehicle/multitile/miltruck/V)
 	var/H = random_hardpoint()
 	V.add_hardpoint(new H)
+
+//---------
