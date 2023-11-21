@@ -11,7 +11,6 @@
 #define SQUAD_MARINE_CRYO "Foxtrot"
 #define SQUAD_MARINE_INTEL "Intel"
 #define SQUAD_SOF "SOF"
-#define SQUAD_CBRN "CBRN"
 
 // Job name defines
 #define JOB_SQUAD_MARINE "Rifleman"
@@ -169,53 +168,6 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 
 //------------------------------------
 
-//-------------Mudskipper roles---------------//
-
-
-//----Command----
-
-#define JOB_MS_CO "Commanding Officer"
-#define JOB_MS_XO "Adjunct"
-#define JOB_MS_CPT "Captain"
-#define JOB_MS_LT "Lieutenant"
-#define JOB_MS_GC "Company Commander"
-#define JOB_MS_PC "Platoon Commander"
-
-#define JOB_MUDSKIPPER_COMMAND_LIST list(JOB_MS_CO, JOB_MS_XO, JOB_MS_CPT, JOB_MS_LT, JOB_MS_GC, JOB_MS_PC)
-
-//----Squad-----
-#define JOB_MS_RFM "Mudskippers Squad Rifleman"
-#define JOB_MS_MEDIC "Mudskippers Squad Hospital Corpsman"
-#define JOB_MS_ENGINEER "Mudskippers Squad Combat Technician"
-#define JOB_MS_SMARTGUNNER "Mudskippers Squad Smartgunner"
-#define JOB_MS_SL "Mudskippers Squad Leader"
-
-#define JOB_MUDSKIPPER_SQUAD_LIST list(JOB_MS_RFM, JOB_MS_MEDIC, JOB_MS_ENGINEER, JOB_MS_SMARTGUNNER, JOB_MS_SL)
-
-//----Support----
-
-#define JOB_MS_PILOT "Pilot Officer"
-#define JOB_MS_WO "Warrant Officer"
-#define JOB_MS_CREWMAN "Tank Crewman"
-#define JOB_MS_INTEL "Intelligence Officer"
-#define JOB_MS_HGSL "Honorguard Squad leader"
-#define JOB_MS_VHG "Veteran Honorguard"
-
-#define JOB_MS_CMO "Chief Medical Officer"
-#define JOB_MS_SURGEON "USCM Surgeon"
-
-#define JOB_MUDSKIPPER_SUPPORT_LIST list(JOB_MS_PILOT, JOB_MS_WO, JOB_MS_CREWMAN, JOB_MS_INTEL, JOB_MS_CMO, JOB_MS_SURGEON, JOB_MS_VHG, JOB_MS_HGSL)
-
-//----Weyland REPs----
-#define JOB_WYREP_BG "Corporate Liason"
-#define JOB_PMC_LEADER_BG "PMC Leader"
-#define JOB_PMC_BG "Weyland-Yutani PMC (Standard)"
-#define JOB_SCI_BG "Weyland-Yutani Researcher"
-
-#define JOB_WYREPS_LIST list(JOB_WYREP_BG, JOB_PMC_LEADER_BG, JOB_PMC_BG)
-
-//----------------------//
-
 //-------- PMC --------//
 #define JOB_PMC_STANDARD "Weyland-Yutani PMC (Standard)"
 #define JOB_PMC_ENGINEER "PMC Corporate Technician"
@@ -331,13 +283,13 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_UPP_CREWMAN "UPP Tank Crewman"
 
 //-------- CLF --------//
-#define JOB_CLF "Insurgent Guerilla"
-#define JOB_CLF_ENGI "Insurgent Field Technician"
-#define JOB_CLF_MEDIC "Insurgent Field Medic"
-#define JOB_CLF_SPECIALIST "Insurgent Field Specialist"
-#define JOB_CLF_LEADER "Insurgent Cell Leader"
-#define JOB_CLF_COMMANDER "Insurgent Cell Commander"
-#define JOB_CLF_SYNTH "Insurgent Multipurpose Synthetic"
+#define JOB_CLF "CLF Guerilla"
+#define JOB_CLF_ENGI "CLF Field Technician"
+#define JOB_CLF_MEDIC "CLF Field Medic"
+#define JOB_CLF_SPECIALIST "CLF Field Specialist"
+#define JOB_CLF_LEADER "CLF Cell Leader"
+#define JOB_CLF_COMMANDER "CLF Cell Commander"
+#define JOB_CLF_SYNTH "CLF Multipurpose Synthetic"
 
 #define CLF_JOB_LIST list(JOB_CLF, JOB_CLF_ENGI, JOB_CLF_MEDIC, JOB_CLF_SPECIALIST, JOB_CLF_LEADER, JOB_CLF_COMMANDER, JOB_CLF_SYNTH)
 

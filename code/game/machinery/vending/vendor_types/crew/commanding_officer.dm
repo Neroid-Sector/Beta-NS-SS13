@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_commanding_officer, list(
 	name = "\improper ColMarTech Commanding Officer Weapon Rack"
 	desc = "An automated weapons rack for the Commanding Officer. It features a robust selection of weaponry meant only for the USCM's top officers."
 	req_access = list(ACCESS_MARINE_SENIOR)
-	vendor_role = list(JOB_CO, JOB_WO_CO, JOB_MS_CO, JOB_MS_GC)
+	vendor_role = list(JOB_CO, JOB_WO_CO)
 	icon_state = "guns"
 	use_snowflake_points = TRUE
 
@@ -125,7 +125,7 @@ GLOBAL_LIST_INIT(cm_vending_clothing_commanding_officer, list(
 	name = "\improper ColMarTech Commanding Officer Equipment Rack"
 	desc = "An automated equipment vendor for the Commanding Officer. Contains a prime selection of equipment for only the USCM's top officers."
 	req_access = list(ACCESS_MARINE_SENIOR)
-	vendor_role = list(JOB_CO, JOB_WO_CO, JOB_MS_CO, JOB_MS_GC)
+	vendor_role = list(JOB_CO, JOB_WO_CO)
 
 /obj/structure/machinery/cm_vending/clothing/commanding_officer/get_listed_products(mob/user)
 	return GLOB.cm_vending_clothing_commanding_officer
@@ -134,7 +134,7 @@ GLOBAL_LIST_INIT(cm_vending_clothing_commanding_officer, list(
 	spawned_gear_list = list(
 		/obj/item/device/binoculars/range/designator,
 		/obj/item/map/current_map,
-		/obj/item/device/trench_whistle,
+		/obj/item/device/whistle,
 		/obj/item/weapon/gun/energy/taser,
 		/obj/item/device/megaphone,
 	)
