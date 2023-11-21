@@ -104,8 +104,8 @@
 
 /datum/job/uscm/mudskipper/mspc
 	title = JOB_MS_PC
-	total_positions = 12
-	spawn_positions = 12
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "your Company Commander"
 	selection_class = "job_co"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
@@ -120,8 +120,8 @@
 //-----SQUAD-----///
 /datum/job/uscm/mudskipper/mssl
 	title = JOB_MS_SL
-	total_positions = 20
-	spawn_positions = 20
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "your platoon commander, or company commander"
 	selection_class = "job_special"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
@@ -135,8 +135,8 @@
 
 /datum/job/uscm/mudskipper/msengie
 	title = JOB_MS_ENGINEER
-	total_positions = 20
-	spawn_positions = 20
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "the squad leader"
 	selection_class = "job_special"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
@@ -150,8 +150,8 @@
 
 /datum/job/uscm/mudskipper/msmedic
 	title = JOB_MS_MEDIC
-	total_positions = 20
-	spawn_positions = 20
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "the squad leader"
 	selection_class = "job_special"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
@@ -165,8 +165,8 @@
 
 /datum/job/uscm/mudskipper/mssg
 	title = JOB_MS_SMARTGUNNER
-	total_positions = 20
-	spawn_positions = 20
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "the squad leader"
 	selection_class = "job_special"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
@@ -181,8 +181,8 @@
 
 /datum/job/uscm/mudskipper/msrfm
 	title = JOB_MS_RFM
-	total_positions = 20
-	spawn_positions = 20
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "the squad leader"
 	selection_class = "job_special"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
@@ -264,8 +264,8 @@
 //TANK
 /datum/job/uscm/mudskipper/msvc
 	title = JOB_MS_CREWMAN
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 0
+	spawn_positions = 0
 	supervisors = "the platoon commander"
 	selection_class = "job_synth "
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
