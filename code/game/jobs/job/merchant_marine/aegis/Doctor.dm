@@ -1,5 +1,7 @@
 /datum/job/merchant_marine/doctor/aegis
 	title = JOB_MM_DOCTOR_AEGIS
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "your ships Chief Medical Officer"
 	selection_class = "job_co"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT

@@ -1,5 +1,7 @@
 /datum/job/merchant_marine/cargo_tech/rubicon
 	title = JOB_MM_CARGO_TECH_RUBICON
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "your ships Quatermaster"
 	selection_class = "job_xeno_queen"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT

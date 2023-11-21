@@ -1,5 +1,7 @@
 /datum/job/merchant_marine/warrant_officer
 	title = JOB_MM_WARRANT_OFFICER
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "your ships Captain"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/merchant_marine/uscss/warrant

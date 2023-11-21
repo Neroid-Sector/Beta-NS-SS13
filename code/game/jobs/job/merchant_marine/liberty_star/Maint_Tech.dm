@@ -1,5 +1,7 @@
 /datum/job/merchant_marine/maint_tech/liberty
 	title = JOB_MM_MAINTENANCE_TECH_LIBERTY
+	total_positions = 4
+	spawn_positions = 4
 	supervisors = "your ships Chief Engineer"
 	selection_class = "job_cmp"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT

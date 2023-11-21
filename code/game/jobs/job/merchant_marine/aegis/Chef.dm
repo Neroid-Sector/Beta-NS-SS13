@@ -1,5 +1,7 @@
 /datum/job/merchant_marine/chef/aegis
 	title = JOB_MM_CHEF_AEGIS
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "your ships Quatermaster"
 	selection_class = "job_co"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT

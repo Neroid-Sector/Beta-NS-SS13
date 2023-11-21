@@ -1,5 +1,7 @@
 /datum/job/merchant_marine/captain/aegis
 	title = JOB_MM_CAPTAIN_AEGIS
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "your factions high command"
 	selection_class = "job_co"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT

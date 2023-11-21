@@ -1,5 +1,7 @@
 /datum/job/merchant_marine/warrant_officer/patton
 	title = JOB_MM_WARRANT_OFFICER_PATTON
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "your ships Captain"
 	selection_class = "job_cl"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT

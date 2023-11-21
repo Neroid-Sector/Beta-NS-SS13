@@ -1,5 +1,7 @@
 /datum/job/merchant_marine/warrant_officer/aegis
 	title = JOB_MM_WARRANT_OFFICER_AEGIS
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "your ships Captain"
 	selection_class = "job_co"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT

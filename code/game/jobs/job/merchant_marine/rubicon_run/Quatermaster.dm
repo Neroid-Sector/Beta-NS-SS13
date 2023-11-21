@@ -1,5 +1,7 @@
 /datum/job/merchant_marine/quatermaster/rubicon
 	title = JOB_MM_QUATERMASTER_RUBICON
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "your ships Captain"
 	selection_class = "job_xeno_queen"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
