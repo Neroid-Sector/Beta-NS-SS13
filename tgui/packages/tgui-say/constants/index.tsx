@@ -98,234 +98,6 @@ export const RADIO_PREFIXES = {
     id: 'hive',
     label: 'Hive',
   },
-  ':M ': {
-    id: 'medsci',
-    label: 'MedSci',
-  },
-  ':N ': {
-    id: 'engi',
-    label: 'Engi',
-  },
-  ':G ': {
-    id: 'ship',
-    label: 'Ship',
-  },
-  ':V ': {
-    id: 'command',
-    label: 'Cmd.',
-  },
-  ':A ': {
-    id: 'alpha',
-    label: 'Alpha',
-  },
-  ':B ': {
-    id: 'bravo',
-    label: 'Bravo',
-  },
-  ':C ': {
-    id: 'charlie',
-    label: 'Charl.',
-  },
-  ':D ': {
-    id: 'delta',
-    label: 'Delta',
-  },
-  ':E ': {
-    id: 'echo',
-    label: 'Echo',
-  },
-  ':F ': {
-    id: 'foxtrot',
-    label: 'Foxtr.',
-  },
-  ':P ': {
-    id: 'security',
-    label: 'MP',
-  },
-  ':U ': {
-    id: 'req',
-    label: 'Req',
-  },
-  ':J ': {
-    id: 'jtac',
-    label: 'JTAC',
-  },
-  ':T ': {
-    id: 'intel',
-    label: 'Int',
-  },
-  ':Y ': {
-    id: 'wy',
-    label: 'W-Y',
-  },
-  ':O ': {
-    id: 'colony',
-    label: 'Colony',
-  },
-  ':Z ': {
-    id: 'highcom',
-    label: 'HC',
-  },
-  ':K ': {
-    id: 'sof',
-    label: 'SOF',
-  },
-  ':Q ': {
-    id: 'hive',
-    label: 'Hive',
-  },
-  '.m ': {
-    id: 'medsci',
-    label: 'MedSci',
-  },
-  '.n ': {
-    id: 'engi',
-    label: 'Engi',
-  },
-  '.g ': {
-    id: 'ship',
-    label: 'Ship',
-  },
-  '.v ': {
-    id: 'command',
-    label: 'Cmd.',
-  },
-  '.a ': {
-    id: 'alpha',
-    label: 'Alpha',
-  },
-  '.b ': {
-    id: 'bravo',
-    label: 'Bravo',
-  },
-  '.c ': {
-    id: 'charlie',
-    label: 'Charl.',
-  },
-  '.d ': {
-    id: 'delta',
-    label: 'Delta',
-  },
-  '.e ': {
-    id: 'echo',
-    label: 'Echo',
-  },
-  '.f ': {
-    id: 'foxtrot',
-    label: 'Foxtr.',
-  },
-  '.p ': {
-    id: 'security',
-    label: 'MP',
-  },
-  '.u ': {
-    id: 'req',
-    label: 'Req',
-  },
-  '.j ': {
-    id: 'jtac',
-    label: 'JTAC',
-  },
-  '.t ': {
-    id: 'intel',
-    label: 'Int',
-  },
-  '.y ': {
-    id: 'wy',
-    label: 'W-Y',
-  },
-  '.o ': {
-    id: 'colony',
-    label: 'Colony',
-  },
-  '.z ': {
-    id: 'highcom',
-    label: 'HC',
-  },
-  '.k ': {
-    id: 'sof',
-    label: 'SOF',
-  },
-  '.q ': {
-    id: 'hive',
-    label: 'Hive',
-  },
-  '.M ': {
-    id: 'medsci',
-    label: 'MedSci',
-  },
-  '.N ': {
-    id: 'engi',
-    label: 'Engi',
-  },
-  '.G ': {
-    id: 'ship',
-    label: 'Ship',
-  },
-  '.V ': {
-    id: 'command',
-    label: 'Cmd.',
-  },
-  '.A ': {
-    id: 'alpha',
-    label: 'Alpha',
-  },
-  '.B ': {
-    id: 'bravo',
-    label: 'Bravo',
-  },
-  '.C ': {
-    id: 'charlie',
-    label: 'Charl.',
-  },
-  '.D ': {
-    id: 'delta',
-    label: 'Delta',
-  },
-  '.E ': {
-    id: 'echo',
-    label: 'Echo',
-  },
-  '.F ': {
-    id: 'foxtrot',
-    label: 'Foxtr.',
-  },
-  '.P ': {
-    id: 'security',
-    label: 'MP',
-  },
-  '.U ': {
-    id: 'req',
-    label: 'Req',
-  },
-  '.J ': {
-    id: 'jtac',
-    label: 'JTAC',
-  },
-  '.T ': {
-    id: 'intel',
-    label: 'Int',
-  },
-  '.Y ': {
-    id: 'wy',
-    label: 'W-Y',
-  },
-  '.O ': {
-    id: 'colony',
-    label: 'Colony',
-  },
-  '.Z ': {
-    id: 'highcom',
-    label: 'HC',
-  },
-  '.K ': {
-    id: 'sof',
-    label: 'SOF',
-  },
-  '.Q ': {
-    id: 'hive',
-    label: 'Hive',
-  },
   '#m ': {
     id: 'upp-med',
     label: 'UPP Med',
@@ -597,5 +369,90 @@ export const RADIO_PREFIXES = {
   '#I ': {
     id: 'comms',
     label: 'Intercom',
+//LIBERTY STAR
   },
+  '-G ': {
+    id: 'Liberty Star General',
+    label: 'General',
+  },
+  '-V ': {
+    id: 'Liberty Star Command',
+    label: 'Command',
+  },
+  '-M ': {
+    id: 'Liberty Star Med',
+    label: 'Medical',
+  },
+  '-E ': {
+    id: 'Liberty Star Engi',
+    label: 'Engineering',
+  },
+  '-C ': {
+    id: 'Liberty Star Cargo',
+    label: 'Cargo',
+  },
+//Aegis
+  '$G ': {
+    id: 'Aegis General',
+    label: 'Medical',
+  },
+  '$V ': {
+    id: 'Aegis Command',
+    label: 'Command',
+  },
+  '$M ': {
+    id: 'Aegis Med',
+    label: 'Medical',
+  },
+  '$E ': {
+    id: 'Aegis Engi',
+    label: 'Engineering',
+  },
+  '$C ': {
+    id: 'Aegis Cargo',
+    label: 'Cargo',
+  },
+//Rubicon Run
+'@G ': {
+  id: 'Rubicon Run General',
+  label: 'General',
+},
+'@V ': {
+  id: 'Rubicon Run Command',
+  label: 'Command',
+},
+'@M ': {
+  id: 'Rubicon Run Med',
+  label: 'Medical',
+},
+'@E ': {
+  id: 'Rubicon Run Engi',
+  label: 'Engineering',
+},
+'@C ': {
+  id: 'Rubicon Run Cargo',
+  label: 'Cargo',
+},
+//Patton's Ghost
+'&G ': {
+  id: 'Pattons Ghost General',
+  label: 'General',
+},
+'&V ': {
+  id: 'Pattons Ghost Command',
+  label: 'Command',
+},
+'&M ': {
+  id: 'Pattons Ghost Med',
+  label: 'Medical',
+},
+'&E ': {
+  id: 'Rubicon Run Engi',
+  label: 'Engineering',
+},
+'&C ': {
+  id: 'Pattons Ghost Engi',
+  label: 'Cargo',
+},
+
 } as const;

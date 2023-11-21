@@ -26,6 +26,7 @@
 #define RADIO_CHANNEL_HEADSET "headset"
 #define RADIO_CHANNEL_ENGI "Engi"
 #define RADIO_CHANNEL_HIGHCOM "HighCom"
+#define RADIO_CHANNEL_PROVOST "Provost"
 #define RADIO_CHANNEL_INTERCOM "intercom"
 #define RADIO_CHANNEL_INTEL "Intel"
 #define RADIO_CHANNEL_JTAC "JTAC"
@@ -60,9 +61,40 @@
 #define RADIO_CHANNEL_PMC_CCT "PMC CCT"
 #define RADIO_CHANNEL_WY_WO "SpecOps"
 
+//Civilain
+// Liberty Star
+#define RADIO_CHANNEL_LIBERTY_STAR_GEN "Liberty Star General"
+#define RADIO_CHANNEL_LIBERTY_STAR_CMD "Liberty Star Command"
+#define RADIO_CHANNEL_LIBERTY_STAR_CARGO "Liberty Star Cargo"
+#define RADIO_CHANNEL_LIBERTY_STAR_MED "Liberty Star Med"
+#define RADIO_CHANNEL_LIBERTY_STAR_ENGI "Liberty Star Engi"
+
+//Aegis
+#define RADIO_CHANNEL_AEGIS_GEN "Aegis General"
+#define RADIO_CHANNEL_AEGIS_CMD "Aegis Command"
+#define RADIO_CHANNEL_AEGIS_CARGO "Aegis Cargo"
+#define RADIO_CHANNEL_AEGIS_MED "Aegis Med"
+#define RADIO_CHANNEL_AEGIS_ENGI "Aegis Engi"
+
+//Rubicon Run
+#define RADIO_CHANNEL_RUBICON_RUN_GEN "Rubicon Run General"
+#define RADIO_CHANNEL_RUBICON_RUN_CMD "Rubicon Run Command"
+#define RADIO_CHANNEL_RUBICON_RUN_CARGO "Rubicon Run Cargo"
+#define RADIO_CHANNEL_RUBICON_RUN_MED "Rubicon Run Med"
+#define RADIO_CHANNEL_RUBICON_RUN_ENGI "Rubicon Run Engi"
+
+//Patton's Ghost
+#define RADIO_CHANNEL_PATTONS_GHOST_GEN "Pattons Ghost General"
+#define RADIO_CHANNEL_PATTONS_GHOST_CMD "Pattons Ghost Command"
+#define RADIO_CHANNEL_PATTONS_GHOST_CARGO "Pattons Ghost Cargo"
+#define RADIO_CHANNEL_PATTONS_GHOST_MED "Pattons Ghost Med"
+#define RADIO_CHANNEL_PATTONS_GHOST_ENGI "Pattons Ghost Engi"
+
 //1-Channel ERTs
 #define RADIO_CHANNEL_DUTCH_DOZEN "DD"
 #define RADIO_CHANNEL_VAI "VAI"
 #define RADIO_CHANNEL_CMB "CMB"
+#define RADIO_CHANNEL_ROYAL_MARINE "Royal Marine"
 
 #define RADIO_CHANNEL_YAUTJA "Yautja"
+

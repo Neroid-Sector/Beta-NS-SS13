@@ -143,6 +143,8 @@
 	assets = list(
 		"wylogo.png" = 'html/images/wylogo.png',
 		"uscmlogo.png" = 'html/images/uscmlogo.png',
+		"upplogo.png" = 'html/images/upplogo.png',
+		"cmblogo.png" = 'html/images/cmblogo.png',
 		"faxwylogo.png" = 'html/images/faxwylogo.png',
 		"faxbackground.jpg" = 'html/images/faxbackground.jpg',
 	)
@@ -204,10 +206,10 @@
 
 /datum/asset/spritesheet/playtime_rank/register()
 	var/icon_file = 'icons/mob/hud/hud.dmi'
-	var/tier1_state = "hudxenoupgrade1"
-	var/tier2_state = "hudxenoupgrade2"
-	var/tier3_state = "hudxenoupgrade3"
-	var/tier4_state = "hudxenoupgrade4"
+	var/tier1_state = "hudxenoupgrade2"
+	var/tier2_state = "hudxenoupgrade3"
+	var/tier3_state = "hudxenoupgrade4"
+	var/tier4_state = "hudxenoupgrade5"
 
 	var/icon/tier1_icon = icon(icon_file, tier1_state, SOUTH)
 	var/icon/tier2_icon = icon(icon_file, tier2_state, SOUTH)
@@ -319,7 +321,7 @@
 			I = icon(icon_file, icon_state, SOUTH)
 			var/c = initial(item.color)
 			if (!isnull(c) && c != "#FFFFFF")
-				I.Blend(initial(c), ICON_MULTIPLY)
+				I.Blend(c, ICON_MULTIPLY)
 		else
 			if (ispath(k, /obj/effect/essentials_set))
 				var/obj/effect/essentials_set/es_set = new k()

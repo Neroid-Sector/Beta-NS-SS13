@@ -62,6 +62,10 @@ var/global/list/gear_datums_by_name = list()
 	display_name = "Ballistic goggles, orange"
 	path = /obj/item/clothing/glasses/mgoggles/orange
 
+/datum/gear/eyewear/goggles2
+	display_name = "Ballistic goggles, M1A1"
+	path = /obj/item/clothing/glasses/mgoggles/v2
+
 /datum/gear/eyewear/bimex_shades
 	display_name = "BiMex personal shades"
 	path = /obj/item/clothing/glasses/sunglasses/big
@@ -204,6 +208,14 @@ var/global/list/gear_datums_by_name = list()
 /datum/gear/headwear/uscm/beret_tan
 	display_name = "USCM beret, tan"
 	path = /obj/item/clothing/head/beret/cm/tan
+
+/datum/gear/headwear/uscm/beret_black
+	display_name = "USCM beret, black"
+	path = /obj/item/clothing/head/beret/cm/black
+
+/datum/gear/headwear/uscm/beret_white
+	display_name = "USCM beret, white"
+	path = /obj/item/clothing/head/beret/cm/white
 
 /datum/gear/headwear/uscm/boonie_olive
 	display_name = "USCM boonie hat, olive"
@@ -515,6 +527,12 @@ var/global/list/gear_datums_by_name = list()
 	display_name = "D18 Holdout Pistol"
 	path = /obj/item/storage/box/clf
 
+/datum/gear/weapon/upppistol //ww2 war trophy luger
+	display_name = "Type 73 Pistol"
+	path = /obj/item/storage/box/upp
+	slot = WEAR_IN_BACK
+	cost = 4
+
 /datum/gear/weapon/m4a3_custom
 	display_name = "M4A3 Custom Pistol"
 	path = /obj/item/weapon/gun/pistol/m4a3/custom
@@ -786,7 +804,17 @@ var/global/list/gear_datums_by_name = list()
 /datum/gear/misc/jungle_boots
 	display_name = "Jungle pattern combat boots"
 	path = /obj/item/clothing/shoes/marine/jungle
-	cost = 3
+	cost = 2
+
+/datum/gear/misc/brown_boots
+	display_name = "brown combat boots"
+	path = /obj/item/clothing/shoes/marine/brown
+	cost = 2
+
+/datum/gear/misc/brown_gloves
+	display_name = "brown combat gloves"
+	path = /obj/item/clothing/gloves/marine/brown
+	cost = 2
 
 /datum/gear/misc/pdt_kit
 	display_name = "PDT/L kit"

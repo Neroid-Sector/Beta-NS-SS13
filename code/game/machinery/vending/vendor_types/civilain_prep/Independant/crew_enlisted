@@ -1,0 +1,583 @@
+//------------CIVILIAN CREW UNIFORM VENDOR---------------
+
+
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep
+	name = "\improper ColMarTech Surplus Uniform Vendor"
+	desc = "An automated supply rack hooked up to a small storage of standard uniforms."
+	req_access = list(ACCESS_MARINE_PREP)
+	req_one_access = list()
+	listed_products = list()
+	hackable = TRUE
+
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/ui_state(mob/user)
+	return GLOB.not_incapacitated_and_adjacent_strict_state
+
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/populate_product_list(scale)
+	listed_products = list(
+		list("STANDARD EQUIPMENT", -1, null, null, null),
+		list("Boots", round(scale * 15), /obj/item/clothing/shoes/jackboots, VENDOR_ITEM_REGULAR),
+		list("Laceup Shoes", round(scale * 15), /obj/item/clothing/shoes/laceup, VENDOR_ITEM_REGULAR),
+		list("Sports Shoes", round(scale * 15), /obj/item/clothing/shoes/black, VENDOR_ITEM_REGULAR),
+		list("Magboots", round(scale * 15), /obj/item/clothing/shoes/magboots, VENDOR_ITEM_REGULAR),
+		list("Colonist Uniform", round(scale * 15), obj/item/clothing/under/colonist, VENDOR_ITEM_REGULAR),
+		list("Grey Uniform", round(scale * 15), /obj/item/clothing/under/grey, VENDOR_ITEM_REGULAR),
+		list("Black Uniform", round(scale * 15), /obj/item/clothing/under/black, VENDOR_ITEM_REGULAR),
+		list("Blue Uniform", round(scale * 15), /obj/item/clothing/under/blue, VENDOR_ITEM_REGULAR),
+		list("Green Uniform", round(scale * 15), /obj/item/clothing/under/green, VENDOR_ITEM_REGULAR),
+		list("Orange Uniform", round(scale * 15), /obj/item/clothing/under/orange, VENDOR_ITEM_REGULAR),
+		list("White Uniform", round(scale * 15), /obj/item/clothing/under/white, VENDOR_ITEM_REGULAR),
+		list("Yellow Uniform", round(scale * 15), /obj/item/clothing/under/yellow, VENDOR_ITEM_REGULAR),
+		list("Dark Red Uniform", round(scale * 15), /obj/item/clothing/under/darkred, VENDOR_ITEM_REGULAR),
+		list("Brown Gloves", round(scale * 15), /obj/item/clothing/gloves/brown, VENDOR_ITEM_REGULAR),
+		list("Black Gloves", round(scale * 15), /obj/item/clothing/gloves/black, VENDOR_ITEM_REGULAR),
+		list("Combat Gloves", round(scale * 15), /obj/item/clothing/gloves/marine/combat, VENDOR_ITEM_REGULAR),
+		list("Insulated Gloves", round(scale * 15), /obj/item/clothing/gloves/fyellow, VENDOR_ITEM_REGULAR),
+		list("Hardhat", round(scale * 15), /obj/item/clothing/head/hardhat, VENDOR_ITEM_REGULAR),
+
+		list("WEBBINGS", -1, null, null),
+		list("Brown Webbing Vest", round(scale * 1.25), /obj/item/clothing/accessory/storage/black_vest/brown_vest, VENDOR_ITEM_REGULAR),
+		list("Black Webbing Vest", round(max(1,(scale * 0.5))), /obj/item/clothing/accessory/storage/black_vest, VENDOR_ITEM_REGULAR),
+		list("Webbing", round(scale * 2), /obj/item/clothing/accessory/storage/webbing, VENDOR_ITEM_REGULAR),
+		list("Drop Pouch", round(max(1,(scale * 0.5))), /obj/item/clothing/accessory/storage/droppouch, VENDOR_ITEM_REGULAR),
+		list("Shoulder Holster", round(max(1,(scale * 0.5))), /obj/item/clothing/accessory/storage/holster, VENDOR_ITEM_REGULAR),
+
+		list("Vests", -1, null, null),
+		list("High-Vis Vest", round(scale * 15), /obj/item/clothing/suit/storage/hazardvest, VENDOR_ITEM_REGULAR),
+
+		list("BACKPACK", -1, null, null, null),
+		list("Lightweight Combat Backpack", round(scale * 15), /obj/item/storage/backpack/lightpack, VENDOR_ITEM_REGULAR),
+		list("Industrial Backpack", round(scale * 15), /obj/item/storage/backpack/industrial, VENDOR_ITEM_REGULAR),
+		list("Welder Chestrig", round(scale * 15), /obj/item/storage/backpack/marine/engineerpack/welder_chestrig, VENDOR_ITEM_REGULAR),
+		list("Medic Backpack", round(scale * 15), /obj/item/storage/backpack/medic, VENDOR_ITEM_REGULAR),
+		list("Leather Satchel", round(scale * 15), /obj/item/storage/backpack/satchel, VENDOR_ITEM_REGULAR),
+		list("Industrial Satchel", round(scale * 15), /obj/item/storage/backpack/satchel/eng, VENDOR_ITEM_REGULAR),
+
+		list("RESTRICTED BACKPACKS", -1, null, null),
+		list("Radio Telephone Backpack", round(max(1,(scale * 0.5))), /obj/item/storage/backpack/marine/satchel/rto, VENDOR_ITEM_REGULAR),
+
+		list("BELTS", -1, null, null),
+		list("Ammo Load Rig", round(scale * 15), /obj/item/storage/belt/marine, VENDOR_ITEM_REGULAR),
+		list("Shotgun Shell Loading Rig", round(scale * 15), /obj/item/storage/belt/shotgun, VENDOR_ITEM_REGULAR),
+		list("General Pistol Holster Rig", round(scale * 15), /obj/item/storage/belt/gun/m4a3, VENDOR_ITEM_REGULAR),
+		list("M44 Holster Rig", round(scale * 15), /obj/item/storage/belt/gun/m44, VENDOR_ITEM_REGULAR),
+		list("M82F Holster Rig", round(scale * 5), /obj/item/storage/belt/gun/flaregun, VENDOR_ITEM_REGULAR),
+		list("General Utility Pouch", round(scale * 15), /obj/item/storage/backpack/general_belt, VENDOR_ITEM_REGULAR),
+		list("Lifesaver Belt", round(scale * 15), /obj/item/storage/belt/medical/lifesaver/full, VENDOR_ITEM_REGULAR),
+		list("Toolbelt", round(scale * 15), /obj/item/storage/belt/utility/full, VENDOR_ITEM_REGULAR),
+
+		list("POUCHES", -1, null, null, null),
+		list("Bayonet Sheath (Full)",round(scale * 15), /obj/item/storage/pouch/bayonet, VENDOR_ITEM_REGULAR),
+		list("First-Aid Pouch (Splints, Gauze, Ointment)", round(scale * 15), /obj/item/storage/pouch/firstaid/full/alternate, VENDOR_ITEM_REGULAR),
+		list("First-Aid Pouch (Pill Packets)", round(scale * 15), /obj/item/storage/pouch/firstaid/full/pills, VENDOR_ITEM_REGULAR),
+		list("Flare Pouch (Full)", round(scale * 15), /obj/item/storage/pouch/flare/full, VENDOR_ITEM_REGULAR),
+		list("Small Document Pouch", round(scale * 15), /obj/item/storage/pouch/document/small, VENDOR_ITEM_REGULAR),
+		list("Magazine Pouch", round(scale * 15), /obj/item/storage/pouch/magazine, VENDOR_ITEM_REGULAR),
+		list("Shotgun Shell Pouch", round(scale * 15), /obj/item/storage/pouch/shotgun, VENDOR_ITEM_REGULAR),
+		list("Medium General Pouch", round(scale * 15), /obj/item/storage/pouch/general/medium, VENDOR_ITEM_REGULAR),
+		list("Pistol Magazine Pouch", round(scale * 15), /obj/item/storage/pouch/magazine/pistol, VENDOR_ITEM_REGULAR),
+		list("Pistol Pouch", round(scale * 15), /obj/item/storage/pouch/pistol, VENDOR_ITEM_REGULAR),
+		list("Tool Pouch (full)", round(scale * 15), /obj/item/storage/pouch/tools/full, VENDOR_ITEM_REGULAR),
+
+		list("RESTRICTED POUCHES", -1, null, null, null),
+		list("Construction Pouch", round(scale * 1.25), /obj/item/storage/pouch/construction, VENDOR_ITEM_REGULAR),
+		list("Explosive Pouch", round(scale * 1.25), /obj/item/storage/pouch/explosive, VENDOR_ITEM_REGULAR),
+		list("First Responder Pouch (Empty)", round(scale * 2.5), /obj/item/storage/pouch/first_responder, VENDOR_ITEM_REGULAR),
+		list("Large Pistol Magazine Pouch", round(scale * 2), /obj/item/storage/pouch/magazine/pistol/large, VENDOR_ITEM_REGULAR),
+		list("Sling Pouch", round(scale * 1.25), /obj/item/storage/pouch/sling, VENDOR_ITEM_REGULAR),
+
+		list("MASK", -1, null, null, null),
+		list("Gas Mask", round(scale * 15), /obj/item/clothing/mask/gas, VENDOR_ITEM_REGULAR),
+		list("Heat Absorbent Coif", round(scale * 10), /obj/item/clothing/mask/rebreather/scarf, VENDOR_ITEM_REGULAR),
+		list("Rebreather", round(scale * 10), /obj/item/clothing/mask/rebreather, MARINE_CAN_BUY_MASK, VENDOR_ITEM_REGULAR),
+
+		list("MISCELLANEOUS", -1, null, null, null),
+		list("Ballistic goggles", round(scale * 10), /obj/item/clothing/glasses/mgoggles, VENDOR_ITEM_REGULAR),
+		list("M1A1 Ballistic goggles", round(scale * 10), /obj/item/clothing/glasses/mgoggles/v2, VENDOR_ITEM_REGULAR),
+		list("Prescription ballistic goggles", round(scale * 10), /obj/item/clothing/glasses/mgoggles/prescription, VENDOR_ITEM_REGULAR),
+		list("Marine RPG glasses", round(scale * 10), /obj/item/clothing/glasses/regular, VENDOR_ITEM_REGULAR),
+		list("M5 Integrated Gas Mask", round(scale * 10), /obj/item/prop/helmetgarb/helmet_gasmask, VENDOR_ITEM_REGULAR),
+		list("Firearm Lubricant", round(scale * 15), /obj/item/prop/helmetgarb/gunoil, VENDOR_ITEM_REGULAR),
+		list("Black Scarf", round(scale *15), /obj/item/clothing/mask/tornscarf/black, VENDOR_ITEM_REGULAR),
+		list("Green Scarf", round(scale *15), /obj/item/clothing/mask/tornscarf/green, VENDOR_ITEM_REGULAR),
+		)
+
+//--------------Ship SPECIFIC VERSIONS--------------
+//Those vendors aren't being used i will make them us the main vendor a parent to avoid having four different
+// list with just the headset changed. - Moonshanks note, used to change the headset to the right ship.
+
+//liberty star
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/rubicon_run
+	req_access = list(ACCESS_MARINE_PREP)
+	req_one_access = list(ACCESS_MARINE_RUBICON_RUN, ACCESS_MARINE_DATABASE, ACCESS_MARINE_CARGO)
+
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/squad_prep/alpha/populate_product_list(scale)
+	listed_products += list(
+		list("HEADSET", -1, null, null),
+		list("Rubicon Run Radio Headset", 25, /obj/item/device/radio/headset/almayer/marine/rubicon_run, VENDOR_ITEM_REGULAR),
+		)
+
+//aegis
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/pattons_ghost
+	req_access = list(ACCESS_MARINE_PREP)
+	req_one_access = list(ACCESS_MARINE_PATTONS_GHOST, ACCESS_MARINE_DATABASE, ACCESS_MARINE_CARGO)
+
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/squad_prep/alpha/populate_product_list(scale)
+	listed_products += list(
+		list("HEADSET", -1, null, null),
+		list("Aegis Radio Headset", 25, /obj/item/device/radio/headset/almayer/marine/pattons_ghost, VENDOR_ITEM_REGULAR),
+		)
+
+//------------CHEF CREW VENDOR---------------
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/chef
+	name = "\improper ColMarTech Surplus Kitchen Equiptment Vendor"
+	desc = "An automated supply rack hooked up to a small storage of standard Kitchen Equiptment."
+	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_CHEF)
+	req_one_access = list()
+	listed_products = list()
+	hackable = TRUE
+
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/chef/ui_state(mob/user)
+	return GLOB.not_incapacitated_and_adjacent_strict_state
+
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/chef/populate_product_list(scale)
+	listed_products = list(
+		list("STANDARD EQUIPMENT", -1, null, null, null),
+		list("Laceup Shoes", round(1), /obj/item/clothing/shoes/laceup, VENDOR_ITEM_REGULAR),
+		list("Chef Uniform", round(1), /obj/item/clothing/under/rank/chef, VENDOR_ITEM_REGULAR),
+		list("Bartender Uniform", round(1), /obj/item/clothing/under/rank/bartender, VENDOR_ITEM_REGULAR),
+		list("Latex Gloves", round(10), /obj/item/clothing/gloves/latex, VENDOR_ITEM_REGULAR),
+		list("Chef Hat", round(1), /obj/item/clothing/head/chefhat, VENDOR_ITEM_REGULAR),
+
+		list("Vests", -1, null, null),
+		list("Apron", round(1), /obj/item/clothing/suit/chef/classic, VENDOR_ITEM_REGULAR),
+		list("Chef's Apron", round(1), /obj/item/clothing/suit/chef, VENDOR_ITEM_REGULAR),
+
+		list("POUCHES", -1, null, null, null),
+		list("Large Pouch",round(1), /obj/item/storage/pouch/general/large, VENDOR_ITEM_REGULAR),
+
+
+		list("MASK", -1, null, null, null),
+		list("Sterile Mask", round(scale * 15), /obj/item/clothing/mask/surgical, VENDOR_ITEM_REGULAR),
+
+		list("MISCELLANEOUS", -1, null, null, null),
+		list("Sharp Knife", round(4), /obj/item/tool/kitchen/knife, VENDOR_ITEM_REGULAR),
+		list("Rolling Pin", round(4), /obj/item/tool/kitchen/rollingpin, VENDOR_ITEM_REGULAR),
+)
+
+//------------MT CREW VENDOR-----------------
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/maintenance_tech
+	name = "\improper ColMarTech Surplus Engineering Equiptment Vendor"
+	desc = "An automated supply rack hooked up to a small storage of standard Engineering Equiptment."
+	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MAINT_TECH)
+	req_one_access = list()
+	listed_products = list()
+	hackable = TRUE
+
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/maintenance_tech/ui_state(mob/user)
+	return GLOB.not_incapacitated_and_adjacent_strict_state
+
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/maintenance_tech/populate_product_list(scale)
+	listed_products = list(
+		list("STANDARD EQUIPMENT", -1, null, null, null),
+		list("Magboots", round(1), /obj/item/clothing/shoes/magboots, VENDOR_ITEM_REGULAR),
+		list("Jackboots", round(1), /obj/item/clothing/shoes/jackboots, VENDOR_ITEM_REGULAR)
+		list("Miner's Uniform", round(1), /obj/item/clothing/under/rank/miner, VENDOR_ITEM_REGULAR),
+		list("Overalls", round(1), /obj/item/clothing/under/rank/worker_overalls, VENDOR_ITEM_REGULAR),
+		list("Utility Uniform", round(1), /obj/item/clothing/under/rank/synthetic/utility, VENDOR_ITEM_REGULAR),
+		list("Red Utility Uniform", round(1), /obj/item/clothing/under/rank/synthetic/utility/red, VENDOR_ITEM_REGULAR),
+		list("Yellow Utility Uniform", round(1), /obj/item/clothing/under/rank/synthetic/utility/yellow, VENDOR_ITEM_REGULAR),
+		list("Blue Utility Uniform", round(1), /obj/item/clothing/under/rank/synthetic/utility/blue, VENDOR_ITEM_REGULAR),
+		list("Frontier Uniform", round(1), /obj/item/clothing/under/rank/synthetic/frontier, VENDOR_ITEM_REGULAR),
+		list("Insulated Gloves", round(1), /obj/item/clothing/gloves/marine/insulated, VENDOR_ITEM_REGULAR),
+		list("White Hardhat", round(1), /obj/item/clothing/head/hardhat/white, VENDOR_ITEM_REGULAR),
+		list("Welding Helmet", round(1), /obj/item/clothing/head/welding, VENDOR_ITEM_REGULAR),
+
+		list("Vests", -1, null, null),
+		list("High-Vis Vest", round(1), /obj/item/clothing/suit/storage/hazardvest, VENDOR_ITEM_REGULAR),
+		list("Blue High-Vis Vest", round(1), /obj/item/clothing/suit/storage/hazardvest/blue, VENDOR_ITEM_REGULAR),
+		list("Yellow High-Vis Vest", round(1), /obj/item/clothing/suit/storage/hazardvest/yellow, VENDOR_ITEM_REGULAR),
+
+		list("POUCHES", -1, null, null, null),
+		list("Large Pouch", round(1), /obj/item/storage/pouch/general/large, VENDOR_ITEM_REGULAR),
+		list("Construction Pouch", round(1), /obj/item/storage/pouch/construction, VENDOR_ITEM_REGULAR),
+		list("Explosive Pouch", round(1), /obj/item/storage/pouch/explosive, VENDOR_ITEM_REGULAR),
+		list("Tool Pouch (full)", round(1), /obj/item/storage/pouch/tools/full, VENDOR_ITEM_REGULAR),
+		list("Electronic Pouch (full)", round(1), /obj/item/storage/pouch/electronics/full, VENDOR_ITEM_REGULAR),
+		list("Machete Pouch (Full)", round(1), /obj/item/storage/pouch/machete/full, VENDOR_ITEM_REGULAR),
+
+		list("MASK", -1, null, null, null),
+		list("Gas Mask", round(1), /obj/item/clothing/mask/gas, VENDOR_ITEM_REGULAR),
+
+		list("MISCELLANEOUS", -1, null, null, null),
+		list("Mechanical Toolbox", round(1), /obj/item/storage/toolbox/mechanical, VENDOR_ITEM_REGULAR),
+		list("Electrical Toolbox", round(1), /obj/item/storage/toolbox/electrical, VENDOR_ITEM_REGULAR),
+		list("Compact Extinguisher", round(1), /obj/item/tool/extinguisher/mini, VENDOR_ITEM_REGULAR),
+		list("Welding Goggles", round(1), /obj/item/clothing/glasses/welding, VENDOR_ITEM_REGULAR),
+)
+
+//------------CT CREW VENDOR-----------------
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/cargo_tech
+	name = "\improper ColMarTech Surplus Cargo Equiptment Vendor"
+	desc = "An automated supply rack hooked up to a small storage of standard Cargo Equiptment."
+	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MAINT_TECH)
+	req_one_access = list()
+	listed_products = list()
+	hackable = TRUE
+
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/cargo_tech/ui_state(mob/user)
+	return GLOB.not_incapacitated_and_adjacent_strict_state
+
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/cargo_tech/populate_product_list(scale)
+	listed_products = list(
+		list("STANDARD EQUIPMENT", -1, null, null, null),
+		list("Jackboots", round(1), /obj/item/clothing/shoes/jackboots, VENDOR_ITEM_REGULAR)
+		list("Overalls", round(1), /obj/item/clothing/under/rank/worker_overalls, VENDOR_ITEM_REGULAR),
+		list("Brown Overalls", round(1), /obj/item/clothing/under/brown, VENDOR_ITEM_REGULAR),
+		list("Utility Uniform", round(1), /obj/item/clothing/under/rank/synthetic/utility, VENDOR_ITEM_REGULAR),
+		list("Red Utility Uniform", round(1), /obj/item/clothing/under/rank/synthetic/utility/red, VENDOR_ITEM_REGULAR),
+		list("Yellow Utility Uniform", round(1), /obj/item/clothing/under/rank/synthetic/utility/yellow, VENDOR_ITEM_REGULAR),
+		list("Blue Utility Uniform", round(1), /obj/item/clothing/under/rank/synthetic/utility/blue, VENDOR_ITEM_REGULAR),
+		list("Frontier Uniform", round(1), /obj/item/clothing/under/rank/synthetic/frontier, VENDOR_ITEM_REGULAR),
+		list("Janitor's Uniform", round(1), /obj/clothing/under/rank/janitor, VENDOR_ITEM_REGULAR),
+		list("Leather Gloves", round(1), /obj/item/clothing/gloves/botanic_leather, VENDOR_ITEM_REGULAR),
+		list("Cargo Beanie", round(1), /obj/item/clothing/head/beanie/tan, VENDOR_ITEM_REGULAR),
+
+		list("Vests", -1, null, null),
+		list("High-Vis Vest", round(1), /obj/item/clothing/suit/storage/hazardvest, VENDOR_ITEM_REGULAR),
+		list("Blue High-Vis Vest", round(1), /obj/item/clothing/suit/storage/hazardvest/blue, VENDOR_ITEM_REGULAR),
+		list("Yellow High-Vis Vest", round(1), /obj/item/clothing/suit/storage/hazardvest/yellow, VENDOR_ITEM_REGULAR),
+
+		list("POUCHES", -1, null, null, null),
+		list("Large Pouch", round(1), /obj/item/storage/pouch/general/large, VENDOR_ITEM_REGULAR),
+		list("Construction Pouch", round(1), /obj/item/storage/pouch/construction, VENDOR_ITEM_REGULAR),
+		list("Explosive Pouch", round(1), /obj/item/storage/pouch/explosive, VENDOR_ITEM_REGULAR),
+		list("Tool Pouch (full)", round(1), /obj/item/storage/pouch/tools/full, VENDOR_ITEM_REGULAR),
+		list("Document Pouch", round(1), obj/item/storage/pouch/document/small, VENDOR_ITEM_REGULAR),
+
+		list("MISCELLANEOUS", -1, null, null, null),
+		list("Hand Labeler", round(1), /obj/item/tool/hand_labeler, VENDOR_ITEM_REGULAR),
+		list("Compact Extinguisher", round(1), /obj/item/tool/extinguisher/mini, VENDOR_ITEM_REGULAR),
+)
+
+//------------DOCTOR CREW VENDOR-------------
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/doctor
+	name = "\improper ColMarTech Surplus Chief Medical Officer Equiptment Vendor"
+	desc = "An automated supply rack hooked up to a small storage of Officer's Medical Equiptment."
+	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DOCTOR)
+	req_one_access = list()
+	listed_products = list()
+	hackable = TRUE
+
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/doctor/ui_state(mob/user)
+	return GLOB.not_incapacitated_and_adjacent_strict_state
+
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/doctor/populate_product_list(scale)
+	listed_products = list(
+		list("STANDARD EQUIPMENT", -1, null, null, null),
+		list("White Shoes", round(1), /obj/item/clothing/shoes/white, VENDOR_ITEM_REGULAR)
+		list("Laceup Shoes", round(1), /obj/item/clothing/shoes/laceup, VENDOR_ITEM_REGULAR),
+		list("Nurse Scrubs", round(1), /obj/item/clothing/under/rank/medical/nurse, VENDOR_ITEM_REGULAR),
+		list("Doctor's Uniform", round(1), /obj/item/clothing/under/rank/medical, VENDOR_ITEM_REGULAR),
+		list("Green Scrubs", round(1), /obj/item/clothing/under/rank/medical/green, VENDOR_ITEM_REGULAR),
+		list("Blue Scrubs", round(1), /obj/item/clothing/under/rank/medical/blue, VENDOR_ITEM_REGULAR),
+		list("Latex Gloves", round(15), /obj/item/clothing/gloves/latex, VENDOR_ITEM_REGULAR),
+
+		list("Labcoats", -1, null, null),
+		list("Officer's Labcoat", round(1), /obj/item/clothing/suit/storage/labcoat/officer, VENDOR_ITEM_REGULAR),
+		list("Nurse's Labcoat", round(1), /obj/item/clothing/suit/storage/labcoat, VENDOR_ITEM_REGULAR),
+		list("Researcher's Labcoat", round(1), /obj/item/clothing/suit/storage/labcoat/researcher, VENDOR_ITEM_REGULAR),
+
+		list("POUCHES", -1, null, null, null),
+		list("Large Pouch", round(1), /obj/item/storage/pouch/general/large, VENDOR_ITEM_REGULAR),
+		list("Document Pouch", round(1), obj/item/storage/pouch/document/small, VENDOR_ITEM_REGULAR),
+		list("Auto-Injector Pouch (full)", round(1), obj/item/storage/pouch/autoinjector/full, VENDOR_ITEM_REGULAR),
+		list("Chemist Pouch", round(1), obj/item/storage/pouch/chem, VENDOR_ITEM_REGULAR),
+		list("First-Aid Pouch (full)", round(1), obj/item/storage/pouch/firstaid/full, VENDOR_ITEM_REGULAR),
+		list("Medical Pouch (full)", round(1), obj/item/storage/pouch/medical/full, VENDOR_ITEM_REGULAR),
+		list("Med-kit Pouch (full)", round(1), obj/item/storage/pouch/medkit/full_advanced, VENDOR_ITEM_REGULAR),
+
+		list("BELTS", -1, null, null),
+		list("Lifesaver Belt", round(1), /obj/item/storage/belt/medical/lifesaver/full, VENDOR_ITEM_REGULAR),
+		list("Medical Belt", round(1), /obj/item/storage/belt/medical/full, VENDOR_ITEM_REGULAR),
+		list("Medical Belt (with defib)", round(1), /obj/item/storage/belt/medical/full/with_defib_and_analyzer, VENDOR_ITEM_REGULAR),
+
+		list("MISCELLANEOUS", -1, null, null, null),
+		list("Advanced Medkit", round(4), /obj/item/storage/firstaid/adv, VENDOR_ITEM_REGULAR),
+		list("Compact Extinguisher", round(1), /obj/item/tool/extinguisher/mini, VENDOR_ITEM_REGULAR),
+
+		list("RANK", -1, null, null, null),
+		list("Officer's Beret", round(1), /obj/item/clothing/head/beret/sec/alt, VENDOR_ITEM_REGULAR),
+		list("W-Y Officer's Beret", round(1), /obj/item/clothing/head/beret/centcom/officer, VENDOR_ITEM_REGULAR),
+)
+
+//------------CMO CREW VENDOR----------------
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/cmo
+	name = "\improper ColMarTech Surplus Medical Equiptment Vendor"
+	desc = "An automated supply rack hooked up to a small storage of standard Medical Equiptment."
+	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_CHIEF_MEDICAL)
+	req_one_access = list()
+	listed_products = list()
+	hackable = TRUE
+
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/cmo/ui_state(mob/user)
+	return GLOB.not_incapacitated_and_adjacent_strict_state
+
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/cmo/populate_product_list(scale)
+	listed_products = list(
+		list("STANDARD EQUIPMENT", -1, null, null, null),
+		list("White Shoes", round(1), /obj/item/clothing/shoes/white, VENDOR_ITEM_REGULAR)
+		list("Laceup Shoes", round(1), /obj/item/clothing/shoes/laceup, VENDOR_ITEM_REGULAR),
+		list("Nurse Scrubs", round(1), /obj/item/clothing/under/rank/medical/nurse, VENDOR_ITEM_REGULAR),
+		list("Doctor's Uniform", round(1), /obj/item/clothing/under/rank/medical, VENDOR_ITEM_REGULAR),
+		list("Green Scrubs", round(1), /obj/item/clothing/under/rank/medical/green, VENDOR_ITEM_REGULAR),
+		list("Blue Scrubs", round(1), /obj/item/clothing/under/rank/medical/blue, VENDOR_ITEM_REGULAR),
+		list("Latex Gloves", round(15), /obj/item/clothing/gloves/latex, VENDOR_ITEM_REGULAR),
+		list("Officer's Beret", round(1), /obj/item/clothing/head/beret/sec/alt, VENDOR_ITEM_REGULAR),
+
+		list("Labcoats", -1, null, null),
+		list("Officer's Labcoat", round(1), /obj/item/clothing/suit/storage/labcoat/officer, VENDOR_ITEM_REGULAR),
+		list("Nurse's Labcoat", round(1), /obj/item/clothing/suit/storage/labcoat, VENDOR_ITEM_REGULAR),
+		list("Researcher's Labcoat", round(1), /obj/item/clothing/suit/storage/labcoat/researcher, VENDOR_ITEM_REGULAR),
+
+		list("POUCHES", -1, null, null, null),
+		list("Large Pouch", round(1), /obj/item/storage/pouch/general/large, VENDOR_ITEM_REGULAR),
+		list("Document Pouch", round(1), obj/item/storage/pouch/document/small, VENDOR_ITEM_REGULAR),
+		list("Auto-Injector Pouch (full)", round(1), obj/item/storage/pouch/autoinjector/full, VENDOR_ITEM_REGULAR),
+		list("Chemist Pouch", round(1), obj/item/storage/pouch/chem, VENDOR_ITEM_REGULAR),
+		list("First-Aid Pouch (full)", round(1), obj/item/storage/pouch/firstaid/full, VENDOR_ITEM_REGULAR),
+		list("Medical Pouch (full)", round(1), obj/item/storage/pouch/medical/full, VENDOR_ITEM_REGULAR),
+		list("Med-kit Pouch (full)", round(1), obj/item/storage/pouch/medkit/full_advanced, VENDOR_ITEM_REGULAR),
+
+		list("BELTS", -1, null, null),
+		list("Lifesaver Belt", round(1), /obj/item/storage/belt/medical/lifesaver/full, VENDOR_ITEM_REGULAR),
+		list("Medical Belt", round(1), /obj/item/storage/belt/medical/full, VENDOR_ITEM_REGULAR),
+		list("Medical Belt (with defib)", round(1), /obj/item/storage/belt/medical/full/with_defib_and_analyzer, VENDOR_ITEM_REGULAR),
+
+		list("MISCELLANEOUS", -1, null, null, null),
+		list("Advanced Medkit", round(4), /obj/item/storage/firstaid/adv, VENDOR_ITEM_REGULAR),
+		list("Compact Extinguisher", round(1), /obj/item/tool/extinguisher/mini, VENDOR_ITEM_REGULAR),
+
+		list("RANK", -1, null, null, null),
+		list("Chief Medical Officer's Beret", round(1), /obj/item/clothing/head/cmo, VENDOR_ITEM_REGULAR),
+)
+
+//------------CE CREW VENDOR-----------------
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/chief_engineer
+	name = "\improper ColMarTech Surplus Chief Engineering Officer Equiptment Vendor"
+	desc = "An automated supply rack hooked up to a small storage of standard Officer's Engineering Equiptment."
+	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_CHIEF_ENGINEER)
+	req_one_access = list()
+	listed_products = list()
+	hackable = TRUE
+
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/chief_engineer/ui_state(mob/user)
+	return GLOB.not_incapacitated_and_adjacent_strict_state
+
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/chief_engineer/populate_product_list(scale)
+	listed_products = list(
+		list("STANDARD EQUIPMENT", -1, null, null, null),
+		list("Magboots", round(1), /obj/item/clothing/shoes/magboots, VENDOR_ITEM_REGULAR),
+		list("Jackboots", round(1), /obj/item/clothing/shoes/jackboots, VENDOR_ITEM_REGULAR)
+		list("Miner's Uniform", round(1), /obj/item/clothing/under/rank/miner, VENDOR_ITEM_REGULAR),
+		list("Overalls", round(1), /obj/item/clothing/under/rank/worker_overalls, VENDOR_ITEM_REGULAR),
+		list("Utility Uniform", round(1), /obj/item/clothing/under/rank/synthetic/utility, VENDOR_ITEM_REGULAR),
+		list("Red Utility Uniform", round(1), /obj/item/clothing/under/rank/synthetic/utility/red, VENDOR_ITEM_REGULAR),
+		list("Yellow Utility Uniform", round(1), /obj/item/clothing/under/rank/synthetic/utility/yellow, VENDOR_ITEM_REGULAR),
+		list("Blue Utility Uniform", round(1), /obj/item/clothing/under/rank/synthetic/utility/blue, VENDOR_ITEM_REGULAR),
+		list("Frontier Uniform", round(1), /obj/item/clothing/under/rank/synthetic/frontier, VENDOR_ITEM_REGULAR),
+		list("Insulated Gloves", round(1), /obj/item/clothing/gloves/marine/insulated, VENDOR_ITEM_REGULAR),
+		list("White Hardhat", round(1), /obj/item/clothing/head/hardhat/white, VENDOR_ITEM_REGULAR),
+		list("Welding Helmet", round(1), /obj/item/clothing/head/welding, VENDOR_ITEM_REGULAR),
+
+		list("Vests", -1, null, null),
+		list("High-Vis Vest", round(1), /obj/item/clothing/suit/storage/hazardvest, VENDOR_ITEM_REGULAR),
+		list("Blue High-Vis Vest", round(1), /obj/item/clothing/suit/storage/hazardvest/blue, VENDOR_ITEM_REGULAR),
+		list("Yellow High-Vis Vest", round(1), /obj/item/clothing/suit/storage/hazardvest/yellow, VENDOR_ITEM_REGULAR),
+
+		list("POUCHES", -1, null, null, null),
+		list("Large Pouch", round(1), /obj/item/storage/pouch/general/large, VENDOR_ITEM_REGULAR),
+		list("Construction Pouch", round(1), /obj/item/storage/pouch/construction, VENDOR_ITEM_REGULAR),
+		list("Explosive Pouch", round(1), /obj/item/storage/pouch/explosive, VENDOR_ITEM_REGULAR),
+		list("Tool Pouch (full)", round(1), /obj/item/storage/pouch/tools/full, VENDOR_ITEM_REGULAR),
+		list("Electronic Pouch (full)", round(1), /obj/item/storage/pouch/electronics/full, VENDOR_ITEM_REGULAR),
+		list("Machete Pouch (Full)", round(1), /obj/item/storage/pouch/machete/full, VENDOR_ITEM_REGULAR),
+
+		list("MASK", -1, null, null, null),
+		list("Gas Mask", round(1), /obj/item/clothing/mask/gas, VENDOR_ITEM_REGULAR),
+
+		list("MISCELLANEOUS", -1, null, null, null),
+		list("Mechanical Toolbox", round(1), /obj/item/storage/toolbox/mechanical, VENDOR_ITEM_REGULAR),
+		list("Electrical Toolbox", round(1), /obj/item/storage/toolbox/electrical, VENDOR_ITEM_REGULAR),
+		list("Compact Extinguisher", round(1), /obj/item/tool/extinguisher/mini, VENDOR_ITEM_REGULAR),
+		list("Welding Goggles", round(1), /obj/item/clothing/glasses/welding, VENDOR_ITEM_REGULAR),
+
+		list("RANK", -1, null, null, null),
+		list("Chief Engineer's Beret", round(1), /obj/item/clothing/head/eng, VENDOR_ITEM_REGULAR),
+		list("Chief Engineer's Hazard Vest", round(1), /obj/item/clothing/suit/storage/hazardvest/black, VENDOR_ITEM_REGULAR),
+)
+
+//------------WO CREW VENDOR-----------------
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/warrant_officer
+	name = "\improper ColMarTech Surplus Warrant Officer Equiptment Vendor"
+	desc = "An automated supply rack hooked up to a small storage of standard Officer's Security Equiptment."
+	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_CHIEF_ENGINEER)
+	req_one_access = list()
+	listed_products = list()
+	hackable = TRUE
+
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/warrant_officer/ui_state(mob/user)
+	return GLOB.not_incapacitated_and_adjacent_strict_state
+
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/warrant_officer/populate_product_list(scale)
+	listed_products = list(
+		list("STANDARD EQUIPMENT", -1, null, null, null),
+		list("Jackboots", round(1), /obj/item/clothing/shoes/jackboots, VENDOR_ITEM_REGULAR),
+		list("Red Utility Uniform", round(1), /obj/item/clothing/under/rank/synthetic/utility/red, VENDOR_ITEM_REGULAR),
+		list("Frontier Uniform", round(1), /obj/item/clothing/under/rank/synthetic/frontier, VENDOR_ITEM_REGULAR),
+		list("Combat Gloves", round(1), /obj/item/clothing/gloves/marine, VENDOR_ITEM_REGULAR),
+		list("CMB Cap", round(1), /obj/item/clothing/head/cmb, VENDOR_ITEM_REGULAR),
+
+		list("Jackets and Armor", -1, null, null),
+		list("Detective Coat", round(1), /obj/item/clothing/suit/storage/det_suit, VENDOR_ITEM_REGULAR),
+		list("Black Detective Coat", round(1), /obj/item/clothing/suit/storage/det_suit/black, VENDOR_ITEM_REGULAR),
+		list("Internal Affairs Jacket", round(1), /obj/item/clothing/suit/storage/internalaffairs, VENDOR_ITEM_REGULAR),
+		list("Bulletproof Vest", round(1), /obj/item/clothing/suit/armor/bulletproof/badge, VENDOR_ITEM_REGULAR),
+		list("W-Y Balistics Vest", round(1), /obj/item/clothing/suit/armor/vest/security, VENDOR_ITEM_REGULAR),
+
+		list("POUCHES", -1, null, null, null),
+		list("Large Pouch", round(1), /obj/item/storage/pouch/general/large, VENDOR_ITEM_REGULAR),
+		list("Pistol Pouch", round(1), /obj/item/storage/pouch/pistol, VENDOR_ITEM_REGULAR),
+		list("Large Pistol Magazine Pouch", round(1), /obj/item/storage/pouch/magazine/pistol/large, VENDOR_ITEM_REGULAR),
+		list("Machete Pouch (Full)", round(1), /obj/item/storage/pouch/machete/full, VENDOR_ITEM_REGULAR),
+
+		list("MASK", -1, null, null, null),
+		list("Gas Mask", round(1), /obj/item/clothing/mask/gas, VENDOR_ITEM_REGULAR),
+
+		list("Security Equiptment", -1, null, null, null),
+		list("Sec Belt", round(1), /obj/item/storage/belt/security/mp/cmb/full, VENDOR_ITEM_REGULAR),
+		list("Flash", round(4), /obj/item/device/flash, VENDOR_ITEM_REGULAR),
+		list("Handcuffs", round(4), /obj/item/handcuffs, VENDOR_ITEM_REGULAR),
+		list("Zipcuffs", round(10), /obj/item/handcuffs/zip, VENDOR_ITEM_REGULAR),
+		list("Pepperspray", round(4), /obj/item/reagent_container/spray/pepper, VENDOR_ITEM_REGULAR),
+
+		list("RANK", -1, null, null, null),
+		list("Warrant Officer's Beret", round(1), /obj/item/clothing/head/eng, VENDOR_ITEM_REGULAR),
+		list("CMB Badge", round(1), /obj/item/card/id/marshal, VENDOR_ITEM_REGULAR),
+		list("CMB Spearhead Revolver", round(1), /obj/item/weapon/gun/revolver/cmb, VENDOR_ITEM_REGULAR),
+		list("CMB Spearhead Revolver Speedloader", round(10), /obj/item/ammo_magazine/revolver/cmb/normalpoint, VENDOR_ITEM_REGULAR),
+)
+
+//------------QUATERMASTER CREW VENDOR-------
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/quatermaster
+	name = "\improper ColMarTech Surplus Cargo Equiptment Vendor"
+	desc = "An automated supply rack hooked up to a small storage of Officer's Cargo Equiptment."
+	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_QUATERMASTER)
+	req_one_access = list()
+	listed_products = list()
+	hackable = TRUE
+
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/quatermaster/ui_state(mob/user)
+	return GLOB.not_incapacitated_and_adjacent_strict_state
+
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/quatermaster/populate_product_list(scale)
+	listed_products = list(
+		list("STANDARD EQUIPMENT", -1, null, null, null),
+		list("Jackboots", round(1), /obj/item/clothing/shoes/jackboots, VENDOR_ITEM_REGULAR)
+		list("Overalls", round(1), /obj/item/clothing/under/rank/worker_overalls, VENDOR_ITEM_REGULAR),
+		list("Brown Overalls", round(1), /obj/item/clothing/under/brown, VENDOR_ITEM_REGULAR),
+		list("Utility Uniform", round(1), /obj/item/clothing/under/rank/synthetic/utility, VENDOR_ITEM_REGULAR),
+		list("Red Utility Uniform", round(1), /obj/item/clothing/under/rank/synthetic/utility/red, VENDOR_ITEM_REGULAR),
+		list("Yellow Utility Uniform", round(1), /obj/item/clothing/under/rank/synthetic/utility/yellow, VENDOR_ITEM_REGULAR),
+		list("Blue Utility Uniform", round(1), /obj/item/clothing/under/rank/synthetic/utility/blue, VENDOR_ITEM_REGULAR),
+		list("Frontier Uniform", round(1), /obj/item/clothing/under/rank/synthetic/frontier, VENDOR_ITEM_REGULAR),
+		list("Janitor's Uniform", round(1), /obj/clothing/under/rank/janitor, VENDOR_ITEM_REGULAR),
+		list("Leather Gloves", round(1), /obj/item/clothing/gloves/botanic_leather, VENDOR_ITEM_REGULAR),
+		list("Cargo Beanie", round(1), /obj/item/clothing/head/beanie/tan, VENDOR_ITEM_REGULAR),
+
+		list("Jackets and Vests", -1, null, null),
+		list("High-Vis Vest", round(1), /obj/item/clothing/suit/storage/hazardvest, VENDOR_ITEM_REGULAR),
+		list("Blue High-Vis Vest", round(1), /obj/item/clothing/suit/storage/hazardvest/blue, VENDOR_ITEM_REGULAR),
+		list("Yellow High-Vis Vest", round(1), /obj/item/clothing/suit/storage/hazardvest/yellow, VENDOR_ITEM_REGULAR),
+		list("Internal Affairs Jacket", round(1), /obj/item/clothing/suit/storage/internalaffairs, VENDOR_ITEM_REGULAR),
+		list("Bulletproof Vest", round(1), /obj/item/clothing/suit/armor/bulletproof/badge, VENDOR_ITEM_REGULAR),
+		list("W-Y Balistics Vest", round(1), /obj/item/clothing/suit/armor/vest/security, VENDOR_ITEM_REGULAR),
+		list("Bomber Jacket", round(1), /obj/item/clothing/suit/storage/bomber, VENDOR_ITEM_REGULAR),
+
+		list("POUCHES", -1, null, null, null),
+		list("Large Pouch", round(1), /obj/item/storage/pouch/general/large, VENDOR_ITEM_REGULAR),
+		list("Construction Pouch", round(1), /obj/item/storage/pouch/construction, VENDOR_ITEM_REGULAR),
+		list("Explosive Pouch", round(1), /obj/item/storage/pouch/explosive, VENDOR_ITEM_REGULAR),
+		list("Tool Pouch (full)", round(1), /obj/item/storage/pouch/tools/full, VENDOR_ITEM_REGULAR),
+		list("Document Pouch", round(1), obj/item/storage/pouch/document/small, VENDOR_ITEM_REGULAR),
+		list("Large Pouch", round(1), /obj/item/storage/pouch/general/large, VENDOR_ITEM_REGULAR),
+		list("Pistol Pouch", round(1), /obj/item/storage/pouch/pistol, VENDOR_ITEM_REGULAR),
+
+		list("MISCELLANEOUS", -1, null, null, null),
+		list("Hand Labeler", round(1), /obj/item/tool/hand_labeler, VENDOR_ITEM_REGULAR),
+		list("Compact Extinguisher", round(1), /obj/item/tool/extinguisher/mini, VENDOR_ITEM_REGULAR),
+
+				list("RANK", -1, null, null, null),
+		list("Logistics Officer's Beret", round(1), /obj/item/clothing/head/beret/marine/logisticsofficer, VENDOR_ITEM_REGULAR),
+		list("Quatermaster's Stamp", round(1), /obj/item/tool/stamp/ro, VENDOR_ITEM_REGULAR),
+		list("CMB Spearhead Revolver", round(1), /obj/item/weapon/gun/revolver/cmb, VENDOR_ITEM_REGULAR),
+		list("CMB Spearhead Revolver Speedloader", round(10), /obj/item/ammo_magazine/revolver/cmb/normalpoint, VENDOR_ITEM_REGULAR),
+)
+
+
+//------------CAPTAIN CREW VENDOR------------
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/quatermaster
+	name = "\improper ColMarTech Surplus Captain Equiptment Vendor"
+	desc = "An automated supply rack hooked up to a small storage of Captain's Equiptment."
+	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_QUATERMASTER)
+	req_one_access = list()
+	listed_products = list()
+	hackable = TRUE
+
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/quatermaster/ui_state(mob/user)
+	return GLOB.not_incapacitated_and_adjacent_strict_state
+
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/quatermaster/populate_product_list(scale)
+	listed_products = list(
+		list("STANDARD EQUIPMENT", -1, null, null, null),
+		list("Jackboots", round(1), /obj/item/clothing/shoes/jackboots, VENDOR_ITEM_REGULAR)
+		list("Overalls", round(1), /obj/item/clothing/under/rank/worker_overalls, VENDOR_ITEM_REGULAR),
+		list("Brown Overalls", round(1), /obj/item/clothing/under/brown, VENDOR_ITEM_REGULAR),
+		list("Utility Uniform", round(1), /obj/item/clothing/under/rank/synthetic/utility, VENDOR_ITEM_REGULAR),
+		list("Red Utility Uniform", round(1), /obj/item/clothing/under/rank/synthetic/utility/red, VENDOR_ITEM_REGULAR),
+		list("Yellow Utility Uniform", round(1), /obj/item/clothing/under/rank/synthetic/utility/yellow, VENDOR_ITEM_REGULAR),
+		list("Blue Utility Uniform", round(1), /obj/item/clothing/under/rank/synthetic/utility/blue, VENDOR_ITEM_REGULAR),
+		list("Frontier Uniform", round(1), /obj/item/clothing/under/rank/synthetic/frontier, VENDOR_ITEM_REGULAR),
+
+		list("Jackets and Vests", -1, null, null),
+		list("High-Vis Vest", round(1), /obj/item/clothing/suit/storage/hazardvest, VENDOR_ITEM_REGULAR),
+		list("Blue High-Vis Vest", round(1), /obj/item/clothing/suit/storage/hazardvest/blue, VENDOR_ITEM_REGULAR),
+		list("Yellow High-Vis Vest", round(1), /obj/item/clothing/suit/storage/hazardvest/yellow, VENDOR_ITEM_REGULAR),
+		list("Internal Affairs Jacket", round(1), /obj/item/clothing/suit/storage/internalaffairs, VENDOR_ITEM_REGULAR),
+		list("Bulletproof Vest", round(1), /obj/item/clothing/suit/armor/bulletproof/badge, VENDOR_ITEM_REGULAR),
+		list("W-Y Balistics Vest", round(1), /obj/item/clothing/suit/armor/vest/security, VENDOR_ITEM_REGULAR),
+		list("Bomber Jacket", round(1), /obj/item/clothing/suit/storage/bomber, VENDOR_ITEM_REGULAR),
+		list("Black Bomber Jacket", round(1), /obj/item/clothing/suit/storage/bomber/alt, VENDOR_ITEM_REGULAR),
+		list("Directors Jacket", round(1), /obj/item/clothing/suit/storage/director, VENDOR_ITEM_REGULAR),
+		list("Bridge Coat", round(1), /obj/item/clothing/suit/storage/jacket/marine/dress/bridge_coat_grey, VENDOR_ITEM_REGULAR),
+		list("Falcon Jacket", round(1), /obj/item/clothing/suit/storage/jacket/marine/dress/officer/falcon, VENDOR_ITEM_REGULAR),
+
+
+		list("POUCHES", -1, null, null, null),
+		list("Large Pouch", round(1), /obj/item/storage/pouch/general/large, VENDOR_ITEM_REGULAR),
+		list("Construction Pouch", round(1), /obj/item/storage/pouch/construction, VENDOR_ITEM_REGULAR),
+		list("Explosive Pouch", round(1), /obj/item/storage/pouch/explosive, VENDOR_ITEM_REGULAR),
+		list("Tool Pouch (full)", round(1), /obj/item/storage/pouch/tools/full, VENDOR_ITEM_REGULAR),
+		list("Document Pouch", round(1), obj/item/storage/pouch/document/small, VENDOR_ITEM_REGULAR),
+		list("Large Pouch", round(1), /obj/item/storage/pouch/general/large, VENDOR_ITEM_REGULAR),
+		list("Pistol Pouch", round(1), /obj/item/storage/pouch/pistol, VENDOR_ITEM_REGULAR),
+
+		list("MISCELLANEOUS", -1, null, null, null),
+		list("Hand Labeler", round(1), /obj/item/tool/hand_labeler, VENDOR_ITEM_REGULAR),
+		list("Compact Extinguisher", round(1), /obj/item/tool/extinguisher/mini, VENDOR_ITEM_REGULAR),
+
+				list("RANK", -1, null, null, null),
+		list("Captain's Beret", round(1), /obj/item/clothing/head/beret/centcom/captain, VENDOR_ITEM_REGULAR),
+		list("Chief Officer's Beret", round(1), /obj/item/clothing/head/beret/marine/chiefofficer, VENDOR_ITEM_REGULAR),
+		list("Captain's Medal", round(1), /obj/item/clothing/accessory/medal/gold/captain, VENDOR_ITEM_REGULAR),
+		list("Auto-9 Pistol", round(1), /obj/item/weapon/gun/pistol/auto9, VENDOR_ITEM_REGULAR),
+		list("Auto-9 Pistol Magazine", round(10), /obj/item/ammo_magazine/pistol/auto9, VENDOR_ITEM_REGULAR),
