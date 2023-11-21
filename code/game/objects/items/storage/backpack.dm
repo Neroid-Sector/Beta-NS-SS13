@@ -622,7 +622,6 @@
 	name = "\improper M68 Thermal Cloak"
 	desc = "The lightweight thermal dampeners and optical camouflage provided by this cloak are weaker than those found in standard USCM ghillie suits. In exchange, the cloak can be worn over combat armor and offers the wearer high maneuverability and adaptability to many environments."
 	icon_state = "scout_cloak"
-	uniform_restricted = list(/obj/item/clothing/suit/storage/marine/M3S) //Need to wear Scout armor and helmet to equip this.
 	has_gamemode_skin = FALSE //same sprite for all gamemode.
 	var/camo_active = FALSE
 	var/camo_alpha = 10
@@ -851,7 +850,7 @@
 	desc = "A specialized satchel worn by USCM technicians and engineers. It carries two small fuel tanks for quick welder refueling and use."
 	icon_state = "satchel_marine_welder"
 	item_state = "satchel_marine_welder"
-	max_storage_space = 12
+	max_storage_space = 15
 	has_gamemode_skin = FALSE
 	max_fuel = 100
 	worn_accessible = TRUE
@@ -861,7 +860,7 @@
 	desc = "A specialized Chestrig worn by technicians and engineers. It carries one medium fuel tank for quick welder refueling and use."
 	icon_state = "welder_chestrig"
 	item_state = "welder_chestrig"
-	max_storage_space = 12
+	max_storage_space = 15
 	has_gamemode_skin = FALSE
 	max_fuel = 100
 	worn_accessible = TRUE

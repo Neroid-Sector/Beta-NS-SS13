@@ -15,8 +15,8 @@
 	name = "WO Commanding Officer"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND_WO
 
-	assignment = JOB_WO_CO
-	rank = JOB_WO_CO
+	assignment = JOB_MS_CO
+	rank = JOB_MS_CO
 	paygrade = "MO2"
 	role_comm_title = "CDR"
 	skills = /datum/skills/commander
