@@ -39,6 +39,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_smartgun, list(
 		list("HELMET OPTICS", 0, null, null, null),
 		list("Medical Helmet Optic", 15, /obj/item/device/helmet_visor/medical, null, VENDOR_ITEM_REGULAR),
 		list("Welding Visor", 5, /obj/item/device/helmet_visor/welding_visor, null, VENDOR_ITEM_REGULAR),
+		list("Nigt Vision Visor", 5, /obj/item/device/helmet_visor/night_vision, null, VENDOR_ITEM_REGULAR),
 
 		list("PAMPHLETS", 0, null, null, null),
 		list("JTAC Pamphlet", 15, /obj/item/pamphlet/skill/jtac, null, VENDOR_ITEM_REGULAR),
@@ -56,7 +57,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_smartgun, list(
 	desc = "An automated gear rack for Squad Smartgunners."
 	icon_state = "sg_gear"
 	show_points = TRUE
-	vendor_role = list(JOB_SQUAD_SMARTGUN)
+	vendor_role = list(JOB_SQUAD_SMARTGUN, JOB_MS_SMARTGUNNER)
 	req_access = list(ACCESS_MARINE_SMARTPREP)
 
 /obj/structure/machinery/cm_vending/gear/smartgun/get_listed_products(mob/user)
@@ -104,7 +105,7 @@ GLOBAL_LIST_INIT(cm_vending_clothing_smartgun, list(
 	name = "\improper ColMarTech Squad Smartgun Equipment Rack"
 	desc = "An automated rack hooked up to a colossal storage of Squad Smartgun standard-issue equipment."
 	req_access = list(ACCESS_MARINE_SMARTPREP)
-	vendor_role = list(JOB_SQUAD_SMARTGUN)
+	vendor_role = list(JOB_SQUAD_SMARTGUN, JOB_MS_SMARTGUNNER)
 
 /obj/structure/machinery/cm_vending/clothing/smartgun/get_listed_products(mob/user)
 	return GLOB.cm_vending_clothing_smartgun
