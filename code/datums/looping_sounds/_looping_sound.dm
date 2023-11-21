@@ -139,7 +139,7 @@
 		sound_to_play.channel = get_free_channel()
 		sound_to_play.volume = volume_override || volume //Use volume as fallback if theres no override
 		SEND_SOUND(parent, sound_to_play)
-	return
+		return
 	if (is_sound_projecting)
 		playsound(parent, sound_to_play, volume, vary, extra_range, VOLUME_SFX, 0, 0, falloff_distance)
 		return
