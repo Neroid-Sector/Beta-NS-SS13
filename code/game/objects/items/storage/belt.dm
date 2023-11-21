@@ -458,6 +458,10 @@
 	for(var/i = 1 to storage_slots)
 		new /obj/item/ammo_magazine/rifle/m41aMK1 (src)
 
+/obj/item/storage/belt/marine/m41amk1heap/fill_preset_inventory()
+	for(var/i = 1 to storage_slots)
+		new /obj/item/ammo_magazine/rifle/m41aMK1/heap (src)
+
 /obj/item/storage/belt/marine/m39/fill_preset_inventory()
 	for(var/i = 1 to storage_slots)
 		new /obj/item/ammo_magazine/smg/m39 (src)
@@ -1729,7 +1733,17 @@
 	new /obj/item/tool/weldingtool(src)
 	new /obj/item/tool/wirecutters(src)
 	new /obj/item/device/multitool(src)
+	new	/obj/item/tool/crowbar(src)
 
+/obj/item/storage/belt/gun/utility/full/ms/fill_preset_inventory()
+	handle_item_insertion(new /obj/item/weapon/gun/smg/nailgun/compact())
+	new /obj/item/tool/screwdriver(src)
+	new /obj/item/tool/wrench(src)
+	new /obj/item/tool/weldingtool(src)
+	new /obj/item/tool/wirecutters(src)
+	new /obj/item/device/multitool(src)
+	new	/obj/item/tool/crowbar(src)
+	new /obj/item/tool/shovel/etool/folded(src)
 ////////////OTHER BELTS//////////////
 
 /obj/item/storage/belt/tank

@@ -238,12 +238,12 @@
 //*****************************************************************************************************/
 
 /datum/equipment_preset/other/elite_merc
-	name = "Elite Mercenary"
+	name = "MLU Miltia"
 
-	assignment = "Elite Mercenary"
+	assignment = "MLU Miltia"
 	rank = "Mercenary"
 	idtype = /obj/item/card/id/centcom
-	faction = FACTION_MERCENARY
+	faction = FACTION_CLF
 
 /datum/equipment_preset/other/elite_merc/New()
 	. = ..()
@@ -268,15 +268,15 @@
 //*****************************************************************************************************/
 
 /datum/equipment_preset/other/elite_merc/standard
-	name = "Elite Mercenary (Standard Miner)"
+	name = "MLU Miltia (Standard Miner)"
 	paygrade = "Elite Freelancer Standard"
 	flags = EQUIPMENT_PRESET_EXTRA
 
 	idtype = /obj/item/card/id/centcom
-	assignment = "Mercenary Miner"
+	assignment = "MLU Miltia Miner"
 	rank = "Mercenary"
 	skills = /datum/skills/mercenary/elite
-	faction = FACTION_MERCENARY
+	faction = FACTION_CLF
 
 /datum/equipment_preset/other/elite_merc/standard/load_gear(mob/living/carbon/human/new_human)
 	//TODO: add unique backpacks and satchels
@@ -305,15 +305,15 @@
 //*****************************************************************************************************/
 
 /datum/equipment_preset/other/elite_merc/heavy
-	name = "Elite Mercenary (Heavy)"
+	name = "MLU Miltia (Heavy)"
 	paygrade = "Elite Freelancer Heavy"
 	flags = EQUIPMENT_PRESET_EXTRA
 
 	idtype = /obj/item/card/id/centcom
-	assignment = "Mercenary Heavy"
+	assignment = "MLU Miltia Heavy"
 	rank = "Mercenary"
 	skills = /datum/skills/mercenary/elite/heavy
-	faction = FACTION_MERCENARY
+	faction = FACTION_CLF
 
 /datum/equipment_preset/other/elite_merc/heavy/load_gear(mob/living/carbon/human/new_human)
 	//TODO: add backpacks and satchels
@@ -345,15 +345,15 @@
 
 //*****************************************************************************************************/
 /datum/equipment_preset/other/elite_merc/engineer
-	name = "Elite Mercenary (Engineer)"
+	name = "MLU Miltia (Engineer)"
 	paygrade = "Elite Freelancer Engineer"
 	flags = EQUIPMENT_PRESET_EXTRA
 
 	idtype = /obj/item/card/id/data
-	assignment = "Mercenary Engineer"
+	assignment = "MLU Miltia Engineer"
 	rank = "Mercenary"
 	skills = /datum/skills/mercenary/elite/engineer
-	faction = FACTION_MERCENARY
+	faction = FACTION_CLF
 
 
 /datum/equipment_preset/other/elite_merc/engineer/load_gear(mob/living/carbon/human/new_human)
@@ -399,15 +399,15 @@
 //*****************************************************************************************************/
 
 /datum/equipment_preset/other/elite_merc/medic
-	name = "Elite Mercenary (Medic)"
+	name = "MLU Miltia (Medic)"
 	paygrade = "Elite Freelancer Medic"
 	flags = EQUIPMENT_PRESET_EXTRA
 
 	idtype = /obj/item/card/id/centcom
-	assignment = "Mercenary Medic"
+	assignment = "MLU Miltia Medic"
 	rank = "Mercenary"
 	skills = /datum/skills/mercenary/elite/medic
-	faction = FACTION_MERCENARY
+	faction = FACTION_CLF
 
 /datum/equipment_preset/other/elite_merc/medic/load_gear(mob/living/carbon/human/new_human)
 	//webbing
@@ -445,15 +445,15 @@
 //*****************************************************************************************************/
 
 /datum/equipment_preset/other/elite_merc/leader
-	name = "Elite Mercenary (Leader)"
+	name = "MLU Miltia (Leader)"
 	paygrade = "Elite Freelancer Leader"
 	flags = EQUIPMENT_PRESET_EXTRA
 
 	idtype = /obj/item/card/id/centcom
-	assignment = "Mercenary Warlord"
+	assignment = "MLU Miltia Warlord"
 	rank = "Mercenary"
 	skills = /datum/skills/mercenary/elite/leader
-	faction = FACTION_MERCENARY
+	faction = FACTION_CLF
 
 /datum/equipment_preset/other/elite_merc/leader/load_gear(mob/living/carbon/human/new_human)
 	//clothes

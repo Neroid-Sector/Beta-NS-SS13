@@ -88,7 +88,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_engi, list(
 	name = "\improper ColMarTech Squad ComTech Gear Rack"
 	desc = "An automated gear rack for combat technicians."
 	icon_state = "eng_gear"
-	vendor_role = list(JOB_SQUAD_ENGI)
+	vendor_role = list(JOB_SQUAD_ENGI, JOB_MS_ENGINEER)
 	req_access = list(ACCESS_MARINE_ENGPREP)
 
 /obj/structure/machinery/cm_vending/gear/engi/get_listed_products(mob/user)
@@ -103,7 +103,6 @@ GLOBAL_LIST_INIT(cm_vending_clothing_engi, list(
 		list("Map", 0, /obj/item/map/current_map, MARINE_CAN_BUY_KIT, VENDOR_ITEM_MANDATORY),
 
 		list("ARMOR (CHOOSE 1)", 0, null, null, null),
-		list("Light Armor", 0, /obj/item/clothing/suit/storage/marine/light, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_REGULAR),
 		list("Medium Armor", 0, /obj/item/clothing/suit/storage/marine/medium, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_RECOMMENDED),
 		list("Heavy Armor", 0, /obj/item/clothing/suit/storage/marine/heavy, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_REGULAR),
 
@@ -158,7 +157,7 @@ GLOBAL_LIST_INIT(cm_vending_clothing_engi, list(
 	name = "\improper ColMarTech Squad ComTech Equipment Rack"
 	desc = "An automated rack hooked up to a colossal storage of combat technician standard-issue equipment."
 	req_access = list(ACCESS_MARINE_ENGPREP)
-	vendor_role = list(JOB_SQUAD_ENGI)
+	vendor_role = list(JOB_SQUAD_ENGI, JOB_MS_ENGINEER)
 
 /obj/structure/machinery/cm_vending/clothing/engi/get_listed_products(mob/user)
 	return GLOB.cm_vending_clothing_engi
@@ -198,4 +197,5 @@ GLOBAL_LIST_INIT(cm_vending_clothing_engi, list(
 		/obj/item/cell/high,
 		/obj/item/tool/shovel/etool/folded,
 		/obj/item/device/lightreplacer,
+		/obj/item/device/helmet_visor/night_vision,
 	)

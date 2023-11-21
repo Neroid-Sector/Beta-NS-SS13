@@ -371,7 +371,7 @@
 	fire_sound = "gun_pulse"
 	reload_sound = 'sound/weapons/handling/m41_reload.ogg'
 	unload_sound = 'sound/weapons/handling/m41_unload.ogg'
-	current_mag = /obj/item/ammo_magazine/rifle/m41aMK1
+	current_mag = /obj/item/ammo_magazine/rifle/m41aMK1/heap
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
@@ -383,6 +383,22 @@
 		/obj/item/attachable/attached_gun/grenade/mk1,
 		/obj/item/attachable/stock/rifle/collapsible,
 		/obj/item/attachable/attached_gun/shotgun,
+	)
+	accepted_ammo = list(
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/ammo_magazine/rifle/rubber,
+		/obj/item/ammo_magazine/rifle/extended,
+		/obj/item/ammo_magazine/rifle/explosive,
+		/obj/item/ammo_magazine/rifle/ap,
+		/obj/item/ammo_magazine/rifle/incendiary,
+		/obj/item/ammo_magazine/rifle/toxin,
+		/obj/item/ammo_magazine/rifle/penetrating,
+		/obj/item/ammo_magazine/rifle/m41aMK1,
+		/obj/item/ammo_magazine/rifle/m41aMK1/ap,
+		/obj/item/ammo_magazine/rifle/m41aMK1/incendiary,
+		/obj/item/ammo_magazine/rifle/m41aMK1/heap,
+		/obj/item/ammo_magazine/rifle/m41aMK1/toxin,
+		/obj/item/ammo_magazine/rifle/m41aMK1/penetrating,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
@@ -440,6 +456,7 @@
 		/obj/item/ammo_magazine/rifle/rubber,
 		/obj/item/ammo_magazine/rifle/extended,
 		/obj/item/ammo_magazine/rifle/ap,
+		/obj/item/ammo_magazine/rifle/explosive,
 		/obj/item/ammo_magazine/rifle/incendiary,
 		/obj/item/ammo_magazine/rifle/toxin,
 		/obj/item/ammo_magazine/rifle/penetrating,
