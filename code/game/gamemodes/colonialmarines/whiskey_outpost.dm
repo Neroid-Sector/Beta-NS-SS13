@@ -535,7 +535,7 @@
 
 /obj/item/device/whiskey_supply_beacon //Whiskey Outpost Supply beacon. Might as well reuse the IR target beacon (Time to spook the fucking shit out of people.)
 	name = "ASB beacon"
-	desc = "Ammo Supply Beacon, it has different settings for different supplies. Look at your weapons verb tab to be able to switch ammo drops."
+	desc = "Ammo Supply Beacon, it has 5 different settings for different supplies. Look at your weapons verb tab to be able to switch ammo drops."
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "ir_beacon"
 	w_class = SIZE_SMALL
@@ -562,9 +562,6 @@
 		"Pyrotechnician tanks",
 		"Scout ammo",
 		"Smartgun ammo",
-		"Medical Supplies",
-		"Engineering Supplies",
-		"General Purpose Resupply",
 	)
 
 	var/supply_drop_choice = tgui_input_list(user, "Which supplies to call down?", "Supply Drop", supplies)
@@ -591,15 +588,6 @@
 		if("Scout ammo")
 			supply_drop = 6
 			to_chat(usr, SPAN_NOTICE("Scout ammo will now drop!"))
-		if("Medical Supplies")
-			supply_drop = 7
-			to_chat(usr, SPAN_NOTICE("Medical Supplies will now drop!"))
-		if("Engineering Supplies")
-			supply_drop = 8
-			to_chat(usr, SPAN_NOTICE("Engineering Supplies will now drop!"))
-		if("General Purpose Resupply")
-			supply_drop = 9
-			to_chat(usr, SPAN_NOTICE("Food and supplies will now drop!"))
 		else
 			return
 
@@ -636,15 +624,19 @@
 	crate = new /obj/structure/closet/crate/secure/weapon(T)
 	switch(SD)
 		if(0) // Alright 2 mags for the SL, a few mags for M41As that people would need. M39s get some love and split the shotgun load between slugs and buckshot.
-			spawnitems = list(/obj/item/ammo_magazine/rifle/m41aMK1/ap,
-							/obj/item/ammo_magazine/rifle/m41aMK1/ap,
-							/obj/item/ammo_magazine/rifle/m41aMK1/ap,
-							/obj/item/ammo_magazine/rifle/m41aMK1/ap,
-							/obj/item/ammo_magazine/rifle/m41aMK1/ap,
-							/obj/item/ammo_magazine/rifle/m41aMK1/heap,
-							/obj/item/ammo_magazine/rifle/m41aMK1/heap,
-							/obj/item/ammo_magazine/rifle/m41aMK1/heap,
-							/obj/item/ammo_magazine/rifle/m41aMK1/heap,
+			spawnitems = list(/obj/item/ammo_magazine/rifle/m41aMK1,
+							/obj/item/ammo_magazine/rifle/m41aMK1,
+							/obj/item/ammo_magazine/rifle,
+							/obj/item/ammo_magazine/rifle,
+							/obj/item/ammo_magazine/rifle,
+							/obj/item/ammo_magazine/rifle/ap,
+							/obj/item/ammo_magazine/rifle/ap,
+							/obj/item/ammo_magazine/rifle/ap,
+							/obj/item/ammo_magazine/rifle/ap,
+							/obj/item/ammo_magazine/smg/m39,
+							/obj/item/ammo_magazine/smg/m39,
+							/obj/item/ammo_magazine/smg/m39,
+							/obj/item/ammo_magazine/smg/m39,
 							/obj/item/ammo_magazine/smg/m39/ap,
 							/obj/item/ammo_magazine/smg/m39/ap,
 							/obj/item/ammo_magazine/smg/m39/ap,
@@ -661,12 +653,12 @@
 							/obj/item/ammo_magazine/rocket,
 							/obj/item/ammo_magazine/rocket,
 							/obj/item/ammo_magazine/rocket,
+							/obj/item/ammo_magazine/rocket,
+							/obj/item/ammo_magazine/rocket,
+							/obj/item/ammo_magazine/rocket,
 							/obj/item/ammo_magazine/rocket/ap,
 							/obj/item/ammo_magazine/rocket/ap,
 							/obj/item/ammo_magazine/rocket/ap,
-							/obj/item/ammo_magazine/rocket/ap,
-							/obj/item/ammo_magazine/rocket/ap,
-							/obj/item/ammo_magazine/rocket/wp,
 							/obj/item/ammo_magazine/rocket/wp,
 							/obj/item/ammo_magazine/rocket/wp,
 							/obj/item/ammo_magazine/rocket/wp)
@@ -689,9 +681,7 @@
 							/obj/item/ammo_magazine/sniper/flak)
 		if(4) // Give them explosives + Grenades for the Grenade spec. Might be too many grenades, but we'll find out.
 			spawnitems = list(/obj/item/storage/box/explosive_mines,
-							/obj/item/storage/belt/grenade/full,
-							/obj/item/storage/box/nade_box,
-							/obj/item/storage/box/nade_box/frag)
+							/obj/item/storage/belt/grenade/full)
 		if(5) // Pyrotech
 			var/fuel = pick(/obj/item/ammo_magazine/flamer_tank/large/B, /obj/item/ammo_magazine/flamer_tank/large/X)
 			spawnitems = list(/obj/item/ammo_magazine/flamer_tank/large,
@@ -702,48 +692,6 @@
 							/obj/item/ammo_magazine/rifle/m4ra/custom,
 							/obj/item/ammo_magazine/rifle/m4ra/custom/incendiary,
 							/obj/item/ammo_magazine/rifle/m4ra/custom/impact)
-		if(7) // Medical
-			spawnitems = list(/obj/item/tool/surgery/surgical_line,
-			/obj/item/tool/surgery/synthgraft,
-			/obj/item/device/healthanalyzer,
-			/obj/item/device/healthanalyzer,
-			/obj/item/storage/belt/medical/full,
-			/obj/item/storage/belt/medical/lifesaver/full,
-			/obj/item/storage/firstaid/regular,
-			/obj/item/storage/firstaid/adv,
-			/obj/item/storage/firstaid/adv,
-			/obj/item/storage/firstaid/o2,
-			/obj/item/storage/firstaid/toxin,
-			/obj/item/storage/firstaid/rad,
-			/obj/item/storage/pouch/medical,
-			/obj/item/reagent_container/blood/OMinus,
-			/obj/item/reagent_container/blood/OMinus,
-			/obj/item/reagent_container/blood/OMinus,
-			/obj/item/reagent_container/blood/OMinus,
-			/obj/item/storage/pouch/firstaid/full)
-		if(8) //Engi
-			spawnitems = list( /obj/item/storage/pouch/construction/full,
-			/obj/item/stack/sandbags_empty/full,
-			/obj/item/stack/sandbags_empty/full,
-			/obj/item/tool/shovel/etool/folded,
-			/obj/item/tool/shovel/etool/folded,
-			/obj/item/stack/folding_barricade/three,
-			/obj/item/stack/folding_barricade/three,
-			/obj/item/storage/toolbox/mechanical,
-			/obj/item/storage/box/kit/defensegunner,
-			/obj/item/storage/box/kit/engineering_supply_kit)
-		if(9) //General
-			spawnitems = list(/obj/item/device/radio,
-			/obj/item/device/radio,
-			/obj/item/device/radio,
-			/obj/item/storage/firstaid/regular,
-			/obj/item/storage/box/donkpockets,
-			/obj/item/storage/box/donkpockets,
-			/obj/item/storage/box/m94,
-			/obj/item/storage/box/m94,
-			/obj/item/storage/box/m94/signal,
-			/obj/item/ammo_box/magazine/misc/mre,
-			/obj/item/device/whiskey_supply_beacon)
 	crate.storage_capacity = 60
 	for(var/path in spawnitems)
 		new path(crate)

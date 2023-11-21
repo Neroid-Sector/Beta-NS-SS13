@@ -276,7 +276,6 @@
 	desc = "Designed to be worn over a jumpsuit rather than clipped on."
 	icon_state = "webbing"
 	item_state = "webbing"
-	storage_slots = 8
 	allowed = list(
 		/obj/item/weapon/baton,
 		/obj/item/handcuffs,
