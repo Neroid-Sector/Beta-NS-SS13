@@ -2,7 +2,7 @@
 	title = JOB_MM_CHEF_LIBERTY
 	supervisors = "your ships Quatermaster"
 	selection_class = "job_cmp"
-	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADMIN_NOTIFY|ROLE_WHITELISTED
+	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/merchant_marine/uscss/chef/liberty
 
 /obj/effect/landmark/start/ship_chef/liberty_star

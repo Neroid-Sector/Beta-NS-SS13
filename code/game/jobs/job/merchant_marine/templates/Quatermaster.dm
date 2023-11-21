@@ -1,7 +1,7 @@
 /datum/job/merchant_marine/quatermaster
 	title = JOB_MM_QUATERMASTER
 	supervisors = "your ships Captain"
-	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADMIN_NOTIFY|ROLE_WHITELISTED
+	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/merchant_marine/uscss/quatermaster
 
 /obj/effect/landmark/start/ship_qm
