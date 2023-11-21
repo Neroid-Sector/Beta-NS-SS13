@@ -1,4 +1,4 @@
-/datum/job/merchant_marine/rubicon_run/chef
+/datum/job/merchant_marine/chef/rubicon
 	title = JOB_MM_CHEF_RUBICON
 	supervisors = "your ships Quatermaster"
 	selection_class = "job_xeno_queen"
@@ -8,4 +8,4 @@
 /obj/effect/landmark/start/ship_chef/rubicon_run
 	name = JOB_MM_CHEF_RUBICON
 	icon_state = "x"
-	job = /datum/job/merchant_marine/rubicon_run/chef
+	job = /datum/job/merchant_marine/chef/rubicon

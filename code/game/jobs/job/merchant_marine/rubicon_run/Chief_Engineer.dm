@@ -1,4 +1,4 @@
-/datum/job/merchant_marine/rubicon_run/chief_engineer
+/datum/job/merchant_marine/chief_engineer/rubicon
 	title = JOB_MM_CHIEF_ENGINEER_RUBICON
 	supervisors = "your ships Captain"
 	selection_class = "job_xeno_queen"
@@ -8,4 +8,4 @@
 /obj/effect/landmark/start/ship_ce/rubicon_run
 	name = JOB_MM_CHIEF_ENGINEER_RUBICON
 	icon_state = "x"
-	job = /datum/job/merchant_marine/rubicon_run/chief_engineer
+	job = /datum/job/merchant_marine/chief_engineer/rubicon

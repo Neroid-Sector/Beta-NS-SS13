@@ -1,4 +1,4 @@
-/datum/job/merchant_marine/pattons_ghost/doctor
+/datum/job/merchant_marine/doctor/patton
 	title = JOB_MM_DOCTOR_PATTON
 	supervisors = "your ships Chief Medical Officer"
 	selection_class = "job_cl"
@@ -8,4 +8,4 @@
 /obj/effect/landmark/start/ship_doctor
 	name = JOB_MM_DOCTOR_PATTON
 	icon_state = "x"
-	job = /datum/job/merchant_marine/pattons_ghost/doctor
+	job = /datum/job/merchant_marine/doctor/patton

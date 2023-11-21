@@ -1,4 +1,4 @@
-/datum/job/merchant_marine/pattons_ghost/quatermaster
+/datum/job/merchant_marine/quatermaster/patton
 	title = JOB_MM_QUATERMASTER_PATTON
 	supervisors = "your ships Captain"
 	selection_class = "job_cl"
@@ -8,4 +8,4 @@
 /obj/effect/landmark/start/ship_qm/pattons_ghost
 	name = JOB_MM_QUATERMASTER_PATTON
 	icon_state = "x"
-	job = /datum/job/merchant_marine/pattons_ghost/quatermaster
+	job = /datum/job/merchant_marine/quatermaster/patton

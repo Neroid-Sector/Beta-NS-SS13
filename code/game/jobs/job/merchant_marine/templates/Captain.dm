@@ -1,4 +1,4 @@
-/datum/job/merchant_marine/pattons_ghost/captain
+/datum/job/merchant_marine/captain
 	title = JOB_MM_CAPTAIN_PATTON
 	supervisors = "your factions high command"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADMIN_NOTIFY|ROLE_WHITELISTED

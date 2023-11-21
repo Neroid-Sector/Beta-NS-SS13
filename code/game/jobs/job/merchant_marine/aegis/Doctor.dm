@@ -1,4 +1,4 @@
-/datum/job/merchant_marine/aegis/doctor
+/datum/job/merchant_marine/doctor/aegis
 	title = JOB_MM_DOCTOR_AEGIS
 	supervisors = "your ships Chief Medical Officer"
 	selection_class = "job_co"
@@ -8,4 +8,4 @@
 /obj/effect/landmark/start/ship_doctor/aegis
 	name = JOB_MM_DOCTOR_AEGIS
 	icon_state = "x"
-	job = /datum/job/merchant_marine/aegis/doctor
+	job = /datum/job/merchant_marine/doctor/aegis

@@ -1,4 +1,4 @@
-/datum/job/merchant_marine/liberty_star/chef
+/datum/job/merchant_marine/chef/liberty
 	title = JOB_MM_CHEF_LIBERTY
 	supervisors = "your ships Quatermaster"
 	selection_class = "job_cmp"
@@ -8,4 +8,4 @@
 /obj/effect/landmark/start/ship_chef/liberty_star
 	name = JOB_MM_CHEF_LIBERTY
 	icon_state = "x"
-	job = /datum/job/merchant_marine/liberty_star/chef
+	job = /datum/job/merchant_marine/chef/liberty

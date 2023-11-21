@@ -1,4 +1,4 @@
-/datum/job/merchant_marine/rubicon_run/warrant_officer
+/datum/job/merchant_marine/warrant_officer/rubicon
 	title = JOB_MM_WARRANT_OFFICER_RUBICON
 	supervisors = "your ships Captain"
 	selection_class = "job_xeno_queen"
@@ -8,4 +8,4 @@
 /obj/effect/landmark/start/ship_wo/rubicon_run
 	name = JOB_MM_QUATERMASTER_RUBICON
 	icon_state = "x"
-	job = /datum/job/merchant_marine/rubicon_run/warrant_officer
+	job = /datum/job/merchant_marine/warrant_officer/rubicon

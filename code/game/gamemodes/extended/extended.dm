@@ -9,7 +9,7 @@
 	taskbar_icon = 'icons/taskbar/gml_colonyrp.png'
 
 /datum/game_mode/announce()
-	to_world("<B>The current game mode is - Extended!</B>")
+	to_world("<B>The current game mode is - Merhcant Marine!</B>")
 
 /datum/game_mode/extended/get_roles_list()
 	return ROLES_MERCHANT_MARINE

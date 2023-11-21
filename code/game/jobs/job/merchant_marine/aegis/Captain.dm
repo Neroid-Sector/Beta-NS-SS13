@@ -1,4 +1,4 @@
-/datum/job/merchant_marine/aegis/captain
+/datum/job/merchant_marine/captain/aegis
 	title = JOB_MM_CAPTAIN_AEGIS
 	supervisors = "your factions high command"
 	selection_class = "job_co"
@@ -8,4 +8,4 @@
 /obj/effect/landmark/start/ship_captain/aegis
 	name = JOB_MM_CAPTAIN_AEGIS
 	icon_state = "x"
-	job = /datum/job/merchant_marine/aegis/captain
+	job = /datum/job/merchant_marine/captain/aegis

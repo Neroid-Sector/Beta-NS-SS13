@@ -1,4 +1,4 @@
-/datum/job/merchant_marine/liberty_star/maint_tech
+/datum/job/merchant_marine/maint_tech/liberty
 	title = JOB_MM_MAINTENANCE_TECH_LIBERTY
 	supervisors = "your ships Chief Engineer"
 	selection_class = "job_cmp"
@@ -8,4 +8,4 @@
 /obj/effect/landmark/start/ship_mt/liberty_star
 	name = JOB_MM_MAINTENANCE_TECH_LIBERTY
 	icon_state = "x"
-	job = /datum/job/merchant_marine/liberty_star/maint_tech
+	job = /datum/job/merchant_marine/maint_tech/liberty

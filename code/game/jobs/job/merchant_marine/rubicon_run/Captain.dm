@@ -1,4 +1,4 @@
-/datum/job/merchant_marine/rubicon_run/captain
+/datum/job/merchant_marine/captain/rubicon
 	title = JOB_MM_CAPTAIN_RUBICON
 	supervisors = "your factions high command"
 	selection_class = "job_xeno_queen"
@@ -8,4 +8,4 @@
 /obj/effect/landmark/start/ship_captain/rubicon_run
 	name = JOB_MM_CAPTAIN_RUBICON
 	icon_state = "x"
-	job = /datum/job/merchant_marine/rubicon_run/captain
+	job = /datum/job/merchant_marine/captain/rubicon

@@ -1,4 +1,4 @@
-/datum/job/merchant_marine/aegis/maint_tech
+/datum/job/merchant_marine/maint_tech/aegis
 	title = JOB_MM_MAINTENANCE_TECH_AEGIS
 	supervisors = "your ships Chief Engineer"
 	selection_class = "job_co"
@@ -8,4 +8,4 @@
 /obj/effect/landmark/start/ship_mt/aegis
 	name = JOB_MM_MAINTENANCE_TECH_AEGIS
 	icon_state = "x"
-	job = /datum/job/merchant_marine/aegis/maint_tech
+	job = /datum/job/merchant_marine/maint_tech/aegis

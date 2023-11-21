@@ -1,4 +1,4 @@
-/datum/job/merchant_marine/aegis/quatermaster
+/datum/job/merchant_marine/quatermaster/aegis
 	title = JOB_MM_QUATERMASTER_AEGIS
 	supervisors = "your ships Captain"
 	selection_class = "job_co"
@@ -8,4 +8,4 @@
 /obj/effect/landmark/start/ship_qm/aegis
 	name = JOB_MM_QUATERMASTER_AEGIS
 	icon_state = "x"
-	job = /datum/job/merchant_marine/aegis/quatermaster
+	job = /datum/job/merchant_marine/quatermaster/aegis

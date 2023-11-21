@@ -1,4 +1,4 @@
-/datum/job/merchant_marine/rubicon_run/cargo_tech
+/datum/job/merchant_marine/cargo_tech/rubicon
 	title = JOB_MM_CARGO_TECH_RUBICON
 	supervisors = "your ships Quatermaster"
 	selection_class = "job_xeno_queen"
@@ -8,4 +8,4 @@
 /obj/effect/landmark/start/ship_ct/rubicon_run
 	name = JOB_MM_CARGO_TECH_RUBICON
 	icon_state = "x"
-	job = /datum/job/merchant_marine/rubicon_run/cargo_tech
+	job = /datum/job/merchant_marine/cargo_tech/rubicon
