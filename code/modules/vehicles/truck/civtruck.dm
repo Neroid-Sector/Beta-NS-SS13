@@ -15,7 +15,7 @@
 	bound_y = 0
 
 
-	interior_map = /datum/map_template/interior/truck
+	interior_map = /datum/map_template/interior/civtruck
 	entrances = list(
 		"left" = list(2, 0),
 		"right" = list(-1, 0)
@@ -35,10 +35,26 @@
 /obj/vehicle/multitile/civtruck/civtruck_2
 	name = "civilian truck"
 	icon_state = "civtruck_2"
+	passengers_slots = 6
+	xenos_slots = 6
+	interior_map = /datum/map_template/interior/civtruck
+
+	entrances = list(
+		"left" = list(2, 0),
+		"right" = list(-1, 0),
+		"back_left" = list(1, 2),
+		"back_right" = list(0, 2)
+	)
+
 
 /obj/vehicle/multitile/civtruck/civtruck_3
 	name = "civilian truck"
 	icon_state = "civtruck_3"
+	interior_map = /datum/map_template/interior/truck
+	entrances = list(
+		"left" = list(2, 0),
+		"right" = list(-1, 0)
+	)
 
 /*
 ** PRESETS SPAWNERS

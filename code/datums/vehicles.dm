@@ -49,3 +49,11 @@
 /datum/map_template/interior/crane
 	name = "Crane"
 	interior_id = "crane"
+
+/datum/map_template/interior/civvan
+	name = "CivvVan"
+	interior_id = "civvan"
+
+/datum/map_template/interior/civtruck
+	name = "Civtruck"
+	interior_id = "civtruck"

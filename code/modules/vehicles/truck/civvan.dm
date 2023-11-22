@@ -32,6 +32,20 @@
 		/obj/item/hardpoint/locomotion/truck/wheels/civvan
 	)
 
+
+/obj/vehicle/multitile/civvan/civvan_2
+	name = "civilian van"
+	icon_state = "civvan"
+	passengers_slots = 4
+	xenos_slots = 4
+	interior_map = /datum/map_template/interior/civvan
+
+	entrances = list(
+		"left" = list(2, 0),
+		"right" = list(-1, 0)
+	)
+
+
 /*
 ** PRESETS SPAWNERS
 */
