@@ -45,6 +45,17 @@
 		"right" = list(-1, 0)
 	)
 
+/obj/vehicle/multitile/civvan/civvan_3
+	name = "CMB van"
+	icon_state = "cmbvan"
+	passengers_slots = 4
+	xenos_slots = 4
+	interior_map = /datum/map_template/interior/civvan
+
+	entrances = list(
+		"left" = list(2, 0),
+		"right" = list(-1, 0)
+	)
 
 /*
 ** PRESETS SPAWNERS
