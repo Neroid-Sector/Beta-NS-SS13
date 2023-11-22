@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(command_apc_list)
 
 	interior_map = /datum/map_template/interior/apc
 
-	passengers_slots = 15
+	passengers_slots = 18
 	xenos_slots = 8
 
 	entrances = list(
