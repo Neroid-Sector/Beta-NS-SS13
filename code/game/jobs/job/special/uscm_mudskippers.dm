@@ -30,7 +30,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/xo
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "As the Adjunct you are the Commanding officer's assistant and and secretary" //Middle paragraph. This one is typically written per role and declared here.
+	entry_message_body = "As the Adjunct you are the Commanding officer's assistant and and secretary. Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>" //Middle paragraph. This one is typically written per role and declared here.
 /obj/effect/landmark/start/mudskipper/msxo
 	name = JOB_MS_XO
 	icon_state = "xo_spawn"
@@ -52,7 +52,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/cpt
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "You are a staff officer on the USS-Blackgold. You are responsible for managing the the operations on the ship." //Middle paragraph. This one is typically written per role and declared here.
+	entry_message_body = "You are a staff officer on the USS-Blackgold. You are responsible for managing the the operations on the ship.  Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>" //Middle paragraph. This one is typically written per role and declared here.
 /obj/effect/landmark/start/mudskipper/mscpt
 	name = JOB_MS_CPT
 	icon_state = "xo_spawn"
@@ -74,7 +74,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/lt
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "You are a staff officer on the USS-Blackgold. You are responsible for managing the the operations on the ship." //Middle paragraph. This one is typically written per role and declared here.
+	entry_message_body = "You are a staff officer on the USS-Blackgold. You are responsible for managing the the operations on the ship.  Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>" //Middle paragraph. This one is typically written per role and declared here.
 /obj/effect/landmark/start/mudskipper/mslt
 	name = JOB_MS_LT
 	icon_state = "xo_spawn"
@@ -89,7 +89,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/gcommander
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "You are a Company commander of the  502nd Engineering Corps' 4th Division 3rd brigade 15th Bat. aka. The 'Mudskippers.' You are resposible for the platoons under your command and making sure they operate at peak performance." //Middle paragraph. This one is typically written per role and declared here.
+	entry_message_body = "You are a Company commander of the  502nd Engineering Corps' 4th Division 3rd brigade 15th Bat. aka. The 'Mudskippers.' You are resposible for the platoons under your command and making sure they operate at peak performance.  Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>" //Middle paragraph. This one is typically written per role and declared here.
 /obj/effect/landmark/start/mudskipper/msgc
 	name = JOB_MS_GC
 	icon_state = "xo_spawn"
@@ -111,7 +111,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/pc
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "Read https://neroid-sector.com/wiki/index.php?title=Squad_roles for more info" //Middle paragraph. This one is typically written per role and declared here.
+	entry_message_body = "Read https://neroid-sector.com/wiki/index.php?title=Squad_roles for more info.  Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>" //Middle paragraph. This one is typically written per role and declared here.
 /obj/effect/landmark/start/mudskipper/mspc
 	name = JOB_MS_PC
 	icon_state = "xo_spawn"
@@ -127,7 +127,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/leader/full
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "Read https://neroid-sector.com/wiki/index.php?title=Squad_roles for more info" //Middle paragraph. This one is typically written per role and declared here.
+	entry_message_body = "Read https://neroid-sector.com/wiki/index.php?title=Squad_roles for more info.  Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>" //Middle paragraph. This one is typically written per role and declared here.
 /obj/effect/landmark/start/mudskipper/mssl
 	name = JOB_MS_SL
 	icon_state = "xo_spawn"
@@ -142,7 +142,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/engineer/full
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "Read https://neroid-sector.com/wiki/index.php?title=Squad_roles for more info" //Middle paragraph. This one is typically written per role and declared here.
+	entry_message_body = "Read https://neroid-sector.com/wiki/index.php?title=Squad_roles for more info.  Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>" //Middle paragraph. This one is typically written per role and declared here.
 /obj/effect/landmark/start/mudskipper/msengie
 	name = JOB_MS_ENGINEER
 	icon_state = "xo_spawn"
@@ -157,7 +157,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/medic/full
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "Read https://neroid-sector.com/wiki/index.php?title=Squad_roles for more info" //Middle paragraph. This one is typically written per role and declared here.
+	entry_message_body = "Read https://neroid-sector.com/wiki/index.php?title=Squad_roles for more info.  Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>" //Middle paragraph. This one is typically written per role and declared here.
 /obj/effect/landmark/start/mudskipper/msmedic
 	name = JOB_MS_MEDIC
 	icon_state = "xo_spawn"
@@ -172,7 +172,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/sg/full
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "Read https://neroid-sector.com/wiki/index.php?title=Squad_roles for more info" //Middle paragraph. This one is typically written per role and declared here.
+	entry_message_body = "Read https://neroid-sector.com/wiki/index.php?title=Squad_roles for more info.  Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>" //Middle paragraph. This one is typically written per role and declared here.
 	entry_message_end = "" // Bottom paragraph. If undeclared here, prints bank account and pin.
 /obj/effect/landmark/start/mudskipper/mssg
 	name = JOB_MS_SMARTGUNNER
@@ -188,7 +188,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/rfm/full
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "Read https://neroid-sector.com/wiki/index.php?title=Squad_roles for more info"//Middle paragraph. This one is typically written per role and declared here.
+	entry_message_body = "Read https://neroid-sector.com/wiki/index.php?title=Squad_roles for more info.  Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>"//Middle paragraph. This one is typically written per role and declared here.
 /obj/effect/landmark/start/mudskipper/msrfm
 	name = JOB_MS_RFM
 	icon_state = "xo_spawn"
@@ -206,7 +206,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/hgsl
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "You are Responsible for the safety of the Commanding officer first, and his staff second. As well as any Person of interest aboard the ship." //Middle paragraph. This one is typically written per role and declared here.
+	entry_message_body = "You are Responsible for the safety of the Commanding officer first, and his staff second. As well as any Person of interest aboard the ship.  Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>" //Middle paragraph. This one is typically written per role and declared here.
 /obj/effect/landmark/start/mudskipper/mshsgsl
 	name = JOB_MS_HGSL
 	icon_state = "mp_spawn"
@@ -221,7 +221,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/vhg
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "You are Responsible for the safety of the Commanding officer first, and his staff second. As well as any Person of interest aboard the ship." //Middle paragraph. This one is typically written per role and declared here.
+	entry_message_body = "You are Responsible for the safety of the Commanding officer first, and his staff second. As well as any Person of interest aboard the ship.  Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>" //Middle paragraph. This one is typically written per role and declared here.
 /obj/effect/landmark/start/mudskipper/msvhg
 	icon_state = "mp_spawn"
 	job = /datum/job/uscm/mudskipper/msvhg
@@ -238,7 +238,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/intel
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "Get intel" //Middle paragraph. This one is typically written per role and declared here.
+	entry_message_body = "Get intel.  Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>" //Middle paragraph. This one is typically written per role and declared here.
 
 /obj/effect/landmark/start/mudskipper/msio
 	name = JOB_MS_INTEL
@@ -255,7 +255,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/po
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "He just flies the bomber" //Middle paragraph. This one is typically written per role and declared here.
+	entry_message_body = "He just flies the bomber.  Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>" //Middle paragraph. This one is typically written per role and declared here.
 /obj/effect/landmark/start/mudskipper/mspo
 	name = JOB_MS_PILOT
 	icon_state = "po_spawn"
@@ -271,7 +271,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/tank
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "Drive Tank" //Middle paragraph. This one is typically written per role and declared here.
+	entry_message_body = "Drive Tank.  Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>" //Middle paragraph. This one is typically written per role and declared here.
 /obj/effect/landmark/start/mudskipper/msvc
 	name = JOB_MS_PILOT
 	icon_state = "po_spawn"
@@ -287,7 +287,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_ship/uscm_mudskippers/medical/cmo
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "You are Responsible for the health and safety of personel on the ship. Make sure people stay alive, and fix up the ones who arent." //Middle paragraph. This one is typically written per role and declared here.
+	entry_message_body = "You are Responsible for the health and safety of personel on the ship. Make sure people stay alive, and fix up the ones who arent.  Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>" //Middle paragraph. This one is typically written per role and declared here.
 /obj/effect/landmark/start/mudskipper/mscmo
 	name = JOB_MS_CMO
 	icon_state = "cmo_spawn"
@@ -302,7 +302,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_ship/uscm_mudskippers/medical/doctor
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "You are Responsible for the healthand safety of personel on the ship. Make sure people stay alive, and fix up the ones who arent." //Middle paragraph. This one is typically written per role and declared here.
+	entry_message_body = "You are Responsible for the healthand safety of personel on the ship. Make sure people stay alive, and fix up the ones who arent.  Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>" //Middle paragraph. This one is typically written per role and declared here.
 /obj/effect/landmark/start/mudskipper/msdoc
 	name = JOB_MS_SURGEON
 	icon_state = "cmo_spawn"
@@ -319,7 +319,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/pmc/liaison
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "You were sent to the W-Y USCM joint operations vessel USS-Black Gold, by Director Donnagan Takashi, to oversee the use and development of new experimental weapons and bioweapons. You are to work close alongside the ship's command staff to ensure Corporate directives are met."
+	entry_message_body = "You were sent to the W-Y USCM joint operations vessel USS-Black Gold, by Director Donnagan Takashi, to oversee the use and development of new experimental weapons and bioweapons. You are to work close alongside the ship's command staff to ensure Corporate directives are met.  Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>"
 
 /obj/effect/landmark/start/mudskipper/mscl
 	name = JOB_WYREP_BG
@@ -336,7 +336,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/pmc/pmc_leader
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "You were sent to the W-Y USCM joint operations vessel USS-Black Gold, by Director Donnagan Takashi, to oversee the use and development of new experimental weapons and bioweapons. You are to work close alongside the ship's command staff to ensure Corporate directives are met."
+	entry_message_body = "You were sent to the W-Y USCM joint operations vessel USS-Black Gold, by Director Donnagan Takashi, to oversee the use and development of new experimental weapons and bioweapons. You are to work close alongside the ship's command staff to ensure Corporate directives are met.  Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>"
 
 /obj/effect/landmark/start/mudskipper/mspmcl
 	name = JOB_PMC_LEADER_BG
@@ -352,7 +352,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/pmc/pmc_standard
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "You were sent to the W-Y USCM joint operations vessel USS-Black Gold, by Director Donnagan Takashi, to oversee the use and development of new experimental weapons and bioweapons. You are to work close alongside the ship's command staff to ensure Corporate directives are met."
+	entry_message_body = "You were sent to the W-Y USCM joint operations vessel USS-Black Gold, by Director Donnagan Takashi, to oversee the use and development of new experimental weapons and bioweapons. You are to work close alongside the ship's command staff to ensure Corporate directives are met.  Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>"
 
 /obj/effect/landmark/start/mudskipper/mspmc
 	name =  JOB_PMC_BG
@@ -369,7 +369,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_ship/uscm_mudskippers/medical/researcher
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "You are Responsible for the Reasearch and development of weapons, and chemicals to aid the marines."
+	entry_message_body = "You are Responsible for the Reasearch and development of weapons, and chemicals to aid the marines.  Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>"
 
 /obj/effect/landmark/start/mudskipper/mssci
 	name = JOB_SCI_BG
