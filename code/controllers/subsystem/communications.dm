@@ -258,6 +258,11 @@ var/list/radiochannels = list(
 //Depts - used for colors in headset.dm, as well as deciding what the marine comms tower can listen into
 #define DEPT_FREQS list(COMM_FREQ, MED_FREQ, ENG_FREQ, SEC_FREQ, SENTRY_FREQ, ALPHA_FREQ, BRAVO_FREQ, CHARLIE_FREQ, DELTA_FREQ, ECHO_FREQ, CRYO_FREQ, REQ_FREQ, JTAC_FREQ, INTEL_FREQ, WY_FREQ)
 
+#define LIB_FREQS list(LIBERTY_STAR_COMMON, LIBERTY_STAR_COMMAND, LIBERTY_STAR_ENGINEERING, LIBERTY_STAR_MEDICAL, LIBERTY_STAR_CARGO)
+#define RUB_FREQS list(AEGIS_COMMON, AEGIS_COMMAND, AEGIS_ENGINEERING, AEGIS_MEDICAL, AEGIS_CARGO)
+#define AEG_FREQS list(RUBICON_RUN_COMMON, RUBICON_RUN_COMMAND, RUBICON_RUN_ENGINEERING, RUBICON_RUN_MEDICAL, RUBICON_RUN_CARGO)
+#define PATT_FREQS list(PATTONS_GHOST_COMMON, PATTONS_GHOST_COMMAND, PATTONS_GHOST_ENGINEERING, PATTONS_GHOST_MEDICAL, PATTONS_GHOST_CARGO)
+
 #define TRANSMISSION_WIRE 0
 #define TRANSMISSION_RADIO 1
 
@@ -318,6 +323,10 @@ SUBSYSTEM_DEF(radio)
 		"[HC_FREQ]" = "hcradio",
 		"[PVST_FREQ]" = "pvstradio",
 		"[COLONY_FREQ]" = "deptradio",
+		"[LIB_FREQS]" = "pvstradio",
+		"[RUB_FREQS]" = "airadio",
+		"[PATT_FREQS]" = "yellowteamradio",
+		"[AEG_FREQS]" = "blueteamradio",
 	)
 
 /datum/controller/subsystem/radio/proc/add_object(obj/device as obj, new_frequency as num, filter = null as text|null)
