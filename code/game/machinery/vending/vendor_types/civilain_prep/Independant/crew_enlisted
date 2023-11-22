@@ -107,8 +107,8 @@
 
 //liberty star
 /obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/rubicon_run
-	req_access = list(ACCESS_MARINE_PREP)
-	req_one_access = list(ACCESS_MARINE_RUBICON_RUN, ACCESS_MARINE_DATABASE, ACCESS_MARINE_CARGO)
+	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_RUBICON_RUN,)
+	req_one_access = list(ACCESS_MARINE_RUBICON_RUN,)
 
 /obj/structure/machinery/cm_vending/sorted/uniform_supply/squad_prep/alpha/populate_product_list(scale)
 	listed_products += list(
@@ -118,8 +118,8 @@
 
 //aegis
 /obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/pattons_ghost
-	req_access = list(ACCESS_MARINE_PREP)
-	req_one_access = list(ACCESS_MARINE_PATTONS_GHOST, ACCESS_MARINE_DATABASE, ACCESS_MARINE_CARGO)
+	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_PATTONS_GHOST)
+	req_one_access = list(ACCESS_MARINE_PATTONS_GHOST,)
 
 /obj/structure/machinery/cm_vending/sorted/uniform_supply/squad_prep/alpha/populate_product_list(scale)
 	listed_products += list(
@@ -219,7 +219,7 @@
 /obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/cargo_tech
 	name = "\improper ColMarTech Surplus Cargo Equiptment Vendor"
 	desc = "An automated supply rack hooked up to a small storage of standard Cargo Equiptment."
-	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MAINT_TECH)
+	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO_TECH)
 	req_one_access = list()
 	listed_products = list()
 	hackable = TRUE
@@ -420,7 +420,7 @@
 /obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/warrant_officer
 	name = "\improper ColMarTech Surplus Warrant Officer Equiptment Vendor"
 	desc = "An automated supply rack hooked up to a small storage of standard Officer's Security Equiptment."
-	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_CHIEF_ENGINEER)
+	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_WARRANT_OFFICER)
 	req_one_access = list()
 	listed_products = list()
 	hackable = TRUE
@@ -528,7 +528,7 @@
 /obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/quatermaster
 	name = "\improper ColMarTech Surplus Captain Equiptment Vendor"
 	desc = "An automated supply rack hooked up to a small storage of Captain's Equiptment."
-	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_QUATERMASTER)
+	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_CAPTAIN)
 	req_one_access = list()
 	listed_products = list()
 	hackable = TRUE
