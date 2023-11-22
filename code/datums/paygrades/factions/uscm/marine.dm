@@ -216,3 +216,88 @@
 	rank_pin = /obj/item/clothing/accessory/ranks/marine/o10c
 	ranking = 25
 	pay_multiplier = 7
+
+//MERCHANT MARINE - CSS
+
+/datum/paygrade/css/o5
+	paygrade = "CO5"
+	name = "Captain"
+	prefix = "Cpt."
+	rank_pin = /obj/item/clothing/accessory/ranks/marine/o5
+	ranking = 16
+	pay_multiplier = 4.2
+
+/datum/paygrade/css/o4
+	paygrade = "CO4"
+	name = "Chief Mate"
+	prefix = "C.OFF."
+	rank_pin = /obj/item/clothing/accessory/ranks/marine/o4
+	ranking = 15
+	pay_multiplier = 4
+
+/datum/paygrade/css/o3
+	paygrade = "CO3"
+	name = "Senior Officer"
+	prefix = "S.OFF."
+	rank_pin = /obj/item/clothing/accessory/ranks/marine/o3
+	ranking = 14
+	pay_multiplier = 4
+
+/datum/paygrade/css/o2
+	paygrade = "CO2"
+	name = "Deck Officer"
+	prefix = "D.OFF."
+	rank_pin = /obj/item/clothing/accessory/ranks/marine/o2
+	ranking = 13
+	pay_multiplier = 3.2
+
+/datum/paygrade/css/o1
+	paygrade = "CO2"
+	name = "Petty Officer"
+	prefix = "P.OFF."
+	rank_pin = /obj/item/clothing/accessory/ranks/marine/o1
+	ranking = 12
+	pay_multiplier = 3
+
+
+//MERCHANT MARINE - USCSS
+
+/datum/paygrade/css/o5
+	paygrade = "MMO5"
+	name = "Commander"
+	prefix = "Cdr."
+	rank_pin = /obj/item/clothing/accessory/ranks/marine/o5
+	ranking = 16
+	pay_multiplier = 4.2
+
+/datum/paygrade/css/o4
+	paygrade = "MMO4"
+	name = "Lieutenant Commander"
+	prefix = "Lt.Cdr."
+	rank_pin = /obj/item/clothing/accessory/ranks/marine/o4
+	ranking = 15
+	pay_multiplier = 4
+
+/datum/paygrade/css/o3
+	paygrade = "MMO3"
+	name = "Lieutenant"
+	prefix = "Lt."
+	rank_pin = /obj/item/clothing/accessory/ranks/marine/o3
+	ranking = 14
+	pay_multiplier = 4
+
+/datum/paygrade/css/o2
+	paygrade = "MMO2"
+	name = "Lieutenant Junior Grade"
+	prefix = "Lt.jg."
+	rank_pin = /obj/item/clothing/accessory/ranks/marine/o2
+	ranking = 13
+	pay_multiplier = 3.2
+
+/datum/paygrade/css/o1
+	paygrade = "MMO1"
+	name = "Ensign"
+	prefix = "Ens."
+	rank_pin = /obj/item/clothing/accessory/ranks/marine/o1
+	ranking = 12
+	pay_multiplier = 3
