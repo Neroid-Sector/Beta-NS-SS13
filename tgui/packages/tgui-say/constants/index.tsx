@@ -369,90 +369,89 @@ export const RADIO_PREFIXES = {
   '#I ': {
     id: 'comms',
     label: 'Intercom',
-//LIBERTY STAR
+    // LIBERTY STAR
   },
-  '-G ': {
+  '#G ': {
     id: 'Liberty Star General',
     label: 'General',
   },
-  '-V ': {
+  '#V ': {
     id: 'Liberty Star Command',
     label: 'Command',
   },
-  '-M ': {
+  '#M ': {
     id: 'Liberty Star Med',
     label: 'Medical',
   },
-  '-E ': {
+  '#E ': {
     id: 'Liberty Star Engi',
     label: 'Engineering',
   },
-  '-C ': {
+  '#C ': {
     id: 'Liberty Star Cargo',
     label: 'Cargo',
   },
-//Aegis
-  '$G ': {
+  // Aegis
+  '#G ': {
     id: 'Aegis General',
     label: 'Medical',
   },
-  '$V ': {
+  '#V ': {
     id: 'Aegis Command',
     label: 'Command',
   },
-  '$M ': {
+  '#M ': {
     id: 'Aegis Med',
     label: 'Medical',
   },
-  '$E ': {
+  '#E ': {
     id: 'Aegis Engi',
     label: 'Engineering',
   },
-  '$C ': {
+  '#C ': {
     id: 'Aegis Cargo',
     label: 'Cargo',
   },
-//Rubicon Run
-'@G ': {
-  id: 'Rubicon Run General',
-  label: 'General',
-},
-'@V ': {
-  id: 'Rubicon Run Command',
-  label: 'Command',
-},
-'@M ': {
-  id: 'Rubicon Run Med',
-  label: 'Medical',
-},
-'@E ': {
-  id: 'Rubicon Run Engi',
-  label: 'Engineering',
-},
-'@C ': {
-  id: 'Rubicon Run Cargo',
-  label: 'Cargo',
-},
-//Patton's Ghost
-'&G ': {
-  id: 'Pattons Ghost General',
-  label: 'General',
-},
-'&V ': {
-  id: 'Pattons Ghost Command',
-  label: 'Command',
-},
-'&M ': {
-  id: 'Pattons Ghost Med',
-  label: 'Medical',
-},
-'&E ': {
-  id: 'Rubicon Run Engi',
-  label: 'Engineering',
-},
-'&C ': {
-  id: 'Pattons Ghost Engi',
-  label: 'Cargo',
-},
-
+  // Rubicon Run
+  '#G ': {
+    id: 'Rubicon Run General',
+    label: 'General',
+  },
+  '#V ': {
+    id: 'Rubicon Run Command',
+    label: 'Command',
+  },
+  '#M ': {
+    id: 'Rubicon Run Med',
+    label: 'Medical',
+  },
+  '#E ': {
+    id: 'Rubicon Run Engi',
+    label: 'Engineering',
+  },
+  '#C ': {
+    id: 'Rubicon Run Cargo',
+    label: 'Cargo',
+  },
+  // Patton's Ghost
+  '#G ': {
+    id: 'Pattons Ghost General',
+    label: 'General',
+  },
+  '#V ': {
+    id: 'Pattons Ghost Command',
+    label: 'Command',
+  },
+  '#M ': {
+    id: 'Pattons Ghost Med',
+    label: 'Medical',
+  },
+  '#E ': {
+    id: 'Rubicon Run Engi',
+    label: 'Engineering',
+  },
+  '#C ': {
+    id: 'Pattons Ghost Engi',
+    label: 'Cargo',
+  },
 } as const;
