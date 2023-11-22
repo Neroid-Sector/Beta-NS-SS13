@@ -2,29 +2,31 @@
 	name = "flatbed truck"
 	desc = "A state-of-the-art military-grade flatbed truck, used by the Colonial Marines to transport materials across vast distances."
 
+	layer = ABOVE_XENO_LAYER
+	vehicle_flags = VEHICLE_CLASS_WEAK
+
 	icon = 'icons/obj/vehicles/flatbed.dmi'
 	icon_state = "flatbed_truck"
 
-	interior_map = "flatbed"
+
+	interior_map = /datum/map_template/interior/truck
 	entrances = list(
 		"left" = list(2, 0),
 		"right" = list(-1, 0)
 	)
 
-	misc_multipliers = list(
-		"move" = 0.8,
-		"accuracy" = 1,
-		"cooldown" = 1
+	movement_sound = 'sound/vehicles/tank_driving.ogg'
+	honk_sound = 'sound/vehicles/honk_2_truck.ogg'
+
+	luminosity = 8
+
+	move_max_momentum = 3
+	move_turn_momentum_loss_factor = 1
+
+	hardpoints_allowed = list(
+		/obj/item/hardpoint/locomotion/truck/wheels
 	)
 
-	passengers_slots = 2
-
-	has_overdrive = FALSE
-
-	var/list/flatbed_entrances = list(
-		"back_left" = list(1, 2),
-		"back_right" = list(0, 2)
-	)
 	var/obj/structure/container/loaded_container
 	var/image/container_overlay
 
