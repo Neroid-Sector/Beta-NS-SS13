@@ -103,6 +103,14 @@
 			shipwide_ai_announcement(input, name, 'sound/AI/unidentified_lifesigns.ogg', ares_logging = ARES_LOG_SECURITY)
 			set_security_level(SEC_LEVEL_RED)
 			return
+/obj/docking_port/mobile/marine_dropship/waco
+	name = "Waco"
+	id = DROPSHIP_WACO
+	width = 9
+	height = 18
+
+	dwidth = 4
+	dheight = 8
 
 /obj/docking_port/mobile/marine_dropship/alamo
 	name = "Alamo"
@@ -234,8 +242,8 @@
 /obj/docking_port/stationary/marine_dropship/on_departure(obj/docking_port/mobile/departing_shuttle)
 	. = ..()
 	turn_off_landing_lights()
-	var/obj/docking_port/mobile/marine_dropship/shuttle = departing_shuttle
-	for(var/obj/structure/dropship_equipment/eq as anything in shuttle.equipments)
+	var/obj/docking_port/mobile/marine_dropship/dropship = departing_shuttle
+	for(var/obj/structure/dropship_equipment/eq as anything in dropship.equipments)
 		eq.on_launch()
 
 /obj/docking_port/stationary/marine_dropship/lz1
@@ -259,6 +267,12 @@
 	id = ALMAYER_DROPSHIP_LZ2
 	auto_open = TRUE
 	roundstart_template = /datum/map_template/shuttle/normandy
+
+/obj/docking_port/stationary/marine_dropship/almayer_hanger_3
+	name = "Hangar Bay 3"
+	id = DROPSHIP_WACO
+	auto_open = TRUE
+	roundstart_template = /datum/map_template/shuttle/waco
 
 /obj/docking_port/stationary/marine_dropship/crash_site
 	auto_open = TRUE
@@ -285,6 +299,9 @@
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_GROUNDSIDE_FORSAKEN_HANDLING)
 
+/datum/map_template/shuttle/waco
+	name = "Waco"
+	shuttle_id = DROPSHIP_WACO
 /datum/map_template/shuttle/alamo
 	name = "Alamo"
 	shuttle_id = DROPSHIP_ALAMO

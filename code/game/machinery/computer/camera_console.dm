@@ -354,8 +354,8 @@
 	exproof = TRUE
 	colony_camera_mapload = FALSE
 
-/obj/structure/machinery/computer/cameras/mortar/emp_act(severity)
-	return FALSE
+/obj/structure/machinery/computer/cameras/mortar/set_broken()
+	return
 
 /obj/structure/machinery/computer/cameras/dropship
 	name = "abstract dropship camera computer"
@@ -376,5 +376,9 @@
 /obj/structure/machinery/computer/cameras/dropship/two
 	name = "\improper 'Normandy' camera controls"
 	network = list(CAMERA_NET_NORMANDY, CAMERA_NET_LASER_TARGETS)
+
+/obj/structure/machinery/computer/cameras/dropship/waco
+	name = "\improper 'Waco' camera controls"
+	network = list(CAMERA_NET_WACO, CAMERA_NET_LASER_TARGETS)
 
 #undef DEFAULT_MAP_SIZE
