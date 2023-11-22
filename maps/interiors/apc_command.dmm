@@ -126,6 +126,10 @@
 	layer = 2.81;
 	pixel_y = 4
 	},
+/obj/structure/machinery/computer/squad_changer{
+	pixel_x = -6;
+	pixel_y = 23
+	},
 /turf/open/shuttle/vehicle{
 	icon_state = "floor_3_7_1"
 	},

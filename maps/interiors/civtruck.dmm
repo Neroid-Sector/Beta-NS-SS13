@@ -1,8 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "c" = (
-/obj/structure/bed/chair/comfy{
-	dir = 1
-	},
 /obj/effect/landmark/interior/spawn/entrance{
 	dir = 8;
 	exit_type = /obj/structure/interior_exit/vehicle/van/backright;
@@ -22,9 +19,6 @@
 /turf/open/void/vehicle,
 /area/space)
 "h" = (
-/obj/structure/bed/chair/comfy{
-	dir = 1
-	},
 /obj/effect/landmark/interior/spawn/interior_viewport/simple{
 	alpha = 100;
 	pixel_y = -2
@@ -39,6 +33,9 @@
 	},
 /obj/effect/vehicle_roof/van{
 	icon_state = "roof_2"
+	},
+/obj/structure/barricade/handrail{
+	dir = 4
 	},
 /turf/open/void/vehicle,
 /area/space)
@@ -83,7 +80,6 @@
 /turf/open/void/vehicle,
 /area/space)
 "s" = (
-/obj/structure/bed/chair/comfy,
 /obj/effect/vehicle_roof/van,
 /obj/effect/landmark/interior/spawn/entrance{
 	dir = 8;
@@ -166,9 +162,11 @@
 /turf/open/void/vehicle,
 /area/space)
 "M" = (
-/obj/structure/bed/chair/comfy,
 /obj/effect/landmark/interior/spawn/interior_viewport/simple{
 	pixel_y = 30
+	},
+/obj/structure/barricade/handrail{
+	dir = 4
 	},
 /obj/effect/vehicle_roof/van{
 	icon_state = "roof_2"
