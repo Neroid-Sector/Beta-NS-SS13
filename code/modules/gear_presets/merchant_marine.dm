@@ -188,9 +188,11 @@
 
 /datum/equipment_preset/merchant_marine/uscss/quatermaster/New()
 	. = ..()
-	access
-		 = list(
-		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_QUATERMASTER, ACCESS_MARINE_PREP)
+	access = list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_QUATERMASTER,
+		ACCESS_MARINE_PREP
+	)
 
 /datum/equipment_preset/merchant_marine/uscss/quatermaster/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -216,9 +218,11 @@
 
 /datum/equipment_preset/merchant_marine/uscss/warrant/New()
 	. = ..()
-	access
-		 = list(
-		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_WARRANT_OFFICER, ACCESS_MARINE_PREP)
+	access= list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_WARRANT_OFFICER,
+		ACCESS_MARINE_PREP
+	)
 
 /datum/equipment_preset/merchant_marine/uscss/warrant/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -244,9 +248,11 @@
 
 /datum/equipment_preset/merchant_marine/uscss/cmo/New()
 	. = ..()
-	access
-		 = list(
-		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_CHIEF_MEDICAL, ACCESS_MARINE_PREP)
+	access= list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_CHIEF_MEDICAL,
+		ACCESS_MARINE_PREP
+	)
 
 /datum/equipment_preset/merchant_marine/uscss/cmo/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -272,9 +278,11 @@
 
 /datum/equipment_preset/merchant_marine/uscss/ce/New()
 	. = ..()
-	access
-		 = list(
-		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_CHIEF_ENGINEER, ACCESS_MARINE_PREP)
+	access = list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_CHIEF_ENGINEER,
+		ACCESS_MARINE_PREP
+	)
 
 /datum/equipment_preset/merchant_marine/uscss/ce/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -450,9 +458,12 @@
 
 /datum/equipment_preset/merchant_marine/uscss/commander/liberty/New()
 	. = ..()
-	access
-		 = list(
-		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_PREP, ACCESS_MARINE_LIBERTY_STAR)
+	access = list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_CAPTAIN,
+		ACCESS_MARINE_PREP,
+		ACCESS_MARINE_LIBERTY_STAR
+	)
 
 /datum/equipment_preset/merchant_marine/uscss/commander/liberty/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -479,9 +490,12 @@
 
 /datum/equipment_preset/merchant_marine/uscss/quatermaster/liberty/New()
 	. = ..()
-	access
-		 = list(
-		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_QUATERMASTER, ACCESS_MARINE_PREP, ACCESS_MARINE_LIBERTY_STAR)
+	access = list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_QUATERMASTER,
+		ACCESS_MARINE_PREP,
+		ACCESS_MARINE_LIBERTY_STAR
+	)
 
 /datum/equipment_preset/merchant_marine/uscss/quatermaster/liberty/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -508,9 +522,12 @@
 
 /datum/equipment_preset/merchant_marine/uscss/warrant/liberty/New()
 	. = ..()
-	access
-		 = list(
-		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_WARRANT_OFFICER, ACCESS_MARINE_PREP, ACCESS_MARINE_LIBERTY_STAR)
+	access = list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_WARRANT_OFFICER,
+		ACCESS_MARINE_PREP,
+		ACCESS_MARINE_LIBERTY_STAR
+	)
 
 /datum/equipment_preset/merchant_marine/uscss/warrant/liberty/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -537,9 +554,12 @@
 
 /datum/equipment_preset/merchant_marine/uscss/cmo/liberty/New()
 	. = ..()
-	access
-		 = list(
-		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_CHIEF_MEDICAL, ACCESS_MARINE_PREP,ACCESS_MARINE_LIBERTY_STAR)
+	access = list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_CHIEF_MEDICAL,
+		ACCESS_MARINE_PREP,
+		ACCESS_MARINE_LIBERTY_STAR
+	)
 
 /datum/equipment_preset/merchant_marine/uscss/cmo/liberty/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -566,9 +586,12 @@
 
 /datum/equipment_preset/merchant_marine/uscss/ce/liberty/New()
 	. = ..()
-	access
-		 = list(
-		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_CHIEF_ENGINEER, ACCESS_MARINE_PREP, ACCESS_MARINE_LIBERTY_STAR)
+	access = list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_CHIEF_ENGINEER,
+		ACCESS_MARINE_PREP,
+		ACCESS_MARINE_LIBERTY_STAR
+	)
 
 /datum/equipment_preset/merchant_marine/uscss/ce/liberty/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -753,9 +776,12 @@
 
 /datum/equipment_preset/merchant_marine/uscss/commander/aegis/New()
 	. = ..()
-	access
-		 = list(
-		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_PREP, ACCESS_MARINE_AEGIS)
+	access = list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_CAPTAIN,
+		ACCESS_MARINE_PREP,
+		ACCESS_MARINE_AEGIS
+	)
 
 /datum/equipment_preset/merchant_marine/uscss/commander/aegis/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -782,9 +808,12 @@
 
 /datum/equipment_preset/merchant_marine/uscss/quatermaster/aegis/New()
 	. = ..()
-	access
-		 = list(
-		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_QUATERMASTER, ACCESS_MARINE_PREP, ACCESS_MARINE_AEGIS)
+	access = list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_QUATERMASTER,
+		ACCESS_MARINE_PREP,
+		ACCESS_MARINE_AEGIS
+	)
 
 /datum/equipment_preset/merchant_marine/uscss/quatermaster/aegis/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -811,9 +840,12 @@
 
 /datum/equipment_preset/merchant_marine/uscss/warrant/aegis/New()
 	. = ..()
-	access
-		 = list(
-		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_WARRANT_OFFICER, ACCESS_MARINE_PREP, ACCESS_MARINE_AEGIS)
+	access = list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_WARRANT_OFFICER,
+		ACCESS_MARINE_PREP,
+		ACCESS_MARINE_AEGIS
+	)
 
 /datum/equipment_preset/merchant_marine/uscss/warrant/aegis/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -840,9 +872,12 @@
 
 /datum/equipment_preset/merchant_marine/uscss/cmo/aegis/New()
 	. = ..()
-	access
-		 = list(
-		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_CHIEF_MEDICAL, ACCESS_MARINE_PREP, ACCESS_MARINE_AEGIS)
+	access = list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_CHIEF_MEDICAL,
+		ACCESS_MARINE_PREP,
+		ACCESS_MARINE_AEGIS
+	)
 
 /datum/equipment_preset/merchant_marine/uscss/cmo/aegis/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
