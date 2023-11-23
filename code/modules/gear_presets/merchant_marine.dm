@@ -148,7 +148,7 @@
 	idtype = /obj/item/card/id/gold
 	assignment = JOB_MM_CAPTAIN
 	rank = JOB_MM_CAPTAIN
-	paygrade = "MMO4"
+	paygrade = "MMO5"
 	role_comm_title = "Cdr."
 	minimum_age = 30
 	skills = /datum/skills/commander
@@ -158,7 +158,11 @@
 
 /datum/equipment_preset/merchant_marine/uscss/commander/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_CAPTAIN) + get_access(ACCESS_MARINE_PREP)
+	access = list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_CAPTAIN,
+		ACCESS_MARINE_PREP
+	)
 
 /datum/equipment_preset/merchant_marine/uscss/commander/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -174,7 +178,7 @@
 	idtype = /obj/item/card/id/gold
 	assignment = JOB_MM_QUATERMASTER
 	rank = JOB_MM_QUATERMASTER
-	paygrade = "MMO3"
+	paygrade = "MMO4"
 	role_comm_title = "LtCdr."
 	minimum_age = 30
 	skills = /datum/skills/XO
@@ -184,7 +188,9 @@
 
 /datum/equipment_preset/merchant_marine/uscss/quatermaster/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_QUATERMASTER) + get_access(ACCESS_MARINE_PREP)
+	access
+		 = list(
+		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_QUATERMASTER, ACCESS_MARINE_PREP)
 
 /datum/equipment_preset/merchant_marine/uscss/quatermaster/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -200,7 +206,7 @@
 	idtype = /obj/item/card/id/deputy
 	assignment = JOB_MM_WARRANT_OFFICER
 	rank = JOB_MM_WARRANT_OFFICER
-	paygrade = "MMO2"
+	paygrade = "MMO3"
 	role_comm_title = "Lt."
 	minimum_age = 30
 	skills = /datum/skills/CMP
@@ -210,7 +216,9 @@
 
 /datum/equipment_preset/merchant_marine/uscss/warrant/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_WARRANT_OFFICER) + get_access(ACCESS_MARINE_PREP)
+	access
+		 = list(
+		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_WARRANT_OFFICER, ACCESS_MARINE_PREP)
 
 /datum/equipment_preset/merchant_marine/uscss/warrant/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -226,7 +234,7 @@
 	idtype = /obj/item/card/id/silver
 	assignment = JOB_MM_CHIEF_MEDICAL_OFFICER
 	rank = JOB_MM_CHIEF_MEDICAL_OFFICER
-	paygrade = "MMO1"
+	paygrade = "MMO2"
 	role_comm_title = "Lt.jg."
 	minimum_age = 30
 	skills = /datum/skills/CMO
@@ -236,7 +244,9 @@
 
 /datum/equipment_preset/merchant_marine/uscss/cmo/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_CHIEF_MEDICAL) + get_access(ACCESS_MARINE_PREP)
+	access
+		 = list(
+		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_CHIEF_MEDICAL, ACCESS_MARINE_PREP)
 
 /datum/equipment_preset/merchant_marine/uscss/cmo/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -252,7 +262,7 @@
 	idtype = /obj/item/card/id/silver
 	assignment = JOB_MM_CHIEF_ENGINEER
 	rank = JOB_MM_CHIEF_ENGINEER
-	paygrade = "MMO1"
+	paygrade = "MMO2"
 	role_comm_title = "Lt.jg."
 	minimum_age = 30
 	skills = /datum/skills/CE
@@ -262,7 +272,9 @@
 
 /datum/equipment_preset/merchant_marine/uscss/ce/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_CHIEF_ENGINEER) + get_access(ACCESS_MARINE_PREP)
+	access
+		 = list(
+		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_CHIEF_ENGINEER, ACCESS_MARINE_PREP)
 
 /datum/equipment_preset/merchant_marine/uscss/ce/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -428,7 +440,7 @@
 	idtype = /obj/item/card/id/gold
 	assignment = JOB_MM_CAPTAIN_LIBERTY
 	rank = JOB_MM_CAPTAIN_LIBERTY
-	paygrade = "MMO4"
+	paygrade = "MMO5"
 	role_comm_title = "Cdr."
 	minimum_age = 30
 	skills = /datum/skills/commander
@@ -438,7 +450,9 @@
 
 /datum/equipment_preset/merchant_marine/uscss/commander/liberty/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_CAPTAIN) + get_access(ACCESS_MARINE_PREP) + get_access(ACCESS_MARINE_LIBERTY_STAR)
+	access
+		 = list(
+		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_PREP, ACCESS_MARINE_LIBERTY_STAR)
 
 /datum/equipment_preset/merchant_marine/uscss/commander/liberty/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -455,7 +469,7 @@
 	idtype = /obj/item/card/id/gold
 	assignment = JOB_MM_QUATERMASTER_LIBERTY
 	rank = JOB_MM_QUATERMASTER_LIBERTY
-	paygrade = "MMO3"
+	paygrade = "MMO4"
 	role_comm_title = "LtCdr."
 	minimum_age = 30
 	skills = /datum/skills/XO
@@ -465,7 +479,9 @@
 
 /datum/equipment_preset/merchant_marine/uscss/quatermaster/liberty/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_QUATERMASTER) + get_access(ACCESS_MARINE_PREP) + get_access(ACCESS_MARINE_LIBERTY_STAR)
+	access
+		 = list(
+		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_QUATERMASTER, ACCESS_MARINE_PREP, ACCESS_MARINE_LIBERTY_STAR)
 
 /datum/equipment_preset/merchant_marine/uscss/quatermaster/liberty/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -482,7 +498,7 @@
 	idtype = /obj/item/card/id/deputy
 	assignment = JOB_MM_WARRANT_OFFICER_LIBERTY
 	rank = JOB_MM_WARRANT_OFFICER_LIBERTY
-	paygrade = "MMO2"
+	paygrade = "MMO3"
 	role_comm_title = "Lt."
 	minimum_age = 30
 	skills = /datum/skills/CMP
@@ -492,7 +508,9 @@
 
 /datum/equipment_preset/merchant_marine/uscss/warrant/liberty/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_WARRANT_OFFICER) + get_access(ACCESS_MARINE_PREP, ACCESS_MARINE_LIBERTY_STAR)
+	access
+		 = list(
+		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_WARRANT_OFFICER, ACCESS_MARINE_PREP, ACCESS_MARINE_LIBERTY_STAR)
 
 /datum/equipment_preset/merchant_marine/uscss/warrant/liberty/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -509,7 +527,7 @@
 	idtype = /obj/item/card/id/silver
 	assignment = JOB_MM_CHIEF_MEDICAL_OFFICER_LIBERTY
 	rank = JOB_MM_CHIEF_MEDICAL_OFFICER_LIBERTY
-	paygrade = "MMO1"
+	paygrade = "MMO2"
 	role_comm_title = "Lt.jg."
 	minimum_age = 30
 	skills = /datum/skills/CMO
@@ -519,7 +537,9 @@
 
 /datum/equipment_preset/merchant_marine/uscss/cmo/liberty/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_CHIEF_MEDICAL) + get_access(ACCESS_MARINE_PREP,ACCESS_MARINE_LIBERTY_STAR)
+	access
+		 = list(
+		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_CHIEF_MEDICAL, ACCESS_MARINE_PREP,ACCESS_MARINE_LIBERTY_STAR)
 
 /datum/equipment_preset/merchant_marine/uscss/cmo/liberty/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -536,7 +556,7 @@
 	idtype = /obj/item/card/id/silver
 	assignment = JOB_MM_CHIEF_ENGINEER_LIBERTY
 	rank = JOB_MM_CHIEF_ENGINEER_LIBERTY
-	paygrade = "MMO1"
+	paygrade = "MMO2"
 	role_comm_title = "Lt.jg."
 	minimum_age = 30
 	skills = /datum/skills/CE
@@ -546,7 +566,9 @@
 
 /datum/equipment_preset/merchant_marine/uscss/ce/liberty/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_CHIEF_ENGINEER) + get_access(ACCESS_MARINE_PREP) + get_access(ACCESS_MARINE_LIBERTY_STAR)
+	access
+		 = list(
+		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_CHIEF_ENGINEER, ACCESS_MARINE_PREP, ACCESS_MARINE_LIBERTY_STAR)
 
 /datum/equipment_preset/merchant_marine/uscss/ce/liberty/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -721,7 +743,7 @@
 	idtype = /obj/item/card/id/gold
 	assignment = JOB_MM_CAPTAIN_AEGIS
 	rank = JOB_MM_CAPTAIN_AEGIS
-	paygrade = "MMO4"
+	paygrade = "MMO5"
 	role_comm_title = "Cdr."
 	minimum_age = 30
 	skills = /datum/skills/commander
@@ -731,7 +753,9 @@
 
 /datum/equipment_preset/merchant_marine/uscss/commander/aegis/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_CAPTAIN) + get_access(ACCESS_MARINE_PREP) + get_access(ACCESS_MARINE_AEGIS)
+	access
+		 = list(
+		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_PREP, ACCESS_MARINE_AEGIS)
 
 /datum/equipment_preset/merchant_marine/uscss/commander/aegis/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -748,7 +772,7 @@
 	idtype = /obj/item/card/id/gold
 	assignment = JOB_MM_QUATERMASTER_AEGIS
 	rank = JOB_MM_QUATERMASTER_AEGIS
-	paygrade = "MMO3"
+	paygrade = "MMO4"
 	role_comm_title = "LtCdr."
 	minimum_age = 30
 	skills = /datum/skills/XO
@@ -758,7 +782,9 @@
 
 /datum/equipment_preset/merchant_marine/uscss/quatermaster/aegis/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_QUATERMASTER) + get_access(ACCESS_MARINE_PREP) + get_access(ACCESS_MARINE_AEGIS)
+	access
+		 = list(
+		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_QUATERMASTER, ACCESS_MARINE_PREP, ACCESS_MARINE_AEGIS)
 
 /datum/equipment_preset/merchant_marine/uscss/quatermaster/aegis/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -775,7 +801,7 @@
 	idtype = /obj/item/card/id/deputy
 	assignment = JOB_MM_WARRANT_OFFICER_AEGIS
 	rank = JOB_MM_WARRANT_OFFICER_AEGIS
-	paygrade = "MMO2"
+	paygrade = "MMO3"
 	role_comm_title = "Lt."
 	minimum_age = 30
 	skills = /datum/skills/CMP
@@ -785,7 +811,9 @@
 
 /datum/equipment_preset/merchant_marine/uscss/warrant/aegis/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_WARRANT_OFFICER) + get_access(ACCESS_MARINE_PREP) + get_access(ACCESS_MARINE_AEGIS)
+	access
+		 = list(
+		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_WARRANT_OFFICER, ACCESS_MARINE_PREP, ACCESS_MARINE_AEGIS)
 
 /datum/equipment_preset/merchant_marine/uscss/warrant/aegis/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -802,7 +830,7 @@
 	idtype = /obj/item/card/id/silver
 	assignment = JOB_MM_CHIEF_MEDICAL_OFFICER_AEGIS
 	rank = JOB_MM_CHIEF_MEDICAL_OFFICER_AEGIS
-	paygrade = "MMO1"
+	paygrade = "MMO2"
 	role_comm_title = "Lt.jg."
 	minimum_age = 30
 	skills = /datum/skills/CMO
@@ -812,7 +840,9 @@
 
 /datum/equipment_preset/merchant_marine/uscss/cmo/aegis/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_CHIEF_MEDICAL) + get_access(ACCESS_MARINE_PREP) + get_access(ACCESS_MARINE_AEGIS)
+	access
+		 = list(
+		ACCESS_LIST_MARINE_ALL, ACCESS_MARINE_CHIEF_MEDICAL, ACCESS_MARINE_PREP, ACCESS_MARINE_AEGIS)
 
 /datum/equipment_preset/merchant_marine/uscss/cmo/aegis/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -829,7 +859,7 @@
 	idtype = /obj/item/card/id/silver
 	assignment = JOB_MM_CHIEF_ENGINEER_AEGIS
 	rank = JOB_MM_CHIEF_ENGINEER_AEGIS
-	paygrade = "MMO1"
+	paygrade = "MMO2"
 	role_comm_title = "Lt.jg."
 	minimum_age = 30
 	skills = /datum/skills/CE
@@ -839,7 +869,12 @@
 
 /datum/equipment_preset/merchant_marine/uscss/ce/aegis/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_CHIEF_ENGINEER) + get_access(ACCESS_MARINE_PREP) + get_access(ACCESS_MARINE_AEGIS)
+	access = list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_CHIEF_ENGINEER,
+		ACCESS_MARINE_PREP,
+		ACCESS_MARINE_AEGIS
+	)
 
 /datum/equipment_preset/merchant_marine/uscss/ce/aegis/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -1013,7 +1048,7 @@
 	idtype = /obj/item/card/id/gold
 	assignment = JOB_MM_CAPTAIN_RUBICON
 	rank = JOB_MM_CAPTAIN_RUBICON
-	paygrade = "CO4"
+	paygrade = "CO5"
 	role_comm_title = "Cpt."
 	minimum_age = 30
 	skills = /datum/skills/commander
@@ -1023,7 +1058,12 @@
 
 /datum/equipment_preset/merchant_marine/css/commander/rubicon/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_CAPTAIN) + get_access(ACCESS_MARINE_PREP) + get_access(ACCESS_MARINE_RUBICON_RUN)
+	access = list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_CAPTAIN,
+		ACCESS_MARINE_PREP,
+		ACCESS_MARINE_RUBICON_RUN
+	)
 
 /datum/equipment_preset/merchant_marine/css/commander/rubicon/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -1040,7 +1080,7 @@
 	idtype = /obj/item/card/id/gold
 	assignment = JOB_MM_QUATERMASTER_RUBICON
 	rank = JOB_MM_QUATERMASTER_RUBICON
-	paygrade = "CO3"
+	paygrade = "CO4"
 	role_comm_title = "C.OFF."
 	minimum_age = 30
 	skills = /datum/skills/XO
@@ -1050,7 +1090,12 @@
 
 /datum/equipment_preset/merchant_marine/css/quatermaster/rubicon/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_QUATERMASTER) + get_access(ACCESS_MARINE_PREP) + get_access(ACCESS_MARINE_RUBICON_RUN)
+	access = list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_QUATERMASTER,
+		ACCESS_MARINE_PREP,
+		ACCESS_MARINE_RUBICON_RUN
+	)
 
 /datum/equipment_preset/merchant_marine/css/quatermaster/rubicon/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -1067,7 +1112,7 @@
 	idtype = /obj/item/card/id/deputy
 	assignment = JOB_MM_WARRANT_OFFICER_RUBICON
 	rank = JOB_MM_WARRANT_OFFICER_RUBICON
-	paygrade = "CO2"
+	paygrade = "CO3"
 	role_comm_title = "S.OFF."
 	minimum_age = 30
 	skills = /datum/skills/CMP
@@ -1077,7 +1122,12 @@
 
 /datum/equipment_preset/merchant_marine/css/warrant/rubicon/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_WARRANT_OFFICER) + get_access(ACCESS_MARINE_PREP) + get_access(ACCESS_MARINE_RUBICON_RUN)
+	access = list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_WARRANT_OFFICER,
+		ACCESS_MARINE_PREP,
+		ACCESS_MARINE_RUBICON_RUN
+	)
 
 /datum/equipment_preset/merchant_marine/css/warrant/rubicon/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -1094,7 +1144,7 @@
 	idtype = /obj/item/card/id/silver
 	assignment = JOB_MM_CHIEF_MEDICAL_OFFICER_RUBICON
 	rank = JOB_MM_CHIEF_MEDICAL_OFFICER_RUBICON
-	paygrade = "CO1"
+	paygrade = "CO2"
 	role_comm_title = "D.OFF."
 	minimum_age = 30
 	skills = /datum/skills/CMO
@@ -1104,7 +1154,12 @@
 
 /datum/equipment_preset/merchant_marine/css/cmo/rubicon/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_CHIEF_MEDICAL) + get_access(ACCESS_MARINE_PREP) + get_access(ACCESS_MARINE_RUBICON_RUN)
+	access = list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_CHIEF_MEDICAL,
+		ACCESS_MARINE_PREP,
+		ACCESS_MARINE_RUBICON_RUN
+	)
 
 /datum/equipment_preset/merchant_marine/css/cmo/rubicon/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -1121,7 +1176,7 @@
 	idtype = /obj/item/card/id/silver
 	assignment = JOB_MM_CHIEF_ENGINEER_RUBICON
 	rank = JOB_MM_CHIEF_ENGINEER_RUBICON
-	paygrade = "CO1"
+	paygrade = "CO2"
 	role_comm_title = "D.OFF."
 	minimum_age = 30
 	skills = /datum/skills/CE
@@ -1131,7 +1186,12 @@
 
 /datum/equipment_preset/merchant_marine/css/ce/rubicon/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_CHIEF_ENGINEER) + get_access(ACCESS_MARINE_PREP) + get_access(ACCESS_MARINE_RUBICON_RUN)
+	access = list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_CHIEF_ENGINEER,
+		ACCESS_MARINE_PREP,
+		ACCESS_MARINE_RUBICON_RUN
+	)
 
 /datum/equipment_preset/merchant_marine/css/ce/rubicon/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -1305,7 +1365,7 @@
 	idtype = /obj/item/card/id/gold
 	assignment = JOB_MM_CAPTAIN_PATTON
 	rank = JOB_MM_CAPTAIN_PATTON
-	paygrade = "CO4"
+	paygrade = "CO5"
 	role_comm_title = "Cpt."
 	minimum_age = 30
 	skills = /datum/skills/commander
@@ -1315,7 +1375,12 @@
 
 /datum/equipment_preset/merchant_marine/css/commander/patton/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_CAPTAIN) + get_access(ACCESS_MARINE_PREP) + get_access(ACCESS_MARINE_PATTONS_GHOST)
+	access = list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_CAPTAIN,
+		ACCESS_MARINE_PREP,
+		ACCESS_MARINE_PATTONS_GHOST
+	)
 
 /datum/equipment_preset/merchant_marine/css/commander/patton/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -1332,7 +1397,7 @@
 	idtype = /obj/item/card/id/gold
 	assignment = JOB_MM_QUATERMASTER_PATTON
 	rank = JOB_MM_QUATERMASTER_PATTON
-	paygrade = "CO3"
+	paygrade = "CO4"
 	role_comm_title = "C.OFF."
 	minimum_age = 30
 	skills = /datum/skills/XO
@@ -1342,7 +1407,12 @@
 
 /datum/equipment_preset/merchant_marine/css/quatermaster/patton/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_QUATERMASTER) + get_access(ACCESS_MARINE_PREP) + get_access(ACCESS_MARINE_PATTONS_GHOST)
+	access = list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_QUATERMASTER,
+		ACCESS_MARINE_PREP,
+		ACCESS_MARINE_PATTONS_GHOST
+	)
 
 /datum/equipment_preset/merchant_marine/css/quatermaster/patton/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -1359,7 +1429,7 @@
 	idtype = /obj/item/card/id/deputy
 	assignment = JOB_MM_WARRANT_OFFICER_PATTON
 	rank = JOB_MM_WARRANT_OFFICER_PATTON
-	paygrade = "CO2"
+	paygrade = "CO3"
 	role_comm_title = "S.OFF."
 	minimum_age = 30
 	skills = /datum/skills/CMP
@@ -1369,7 +1439,12 @@
 
 /datum/equipment_preset/merchant_marine/css/warrant/patton/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_WARRANT_OFFICER) + get_access(ACCESS_MARINE_PREP) + get_access(ACCESS_MARINE_PATTONS_GHOST)
+	access = list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_WARRANT_OFFICER,
+		ACCESS_MARINE_PREP,
+		ACCESS_MARINE_PATTONS_GHOST
+	)
 
 /datum/equipment_preset/merchant_marine/css/warrant/patton/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -1386,7 +1461,7 @@
 	idtype = /obj/item/card/id/silver
 	assignment = JOB_MM_CHIEF_MEDICAL_OFFICER_PATTON
 	rank = JOB_MM_CHIEF_MEDICAL_OFFICER_PATTON
-	paygrade = "CO1"
+	paygrade = "CO2"
 	role_comm_title = "D.OFF."
 	minimum_age = 30
 	skills = /datum/skills/CMO
@@ -1396,7 +1471,12 @@
 
 /datum/equipment_preset/merchant_marine/css/cmo/patton/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_CHIEF_MEDICAL) + get_access(ACCESS_MARINE_PREP,ACCESS_MARINE_PATTONS_GHOST)
+	access = list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_CHIEF_MEDICAL,
+		ACCESS_MARINE_PREP,
+		ACCESS_MARINE_PATTONS_GHOST
+	)
 
 /datum/equipment_preset/merchant_marine/css/cmo/patton/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
@@ -1413,7 +1493,7 @@
 	idtype = /obj/item/card/id/silver
 	assignment = JOB_MM_CHIEF_ENGINEER_PATTON
 	rank = JOB_MM_CHIEF_ENGINEER_PATTON
-	paygrade = "CO1"
+	paygrade = "CO2"
 	role_comm_title = "D.OFF."
 	minimum_age = 30
 	skills = /datum/skills/CE
@@ -1423,7 +1503,12 @@
 
 /datum/equipment_preset/merchant_marine/css/ce/patton/New()
 	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL) + get_access(ACCESS_MARINE_CHIEF_ENGINEER) + get_access(ACCESS_MARINE_PREP) + get_access(ACCESS_MARINE_PATTONS_GHOST)
+	access = list(
+		ACCESS_LIST_MARINE_ALL,
+		ACCESS_MARINE_CHIEF_ENGINEER,
+		ACCESS_MARINE_PREP,
+		ACCESS_MARINE_PATTONS_GHOST
+	)
 
 /datum/equipment_preset/merchant_marine/css/ce/patton/load_race(mob/living/carbon/human/new_human, client/mob_client)
 	..()
