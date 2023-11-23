@@ -525,7 +525,7 @@
 
 
 //------------CAPTAIN CREW VENDOR------------
-/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/quatermaster
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/captain
 	name = "\improper ColMarTech Surplus Captain Equiptment Vendor"
 	desc = "An automated supply rack hooked up to a small storage of Captain's Equiptment."
 	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_CAPTAIN)
@@ -533,10 +533,10 @@
 	listed_products = list()
 	hackable = TRUE
 
-/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/quatermaster/ui_state(mob/user)
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/captain/ui_state(mob/user)
 	return GLOB.not_incapacitated_and_adjacent_strict_state
 
-/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/quatermaster/populate_product_list(scale)
+/obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/captain/populate_product_list(scale)
 	listed_products = list(
 		list("STANDARD EQUIPMENT", -1, null, null, null),
 		list("Jackboots", round(1), /obj/item/clothing/shoes/jackboots, VENDOR_ITEM_REGULAR)
