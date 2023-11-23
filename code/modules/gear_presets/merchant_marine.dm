@@ -41,7 +41,7 @@
 	idtype = /obj/item/card/id/data
 	assignment = JOB_MM_MAINTENANCE_TECH
 	rank = JOB_MM_MAINTENANCE_TECH
-	paygrade = "ME2"
+	paygrade = "CE2"
 	role_comm_title = "A.SMN."
 	minimum_age = 18
 	skills = /datum/skills/css/MT
@@ -76,7 +76,7 @@
 	idtype = /obj/item/card/id/data
 	assignment = JOB_MM_CARGO_TECH
 	rank = JOB_MM_CARGO_TECH
-	paygrade = "ME2"
+	paygrade = "CE2"
 	role_comm_title = "A.SMN."
 	minimum_age = 18
 	skills = /datum/skills/css/CT
@@ -111,7 +111,7 @@
 	idtype = /obj/item/card/id/data
 	assignment = JOB_MM_CHEF
 	rank = JOB_MM_CHEF
-	paygrade = "ME1"
+	paygrade = "CE1"
 	role_comm_title = "O.SMN."
 	minimum_age = 18
 	skills = /datum/skills/css/mess_technician
@@ -148,7 +148,7 @@
 	idtype = /obj/item/card/id/gold
 	assignment = JOB_MM_CAPTAIN
 	rank = JOB_MM_CAPTAIN
-	paygrade = "MO4"
+	paygrade = "MMO4"
 	role_comm_title = "Cdr."
 	minimum_age = 30
 	skills = /datum/skills/commander
@@ -174,7 +174,7 @@
 	idtype = /obj/item/card/id/gold
 	assignment = JOB_MM_QUATERMASTER
 	rank = JOB_MM_QUATERMASTER
-	paygrade = "MO3"
+	paygrade = "MMO3"
 	role_comm_title = "LtCdr."
 	minimum_age = 30
 	skills = /datum/skills/XO
@@ -200,7 +200,7 @@
 	idtype = /obj/item/card/id/deputy
 	assignment = JOB_MM_WARRANT_OFFICER
 	rank = JOB_MM_WARRANT_OFFICER
-	paygrade = "MO2"
+	paygrade = "MMO2"
 	role_comm_title = "Lt."
 	minimum_age = 30
 	skills = /datum/skills/CMP
@@ -226,7 +226,7 @@
 	idtype = /obj/item/card/id/silver
 	assignment = JOB_MM_CHIEF_MEDICAL_OFFICER
 	rank = JOB_MM_CHIEF_MEDICAL_OFFICER
-	paygrade = "MO1"
+	paygrade = "MMO1"
 	role_comm_title = "Lt.jg."
 	minimum_age = 30
 	skills = /datum/skills/CMO
@@ -252,7 +252,7 @@
 	idtype = /obj/item/card/id/silver
 	assignment = JOB_MM_CHIEF_ENGINEER
 	rank = JOB_MM_CHIEF_ENGINEER
-	paygrade = "MO1"
+	paygrade = "MMO1"
 	role_comm_title = "Lt.jg."
 	minimum_age = 30
 	skills = /datum/skills/CE
@@ -279,7 +279,7 @@
 	idtype = /obj/item/card/id/data
 	assignment = JOB_MM_DOCTOR
 	rank = JOB_MM_DOCTOR
-	paygrade = "MO1"
+	paygrade = "MMO1"
 	role_comm_title = "Lt.jg."
 	minimum_age = 25
 	skills = /datum/skills/doctor
@@ -315,7 +315,7 @@
 	idtype = /obj/item/card/id/data
 	assignment = JOB_MM_MAINTENANCE_TECH
 	rank = JOB_MM_MAINTENANCE_TECH
-	paygrade = "ME2"
+	paygrade = "MME2"
 	role_comm_title = "SN."
 	minimum_age = 18
 	skills = /datum/skills/uscss/MT
@@ -349,7 +349,7 @@
 	idtype = /obj/item/card/id/data
 	assignment = JOB_MM_CARGO_TECH
 	rank = JOB_MM_CARGO_TECH
-	paygrade = "ME2"
+	paygrade = "MME2"
 	role_comm_title = "SN."
 	minimum_age = 18
 	skills = /datum/skills/uscss/CT
@@ -383,7 +383,7 @@
 	idtype = /obj/item/card/id/data
 	assignment = JOB_MM_CHEF
 	rank = JOB_MM_CHEF
-	paygrade = "ME1"
+	paygrade = "MME1"
 	role_comm_title = "SR."
 	minimum_age = 18
 	skills = /datum/skills/uscss/mess_technician
@@ -428,7 +428,7 @@
 	idtype = /obj/item/card/id/gold
 	assignment = JOB_MM_CAPTAIN_LIBERTY
 	rank = JOB_MM_CAPTAIN_LIBERTY
-	paygrade = "MO4"
+	paygrade = "MMO4"
 	role_comm_title = "Cdr."
 	minimum_age = 30
 	skills = /datum/skills/commander
@@ -455,7 +455,7 @@
 	idtype = /obj/item/card/id/gold
 	assignment = JOB_MM_QUATERMASTER_LIBERTY
 	rank = JOB_MM_QUATERMASTER_LIBERTY
-	paygrade = "MO3"
+	paygrade = "MMO3"
 	role_comm_title = "LtCdr."
 	minimum_age = 30
 	skills = /datum/skills/XO
@@ -482,7 +482,7 @@
 	idtype = /obj/item/card/id/deputy
 	assignment = JOB_MM_WARRANT_OFFICER_LIBERTY
 	rank = JOB_MM_WARRANT_OFFICER_LIBERTY
-	paygrade = "MO2"
+	paygrade = "MMO2"
 	role_comm_title = "Lt."
 	minimum_age = 30
 	skills = /datum/skills/CMP
@@ -509,7 +509,7 @@
 	idtype = /obj/item/card/id/silver
 	assignment = JOB_MM_CHIEF_MEDICAL_OFFICER_LIBERTY
 	rank = JOB_MM_CHIEF_MEDICAL_OFFICER_LIBERTY
-	paygrade = "MO1"
+	paygrade = "MMO1"
 	role_comm_title = "Lt.jg."
 	minimum_age = 30
 	skills = /datum/skills/CMO
@@ -536,7 +536,7 @@
 	idtype = /obj/item/card/id/silver
 	assignment = JOB_MM_CHIEF_ENGINEER_LIBERTY
 	rank = JOB_MM_CHIEF_ENGINEER_LIBERTY
-	paygrade = "MO1"
+	paygrade = "MMO1"
 	role_comm_title = "Lt.jg."
 	minimum_age = 30
 	skills = /datum/skills/CE
@@ -564,7 +564,7 @@
 	idtype = /obj/item/card/id/data
 	assignment = JOB_MM_DOCTOR_LIBERTY
 	rank = JOB_MM_DOCTOR_LIBERTY
-	paygrade = "MO1"
+	paygrade = "MMO1"
 	role_comm_title = "Lt.jg."
 	minimum_age = 25
 	skills = /datum/skills/doctor
@@ -602,7 +602,7 @@
 	idtype = /obj/item/card/id/data
 	assignment = JOB_MM_MAINTENANCE_TECH_LIBERTY
 	rank = JOB_MM_MAINTENANCE_TECH_LIBERTY
-	paygrade = "ME2"
+	paygrade = "MME2"
 	role_comm_title = "SN."
 	minimum_age = 18
 	skills = /datum/skills/uscss/MT
@@ -638,7 +638,7 @@
 	idtype = /obj/item/card/id/data
 	assignment = JOB_MM_CARGO_TECH_LIBERTY
 	rank = JOB_MM_CARGO_TECH_LIBERTY
-	paygrade = "ME2"
+	paygrade = "MME2"
 	role_comm_title = "SN."
 	minimum_age = 18
 	skills = /datum/skills/uscss/CT
@@ -674,7 +674,7 @@
 	idtype = /obj/item/card/id/data
 	assignment = JOB_MM_CHEF_LIBERTY
 	rank = JOB_MM_CHEF_LIBERTY
-	paygrade = "ME1"
+	paygrade = "MME1"
 	role_comm_title = "SR."
 	minimum_age = 18
 	skills = /datum/skills/uscss/mess_technician
@@ -721,7 +721,7 @@
 	idtype = /obj/item/card/id/gold
 	assignment = JOB_MM_CAPTAIN_AEGIS
 	rank = JOB_MM_CAPTAIN_AEGIS
-	paygrade = "MO4"
+	paygrade = "MMO4"
 	role_comm_title = "Cdr."
 	minimum_age = 30
 	skills = /datum/skills/commander
@@ -748,7 +748,7 @@
 	idtype = /obj/item/card/id/gold
 	assignment = JOB_MM_QUATERMASTER_AEGIS
 	rank = JOB_MM_QUATERMASTER_AEGIS
-	paygrade = "MO3"
+	paygrade = "MMO3"
 	role_comm_title = "LtCdr."
 	minimum_age = 30
 	skills = /datum/skills/XO
@@ -775,7 +775,7 @@
 	idtype = /obj/item/card/id/deputy
 	assignment = JOB_MM_WARRANT_OFFICER_AEGIS
 	rank = JOB_MM_WARRANT_OFFICER_AEGIS
-	paygrade = "MO2"
+	paygrade = "MMO2"
 	role_comm_title = "Lt."
 	minimum_age = 30
 	skills = /datum/skills/CMP
@@ -802,7 +802,7 @@
 	idtype = /obj/item/card/id/silver
 	assignment = JOB_MM_CHIEF_MEDICAL_OFFICER_AEGIS
 	rank = JOB_MM_CHIEF_MEDICAL_OFFICER_AEGIS
-	paygrade = "MO1"
+	paygrade = "MMO1"
 	role_comm_title = "Lt.jg."
 	minimum_age = 30
 	skills = /datum/skills/CMO
@@ -829,7 +829,7 @@
 	idtype = /obj/item/card/id/silver
 	assignment = JOB_MM_CHIEF_ENGINEER_AEGIS
 	rank = JOB_MM_CHIEF_ENGINEER_AEGIS
-	paygrade = "MO1"
+	paygrade = "MMO1"
 	role_comm_title = "Lt.jg."
 	minimum_age = 30
 	skills = /datum/skills/CE
@@ -857,7 +857,7 @@
 	idtype = /obj/item/card/id/data
 	assignment = JOB_MM_DOCTOR_AEGIS
 	rank = JOB_MM_DOCTOR_AEGIS
-	paygrade = "MO1"
+	paygrade = "MMO1"
 	role_comm_title = "Lt.jg."
 	minimum_age = 25
 	skills = /datum/skills/doctor
@@ -895,7 +895,7 @@
 	idtype = /obj/item/card/id/data
 	assignment = JOB_MM_MAINTENANCE_TECH_AEGIS
 	rank = JOB_MM_MAINTENANCE_TECH_AEGIS
-	paygrade = "ME2"
+	paygrade = "MME2"
 	role_comm_title = "SN."
 	minimum_age = 18
 	skills = /datum/skills/uscss/MT
@@ -931,7 +931,7 @@
 	idtype = /obj/item/card/id/data
 	assignment = JOB_MM_CARGO_TECH_AEGIS
 	rank = JOB_MM_CARGO_TECH_AEGIS
-	paygrade = "ME2"
+	paygrade = "MME2"
 	role_comm_title = "SN."
 	minimum_age = 18
 	skills = /datum/skills/uscss/CT
@@ -967,7 +967,7 @@
 	idtype = /obj/item/card/id/data
 	assignment = JOB_MM_CHEF_AEGIS
 	rank = JOB_MM_CHEF_AEGIS
-	paygrade = "ME1"
+	paygrade = "MME1"
 	role_comm_title = "SR."
 	minimum_age = 18
 	skills = /datum/skills/uscss/mess_technician
@@ -1013,7 +1013,7 @@
 	idtype = /obj/item/card/id/gold
 	assignment = JOB_MM_CAPTAIN_RUBICON
 	rank = JOB_MM_CAPTAIN_RUBICON
-	paygrade = "MO4"
+	paygrade = "CO4"
 	role_comm_title = "Cpt."
 	minimum_age = 30
 	skills = /datum/skills/commander
@@ -1040,7 +1040,7 @@
 	idtype = /obj/item/card/id/gold
 	assignment = JOB_MM_QUATERMASTER_RUBICON
 	rank = JOB_MM_QUATERMASTER_RUBICON
-	paygrade = "MO3"
+	paygrade = "CO3"
 	role_comm_title = "C.OFF."
 	minimum_age = 30
 	skills = /datum/skills/XO
@@ -1067,7 +1067,7 @@
 	idtype = /obj/item/card/id/deputy
 	assignment = JOB_MM_WARRANT_OFFICER_RUBICON
 	rank = JOB_MM_WARRANT_OFFICER_RUBICON
-	paygrade = "MO2"
+	paygrade = "CO2"
 	role_comm_title = "S.OFF."
 	minimum_age = 30
 	skills = /datum/skills/CMP
@@ -1094,7 +1094,7 @@
 	idtype = /obj/item/card/id/silver
 	assignment = JOB_MM_CHIEF_MEDICAL_OFFICER_RUBICON
 	rank = JOB_MM_CHIEF_MEDICAL_OFFICER_RUBICON
-	paygrade = "MO1"
+	paygrade = "CO1"
 	role_comm_title = "D.OFF."
 	minimum_age = 30
 	skills = /datum/skills/CMO
@@ -1121,7 +1121,7 @@
 	idtype = /obj/item/card/id/silver
 	assignment = JOB_MM_CHIEF_ENGINEER_RUBICON
 	rank = JOB_MM_CHIEF_ENGINEER_RUBICON
-	paygrade = "MO1"
+	paygrade = "CO1"
 	role_comm_title = "D.OFF."
 	minimum_age = 30
 	skills = /datum/skills/CE
@@ -1149,7 +1149,7 @@
 	idtype = /obj/item/card/id/data
 	assignment = JOB_MM_DOCTOR_RUBICON
 	rank = JOB_MM_DOCTOR_RUBICON
-	paygrade = "MO1"
+	paygrade = "CO1"
 	role_comm_title = "P.OFF."
 	minimum_age = 25
 	skills = /datum/skills/doctor
@@ -1187,7 +1187,7 @@
 	idtype = /obj/item/card/id/data
 	assignment = JOB_MM_MAINTENANCE_TECH_RUBICON
 	rank = JOB_MM_MAINTENANCE_TECH_RUBICON
-	paygrade = "ME2"
+	paygrade = "CE2"
 	role_comm_title = "A.SMN."
 	minimum_age = 18
 	skills = /datum/skills/css/MT
@@ -1223,7 +1223,7 @@
 	idtype = /obj/item/card/id/data
 	assignment = JOB_MM_CARGO_TECH_RUBICON
 	rank = JOB_MM_CARGO_TECH_RUBICON
-	paygrade = "ME2"
+	paygrade = "CE2"
 	role_comm_title = "A.SMN."
 	minimum_age = 18
 	skills = /datum/skills/css/CT
@@ -1259,7 +1259,7 @@
 	idtype = /obj/item/card/id/data
 	assignment = JOB_MM_CHEF_RUBICON
 	rank = JOB_MM_CHEF_RUBICON
-	paygrade = "ME1"
+	paygrade = "CE1"
 	role_comm_title = "O.SMN."
 	minimum_age = 18
 	skills = /datum/skills/css/mess_technician
@@ -1305,7 +1305,7 @@
 	idtype = /obj/item/card/id/gold
 	assignment = JOB_MM_CAPTAIN_PATTON
 	rank = JOB_MM_CAPTAIN_PATTON
-	paygrade = "MO4"
+	paygrade = "CO4"
 	role_comm_title = "Cpt."
 	minimum_age = 30
 	skills = /datum/skills/commander
@@ -1332,7 +1332,7 @@
 	idtype = /obj/item/card/id/gold
 	assignment = JOB_MM_QUATERMASTER_PATTON
 	rank = JOB_MM_QUATERMASTER_PATTON
-	paygrade = "MO3"
+	paygrade = "CO3"
 	role_comm_title = "C.OFF."
 	minimum_age = 30
 	skills = /datum/skills/XO
@@ -1359,7 +1359,7 @@
 	idtype = /obj/item/card/id/deputy
 	assignment = JOB_MM_WARRANT_OFFICER_PATTON
 	rank = JOB_MM_WARRANT_OFFICER_PATTON
-	paygrade = "MO2"
+	paygrade = "CO2"
 	role_comm_title = "S.OFF."
 	minimum_age = 30
 	skills = /datum/skills/CMP
@@ -1386,7 +1386,7 @@
 	idtype = /obj/item/card/id/silver
 	assignment = JOB_MM_CHIEF_MEDICAL_OFFICER_PATTON
 	rank = JOB_MM_CHIEF_MEDICAL_OFFICER_PATTON
-	paygrade = "MO1"
+	paygrade = "CO1"
 	role_comm_title = "D.OFF."
 	minimum_age = 30
 	skills = /datum/skills/CMO
@@ -1413,7 +1413,7 @@
 	idtype = /obj/item/card/id/silver
 	assignment = JOB_MM_CHIEF_ENGINEER_PATTON
 	rank = JOB_MM_CHIEF_ENGINEER_PATTON
-	paygrade = "MO1"
+	paygrade = "CO1"
 	role_comm_title = "D.OFF."
 	minimum_age = 30
 	skills = /datum/skills/CE
@@ -1441,7 +1441,7 @@
 	idtype = /obj/item/card/id/data
 	assignment = JOB_MM_DOCTOR_PATTON
 	rank = JOB_MM_DOCTOR_PATTON
-	paygrade = "MO1"
+	paygrade = "CO1"
 	role_comm_title = "P.OFF."
 	minimum_age = 25
 	skills = /datum/skills/doctor
@@ -1479,7 +1479,7 @@
 	idtype = /obj/item/card/id/data
 	assignment = JOB_MM_MAINTENANCE_TECH_PATTON
 	rank = JOB_MM_MAINTENANCE_TECH_PATTON
-	paygrade = "ME2"
+	paygrade = "CE2"
 	role_comm_title = "A.SMN."
 	minimum_age = 18
 	skills = /datum/skills/css/MT
@@ -1515,7 +1515,7 @@
 	idtype = /obj/item/card/id/data
 	assignment = JOB_MM_CARGO_TECH_PATTON
 	rank = JOB_MM_CARGO_TECH_PATTON
-	paygrade = "ME2"
+	paygrade = "CE2"
 	role_comm_title = "A.SMN."
 	minimum_age = 18
 	skills = /datum/skills/css/CT
@@ -1551,7 +1551,7 @@
 	idtype = /obj/item/card/id/data
 	assignment = JOB_MM_CHEF_PATTON
 	rank = JOB_MM_CHEF_PATTON
-	paygrade = "ME1"
+	paygrade = "CE1"
 	role_comm_title = "O.SMN."
 	minimum_age = 18
 	skills = /datum/skills/css/mess_technician

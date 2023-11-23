@@ -259,10 +259,34 @@
 	ranking = 12
 	pay_multiplier = 3
 
+//CSS Enlisted
+/datum/paygrade/css/e1
+	paygrade = "CE1"
+	name = "Ordinary Seaman"
+	prefix = "O.SMN."
+	rank_pin = /obj/item/clothing/accessory/ranks/marine/e1
+	ranking = 0
+	pay_multiplier = 1.6
+
+/datum/paygrade/css/e2
+	paygrade = "CE2"
+	name = "Seaman"
+	prefix = "SMN."
+	rank_pin = /obj/item/clothing/accessory/ranks/marine/e2
+	ranking = 1
+	pay_multiplier = 1.7
+
+/datum/paygrade/css/e3
+	paygrade = "ME3"
+	name = "Able Seaman"
+	prefix = "A.SMN"
+	rank_pin = /obj/item/clothing/accessory/ranks/marine/e3
+	ranking = 2
+	pay_multiplier = 1.9
 
 //MERCHANT MARINE - USCSS
 
-/datum/paygrade/css/o5
+/datum/paygrade/uscss/o5
 	paygrade = "MMO5"
 	name = "Commander"
 	prefix = "Cdr."
@@ -270,7 +294,7 @@
 	ranking = 16
 	pay_multiplier = 4.2
 
-/datum/paygrade/css/o4
+/datum/paygrade/uscss/o4
 	paygrade = "MMO4"
 	name = "Lieutenant Commander"
 	prefix = "Lt.Cdr."
@@ -278,7 +302,7 @@
 	ranking = 15
 	pay_multiplier = 4
 
-/datum/paygrade/css/o3
+/datum/paygrade/uscss/o3
 	paygrade = "MMO3"
 	name = "Lieutenant"
 	prefix = "Lt."
@@ -286,7 +310,7 @@
 	ranking = 14
 	pay_multiplier = 4
 
-/datum/paygrade/css/o2
+/datum/paygrade/uscss/o2
 	paygrade = "MMO2"
 	name = "Lieutenant Junior Grade"
 	prefix = "Lt.jg."
@@ -294,10 +318,35 @@
 	ranking = 13
 	pay_multiplier = 3.2
 
-/datum/paygrade/css/o1
+/datum/paygrade/uscss/o1
 	paygrade = "MMO1"
 	name = "Ensign"
 	prefix = "Ens."
 	rank_pin = /obj/item/clothing/accessory/ranks/marine/o1
 	ranking = 12
 	pay_multiplier = 3
+
+//USCSS Enlisted
+/datum/paygrade/uscss/e1
+	paygrade = "MME1"
+	name = "Seaman Apprentice"
+	prefix = "SMNa"
+	rank_pin = /obj/item/clothing/accessory/ranks/marine/e1
+	ranking = 0
+	pay_multiplier = 1.6
+
+/datum/paygrade/uscss/e2
+	paygrade = "MME2"
+	name = "Seaman"
+	prefix = "PFC"
+	rank_pin = /obj/item/clothing/accessory/ranks/marine/e2
+	ranking = 1
+	pay_multiplier = 1.7
+
+/datum/paygrade/uscss/e3
+	paygrade = "MME3"
+	name = "Seaman"
+	prefix = "SMN."
+	rank_pin = /obj/item/clothing/accessory/ranks/marine/e3
+	ranking = 2
+	pay_multiplier = 1.9
