@@ -300,7 +300,6 @@
 /obj/structure/interior_wall/apc{
 	icon_state = "wall"
 	},
-/obj/structure/reagent_dispensers/peppertank,
 /turf/open/void/vehicle,
 /area/space)
 "K" = (
