@@ -22,6 +22,9 @@
 	armor_internaldamage = CLOTHING_ARMOR_NONE
 	siemens_coefficient = 0.9
 	vision_impair = VISION_IMPAIR_WEAK
+	time_to_unequip = 20
+	time_to_equip = 20
+	equip_sounds = list('sound/handling/putting_on_armor1.ogg')
 	var/gas_filter_strength = 1 //For gas mask filters
 	var/list/filtered_gases = list("phoron", "sleeping_agent", "carbon_dioxide", "CN20 Nerve Gas")
 
