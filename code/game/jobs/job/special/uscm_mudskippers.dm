@@ -369,7 +369,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_ship/uscm_mudskippers/medical/researcher
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "You are Responsible for the Reasearch and development of weapons, and chemicals to aid the marines.  Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>"
+	entry_message_body = "You are Responsible for the Research and development of weapons, and chemicals to aid the marines.  Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>"
 
 /obj/effect/landmark/start/mudskipper/mssci
 	name = JOB_SCI_BG
