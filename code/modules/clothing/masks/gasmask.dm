@@ -21,9 +21,9 @@
 	armor_rad = CLOTHING_ARMOR_NONE
 	armor_internaldamage = CLOTHING_ARMOR_NONE
 	siemens_coefficient = 0.9
-	vision_impair = VISION_IMPAIR_NONE
+	vision_impair = VISION_IMPAIR_WEAK
 	var/gas_filter_strength = 1 //For gas mask filters
-	var/list/filtered_gases = list("phoron", "sleeping_agent", "carbon_dioxide")
+	var/list/filtered_gases = list("phoron", "sleeping_agent", "carbon_dioxide", "CN20 Nerve Gas")
 
 /obj/item/clothing/mask/gas/kutjevo
 	name = "kutjevo respirator"
