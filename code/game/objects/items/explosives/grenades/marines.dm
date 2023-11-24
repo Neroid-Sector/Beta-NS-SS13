@@ -471,7 +471,7 @@
 //================================================
 */
 /obj/item/explosive/grenade/nerve_gas
-	name = "\improper CN20 canister grenade"
+	name = "\improper CN20 canister"
 	desc = "A canister grenade of deadly nerve gas. It is set to detonate in 4 seconds."
 	icon_state = "flashbang2"//temp icon
 	det_time = 40
