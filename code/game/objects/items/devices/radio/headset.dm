@@ -750,6 +750,73 @@
 	initial_keys = list(/obj/item/device/encryptionkey/mortar)
 	volume = RADIO_VOLUME_RAISED
 
+//############################## CIVILIAN ###############################
+//Liberty Star
+/obj/item/device/radio/headset/almayer/marine/libertystar
+	name = "Liberty Star radio headset"
+	desc = "A radio headset linked to the USCSS Liberty Star. Use '-' for radio channels."
+	icon_state = "alpha_headset"
+	frequency = LIBERTY_STAR_COMMON //default frequency is alpha squad channel, not PUB_FREQ
+	initial_keys = list(/obj/item/device/encryptionkey/liberty_star/common)
+
+/obj/item/device/radio/headset/almayer/marine/libertystar/command
+	name = "Liberty Star Command radio headset"
+	desc = "A radio headset linked to the USCSS Liberty Star. Use '-' for radio channels."
+	icon_state = "alpha_headset"
+	frequency = LIBERTY_STAR_COMMON //default frequency is alpha squad channel, not PUB_FREQ
+	initial_keys = list(/obj/item/device/encryptionkey/liberty_star/common, /obj/item/device/encryptionkey/liberty_star/command)
+	volume = RADIO_VOLUME_CRITICAL
+
+//Aegis
+
+/obj/item/device/radio/headset/almayer/marine/aegis
+	name = "Aegis radio headset"
+	desc = "A radio headset linked to the USCSS Aegis. Use '$' for radio channels."
+	icon_state = "bravo_headset"
+	frequency = AEGIS_COMMON //default frequency is alpha squad channel, not PUB_FREQ
+	initial_keys = list(/obj/item/device/encryptionkey/aegis/common)
+
+/obj/item/device/radio/headset/almayer/marine/aegis/command
+	name = "Aegis Command radio headset"
+	desc = "A radio headset linked to the USCSS Aegis. Use '$' for radio channels."
+	icon_state = "bravo_headset"
+	frequency = AEGIS_COMMON //default frequency is alpha squad channel, not PUB_FREQ
+	initial_keys = list(/obj/item/device/encryptionkey/aegis/common, /obj/item/device/encryptionkey/aegis/command)
+	volume = RADIO_VOLUME_CRITICAL
+//Rubicon Run
+
+/obj/item/device/radio/headset/almayer/marine/rubicon_run
+	name = "Rubicon Run radio headset"
+	desc = "A radio headset linked to the CSS Rubicon Run. Use '@' for radio channels."
+	icon_state = "charlie_headset"
+	frequency = RUBICON_RUN_COMMON //default frequency is alpha squad channel, not PUB_FREQ
+	initial_keys = list(/obj/item/device/encryptionkey/rubicon_run/common)
+
+/obj/item/device/radio/headset/almayer/marine/rubicon_run/command
+	name = "Rubicon Run Command radio headset"
+	desc = "A radio headset linked to the CSS Rubicon Run. Use '@' for radio channels."
+	icon_state = "charlie_headset"
+	frequency = RUBICON_RUN_COMMON //default frequency is alpha squad channel, not PUB_FREQ
+	initial_keys = list(/obj/item/device/encryptionkey/rubicon_run/common, /obj/item/device/encryptionkey/rubicon_run/command)
+	volume = RADIO_VOLUME_CRITICAL
+
+//Patton's Ghost
+
+/obj/item/device/radio/headset/almayer/marine/pattons_ghost
+	name = "Pattons Ghost radio headset"
+	desc = "A radio headset linked to the CSS Patton's Ghost. Use '&' for radio channels."
+	icon_state = "bravo_headset"
+	frequency = PATTONS_GHOST_COMMON //default frequency is alpha squad channel, not PUB_FREQ
+	initial_keys = list(/obj/item/device/encryptionkey/pattons_ghost/common)
+
+/obj/item/device/radio/headset/almayer/marine/pattons_ghost
+	name = "Pattons Ghost Command radio headset"
+	desc = ""
+	icon_state = "bravo_headset"
+	frequency = PATTONS_GHOST_COMMON //default frequency is alpha squad channel, not PUB_FREQ
+	initial_keys = list(/obj/item/device/encryptionkey/pattons_ghost/common, /obj/item/device/encryptionkey/pattons_ghost/command)
+	volume = RADIO_VOLUME_CRITICAL
+
 //*************************************
 //-----SELF SETTING MARINE HEADSET-----
 //*************************************/

@@ -383,3 +383,62 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 ///For denying certain traits being applied to people. ie. bad leg
 ///'Grunt' lists are for people who wouldn't logically get the bad leg trait, ie. UPP marine counterparts.
 #define JOB_ERT_GRUNT_LIST list(DUTCH_JOB_LIST, RIOT_JOB_LIST, PROVOST_JOB_LIST, CMB_GRUNT_LIST, CLF_JOB_LIST, UPP_JOB_GRUNT_LIST, UPP_COMMANDO_JOB_LIST, CONTRACTOR_JOB_LIST, JOB_WY_GOON_LIST, JOB_PMC_GRUNT_LIST)
+
+
+//Merchant Marine
+
+//templates
+#define JOB_MM_CAPTAIN "Captain"
+#define JOB_MM_QUATERMASTER "Quatermaster"
+#define JOB_MM_WARRANT_OFFICER "Warrant Officer"
+#define JOB_MM_CHIEF_ENGINEER "Chief Engineer"
+#define JOB_MM_CHIEF_MEDICAL_OFFICER "Chief Medical Officer"
+#define JOB_MM_DOCTOR "Doctor"
+#define JOB_MM_MAINTENANCE_TECH "Maintenance Tech"
+#define JOB_MM_CARGO_TECH "Cargo Tech"
+#define JOB_MM_CHEF "Chef"
+
+//Liberty Star
+
+#define JOB_MM_CAPTAIN_LIBERTY "USCSS Liberty Star Captain"
+#define JOB_MM_QUATERMASTER_LIBERTY "USCSS Liberty Star Quatermaster"
+#define JOB_MM_WARRANT_OFFICER_LIBERTY "USCSS Liberty Star Warrant Officer"
+#define JOB_MM_CHIEF_ENGINEER_LIBERTY "USCSS Liberty Star Chief Engineer"
+#define JOB_MM_CHIEF_MEDICAL_OFFICER_LIBERTY "Chief Medical Officer"
+#define JOB_MM_DOCTOR_LIBERTY "USCSS Liberty Star Doctor"
+#define JOB_MM_MAINTENANCE_TECH_LIBERTY "USCSS Liberty Star Maintenance Tech"
+#define JOB_MM_CARGO_TECH_LIBERTY "USCSS Liberty Star Cargo Tech"
+#define JOB_MM_CHEF_LIBERTY "USCSS Liberty Star Chef"
+
+// Aegis
+#define JOB_MM_CAPTAIN_AEGIS "USCSS Aegis Captain"
+#define JOB_MM_QUATERMASTER_AEGIS "USCSS Aegis Quatermaster"
+#define JOB_MM_WARRANT_OFFICER_AEGIS "USCSS Aegis Warrant Officer"
+#define JOB_MM_CHIEF_ENGINEER_AEGIS "USCSS Aegis Chief Engineer"
+#define JOB_MM_CHIEF_MEDICAL_OFFICER_AEGIS "USCSS Aegis Chief Medical Officer"
+#define JOB_MM_DOCTOR_AEGIS "USCSS Aegis Doctor"
+#define JOB_MM_MAINTENANCE_TECH_AEGIS "USCSS Aegis Maintenance Tech"
+#define JOB_MM_CARGO_TECH_AEGIS "USCSS Aegis Cargo Tech"
+#define JOB_MM_CHEF_AEGIS "USCSS Aegis Chef"
+
+//Rubicon Run
+#define JOB_MM_CAPTAIN_RUBICON "CSS Rubicon Run Captain"
+#define JOB_MM_QUATERMASTER_RUBICON "CSS Rubicon Run Quatermaster"
+#define JOB_MM_WARRANT_OFFICER_RUBICON "CSS Rubicon Run Warrant Officer"
+#define JOB_MM_CHIEF_ENGINEER_RUBICON "CSS Rubicon Run Chief Engineer"
+#define JOB_MM_CHIEF_MEDICAL_OFFICER_RUBICON "CSS Rubicon Run Chief Medical Officer"
+#define JOB_MM_DOCTOR_RUBICON "CSS Rubicon Run Doctor"
+#define JOB_MM_MAINTENANCE_TECH_RUBICON "CSS Rubicon Run Maintenance Tech"
+#define JOB_MM_CARGO_TECH_RUBICON "CSS Rubicon Run Cargo Tech"
+#define JOB_MM_CHEF_RUBICON "CSS Rubicon Run Chef"
+
+//Patton's Ghost
+#define JOB_MM_CAPTAIN_PATTON "CSS Patton's Ghost Captain"
+#define JOB_MM_QUATERMASTER_PATTON "CSS Patton's Ghost Quatermaster"
+#define JOB_MM_WARRANT_OFFICER_PATTON "CSS Patton's Ghost Warrant Officer"
+#define JOB_MM_CHIEF_ENGINEER_PATTON "CSS Patton's Ghost Chief Engineer"
+#define JOB_MM_CHIEF_MEDICAL_OFFICER_PATTON "CSS Patton's Ghost Chief Medical Officer"
+#define JOB_MM_DOCTOR_PATTON "CSS Patton's Ghost Doctor"
+#define JOB_MM_MAINTENANCE_TECH_PATTON "CSS Patton's Ghost Maintenance Tech"
+#define JOB_MM_CARGO_TECH_PATTON "CSS Patton's Ghost Cargo Tech"
+#define JOB_MM_CHEF_PATTON "CSS Patton's Ghost Chef"

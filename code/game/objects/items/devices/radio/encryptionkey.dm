@@ -336,3 +336,51 @@
 	name = "\improper Mortar Crew Radio Encryption Key"
 	icon_state = "eng_key"
 	channels = list(RADIO_CHANNEL_ENGI = TRUE, RADIO_CHANNEL_JTAC = TRUE, RADIO_CHANNEL_INTEL = TRUE, RADIO_CHANNEL_REQ = TRUE)
+
+//---------------------------------------------------
+// Civilian Keys
+
+//Liberty Star
+/obj/item/device/encryptionkey/liberty_star/common
+	name = "\improper Liberty Star Common Radio Encryption Key"
+	icon_state = "pmc_key"
+	channels = list(RADIO_CHANNEL_LIBERTY_STAR_GEN = TRUE, RADIO_CHANNEL_LIBERTY_STAR_CARGO = TRUE, RADIO_CHANNEL_LIBERTY_STAR_ENGI = TRUE, RADIO_CHANNEL_LIBERTY_STAR_MED = TRUE)
+
+/obj/item/device/encryptionkey/liberty_star/command
+	name = "\improper Liberty Star Command Radio Encryption Key"
+	icon_state = "pmc_key"
+	channels = list(RADIO_CHANNEL_LIBERTY_STAR_CMD = TRUE)
+
+//Aegis
+/obj/item/device/encryptionkey/aegis/common
+	name = "\improper Aegis Common Radio Encryption Key"
+	icon_state = "pmc_key"
+	channels = list(RADIO_CHANNEL_AEGIS_GEN = TRUE, RADIO_CHANNEL_AEGIS_CARGO = TRUE, RADIO_CHANNEL_AEGIS_ENGI = TRUE, RADIO_CHANNEL_AEGIS_MED = TRUE)
+
+/obj/item/device/encryptionkey/aegis/command
+	name = "\improper Aegis Command Radio Encryption Key"
+	icon_state = "pmc_key"
+	channels = list(RADIO_CHANNEL_AEGIS_CMD = TRUE)
+
+//Rubicon Run
+/obj/item/device/encryptionkey/rubicon_run/common
+	name = "\improper Rubicon Run Common Radio Encryption Key"
+	icon_state = "pmc_key"
+	channels = list(RADIO_CHANNEL_RUBICON_RUN_GEN = TRUE, RADIO_CHANNEL_RUBICON_RUN_CARGO = TRUE, RADIO_CHANNEL_RUBICON_RUN_ENGI = TRUE, RADIO_CHANNEL_RUBICON_RUN_MED = TRUE)
+
+/obj/item/device/encryptionkey/rubicon_run/command
+	name = "\improper Rubicon Run Command Radio Encryption Key"
+	icon_state = "pmc_key"
+	channels = list(RADIO_CHANNEL_RUBICON_RUN_CMD = TRUE)
+
+//Patton's Ghost
+/obj/item/device/encryptionkey/pattons_ghost/common
+	name = "\improper Patton's Ghost Common Radio Encryption Key"
+	icon_state = "pmc_key"
+	channels = list(RADIO_CHANNEL_PATTONS_GHOST_GEN = TRUE, RADIO_CHANNEL_PATTONS_GHOST_CARGO = TRUE, RADIO_CHANNEL_PATTONS_GHOST_ENGI = TRUE, RADIO_CHANNEL_PATTONS_GHOST_MED = TRUE)
+
+/obj/item/device/encryptionkey/pattons_ghost/command
+	name = "\improper Patton's Ghost Command Radio Encryption Key"
+	icon_state = "pmc_key"
+	channels = list(RADIO_CHANNEL_PATTONS_GHOST_CMD = TRUE)
+//-----END
