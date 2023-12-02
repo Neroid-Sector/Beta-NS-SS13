@@ -836,7 +836,7 @@ GLOBAL_LIST_INIT(cm_vending_clothing_marine, list(
 /obj/structure/machinery/cm_vending/sorted/uniform_supply/civilian_prep/warrant_officer
 	name = "\improper ColMarTech Surplus Warrant Officer Equiptment Vendor"
 	desc = "An automated supply rack hooked up to a small storage of standard Officer's Security Equiptment."
-	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_CHIEF_ENGINEER)
+	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_WARRANT_OFFICER)
 	req_one_access = list()
 	listed_products = list()
 	hackable = TRUE
