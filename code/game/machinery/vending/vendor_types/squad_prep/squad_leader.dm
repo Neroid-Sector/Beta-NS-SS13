@@ -201,5 +201,4 @@ GLOBAL_LIST_INIT(cm_vending_clothing_leader, list(
 		/obj/item/storage/box/m94/signal,
 		/obj/item/tool/extinguisher/mini,
 		/obj/item/storage/box/zipcuffs,
-		/obj/item/device/helmet_visor/night_vision,
 	)

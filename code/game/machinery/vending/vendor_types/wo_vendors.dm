@@ -152,19 +152,19 @@
 		list("VP78 Magazine", round(scale * 6), /obj/item/ammo_magazine/pistol/vp78, VENDOR_ITEM_REGULAR),
 
 		list("EXTRA SCOUT AMMUNITION", -1, null, null, null),
-		list("A19 High Velocity Impact Magazine (10x24mm)", round(scale * 1), /obj/item/ammo_magazine/rifle/m4ra/custom/impact, VENDOR_ITEM_REGULAR),
-		list("A19 High Velocity Incendiary Magazine (10x24mm)", round(scale * 1), /obj/item/ammo_magazine/rifle/m4ra/custom/incendiary, VENDOR_ITEM_REGULAR),
-		list("A19 High Velocity Magazine (10x24mm)", round(scale * 1.5), /obj/item/ammo_magazine/rifle/m4ra/custom, VENDOR_ITEM_REGULAR),
+		list("A19 High Velocity Impact Magazine (10x24mm)", round(scale * 10), /obj/item/ammo_magazine/rifle/m4ra/custom/impact, VENDOR_ITEM_REGULAR),
+		list("A19 High Velocity Incendiary Magazine (10x24mm)", round(scale * 10), /obj/item/ammo_magazine/rifle/m4ra/custom/incendiary, VENDOR_ITEM_REGULAR),
+		list("A19 High Velocity Magazine (10x24mm)", round(scale * 15), /obj/item/ammo_magazine/rifle/m4ra/custom, VENDOR_ITEM_REGULAR),
 
 		list("EXTRA SNIPER AMMUNITION", -1, null, null, null),
-		list("M42A Flak Magazine (10x28mm)", round(scale * 1), /obj/item/ammo_magazine/sniper/flak, VENDOR_ITEM_REGULAR),
-		list("M42A Incendiary Magazine (10x28mm)", round(scale * 1), /obj/item/ammo_magazine/sniper/incendiary, VENDOR_ITEM_REGULAR),
-		list("M42A Marksman Magazine (10x28mm Caseless)", round(scale * 1.5), /obj/item/ammo_magazine/sniper, VENDOR_ITEM_REGULAR),
+		list("M42A Flak Magazine (10x28mm)", round(scale * 10), /obj/item/ammo_magazine/sniper/flak, VENDOR_ITEM_REGULAR),
+		list("M42A Incendiary Magazine (10x28mm)", round(scale * 10), /obj/item/ammo_magazine/sniper/incendiary, VENDOR_ITEM_REGULAR),
+		list("M42A Marksman Magazine (10x28mm Caseless)", round(scale * 15), /obj/item/ammo_magazine/sniper, VENDOR_ITEM_REGULAR),
 
 		list("EXTRA DEMOLITIONIST AMMUNITION", -1, null, null, null),
-		list("84mm Anti-Armor Rocket", round(scale * 1), /obj/item/ammo_magazine/rocket/ap, VENDOR_ITEM_REGULAR),
-		list("84mm High-Explosive Rocket", round(scale * 1), /obj/item/ammo_magazine/rocket, VENDOR_ITEM_REGULAR),
-		list("84mm White-Phosphorus Rocket", round(scale * 1), /obj/item/ammo_magazine/rocket/wp, VENDOR_ITEM_REGULAR),
+		list("84mm Anti-Armor Rocket", round(scale * 10), /obj/item/ammo_magazine/rocket/ap, VENDOR_ITEM_REGULAR),
+		list("84mm High-Explosive Rocket", round(scale * 10), /obj/item/ammo_magazine/rocket, VENDOR_ITEM_REGULAR),
+		list("84mm White-Phosphorus Rocket", round(scale * 10), /obj/item/ammo_magazine/rocket/wp, VENDOR_ITEM_REGULAR),
 
 		list("EXTRA GRENADES", -1, null, null, null),
 		list("M40 HEDP Grenade Pack (x6)", round(scale * 1.5), /obj/effect/essentials_set/hedp_6_pack, VENDOR_ITEM_REGULAR),
@@ -230,7 +230,7 @@
 		list("Shotgun Scabbard", round(scale * 10), /obj/item/storage/large_holster/m37, VENDOR_ITEM_REGULAR),
 		list("USCM Pyrotechnician G4-1 Fueltank", round(scale * 2), /obj/item/storage/backpack/marine/engineerpack/flamethrower/kit, VENDOR_ITEM_REGULAR),
 		list("USCM Technician Welderpack", round(scale * 2), /obj/item/storage/backpack/marine/engineerpack, VENDOR_ITEM_REGULAR),
-		list("USCM Thermal Cape", round(scale * 2), /obj/item/storage/backpack/marine/satchel/scout_cloak, VENDOR_ITEM_REGULAR),
+		list("USCM Thermal Cape", round(scale * 0.5), /obj/item/storage/backpack/marine/satchel/scout_cloak, VENDOR_ITEM_REGULAR),
 
 		list("BELTS", -1, null, null),
 		list("G8-A General Utility Pouch", round(scale * 3), /obj/item/storage/backpack/general_belt, VENDOR_ITEM_REGULAR),
@@ -276,4 +276,5 @@
 		list("MB-6 Folding Barricades (x3)", round(scale * 1), /obj/item/stack/folding_barricade/three, VENDOR_ITEM_REGULAR),
 		list("standard Poncho", round(scale * 10), /obj/item/clothing/accessory/poncho, VENDOR_ITEM_REGULAR),
 		list("Night Vision Visor", round(scale * 10), /obj/item/device/helmet_visor/night_vision, VENDOR_ITEM_REGULAR),
+		list("Welding Visor", round(scale * 10), /obj/item/device/helmet_visor/welding_visor, VENDOR_ITEM_REGULAR),
 			)
