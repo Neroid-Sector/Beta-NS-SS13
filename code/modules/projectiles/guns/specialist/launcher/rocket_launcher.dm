@@ -21,6 +21,7 @@
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
 	)
 
 	flags_gun_features = GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY|GUN_INTERNAL_MAG
