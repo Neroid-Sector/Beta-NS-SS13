@@ -370,7 +370,13 @@
 	valid_accessory_slots = list(ACCESSORY_SLOT_MEDAL, ACCESSORY_SLOT_RANK)
 	armor_bullet = CLOTHING_ARMOR_HIGHPLUS
 	armor_internaldamage = CLOTHING_ARMOR_HIGHPLUS
-
+/obj/item/clothing/suit/storage/marine/MP/CO/bomber
+	name = "\improper M3 pattern commanding officer armored coat"
+	desc = "A robust, well-polished suit of armor for the Commanding Officer. Custom-made to fit its owner with special straps to operate a smartgun. Show those Marines who's really in charge. This one has a coat over it for added warmth."
+	icon_state = "bridge_coat_armored"
+	item_state = "bridge_coat_armored"
+	item_state_slots = list(WEAR_JACKET = "bridge_coat_armored")
+	valid_accessory_slots = list(ACCESSORY_SLOT_MEDAL, ACCESSORY_SLOT_RANK)
 /obj/item/clothing/suit/storage/marine/smartgunner
 	name = "\improper M56 combat harness"
 	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories."
