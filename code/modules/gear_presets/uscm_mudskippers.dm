@@ -1183,7 +1183,7 @@
 	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MORGUE)
 	assignment = JOB_SCI_BG
 	rank = JOB_SCI_BG
-	paygrade = "MO1"
+	paygrade = "CCMO"
 	role_comm_title = "Rsr"
 	skills = /datum/skills/researcher
 
