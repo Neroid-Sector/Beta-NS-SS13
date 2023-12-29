@@ -163,12 +163,17 @@
 /obj/structure/machinery/computer/overwatch/almayer{
 	dir = 8;
 	pixel_x = -17;
-	pixel_y = -10
+	pixel_y = 20
+	},
+/obj/structure/machinery/computer/groundside_operations{
+	dir = 4;
+	pixel_x = -17;
+	pixel_y = 6
 	},
 /obj/structure/machinery/computer/overwatch/almayer{
 	dir = 8;
 	pixel_x = -17;
-	pixel_y = 15
+	pixel_y = -10
 	},
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin15"
