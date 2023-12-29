@@ -1029,6 +1029,7 @@
 		/obj/item/device/motiondetector,
 		/obj/item/tool/crew_monitor,
 		/obj/item/device/walkman,
+		/obj/item/device/trench_whistle,
 	)
 	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/pmc)
 	item_state_slots = list(WEAR_JACKET = "pmc_armor")

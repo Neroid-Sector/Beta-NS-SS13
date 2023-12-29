@@ -298,6 +298,7 @@
 		/obj/item/storage/large_holster/machete,
 		/obj/item/storage/large_holster/katana,
 		/obj/item/device/motiondetector,
+		/obj/item/device/trench_whistle,
 	)
 
 /obj/item/clothing/suit/storage/utility_vest
