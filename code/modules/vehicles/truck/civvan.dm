@@ -57,6 +57,54 @@
 		"right" = list(-1, 0)
 	)
 
+/obj/vehicle/multitile/civvan/blu
+	name = "civilian van"
+	icon_state = "civvan_blu"
+	passengers_slots = 4
+	xenos_slots = 4
+	interior_map = /datum/map_template/interior/civvan
+
+	entrances = list(
+		"left" = list(2, 0),
+		"right" = list(-1, 0)
+	)
+
+/obj/vehicle/multitile/civvan/grn
+	name = "civilian van"
+	icon_state = "civvan_grn"
+	passengers_slots = 4
+	xenos_slots = 4
+	interior_map = /datum/map_template/interior/civvan
+
+	entrances = list(
+		"left" = list(2, 0),
+		"right" = list(-1, 0)
+	)
+
+/obj/vehicle/multitile/civvan/ylw
+	name = "civilian van"
+	icon_state = "civvan_ylw"
+	passengers_slots = 4
+	xenos_slots = 4
+	interior_map = /datum/map_template/interior/civvan
+
+	entrances = list(
+		"left" = list(2, 0),
+		"right" = list(-1, 0)
+	)
+
+/obj/vehicle/multitile/civvan/civvan_4
+	name = "civilian van"
+	icon_state = "ambulance"
+	passengers_slots = 4
+	xenos_slots = 4
+	interior_map = /datum/map_template/interior/civvan
+
+	entrances = list(
+		"left" = list(2, 0),
+		"right" = list(-1, 0)
+	)
+
 /*
 ** PRESETS SPAWNERS
 */
