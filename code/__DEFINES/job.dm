@@ -216,6 +216,32 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 
 //----------------------//
 
+//-------------Hell Divers roles---------------//
+
+
+//----Command----
+
+#define JOB_HD_CO "Commanding Officer"
+#define JOB_HD_XO "Adjunct"
+#define JOB_HD_CPT "Captain"
+#define JOB_HD_LT "Lieutenant"
+#define JOB_HD_GC "Company Commander"
+#define JOB_HD_PC "Platoon Commander"
+
+#define JOB_HELLDIVER_COMMAND_LIST list(JOB_HD_CO, JOB_HD_XO, JOB_HD_CPT, JOB_HD_LT, JOB_HD_GC, JOB_HD_PC)
+
+//----Squad-----
+#define JOB_HD_RFM "Hell Divers Squad Rifleman"
+#define JOB_HD_MEDIC "Hell Divers Squad Hospital Corpsman"
+#define JOB_HD_ENGINEER "Hell Divers Squad Combat Technician"
+#define JOB_HD_SMARTGUNNER "Hell Divers Squad Smartgunner"
+#define JOB_HD_SL "Hell Divers Squad Leader"
+
+#define JOB_HELLDIVER_SQUAD_LIST list(JOB_HD_RFM, JOB_HD_MEDIC, JOB_HD_ENGINEER, JOB_HD_SMARTGUNNER, JOB_HD_SL)
+
+
+
+
 //-------- PMC --------//
 #define JOB_PMC_STANDARD "Weyland-Yutani PMC (Standard)"
 #define JOB_PMC_ENGINEER "PMC Corporate Technician"
