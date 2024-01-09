@@ -94,7 +94,7 @@
 	)
 
 /obj/vehicle/multitile/civvan/civvan_4
-	name = "civilian van"
+	name = "Civilian Ambulance"
 	icon_state = "ambulance"
 	passengers_slots = 4
 	xenos_slots = 4
