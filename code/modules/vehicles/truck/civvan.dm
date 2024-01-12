@@ -96,7 +96,7 @@
 /obj/vehicle/multitile/civvan/civvan_4
 	name = "Civilian Ambulance"
 	icon_state = "ambulance"
-	passengers_slots = 4
+	passengers_slots = 5
 	xenos_slots = 4
 	interior_map = /datum/map_template/interior/civvan
 
