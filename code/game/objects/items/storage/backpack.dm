@@ -341,8 +341,14 @@
 
 /obj/item/storage/backpack/satchel/lockable
 	name = "secure leather satchel"
-	desc = "A very fancy satchel made of fine leather. It's got a lock on it."
+	desc = "A nice satchel made of fine leather. It's got a lock on it."
 	is_id_lockable = TRUE
+
+/obj/item/storage/backpack/satchel/lockable/fancy
+	name = "fancy secure leather satchel"
+	desc = "An extremely fancy satchel made of blackened leather and etched with gold, probably belongs to someone important. It's got a strong-looking lock on it."
+	icon_state = "satchel_fancy"
+	lock_overridable = FALSE
 
 /obj/item/storage/backpack/satchel/lockable/liaison
 	lock_overridable = FALSE

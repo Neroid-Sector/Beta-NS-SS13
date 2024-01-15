@@ -53,8 +53,8 @@
 	icon_state = "beanietan"
 
 /obj/item/clothing/head/beret/cm
-	name = "\improper USCM beret"
-	desc = "A hat typically worn by the field-officers of the USCM. Occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
+	name = "\improper Military beret"
+	desc = "A hat typically worn by field-officers. Occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
 	icon = 'icons/obj/items/clothing/cm_hats.dmi'
 	icon_state = "beret"
 	item_icons = list(
@@ -82,7 +82,7 @@
 	icon_state = "beret_black"
 
 /obj/item/clothing/head/beret/cm/squadberet
-	name = "USCM Squad Beret"
+	name = "Squad Beret"
 	desc = "For those who want to show pride and have nothing to lose (in their head, at least)."
 
 /obj/item/clothing/head/beret/cm/squadberet/equipped(mob/user, slot)
@@ -473,6 +473,11 @@
 	name = "\improper UAAC-TIS Special Agent Beret"
 	icon_state = "berettis"
 	desc = "A beret with the UAAC-TIS insignia emblazoned on it. A mark of a TIS Special Agent, these berets are one of the only pieces of equipment that the TIS actually manufactures for itself and earning one is one of the rare signs of achievement the Three Eyes allows."
+
+/obj/item/clothing/head/beret/marine/mp/tis/co
+	name = "\improper UAAC-TIS Coordinator Beret"
+	icon_state = "berettisco"
+	desc = "A beret with a platinum UAAC-TIS insignia emblazoned on it. A mark of a TIS Coordinators, earning one of these berets is a great honor and are given upon promotion."
 
 /obj/item/clothing/head/beret/marine/commander
 	name = "marine commanding officer beret"

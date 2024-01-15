@@ -299,6 +299,13 @@
 		/obj/item/device/motiondetector,
 	)
 
+/obj/item/clothing/suit/storage/webbing/black
+	name = "black external webbing"
+	desc = "Designed to be worn over a jumpsuit rather than clipped on, this version has expanded storage and is made from robust black synthcotton. Often used by intelligence officers for document storage."
+	icon_state = "webbing_black"
+	item_state = "webbing_black"
+	storage_slots = 5
+
 /obj/item/clothing/suit/storage/utility_vest
 	name = "utility vest"
 	desc = "A utility vest to hold tools in."
@@ -537,3 +544,21 @@
 	armor_internaldamage = CLOTHING_ARMOR_LOW
 	valid_accessory_slots = list(ACCESSORY_SLOT_ARMBAND, ACCESSORY_SLOT_DECOR, ACCESSORY_SLOT_MEDAL)
 	restricted_accessory_slots = list(ACCESSORY_SLOT_ARMBAND)
+
+/obj/item/clothing/suit/storage/bomber/armored
+	name = "\improper Armored Bomber Jacket"
+	desc = "An extremely discreet and fashionable piece of armor made by stitching expensive ballistic liners into a bomber jacket. Often worn by flag officers on deployment for their warmth and protection while still staying nimble."
+	icon_state = "bomber_2"
+	item_state_slots = list(WEAR_JACKET = "bomber_2")
+	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_ARMS
+	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_ARMS
+	min_cold_protection_temperature = ICE_COLONY_TEMPERATURE
+	armor_melee = CLOTHING_ARMOR_MEDIUM
+	armor_bullet = CLOTHING_ARMOR_HIGHPLUS
+	armor_laser = CLOTHING_ARMOR_LOW
+	armor_energy = CLOTHING_ARMOR_LOW
+	armor_bomb = CLOTHING_ARMOR_VERYLOW
+	armor_internaldamage = CLOTHING_ARMOR_MEDIUMLOW
+	storage_slots = 4
+	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
+	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE

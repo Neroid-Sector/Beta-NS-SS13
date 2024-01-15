@@ -141,10 +141,16 @@
 				marine_rk = "pvm"
 				border_rk = "command"
 			// TIS
+			if(JOB_TIS_ES)
+				marine_rk = "tises"
 			if(JOB_TIS_IO)
 				marine_rk = "tisio"
+			if(JOB_TIS_SIO)
+				marine_rk = "tissio"
 			if(JOB_TIS_SA)
 				marine_rk = "tissa"
+			if(JOB_TIS_CO)
+				marine_rk = "tisco"
 			// Riot MPs
 			if(JOB_RIOT)
 				marine_rk = "rmp"
@@ -192,7 +198,7 @@
 
 		if(marine_rk)
 			var/image/I = image('icons/mob/hud/marine_hud.dmi', current_human, "hudsquad")
-			I.color = "#5A934A"
+			I.color = "#5a934aff"
 			holder.overlays += I
 			holder.overlays += image('icons/mob/hud/marine_hud.dmi', current_human, "[icon_prefix][marine_rk]")
 			if(border_rk)

@@ -107,6 +107,11 @@
 	desc = "This banner depicts Delta Squad's motto. The Marines of Delta Squad adopted it after picking an old bomber movie for movie night a while back."
 	icon_state = "maximumeffort"
 
+/obj/structure/sign/banners/disappointment
+	name = "\improper Disappointment banner"
+	desc = "This banner depicts the immense disappointment of a Commanding Officer for his Company Commanders."
+	icon_state = "disappointment"
+
 //=====================//
 // SEMIOTIC STANDARD  //
 //===================//

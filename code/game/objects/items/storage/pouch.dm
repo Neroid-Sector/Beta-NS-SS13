@@ -523,6 +523,14 @@
 	for(var/i = 1 to storage_slots)
 		new /obj/item/ammo_magazine/rifle/heap(src)
 
+/obj/item/storage/pouch/magazine/large/mk1_heap/fill_preset_inventory()
+	for(var/i = 1 to storage_slots)
+		new /obj/item/ammo_magazine/rifle/m41aMK1/heap(src)
+
+/obj/item/storage/pouch/magazine/large/xm40/fill_preset_inventory()
+	for(var/i = 1 to storage_slots)
+		new /obj/item/ammo_magazine/rifle/xm40/heap(src)
+
 /obj/item/storage/pouch/magazine/large/smg_heap/fill_preset_inventory()
 	for(var/i = 1 to storage_slots)
 		new /obj/item/ammo_magazine/smg/m39/heap(src)

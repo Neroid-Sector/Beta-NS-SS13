@@ -611,9 +611,19 @@
 	item_state = "securityhud"
 	eye_protection = EYE_PROTECTION_FLASH
 
-
 /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	name = "tactical SWAT HUD"
 	gender = NEUTER
 	desc = "Flash-resistant goggles with inbuilt combat and security information."
 	icon_state = "swatgoggles"
+
+/obj/item/clothing/glasses/sunglasses/sechud/hidden
+	name = "Sunglasses"
+	desc = "Sunglasses wired up with the best nano-tech the USCM can muster out on the frontier. Displays information about any person you decree worthy of your gaze, these ones have been made to look like normal sunglasses."
+	icon_state = "bigsunglasses"
+
+/obj/item/clothing/glasses/sunglasses/sechud/hidden/prescription
+	name = "Sunglasses"
+	desc = "Sunglasses wired up with the best nano-tech the USCM can muster out on the frontier. Displays information about any person you decree worthy of your gaze, these ones have been made to look like normal prescription sunglasses."
+	icon_state = "bigsunglasses"
+	prescription = TRUE

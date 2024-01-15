@@ -107,6 +107,7 @@
 /obj/item/weapon/gun/rifle/m41a/tactical
 	current_mag = /obj/item/ammo_magazine/rifle/ap
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/suppressor, /obj/item/attachable/angledgrip, /obj/item/attachable/stock/rifle/collapsible)
+
 //-------------------------------------------------------
 //NSG 23 ASSAULT RIFLE - PMC PRIMARY RIFLE
 
@@ -462,29 +463,16 @@
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/flashlight/grip,
 		/obj/item/attachable/stock/rifle/collapsible,
+		/obj/item/attachable/stock/rifle,
 		/obj/item/attachable/attached_gun/grenade,
 		/obj/item/attachable/attached_gun/flamer,
 		/obj/item/attachable/attached_gun/flamer/advanced,
 		/obj/item/attachable/attached_gun/extinguisher,
 		/obj/item/attachable/attached_gun/shotgun,
 	)
-	// CO rifle is guaranteed kitted out
-	random_spawn_chance = 100
-	random_spawn_rail = list(
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/reflex/,
-		/obj/item/attachable/scope/mini,
-	)
-	random_spawn_under = list(
-		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/attached_gun/shotgun,
-	)
-	random_spawn_muzzle = list(
-		/obj/item/attachable/suppressor,
-		/obj/item/attachable/bayonet,
-		/obj/item/attachable/extended_barrel,
-	)
+
+	starting_attachment_types = list(/obj/item/attachable/stock/rifle/collapsible)
+
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	indestructible = TRUE
 	auto_retrieval_slot = WEAR_J_STORE
@@ -508,17 +496,8 @@
 	linked_human = null
 	. = ..()
 
-/obj/item/weapon/gun/rifle/m46c/handle_starting_attachment()
-	..()
-	var/obj/item/attachable/stock/rifle/collapsible/S = new(src)
-	S.flags_attach_features &= ~ATTACH_REMOVABLE
-	S.Attach(src)
-	update_attachable(S.slot)
-
-
 /obj/item/weapon/gun/rifle/m46c/set_gun_attachment_offsets()
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17, "rail_x" = 11, "rail_y" = 19, "under_x" = 24, "under_y" = 12, "stock_x" = 24, "stock_y" = 13)
-
 
 /obj/item/weapon/gun/rifle/m46c/set_gun_config_values()
 	..()
@@ -551,6 +530,16 @@
 		name_after_co(user)
 		to_chat(usr, SPAN_NOTICE("[icon2html(src, usr)] You pick up \the [src], registering yourself as its owner."))
 	..()
+
+/obj/item/weapon/gun/rifle/m46c/tactical
+	name = "\improper M46T pulse rifle"
+	desc = "A prototype M46T, a heavily customized version of the prototype M46C, issued to UAAC-TIS Escort Officers only. Comes standard with a suppressor, angled grip, solid stock and reflex sight. Uses standard MK1 & MK2 rifle magazines."
+	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
+	icon_state = "m46t"
+	item_state = "m46t"
+	map_specific_decoration = FALSE
+	starting_attachment_types = list(/obj/item/attachable/angledgrip, /obj/item/attachable/suppressor, /obj/item/attachable/reflex, /obj/item/attachable/stock/rifle)
+	current_mag = /obj/item/ammo_magazine/rifle/m41aMK1/heap
 
 //---ability actions--\\
 
@@ -664,9 +653,6 @@
 /obj/item/weapon/gun/rifle/m46c/proc/remove_idlock()
 	SIGNAL_HANDLER
 	linked_human = null
-
-/obj/item/weapon/gun/rifle/m46c/stripped
-	random_spawn_chance = 0//no extra attachies on spawn, still gets its stock though.
 
 //-------------------------------------------------------
 //MAR-40 AK CLONE //AK47 and FN FAL together as one.
