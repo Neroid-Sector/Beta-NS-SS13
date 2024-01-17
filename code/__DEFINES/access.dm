@@ -3,6 +3,9 @@
 It's best not to mess with the numbers of the regular access levels because
 most of them are tied into map-placed objects. This should be reworked in the future.*/
 //WE NEED TO REWORK THIS ONE DAY.  Access levels make me cry - Apophis
+
+//This sucks gigantic ass - Syndro101
+
 #define ACCESS_MARINE_SENIOR 1
 #define ACCESS_MARINE_DATABASE 2
 #define ACCESS_MARINE_BRIG 3
@@ -194,7 +197,15 @@ most of them are tied into map-placed objects. This should be reworked in the fu
 ///All access levels associated with UPP
 #define ACCESS_LIST_UPP_ALL "UPP (ALL)"
 
+///Main access levels associated with TWE
+#define ACCESS_LIST_TWE_MAIN "TWE (MAIN)"
+///Senior access levels associated with TWE
+#define ACCESS_LIST_TWE_SENIOR "TWE (SENIOR)"
+//Global TWE Access
+#define ACCESS_LIST_TWE_ALL "TWE (ALL)"
+
 ///Generic/basic access to CLF stuff
 #define ACCESS_LIST_CLF_BASE "CLF (Basic)"
+
 ///All access levels associated with CLF
 #define ACCESS_LIST_CLF_ALL "CLF (ALL)"

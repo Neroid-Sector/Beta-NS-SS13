@@ -93,6 +93,7 @@
 		return
 	return 1
 
+//Global Access
 
 /proc/get_access(access_list = ACCESS_LIST_GLOBAL)
 	switch(access_list)
@@ -138,6 +139,8 @@
 				ACCESS_PRESS,
 			)
 
+//USCM/MARINE Access
+
 		if(ACCESS_LIST_MARINE_ALL)
 			return list(
 				ACCESS_MARINE_CO,
@@ -168,6 +171,8 @@
 				ACCESS_MARINE_MEDBAY,
 			) + get_access(ACCESS_LIST_COLONIAL_ALL)
 
+//Groundside Access
+
 		if(ACCESS_LIST_COLONIAL_ALL)
 			return list(
 				ACCESS_CIVILIAN_PUBLIC,
@@ -197,6 +202,7 @@
 				ACCESS_CIVILIAN_LOGISTICS,
 			)
 
+//WY Access
 
 		if(ACCESS_LIST_WY_ALL)
 			return list(
@@ -257,6 +263,8 @@
 				ACCESS_WY_FLIGHT,
 			) + get_access(ACCESS_LIST_WY_GOON)
 
+//CLF Access
+
 		if(ACCESS_LIST_CLF_ALL)
 			return list(
 				ACCESS_CLF_SECURITY,
@@ -272,6 +280,8 @@
 				ACCESS_CLF_ENGINEERING,
 			) + get_access(ACCESS_LIST_COLONIAL_ALL) + get_access(ACCESS_LIST_EMERGENCY_RESPONSE)
 
+//UPP Access
+
 		if(ACCESS_LIST_UPP_ALL)
 			return list(
 				ACCESS_UPP_GENERAL,
@@ -285,6 +295,30 @@
 				ACCESS_UPP_LEADERSHIP,
 				ACCESS_UPP_SENIOR_LEAD,
 			) + get_access(ACCESS_LIST_COLONIAL_ALL) + get_access(ACCESS_LIST_EMERGENCY_RESPONSE)
+
+//TWE Access
+		if(ACCESS_LIST_TWE_MAIN)
+			return list(
+			ACCESS_TWE_GENERAL,
+			ACCESS_TWE_MEDICAL,
+			ACCESS_TWE_ENGINEERING,
+			)
+
+		if(ACCESS_LIST_TWE_SENIOR)
+			return list(
+			ACCESS_TWE_SECURITY,
+			ACCESS_TWE_ARMORY,
+			ACCESS_TWE_FLIGHT,
+			ACCESS_TWE_RESEARCH,
+			ACCESS_TWE_COMMANDO,
+			) + get_access(ACCESS_LIST_TWE_MAIN)
+
+		if(ACCESS_LIST_TWE_ALL)
+			return list(
+				ACCESS_TWE_SENIOR_LEAD
+			) + get_access(ACCESS_LIST_TWE_SENIOR)
+
+//Region bullshit
 
 /proc/get_region_accesses(code)
 	switch(code)
