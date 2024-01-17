@@ -912,6 +912,14 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	specialty = "M10 pattern military police"
 	built_in_visors = list(new /obj/item/device/helmet_visor/security)
 
+/obj/item/clothing/head/helmet/marine/MP
+	desc = "This MP helmet is using the classic crimson and black color scheme. Reminds you of the good old or good bad times, depending on your assignment."
+	icon = 'icons/mob/humans/onmob/contained/mpblack.dmi'
+	icon_state = "helmet_mp"
+	item_state = "helmet_mp"
+	contained_sprite = TRUE
+	flags_atom = NO_SNOW_TYPE
+
 /obj/item/clothing/head/helmet/marine/MP/WO
 	name = "\improper M3 pattern chief MP helmet"
 	desc = "A well-crafted variant of the M10 Helmet typically distributed to Chief MPs. Useful for letting your men know who is in charge."
@@ -1424,3 +1432,22 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	armor_bomb = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_bio = CLOTHING_ARMOR_MEDIUM
 	armor_internaldamage = CLOTHING_ARMOR_LOW
+
+//lasalle
+
+/obj/item/clothing/head/helmet/marine/veteran/lasalle
+
+	name = "Lasalle Bio-National helmet"
+	desc = "A helmet used by Lasalle Bio-National."
+	icon_state = "lasalle_helmet"
+	item_state = "lasalle_helmet"
+	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+	contained_sprite = TRUE
+	icon = 'icons/mob/humans/onmob/contained/lasalleBioMercs.dmi'
+
+/obj/item/clothing/head/helmet/marine/veteran/lasalle/leader
+
+	name = "Lasalle Bio-National TL helmet"
+	desc = "A helmet used by Lasalle Bio-National Team Leaders."
+	icon_state = "lasalle_leader_helmet"
+	item_state = "lasalle_leader_helmet"

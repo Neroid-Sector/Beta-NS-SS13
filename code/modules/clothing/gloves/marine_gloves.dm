@@ -203,3 +203,13 @@
 	desc = "Standard issue tactical gloves used by the royal marines."
 	icon_state = "rmc_gloves"
 	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+
+//lasalle
+
+	name = "Lasalle Bio-National gloves"
+	desc = "A set of gloves used by Lasalle Bio-National."
+	icon_state = "lasalle_gloves"
+	item_state = "lasalle_gloves"
+	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+	contained_sprite = TRUE
+	icon = 'icons/mob/humans/onmob/contained/lasalleBioMercs.dmi'

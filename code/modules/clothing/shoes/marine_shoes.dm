@@ -238,3 +238,24 @@
 	. = ..()
 	stored_item = new /obj/item/attachable/bayonet/rmc(src)
 	update_icon()
+
+//lasalle
+/obj/item/clothing/shoes/veteran/pmc/lasalle
+	name = "Lasalle Bio-National boots"
+	desc = "A pair of boots used by Lasalle Bio-National."
+	icon_state = "lasalle_boots"
+	item_state = "lasalle_boots"
+	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+	contained_sprite = TRUE
+	icon = 'icons/mob/humans/onmob/contained/lasalleBioMercs.dmi'
+
+/obj/item/clothing/shoes/veteran/pmc/lasalle/update_icon()
+	if(stored_item)
+		icon_state = "[initial(icon_state)]-1"
+	else
+		icon_state = initial(icon_state)
+
+/obj/item/clothing/shoes/veteran/pmc/lasalle/knife/Initialize(mapload, ...)
+	. = ..()
+	stored_item = new /obj/item/attachable/bayonet(src)
+	update_icon()

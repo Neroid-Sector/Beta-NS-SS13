@@ -121,6 +121,17 @@
 	worn_state = "d_MP_jumpsuit"
 	flags_atom = NO_SNOW_TYPE
 
+/obj/item/clothing/under/marine/mp/black
+	name = "black MP uniform"
+	desc = "This MP uniform is using the classic crimson and black color scheme. Reminds you of the good old or good bad times, depending on your assignment."
+	icon = 'icons/mob/humans/onmob/contained/mpblack.dmi'
+	icon_state = "uniform_mp"
+	item_state = "uniform_mp"
+	worn_state = "uniform_mp"
+	contained_sprite = TRUE
+	flags_atom = NO_SNOW_TYPE
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
+
 /obj/item/clothing/under/marine/warden
 	name = "military warden jumpsuit"
 	desc = "Standard-issue Military Warden uniform. It has shards of light Kevlar to help protect against stabbing weapons and bullets."
@@ -130,6 +141,17 @@
 	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE|UNIFORM_SLEEVE_CUTTABLE|UNIFORM_JACKET_REMOVABLE
 	specialty = "military warden"
 	flags_atom = NO_SNOW_TYPE
+
+/obj/item/clothing/under/marine/mp/black
+	name = "black Warden uniform"
+	desc = "This Warden uniform is using the classic crimson and black color scheme. Reminds you of the good old or good bad times, depending on your assignment."
+	icon = 'icons/mob/humans/onmob/contained/mpblack.dmi'
+	icon_state = "uniform_warden"
+	item_state = "uniform_warden"
+	worn_state = "uniform_warden"
+	contained_sprite = TRUE
+	flags_atom = NO_SNOW_TYPE
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
 
 /obj/item/clothing/under/marine/officer
 	name = "marine officer uniform"
@@ -160,6 +182,18 @@
 	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
 	specialty = "chief MP"
 	flags_atom = NO_SNOW_TYPE
+
+/obj/item/clothing/under/marine/officer/warrant/black
+	name = "black chief MP uniform"
+	desc = "This Chief MP uniform is using the classic crimson and black color scheme. Reminds you of the good old or good bad times, depending on your assignment."
+	icon = 'icons/mob/humans/onmob/contained/mpblack.dmi'
+	icon_state = "uniform_cmp"
+	item_state = "uniform_cmp"
+	worn_state = "uniform_cmp"
+	contained_sprite = TRUE
+	flags_atom = NO_SNOW_TYPE
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
+
 
 /obj/item/clothing/under/marine/officer/technical
 	name = "technical officer uniform"
@@ -969,3 +1003,17 @@
 	desc = "The officers uniform of the royal marines commando. They have shards of light Kevlar to help protect against stabbing weapons and bullets. Onpar with similar USCM equipment"
 	icon_state = "rmc_uniform_lt"
 	worn_state = "rmc_uniform_lt"
+
+//Lasalle
+
+/obj/item/clothing/under/marine/lasalle
+
+	name = "Lasalle Bio-National uniform"
+	desc = "The field uniform of Lasalle Bio-National. They have shards of light Kevlar to help protect against stabbing weapons and bullets. Onpar with similar USCM equipment"
+	icon_state = "lasalle_uniform"
+	item_state = "lasalle_uniform"
+	worn_state = "lasalle_uniform"
+	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+	contained_sprite = TRUE
+	icon = 'icons/mob/humans/onmob/contained/lasalleBioMercs.dmi'
+	flags_jumpsuit = FALSE

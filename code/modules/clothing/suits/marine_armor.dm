@@ -301,6 +301,14 @@
 	item_state_slots = list(WEAR_JACKET = "mp_armor")
 	black_market_value = 20
 
+/obj/item/clothing/suit/storage/marine/MP/black
+	desc = "This MP armor is using the classic crimson and black color scheme. Reminds you of the good old or good bad times, depending on your assignment."
+	icon = 'icons/mob/humans/onmob/contained/mpblack.dmi'
+	icon_state = "armor_mp"
+	item_state = "armor_mp"
+	contained_sprite = TRUE
+	flags_atom = NO_SNOW_TYPE
+
 /obj/item/clothing/suit/storage/marine/MP/warden
 	icon_state = "warden"
 	name = "\improper M3 pattern warden MP armor"
@@ -311,6 +319,14 @@
 	specialty = "M3 pattern warden MP"
 	item_state_slots = list(WEAR_JACKET = "warden")
 
+/obj/item/clothing/suit/storage/marine/MP/warden/black
+	desc = "This Warden armor is using the classic crimson and black color scheme. Reminds you of the good old or good bad times, depending on your assignment."
+	icon = 'icons/mob/humans/onmob/contained/mpblack.dmi'
+	icon_state = "armor_warden"
+	item_state = "armor_warden"
+	contained_sprite = TRUE
+	flags_atom = NO_SNOW_TYPE
+
 /obj/item/clothing/suit/storage/marine/MP/WO
 	icon_state = "warrant_officer"
 	name = "\improper M3 pattern chief MP armor"
@@ -319,6 +335,15 @@
 	specialty = "M3 pattern chief MP"
 	item_state_slots = list(WEAR_JACKET = "warrant_officer")
 	black_market_value = 30
+
+/obj/item/clothing/suit/storage/marine/MP/WO/black
+	desc = "This Chief MP armor is using the classic crimson and black color scheme. Reminds you of the good old or good bad times, depending on your assignment."
+	icon = 'icons/mob/humans/onmob/contained/mpblack.dmi'
+	icon_state = "armor_cmp"
+	item_state = "armor_cmp"
+	contained_sprite = TRUE
+	flags_atom = NO_SNOW_TYPE
+
 
 /obj/item/clothing/suit/storage/marine/MP/general
 	name = "\improper M3 pattern general officer armor"
@@ -1181,6 +1206,14 @@
 	item_state_slots = list(WEAR_JACKET = "commando_armor")
 	unacidable = TRUE
 
+/obj/item/clothing/suit/storage/marine/veteran/pmc/commando/exosuit
+	icon = 'icons/mob/humans/onmob/contained/exo-armor.dmi'
+	icon_state = "commando_armor2"
+	item_state = "commando_armor2"
+	contained_sprite = TRUE
+	flags_atom = NO_SNOW_TYPE
+	item_state_slots = null
+
 //===========================//DISTRESS\\================================\\
 //=======================================================================\\
 
@@ -1809,3 +1842,15 @@
 
 /atom/movable/marine_light
 	light_system = DIRECTIONAL_LIGHT
+
+//lasalle
+
+/obj/item/clothing/suit/storage/marine/veteran/pmc/lasalle
+
+	name = "Lasalle Bio-National armor"
+	desc = "A set of PMC armor used by Lasalle Bio-National."
+	icon_state = "lasalle_armor"
+	item_state = "lasalle_armor"
+	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+	contained_sprite = TRUE
+	icon = 'icons/mob/humans/onmob/contained/lasalleBioMercs.dmi'

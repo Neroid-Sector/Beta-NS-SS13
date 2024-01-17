@@ -438,10 +438,27 @@
 	)
 	black_market_value = 25
 
+/obj/item/clothing/head/beret/marine/mp/black
+	desc = "A MP beret in classic crimson. Reminds you of the good old or good bad times, depending on your assignment."
+	icon = 'icons/mob/humans/onmob/contained/mpblack.dmi'
+	icon_state = "beret_mp"
+	item_state = "beret_mp"
+	item_icons = null
+	contained_sprite = TRUE
+	flags_atom = NO_SNOW_TYPE
 /obj/item/clothing/head/beret/marine/mp/warden
 	name = "\improper USCM MP warden peaked cap"
 	icon_state = "warden"
 	desc = "A peaked cap with the USCM Military Police Lieutenant insignia emblazoned on it. It is typically used by Wardens on USCM ships."
+
+/obj/item/clothing/head/beret/marine/mp/warden/black
+	desc = "A peaked cap in classic crimson. Reminds you of the good old or good bad times, depending on your assignment."
+	icon = 'icons/mob/humans/onmob/contained/mpblack.dmi'
+	icon_state = "peaked_red"
+	item_state = "peaked_red"
+	item_icons = null
+	contained_sprite = TRUE
+	flags_atom = NO_SNOW_TYPE
 
 /obj/item/clothing/head/beret/marine/mp/cmp
 	name = "\improper USCM chief MP beret"
