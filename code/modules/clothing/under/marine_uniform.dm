@@ -787,6 +787,26 @@
 	armor_rad = CLOTHING_ARMOR_NONE
 	armor_internaldamage = CLOTHING_ARMOR_LOW
 
+/obj/item/clothing/under/CM_uniform/QRF
+	name = "\improper Colonial Marshal tactical response uniform"
+	desc = "Dark blue synthcotton and interwoven kevlar attachement points make up the uniform used by the Marshal's QRF teams."
+	icon_state = "cmb_qrf"
+	worn_state = "cmb_qrf"
+	armor_melee = CLOTHING_ARMOR_MEDIUMLOW
+	armor_bullet = CLOTHING_ARMOR_MEDIUMLOW
+	armor_laser = CLOTHING_ARMOR_NONE
+	armor_energy = CLOTHING_ARMOR_NONE
+	armor_bomb = CLOTHING_ARMOR_LOW
+	armor_bio = CLOTHING_ARMOR_NONE
+	armor_rad = CLOTHING_ARMOR_NONE
+	armor_internaldamage = CLOTHING_ARMOR_NONE
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE|NO_SNOW_TYPE|NO_NAME_OVERRIDE
+
+/obj/item/clothing/under/CM_uniform/QRF/corpsman
+	name = "\improper Colonial Marshal medical response uniform"
+	desc = "A modified QRF uniform denoting the wearer as a skilled medic, smells slightly of rubbing alcohol."
+	icon_state = "cmb_qrf_corp"
+	worn_state = "cmb_qrf_corp"
 
 /obj/item/clothing/under/liaison_suit
 	name = "liaison's tan suit"

@@ -208,3 +208,22 @@
 	headshot_state = HEADSHOT_OVERLAY_HEAVY
 	damage = 65
 	penetration = ARMOR_PENETRATION_TIER_10
+
+/datum/ammo/bullet/rifle/kramer
+	name = "heavy rifle bullet"
+
+	damage = 55
+	penetration = ARMOR_PENETRATION_TIER_3
+
+/datum/ammo/bullet/rifle/kramer/ap
+	name = "heavy armor-piercing rifle bullet"
+
+	damage = 46
+	penetration = ARMOR_PENETRATION_TIER_10
+
+/datum/ammo/bullet/rifle/kramer/heap
+	name = "heavy high-explosive armor-piercing rifle bullet"
+
+	headshot_state = HEADSHOT_OVERLAY_HEAVY
+	damage = 70
+	penetration = ARMOR_PENETRATION_TIER_10

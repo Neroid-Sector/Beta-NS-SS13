@@ -569,6 +569,17 @@
 	new /obj/item/ammo_magazine/smartgun(src)
 	new /obj/item/ammo_magazine/smartgun(src)
 
+/obj/item/storage/belt/marine/smartgunner/surplus
+	name = "\improper Surplus smartgunner drum belt"
+	desc = "A civilian manufactured drum belt meant to hold M56 drums. While not nearly as capacious as the M280 pattern, this one is certainly more comforatable to wear."
+	icon_state = "sgbelt_surplus"
+	item_state = "sgbelt_surplus"
+	storage_slots = 2
+
+/obj/item/storage/belt/marine/smartgunner/surplus/fill_preset_inventory()
+	new /obj/item/ammo_magazine/smartgun(src)
+	new /obj/item/ammo_magazine/smartgun(src)
+
 /obj/item/storage/belt/marine/quackers
 	name = "Mr. Quackers"
 	desc = "What are we going to do today, Mr. Quackers?"

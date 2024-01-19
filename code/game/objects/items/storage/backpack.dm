@@ -392,6 +392,11 @@
 	desc = "A green satchel for plant-related work."
 	icon_state = "satchel_hyd"
 
+/obj/item/storage/backpack/satchel/QRF
+	name = "Tactical Response Pack"
+	desc = "A light and spacious backpack used by the Colonial QRF teams. The design of the pack allows it to be quickly slung to side for quick access."
+	icon_state = "qrf_pack"
+	max_storage_space = 22
 //==========================// MARINE BACKPACKS\\================================\\
 //=======================================================================\\
 

@@ -752,3 +752,32 @@
 /obj/item/weapon/gun/smartgun/rmc/Initialize(mapload, ...)
 	. = ..()
 	MD.iff_signal = FACTION_TWE
+
+// Surplus Smartgun - Used by CMB QRF
+
+/obj/item/weapon/gun/smartgun/surplus
+	name = "\improper Surplus M56 smartgun"
+	desc = "An obsolete model of smartgun that has long since left military service. This model fires slower, is less accurate and has been modified to include a rail light for dark areas."
+	flags_gun_features = GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
+	starting_attachment_types = list(/obj/item/attachable/smartbarrel, /obj/item/attachable/flashlight)
+
+/obj/item/weapon/gun/smartgun/surplus/Initialize(mapload, ...)
+	. = ..()
+	MD.iff_signal = FACTION_MARSHAL
+
+/obj/item/weapon/gun/smartgun/surplus/set_gun_config_values()
+	..()
+	set_fire_delay(FIRE_DELAY_TIER_10)
+	fa_scatter_peak = FULL_AUTO_SCATTER_PEAK_TIER_6
+	fa_max_scatter = SCATTER_AMOUNT_TIER_6
+	if(accuracy_improvement)
+		accuracy_mult += HIT_ACCURACY_MULT_TIER_5
+	else
+		accuracy_mult += HIT_ACCURACY_MULT_TIER_1
+	if(recoil_compensation)
+		scatter = SCATTER_AMOUNT_TIER_10
+		recoil = RECOIL_OFF
+	else
+		scatter = SCATTER_AMOUNT_TIER_5
+		recoil = RECOIL_AMOUNT_TIER_2
+	damage_mult = BASE_BULLET_DAMAGE_MULT

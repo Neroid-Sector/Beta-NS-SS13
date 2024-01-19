@@ -1,3 +1,5 @@
+//CMB Paygrades
+
 /datum/paygrade/cmb
 	name = "CMB Paygrade"
 	pay_multiplier = 1.4 // Government work. Nice benefits.
@@ -24,10 +26,28 @@
 /datum/paygrade/cmb/observer
 	paygrade = "GS-3"
 	name = "Interstellar Human Rights Observer"
+
 /datum/paygrade/marine
 	name = "Marine Paygrade"
 	rank_pin = /obj/item/clothing/accessory/ranks/marine
 	pay_multiplier = 1
+
+//CMB QRF Paygrades
+
+/datum/paygrade/cmb/operative
+	paygrade = "GS-9a"
+	name = "QRF Agent"
+	prefix = "Op."
+
+/datum/paygrade/cmb/veteran
+	paygrade = "GS-10"
+	name = "QRF Veteran"
+	prefix = "Vet. Op."
+
+/datum/paygrade/cmb/senior
+	paygrade = "GS-11"
+	name = "QRF Senior"
+	prefix = "Sen. Op."
 
 // ENLISTED PAYGRADES
 

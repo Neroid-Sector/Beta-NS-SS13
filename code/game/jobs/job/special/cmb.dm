@@ -4,7 +4,7 @@
 
 // CMB Marshal
 /datum/job/special/cmb/marshal
-	title = JOB_CMB_TL
+	title = JOB_CMB_MAR
 
 // CMB Investigative Synthetic
 /datum/job/special/cmb/synthetic
@@ -17,3 +17,22 @@
 // Interstellar Human Rights Observer
 /datum/job/special/cmb/observer
 	title = JOB_CMB_OBS
+
+// QRF Roles
+
+// CMB Pointman
+/datum/job/special/cmb/pointman
+	title = JOB_CMB_RFN
+
+// CMB Combat Medic
+/datum/job/special/cmb/medic
+	title = JOB_CMB_CORP
+
+// CMB Heavy Gunner
+/datum/job/special/cmb/gunner
+	title = JOB_CMB_SG
+
+// CMB Team Lead
+/datum/job/special/cmb/teamlead
+	title = JOB_CMB_TL
+

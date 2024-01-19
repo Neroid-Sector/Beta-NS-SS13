@@ -419,6 +419,65 @@
 /obj/item/weapon/gun/rifle/m41aMK1/anchorpoint/gl
 	desc = "A classic M41 MK1 Pulse Rifle painted in a fresh coat of the classic Humbrol 170 camoflauge. This one appears to be used by the Colonial Marine contingent aboard Anchorpoint Station, and is equipped with an underbarrel grenade launcher. Uses 10x24mm caseless ammunition."
 	starting_attachment_types = list(/obj/item/attachable/stock/rifle/collapsible, /obj/item/attachable/attached_gun/grenade/mk1)
+
+//----------------------------------------------
+//Kramer Assault Rifle
+
+/obj/item/weapon/gun/rifle/kramer
+	name = "\improper Kramer pulse rifle"
+	desc = "An aging rifle developed slightly earlier than the m41a mk1, known for its impressive stopping power, recoil and limited ammo capacity. Uses the uncommon 12x35mm caseless cartridge, this one is urban gray."
+	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
+	icon_state = "kramer"
+	item_state = "kramer"
+	fire_sound = "gun_pulse"
+	reload_sound = 'sound/weapons/handling/m41_reload.ogg'
+	unload_sound = 'sound/weapons/handling/m41_unload.ogg'
+	current_mag = /obj/item/ammo_magazine/rifle/kramer
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/reflex,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/flashlight/grip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/stock/rifle,
+		/obj/item/attachable/stock/rifle/collapsible,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mini,
+	)
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	starting_attachment_types = list(/obj/item/attachable/stock/rifle/collapsible, /obj/item/attachable/flashlight/grip)
+	map_specific_decoration = FALSE
+	start_automatic = TRUE
+
+/obj/item/weapon/gun/rifle/kramer/set_gun_attachment_offsets()
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 24, "under_y" = 15, "stock_x" = 24, "stock_y" = 13)
+
+
+/obj/item/weapon/gun/rifle/kramer/set_gun_config_values()
+	..()
+	set_fire_delay(FIRE_DELAY_TIER_7)
+	set_burst_amount(BURST_AMOUNT_TIER_2)
+	set_burst_delay(FIRE_DELAY_TIER_8)
+	accuracy_mult = BASE_ACCURACY_MULT + HIT_ACCURACY_MULT_TIER_5 + 2*HIT_ACCURACY_MULT_TIER_1
+	accuracy_mult_unwielded = BASE_ACCURACY_MULT - HIT_ACCURACY_MULT_TIER_6
+	scatter = SCATTER_AMOUNT_TIER_6
+	burst_scatter_mult = SCATTER_AMOUNT_TIER_8
+	scatter_unwielded = SCATTER_AMOUNT_TIER_5
+	damage_mult = BASE_BULLET_DAMAGE_MULT - BULLET_DAMAGE_MULT_TIER_1
+	recoil_unwielded = RECOIL_AMOUNT_TIER_5
+	recoil_buildup = RECOIL_AMOUNT_TIER_2
+
+/obj/item/weapon/gun/rifle/kramer/tactical
+	starting_attachment_types = list(/obj/item/attachable/stock/rifle, /obj/item/attachable/extended_barrel, /obj/item/attachable/flashlight/grip, /obj/item/attachable/reflex)
+
 //----------------------------------------------
 //Special gun for the CO to replace the smartgun
 

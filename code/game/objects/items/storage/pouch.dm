@@ -531,6 +531,17 @@
 	for(var/i in 1 to storage_slots)
 		new /obj/item/ammo_magazine/m60(src)
 
+/obj/item/storage/pouch/magazine/large/kramer/fill_preset_inventory()
+	for(var/i in 1 to storage_slots)
+		new /obj/item/ammo_magazine/rifle/kramer(src)
+
+/obj/item/storage/pouch/magazine/large/kramer/ap/fill_preset_inventory()
+	for(var/i in 1 to storage_slots)
+		new /obj/item/ammo_magazine/rifle/kramer/ap(src)
+
+/obj/item/storage/pouch/magazine/large/kramer/heap/fill_preset_inventory()
+	for(var/i in 1 to storage_slots)
+		new /obj/item/ammo_magazine/rifle/kramer/heap(src)
 /obj/item/storage/pouch/shotgun
 	name = "shotgun shell pouch"
 	desc = "It can contain handfuls of shells, or bullets if you choose to for some reason."

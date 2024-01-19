@@ -174,7 +174,7 @@
 			if(JOB_WO_PILOT)
 				marine_rk = "wo_mcrew"
 			// Colonial Marshals
-			if(JOB_CMB_TL)
+			if(JOB_CMB_MAR)
 				marine_rk = "mar"
 				icon_prefix = "cmb_"
 			if(JOB_CMB)
@@ -188,6 +188,19 @@
 				icon_prefix = "cmb_"
 			if(JOB_CMB_OBS)
 				marine_rk = "obs"
+				icon_prefix = "cmb_"
+			// Colonial Marshals QRF
+			if(JOB_CMB_RFN)
+				marine_rk = "rfn"
+				icon_prefix = "cmb_"
+			if(JOB_CMB_CORP)
+				marine_rk = "corp"
+				icon_prefix = "cmb_"
+			if(JOB_CMB_SG)
+				marine_rk = "sg"
+				icon_prefix = "cmb_"
+			if(JOB_CMB_TL)
+				marine_rk = "tl"
 				icon_prefix = "cmb_"
 
 		if(marine_rk)

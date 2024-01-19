@@ -654,6 +654,15 @@
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = NO_FLAGS
 
+/obj/item/clothing/head/CMB/QRF
+	name = "\improper Colonial Response Team Leader Cap"
+	desc = "A dark cap enscribed with the words 'Team Lead' representing justice through force to those who break the law. The laws of the Earth stretch beyond the Sol."
+	icon = 'icons/obj/items/clothing/cm_hats.dmi'
+	item_icons = list(
+		WEAR_HEAD = 'icons/mob/humans/onmob/head_1.dmi'
+	)
+	icon_state = "cap_qrf"
+
 /obj/item/clothing/head/freelancer
 	name = "\improper armored Freelancer cap"
 	desc = "A sturdy freelancer's cap. More protective than it seems."
