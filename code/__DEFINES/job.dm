@@ -231,11 +231,11 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_HELLDIVER_COMMAND_LIST list(JOB_HD_CO, JOB_HD_XO, JOB_HD_CPT, JOB_HD_LT, JOB_HD_GC, JOB_HD_PC)
 
 //----Squad-----
-#define JOB_HD_RFM "Hell Divers Squad Rifleman"
-#define JOB_HD_MEDIC "Hell Divers Squad Hospital Corpsman"
-#define JOB_HD_ENGINEER "Hell Divers Squad Combat Technician"
-#define JOB_HD_SMARTGUNNER "Hell Divers Squad Smartgunner"
-#define JOB_HD_SL "Hell Divers Squad Leader"
+#define JOB_HD_RFM "Helldivers Squad Rifleman"
+#define JOB_HD_MEDIC "Helldivers Squad Hospital Corpsman"
+#define JOB_HD_ENGINEER "Helldivers Squad Combat Technician"
+#define JOB_HD_SMARTGUNNER "Helldivers Squad Smartgunner"
+#define JOB_HD_SL "Helldivers Squad Leader"
 
 #define JOB_HELLDIVER_SQUAD_LIST list(JOB_HD_RFM, JOB_HD_MEDIC, JOB_HD_ENGINEER, JOB_HD_SMARTGUNNER, JOB_HD_SL)
 //----------------------//

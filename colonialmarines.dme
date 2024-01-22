@@ -1713,6 +1713,7 @@
 #include "code\modules\gear_presets\uscm.dm"
 #include "code\modules\gear_presets\uscm_dress.dm"
 #include "code\modules\gear_presets\uscm_event.dm"
+#include "code\modules\gear_presets\uscm_helldivers.dm"
 #include "code\modules\gear_presets\uscm_medical.dm"
 #include "code\modules\gear_presets\uscm_mudskippers.dm"
 #include "code\modules\gear_presets\uscm_police.dm"

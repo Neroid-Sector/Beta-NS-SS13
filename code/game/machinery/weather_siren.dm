@@ -29,7 +29,7 @@
 
 /obj/structure/machinery/checkpoint_broadcaster
 	name = "Automated Checkpoint PA Speaker"
-	desc = "A siren used to play propaganda and safety warnings for the checkpoint."
+	desc = "A siren used to play propaganda and safety warnings"
 	icon = 'icons/obj/structures/machinery/loudspeaker.dmi'
 	icon_state = "loudspeaker"
 	density = FALSE
