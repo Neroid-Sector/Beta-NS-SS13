@@ -38,6 +38,7 @@
 	unslashable = 1
 	use_power = USE_POWER_NONE
 	health = 0
+	var/id
 
 
 
