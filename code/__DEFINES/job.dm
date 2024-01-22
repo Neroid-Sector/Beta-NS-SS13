@@ -238,9 +238,36 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_HD_SL "Hell Divers Squad Leader"
 
 #define JOB_HELLDIVER_SQUAD_LIST list(JOB_HD_RFM, JOB_HD_MEDIC, JOB_HD_ENGINEER, JOB_HD_SMARTGUNNER, JOB_HD_SL)
+//----------------------//
 
 
+//-------------Tunnel Rats roles---------------//
 
+
+//----Command----
+
+#define JOB_TR_CO "Commanding Officer"
+#define JOB_TR_XO "Adjunct"
+#define JOB_TR_CPT "Captain"
+#define JOB_TR_LT "Lieutenant"
+#define JOB_TR_GC "Company Commander"
+#define JOB_TR_PC "Platoon Commander"
+
+#define JOB_TUNNELRAT_SQUAD_LIST list(JOB_TR_CO, JOB_TR_XO, JOB_TR_CPT, JOB_TR_LT, JOB_TR_GC, JOB_TR_PC)
+
+//----Squad-----
+#define JOB_TR_RFM "Tunnel Rats Squad Rifleman"
+#define	JOB_TR_FSO "Tunnel Rats Fire Support Coordinator"
+#define JOB_TR_MEDIC "Tunnel Rats Squad Hospital Corpsman"
+#define JOB_TR_ENGINEER "Tunnel Rats Squad Combat Technician"
+#define JOB_TR_SMARTGUNNER "Tunnel Rats Squad Smartgunner"
+#define JOB_TR_SL "Tunnel Rats Squad Leader"
+
+#define JOB_TUNNELRAT_SQUAD_LIST list(JOB_TR_RFM, JOB_TR_MEDIC, JOB_TR_ENGINEER, JOB_TR_SMARTGUNNER, JOB_TR_SL)
+//----------------------//
+
+
+//---------------------------------------------//
 
 //-------- PMC --------//
 #define JOB_PMC_STANDARD "Weyland-Yutani PMC (Standard)"
