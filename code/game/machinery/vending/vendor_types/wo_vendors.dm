@@ -130,7 +130,8 @@
 		list("M39 Rubber Magazine (10x20mm)", round(scale * 10), /obj/item/ammo_magazine/smg/m39/rubber, VENDOR_ITEM_REGULAR),
 		list("M41A MK1 Rubber Magazine (10x24mm)", round(scale * 10), /obj/item/ammo_magazine/rifle/rubber, VENDOR_ITEM_REGULAR),
 		list("Box Of Beanbag Shells", round(scale * 5), /obj/item/ammo_magazine/shotgun/beanbag, VENDOR_ITEM_REGULAR),
-		list("m15 Stun Grenade", round(scale * 5), /obj/item/explosive/grenade/high_explosive/m15/rubber, VENDOR_ITEM_REGULAR),
+		list("m15 Stun Grenade", round(scale * 10), /obj/item/explosive/grenade/high_explosive/m15/rubber, VENDOR_ITEM_REGULAR),
+		list("m40 Stun Grenade", round(scale * 10), /obj/item/explosive/grenade/flashbang/noskill, VENDOR_ITEM_REGULAR),
 
 		list("ARMOR-PIERCING AMMUNITION", -1, null, null),
 		list("88 Mod 4 AP Magazine (9mm)", round(scale * 5), /obj/item/ammo_magazine/pistol/mod88, VENDOR_ITEM_REGULAR),
