@@ -419,6 +419,7 @@
 	icon_state = "mgoggles2"
 	active_icon_state = "mgoggles2_down"
 	inactive_icon_state = "mgoggles2"
+	eye_protection = EYE_PROTECTION_FLASH
 
 /obj/item/clothing/glasses/mgoggles/on_enter_storage(obj/item/storage/internal/S)
 	..()
