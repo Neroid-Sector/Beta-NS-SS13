@@ -130,7 +130,7 @@
 	new /obj/item/reagent_container/spray(src)
 	new /obj/item/reagent_container/spray(src)
 
-/obj/item/storage/box/flashbangs/pvp
+/obj/item/storage/box/flashbang/pvp
 	name = "box of flashbangs (WARNING)"
 	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.</B>"
 	icon_state = "flashbang"
