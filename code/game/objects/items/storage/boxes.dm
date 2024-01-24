@@ -137,7 +137,7 @@
 	can_hold = list(/obj/item/explosive/grenade/flashbang/noskill)
 	w_class = SIZE_MEDIUM
 
-/obj/item/storage/box/flashbang/fill_preset_inventory()
+/obj/item/storage/box/flashbang/pvp/fill_preset_inventory()
 	new /obj/item/explosive/grenade/flashbang/noskill(src)
 	new /obj/item/explosive/grenade/flashbang/noskill(src)
 	new /obj/item/explosive/grenade/flashbang/noskill(src)
