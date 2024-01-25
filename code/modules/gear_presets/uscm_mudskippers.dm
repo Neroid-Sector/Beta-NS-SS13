@@ -220,7 +220,7 @@
 	idtype = /obj/item/card/id/silver
 	assignment = JOB_MS_XO
 	rank = JOB_MS_XO
-	paygrade = "MO2"
+	paygrade = "MO4"
 	role_comm_title = "Adjc"
 	minimum_age = 35
 	skills = /datum/skills/ms/commander
