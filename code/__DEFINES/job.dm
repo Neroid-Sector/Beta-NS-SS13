@@ -253,7 +253,7 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_TR_GC "Company Commander"
 #define JOB_TR_PC "Platoon Commander"
 
-#define JOB_TUNNELRAT_SQUAD_LIST list(JOB_TR_CO, JOB_TR_XO, JOB_TR_CPT, JOB_TR_LT, JOB_TR_GC, JOB_TR_PC)
+#define JOB_TUNNELRAT_COMMAND_LIST list(JOB_TR_CO, JOB_TR_XO, JOB_TR_CPT, JOB_TR_LT, JOB_TR_GC, JOB_TR_PC)
 
 //----Squad-----
 #define JOB_TR_RFM "Tunnel Rats Squad Rifleman"
@@ -330,12 +330,16 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 
 //-------- CMB --------//
 #define JOB_CMB "CMB Deputy"
-#define JOB_CMB_TL "CMB Marshal"
+#define JOB_CMB_MAR "CMB Marshal"
 #define JOB_CMB_SYN "CMB Investigative Synthetic"
 #define JOB_CMB_ICC "Interstellar Commerce Commission Corporate Liaison"
 #define JOB_CMB_OBS "Interstellar Human Rights Observer"
+#define JOB_CMB_RFN "CMB Pointman"
+#define JOB_CMB_CORP "CMB Combat Medic"
+#define JOB_CMB_SG "CMB Heavy Gunner"
+#define JOB_CMB_TL "CMB Team Lead"
 
-#define CMB_GRUNT_LIST list(JOB_CMB, JOB_CMB_TL)
+#define CMB_GRUNT_LIST list(JOB_CMB, JOB_CMB_MAR, JOB_CMB_RFN, JOB_CMB_CORP, JOB_CMB_SG, JOB_CMB_TL)
 
 //-------- FORECON --------//
 
@@ -435,10 +439,13 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 
 #define RIOT_JOB_LIST list(JOB_RIOT, JOB_RIOT_CHIEF)
 //-------- UAAC --------//
+#define JOB_TIS_ES "UAAC-TIS Escort Officer"
 #define JOB_TIS_IO "UAAC-TIS Intelligence Officer"
+#define JOB_TIS_SIO "UAAC-TIS Senior Intelligence Officer"
 #define JOB_TIS_SA "UAAC-TIS Special Agent"
+#define JOB_TIS_CO "UAAC-TIS Coordinator"
 
-#define TIS_JOB_LIST list(JOB_TIS_SA, JOB_TIS_IO)
+#define TIS_JOB_LIST list(JOB_TIS_ES, JOB_TIS_IO, JOB_TIS_SIO, JOB_TIS_SA, JOB_TIS_CO)
 //-------- DUTCH'S DOZEN --------//
 #define JOB_DUTCH_ARNOLD "Dutch's Dozen - Dutch"
 #define JOB_DUTCH_RIFLEMAN "Dutch's Dozen - Rifleman"

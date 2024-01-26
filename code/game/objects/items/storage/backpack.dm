@@ -341,8 +341,14 @@
 
 /obj/item/storage/backpack/satchel/lockable
 	name = "secure leather satchel"
-	desc = "A very fancy satchel made of fine leather. It's got a lock on it."
+	desc = "A nice satchel made of fine leather. It's got a lock on it."
 	is_id_lockable = TRUE
+
+/obj/item/storage/backpack/satchel/lockable/fancy
+	name = "fancy secure leather satchel"
+	desc = "An extremely fancy satchel made of blackened leather and etched with gold, probably belongs to someone important. It's got a strong-looking lock on it."
+	icon_state = "satchel_fancy"
+	lock_overridable = FALSE
 
 /obj/item/storage/backpack/satchel/lockable/liaison
 	lock_overridable = FALSE
@@ -391,6 +397,12 @@
 	name = "hydroponics satchel"
 	desc = "A green satchel for plant-related work."
 	icon_state = "satchel_hyd"
+
+/obj/item/storage/backpack/satchel/QRF
+	name = "Tactical Response Pack"
+	desc = "A light and spacious backpack used by the Colonial QRF teams. The design of the pack allows it to be quickly slung to side for quick access."
+	icon_state = "qrf_pack"
+	max_storage_space = 22
 
 //==========================// MARINE BACKPACKS\\================================\\
 //=======================================================================\\

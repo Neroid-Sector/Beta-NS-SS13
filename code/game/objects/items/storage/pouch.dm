@@ -523,6 +523,14 @@
 	for(var/i = 1 to storage_slots)
 		new /obj/item/ammo_magazine/rifle/heap(src)
 
+/obj/item/storage/pouch/magazine/large/mk1_heap/fill_preset_inventory()
+	for(var/i = 1 to storage_slots)
+		new /obj/item/ammo_magazine/rifle/m41aMK1/heap(src)
+
+/obj/item/storage/pouch/magazine/large/xm40/fill_preset_inventory()
+	for(var/i = 1 to storage_slots)
+		new /obj/item/ammo_magazine/rifle/xm40/heap(src)
+
 /obj/item/storage/pouch/magazine/large/smg_heap/fill_preset_inventory()
 	for(var/i = 1 to storage_slots)
 		new /obj/item/ammo_magazine/smg/m39/heap(src)
@@ -530,6 +538,18 @@
 /obj/item/storage/pouch/magazine/large/m60/fill_preset_inventory()
 	for(var/i in 1 to storage_slots)
 		new /obj/item/ammo_magazine/m60(src)
+
+/obj/item/storage/pouch/magazine/large/kramer/fill_preset_inventory()
+	for(var/i in 1 to storage_slots)
+		new /obj/item/ammo_magazine/rifle/kramer(src)
+
+/obj/item/storage/pouch/magazine/large/kramer/ap/fill_preset_inventory()
+	for(var/i in 1 to storage_slots)
+		new /obj/item/ammo_magazine/rifle/kramer/ap(src)
+
+/obj/item/storage/pouch/magazine/large/kramer/heap/fill_preset_inventory()
+	for(var/i in 1 to storage_slots)
+		new /obj/item/ammo_magazine/rifle/kramer/heap(src)
 
 /obj/item/storage/pouch/shotgun
 	name = "shotgun shell pouch"

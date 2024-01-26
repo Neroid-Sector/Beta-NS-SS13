@@ -232,6 +232,7 @@
 	desc = "The well-ironed utility uniform of a USCM officer. Even looking at it the wrong way could result in being court-martialed. It has shards of light Kevlar to help protect against stabbing weapons and bullets."
 	icon_state = "CO_jumpsuit"
 	worn_state = "CO_jumpsuit"
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE|UNIFORM_JACKET_REMOVABLE
 	specialty = "USCM officer"
 
 /obj/item/clothing/under/marine/officer/general
@@ -389,6 +390,39 @@
 //==================//UNITED AMERICAS ALLIED COMMAND\\===================\\
 //=======================================================================\\
 
+/obj/item/clothing/under/uaac/tis/es
+	name = "\improper UAAC-TIS Escort fatigues"
+	desc = "A robust set of fatigues specially made by the TIS for their Escort Officers, they feature strong padding against melee and some bullet-resistance."
+	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
+	icon_state = "tis_uniform"
+	worn_state = "tis_uniform"
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROT
+	suit_restricted = list(/obj/item/clothing/suit/storage/marine/uaac/tis/es)
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
+	armor_melee = CLOTHING_ARMOR_MEDIUMLOW
+	armor_bullet = CLOTHING_ARMOR_LOW
+	armor_laser = CLOTHING_ARMOR_NONE
+	armor_energy = CLOTHING_ARMOR_NONE
+	armor_bomb = CLOTHING_ARMOR_LOW
+	armor_bio = CLOTHING_ARMOR_LOW
+	armor_rad = CLOTHING_ARMOR_LOW
+	armor_internaldamage = CLOTHING_ARMOR_MEDIUMLOW
+
+/obj/item/clothing/under/uaac/tis/io
+	name = "\improper UAAC-TIS Intelligence Officer uniform"
+	desc = "Originally a USCM officer uniform, all insignia have been carefully removed and replaced by a simple TIS pin worn over the right breast. Like their Special Agent counterparts, TIS Intel Officers are typically transplants from UA aligned armed forces, often initially recruited on a temporary basis then transferred permanently. As such, officers are often forced to adapt their original uniforms."
+	icon_state = "BO_jumpsuit"
+	worn_state = "BO_jumpsuit"
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
+
+/obj/item/clothing/under/uaac/tis/seniorio
+	name = "\improper UAAC-TIS Senior Intelligence Officer uniform"
+	desc = "Often one of the first changes made to their wardrobe, Senior IO's will carefully dye their uniforms to match the TIS color-scheme as a mark of their seniority."
+	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
+	icon_state = "tis_jumpsuit"
+	worn_state = "tis_jumpsuit"
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
+
 /obj/item/clothing/under/uaac/tis
 	name = "\improper UAAC-TIS Special Agent Uniform"
 	desc = "A modified USCM Provost uniform, with its original insignia replaced by those of the UAAC-TIS Intelligence Service. TIS Special Agents are often recruited from the upper echelons of law enforcement agencies in various UA armed forces. These recruits often take all their gear, uniform included with them and later modify them to include TIS and UAAC insignia."
@@ -397,6 +431,7 @@
 	siemens_coefficient = 0.9
 	icon_state = "tis"
 	worn_state = "tis"
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
 	armor_melee = CLOTHING_ARMOR_LOW
 	armor_bullet = CLOTHING_ARMOR_LOW
 	armor_laser = CLOTHING_ARMOR_NONE
@@ -406,12 +441,24 @@
 	armor_rad = CLOTHING_ARMOR_NONE
 	armor_internaldamage = CLOTHING_ARMOR_LOW
 
-/obj/item/clothing/under/uaac/tis/io
-	name = "\improper UAAC-TIS Intelligence Officer uniform"
-	desc = "Originally a USCM officer uniform, all insignia have been carefully removed and replaced by a simple TIS pin worn over the right breast. Like their Special Agent counterparts, TIS Intel Officers are typically transplants from UA aligned armed forces, often initially recruited on a temporary basis then transferred permanently. As such, officers are often forced to adapt their original uniforms."
-	icon_state = "BO_jumpsuit"
-	worn_state = "BO_jumpsuit"
+/obj/item/clothing/under/uaac/tis/co
+	name = "\improper UAAC-TIS Coordinator Uniform"
+	desc = "A modified TIS Special Agent uniform, with its original silver badge replaced with a platinum one and a protective lining stitched in. TIS Coordinators are hand-picked from Special Agents and are entrusted to maintain whole intelligence networks. Due to their promotion to Commodore, a set of bloodstripes have been added, along with gold cuffs."
+	flags_jumpsuit = FALSE
+	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
+	siemens_coefficient = 0.9
+	icon_state = "tisco"
+	worn_state = "tisco"
 	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
+	armor_melee = CLOTHING_ARMOR_MEDIUM
+	armor_bullet = CLOTHING_ARMOR_MEDIUM
+	armor_laser = CLOTHING_ARMOR_NONE
+	armor_energy = CLOTHING_ARMOR_NONE
+	armor_bomb = CLOTHING_ARMOR_LOW
+	armor_bio = CLOTHING_ARMOR_VERYLOW
+	armor_rad = CLOTHING_ARMOR_VERYLOW
+	armor_internaldamage = CLOTHING_ARMOR_MEDIUMLOW
+
 //=========================//USCM Survivors\\================================\\
 //=======================================================================\\
 
@@ -763,6 +810,26 @@
 	armor_rad = CLOTHING_ARMOR_NONE
 	armor_internaldamage = CLOTHING_ARMOR_LOW
 
+/obj/item/clothing/under/CM_uniform/QRF
+	name = "\improper Colonial Marshal tactical response uniform"
+	desc = "Dark blue synthcotton and interwoven kevlar attachement points make up the uniform used by the Marshal's QRF teams."
+	icon_state = "cmb_qrf"
+	worn_state = "cmb_qrf"
+	armor_melee = CLOTHING_ARMOR_MEDIUMLOW
+	armor_bullet = CLOTHING_ARMOR_MEDIUMLOW
+	armor_laser = CLOTHING_ARMOR_NONE
+	armor_energy = CLOTHING_ARMOR_NONE
+	armor_bomb = CLOTHING_ARMOR_LOW
+	armor_bio = CLOTHING_ARMOR_NONE
+	armor_rad = CLOTHING_ARMOR_NONE
+	armor_internaldamage = CLOTHING_ARMOR_NONE
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE|NO_SNOW_TYPE|NO_NAME_OVERRIDE
+
+/obj/item/clothing/under/CM_uniform/QRF/corpsman
+	name = "\improper Colonial Marshal medical response uniform"
+	desc = "A modified QRF uniform denoting the wearer as a skilled medic, smells slightly of rubbing alcohol."
+	icon_state = "cmb_qrf_corp"
+	worn_state = "cmb_qrf_corp"
 
 /obj/item/clothing/under/liaison_suit
 	name = "liaison's tan suit"

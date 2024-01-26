@@ -141,10 +141,16 @@
 				marine_rk = "pvm"
 				border_rk = "command"
 			// TIS
+			if(JOB_TIS_ES)
+				marine_rk = "tises"
 			if(JOB_TIS_IO)
 				marine_rk = "tisio"
+			if(JOB_TIS_SIO)
+				marine_rk = "tissio"
 			if(JOB_TIS_SA)
 				marine_rk = "tissa"
+			if(JOB_TIS_CO)
+				marine_rk = "tisco"
 			// Riot MPs
 			if(JOB_RIOT)
 				marine_rk = "rmp"
@@ -174,7 +180,7 @@
 			if(JOB_WO_PILOT)
 				marine_rk = "wo_mcrew"
 			// Colonial Marshals
-			if(JOB_CMB_TL)
+			if(JOB_CMB_MAR)
 				marine_rk = "mar"
 				icon_prefix = "cmb_"
 			if(JOB_CMB)
@@ -189,6 +195,20 @@
 			if(JOB_CMB_OBS)
 				marine_rk = "obs"
 				icon_prefix = "cmb_"
+			// Colonial Marshals QRF
+			if(JOB_CMB_RFN)
+				marine_rk = "rfn"
+				icon_prefix = "cmb_"
+			if(JOB_CMB_CORP)
+				marine_rk = "corp"
+				icon_prefix = "cmb_"
+			if(JOB_CMB_SG)
+				marine_rk = "sg"
+				icon_prefix = "cmb_"
+			if(JOB_CMB_TL)
+				marine_rk = "tl"
+				icon_prefix = "cmb_"
+
 			// Check squad marines here too, for the unique ones
 			if(JOB_SQUAD_ENGI, JOB_MS_ENGINEER, JOB_HD_ENGINEER, JOB_TR_ENGINEER)
 				marine_rk = "engi"

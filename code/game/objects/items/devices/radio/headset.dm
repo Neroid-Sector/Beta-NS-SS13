@@ -1057,3 +1057,11 @@
 	ignore_z = FALSE
 	has_hud = TRUE
 	hud_type = MOB_HUD_FACTION_UPP
+
+/obj/item/device/radio/headset/almayer/tis
+	name = "UAAC-TIS Command headset"
+	desc = "A discreet headset issued to members of the UAAC-TIS. Channels are as follows: :v - marine command, :p - military police, :a - alpha squad, :b - bravo squad, :c - charlie squad, :d - delta squad, :n - engineering, :m - medbay, :u - requisitions, :j - JTAC,  :t - intel,  :z - HighCom"
+	icon_state = "tis_headset"
+	frequency = HC_FREQ
+	initial_keys = list(/obj/item/device/encryptionkey/highcom)
+	volume = RADIO_VOLUME_CRITICAL

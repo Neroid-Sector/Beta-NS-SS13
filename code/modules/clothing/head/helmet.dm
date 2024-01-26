@@ -1035,7 +1035,7 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	icon_state = "lead_helmet"
 	item_state = "lead_helmet"
 
-//FIORINA / UA RIOT CONTROL HELMET//
+//FIORINA / UAAC HELMETS//
 
 /obj/item/clothing/head/helmet/marine/veteran/ua_riot
 	name = "\improper RC6 helmet"
@@ -1044,6 +1044,21 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	armor_energy = CLOTHING_ARMOR_MEDIUMLOW
 	specialty = "RC6"
 	flags_atom = NO_SNOW_TYPE
+
+/obj/item/clothing/head/helmet/marine/QRF
+	name = "\improper C9 Tactical Response Helmet"
+	desc = "A slightly outdated helmet produced by the Colonial Marshals for their QRF teams, while not as strong as USCM counterparts, this pattern comes with a built in eye shield and is easier to manufacture."
+	icon_state = "cmb_qrf"
+	armor_melee = CLOTHING_ARMOR_LOW
+	armor_bullet = CLOTHING_ARMOR_HIGH
+	armor_laser = CLOTHING_ARMOR_NONE
+	armor_energy = CLOTHING_ARMOR_NONE
+	armor_bomb = CLOTHING_ARMOR_NONE
+	armor_bio = CLOTHING_ARMOR_NONE
+	armor_rad = CLOTHING_ARMOR_NONE
+	armor_internaldamage = CLOTHING_ARMOR_LOW
+	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
+	eye_protection = EYE_PROTECTION_FLASH
 
 // KUTJEVO HELMET
 
