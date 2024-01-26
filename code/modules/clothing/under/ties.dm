@@ -358,15 +358,14 @@
 	name = "USCM Mudskippers patch"
 	desc = "A Mudstained and fire-resistant shoulder patch, worn by the men and women of the Mudskippers, the 4th Division 3rd brigade 15th Bat of the USCM."
 	icon_state = "mudskipperspatch"
-
 /obj/item/clothing/accessory/patch/helldivers
 	name = "USCM Helldivers patch"
 	desc = "A fire-resistant shoulder patch, worn by the men and women of the Helldivers, the 4th Division 3rd brigade 15th Bat of the USCM."
-	icon_state = "mudskipperspatch"
+	icon_state = "helldiverspatch"
 /obj/item/clothing/accessory/patch/tunnelrats
 	name = "USCM Tunnel Rats patch"
 	desc = "A fire-resistant shoulder patch, worn by the men and women of the Tunnel Rats, the 4th Division 3rd brigade 15th Bat of the USCM."
-	icon_state = "mudskipperspatch"
+	icon_state = "tunnelratspatch"
 /obj/item/clothing/accessory/patch/forecon
 	name = "USCM Force Reconnaissance patch"
 	desc = "A fire-resistant shoulder patch, worn by the men and women of the USS Hanyut, USCM FORECON."
