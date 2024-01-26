@@ -53,8 +53,8 @@
 	icon_state = "beanietan"
 
 /obj/item/clothing/head/beret/cm
-	name = "\improper USCM beret"
-	desc = "A hat typically worn by the field-officers of the USCM. Occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
+	name = "\improper Military beret"
+	desc = "A hat typically worn by field-officers. Occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
 	icon = 'icons/obj/items/clothing/cm_hats.dmi'
 	icon_state = "beret"
 	item_icons = list(
@@ -82,7 +82,7 @@
 	icon_state = "beret_black"
 
 /obj/item/clothing/head/beret/cm/squadberet
-	name = "USCM Squad Beret"
+	name = "Squad Beret"
 	desc = "For those who want to show pride and have nothing to lose (in their head, at least)."
 
 /obj/item/clothing/head/beret/cm/squadberet/equipped(mob/user, slot)
@@ -114,6 +114,12 @@
 				if(SQUAD_MARINE_5)
 					icon_state = "beret_echo"
 					desc = "Tightly Woven, as it should be."
+				if(SQUAD_MARINE_CRYO)
+					icon_state = "beret_foxtrot"
+					desc = "Looks and feels starched, cold to the touch."
+				if(SQUAD_MARINE_INTEL)
+					icon_state = "beret_intel"
+					desc = "Looks more intellegent than the person wearing it."
 		else
 			icon_state = "beret"
 			desc = initial(desc)
@@ -474,6 +480,11 @@
 	icon_state = "berettis"
 	desc = "A beret with the UAAC-TIS insignia emblazoned on it. A mark of a TIS Special Agent, these berets are one of the only pieces of equipment that the TIS actually manufactures for itself and earning one is one of the rare signs of achievement the Three Eyes allows."
 
+/obj/item/clothing/head/beret/marine/mp/tis/co
+	name = "\improper UAAC-TIS Coordinator Beret"
+	icon_state = "berettisco"
+	desc = "A beret with a platinum UAAC-TIS insignia emblazoned on it. A mark of a TIS Coordinators, earning one of these berets is a great honor and are given upon promotion."
+
 /obj/item/clothing/head/beret/marine/commander
 	name = "marine commanding officer beret"
 	desc = "A beret with the commanding officer's insignia emblazoned on it. Wearer may suffer the heavy weight of responsibility upon their head and shoulders."
@@ -653,6 +664,15 @@
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROT
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = NO_FLAGS
+
+/obj/item/clothing/head/CMB/QRF
+	name = "\improper Colonial Response Team Leader Cap"
+	desc = "A dark cap enscribed with the words 'Team Lead' representing justice through force to those who break the law. The laws of the Earth stretch beyond the Sol."
+	icon = 'icons/obj/items/clothing/cm_hats.dmi'
+	item_icons = list(
+		WEAR_HEAD = 'icons/mob/humans/onmob/head_1.dmi'
+	)
+	icon_state = "cap_qrf"
 
 /obj/item/clothing/head/freelancer
 	name = "\improper armored Freelancer cap"

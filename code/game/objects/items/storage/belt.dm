@@ -459,6 +459,10 @@
 	for(var/i = 1 to storage_slots)
 		new /obj/item/ammo_magazine/rifle/m41aMK1 (src)
 
+/obj/item/storage/belt/marine/m41amk1heap/fill_preset_inventory()
+	for(var/i = 1 to storage_slots)
+		new /obj/item/ammo_magazine/rifle/m41aMK1/heap (src)
+
 /obj/item/storage/belt/marine/m39/fill_preset_inventory()
 	for(var/i = 1 to storage_slots)
 		new /obj/item/ammo_magazine/smg/m39 (src)
@@ -566,6 +570,17 @@
 	new /obj/item/ammo_magazine/smartgun(src)
 	new /obj/item/ammo_magazine/smartgun(src)
 	new /obj/item/ammo_magazine/smartgun(src)
+	new /obj/item/ammo_magazine/smartgun(src)
+	new /obj/item/ammo_magazine/smartgun(src)
+
+/obj/item/storage/belt/marine/smartgunner/surplus
+	name = "\improper Surplus smartgunner drum belt"
+	desc = "A civilian manufactured drum belt meant to hold M56 drums. While not nearly as capacious as the M280 pattern, this one is certainly more comfortable to wear."
+	icon_state = "sgbelt_surplus"
+	item_state = "sgbelt_surplus"
+	storage_slots = 2
+
+/obj/item/storage/belt/marine/smartgunner/surplus/fill_preset_inventory()
 	new /obj/item/ammo_magazine/smartgun(src)
 	new /obj/item/ammo_magazine/smartgun(src)
 
@@ -1730,7 +1745,17 @@
 	new /obj/item/tool/weldingtool(src)
 	new /obj/item/tool/wirecutters(src)
 	new /obj/item/device/multitool(src)
+	new	/obj/item/tool/crowbar(src)
 
+/obj/item/storage/belt/gun/utility/full/ms/fill_preset_inventory()
+	handle_item_insertion(new /obj/item/weapon/gun/smg/nailgun/compact())
+	new /obj/item/tool/screwdriver(src)
+	new /obj/item/tool/wrench(src)
+	new /obj/item/tool/weldingtool(src)
+	new /obj/item/tool/wirecutters(src)
+	new /obj/item/device/multitool(src)
+	new	/obj/item/tool/crowbar(src)
+	new /obj/item/tool/shovel/etool/folded(src)
 ////////////OTHER BELTS//////////////
 
 /obj/item/storage/belt/tank

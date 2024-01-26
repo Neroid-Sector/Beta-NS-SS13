@@ -370,6 +370,7 @@
 	icon = 'icons/obj/structures/mortar.dmi'
 	icon_state = "mortar_m402_carry"
 	unacidable = TRUE
+	flags_equip_slot = SLOT_BACK
 	w_class = SIZE_HUGE //No dumping this in a backpack. Carry it, fatso
 
 /obj/item/mortar_kit/ex_act(severity)

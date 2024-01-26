@@ -12,7 +12,7 @@ block( \
 #define GLOBAL_PROC "magic BS"
 
 //Game defining directives.
-#define MAIN_AI_SYSTEM "ARES v3.2"
+#define MAIN_AI_SYSTEM "M.U.T.H.R. 9000"
 
 // Maploader bounds indices
 #define MAP_MINX 1

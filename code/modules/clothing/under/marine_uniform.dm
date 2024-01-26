@@ -232,6 +232,7 @@
 	desc = "The well-ironed utility uniform of a USCM officer. Even looking at it the wrong way could result in being court-martialed. It has shards of light Kevlar to help protect against stabbing weapons and bullets."
 	icon_state = "CO_jumpsuit"
 	worn_state = "CO_jumpsuit"
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE|UNIFORM_JACKET_REMOVABLE
 	specialty = "USCM officer"
 
 /obj/item/clothing/under/marine/officer/general
@@ -374,44 +375,53 @@
 
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROT
 
-/obj/item/clothing/under/marine/mp/provost/enforcer
-	name = "\improper Provost Enforcer Uniform"
-	desc = "The crisp uniform of a Provost Enforcer."
-
-/obj/item/clothing/under/marine/mp/provost/tml
-	name = "\improper Provost Team Leader Uniform"
-	desc = "The crisp uniform of a Provost Team Leader."
-	icon_state = "warden_jumpsuit"
-	worn_state = "warden_jumpsuit"
-
-/obj/item/clothing/under/marine/mp/provost/advisor
-	name = "\improper Provost Advisor Uniform"
-	desc = "The crisp uniform of a Provost Advisor."
-	icon_state = "warden_jumpsuit"
-	worn_state = "warden_jumpsuit"
-
-/obj/item/clothing/under/marine/mp/provost/inspector
-	name = "\improper Provost Inspector Uniform"
-	desc = "The crisp uniform of a Provost Inspector."
-	icon_state = "warden_jumpsuit"
-	worn_state = "warden_jumpsuit"
+/obj/item/clothing/under/marine/mp/provost/senior
+	name = "\improper Provost Senior Uniform"
+	desc = "The crisp uniform of a senior member of the Provost Office."
+	icon_state = "provost_tml"
+	worn_state = "provost_tml"
 
 /obj/item/clothing/under/marine/mp/provost/marshal
 	name = "\improper Provost Marshal Uniform"
 	desc = "The crisp uniform of a Provost Marshal."
-	icon_state = "WO_jumpsuit"
-	worn_state = "WO_jumpsuit"
-
-/obj/item/clothing/under/marine/mp/provost/marshal/sector
-	name = "\improper Provost Sector Marshal Uniform"
-	desc = "The crisp uniform of a Provost Sector Marshal."
-
-/obj/item/clothing/under/marine/mp/provost/marshal/chief
-	name = "\improper Provost Chief Marshal Uniform"
-	desc = "The crisp uniform of the Provost Chief Marshal."
+	icon_state = "provost_marshal"
+	worn_state = "provost_marshal"
 
 //==================//UNITED AMERICAS ALLIED COMMAND\\===================\\
 //=======================================================================\\
+
+/obj/item/clothing/under/uaac/tis/es
+	name = "\improper UAAC-TIS Escort fatigues"
+	desc = "A robust set of fatigues specially made by the TIS for their Escort Officers, they feature strong padding against melee and some bullet-resistance."
+	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
+	icon_state = "tis_uniform"
+	worn_state = "tis_uniform"
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROT
+	suit_restricted = list(/obj/item/clothing/suit/storage/marine/uaac/tis/es)
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
+	armor_melee = CLOTHING_ARMOR_MEDIUMLOW
+	armor_bullet = CLOTHING_ARMOR_LOW
+	armor_laser = CLOTHING_ARMOR_NONE
+	armor_energy = CLOTHING_ARMOR_NONE
+	armor_bomb = CLOTHING_ARMOR_LOW
+	armor_bio = CLOTHING_ARMOR_LOW
+	armor_rad = CLOTHING_ARMOR_LOW
+	armor_internaldamage = CLOTHING_ARMOR_MEDIUMLOW
+
+/obj/item/clothing/under/uaac/tis/io
+	name = "\improper UAAC-TIS Intelligence Officer uniform"
+	desc = "Originally a USCM officer uniform, all insignia have been carefully removed and replaced by a simple TIS pin worn over the right breast. Like their Special Agent counterparts, TIS Intel Officers are typically transplants from UA aligned armed forces, often initially recruited on a temporary basis then transferred permanently. As such, officers are often forced to adapt their original uniforms."
+	icon_state = "BO_jumpsuit"
+	worn_state = "BO_jumpsuit"
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
+
+/obj/item/clothing/under/uaac/tis/seniorio
+	name = "\improper UAAC-TIS Senior Intelligence Officer uniform"
+	desc = "Often one of the first changes made to their wardrobe, Senior IO's will carefully dye their uniforms to match the TIS color-scheme as a mark of their seniority."
+	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
+	icon_state = "tis_jumpsuit"
+	worn_state = "tis_jumpsuit"
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
 
 /obj/item/clothing/under/uaac/tis
 	name = "\improper UAAC-TIS Special Agent Uniform"
@@ -421,6 +431,7 @@
 	siemens_coefficient = 0.9
 	icon_state = "tis"
 	worn_state = "tis"
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
 	armor_melee = CLOTHING_ARMOR_LOW
 	armor_bullet = CLOTHING_ARMOR_LOW
 	armor_laser = CLOTHING_ARMOR_NONE
@@ -430,12 +441,24 @@
 	armor_rad = CLOTHING_ARMOR_NONE
 	armor_internaldamage = CLOTHING_ARMOR_LOW
 
-/obj/item/clothing/under/uaac/tis/io
-	name = "\improper UAAC-TIS Intelligence Officer uniform"
-	desc = "Originally a USCM officer uniform, all insignia have been carefully removed and replaced by a simple TIS pin worn over the right breast. Like their Special Agent counterparts, TIS Intel Officers are typically transplants from UA aligned armed forces, often initially recruited on a temporary basis then transferred permanently. As such, officers are often forced to adapt their original uniforms."
-	icon_state = "BO_jumpsuit"
-	worn_state = "BO_jumpsuit"
+/obj/item/clothing/under/uaac/tis/co
+	name = "\improper UAAC-TIS Coordinator Uniform"
+	desc = "A modified TIS Special Agent uniform, with its original silver badge replaced with a platinum one and a protective lining stitched in. TIS Coordinators are hand-picked from Special Agents and are entrusted to maintain whole intelligence networks. Due to their promotion to Commodore, a set of bloodstripes have been added, along with gold cuffs."
+	flags_jumpsuit = FALSE
+	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
+	siemens_coefficient = 0.9
+	icon_state = "tisco"
+	worn_state = "tisco"
 	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
+	armor_melee = CLOTHING_ARMOR_MEDIUM
+	armor_bullet = CLOTHING_ARMOR_MEDIUM
+	armor_laser = CLOTHING_ARMOR_NONE
+	armor_energy = CLOTHING_ARMOR_NONE
+	armor_bomb = CLOTHING_ARMOR_LOW
+	armor_bio = CLOTHING_ARMOR_VERYLOW
+	armor_rad = CLOTHING_ARMOR_VERYLOW
+	armor_internaldamage = CLOTHING_ARMOR_MEDIUMLOW
+
 //=========================//USCM Survivors\\================================\\
 //=======================================================================\\
 
@@ -787,6 +810,26 @@
 	armor_rad = CLOTHING_ARMOR_NONE
 	armor_internaldamage = CLOTHING_ARMOR_LOW
 
+/obj/item/clothing/under/CM_uniform/QRF
+	name = "\improper Colonial Marshal tactical response uniform"
+	desc = "Dark blue synthcotton and interwoven kevlar attachement points make up the uniform used by the Marshal's QRF teams."
+	icon_state = "cmb_qrf"
+	worn_state = "cmb_qrf"
+	armor_melee = CLOTHING_ARMOR_MEDIUMLOW
+	armor_bullet = CLOTHING_ARMOR_MEDIUMLOW
+	armor_laser = CLOTHING_ARMOR_NONE
+	armor_energy = CLOTHING_ARMOR_NONE
+	armor_bomb = CLOTHING_ARMOR_LOW
+	armor_bio = CLOTHING_ARMOR_NONE
+	armor_rad = CLOTHING_ARMOR_NONE
+	armor_internaldamage = CLOTHING_ARMOR_NONE
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE|NO_SNOW_TYPE|NO_NAME_OVERRIDE
+
+/obj/item/clothing/under/CM_uniform/QRF/corpsman
+	name = "\improper Colonial Marshal medical response uniform"
+	desc = "A modified QRF uniform denoting the wearer as a skilled medic, smells slightly of rubbing alcohol."
+	icon_state = "cmb_qrf_corp"
+	worn_state = "cmb_qrf_corp"
 
 /obj/item/clothing/under/liaison_suit
 	name = "liaison's tan suit"
@@ -969,3 +1012,160 @@
 	desc = "The officers uniform of the royal marines commando. They have shards of light Kevlar to help protect against stabbing weapons and bullets. Onpar with similar USCM equipment"
 	icon_state = "rmc_uniform_lt"
 	worn_state = "rmc_uniform_lt"
+
+/obj/item/clothing/under/marine/cbrn //CBRN MOPP suit
+	name = "\improper M3 MOPP suit"
+	desc = "M3 MOPP suits are specially designed and engineered to protect the wearer from unshielded exposure to any Chemical, Biological, Radiological, or Nuclear (CBRN) threats in the field. Despite somewhat resembling commonplace synthetic rubber HAZMAT suits, the Venlar composition provides a significantly more dense and durable baseline material, allowing for modifications without the loss of its air-tight nature. The wearer’s comfort has been significantly taken into consideration, with the suit providing sufficient freedom of movement for even delicate maneuvers and movements once it is donned. As the sealed environment retains many issues from the past, measures have been taken to significantly reduce the suit's passive heat absorption and increase internal absorbance through linings, as well as the capability to fully integrate with external cooling, air cycling, and other life support systems. Strips of M11 detector paper are included with each suit, designed to be slotted into the dominant arm of the wearer’s protective suit, the non-dominant wrist, and then back to the knee, providing at-a-glance warning signs across alternating sides of the body while working. The arm and knee markers are intended to be on the user's dominant The papers change color upon contact with harmful chemical agents, displaying a clear white initially and turning red when activated. The suit has a recommended lifespan of twenty-four hours once contact with a toxic environment is made, but depending on the severity this can be shortened to eight hours or less. Beyond that point, the accuracy of the detector papers deteriorates significantly, as does the protection of the suit itself."
+	desc_lore = "Since the outbreak of the New Earth Plague in 2157 and the subsequent Interstellar Commerce Commission (ICC) sanctioned decontamination of the colony and its 40 million inhabitants, the abandoned colony has been left under a strict quarantine blockade to prevent any potential scavengers from spreading what’s left of the highly-durable airborne flesh-eating bacteria. Following those events, the three major superpowers have been investing heavily in the development and procurement of CBRN equipment, in no small part due to the extensive damage that the plague and other similar bioweapons could do. The \"Marine 70\" upgrade package and the launch of the M3 pattern armor series saw the first M3-M prototypes approved for CBRN usage."
+	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+	icon_state = "cbrn"
+	worn_state = "cbrn"
+	flags_jumpsuit = NO_FLAGS
+	armor_melee = CLOTHING_ARMOR_LOW
+	armor_bullet = CLOTHING_ARMOR_LOW
+	armor_bomb = CLOTHING_ARMOR_LOW
+	armor_internaldamage = CLOTHING_ARMOR_VERYLOW
+	armor_bio = CLOTHING_ARMOR_HIGH
+	armor_rad = CLOTHING_ARMOR_HIGHPLUS
+	fire_intensity_resistance = BURN_LEVEL_TIER_1
+	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROT
+	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS
+	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS
+	flags_heat_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS
+	actions_types = list(/datum/action/item_action/specialist/toggle_cbrn_hood)
+
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/uniform_1.dmi',
+	)
+
+	///Whether the hood and gas mask were worn through the hood toggle verb
+	var/hood_enabled = FALSE
+	///Whether enabling the hood protects you from fire
+	var/supports_fire_protection = TRUE
+	///Typepath of the attached hood
+	var/hood_type = /obj/item/clothing/head/helmet/marine/cbrn_hood
+	///The head clothing that the suit uses as a hood
+	var/obj/item/clothing/head/linked_hood
+
+/obj/item/clothing/under/marine/cbrn/Initialize()
+	linked_hood = new hood_type(src)
+	. = ..()
+
+/obj/item/clothing/under/marine/cbrn/Destroy()
+	. = ..()
+	if(linked_hood)
+		qdel(linked_hood)
+
+/obj/item/clothing/under/marine/cbrn/verb/hood_toggle()
+	set name = "Toggle Hood"
+	set desc = "Pull your hood and gasmask up over your face and head."
+	set src in usr
+	if(!usr || usr.is_mob_incapacitated(TRUE))
+		return
+	if(!ishuman(usr))
+		return
+	var/mob/living/carbon/human/user = usr
+
+	if(user.w_uniform != src)
+		to_chat(user, SPAN_WARNING("You must be wearing [src] to put on [linked_hood] attached to it!"))
+		return
+
+	if(!linked_hood)
+		to_chat(SPAN_BOLDWARNING("You are missing a linked_hood! This should not be possible."))
+		CRASH("[user] attempted to toggle hood on [src] that was missing a linked_hood.")
+
+	playsound(user.loc, "armorequip", 25, 1)
+	if(hood_enabled)
+		disable_hood(user, FALSE)
+		return
+	enable_hood(user)
+
+/obj/item/clothing/under/marine/cbrn/proc/enable_hood(mob/living/carbon/human/user)
+	if(!istype(user))
+		user = usr
+
+	if(!linked_hood.mob_can_equip(user, WEAR_HEAD))
+		to_chat(user, SPAN_WARNING("You are unable to equip [linked_hood]."))
+		return
+
+	user.equip_to_slot(linked_hood, WEAR_HEAD)
+
+	hood_enabled = TRUE
+	RegisterSignal(src, COMSIG_ITEM_UNEQUIPPED, PROC_REF(disable_hood))
+	RegisterSignal(linked_hood, COMSIG_ITEM_UNEQUIPPED, PROC_REF(disable_hood))
+
+	if(!supports_fire_protection)
+		return
+	to_chat(user, SPAN_NOTICE("You raise [linked_hood] over your head. You will no longer catch fire."))
+	toggle_fire_protection(user, TRUE)
+
+/obj/item/clothing/under/marine/cbrn/proc/disable_hood(mob/living/carbon/human/user, forced = TRUE)
+	if(!istype(user))
+		user = usr
+
+	UnregisterSignal(src, COMSIG_ITEM_UNEQUIPPED)
+	UnregisterSignal(linked_hood, COMSIG_ITEM_UNEQUIPPED)
+	addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/carbon/human, drop_inv_item_to_loc), linked_hood, src), 1) //0.1s delay cause you can grab the hood
+	addtimer(CALLBACK(src, PROC_REF(check_remove_headgear)), 2) //Checks if it is still not in contents, incase it was dropped
+
+	hood_enabled = FALSE
+	if(!forced)
+		to_chat(user, SPAN_NOTICE("You take off [linked_hood]."))
+
+	if(supports_fire_protection)
+		toggle_fire_protection(user, FALSE)
+
+/obj/item/clothing/under/marine/cbrn/proc/check_remove_headgear(obj/item/clothing/under/marine/cbrn/uniform = src)
+	for(var/current_atom in contents)
+		if(current_atom == linked_hood)
+			return
+	linked_hood.forceMove(uniform)
+
+/obj/item/clothing/under/marine/cbrn/proc/toggle_fire_protection(mob/living/carbon/user, enable_fire_protection)
+	if(enable_fire_protection)
+		RegisterSignal(user, COMSIG_LIVING_PREIGNITION, PROC_REF(fire_shield_is_on))
+		RegisterSignal(user, list(COMSIG_LIVING_FLAMER_CROSSED, COMSIG_LIVING_FLAMER_FLAMED), PROC_REF(flamer_fire_callback))
+		return
+	UnregisterSignal(user, list(COMSIG_LIVING_PREIGNITION, COMSIG_LIVING_FLAMER_CROSSED, COMSIG_LIVING_FLAMER_FLAMED))
+
+/obj/item/clothing/under/marine/cbrn/proc/fire_shield_is_on(mob/living/burning_mob) //Stealing it from the pyro spec armor
+	SIGNAL_HANDLER
+
+	if(burning_mob.fire_reagent?.fire_penetrating)
+		return
+
+	return COMPONENT_CANCEL_IGNITION
+
+/obj/item/clothing/under/marine/cbrn/proc/flamer_fire_callback(mob/living/burning_mob, datum/reagent/fire_reagent)
+	SIGNAL_HANDLER
+
+	if(fire_reagent.fire_penetrating)
+		return
+
+	. = COMPONENT_NO_IGNITE|COMPONENT_NO_BURN
+
+/datum/action/item_action/specialist/toggle_cbrn_hood
+	ability_primacy = SPEC_PRIMARY_ACTION_2
+
+/datum/action/item_action/specialist/toggle_cbrn_hood/New(obj/item/clothing/under/marine/cbrn/armor, obj/item/holder)
+	..()
+	name = "Toggle Hood"
+	button.name = name
+	button.overlays.Cut()
+	var/image/button_overlay = image(armor.linked_hood.icon, armor, armor.linked_hood.icon_state)
+	button.overlays += button_overlay
+
+/datum/action/item_action/specialist/toggle_cbrn_hood/action_activate()
+	var/obj/item/clothing/under/marine/cbrn/armor = holder_item
+	if(!istype(armor))
+		return
+	armor.hood_toggle()
+
+/obj/item/clothing/under/marine/cbrn/advanced
+	armor_melee = CLOTHING_ARMOR_MEDIUM
+	armor_bullet = CLOTHING_ARMOR_MEDIUMHIGH
+	armor_bomb = CLOTHING_ARMOR_HIGHPLUS
+	armor_bio = CLOTHING_ARMOR_GIGAHIGHPLUS
+	armor_rad = CLOTHING_ARMOR_GIGAHIGHPLUS
+	armor_internaldamage = CLOTHING_ARMOR_HIGHPLUS
+	hood_type = /obj/item/clothing/head/helmet/marine/cbrn_hood/advanced

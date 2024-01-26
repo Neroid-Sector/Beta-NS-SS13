@@ -746,3 +746,6 @@
 
 /obj/item/weapon/gun/revolver/cmb/normalpoint
 	current_mag = /obj/item/ammo_magazine/internal/revolver/cmb
+
+/obj/item/weapon/gun/revolver/cmb/marksman
+	current_mag = /obj/item/ammo_magazine/internal/revolver/cmb/marksman

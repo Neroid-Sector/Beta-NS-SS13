@@ -3,7 +3,7 @@
 	desc = "An automated combat equipment vendor for Staff Officers."
 	req_access = list(ACCESS_MARINE_COMMAND)
 	icon_state = "mar_rack"
-	vendor_role = list(JOB_SO)
+	vendor_role = list(JOB_SO, JOB_MS_LT, JOB_MS_PC, JOB_MS_XO)
 
 /obj/structure/machinery/cm_vending/clothing/staff_officer_armory/get_listed_products(mob/user)
 	return GLOB.cm_vending_clothing_staff_officer_armory

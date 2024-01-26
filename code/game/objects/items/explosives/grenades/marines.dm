@@ -471,7 +471,7 @@
 //================================================
 */
 /obj/item/explosive/grenade/nerve_gas
-	name = "\improper CN20 canister grenade"
+	name = "\improper CN20 canister"
 	desc = "A canister grenade of deadly nerve gas. It is set to detonate in 4 seconds."
 	icon_state = "flashbang2"//temp icon
 	det_time = 40
@@ -484,7 +484,7 @@
 	/// The typepath of the nerve gas
 	var/nerve_gas_type = /datum/effect_system/smoke_spread/cn20
 	/// The radius the gas will reach
-	var/nerve_gas_radius = 2
+	var/nerve_gas_radius = 10
 
 /obj/item/explosive/grenade/nerve_gas/Initialize(mapload, ...)
 	. = ..()

@@ -403,6 +403,7 @@
 	icon_state = "mgogglesblk"
 	active_icon_state = "mgogglesblk_down"
 	inactive_icon_state = "mgogglesblk"
+	eye_protection = EYE_PROTECTION_FLASH
 
 /obj/item/clothing/glasses/mgoggles/orange
 	name = "orange marine ballistic goggles"
@@ -410,6 +411,7 @@
 	icon_state = "mgogglesorg"
 	active_icon_state = "mgogglesorg_down"
 	inactive_icon_state = "mgogglesorg"
+	eye_protection = EYE_PROTECTION_FLASH
 
 /obj/item/clothing/glasses/mgoggles/v2
 	name = "M1A1 marine ballistic goggles"
@@ -417,6 +419,7 @@
 	icon_state = "mgoggles2"
 	active_icon_state = "mgoggles2_down"
 	inactive_icon_state = "mgoggles2"
+	eye_protection = EYE_PROTECTION_FLASH
 
 /obj/item/clothing/glasses/mgoggles/on_enter_storage(obj/item/storage/internal/S)
 	..()
@@ -549,6 +552,12 @@
 	vision_impair_on = VISION_IMPAIR_WEAK
 	vision_impair_off = VISION_IMPAIR_NONE
 
+/obj/item/clothing/glasses/welding/superior/alt
+	desc = "Welding goggles made from more expensive materials."
+
+/obj/item/clothing/glasses/welding/superior/prescription
+	desc = "Welding goggles made from more expensive materials. There are barely visible prescription lenses connected to the frame, allowing vision even when the goggles are raised."
+	prescription = TRUE
 //sunglasses
 
 /obj/item/clothing/glasses/sunglasses
@@ -613,7 +622,18 @@
 
 
 /obj/item/clothing/glasses/sunglasses/sechud/tactical
-	name = "tactical SWAT HUD"
+	name = "Tactical response HUD"
 	gender = NEUTER
 	desc = "Flash-resistant goggles with inbuilt combat and security information."
 	icon_state = "swatgoggles"
+
+/obj/item/clothing/glasses/sunglasses/sechud/hidden
+	name = "Sunglasses"
+	desc = "Sunglasses wired up with the best nano-tech the USCM can muster out on the frontier. Displays information about any person you decree worthy of your gaze, these ones have been made to look like normal sunglasses."
+	icon_state = "bigsunglasses"
+
+/obj/item/clothing/glasses/sunglasses/sechud/hidden/prescription
+	name = "Sunglasses"
+	desc = "Sunglasses wired up with the best nano-tech the USCM can muster out on the frontier. Displays information about any person you decree worthy of your gaze, these ones have been made to look like normal prescription sunglasses."
+	icon_state = "bigsunglasses"
+	prescription = TRUE

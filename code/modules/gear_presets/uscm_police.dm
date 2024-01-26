@@ -29,7 +29,7 @@
 	rank = JOB_POLICE
 	paygrade = "ME5"
 	role_comm_title = "MP"
-	skills = /datum/skills/MP
+	skills = /datum/skills/ms/rifleman
 
 	minimap_icon = "mp"
 
@@ -92,7 +92,7 @@
 	rank = JOB_WARDEN
 	paygrade = "ME6"
 	role_comm_title = "MW"
-	skills = /datum/skills/MW
+	skills = /datum/skills/ms/sl
 
 	minimap_icon = "warden"
 
@@ -153,7 +153,7 @@
 	rank = JOB_CHIEF_POLICE
 	paygrade = "MO2"
 	role_comm_title = "CMP"
-	skills = /datum/skills/CMP
+	skills = /datum/skills/ms/LT
 
 	minimap_icon = list("mp" = MINIMAP_ICON_COLOR_HEAD)
 	minimap_background = MINIMAP_ICON_BACKGROUND_CIC

@@ -14,8 +14,8 @@
 	var/datum/effect_system/smoke_spread/smoke
 
 	accuracy = HIT_ACCURACY_TIER_2
-	accurate_range = 7
-	max_range = 7
+	accurate_range = 14
+	max_range = 14
 	damage = 15
 	shell_speed = AMMO_SPEED_TIER_2
 
@@ -57,8 +57,8 @@
 
 	accuracy = HIT_ACCURACY_TIER_8
 	accuracy_var_low = PROJECTILE_VARIANCE_TIER_9
-	accurate_range = 6
-	max_range = 6
+	accurate_range = 14
+	max_range = 14
 	damage = 10
 	penetration= ARMOR_PENETRATION_TIER_10
 
@@ -177,9 +177,9 @@
 	damage_type = BURN
 
 	accuracy_var_low = PROJECTILE_VARIANCE_TIER_6
-	accurate_range = 8
+	accurate_range = 14
 	damage = 90
-	max_range = 8
+	max_range = 14
 
 /datum/ammo/rocket/wp/set_bullet_traits()
 	. = ..()
