@@ -11,7 +11,7 @@
 	aim_slowdown = SLOWDOWN_ADS_QUICK
 	wield_delay = WIELD_DELAY_VERY_FAST
 	attachable_allowed = list(
-		/obj/item/attachable/suppressor,			
+		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/reflex,
 		/obj/item/attachable/flashlight,
@@ -45,12 +45,12 @@
 	icon_state = "m39"
 	item_state = "m39"
 	flags_equip_slot = SLOT_BACK
-	current_mag = /obj/item/ammo_magazine/smg/m39
+	current_mag = /obj/item/ammo_magazine/smg/m39/heap
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/reflex,
-		/obj/item/attachable/angledgrip,	
+		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/flashlight/grip,
 		/obj/item/attachable/stock/smg,
