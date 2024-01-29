@@ -104,7 +104,7 @@ GLOBAL_LIST_INIT(cm_vending_clothing_marine, list(
 	show_points = TRUE
 	vendor_theme = VENDOR_THEME_USCM
 
-	vendor_role = list(JOB_SQUAD_MARINE, JOB_MS_RFM)
+	vendor_role = list(JOB_SQUAD_MARINE, JOB_MS_RFM, JOB_HD_RFM, JOB_TR_RFM)
 
 /obj/structure/machinery/cm_vending/clothing/marine/get_listed_products(mob/user)
 	return GLOB.cm_vending_clothing_marine

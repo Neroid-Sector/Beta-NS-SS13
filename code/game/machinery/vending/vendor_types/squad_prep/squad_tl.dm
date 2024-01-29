@@ -68,7 +68,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_tl, list(
 	desc = "An automated gear rack for fireteam leaders."
 	icon_state = "intel_gear"
 	show_points = TRUE
-	req_access = list(ACCESS_MARINE_TL_PREP)
+	req_access = list(JOB_SQUAD_TEAM_LEADER, JOB_TR_FSO)
 	vendor_role = list(JOB_SQUAD_TEAM_LEADER)
 
 /obj/structure/machinery/cm_vending/gear/tl/get_listed_products(mob/user)
@@ -126,7 +126,7 @@ GLOBAL_LIST_INIT(cm_vending_clothing_tl, list(
 /obj/structure/machinery/cm_vending/clothing/tl
 	name = "ColMarTech Fireteam Leader Equipment Rack"
 	desc = "An automated rack hooked up to a colossal storage of fireteam leader standard-issue equipment."
-	req_access = list(ACCESS_MARINE_TL_PREP)
+	req_access = list(JOB_SQUAD_TEAM_LEADER, JOB_TR_FSO)
 	vendor_role = list(JOB_SQUAD_TEAM_LEADER)
 
 /obj/structure/machinery/cm_vending/clothing/tl/get_listed_products(mob/user)
