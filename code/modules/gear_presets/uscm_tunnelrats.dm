@@ -37,10 +37,10 @@
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
 	languages = list(LANGUAGE_ENGLISH, LANGUAGE_RUSSIAN, LANGUAGE_GERMAN, LANGUAGE_JAPANESE)
 
-	idtype = /obj/item/card/id/gold/council
+	idtype = /obj/item/card/id/gold
 	assignment = JOB_TR_CO
 	rank = JOB_TR_CO
-	paygrade = "MO6"
+	paygrade = "MO4"
 	role_comm_title = "CO"
 	minimum_age = 30
 	skills = /datum/skills/ms/commander
