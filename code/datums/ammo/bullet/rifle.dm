@@ -9,8 +9,8 @@
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 
 	damage = 40
-	penetration = ARMOR_PENETRATION_TIER_1
 	accurate_range = 16
+	penetration = 0
 	accuracy = HIT_ACCURACY_TIER_4
 	scatter = SCATTER_AMOUNT_TIER_10
 	shell_speed = AMMO_SPEED_TIER_6
@@ -104,6 +104,7 @@
 	headshot_state = HEADSHOT_OVERLAY_HEAVY
 	damage = 55//big damage, doesn't actually blow up because thats stupid.
 	penetration = ARMOR_PENETRATION_TIER_8
+	shrapnel_chance = SHRAPNEL_CHANCE_TIER_7
 
 /datum/ammo/bullet/rifle/rubber
 	name = "rubber rifle bullet"

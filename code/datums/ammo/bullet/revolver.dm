@@ -9,7 +9,7 @@
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 
 	damage = 55
-	penetration = ARMOR_PENETRATION_TIER_1
+	penetration = 0
 	accuracy = HIT_ACCURACY_TIER_1
 
 /datum/ammo/bullet/revolver/marksman

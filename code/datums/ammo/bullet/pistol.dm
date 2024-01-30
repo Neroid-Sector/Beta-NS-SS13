@@ -11,7 +11,7 @@
 	accuracy = -HIT_ACCURACY_TIER_3
 	accuracy_var_low = PROJECTILE_VARIANCE_TIER_6
 	damage = 40
-	penetration= ARMOR_PENETRATION_TIER_2
+	penetration = 0
 	shrapnel_chance = SHRAPNEL_CHANCE_TIER_2
 
 /datum/ammo/bullet/pistol/tiny
@@ -20,8 +20,8 @@
 /datum/ammo/bullet/pistol/tranq
 	name = "tranquilizer bullet"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_IGNORE_RESIST
-	stamina_damage = 30
-	damage = 15
+	stamina_damage = 80
+	damage = 5
 
 //2020 rebalance: is supposed to counter runners and lurkers, dealing high damage to the only castes with no armor.
 //Limited by its lack of versatility and lower supply, so marines finally have an answer for flanker castes that isn't just buckshot.
@@ -39,7 +39,7 @@
 
 	damage = 25
 	accuracy = HIT_ACCURACY_TIER_2
-	penetration= ARMOR_PENETRATION_TIER_8
+	penetration= ARMOR_PENETRATION_TIER_4
 	shrapnel_chance = SHRAPNEL_CHANCE_TIER_2
 
 /datum/ammo/bullet/pistol/ap/penetrating
@@ -78,7 +78,7 @@
 	name = "armor-shredding pistol bullet"
 
 	damage = 15
-	penetration = ARMOR_PENETRATION_TIER_4
+	penetration = ARMOR_PENETRATION_TIER_2
 	pen_armor_punch = 3
 
 /datum/ammo/bullet/pistol/rubber
@@ -171,7 +171,7 @@
 
 	accuracy = HIT_ACCURACY_TIER_3
 	damage = 36
-	penetration = ARMOR_PENETRATION_TIER_5
+	penetration = ARMOR_PENETRATION_TIER_3
 	damage_falloff = DAMAGE_FALLOFF_TIER_7
 
 // Used by VP78 and Auto 9

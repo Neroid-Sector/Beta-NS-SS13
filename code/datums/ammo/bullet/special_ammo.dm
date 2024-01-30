@@ -9,18 +9,18 @@
 	icon_state = "redbullet"
 	flags_ammo_behavior = AMMO_BALLISTIC
 
-	max_range = 12
+	max_range = 22
 	accuracy = HIT_ACCURACY_TIER_4
 	damage = 30
 	penetration = 0
 
 /datum/ammo/bullet/smartgun/armor_piercing
-	name = "armor-piercing smartgun bullet"
+	name = "High Explosive Armor-piercing smartgun bullet"
 	icon_state = "bullet"
 
-	accurate_range = 12
+	accurate_range = 20
 	accuracy = HIT_ACCURACY_TIER_2
-	damage = 20
+	damage = 40
 	penetration = ARMOR_PENETRATION_TIER_8
 	damage_armor_punch = 1
 
