@@ -411,6 +411,7 @@
 	desc = "A special variant of the mk5 compression suit, designed for FORECON covert combat drops. Custom-made to fit its owner with special straps to operate a smartgun."
 	icon_state = "compression"
 	item_state = "compression"
+	item_state_slots = list(WEAR_JACKET = "compression")
 	armor_bullet = CLOTHING_ARMOR_HIGH
 	storage_slots = 3
 	flags_atom = NO_SNOW_TYPE|NOPRESSUREDMAGE
