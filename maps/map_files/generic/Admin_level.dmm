@@ -662,6 +662,24 @@
 	name = "floor"
 	},
 /area/adminlevel/ert_station/royal_marines_station)
+"bZ" = (
+/obj/structure/barricade/handrail{
+	dir = 4;
+	layer = 4.2;
+	pixel_x = 3
+	},
+/obj/structure/ladder{
+	alpha = 0;
+	desc = "A sturdy metal drop pod.";
+	height = 1;
+	id = "droppod2";
+	name = "drop pod"
+	},
+/obj/structure/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/admin/droppod/loading)
 "ca" = (
 /obj/structure/window/framed/chigusa,
 /obj/structure/machinery/door/poddoor/shutters/almayer{
@@ -7271,6 +7289,11 @@
 /area/adminlevel/ert_station{
 	name = "UAAC Outpost"
 	})
+"xj" = (
+/turf/closed/wall/almayer/outer,
+/area/centcom/living{
+	name = "\improper High Command Outpost"
+	})
 "xk" = (
 /obj/structure/machinery/disposal{
 	density = 0;
@@ -8161,6 +8184,24 @@
 /area/adminlevel/ert_station{
 	name = "UAAC Outpost"
 	})
+"zM" = (
+/obj/structure/barricade/handrail{
+	dir = 4;
+	layer = 4.2;
+	pixel_x = 3
+	},
+/obj/structure/ladder{
+	alpha = 0;
+	desc = "A sturdy metal drop pod.";
+	height = 1;
+	id = "droppod5";
+	name = "drop pod"
+	},
+/obj/structure/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/admin/droppod/loading)
 "zN" = (
 /obj/structure/surface/table/holotable/wood,
 /obj/effect/decal/cleanable/dirt,
@@ -12723,6 +12764,19 @@
 	},
 /turf/open/floor/wood/ship,
 /area/adminlevel/ert_station/weyland_station)
+"Na" = (
+/obj/structure/ladder{
+	alpha = 0;
+	desc = "A sturdy metal drop pod.";
+	height = 1;
+	id = "droppod6";
+	name = "drop pod"
+	},
+/obj/structure/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/admin/droppod/loading)
 "Nc" = (
 /obj/structure/surface/table/reinforced/almayer_B,
 /obj/item/trash/USCMtray{
@@ -14029,6 +14083,9 @@
 /area/centcom/living{
 	name = "\improper High Command Outpost"
 	})
+"QC" = (
+/turf/closed/wall/almayer/outer,
+/area/space)
 "QD" = (
 /turf/open/floor/almayer{
 	desc = "part of a rubber room, let's hope there's no rats.";
@@ -15372,6 +15429,24 @@
 /area/adminlevel/ert_station{
 	name = "UAAC Outpost"
 	})
+"UA" = (
+/obj/structure/barricade/handrail{
+	dir = 4;
+	layer = 4.2;
+	pixel_x = 3
+	},
+/obj/structure/ladder{
+	alpha = 0;
+	desc = "A sturdy metal drop pod.";
+	height = 1;
+	id = "droppod4";
+	name = "drop pod"
+	},
+/obj/structure/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/admin/droppod/loading)
 "UC" = (
 /obj/effect/decal/warning_stripes{
 	icon_state = "W"
@@ -16241,6 +16316,24 @@
 /area/centcom/living{
 	name = "\improper High Command Outpost"
 	})
+"Xj" = (
+/obj/structure/barricade/handrail{
+	dir = 4;
+	layer = 4.2;
+	pixel_x = 3
+	},
+/obj/structure/ladder{
+	alpha = 0;
+	desc = "A sturdy metal drop pod.";
+	height = 1;
+	id = "droppod3";
+	name = "drop pod"
+	},
+/obj/structure/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/admin/droppod/loading)
 "Xl" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/pipes/standard/simple/hidden/supply{
@@ -16981,6 +17074,24 @@
 	icon_state = "test_floor4"
 	},
 /area/adminlevel/ert_station/royal_marines_station)
+"Zq" = (
+/obj/structure/barricade/handrail{
+	dir = 4;
+	layer = 4.2;
+	pixel_x = 3
+	},
+/obj/structure/ladder{
+	alpha = 0;
+	desc = "A sturdy metal drop pod.";
+	height = 1;
+	id = "droppod1";
+	name = "drop pod"
+	},
+/obj/structure/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/admin/droppod/loading)
 "Zr" = (
 /obj/effect/decal/cleanable/generic,
 /turf/open/floor/wood/ship,
@@ -24687,9 +24798,9 @@ as
 as
 as
 as
-as
-as
-as
+xj
+xj
+xj
 as
 as
 as
@@ -24839,6 +24950,9 @@ as
 as
 as
 as
+xj
+Zq
+xj
 as
 as
 as
@@ -24847,17 +24961,14 @@ as
 as
 as
 as
-as
-as
-as
-as
-as
-as
-as
-as
-as
-as
-as
+Ya
+Ya
+Ya
+Ya
+Ya
+Ya
+Ya
+Ya
 as
 as
 as
@@ -24991,6 +25102,9 @@ as
 as
 as
 as
+xj
+QC
+xj
 as
 as
 as
@@ -24999,17 +25113,14 @@ as
 as
 as
 as
-as
-as
-as
-as
-as
-as
-as
-as
-as
-as
-as
+Ya
+mq
+mq
+mq
+mq
+mq
+mq
+Ya
 as
 as
 as
@@ -25143,6 +25254,9 @@ as
 as
 as
 as
+xj
+bZ
+xj
 as
 as
 as
@@ -25151,17 +25265,14 @@ as
 as
 as
 as
-as
-as
-as
-as
-as
-as
-as
-as
-as
-as
-as
+Ya
+mq
+mq
+mq
+mq
+mq
+mq
+Ya
 as
 as
 as
@@ -25295,6 +25406,9 @@ as
 as
 as
 as
+xj
+QC
+xj
 as
 as
 as
@@ -25303,17 +25417,14 @@ as
 as
 as
 as
-as
-as
-as
-as
-as
-as
-as
-as
-as
-as
-as
+Ya
+mq
+mq
+mq
+mq
+mq
+mq
+Ya
 as
 as
 as
@@ -25447,6 +25558,9 @@ as
 as
 as
 as
+xj
+Xj
+xj
 as
 as
 as
@@ -25455,17 +25569,14 @@ as
 as
 as
 as
-as
-as
-as
-as
-as
-as
-as
-as
-as
-as
-as
+Ya
+mq
+mq
+mq
+mq
+mq
+mq
+Ya
 as
 as
 as
@@ -25599,6 +25710,9 @@ as
 as
 as
 as
+xj
+QC
+xj
 as
 as
 as
@@ -25607,17 +25721,14 @@ as
 as
 as
 as
-as
-as
-as
-as
-as
-as
-as
-as
-as
-as
-as
+Ya
+mq
+mq
+mq
+mq
+mq
+mq
+Ya
 as
 as
 as
@@ -25751,6 +25862,9 @@ as
 as
 as
 as
+xj
+UA
+xj
 as
 as
 as
@@ -25759,17 +25873,14 @@ as
 as
 as
 as
-as
-as
-as
-as
-as
-as
-as
-as
-as
-as
-as
+Ya
+mq
+mq
+mq
+mq
+mq
+mq
+Ya
 as
 as
 as
@@ -25903,6 +26014,9 @@ as
 as
 as
 as
+xj
+QC
+xj
 as
 as
 as
@@ -25911,17 +26025,14 @@ as
 as
 as
 as
-as
-as
-as
-as
-as
-as
-as
-as
-as
-as
-as
+Ya
+Ya
+Ya
+Ya
+Ya
+Ya
+Ya
+Ya
 as
 as
 as
@@ -26055,9 +26166,9 @@ as
 as
 as
 as
-as
-as
-as
+xj
+zM
+xj
 as
 as
 as
@@ -26207,9 +26318,9 @@ as
 as
 as
 as
-as
-as
-as
+xj
+QC
+xj
 as
 as
 as
@@ -26359,9 +26470,9 @@ as
 as
 as
 as
-as
-as
-as
+xj
+Na
+xj
 as
 as
 as
@@ -26511,9 +26622,9 @@ as
 as
 as
 as
-as
-as
-as
+xj
+xj
+xj
 as
 as
 as
