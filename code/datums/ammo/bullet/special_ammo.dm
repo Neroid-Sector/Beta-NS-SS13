@@ -5,13 +5,13 @@
 */
 
 /datum/ammo/bullet/smartgun
-	name = "smartgun bullet"
+	name = "smartgun FMJ bullet"
 	icon_state = "redbullet"
 	flags_ammo_behavior = AMMO_BALLISTIC
 
 	max_range = 22
-	accuracy = HIT_ACCURACY_TIER_4
-	damage = 30
+	accuracy = HIT_ACCURACY_TIER_MAX
+	damage = 15
 	penetration = 0
 
 /datum/ammo/bullet/smartgun/armor_piercing
@@ -19,8 +19,8 @@
 	icon_state = "bullet"
 
 	accurate_range = 20
-	accuracy = HIT_ACCURACY_TIER_2
-	damage = 40
+	accuracy = HIT_ACCURACY_TIER_MAX
+	damage = 25
 	penetration = ARMOR_PENETRATION_TIER_8
 	damage_armor_punch = 1
 

@@ -8,7 +8,7 @@
 	name = "rifle bullet"
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 
-	damage = 40
+	damage = 20
 	accurate_range = 16
 	penetration = 0
 	accuracy = HIT_ACCURACY_TIER_4
@@ -124,6 +124,7 @@
 	shell_speed = AMMO_SPEED_TIER_4
 	accuracy = -HIT_ACCURACY_TIER_2
 	damage_falloff = DAMAGE_FALLOFF_TIER_10
+	penetration = 0
 
 /datum/ammo/bullet/rifle/incendiary/set_bullet_traits()
 	. = ..()
@@ -138,9 +139,9 @@
 	flags_ammo_behavior = AMMO_BALLISTIC
 	accurate_range_min = 4
 
-	damage = 55
+	damage = 30
 	scatter = -SCATTER_AMOUNT_TIER_8
-	penetration= ARMOR_PENETRATION_TIER_7
+	penetration= ARMOR_PENETRATION_TIER_2
 	shell_speed = AMMO_SPEED_TIER_6
 
 /datum/ammo/bullet/rifle/m4ra/incendiary
@@ -189,18 +190,19 @@
 /datum/ammo/bullet/rifle/mar40
 	name = "heavy rifle bullet"
 
-	damage = 55
+	damage = 25
+	penetration = 0
 
 /datum/ammo/bullet/rifle/type71
 	name = "heavy rifle bullet"
 
-	damage = 55
+	damage = 25
 	penetration = ARMOR_PENETRATION_TIER_3
 
 /datum/ammo/bullet/rifle/type71/ap
 	name = "heavy armor-piercing rifle bullet"
 
-	damage = 50
+	damage = 30
 	penetration = ARMOR_PENETRATION_TIER_8
 
 /datum/ammo/bullet/rifle/type71/heap
@@ -213,13 +215,13 @@
 /datum/ammo/bullet/rifle/kramer
 	name = "heavy rifle bullet"
 
-	damage = 55
-	penetration = ARMOR_PENETRATION_TIER_3
+	damage = 25
+	penetration = 0
 
 /datum/ammo/bullet/rifle/kramer/ap
 	name = "heavy armor-piercing rifle bullet"
 
-	damage = 50
+	damage = 30
 	penetration = ARMOR_PENETRATION_TIER_8
 
 /datum/ammo/bullet/rifle/kramer/heap

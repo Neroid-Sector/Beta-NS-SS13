@@ -8,7 +8,7 @@
 	name = "revolver bullet"
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 
-	damage = 55
+	damage = 15
 	penetration = 0
 	accuracy = HIT_ACCURACY_TIER_1
 
@@ -23,7 +23,7 @@
 /datum/ammo/bullet/revolver/heavy
 	name = "heavy revolver bullet"
 
-	damage = 35
+	damage = 30
 	penetration = ARMOR_PENETRATION_TIER_4
 	accuracy = HIT_ACCURACY_TIER_3
 
@@ -122,8 +122,9 @@
 	name = "small hollowpoint revolver bullet"
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 
-	damage = 65 // way too strong because it's hard to make a good balance between HP and normal with this system, but the damage falloff is really strong
+	damage = 15 // way too strong because it's hard to make a good balance between HP and normal with this system, but the damage falloff is really strong
 	penetration = 0
+	shrapnel_chance = 100
 	damage_falloff = DAMAGE_FALLOFF_TIER_8
 
 /datum/ammo/bullet/revolver/small/marksman

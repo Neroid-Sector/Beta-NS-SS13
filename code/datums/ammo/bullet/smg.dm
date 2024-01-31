@@ -13,7 +13,7 @@
 
 /datum/ammo/bullet/smg
 	name = "submachinegun bullet"
-	damage = 26
+	damage = 25
 	accurate_range = 4
 	effective_range_max = 4
 	penetration = 0
@@ -28,7 +28,7 @@
 /datum/ammo/bullet/smg/ap
 	name = "armor-piercing submachinegun bullet"
 
-	damage = 26
+	damage = 25
 	penetration = ARMOR_PENETRATION_TIER_6
 	shell_speed = AMMO_SPEED_TIER_4
 
@@ -63,7 +63,7 @@
 	name = "7x45mm plasteel nail"
 	icon_state = "nail-projectile"
 
-	damage = 25
+	damage = 10
 	penetration = ARMOR_PENETRATION_TIER_5
 	damage_falloff = DAMAGE_FALLOFF_TIER_8
 	accurate_range = 5
@@ -117,7 +117,7 @@
 
 /datum/ammo/bullet/smg/mp27
 	name = "simple submachinegun bullet"
-	damage = 40
+	damage = 25
 	accurate_range = 5
 	effective_range_max = 7
 	penetration = 0
