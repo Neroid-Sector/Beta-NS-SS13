@@ -359,8 +359,6 @@
 	item_state_slots = list(WEAR_JACKET = "co_officer")
 	valid_accessory_slots = list(ACCESSORY_SLOT_MEDAL, ACCESSORY_SLOT_RANK, ACCESSORY_SLOT_DECOR, ACCESSORY_SLOT_PONCHO)
 	black_market_value = 35
-
-
 /obj/item/clothing/suit/storage/marine/MP/CO/jacket
 	name = "\improper M3 pattern commanding officer armored coat"
 	desc = "A robust, well-polished suit of armor for the Commanding Officer. Custom-made to fit its owner with special straps to operate a smartgun. Show those Marines who's really in charge. This one has a coat over it for added warmth."
@@ -407,6 +405,21 @@
 	else
 		name = "M56 combat harness"
 	//select_gamemode_skin(type)
+
+/obj/item/clothing/suit/storage/marine/odst
+	name = "\improper Mk6 armored compression suit"
+	desc = "A special variant of the mk5 compression suit, designed for FORECON covert combat drops. Custom-made to fit its owner with special straps to operate a smartgun."
+	icon_state = "compression"
+	item_state = "compression"
+	armor_bullet = CLOTHING_ARMOR_HIGH
+	storage_slots = 3
+	flags_atom = NO_SNOW_TYPE|NOPRESSUREDMAGE
+	flags_inventory = BLOCKSHARPOBJ|SMARTGUN_HARNESS
+	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS
+	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS|BODY_FLAG_FOOT_LEFT|BODY_FLAG_FOOT_RIGHT
+	flags_heat_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS|BODY_FLAG_FOOT_LEFT|BODY_FLAG_FOOT_RIGHT
+	valid_accessory_slots = list(ACCESSORY_SLOT_DECOR,)
+	black_market_value = 35
 
 /obj/item/clothing/suit/storage/marine/leader
 	name = "\improper B12 pattern marine armor"
