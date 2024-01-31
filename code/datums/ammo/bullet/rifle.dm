@@ -8,7 +8,7 @@
 	name = "rifle bullet"
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 
-	damage = 20
+	damage = 30
 	accurate_range = 16
 	penetration = 0
 	accuracy = HIT_ACCURACY_TIER_4
@@ -190,14 +190,14 @@
 /datum/ammo/bullet/rifle/mar40
 	name = "heavy rifle bullet"
 
-	damage = 25
+	damage = 35
 	penetration = 0
 
 /datum/ammo/bullet/rifle/type71
 	name = "heavy rifle bullet"
 
 	damage = 25
-	penetration = ARMOR_PENETRATION_TIER_3
+	penetration = ARMOR_PENETRATION_TIER_1
 
 /datum/ammo/bullet/rifle/type71/ap
 	name = "heavy armor-piercing rifle bullet"

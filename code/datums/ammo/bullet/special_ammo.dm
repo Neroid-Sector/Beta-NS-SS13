@@ -11,7 +11,7 @@
 
 	max_range = 22
 	accuracy = HIT_ACCURACY_TIER_MAX
-	damage = 15
+	damage = 25
 	penetration = 0
 
 /datum/ammo/bullet/smartgun/armor_piercing
@@ -20,7 +20,7 @@
 
 	accurate_range = 20
 	accuracy = HIT_ACCURACY_TIER_MAX
-	damage = 25
+	damage = 30
 	penetration = ARMOR_PENETRATION_TIER_8
 	damage_armor_punch = 1
 

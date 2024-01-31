@@ -13,7 +13,7 @@
 
 /datum/ammo/bullet/smg
 	name = "submachinegun bullet"
-	damage = 25
+	damage = 30
 	accurate_range = 4
 	effective_range_max = 4
 	penetration = 0
