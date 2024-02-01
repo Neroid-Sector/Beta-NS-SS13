@@ -154,6 +154,7 @@
 /// Whether wearing this suit grants you the ability to fire a smartgun
 #define SMARTGUN_HARNESS (1<<12)
 
+#define PLASMAGUN_POWERPACK (1)
 //SUITS AND HELMETS====================================================================================
 
 

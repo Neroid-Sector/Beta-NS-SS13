@@ -50,6 +50,9 @@
 	///Delay before we can cock again, in tenths of seconds
 	var/cock_delay = 30
 
+	var/charge_sound = null
+	/// its ment to make a noise when the gun is charging up, but i cant make it do the noise
+
 	/**How the bullet will behave once it leaves the gun, also used for basic bullet damage and effects, etc.
 	Ammo will be replaced on New() for things that do not use mags.**/
 	var/datum/ammo/ammo = null
@@ -287,16 +290,11 @@
 /obj/item/weapon/gun/Destroy()
 	in_chamber = null
 	ammo = null
-	current_mag = null
+	QDEL_NULL(current_mag)
 	target = null
 	last_moved_mob = null
 	if(flags_gun_features & GUN_FLASHLIGHT_ON)//Handle flashlight.
 		flags_gun_features &= ~GUN_FLASHLIGHT_ON
-		if(ismob(loc))
-			for(var/slot in attachments)
-				var/obj/item/attachable/potential_attachment = attachments[slot]
-				if(!potential_attachment)
-					continue
 	attachments = null
 	attachable_overlays = null
 	QDEL_NULL(active_attachable)
@@ -1963,6 +1961,7 @@ not all weapons use normal magazines etc. load_into_chamber() itself is designed
 
 /// Setter proc for fa_firing
 /obj/item/weapon/gun/proc/set_auto_firing(auto = FALSE)
+	SIGNAL_HANDLER
 	fa_firing = auto
 
 /// Getter for gun_user

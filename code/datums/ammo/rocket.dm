@@ -298,3 +298,28 @@
 
 /datum/ammo/rocket/custom/do_at_max_range(obj/projectile/P)
 	prime(null, P)
+
+
+/datum/ammo/rocket/ap/anti_tank/pig
+	name = "Cadmium Telluride Pellet"
+	max_range = 120
+	damage = 100
+	shrapnel_chance = 5
+	icon_state = "emitter"
+	shrapnel_type = /obj/item/large_shrapnel/at_rocket_dud
+	shell_speed = AMMO_SPEED_TIER_5
+
+/datum/ammo/rocket/ap/anti_tank/on_hit_obj(obj/O, obj/projectile/P)
+	if(istype(O, /obj/vehicle/multitile))
+		var/obj/vehicle/multitile/M = O
+		M.next_move = world.time + vehicle_slowdown_time
+		playsound(M, 'sound/effects/meteorimpact.ogg', 35)
+		M.at_munition_interior_explosion_effect(cause_data = create_cause_data("Anti-Tank Rocket"))
+		M.interior_crash_effect()
+		var/turf/T = get_turf(M.loc)
+		M.ex_act(150, P.dir, P.weapon_cause_data, 100)
+		smoke.set_up(1, T)
+		smoke.start()
+		return
+	return ..()
+
