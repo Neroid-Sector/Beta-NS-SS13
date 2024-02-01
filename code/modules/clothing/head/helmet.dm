@@ -958,6 +958,7 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	name = "\improper Mk6 armored compression helmet"
 	desc = "A special variant of the mk5 compression suit, designed for FORECON covert combat drops"
 	icon_state = "compression"
+	item_state = "compression"
 	armor_melee = CLOTHING_ARMOR_HIGH
 	armor_bullet = CLOTHING_ARMOR_MEDIUM
 	armor_energy = CLOTHING_ARMOR_MEDIUMLOW
