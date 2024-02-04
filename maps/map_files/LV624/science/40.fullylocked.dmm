@@ -88,14 +88,6 @@
 	icon_state = "whitepurple"
 	},
 /area/lv624/lazarus/research)
-"aq" = (
-/obj/structure/surface/table,
-/obj/effect/landmark/objective_landmark/science,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "whitepurple"
-	},
-/area/lv624/lazarus/research)
 "ar" = (
 /obj/structure/machinery/chem_master,
 /turf/open/floor{
@@ -195,18 +187,6 @@
 	icon_state = "whitepurple"
 	},
 /area/lv624/lazarus/research)
-"aF" = (
-/obj/structure/surface/table,
-/obj/item/tool/surgery/scalpel{
-	pixel_y = 12
-	},
-/obj/structure/machinery/light,
-/obj/effect/landmark/objective_landmark/science,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "whitepurple"
-	},
-/area/lv624/lazarus/research)
 "aG" = (
 /obj/structure/surface/rack{
 	layer = 2.5
@@ -283,22 +263,6 @@
 	icon_state = "whitepurple"
 	},
 /area/lv624/lazarus/research)
-"aQ" = (
-/obj/structure/machinery/light{
-	dir = 8
-	},
-/obj/structure/surface/table,
-/obj/item/storage/box/disks{
-	layer = 2.9;
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/item/storage/fancy/vials/random,
-/obj/effect/landmark/objective_landmark/science,
-/turf/open/floor{
-	icon_state = "white"
-	},
-/area/lv624/lazarus/research)
 "aR" = (
 /obj/structure/sink{
 	dir = 4;
@@ -357,26 +321,10 @@
 	icon_state = "white"
 	},
 /area/lv624/lazarus/research)
-"bb" = (
-/obj/item/clothing/glasses/regular,
-/obj/effect/landmark/objective_landmark/science,
-/turf/open/floor{
-	icon_state = "white"
-	},
-/area/lv624/lazarus/research)
 "bm" = (
 /obj/structure/surface/table,
 /turf/open/floor{
 	icon_state = "freezerfloor"
-	},
-/area/lv624/lazarus/research)
-"bn" = (
-/obj/structure/surface/table,
-/obj/item/paper/research_notes,
-/obj/effect/landmark/objective_landmark/science,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "whitepurple"
 	},
 /area/lv624/lazarus/research)
 "bp" = (
@@ -417,37 +365,41 @@
 "bF" = (
 /turf/closed/wall/strata_ice/jungle,
 /area/lv624/ground/jungle/central_jungle)
-"gu" = (
-/obj/structure/machinery/door_control{
-	id = "secure_inner_blast";
-	name = "Secure Inner Doors";
-	pixel_x = -25;
+"nW" = (
+/obj/structure/machinery/light{
+	dir = 8
+	},
+/obj/structure/surface/table,
+/obj/item/storage/box/disks{
+	layer = 2.9;
+	pixel_x = 5;
 	pixel_y = 5
 	},
+/obj/item/storage/fancy/vials/random,
 /turf/open/floor{
 	icon_state = "white"
-	},
-/area/lv624/lazarus/research)
-"ky" = (
-/obj/effect/landmark/objective_landmark/science,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
-/area/lv624/lazarus/research)
-"oe" = (
-/obj/structure/transmitter/colony_net{
-	phone_category = "Lazarus Landing";
-	phone_id = "Research Dome";
-	pixel_y = 24
-	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "whitepurple"
 	},
 /area/lv624/lazarus/research)
 "qs" = (
 /obj/structure/surface/table,
 /obj/item/storage/fancy/vials/random,
+/turf/open/floor{
+	dir = 5;
+	icon_state = "whitepurple"
+	},
+/area/lv624/lazarus/research)
+"so" = (
+/obj/item/clothing/glasses/regular,
+/turf/open/floor{
+	icon_state = "white"
+	},
+/area/lv624/lazarus/research)
+"tP" = (
+/obj/structure/phone_base/colony_net{
+	phone_category = "Lazarus Landing";
+	phone_id = "Research Dome";
+	pixel_y = 24
+	},
 /turf/open/floor{
 	dir = 5;
 	icon_state = "whitepurple"
@@ -466,6 +418,17 @@
 	icon_state = "whitepurple"
 	},
 /area/lv624/lazarus/research)
+"HE" = (
+/obj/structure/surface/table,
+/obj/item/tool/surgery/scalpel{
+	pixel_y = 12
+	},
+/obj/structure/machinery/light,
+/turf/open/floor{
+	dir = 5;
+	icon_state = "whitepurple"
+	},
+/area/lv624/lazarus/research)
 "Jv" = (
 /obj/effect/landmark/corpsespawner/scientist,
 /obj/effect/decal/cleanable/blood/splatter,
@@ -477,15 +440,6 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor{
 	icon_state = "white"
-	},
-/area/lv624/lazarus/research)
-"Mu" = (
-/obj/structure/surface/table,
-/obj/item/storage/fancy/vials/random,
-/obj/effect/landmark/objective_landmark/science,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "whitepurple"
 	},
 /area/lv624/lazarus/research)
 "Tz" = (
@@ -521,7 +475,7 @@ ao
 ao
 ao
 ab
-Mu
+qs
 Jv
 ay
 ab
@@ -534,9 +488,9 @@ aa
 (3,1,1) = {"
 aa
 ai
-aq
+aj
 as
-aF
+HE
 au
 Tz
 aV
@@ -561,7 +515,7 @@ ay
 aL
 wY
 wY
-ky
+wY
 ac
 aa
 "}
@@ -572,7 +526,7 @@ ap
 ay
 aG
 au
-oe
+tP
 ak
 ay
 au
@@ -602,13 +556,13 @@ ab
 (7,1,1) = {"
 ac
 Tz
-aq
+aj
 ay
 ay
 au
-aQ
+nW
 Kl
-gu
+ak
 au
 bp
 ay
@@ -670,7 +624,7 @@ ab
 (11,1,1) = {"
 ae
 ai
-Mu
+qs
 ay
 aJ
 ab
@@ -680,7 +634,7 @@ ay
 ab
 aP
 ay
-aq
+aj
 ac
 bE
 "}
@@ -709,10 +663,10 @@ ay
 aK
 ab
 aS
-bb
+so
 ay
 ab
-bn
+Tz
 Tz
 aj
 ac

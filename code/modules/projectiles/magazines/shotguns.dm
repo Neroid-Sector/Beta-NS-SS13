@@ -78,6 +78,11 @@ var/list/shotgun_boxes_12g = list(
 	default_ammo = /datum/ammo/bullet/shotgun/beanbag
 	handful_state = "beanbag_slug"
 	caliber = "20g"
+
+/obj/item/ammo_magazine/shotgun/buckshot/special
+	name = "box of buckshot shells, USCM special type"
+	desc = "A box filled with buckshot spread shotgun shells, USCM special type. 12 Gauge."
+	default_ammo = /datum/ammo/bullet/shotgun/buckshot/special
 //-------------------------------------------------------
 
 /*
@@ -88,7 +93,7 @@ also doesn't really matter. You can only reload them with handfuls.
 /obj/item/ammo_magazine/internal/shotgun
 	name = "shotgun tube"
 	desc = "An internal magazine. It is not supposed to be seen or removed."
-	default_ammo = /datum/ammo/bullet/shotgun/slug
+	default_ammo = /datum/ammo/bullet/shotgun/buckshot
 	caliber = "12g"
 	max_rounds = 9
 	chamber_closed = 0
@@ -145,6 +150,9 @@ also doesn't really matter. You can only reload them with handfuls.
 /obj/item/ammo_magazine/internal/shotgun/cmb/m3717
 	max_rounds = 5
 
+/obj/item/ammo_magazine/internal/shotgun/special
+	default_ammo = /datum/ammo/bullet/shotgun/buckshot/special
+
 //-------------------------------------------------------
 
 /*
@@ -191,6 +199,10 @@ var/list/shotgun_handfuls_12g = list(
 	icon_state = "buckshot_shell_5"
 	default_ammo = /datum/ammo/bullet/shotgun/buckshot
 	handful_state = "buckshot_shell"
+
+/obj/item/ammo_magazine/handful/shotgun/buckshot/special
+	name = "handful of shotgun buckshot shells, USCM special type (12g)"
+	default_ammo = /datum/ammo/bullet/shotgun/buckshot/special
 
 /obj/item/ammo_magazine/handful/shotgun/buckshot/incendiary
 	name = "handful of incendiary buckshot shells (12g)"

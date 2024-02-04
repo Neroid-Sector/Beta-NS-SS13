@@ -221,22 +221,21 @@
 	update()
 
 ///Attempt to move while inside
-/obj/structure/machinery/disposal/relaymove(mob/user)
-	if(user.stat || user.stunned || user.knocked_down || flushing)
+/obj/structure/machinery/disposal/relaymove(mob/living/user)
+	if(user.is_mob_incapacitated(TRUE) || flushing)
 		return FALSE
 	if(user.loc == src)
 		go_out(user)
 		return TRUE
 
 ///Leave the disposal
-/obj/structure/machinery/disposal/proc/go_out(mob/user)
+/obj/structure/machinery/disposal/proc/go_out(mob/living/user)
 	if(user.client)
 		user.client.eye = user.client.mob
 		user.client.perspective = MOB_PERSPECTIVE
 	user.forceMove(loc)
-	user.stunned = max(user.stunned, 2)  //Action delay when going out of a bin
-	user.update_canmove() //Force the delay to go in action immediately
-	if(!user.lying)
+	user.apply_effect(2, STUN)
+	if(user.mobility_flags & MOBILITY_MOVE)
 		user.visible_message(SPAN_WARNING("[user] suddenly climbs out of [src]!"),
 		SPAN_WARNING("You climb out of [src] and get your bearings!"))
 		update()
@@ -302,12 +301,11 @@
 	for(var/atom/movable/AM in src)
 		AM.forceMove(loc)
 		AM.pipe_eject(0)
-		if(ismob(AM))
-			var/mob/M = AM
-			M.stunned = max(M.stunned, 2)  //Action delay when going out of a bin
-			M.update_canmove() //Force the delay to go in action immediately
-			if(!M.lying)
-				M.visible_message(SPAN_WARNING("[M] is suddenly pushed out of [src]!"),
+		if(isliving(AM))
+			var/mob/living/living = AM
+			living.Stun(2)
+			if(living.body_position == STANDING_UP)
+				living.visible_message(SPAN_WARNING("[living] is suddenly pushed out of [src]!"),
 				SPAN_WARNING("You get pushed out of [src] and get your bearings!"))
 	update()
 
@@ -463,6 +461,7 @@
 ///Virtual disposal object, travels through pipes in lieu of actual items
 ///Contents will be items flushed by the disposal, this allows the gas flushed to be tracked
 /obj/structure/disposalholder
+	unslashable = TRUE
 	invisibility = 101
 	var/active = 0 //True if the holder is moving, otherwise inactive
 	dir = 0
@@ -618,6 +617,7 @@
 	desc = "An underfloor disposal pipe."
 	anchored = TRUE
 	density = FALSE
+	unslashable = TRUE
 
 	level = 1 //Underfloor only
 	var/dpdir = 0 //Bitmask of pipe directions

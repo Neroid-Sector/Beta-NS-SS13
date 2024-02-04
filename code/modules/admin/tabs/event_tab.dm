@@ -238,7 +238,7 @@
 	if(prompt == "Current Location")
 		override_spawn_loc = get_turf(usr)
 
-	chosen_ert.activate(quiet_launch = launch_broadcast, announce_incoming = announce_receipt, override_spawn_loc = override_spawn_loc)
+	chosen_ert.activate(quiet_launch = !launch_broadcast, announce_incoming = announce_receipt, override_spawn_loc = override_spawn_loc)
 
 	message_admins("[key_name_admin(usr)] admin-called a [choice == "Randomize" ? "randomized ":""]distress beacon: [chosen_ert.name]")
 
@@ -660,6 +660,28 @@
 	to_chat_spaced(world, html = SPAN_ANNOUNCEMENT_HEADER_BLUE(msg))
 	message_admins("\bold GlobalNarrate: [key_name_admin(usr)] : [msg]")
 
+/client/proc/cmd_admin_ground_narrate()
+	set name = "Narrate to Ground Levels"
+	set category = "Admin.Events"
+
+	if(!admin_holder || !(admin_holder.rights & R_MOD))
+		to_chat(src, "Only administrators may use this command.")
+		return
+
+	var/msg = tgui_input_text(usr, "Enter the text you wish to appear to everyone", "Message", multiline = TRUE)
+
+	if(!msg)
+		return
+
+	var/list/all_clients = GLOB.clients.Copy()
+
+	for(var/client/cycled_client as anything in all_clients)
+		if(!(cycled_client.mob?.z in SSmapping.levels_by_trait(ZTRAIT_GROUND)))
+			continue
+
+		to_chat_spaced(cycled_client, html = SPAN_ANNOUNCEMENT_HEADER_BLUE(msg))
+
+	message_admins("\bold GroundNarrate: [key_name_admin(usr)] : [msg]")
 
 /client
 	var/remote_control = FALSE
@@ -805,7 +827,7 @@
 		create_xenos_html = replacetext(create_xenos_html, "null /* xeno paths */", "\"[xeno_types]\"")
 		create_xenos_html = replacetext(create_xenos_html, "/* href token */", RawHrefToken(forceGlobal = TRUE))
 
-	show_browser(user, replacetext(create_xenos_html, "/* ref src */", "\ref[src]"), "Create Xenos", "create_xenos", "size=450x630")
+	show_browser(user, replacetext(create_xenos_html, "/* ref src */", "\ref[src]"), "Create Xenos", "create_xenos", "size=450x800")
 
 /client/proc/create_xenos()
 	set name = "Create Xenos"

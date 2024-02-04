@@ -763,7 +763,6 @@
 				M.stop_pulling()
 				M.apply_effect(8, STUN)
 				M.apply_effect(5, WEAKEN)
-				M.lying = 1
 	..()
 
 /obj/structure/machinery/bot/mulebot/alter_health()
@@ -916,11 +915,11 @@
 	post_signal_multiple(control_freq, kv)
 
 /obj/structure/machinery/bot/mulebot/emp_act(severity)
+	. = ..()
 	if (cell)
 		cell.emp_act(severity)
 	if(load)
 		load.emp_act(severity)
-	..()
 
 
 /obj/structure/machinery/bot/mulebot/explode()

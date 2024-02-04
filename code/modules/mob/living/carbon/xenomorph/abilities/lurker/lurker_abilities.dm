@@ -8,7 +8,7 @@
 	// Config options
 	distance = 6
 	knockdown = FALSE
-	knockdown_duration = 2.5
+	knockdown_duration = 1.5
 	freeze_self = TRUE
 	freeze_time = 15
 	can_be_shield_blocked = TRUE
@@ -30,20 +30,20 @@
 			if (istype(lurker_invis))
 				lurker_invis.invisibility_off()
 
-/datum/action/xeno_action/activable/pounce/lurker/additional_effects(mob/living/L)
-	var/mob/living/carbon/xenomorph/X = owner
-	if (!istype(X))
+/datum/action/xeno_action/activable/pounce/lurker/additional_effects(mob/living/living_mob)
+	var/mob/living/carbon/xenomorph/xeno = owner
+	if (!istype(xeno))
 		return
 
-	if (X.mutation_type == LURKER_NORMAL)
-		RegisterSignal(X, COMSIG_XENO_SLASH_ADDITIONAL_EFFECTS_SELF, PROC_REF(remove_freeze), TRUE) // Suppresses runtime ever we pounce again before slashing
+	if (xeno.mutation_type == LURKER_NORMAL)
+		RegisterSignal(xeno, COMSIG_XENO_SLASH_ADDITIONAL_EFFECTS_SELF, PROC_REF(remove_freeze), TRUE) // Suppresses runtime ever we pounce again before slashing
 
-/datum/action/xeno_action/activable/pounce/lurker/proc/remove_freeze(mob/living/carbon/xenomorph/X)
+/datum/action/xeno_action/activable/pounce/lurker/proc/remove_freeze(mob/living/carbon/xenomorph/xeno)
 	SIGNAL_HANDLER
 
-	var/datum/behavior_delegate/lurker_base/BD = X.behavior_delegate
-	if (istype(BD))
-		UnregisterSignal(X, COMSIG_XENO_SLASH_ADDITIONAL_EFFECTS_SELF)
+	var/datum/behavior_delegate/lurker_base/behaviour_del = xeno.behavior_delegate
+	if (istype(behaviour_del))
+		UnregisterSignal(xeno, COMSIG_XENO_SLASH_ADDITIONAL_EFFECTS_SELF)
 		end_pounce_freeze()
 
 /datum/action/xeno_action/onclick/lurker_invisibility
@@ -72,8 +72,25 @@
 	action_type = XENO_ACTION_ACTIVATE
 	xeno_cooldown = 100
 	plasma_cost = 20
+	default_ai_action = TRUE
 
 	var/buff_duration = 50
+
+/datum/action/xeno_action/onclick/lurker_assassinate/process_ai(mob/living/carbon/xenomorph/using_xeno, delta_time)
+	. = ..()
+
+	if(using_xeno.next_move <= world.time)
+		return FALSE
+
+	if(get_dist(using_xeno, using_xeno.current_target) > 1)
+		return FALSE
+
+	if(!DT_PROB(ai_prob_chance, delta_time))
+		return FALSE
+
+	use_ability_async(using_xeno.current_target)
+
+	return TRUE
 
 // VAMP LURKER ABILITIES
 

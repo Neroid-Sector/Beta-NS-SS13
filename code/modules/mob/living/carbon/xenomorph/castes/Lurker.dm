@@ -59,6 +59,66 @@
 	icon_xeno = 'icons/mob/xenos/lurker.dmi'
 	icon_xenonid = 'icons/mob/xenonids/lurker.dmi'
 
+	forced_retarget_time = (2 SECONDS)
+	var/pull_direction
+
+/mob/living/carbon/xenomorph/lurker/launch_towards(datum/launch_metadata/LM)
+	if(!current_target)
+		return ..()
+
+	pull_direction = turn(get_dir(src, current_target), 180)
+
+	if(!(pull_direction in GLOB.cardinals))
+		if(abs(x - current_target.x) < abs(y - current_target.y))
+			pull_direction &= (NORTH|SOUTH)
+		else
+			pull_direction &= (EAST|WEST)
+	return ..()
+
+/mob/living/carbon/xenomorph/lurker/init_movement_handler()
+	return new /datum/xeno_ai_movement/linger/lurking(src)
+
+/mob/living/carbon/xenomorph/lurker/ai_move_target(delta_time)
+	if(throwing)
+		return
+
+	if(pulling)
+		if(!current_target || get_dist(src, current_target) > 10)
+			INVOKE_ASYNC(src, PROC_REF(stop_pulling))
+			return ..()
+		if(can_move_and_apply_move_delay())
+			if(!Move(get_step(loc, pull_direction), pull_direction))
+				pull_direction = turn(pull_direction, pick(45, -45))
+		current_path = null
+		return
+
+	..()
+
+	if(get_dist(current_target, src) > 1)
+		return
+
+	if(!istype(current_target, /mob))
+		return
+
+	var/mob/current_target_mob = current_target
+
+	if(!current_target_mob.is_mob_incapacitated())
+		return
+
+	if(isxeno(current_target.pulledby))
+		return
+
+	if(!DT_PROB(RUNNER_GRAB, delta_time))
+		return
+
+	INVOKE_ASYNC(src, PROC_REF(start_pulling), current_target)
+	swap_hand()
+
+/mob/living/carbon/xenomorph/lurker/process_ai(delta_time)
+	if(get_active_hand())
+		swap_hand()
+	return ..()
+
 /datum/behavior_delegate/lurker_base
 	name = "Base Lurker Behavior Delegate"
 
@@ -81,10 +141,10 @@
 		to_chat(bound_xeno, SPAN_XENOHIGHDANGER("You significantly strengthen your attack, slowing [target_carbon]!"))
 		to_chat(target_carbon, SPAN_XENOHIGHDANGER("You feel a sharp pain as [bound_xeno] slashes you, slowing you down!"))
 		original_damage *= buffed_slash_damage_ratio
-		target_carbon.set_effect(get_xeno_stun_duration(target_carbon, 3), SUPERSLOW)
+		target_carbon.set_effect(get_xeno_stun_duration(target_carbon, 3), SLOW)
 		next_slash_buffed = FALSE
 		var/datum/action/xeno_action/onclick/lurker_assassinate/ability = get_xeno_action_by_type(bound_xeno, /datum/action/xeno_action/onclick/lurker_assassinate)
-		if (ability && istype(ability))
+		if (ability)
 			ability.button.icon_state = "template"
 
 	return original_damage
@@ -102,7 +162,7 @@
 	if (!isxeno_human(target_carbon))
 		return
 
-	if (target_carbon.knocked_down)
+	if (HAS_TRAIT(target_carbon, TRAIT_FLOORED))
 		new /datum/effects/xeno_slow(target_carbon, bound_xeno, null, null, get_xeno_stun_duration(target_carbon, slash_slow_duration))
 
 	return
@@ -110,28 +170,36 @@
 /datum/behavior_delegate/lurker_base/melee_attack_additional_effects_self()
 	..()
 
-	var/datum/action/xeno_action/onclick/lurker_invisibility/LIA = get_xeno_action_by_type(bound_xeno, /datum/action/xeno_action/onclick/lurker_invisibility)
-	if (LIA && istype(LIA))
-		LIA.invisibility_off()
+	var/datum/action/xeno_action/onclick/lurker_invisibility/lurker_invis_action = get_xeno_action_by_type(bound_xeno, /datum/action/xeno_action/onclick/lurker_invisibility)
+	if (lurker_invis_action)
+		lurker_invis_action.invisibility_off()
+
+/datum/behavior_delegate/lurker_base/proc/decloak_handler(mob/source)
+	SIGNAL_HANDLER
+	var/datum/action/xeno_action/onclick/lurker_invisibility/lurker_invis_action = get_xeno_action_by_type(bound_xeno, /datum/action/xeno_action/onclick/lurker_invisibility)
+	if(istype(lurker_invis_action))
+		lurker_invis_action.invisibility_off()
 
 // What to do when we go invisible
 /datum/behavior_delegate/lurker_base/proc/on_invisibility()
-	var/datum/action/xeno_action/activable/pounce/lurker/LPA = get_xeno_action_by_type(bound_xeno, /datum/action/xeno_action/activable/pounce/lurker)
-	if (LPA && istype(LPA))
-		LPA.knockdown = TRUE // pounce knocks down
-		LPA.freeze_self = TRUE
+	var/datum/action/xeno_action/activable/pounce/lurker/lurker_pounce_action = get_xeno_action_by_type(bound_xeno, /datum/action/xeno_action/activable/pounce/lurker)
+	if (lurker_pounce_action)
+		lurker_pounce_action.knockdown = TRUE // pounce knocks down
+		lurker_pounce_action.freeze_self = TRUE
 	ADD_TRAIT(bound_xeno, TRAIT_CLOAKED, TRAIT_SOURCE_ABILITY("cloak"))
+	RegisterSignal(bound_xeno, COMSIG_MOB_EFFECT_CLOAK_CANCEL, PROC_REF(decloak_handler))
 	bound_xeno.stealth = TRUE
 	can_go_invisible = FALSE
 	invis_start_time = world.time
 
 /datum/behavior_delegate/lurker_base/proc/on_invisibility_off()
-	var/datum/action/xeno_action/activable/pounce/lurker/LPA = get_xeno_action_by_type(bound_xeno, /datum/action/xeno_action/activable/pounce/lurker)
-	if (LPA && istype(LPA))
-		LPA.knockdown = FALSE // pounce no longer knocks down
-		LPA.freeze_self = FALSE
+	var/datum/action/xeno_action/activable/pounce/lurker/lurker_pounce_action = get_xeno_action_by_type(bound_xeno, /datum/action/xeno_action/activable/pounce/lurker)
+	if (lurker_pounce_action)
+		lurker_pounce_action.knockdown = FALSE // pounce no longer knocks down
+		lurker_pounce_action.freeze_self = FALSE
 	bound_xeno.stealth = FALSE
 	REMOVE_TRAIT(bound_xeno, TRAIT_CLOAKED, TRAIT_SOURCE_ABILITY("cloak"))
+	UnregisterSignal(bound_xeno, COMSIG_MOB_EFFECT_CLOAK_CANCEL)
 
 	// SLIGHTLY hacky because we need to maintain lots of other state on the lurker
 	// whenever invisibility is on/off CD and when it's active.
@@ -145,9 +213,9 @@
 
 	can_go_invisible = TRUE
 	if(bound_xeno)
-		var/datum/action/xeno_action/onclick/lurker_invisibility/LIA = get_xeno_action_by_type(bound_xeno, /datum/action/xeno_action/onclick/lurker_invisibility)
-		if(LIA && istype(LIA))
-			LIA.end_cooldown()
+		var/datum/action/xeno_action/onclick/lurker_invisibility/lurker_invisibility_action = get_xeno_action_by_type(bound_xeno, /datum/action/xeno_action/onclick/lurker_invisibility)
+		if(lurker_invisibility_action)
+			lurker_invisibility_action.end_cooldown()
 
 /datum/behavior_delegate/lurker_base/append_to_stat()
 	. = list()

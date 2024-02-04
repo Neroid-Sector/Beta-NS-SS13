@@ -16,6 +16,7 @@ var/list/ob_type_fuel_requirements
 	bound_height = 64
 	bound_y = 64
 	unacidable = TRUE
+	unslashable = TRUE
 	var/obj/structure/orbital_tray/tray
 	var/chambered_tray = FALSE
 	var/loaded_tray = FALSE
@@ -244,6 +245,7 @@ var/list/ob_type_fuel_requirements
 	bound_width = 64
 	bound_height = 32
 	unacidable = TRUE
+	unslashable = TRUE
 	pixel_y = -9
 	pixel_x = -6
 	var/obj/structure/ob_ammo/warhead/warhead
@@ -328,6 +330,7 @@ var/list/ob_type_fuel_requirements
 	throwpass = TRUE
 	climbable = TRUE
 	unacidable = TRUE // issue: being used for defences, solution: abomb
+	unslashable = TRUE
 	icon = 'icons/obj/structures/props/almayer_props.dmi'
 	var/is_solid_fuel = 0
 	var/source_mob
@@ -424,7 +427,7 @@ var/list/ob_type_fuel_requirements
 		shake_camera(user, 3, total_shake_factor, shake_frequency)
 		user.KnockDown(rand(max_knockdown_time * distance_percent, (max_knockdown_time * distance_percent + 1)))
 
-		if(!user.knocked_down)
+		if(HAS_TRAIT(user, TRAIT_FLOORED))
 			continue
 		to_chat(user, SPAN_WARNING("You are thrown off balance and fall to the ground!"))
 

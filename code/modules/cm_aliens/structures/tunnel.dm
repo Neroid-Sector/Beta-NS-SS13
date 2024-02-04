@@ -48,7 +48,7 @@
 	if(resin_trap)
 		qdel(resin_trap)
 
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, "xenotunnel")
+	SSminimaps.add_marker(src, z, get_minimap_flag_for_faction(hivenumber), "xenotunnel")
 
 /obj/structure/tunnel/Destroy()
 	if(hive)
@@ -127,7 +127,7 @@
 
 /obj/structure/tunnel/proc/pick_tunnel(mob/living/carbon/xenomorph/X)
 	. = FALSE //For peace of mind when it comes to dealing with unintended proc failures
-	if(!istype(X) || X.stat || X.lying || !isfriendly(X) || !hive)
+	if(!istype(X) || X.is_mob_incapacitated(TRUE) || !isfriendly(X) || !hive)
 		return FALSE
 	if(X in contents)
 		var/list/tunnels = list()
@@ -195,7 +195,7 @@
 	. = attack_alien(M)
 
 /obj/structure/tunnel/attack_alien(mob/living/carbon/xenomorph/M)
-	if(!istype(M) || M.stat || M.lying)
+	if(!istype(M) || M.is_mob_incapacitated(TRUE))
 		return XENO_NO_DELAY_ACTION
 
 	if(!isfriendly(M))
@@ -254,6 +254,14 @@
 	else
 		to_chat(M, SPAN_WARNING("\The [src] ended unexpectedly, so you return back up."))
 	return XENO_NO_DELAY_ACTION
+
+/obj/structure/tunnel/proc/animate_crawl(speed = 3, loop_amount = -1, sections = 4)
+	animate(src, pixel_x = rand(-2,2), pixel_y = rand(-2,2), time = speed, loop = loop_amount, easing = JUMP_EASING)
+	for(var/i in 1 to sections)
+		animate(pixel_x = rand(-2,2), pixel_y = rand(-2,2), time = speed, easing = JUMP_EASING)
+
+/obj/structure/tunnel/proc/animate_crawl_reset()
+	animate(src, pixel_x = initial(pixel_x), pixel_y = initial(pixel_y), easing = JUMP_EASING)
 
 /obj/structure/tunnel/maint_tunnel
 	name = "\improper Maintenance Hatch"

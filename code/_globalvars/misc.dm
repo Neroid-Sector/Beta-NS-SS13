@@ -5,7 +5,7 @@ GLOBAL_VAR_INIT(perf_flags, NO_FLAGS)
 
 GLOBAL_LIST_INIT(bitflags, list((1<<0), (1<<1), (1<<2), (1<<3), (1<<4), (1<<5), (1<<6), (1<<7), (1<<8), (1<<9), (1<<10), (1<<11), (1<<12), (1<<13), (1<<14), (1<<15), (1<<16), (1<<17), (1<<18), (1<<19), (1<<20), (1<<21), (1<<22), (1<<23)))
 
-GLOBAL_VAR_INIT(master_mode, "Distress Signal")
+GLOBAL_VAR_INIT(master_mode, "Distress Signal: Lowpop")
 
 GLOBAL_VAR_INIT(timezoneOffset, 0)
 
@@ -13,6 +13,22 @@ GLOBAL_LIST_INIT(pill_icon_mappings, map_pill_icons())
 
 /// In-round override to default OOC color
 GLOBAL_VAR(ooc_color_override)
+
+// tacmap cooldown for xenos and marines
+GLOBAL_VAR_INIT(uscm_canvas_cooldown, 0)
+GLOBAL_VAR_INIT(xeno_canvas_cooldown, 0)
+
+// getFlatIcon cooldown for xenos and marines
+GLOBAL_VAR_INIT(uscm_flatten_map_icon_cooldown, 0)
+GLOBAL_VAR_INIT(xeno_flatten_map_icon_cooldown, 0)
+
+// latest unannounced flat tacmap for xenos and marines
+GLOBAL_VAR(uscm_unannounced_map)
+GLOBAL_VAR(xeno_unannounced_map)
+
+//global tacmaps for action button access
+GLOBAL_DATUM_INIT(uscm_tacmap_status, /datum/tacmap/drawing/status_tab_view, new)
+GLOBAL_DATUM_INIT(xeno_tacmap_status, /datum/tacmap/drawing/status_tab_view/xeno, new)
 
 /// List of roles that can be setup for each gamemode
 GLOBAL_LIST_INIT(gamemode_roles, list())

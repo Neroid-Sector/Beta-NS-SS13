@@ -15,7 +15,6 @@
 
 	var/turns_per_move = 1
 	var/turns_since_move = 0
-	universal_speak = 0 //No, just no.
 	var/meat_amount = 0
 	var/meat_type
 	var/stop_automated_movement = 0 //Use this to temporarely stop random movement or to if you write special movement code for animals.
@@ -46,6 +45,9 @@
 	var/unsuitable_atoms_damage = 2 //This damage is taken when atmos doesn't fit all the requirements above
 	speed = 0 //LETS SEE IF I CAN SET SPEEDS FOR SIMPLE MOBS WITHOUT DESTROYING EVERYTHING. Higher speed is slower, negative speed is faster
 
+	/// Whether or not this simple_animal can squeeze under doors
+	var/squeeze_under = FALSE
+
 	//LETTING SIMPLE ANIMALS ATTACK? WHAT COULD GO WRONG. Defaults to zero so Ian can still be cuddly
 	melee_damage_lower = 0
 	melee_damage_upper = 0
@@ -55,6 +57,11 @@
 	can_crawl = FALSE
 	black_market_value = 25
 	dead_black_market_value = 0
+
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+
+	universal_speak = FALSE
+	universal_understand = TRUE
 
 /mob/living/simple_animal/Initialize()
 	. = ..()
@@ -81,8 +88,8 @@
 			GLOB.dead_mob_list -= src
 			GLOB.alive_mob_list += src
 			set_stat(CONSCIOUS)
-			lying = 0
-			density = TRUE
+//			lying = 0
+//			density = TRUE
 			reload_fullscreens()
 		return 0
 
@@ -96,11 +103,10 @@
 	handle_stunned()
 	handle_knocked_down(TRUE)
 	handle_knocked_out(TRUE)
-	update_canmove()
 
 	//Movement
 	if(!client && !stop_automated_movement && wander && !anchored)
-		if(isturf(src.loc) && !resting && !buckled && canmove) //This is so it only moves if it's not inside a closet, gentics machine, etc.
+		if(isturf(src.loc) && !resting && !buckled && (mobility_flags & MOBILITY_MOVE)) //This is so it only moves if it's not inside a closet, gentics machine, etc.
 			turns_since_move++
 			if(turns_since_move >= turns_per_move)
 				if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
@@ -361,10 +367,17 @@
 
 	..(message, null, verb, nolog = !ckey) //if the animal has a ckey then it will log the message
 
-/mob/living/simple_animal/update_canmove()
+/mob/living/simple_animal/on_immobilized_trait_gain(datum/source)
 	. = ..()
-	if(!canmove)
-		stop_moving()
+	stop_moving()
+
+/mob/living/simple_animal/on_knockedout_trait_gain(datum/source)
+	. = ..()
+	stop_moving()
+
+/mob/living/simple_animal/on_incapacitated_trait_gain(datum/source)
+	. = ..()
+	stop_moving()
 
 /mob/living/simple_animal/proc/stop_moving()
 	walk_to(src, 0) // stops us dead in our tracks

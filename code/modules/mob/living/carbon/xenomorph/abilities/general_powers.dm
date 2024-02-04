@@ -9,7 +9,7 @@
 		return
 	if(!xeno.check_state())
 		return
-	if(xeno.burrow)
+	if(HAS_TRAIT(xeno, TRAIT_ABILITY_BURROWED))
 		return
 
 	var/turf/turf = xeno.loc
@@ -89,7 +89,7 @@
 		to_chat(src, SPAN_WARNING("You cannot rest while fortified!"))
 		return
 
-	if(burrow)
+	if(HAS_TRAIT(src, TRAIT_ABILITY_BURROWED))
 		to_chat(src, SPAN_WARNING("You cannot rest while burrowed!"))
 		return
 
@@ -411,24 +411,21 @@
 	if (windup)
 		X.set_face_dir(get_cardinal_dir(X, A))
 		if (!windup_interruptable)
-			X.frozen = TRUE
+			ADD_TRAIT(X, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY("Pounce"))
 			X.anchored = TRUE
-			X.update_canmove()
 		pre_windup_effects()
 
 		if (!do_after(X, windup_duration, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE))
 			to_chat(X, SPAN_XENODANGER("You cancel your [ability_name]!"))
 			if (!windup_interruptable)
-				X.frozen = FALSE
+				REMOVE_TRAIT(X, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY("Pounce"))
 				X.anchored = FALSE
-				X.update_canmove()
 			post_windup_effects(interrupted = TRUE)
 			return
 
 		if (!windup_interruptable)
-			X.frozen = FALSE
+			REMOVE_TRAIT(X, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY("Pounce"))
 			X.anchored = FALSE
-			X.update_canmove()
 		post_windup_effects()
 
 	X.visible_message(SPAN_XENOWARNING("\The [X] [ability_name][findtext(ability_name, "e", -1) || findtext(ability_name, "p", -1) ? "s" : "es"] at [A]!"), SPAN_XENOWARNING("You [ability_name] at [A]!"))
@@ -445,6 +442,8 @@
 	LM.spin = FALSE
 	LM.pass_flags = pounce_pass_flags
 	LM.collision_callbacks = pounce_callbacks
+
+	SEND_SIGNAL(owner, COMSIG_XENO_USED_POUNCE, A)
 
 	X.launch_towards(LM)
 
@@ -529,7 +528,7 @@
 
 	if (istype(X, /mob/living/carbon/xenomorph/burrower))
 		var/mob/living/carbon/xenomorph/burrower/B = X
-		if (B.burrow)
+		if (HAS_TRAIT(B, TRAIT_ABILITY_BURROWED))
 			return
 
 	var/turf/T = get_turf(X)
@@ -908,7 +907,7 @@
 /datum/action/xeno_action/activable/tail_stab/use_ability(atom/targetted_atom)
 	var/mob/living/carbon/xenomorph/stabbing_xeno = owner
 
-	if(stabbing_xeno.burrow || stabbing_xeno.is_ventcrawling)
+	if(HAS_TRAIT(stabbing_xeno, TRAIT_ABILITY_BURROWED) || stabbing_xeno.is_ventcrawling)
 		to_chat(stabbing_xeno, SPAN_XENOWARNING("You must be above ground to do this."))
 		return
 

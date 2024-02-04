@@ -12,6 +12,8 @@
 	layer = PODDOOR_CLOSED_LAYER
 	open_layer = PODDOOR_OPEN_LAYER
 	closed_layer = PODDOOR_CLOSED_LAYER
+	///How many tiles the shutter occupies
+	var/shutter_length = 1
 
 /obj/structure/machinery/door/poddoor/Initialize()
 	. = ..()
@@ -53,6 +55,9 @@
 		return XENO_ATTACK_ACTION
 
 /obj/structure/machinery/door/poddoor/proc/pry_open(mob/living/carbon/xenomorph/X, time = 4 SECONDS)
+	if(X.action_busy)
+		return
+
 	X.visible_message(SPAN_DANGER("[X] begins prying [src] open."),\
 	SPAN_XENONOTICE("You start prying [src] open."), max_distance = 3)
 
@@ -111,6 +116,8 @@
 	operating = FALSE
 
 /obj/structure/machinery/door/poddoor/two_tile/open()
+	if(!density)
+		return
 	if(operating) //doors can still open when emag-disabled
 		return
 
@@ -148,6 +155,8 @@
 	..()
 
 /obj/structure/machinery/door/poddoor/two_tile/close()
+	if(density)
+		return
 	if(operating)
 		return
 	start_closing()
@@ -182,6 +191,7 @@
 /obj/structure/machinery/door/poddoor/two_tile
 	dir = EAST
 	icon = 'icons/obj/structures/doors/1x2blast_hor.dmi'
+	shutter_length = 2
 	var/obj/structure/machinery/door/poddoor/filler_object/f1
 	var/obj/structure/machinery/door/poddoor/filler_object/f2
 
@@ -211,6 +221,7 @@
 
 /obj/structure/machinery/door/poddoor/two_tile/four_tile
 	icon = 'icons/obj/structures/doors/1x4blast_hor.dmi'
+	shutter_length = 4
 	var/obj/structure/machinery/door/poddoor/filler_object/f3
 	var/obj/structure/machinery/door/poddoor/filler_object/f4
 
@@ -240,6 +251,7 @@
 
 /obj/structure/machinery/door/poddoor/filler_object
 	name = ""
+	icon = null
 	icon_state = ""
 	unslashable = TRUE
 	unacidable = TRUE
@@ -262,6 +274,15 @@
 /obj/structure/machinery/door/poddoor/two_tile/four_tile/vertical/secure/open
 	density = FALSE
 
+/obj/structure/machinery/door/poddoor/two_tile/four_tile/pivot/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, PROC_REF(direction_change_move))
+
+/obj/structure/machinery/door/poddoor/two_tile/four_tile/pivot/proc/direction_change_move(source, old_dir, new_dir)
+	if(old_dir == new_dir)
+		return
+	x -= shutter_length - 1
+
 /obj/structure/machinery/door/poddoor/two_tile/secure
 	icon = 'icons/obj/structures/doors/1x2blast_hor.dmi'
 	openspeed = 17
@@ -276,7 +297,7 @@
 /obj/structure/machinery/door/poddoor/almayer
 	icon = 'icons/obj/structures/doors/blastdoors_shutters.dmi'
 	openspeed = 4 //shorter open animation.
-	var/vehicle_resistant = FALSE
+	var/vehicle_resistant = TRUE
 	tiles_with = list(
 		/obj/structure/window/framed/almayer,
 		/obj/structure/machinery/door/airlock,
@@ -284,14 +305,18 @@
 
 /obj/structure/machinery/door/poddoor/almayer/open
 	density = FALSE
+
 /obj/structure/machinery/door/poddoor/almayer/blended
 	icon_state = "almayer_pdoor1"
 	base_icon_state = "almayer_pdoor"
+
 /obj/structure/machinery/door/poddoor/almayer/blended/open
 	density = FALSE
+
 /obj/structure/machinery/door/poddoor/almayer/blended/white
 	icon_state = "w_almayer_pdoor1"
 	base_icon_state = "w_almayer_pdoor"
+
 /obj/structure/machinery/door/poddoor/almayer/blended/white/open
 	density = FALSE
 
@@ -315,4 +340,3 @@
 /obj/structure/machinery/door/poddoor/almayer/planet_side_blastdoor
 	density = TRUE
 	opacity = TRUE
-	vehicle_resistant = TRUE

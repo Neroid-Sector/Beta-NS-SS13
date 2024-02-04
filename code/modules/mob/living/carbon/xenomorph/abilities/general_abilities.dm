@@ -219,6 +219,36 @@
 	var/list/pounce_callbacks = null // Specific callbacks to invoke when a pounce lands on an atom of a specific type
 										// (note that if a collided atom does not match any of the key types, defaults to the appropriate X_launch_collision proc)
 
+	default_ai_action = TRUE
+
+/datum/action/xeno_action/activable/pounce/process_ai(mob/living/carbon/xenomorph/pouncing_xeno, delta_time)
+	. = ..()
+
+	if(get_dist(pouncing_xeno, pouncing_xeno.current_target) > distance)
+		return FALSE
+
+	if(!DT_PROB(ai_prob_chance, delta_time))
+		return FALSE
+
+	var/turf/last_turf = pouncing_xeno.loc
+	var/clear = TRUE
+
+	pouncing_xeno.add_temp_pass_flags(PASS_OVER_THROW_MOB)
+
+	for(var/i in getline2(pouncing_xeno, pouncing_xeno.current_target, FALSE))
+		var/turf/new_turf = i
+		if(LinkBlocked(pouncing_xeno, last_turf, new_turf, list(pouncing_xeno.current_target, pouncing_xeno)))
+			clear = FALSE
+			break
+
+	pouncing_xeno.remove_temp_pass_flags(PASS_OVER_THROW_MOB)
+
+	if(!clear)
+		return FALSE
+
+	use_ability_async(pouncing_xeno.current_target)
+	return TRUE
+
 /datum/action/xeno_action/activable/pounce/New()
 	. = ..()
 	initialize_pounce_pass_flags()
@@ -251,8 +281,7 @@
 	if(freeze_timer_id == TIMER_ID_NULL)
 		return
 	var/mob/living/carbon/xenomorph/X = owner
-	X.frozen = FALSE
-	X.update_canmove()
+	REMOVE_TRAIT(X, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY("Pounce"))
 	deltimer(freeze_timer_id)
 	freeze_timer_id = TIMER_ID_NULL
 	to_chat(X, SPAN_XENONOTICE("Slashing frenzies you! You feel free to move immediately!"))
@@ -285,7 +314,7 @@
 
 /datum/action/xeno_action/onclick/toggle_long_range/can_use_action()
 	var/mob/living/carbon/xenomorph/xeno = owner
-	if(xeno && !xeno.is_mob_incapacitated() && !xeno.lying && !xeno.buckled)
+	if(xeno && !xeno.is_mob_incapacitated() && !xeno.buckled)
 		return TRUE
 
 /datum/action/xeno_action/onclick/toggle_long_range/give_to(mob/living/living_mob)
@@ -541,6 +570,14 @@
 	SIGNAL_HANDLER
 
 	hide_from(owner)
+
+/datum/action/xeno_action/onclick/tacmap/can_use_action()
+	if(!owner)
+		return FALSE
+	var/mob/living/carbon/xenomorph/xeno = owner
+	if(xeno.is_mob_incapacitated() || xeno.dazed)
+		return FALSE
+	return TRUE
 
 /datum/action/xeno_action/onclick/tacmap/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/xeno = owner

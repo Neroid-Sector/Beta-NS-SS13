@@ -12,7 +12,6 @@
 	mob_size = MOB_SIZE_SMALL
 	speak_chance = 1
 	turns_per_move = 5
-	see_in_dark = 6
 	maxHealth = 5
 	health = 5
 	meat_type = /obj/item/reagent_container/food/snacks/meat
@@ -25,9 +24,8 @@
 	min_oxy = 16 //Require atleast 16kPA oxygen
 	minbodytemp = 223 //Below -50 Degrees Celcius
 	maxbodytemp = 323 //Above 50 Degrees Celcius
-	universal_speak = 0
-	universal_understand = 1
 	holder_type = /obj/item/holder/mouse
+	squeeze_under = TRUE
 
 /mob/living/simple_animal/mouse/Life(delta_time)
 	..()
@@ -46,7 +44,6 @@
 			set_stat(CONSCIOUS)
 			icon_state = "mouse_[body_color]"
 			wander = 1
-			canmove = 1
 		else if(prob(5))
 			INVOKE_ASYNC(src, PROC_REF(emote), "snuffles")
 

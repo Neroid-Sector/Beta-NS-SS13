@@ -36,7 +36,7 @@
 	move_momentum_build_factor = 1.8
 	move_turn_momentum_loss_factor = 0.6
 
-	vehicle_light_range = 7
+	light_range = 4
 
 	// Rest (all the guns) is handled by the tank turret hardpoint
 	hardpoints_allowed = list(
@@ -189,6 +189,8 @@
 	handle_direction(TANK)
 	TANK.update_icon()
 
+	return TANK
+
 /obj/effect/vehicle_spawner/tank/load_hardpoints(obj/vehicle/multitile/tank/V)
 	V.add_hardpoint(new /obj/item/hardpoint/holder/tank_turret)
 
@@ -200,6 +202,12 @@
 //PRESET: no hardpoints
 /obj/effect/vehicle_spawner/tank/hull/load_hardpoints(obj/vehicle/multitile/tank/V)
 	return
+
+//Just the hull and it's broken TOO, you get the full experience
+/obj/effect/vehicle_spawner/tank/hull/broken/spawn_vehicle()
+	var/obj/vehicle/multitile/tank/tonk = ..()
+	load_damage(tonk)
+	tonk.update_icon()
 
 //PRESET: default hardpoints, destroyed
 /obj/effect/vehicle_spawner/tank/decrepit/spawn_vehicle()

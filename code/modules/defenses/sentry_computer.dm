@@ -121,6 +121,7 @@
 	playsound(src,  'sound/machines/terminal_off.ogg', 25, FALSE)
 
 /obj/item/device/sentry_computer/emp_act(severity)
+	. = ..()
 	return TRUE
 
 /**
@@ -483,10 +484,8 @@
 	var/target = locate(current_bb.center_x, current_bb.center_y, current.loc.z)
 	var/list/guncamera_zone = range("[x_size]x[y_size]", target)
 
-	var/list/visible_turfs = list()
-
-	for(var/turf/visible_turf in guncamera_zone)
-		visible_turfs += visible_turf
+	current.set_watched_turfs()
+	var/list/turf/visible_turfs = current.watching_turfs
 
 	var/list/bbox = get_bbox_of_atoms(visible_turfs)
 	var/size_x = bbox[3] - bbox[1] + 1

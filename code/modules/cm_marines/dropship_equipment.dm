@@ -254,13 +254,15 @@
 			step(M, get_dir(src,deployed_turret))
 
 	deployed_turret.start_processing()
+	deployed_turret.setup_target_acquisition()
 
 	deployed_turret.linked_cam = new(deployed_turret.loc, "[capitalize_first_letters(ship_base.name)] [capitalize_first_letters(name)]")
 	if (linked_shuttle.id == DROPSHIP_ALAMO)
 		deployed_turret.linked_cam.network = list(CAMERA_NET_ALAMO)
 	else if (linked_shuttle.id == DROPSHIP_NORMANDY)
 		deployed_turret.linked_cam.network = list(CAMERA_NET_NORMANDY)
-
+	else if(linked_shuttle.id == DROPSHIP_MIDWAY)
+		deployed_turret.linked_cam.network = list(CAMERA_NET_MIDWAY)
 
 /obj/structure/dropship_equipment/sentry_holder/proc/undeploy_sentry()
 	if(!deployed_turret)
@@ -271,6 +273,8 @@
 	deployed_turret.forceMove(src)
 	deployed_turret.turned_on = FALSE
 	deployed_turret.stop_processing()
+	deployed_turret.unsetup_target_acquisition()
+	icon_state = "sentry_system_installed"
 	QDEL_NULL(deployed_turret.linked_cam)
 
 /obj/structure/dropship_equipment/sentry_holder/Destroy()
