@@ -162,7 +162,6 @@
 	icon_state = "cbrn_mask"
 	var/base_item_state = "cbrn_mask"
 	item_state = "cbrn_mask"
-	has_camo = TRUE
 	vision_impair = VISION_IMPAIR_NONE
 	flags_inventory = COVEREYES|COVERMOUTH|ALLOWINTERNALS|ALLOWREBREATH|BLOCKGASEFFECT|ALLOWCPR|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEFACE

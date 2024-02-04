@@ -281,7 +281,6 @@
 			var/chosen_type = tgui_input_list(user, "Select the kind of crate to make this into:", "Customizing", crate.crate_customizing_types)
 			if(!chosen_type || !ispath(crate.crate_customizing_types[chosen_type]) || !user.Adjacent(target) || !target.z)
 				return
-			target.AddComponent(/datum/component/crate_tag, label, crate.crate_customizing_types[chosen_type])
 			amount -= 3
 		else
 			if (amount > 3 && !crate.opened)

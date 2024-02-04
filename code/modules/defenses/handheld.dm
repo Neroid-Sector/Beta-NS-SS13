@@ -130,7 +130,7 @@
 	name = "handheld UA 725-D sniper sentry"
 	icon_state = "DMR uac_sentry_handheld"
 	deployment_time = 2 SECONDS
-	defense_type = /obj/structure/machinery/defenses/sentry/dmr
+
 
 /obj/item/defenses/handheld/sentry/shotgun
 	name = "handheld UA 12-G shotgun sentry"

@@ -196,7 +196,6 @@
 	classic_keys = list("Unbound")
 	name = "toggle_shotgun_tube"
 	full_name = "Toggle Shotgun Tube"
-	keybind_signal = COMSIG_KB_HUMAN_WEAPON_SHOTGUN_TUBE
 
 /datum/keybinding/human/combat/toggle_shotgun_tube/down(client/user)
 	. = ..()

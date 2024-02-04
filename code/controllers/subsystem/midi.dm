@@ -7,8 +7,6 @@ SUBSYSTEM_DEF(midi)
 	wait  = 2 SECONDS
 	flags = SS_NO_INIT|SS_BACKGROUND
 	runlevels = RUNLEVELS_DEFAULT|RUNLEVEL_LOBBY
-	priority = SS_PRIORITY_MIDI
-
 	var/list/datum/midi_record/prepped_midis = list()
 
 	var/list/datum/midi_record/currentrun = list()

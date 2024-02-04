@@ -477,8 +477,7 @@
 
 	// Cameras that get here are moving, and are likely attached to some moving atom such as cyborgs.
 	last_camera_turf = get_turf(cam_location)
-	current.set_range()
-	var/datum/shape/rectangle/current_bb = current.range_bounds
+	var/datum/shape/rectangle/current_bb = current
 	var/x_size = current_bb.width
 	var/y_size = current_bb.height
 	var/target = locate(current_bb.center_x, current_bb.center_y, current.loc.z)

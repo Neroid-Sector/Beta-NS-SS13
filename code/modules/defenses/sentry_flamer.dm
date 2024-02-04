@@ -87,15 +87,4 @@
 	handheld_type = /obj/item/defenses/handheld/sentry/flamer/plasma
 	disassemble_time = 1.5 SECONDS
 
-/obj/structure/machinery/defenses/sentry/flamer/plasma/set_range()
-	switch(dir)
-		if(EAST)
-			range_bounds = RECT(x + (FLAMER_SENTRY_SNIPER_RANGE/2), y, FLAMER_SENTRY_SNIPER_RANGE, FLAMER_SENTRY_SNIPER_RANGE)
-		if(WEST)
-			range_bounds = RECT(x - (FLAMER_SENTRY_SNIPER_RANGE/2), y, FLAMER_SENTRY_SNIPER_RANGE, FLAMER_SENTRY_SNIPER_RANGE)
-		if(NORTH)
-			range_bounds = RECT(x, y + (FLAMER_SENTRY_SNIPER_RANGE/2), FLAMER_SENTRY_SNIPER_RANGE, FLAMER_SENTRY_SNIPER_RANGE)
-		if(SOUTH)
-			range_bounds = RECT(x, y - (FLAMER_SENTRY_SNIPER_RANGE/2), FLAMER_SENTRY_SNIPER_RANGE, FLAMER_SENTRY_SNIPER_RANGE)
-
 #undef FLAMER_SENTRY_SNIPER_RANGE
