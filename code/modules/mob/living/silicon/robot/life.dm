@@ -18,6 +18,7 @@
 		use_power()
 		process_killswitch()
 		process_locks()
+	update_canmove()
 
 /mob/living/silicon/robot/proc/clamp_values()
 
@@ -78,14 +79,14 @@
 		death()
 
 	if (stat != DEAD) //Alive.
-		if (HAS_TRAIT(src, TRAIT_KNOCKEDOUT) || HAS_TRAIT(src, TRAIT_INCAPACITATED) || !has_power) //Stunned etc.
+		if (knocked_out || stunned || knocked_down || !has_power) //Stunned etc.
 			set_stat(UNCONSCIOUS)
 			if(regular_update)
-				if (HAS_TRAIT(src, TRAIT_INCAPACITATED))
+				if (src.stunned > 0)
 					adjust_effect(-1, STUN)
-				if (HAS_TRAIT(src, TRAIT_FLOORED))
+				if (src.knocked_down > 0)
 					adjust_effect(-1, WEAKEN)
-				if (HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
+				if (src.knocked_out > 0)
 					adjust_effect(-1, PARALYZE)
 					src.blinded = TRUE
 				else
@@ -111,6 +112,8 @@
 	if (src.ear_damage < 25)
 		src.ear_damage -= 0.05
 		src.ear_damage = max(src.ear_damage, 0)
+
+	src.density = !( src.lying )
 
 	if ((src.sdisabilities & DISABILITY_BLIND))
 		src.blinded = TRUE
@@ -268,3 +271,8 @@
 				to_chat(src, SPAN_DANGER("<B>Weapon Lock Timed Out!"))
 			weapon_lock = 0
 			weaponlock_time = 120
+
+/mob/living/silicon/robot/update_canmove()
+	if(knocked_out || stunned || knocked_down || buckled || lockcharge || !is_component_functioning("actuator")) canmove = 0
+	else canmove = 1
+	return canmove

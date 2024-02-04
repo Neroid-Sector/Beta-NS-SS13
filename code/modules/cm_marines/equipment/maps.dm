@@ -67,12 +67,6 @@
 	html_link = "images/1/18/Map_icecolony.png"
 	color = "cyan"
 
-/obj/item/map/ice_colony_map/v1
-	html_link = "https://cm-ss13.com/w/images/8/88/Ice_V1.png"
-
-/obj/item/map/ice_colony_map_/v2
-	html_link = "https://cm-ss13.com/w/images/c/cf/Ice_Colony_v2.png"
-
 /obj/item/map/ice_colony_map_v3
 	name = "\improper Shivas Snowball map"
 	desc = "A labelled print out of the anterior scan of the UA colony Shivas Snowball."
@@ -139,20 +133,12 @@
 	html_link = "images/9/94/New_Varadero.png"
 	color = "red"
 
-/obj/item/map/almayer
-	name = "\improper USS Almayer map"
-	desc = "A labeled blueprint of the USS Almayer"
-	html_link = "images/5/54/USS_Almayer.png"
-	color = "cyan"
-
 GLOBAL_LIST_INIT_TYPED(map_type_list, /obj/item/map, setup_all_maps())
 
 /proc/setup_all_maps()
 	return list(
 		MAP_LV_624 = new /obj/item/map/lazarus_landing_map(),
 		MAP_ICE_COLONY = new /obj/item/map/ice_colony_map(),
-		MAP_ICE_COLONY_V1 = new /obj/item/map/ice_colony_map/v1(),
-		MAP_ICE_COLONY_V2 = new /obj/item/map/ice_colony_map_/v2(),
 		MAP_ICE_COLONY_V3 = new /obj/item/map/ice_colony_map_v3(),
 		MAP_WHISKEY_OUTPOST = new /obj/item/map/whiskey_outpost_map(),
 		MAP_BIG_RED = new /obj/item/map/big_red_map(),
@@ -163,8 +149,7 @@ GLOBAL_LIST_INIT_TYPED(map_type_list, /obj/item/map, setup_all_maps())
 		MAP_CORSAT = new /obj/item/map/corsat(),
 		MAP_KUTJEVO = new /obj/item/map/kutjevo_map(),
 		MAP_LV522_CHANCES_CLAIM = new /obj/item/map/lv522_map(),
-		MAP_NEW_VARADERO = new /obj/item/map/new_varadero(),
-		MAP_DERELICT_ALMAYER = new /obj/item/map/almayer(),
+		MAP_NEW_VARADERO = new /obj/item/map/new_varadero()
 	)
 
 //used by marine equipment machines to spawn the correct map.
@@ -175,7 +160,7 @@ GLOBAL_LIST_INIT_TYPED(map_type_list, /obj/item/map, setup_all_maps())
 
 	var/map_name = SSmapping.configs[GROUND_MAP].map_name
 	var/obj/item/map/map = GLOB.map_type_list[map_name]
-	if (!map && (map_name == MAP_RUNTIME || map_name == MAP_CHINOOK || (map_name in SHIP_MAP_NAMES)))
+	if (!map && (map_name == MAP_RUNTIME || map_name == MAP_CHINOOK || map_name == MAIN_SHIP_DEFAULT_NAME))
 		return // "Maps" we don't have maps for so we don't need to throw a runtime for (namely in unit_testing)
 	name = map.name
 	desc = map.desc

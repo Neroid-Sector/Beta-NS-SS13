@@ -56,7 +56,7 @@ em {font-style: normal; font-weight: bold;}
 
 .clfradio {color: #6f679c}
 
-.alpharadio {color: #828cff;}
+.alpharadio {color: #EA0000;}
 .bravoradio {color: #C68610;}
 .charlieradio {color: #AA55AA;}
 .deltaradio {color: #007FCF;}

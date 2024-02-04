@@ -113,7 +113,6 @@
 	. = ..(cause, gibbed, death_message)
 
 	// stat is now set
-	/*
 	var/datum/cause_data/death_data = cause
 	if(!gibbed && death_data?.cause_name != "gibbing")
 		// Hilariously the gibbing proc causes death via droplimb which means gibbed is false...
@@ -121,4 +120,3 @@
 	else if(death_data?.cause_name == "existing")
 		// Corpses spawn as gibbed true to avoid sfx, even though they aren't actually gibbed...
 		AddComponent(/datum/component/weed_food)
-	*/

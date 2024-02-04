@@ -84,24 +84,31 @@
 	. = ..()
 	sight |= SEE_TURFS
 
+/mob/living/carbon/xenomorph/burrower/update_canmove()
+	. = ..()
+	if(burrow)
+		density = FALSE
+		canmove = FALSE
+		return canmove
+
 /mob/living/carbon/xenomorph/burrower/ex_act(severity)
-	if(HAS_TRAIT(src, TRAIT_ABILITY_BURROWED))
+	if(burrow)
 		return
 	..()
 
 /mob/living/carbon/xenomorph/burrower/attack_hand()
-	if(HAS_TRAIT(src, TRAIT_ABILITY_BURROWED))
+	if(burrow)
 		return
 	..()
 
 /mob/living/carbon/xenomorph/burrower/attackby()
-	if(HAS_TRAIT(src, TRAIT_ABILITY_BURROWED))
+	if(burrow)
 		return
 	..()
 
 /mob/living/carbon/xenomorph/burrower/get_projectile_hit_chance()
 	. = ..()
-	if(HAS_TRAIT(src, TRAIT_ABILITY_BURROWED))
+	if(burrow)
 		return 0
 
 /datum/behavior_delegate/burrower_base
@@ -111,6 +118,6 @@
 	if(bound_xeno.stat == DEAD)
 		return
 
-	if(HAS_TRAIT(bound_xeno, TRAIT_ABILITY_BURROWED))
+	if(bound_xeno.burrow)
 		bound_xeno.icon_state = "[bound_xeno.mutation_icon_state] Burrower Burrowed"
 		return TRUE

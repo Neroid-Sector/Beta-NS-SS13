@@ -1,4 +1,3 @@
-/*
 #define CORPSES_TO_SPAWN 25
 
 SUBSYSTEM_DEF(objectives)
@@ -373,4 +372,3 @@ SUBSYSTEM_DEF(objectives)
 
 /datum/controller/subsystem/objectives/proc/stop_processing_objective(datum/cm_objective/O)
 	processing_objectives -= O
-*/

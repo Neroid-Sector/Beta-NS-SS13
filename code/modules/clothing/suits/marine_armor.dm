@@ -607,7 +607,7 @@
 	set category = "Object"
 	set src in usr
 
-	if(usr.is_mob_incapacitated())
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
 		return 0
 
 	if(!injections)
@@ -882,10 +882,11 @@
 		COMSIG_MOB_DEATH,
 		COMSIG_HUMAN_EXTINGUISH
 	), PROC_REF(deactivate_camouflage))
+	RegisterSignal(H, COMSIG_MOB_POST_UPDATE_CANMOVE, PROC_REF(fix_density))
 	camo_active = TRUE
 	H.alpha = full_camo_alpha
 	H.FF_hit_evade = 1000
-	ADD_TRAIT(H, TRAIT_UNDENSE, SPECIALIST_GEAR_TRAIT)
+	H.density = FALSE
 
 	RegisterSignal(H, COMSIG_MOB_MOVE_OR_LOOK, PROC_REF(handle_mob_move_or_look))
 
@@ -910,6 +911,7 @@
 		COMSIG_MOB_FIRED_GUN,
 		COMSIG_MOB_FIRED_GUN_ATTACHMENT,
 		COMSIG_MOB_DEATH,
+		COMSIG_MOB_POST_UPDATE_CANMOVE,
 		COMSIG_HUMAN_EXTINGUISH,
 		COMSIG_MOB_MOVE_OR_LOOK
 	))
@@ -917,7 +919,9 @@
 	camo_active = FALSE
 	animate(H, alpha = initial(H.alpha), flags = ANIMATION_END_NOW)
 	H.FF_hit_evade = initial(H.FF_hit_evade)
-	REMOVE_TRAIT(H, TRAIT_UNDENSE, SPECIALIST_GEAR_TRAIT)
+	if(!H.lying)
+		H.density = TRUE
+	H.update_canmove()
 
 	var/datum/mob_hud/security/advanced/SA = huds[MOB_HUD_SECURITY_ADVANCED]
 	SA.add_to_hud(H)
@@ -936,6 +940,11 @@
 		H.alpha = current_camo
 		addtimer(CALLBACK(src, PROC_REF(fade_out_finish), H), camouflage_break, TIMER_OVERRIDE|TIMER_UNIQUE)
 		animate(H, alpha = full_camo_alpha + 5, time = camouflage_break, easing = LINEAR_EASING, flags = ANIMATION_END_NOW)
+
+/obj/item/clothing/suit/storage/marine/ghillie/proc/fix_density(mob/user)
+	SIGNAL_HANDLER
+	if(camo_active)
+		user.density = FALSE
 
 /obj/item/clothing/suit/storage/marine/ghillie/proc/fade_out_finish(mob/living/carbon/human/H)
 	if(camo_active && H.wear_suit == src)
@@ -962,7 +971,7 @@
 
 /datum/action/item_action/specialist/prepare_position/can_use_action()
 	var/mob/living/carbon/human/H = owner
-	if(istype(H) && !H.is_mob_incapacitated() && H.body_position == STANDING_UP && holder_item == H.wear_suit)
+	if(istype(H) && !H.is_mob_incapacitated() && !H.lying && holder_item == H.wear_suit)
 		return TRUE
 
 /datum/action/item_action/specialist/prepare_position/action_activate()
@@ -1086,8 +1095,8 @@
 	item_state_slots = list(WEAR_JACKET = "pmc_sniper")
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/light/synth
-	name = "\improper M4 Synthetic PMC armor"
-	desc = "A serious modification of the standard Armat Systems M3 armor. This variant was designed for PMC Support Units in the field, with every armor insert removed. It's designed with the idea of a high speed lifesaver in mind."
+	name = "\improper M4 synthetic PMC armor"
+	desc = "A modification of the standard Armat Systems M3 armor. This variant was designed for PMC Support Units in the field, offering protection and storage while not restricting movement."
 	time_to_unequip = 0.5 SECONDS
 	time_to_equip = 1 SECONDS
 	armor_melee = CLOTHING_ARMOR_NONE
@@ -1099,7 +1108,6 @@
 	armor_rad = CLOTHING_ARMOR_NONE
 	armor_internaldamage = CLOTHING_ARMOR_NONE
 	storage_slots = 3
-	slowdown = SLOWDOWN_ARMOR_SUPER_LIGHT
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/light/synth/Initialize()
 	flags_atom |= NO_NAME_OVERRIDE

@@ -11,8 +11,9 @@
 /// this is added to human skin tone to get value of pale_max variable
 #define HUMAN_MAX_PALENESS 30
 
-#define HUMAN_STRIP_DELAY 5
-#define POCKET_STRIP_DELAY 5
+/// takes 40ds = 4s to strip someone.
+#define HUMAN_STRIP_DELAY 40
+#define POCKET_STRIP_DELAY 20
 
 ///////////////////LIMB FLAGS///////////////////
 

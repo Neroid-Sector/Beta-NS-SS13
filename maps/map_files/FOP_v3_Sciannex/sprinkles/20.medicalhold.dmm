@@ -207,6 +207,7 @@
 	pixel_x = 7;
 	pixel_y = 14
 	},
+/obj/effect/landmark/objective_landmark/science,
 /turf/open/floor/plating/prison,
 /area/template_noop)
 "nx" = (
@@ -494,7 +495,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/handset{
+/obj/item/phone{
 	pixel_x = -3;
 	pixel_y = 13
 	},

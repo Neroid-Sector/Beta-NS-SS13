@@ -351,7 +351,8 @@
 
 /obj/effect/spawner/random/gun/proc/spawn_weapon_on_floor(gunpath, ammopath, ammo_amount = 1)
 
-	var/turf/spawnloc = get_turf(src)
+	var/atom/spawnloc = src
+	spawnloc = get_turf(spawnloc)
 	var/obj/gun
 	var/obj/ammo
 
@@ -359,20 +360,20 @@
 		gun = new gunpath(spawnloc)
 		if(scatter)
 			var/direction = pick(alldirs)
-			var/turf/turf = get_step(gun, direction)
-			if(!turf || turf.density)
+			var/turf/T = get_step(gun, direction)
+			if(!T || T.density)
 				return
-			gun.forceMove(turf)
+			gun.loc = T
 	if(ammopath)
 		for(var/i in 0 to ammo_amount-1)
 			ammo = new ammopath(spawnloc)
 			if(scatter)
 				for(i=0, i<rand(1,3), i++)
 					var/direction = pick(alldirs)
-					var/turf/turf = get_step(ammo, direction)
-					if(!turf || turf.density)
+					var/turf/T = get_step(ammo, direction)
+					if(!T || T.density)
 						break
-					ammo.forceMove(turf)
+					ammo.loc = T
 
 /*
 // the actual spawners themselves

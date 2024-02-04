@@ -157,7 +157,7 @@
 //
 // This is a copy-and-paste of the Enter() proc for turfs with tweaks related to the applications
 // of LinkBlocked
-/proc/LinkBlocked(atom/movable/mover, turf/start_turf, turf/target_turf, list/atom/forget, return_list = FALSE)
+/proc/LinkBlocked(atom/movable/mover, turf/start_turf, turf/target_turf, list/atom/forget)
 	if (!mover)
 		return null
 
@@ -168,7 +168,6 @@
 
 	var/fd1 = fdir & (fdir-1)
 	var/fd2 = fdir - fd1
-	var/list/list_to_return = list()
 
 	/// The direction that mover's path is being blocked by
 	var/blocking_dir = 0
@@ -186,10 +185,7 @@
 		A = obstacle
 		blocking_dir |= A.BlockedExitDirs(mover, fdir)
 		if ((!fd1 || blocking_dir & fd1) && (!fd2 || blocking_dir & fd2))
-			if(!return_list)
-				return A
-			else
-				list_to_return += A
+			return A
 
 	// Check for atoms in adjacent turf EAST/WEST
 	if (fd1 && fd1 != fdir)
@@ -197,10 +193,7 @@
 		if (T.BlockedExitDirs(mover, fd2) || T.BlockedPassDirs(mover, fd1))
 			blocking_dir |= fd1
 			if ((!fd1 || blocking_dir & fd1) && (!fd2 || blocking_dir & fd2))
-				if(!return_list)
-					return T
-				else
-					list_to_return += T
+				return T
 		for (obstacle in T)
 			if(obstacle in forget)
 				continue
@@ -210,10 +203,7 @@
 			if (A.BlockedExitDirs(mover, fd2) || A.BlockedPassDirs(mover, fd1))
 				blocking_dir |= fd1
 				if ((!fd1 || blocking_dir & fd1) && (!fd2 || blocking_dir & fd2))
-					if(!return_list)
-						return A
-					else
-						list_to_return += A
+					return A
 				break
 
 	// Check for atoms in adjacent turf NORTH/SOUTH
@@ -222,10 +212,7 @@
 		if (T.BlockedExitDirs(mover, fd1) || T.BlockedPassDirs(mover, fd2))
 			blocking_dir |= fd2
 			if ((!fd1 || blocking_dir & fd1) && (!fd2 || blocking_dir & fd2))
-				if(!return_list)
-					return T
-				else
-					list_to_return += T
+				return T
 		for (obstacle in T)
 			if(obstacle in forget)
 				continue
@@ -235,19 +222,13 @@
 			if (A.BlockedExitDirs(mover, fd1) || A.BlockedPassDirs(mover, fd2))
 				blocking_dir |= fd2
 				if ((!fd1 || blocking_dir & fd1) && (!fd2 || blocking_dir & fd2))
-					if(!return_list)
-						return A
-					else
-						list_to_return += A
+					return A
 				break
 
 	// Check the turf itself
 	blocking_dir |= target_turf.BlockedPassDirs(mover, fdir)
 	if ((!fd1 || blocking_dir & fd1) && (!fd2 || blocking_dir & fd2))
-		if(!return_list)
-			return target_turf
-		else
-			list_to_return += target_turf
+		return target_turf
 	for (obstacle in target_turf) // Finally, check atoms in the target turf
 		if(obstacle in forget)
 			continue
@@ -255,14 +236,11 @@
 			continue
 		A = obstacle
 		blocking_dir |= A.BlockedPassDirs(mover, fdir)
-		if ((!fd1 || blocking_dir & fd1) && (!fd2 || blocking_dir & fd2))
-			if(!return_list)
-				return A
-			else
-				list_to_return += A
+		if((fd1 && blocking_dir == fd1) || (fd2 && blocking_dir == fd2))
+			return A
+		if((!fd1 || blocking_dir & fd1) && (!fd2 || blocking_dir & fd2))
+			return A
 
-	if(return_list)
-		return list_to_return
 	return null // Nothing found to block the link of mover from start_turf to target_turf
 
 
@@ -1111,7 +1089,7 @@ var/global/image/action_purple_power_up
 		target_orig_turf = get_turf(target)
 	var/obj/user_holding = busy_user.get_active_hand()
 	var/obj/target_holding
-	var/cur_user_lying = busy_user.body_position
+	var/cur_user_lying = busy_user.lying
 	var/cur_target_lying
 	var/expected_total_time = delayfraction*numticks
 	var/time_remaining = expected_total_time
@@ -1119,7 +1097,7 @@ var/global/image/action_purple_power_up
 	if(has_target && istype(T))
 		cur_target_zone_sel = T.zone_selected
 		target_holding = T.get_active_hand()
-		cur_target_lying = T.body_position
+		cur_target_lying = T.lying
 
 	. = TRUE
 	for(var/i in 1 to numticks)
@@ -1143,13 +1121,13 @@ var/global/image/action_purple_power_up
 		)
 			. = FALSE
 			break
-		if(user_flags & INTERRUPT_KNOCKED_DOWN && HAS_TRAIT(busy_user, TRAIT_FLOORED) || \
-			target_is_mob && (target_flags & INTERRUPT_KNOCKED_DOWN && HAS_TRAIT(T, TRAIT_FLOORED))
+		if(user_flags & INTERRUPT_KNOCKED_DOWN && busy_user.knocked_down || \
+			target_is_mob && (target_flags & INTERRUPT_KNOCKED_DOWN && T.knocked_down)
 		)
 			. = FALSE
 			break
-		if(user_flags & INTERRUPT_STUNNED && HAS_TRAIT(busy_user, TRAIT_INCAPACITATED)|| \
-			target_is_mob && (target_flags & INTERRUPT_STUNNED && HAS_TRAIT(T, TRAIT_INCAPACITATED))
+		if(user_flags & INTERRUPT_STUNNED && busy_user.stunned || \
+			target_is_mob && (target_flags & INTERRUPT_STUNNED && T.stunned)
 		)
 			. = FALSE
 			break
@@ -1223,8 +1201,8 @@ var/global/image/action_purple_power_up
 		)
 			. = FALSE
 			break
-		if(user_flags & INTERRUPT_CHANGED_LYING && busy_user.body_position != cur_user_lying || \
-			target_is_mob && (target_flags & INTERRUPT_CHANGED_LYING && T.body_position != cur_target_lying)
+		if(user_flags & INTERRUPT_CHANGED_LYING && busy_user.lying != cur_user_lying || \
+			target_is_mob && (target_flags & INTERRUPT_CHANGED_LYING && T.lying != cur_target_lying)
 		)
 			. = FALSE
 			break
@@ -1658,32 +1636,6 @@ var/list/WALLITEMS = list(
 	for(var/turf/T in orange(origin, outer_range))
 		if(!inner_range || get_dist(origin, T) >= inner_range)
 			turfs += T
-	if(turfs.len)
-		return pick(turfs)
-
-/proc/get_random_turf_in_range_unblocked(atom/origin, outer_range, inner_range)
-	origin = get_turf(origin)
-	if(!origin)
-		return
-	var/list/turfs = list()
-	for(var/turf/T in RANGE_TURFS(outer_range, origin))
-		if(inner_range && get_dist(origin, T) < inner_range)
-			continue
-
-		if(T.density)
-			continue
-
-		var/failed = FALSE
-		for(var/i in T)
-			var/atom/A = i
-			if(A.density)
-				failed = TRUE
-				break
-
-		if(failed)
-			continue
-
-		turfs += T
 	if(turfs.len)
 		return pick(turfs)
 

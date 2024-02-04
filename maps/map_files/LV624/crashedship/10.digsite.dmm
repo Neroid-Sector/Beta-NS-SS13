@@ -132,6 +132,12 @@
 	},
 /turf/open/gm/dirt,
 /area/lv624/lazarus/crashed_ship_containers)
+"vA" = (
+/obj/effect/landmark/objective_landmark/science,
+/turf/open/shuttle{
+	icon_state = "floor4"
+	},
+/area/lv624/lazarus/crashed_ship_containers)
 "vD" = (
 /obj/structure/surface/rack,
 /obj/item/ammo_magazine/shotgun/buckshot,
@@ -158,6 +164,12 @@
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/gm/dirt,
 /area/lv624/lazarus/crashed_ship_containers)
+"yj" = (
+/obj/effect/landmark/objective_landmark/medium,
+/turf/open/shuttle{
+	icon_state = "floor4"
+	},
+/area/lv624/lazarus/crashed_ship_containers)
 "yJ" = (
 /obj/structure/machinery/constructable_frame{
 	icon_state = "box_1"
@@ -179,6 +191,10 @@
 /turf/open/shuttle{
 	icon_state = "floor4"
 	},
+/area/lv624/lazarus/crashed_ship_containers)
+"Cn" = (
+/obj/effect/landmark/objective_landmark/science,
+/turf/open/gm/dirt,
 /area/lv624/lazarus/crashed_ship_containers)
 "Dw" = (
 /obj/item/tool/shovel/spade,
@@ -230,6 +246,7 @@
 /area/lv624/lazarus/crashed_ship_containers)
 "Kz" = (
 /obj/item/tool/crowbar,
+/obj/effect/landmark/objective_landmark/science,
 /turf/open/shuttle{
 	icon_state = "floor4"
 	},
@@ -338,7 +355,7 @@ KG
 yJ
 xg
 cZ
-yV
+Cn
 xg
 Xk
 Xk
@@ -358,7 +375,7 @@ AA
 Xk
 gu
 yV
-xg
+yj
 LQ
 nt
 xg
@@ -456,7 +473,7 @@ DT
 LQ
 ip
 UG
-xg
+vA
 Xk
 Xk
 PE

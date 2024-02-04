@@ -3,7 +3,6 @@
 /obj/structure/computerframe
 	density = FALSE
 	anchored = FALSE
-	unslashable = TRUE
 	name = "Computer-frame"
 	icon = 'icons/obj/structures/machinery/stock_parts.dmi'
 	icon_state = "0"

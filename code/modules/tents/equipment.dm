@@ -44,10 +44,9 @@
 	return ..()
 
 /// Telephone
-/obj/structure/phone_base/tent
+/obj/structure/transmitter/tent
 	layer = INTERIOR_WALLMOUNT_LAYER
-
-/obj/structure/phone_base/tent/Initialize(mapload, ...)
+/obj/structure/transmitter/tent/Initialize(mapload, ...)
 	AddComponent(/datum/component/tent_supported_object)
 	return ..()
 

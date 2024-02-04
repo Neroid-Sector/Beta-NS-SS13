@@ -9,7 +9,6 @@
 	icon_state = "conpipe-s"
 	anchored = FALSE
 	density = FALSE
-	unslashable = TRUE
 	matter = list("metal" = 1850)
 	level = 2
 	var/ptype = 0

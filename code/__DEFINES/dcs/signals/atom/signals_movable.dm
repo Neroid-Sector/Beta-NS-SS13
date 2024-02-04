@@ -4,15 +4,11 @@
 /// From /atom/movable/proc/launch_towards
 #define COMSIG_MOVABLE_PRE_THROW "movable_pre_throw"
 	#define COMPONENT_CANCEL_THROW (1<<0)
-
 ///from base of atom/movable/Moved(): (/atom, dir, forced)
 #define COMSIG_MOVABLE_MOVED "movable_moved"
 /// From /atom/movable/Move(): (atom/NewLoc)
 #define COMSIG_MOVABLE_PRE_MOVE "movable_pre_move"
 	#define COMPONENT_CANCEL_MOVE (1<<0)
-/// From /atom/movable/proc/forceMove(): (atom/NewLoc)
-#define COMSIG_MOVABLE_FORCEMOVED "movable_forcemove"
-
 /// From /turf/open/gm/river/Entered(): (turf/open/gm/river/river, covered)
 #define COMSIG_MOVABLE_ENTERED_RIVER "movable_entered_river"
 
@@ -33,4 +29,3 @@
 #define COMSIG_MOVABLE_UPDATE_GLIDE_SIZE "movable_glide_size"
 
 #define COMSIG_MOVABLE_TURF_ENTER "movable_turf_enter"
-

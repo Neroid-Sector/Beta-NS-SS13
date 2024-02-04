@@ -5,7 +5,7 @@
 	"survivor_types": [
         "/datum/equipment_preset/survivor/scientist/lv"
     ],
-    "traits": [{"Ground": true}],
+    "traits": [{"Marine Main Ship": true}],
     "camouflage": "classic",
 	"disable_ship_map": true
 }

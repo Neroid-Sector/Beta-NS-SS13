@@ -11,6 +11,7 @@
 	flags_atom = ON_BORDER
 	opacity = FALSE
 	var/obj/item/circuitboard/airlock/electronics = null
+	air_properties_vary_with_direction = 1
 
 /obj/structure/machinery/door/window/Initialize()
 	. = ..()

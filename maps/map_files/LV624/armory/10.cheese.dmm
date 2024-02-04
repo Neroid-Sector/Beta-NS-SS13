@@ -16,6 +16,25 @@
 	icon_state = "whiteyellow"
 	},
 /area/lv624/lazarus/main_hall)
+"d" = (
+/obj/item/phone{
+	desc = "A model of an ancient Earth communication device.";
+	force = 8
+	},
+/obj/structure/surface/rack{
+	layer = 2.5
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor{
+	icon_state = "wood"
+	},
+/area/lv624/lazarus/main_hall)
 "e" = (
 /obj/structure/barricade/wooden{
 	dir = 8
@@ -154,6 +173,25 @@
 	icon_state = "cult"
 	},
 /area/lv624/lazarus/armory)
+"w" = (
+/obj/structure/surface/rack,
+/obj/item/storage/box/mousetraps{
+	pixel_x = -5
+	},
+/obj/item/paper/lv_624/cheese{
+	pixel_x = 8;
+	pixel_y = -4
+	},
+/obj/structure/machinery/door_control{
+	id = "secure_inner_blast";
+	name = "Secure Inner Doors";
+	pixel_x = 25;
+	pixel_y = 5
+	},
+/turf/open/floor{
+	icon_state = "cult"
+	},
+/area/lv624/lazarus/armory)
 "y" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -204,38 +242,12 @@
 	icon_state = "cult"
 	},
 /area/lv624/lazarus/armory)
-"L" = (
-/obj/structure/surface/rack,
-/obj/item/storage/box/mousetraps{
-	pixel_x = -5
-	},
-/obj/item/paper/lv_624/cheese{
-	pixel_x = 8;
-	pixel_y = -4
-	},
+"M" = (
+/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor{
 	icon_state = "cult"
 	},
 /area/lv624/lazarus/armory)
-"O" = (
-/obj/item/handset{
-	desc = "A model of an ancient Earth communication device.";
-	force = 8
-	},
-/obj/structure/surface/rack{
-	layer = 2.5
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
-/turf/open/floor{
-	icon_state = "wood"
-	},
-/area/lv624/lazarus/main_hall)
 "Q" = (
 /obj/structure/surface/rack,
 /obj/effect/landmark/crap_item,
@@ -296,7 +308,7 @@ i
 k
 p
 p
-p
+M
 A
 i
 "}
@@ -308,7 +320,7 @@ i
 l
 q
 Q
-L
+w
 p
 i
 "}
@@ -325,7 +337,7 @@ B
 i
 "}
 (7,1,1) = {"
-O
+d
 g
 a
 j

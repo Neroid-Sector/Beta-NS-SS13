@@ -517,13 +517,11 @@
 						X.behavior_delegate.on_hitby_projectile(ammo)
 
 			. = TRUE
-		else if(L.body_position != LYING_DOWN)
+		else if(!L.lying)
 			animatation_displace_reset(L)
 			if(ammo.sound_miss) playsound_client(L.client, ammo.sound_miss, get_turf(L), 75, TRUE)
-			if(COOLDOWN_FINISHED(L, shot_cooldown))
-				L.visible_message(SPAN_AVOIDHARM("[src] misses [L]!"),
-					SPAN_AVOIDHARM("[src] narrowly misses you!"), null, 4, CHAT_TYPE_TAKING_HIT)
-				COOLDOWN_START(L, shot_cooldown, 1 SECONDS)
+			L.visible_message(SPAN_AVOIDHARM("[src] misses [L]!"),
+				SPAN_AVOIDHARM("[src] narrowly misses you!"), null, 4, CHAT_TYPE_TAKING_HIT)
 			var/log_message = "[src] narrowly missed [key_name(L)]"
 
 			var/mob/living/carbon/shotby = firer
@@ -768,8 +766,8 @@
 //mobs use get_projectile_hit_chance instead of get_projectile_hit_boolean
 
 /mob/living/proc/get_projectile_hit_chance(obj/projectile/P)
-	if((body_position == LYING_DOWN || HAS_TRAIT(src, TRAIT_NESTED)) && src != P.original)
-		return FALSE // Snowflake check for xeno nests, because we want bullets to fly through even though they're standing in it
+	if(lying && src != P.original)
+		return FALSE
 	var/ammo_flags = P.ammo.flags_ammo_behavior | P.projectile_override_flags
 	if(ammo_flags & AMMO_XENO)
 		if((status_flags & XENO_HOST) && HAS_TRAIT(src, TRAIT_NESTED))
@@ -777,7 +775,7 @@
 
 	. = P.get_effective_accuracy()
 
-	if(body_position == LYING_DOWN && stat)
+	if(lying && stat)
 		. += 15 //Bonus hit against unconscious people.
 
 	if(isliving(P.firer))
@@ -1046,8 +1044,7 @@
 
 	bullet_message(P) //Message us about the bullet, since damage was inflicted.
 
-	if(mob_flags & AI_CONTROLLED)
-		handle_ai_shot(P)
+
 
 	if(SEND_SIGNAL(src, COMSIG_XENO_BULLET_ACT, damage_result, ammo_flags, P) & COMPONENT_CANCEL_BULLET_ACT)
 		return

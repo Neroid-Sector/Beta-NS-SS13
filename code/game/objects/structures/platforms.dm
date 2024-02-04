@@ -14,7 +14,6 @@
 	breakable = FALSE
 	flags_atom = ON_BORDER
 	unacidable = TRUE
-	unslashable = TRUE
 	climb_delay = CLIMB_DELAY_SHORT
 	projectile_coverage = PROJECTILE_COVERAGE_NONE
 
@@ -92,7 +91,6 @@
 	breakable = FALSE
 	flags_atom = ON_BORDER
 	unacidable = TRUE
-	unslashable = TRUE
 
 /obj/structure/platform_decoration/Initialize()
 	. = ..()

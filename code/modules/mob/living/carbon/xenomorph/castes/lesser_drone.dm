@@ -56,7 +56,7 @@
 	refunds_larva_if_banished = FALSE
 	crit_health = 0
 	gib_chance = 100
-	acid_blood_damage = 8
+	acid_blood_damage = 15
 	base_actions = list(
 		/datum/action/xeno_action/onclick/xeno_resting,
 		/datum/action/xeno_action/onclick/regurgitate,
@@ -95,11 +95,3 @@
 	if (PF)
 		PF.flags_pass = PASS_MOB_IS_XENO|PASS_MOB_THRU_XENO
 		PF.flags_can_pass_all = PASS_MOB_IS_XENO|PASS_MOB_THRU_XENO
-
-/mob/living/carbon/xenomorph/lesser_drone/ghostize(can_reenter_corpse = FALSE, aghosted = FALSE)
-	. = ..()
-	if(. && !aghosted)
-		gib()
-
-/mob/living/carbon/xenomorph/lesser_drone/handle_ghost_message()
-	return

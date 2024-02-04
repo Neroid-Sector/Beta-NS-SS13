@@ -53,7 +53,7 @@
 	set category = "Object"
 	set src in usr
 
-	if(usr.is_mob_incapacitated())
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
 		return 0
 
 	if(src.buttoned == TRUE)

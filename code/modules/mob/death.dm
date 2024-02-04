@@ -57,6 +57,8 @@
 
 	set_stat(DEAD)
 
+	update_canmove()
+
 	dizziness = 0
 	jitteriness = 0
 

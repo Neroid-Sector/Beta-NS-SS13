@@ -6,6 +6,7 @@
 	invisibility = 101
 
 	density = FALSE
+	canmove = FALSE
 	anchored = TRUE
 	universal_speak = TRUE
 	stat = DEAD
@@ -14,7 +15,6 @@
 	. = ..()
 	GLOB.new_player_list += src
 	GLOB.dead_mob_list -= src
-	ADD_TRAIT(src, TRAIT_IMMOBILIZED, TRAIT_SOURCE_INHERENT)
 
 /mob/new_player/Destroy()
 	if(ready)
@@ -63,7 +63,7 @@
 	output += "</div>"
 	if (refresh)
 		close_browser(src, "playersetup")
-	show_browser(src, output, null, "playersetup", "size=240x[round_start ? 360 : 460];can_close=0;can_minimize=0")
+	show_browser(src, output, null, "playersetup", "size=240x[round_start ? 330 : 460];can_close=0;can_minimize=0")
 	return
 
 /mob/new_player/Topic(href, href_list[])
@@ -150,7 +150,7 @@
 				observer.set_huds_from_prefs()
 
 				qdel(src)
-				return TRUE
+				return 1
 
 		if("late_join")
 
@@ -276,11 +276,11 @@
 		if(player.get_playtime(STATISTIC_HUMAN) == 0 && player.get_playtime(STATISTIC_XENO) == 0)
 			msg_admin_niche("NEW JOIN: <b>[key_name(character, 1, 1, 0)]</b>. IP: [character.lastKnownIP], CID: [character.computer_id]")
 		if(character.client)
-			var/client/client = character.client
-			if(client.player_data && client.player_data.playtime_loaded && length(client.player_data.playtimes) == 0)
+			var/client/C = character.client
+			if(C.player_data && C.player_data.playtime_loaded && length(C.player_data.playtimes) == 0)
 				msg_admin_niche("NEW PLAYER: <b>[key_name(character, 1, 1, 0)]</b>. IP: [character.lastKnownIP], CID: [character.computer_id]")
-			if(client.player_data && client.player_data.playtime_loaded && ((round(client.get_total_human_playtime() DECISECONDS_TO_HOURS, 0.1)) <= 5))
-				msg_sea("NEW PLAYER: <b>[key_name(character, 0, 1, 0)]</b> only has [(round(client.get_total_human_playtime() DECISECONDS_TO_HOURS, 0.1))] hours as a human. Current role: [get_actual_job_name(character)] - Current location: [get_area(character)]")
+			if(C.player_data && C.player_data.playtime_loaded && ((round(C.get_total_human_playtime() DECISECONDS_TO_HOURS, 0.1)) <= 5))
+				msg_sea("NEW PLAYER: <b>[key_name(character, 0, 1, 0)]</b> only has [(round(C.get_total_human_playtime() DECISECONDS_TO_HOURS, 0.1))] hours as a human. Current role: [get_actual_job_name(character)] - Current location: [get_area(character)]")
 
 	character.client.init_verbs()
 	qdel(src)
@@ -300,8 +300,7 @@
 			if(EVACUATION_STATUS_INITIATING) dat += "<font color='red'><b>The [MAIN_SHIP_NAME] is being evacuated.</b></font><br>"
 			if(EVACUATION_STATUS_COMPLETE) dat += "<font color='red'>The [MAIN_SHIP_NAME] has undergone evacuation.</font><br>"
 
-	var/positions = FALSE
-	var/position_dat = "Choose from the following open positions:<br>"
+	dat += "Choose from the following open positions:<br>"
 	var/roles_show = FLAG_SHOW_ALL_JOBS
 
 	for(var/i in RoleAuthority.roles_for_mode)
@@ -314,41 +313,38 @@
 			if(M.client && M.job == J.title)
 				active++
 		if(roles_show & FLAG_SHOW_CIC && ROLES_CIC.Find(J.title))
-			position_dat += "Command:<br>"
+			dat += "Command:<br>"
 			roles_show ^= FLAG_SHOW_CIC
 
 		else if(roles_show & FLAG_SHOW_AUXIL_SUPPORT && ROLES_AUXIL_SUPPORT.Find(J.title))
-			position_dat += "<hr>Auxiliary Combat Support:<br>"
+			dat += "<hr>Auxiliary Combat Support:<br>"
 			roles_show ^= FLAG_SHOW_AUXIL_SUPPORT
 
 		else if(roles_show & FLAG_SHOW_MISC && ROLES_MISC.Find(J.title))
-			position_dat += "<hr>Other:<br>"
+			dat += "<hr>Other:<br>"
 			roles_show ^= FLAG_SHOW_MISC
 
 		else if(roles_show & FLAG_SHOW_POLICE && ROLES_POLICE.Find(J.title))
-			position_dat += "<hr>Military Police:<br>"
+			dat += "<hr>Military Police:<br>"
 			roles_show ^= FLAG_SHOW_POLICE
 
 		else if(roles_show & FLAG_SHOW_ENGINEERING && ROLES_ENGINEERING.Find(J.title))
-			position_dat += "<hr>Engineering:<br>"
+			dat += "<hr>Engineering:<br>"
 			roles_show ^= FLAG_SHOW_ENGINEERING
 
 		else if(roles_show & FLAG_SHOW_REQUISITION && ROLES_REQUISITION.Find(J.title))
-			position_dat += "<hr>Requisitions:<br>"
+			dat += "<hr>Requisitions:<br>"
 			roles_show ^= FLAG_SHOW_REQUISITION
 
 		else if(roles_show & FLAG_SHOW_MEDICAL && ROLES_MEDICAL.Find(J.title))
-			position_dat += "<hr>Medbay:<br>"
+			dat += "<hr>Medbay:<br>"
 			roles_show ^= FLAG_SHOW_MEDICAL
 
 		else if(roles_show & FLAG_SHOW_MARINES && ROLES_MARINES.Find(J.title))
-			position_dat += "<hr>Squad Riflemen:<br>"
+			dat += "<hr>Squad Riflemen:<br>"
 			roles_show ^= FLAG_SHOW_MARINES
 
-		positions = TRUE
-		position_dat += "<a href='byond://?src=\ref[src];lobby_choice=SelectedJob;job_selected=[J.title]'>[J.disp_title] ([J.current_positions]) (Active: [active])</a><br>"
-
-	dat += positions ? position_dat : "There are no available jobs. This mode has limited slotting per round. Please see the discord for more info and future playtimes: [CONFIG_GET(string/discordurl)]"
+		dat += "<a href='byond://?src=\ref[src];lobby_choice=SelectedJob;job_selected=[J.title]'>[J.disp_title] ([J.current_positions]) (Active: [active])</a><br>"
 
 	dat += "</center>"
 	show_browser(src, dat, "Late Join", "latechoices", "size=420x700")

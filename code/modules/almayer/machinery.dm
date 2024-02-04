@@ -80,19 +80,13 @@
 	use_power = USE_POWER_IDLE
 	density = TRUE
 	idle_power_usage = 2
-	var/datum/tacmap/map
 	///flags that we want to be shown when you interact with this table
+	var/datum/tacmap/map
 	var/minimap_type = MINIMAP_FLAG_USCM
-	///The faction that is intended to use this structure (determines type of tacmap used)
-	var/faction = FACTION_MARINE
 
 /obj/structure/machinery/prop/almayer/CICmap/Initialize()
 	. = ..()
-
-	if (faction == FACTION_MARINE)
-		map = new /datum/tacmap/drawing(src, minimap_type)
-	else
-		map = new(src, minimap_type) // Non-drawing version
+	map = new(src, minimap_type)
 
 /obj/structure/machinery/prop/almayer/CICmap/Destroy()
 	QDEL_NULL(map)
@@ -105,15 +99,12 @@
 
 /obj/structure/machinery/prop/almayer/CICmap/upp
 	minimap_type = MINIMAP_FLAG_UPP
-	faction = FACTION_UPP
 
 /obj/structure/machinery/prop/almayer/CICmap/clf
 	minimap_type = MINIMAP_FLAG_CLF
-	faction = FACTION_CLF
 
 /obj/structure/machinery/prop/almayer/CICmap/pmc
 	minimap_type = MINIMAP_FLAG_PMC
-	faction = FACTION_PMC
 
 //Nonpower using props
 
@@ -122,7 +113,6 @@
 	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P02' IF SEEN IN ROUND WITH LOCATION"
 	density = TRUE
 	anchored = TRUE
-	unslashable = TRUE
 
 /obj/structure/prop/almayer/minigun_crate
 	name = "30mm ammo crate"
@@ -335,18 +325,3 @@
 	new /obj/item/clothing/under/shorts/red(src)
 	new /obj/item/clothing/under/shorts/blue(src)
 	new /obj/item/clothing/under/shorts/green(src)
-
-/obj/structure/machinery/prop/almayer/overwatch_console
-	name = "Overwatch Console"
-	desc = "State of the art machinery for giving orders to a squad."
-	density = FALSE
-	icon = 'icons/obj/structures/machinery/computer.dmi'
-	icon_state = "overwatch"
-
-/obj/structure/machinery/prop/almayer/orbital_cannon_console
-	name = "\improper Orbital Cannon Console"
-	desc = "The console controlling the orbital cannon loading systems."
-	icon = 'icons/obj/structures/machinery/computer.dmi'
-	icon_state = "ob_console"
-	dir = WEST
-	flags_atom = ON_BORDER|CONDUCT|FPRINT

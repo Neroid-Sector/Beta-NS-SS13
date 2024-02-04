@@ -41,6 +41,15 @@
 		return 1
 	return ..()
 
+
+/mob/living/brain/update_canmove()
+	canmove = FALSE
+	return canmove
+
+
+
+
+
 /mob/living/brain/update_sight()
 	if (stat == DEAD)
 		sight |= SEE_TURFS

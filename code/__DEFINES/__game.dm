@@ -35,14 +35,11 @@ block( \
 #define MAP_SOROKYNE_STRATA "Sorokyne Strata"
 #define MAP_CORSAT "CORSAT" // Highpop only
 #define MAP_KUTJEVO "Kutjevo Refinery"
-#define MAP_ICE_COLONY_V1 "Ice Colony Classic"
-#define MAP_ICE_COLONY_V2 "Ice Colony V2"
 #define MAP_ICE_COLONY_V3 "Shivas Snowball" //Ice Rework, low pop enabled.
 #define MAP_RUNTIME "USS Runtime"
 #define MAP_LV522_CHANCES_CLAIM "LV-522 Chance's Claim" // Highpop Only
 #define MAP_NEW_VARADERO "New Varadero"//ice colony underground but as its own map
 #define MAP_CHINOOK "Chinook 91 GSO" //admin level
-#define MAP_DERELICT_ALMAYER "Derelict Almayer"
 
 #define GAMEMODE_WHISKEY_OUTPOST "Whiskey Outpost"
 #define GAMEMODE_HIVE_WARS "Hive Wars"
@@ -106,7 +103,7 @@ block( \
 #define SOUND_MIDI (1<<1)
 #define SOUND_AMBIENCE (1<<2)
 #define SOUND_LOBBY (1<<3)
-#define SOUND_INTERNET (1<<4) // Unused currently. Kept for default prefs compat only
+#define SOUND_INTERNET (1<<4)
 #define SOUND_REBOOT (1<<5)
 #define SOUND_ADMIN_MEME (1<<6)
 #define SOUND_ADMIN_ATMOSPHERIC (1<<7)
@@ -157,7 +154,7 @@ block( \
 
 //=================================================
 
-#define TOGGLES_CHAT_DEFAULT (CHAT_OOC|CHAT_DEAD|CHAT_GHOSTRADIO|CHAT_PRAYER|CHAT_RADIO|CHAT_LOOC|CHAT_GHOSTHIVEMIND)
+#define TOGGLES_CHAT_DEFAULT (CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_LOOC|CHAT_GHOSTHIVEMIND)
 
 #define TOGGLES_GHOST_DEFAULT (GHOST_HEALTH_SCAN)
 

@@ -279,7 +279,7 @@
 		return
 
 	if(ishuman(user))
-		if(user.stat || user.blinded || user.body_position == LYING_DOWN)
+		if(user.stat || user.blinded || user.lying)
 			return
 
 		if(attaching)

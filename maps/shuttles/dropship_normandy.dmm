@@ -203,7 +203,7 @@
 /area/shuttle/drop2/sulaco)
 "lH" = (
 /obj/structure/machinery/computer/dropship_weapons/dropship2,
-/obj/structure/phone_base/rotary{
+/obj/structure/transmitter/rotary{
 	name = "Normandy Telephone";
 	phone_category = "Dropship";
 	phone_id = "Normandy";

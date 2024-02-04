@@ -106,7 +106,7 @@
 		if ((flags_item & NODROP) || loc != usr)
 			return
 
-		if (!usr.is_mob_incapacitated() && !(usr.buckled))
+		if (!usr.is_mob_incapacitated() && !(usr.buckled && usr.lying))
 			if(over_object)
 				switch(over_object.name)
 					if("r_hand")

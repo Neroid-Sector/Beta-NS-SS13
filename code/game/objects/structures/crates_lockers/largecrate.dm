@@ -7,13 +7,6 @@
 	anchored = FALSE
 	var/parts_type = /obj/item/stack/sheet/wood
 	var/unpacking_sound = 'sound/effects/woodhit.ogg'
-	var/fill_from_loc = TRUE
-
-/obj/structure/largecrate/Initialize(mapload, ...)
-	. = ..()
-
-	if(fill_from_loc)
-		store_items()
 
 /obj/structure/largecrate/initialize_pass_flags(datum/pass_flags_container/PF)
 	..()
@@ -23,17 +16,6 @@
 /obj/structure/largecrate/attack_hand(mob/user as mob)
 	to_chat(user, SPAN_NOTICE("You need a crowbar to pry this open!"))
 	return
-
-/obj/structure/largecrate/proc/store_items()
-	for(var/obj/item/location_item in loc)
-		if(istype(location_item, /obj/item/explosive/plastic))
-			var/obj/item/explosive/plastic/plastic_explosive = location_item
-			if(plastic_explosive.active)
-				continue
-		if(location_item.w_class > SIZE_HUGE)
-			continue
-		if(!location_item.anchored)
-			location_item.forceMove(src)
 
 /obj/structure/largecrate/proc/unpack()
 	var/turf/current_turf = get_turf(src) // Get the turf the crate is on
@@ -46,8 +28,9 @@
 		material_sheet = new parts_type(current_turf, 2)
 
 	// Move the objects back to the turf, above the crate material
-	for(var/atom/movable/moving_atom as anything in contents)
-		moving_atom.forceMove(current_turf)
+	for(var/atom/movable/moving_atom in contents)
+		var/atom/movable/current_atom = contents[1]
+		current_atom.forceMove(current_turf)
 
 	deconstruct(TRUE)
 
@@ -99,11 +82,9 @@
 
 /obj/structure/largecrate/mule
 	icon_state = "mulecrate"
-	fill_from_loc = FALSE
 
 /obj/structure/largecrate/lisa
 	icon_state = "lisacrate"
-	fill_from_loc = FALSE
 
 /obj/structure/largecrate/lisa/attackby(obj/item/W as obj, mob/user as mob) //ugly but oh well
 	if(HAS_TRAIT(W, TRAIT_TOOL_CROWBAR))
@@ -113,7 +94,6 @@
 /obj/structure/largecrate/cow
 	name = "cow crate"
 	icon_state = "lisacrate"
-	fill_from_loc = FALSE
 
 /obj/structure/largecrate/cow/attackby(obj/item/W as obj, mob/user as mob)
 	if(HAS_TRAIT(W, TRAIT_TOOL_CROWBAR))
@@ -123,7 +103,6 @@
 /obj/structure/largecrate/goat
 	name = "goat crate"
 	icon_state = "lisacrate"
-	fill_from_loc = FALSE
 
 /obj/structure/largecrate/goat/attackby(obj/item/W as obj, mob/user as mob)
 	if(HAS_TRAIT(W, TRAIT_TOOL_CROWBAR))
@@ -133,7 +112,6 @@
 /obj/structure/largecrate/chick
 	name = "chicken crate"
 	icon_state = "lisacrate"
-	fill_from_loc = FALSE
 
 /obj/structure/largecrate/chick/attackby(obj/item/W as obj, mob/user as mob)
 	if(HAS_TRAIT(W, TRAIT_TOOL_CROWBAR))
@@ -146,7 +124,6 @@
 // CM largecrates
 /obj/structure/largecrate/random
 	name = "supply crate"
-	fill_from_loc = FALSE
 	var/num_things = 0
 	var/list/stuff = list(/obj/item/cell/high,
 						/obj/item/storage/belt/utility/full,
@@ -329,7 +306,6 @@
 
 /obj/structure/largecrate/guns
 	name = "\improper USCM firearms crate (x3)"
-	fill_from_loc = FALSE
 	var/num_guns = 3
 	var/num_mags = 3
 	var/list/stuff = list(
@@ -397,7 +373,6 @@
 
 /obj/structure/largecrate/hunter_games_construction
 	name = "construction crate"
-	fill_from_loc = FALSE
 
 /obj/structure/largecrate/hunter_games_construction/Initialize()
 	. = ..()

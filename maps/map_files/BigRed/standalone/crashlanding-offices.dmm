@@ -1378,6 +1378,14 @@
 	icon_state = "whiteyellowfull"
 	},
 /area/bigredv2/outside/office_complex)
+"ej" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/trash/syndi_cakes,
+/obj/effect/landmark/objective_landmark/close,
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/bigredv2/outside/office_complex)
 "ek" = (
 /obj/structure/pipes/standard/simple/hidden/green,
 /turf/open/floor{
@@ -1609,11 +1617,10 @@
 	icon_state = "rasputin15"
 	},
 /area/bigredv2/outside/office_complex)
-"SW" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/trash/syndi_cakes,
-/turf/open/floor{
-	icon_state = "dark"
+"Vg" = (
+/obj/effect/landmark/objective_landmark/medium,
+/turf/open/shuttle/dropship{
+	icon_state = "floor8"
 	},
 /area/bigredv2/outside/office_complex)
 "XH" = (
@@ -1726,7 +1733,7 @@ ap
 aS
 cj
 ck
-SW
+ej
 cI
 as
 cX
@@ -1985,7 +1992,7 @@ aC
 aO
 aV
 aV
-bm
+Vg
 yS
 Lk
 id
@@ -2140,8 +2147,8 @@ Ha
 dq
 "}
 (20,1,1) = {"
-ai
-at
+aj
+ag
 aA
 dX
 dX
@@ -2167,8 +2174,8 @@ Ha
 PR
 "}
 (21,1,1) = {"
-aj
-ag
+ak
+ak
 aA
 aG
 dX
@@ -2194,9 +2201,9 @@ Ha
 PR
 "}
 (22,1,1) = {"
-ak
-ak
-aG
+al
+al
+aA
 aG
 dX
 ap
@@ -2221,9 +2228,9 @@ Ha
 PR
 "}
 (23,1,1) = {"
-al
-al
-aG
+am
+ag
+aA
 aG
 aG
 ap
@@ -2248,8 +2255,8 @@ Ha
 dq
 "}
 (24,1,1) = {"
-am
-ag
+ai
+at
 aA
 aG
 aG

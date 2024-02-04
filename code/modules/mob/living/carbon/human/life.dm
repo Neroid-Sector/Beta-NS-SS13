@@ -82,6 +82,8 @@
 	//Status updates, death etc.
 	handle_regular_status_updates() //Optimized a bit
 
+	update_canmove()
+
 	handle_regular_hud_updates()
 
 	pulse = handle_pulse()

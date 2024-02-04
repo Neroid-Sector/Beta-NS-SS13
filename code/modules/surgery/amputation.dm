@@ -31,7 +31,6 @@
 		/datum/surgery_step/close_amputation,
 	)
 	requires_bodypart = FALSE
-	pain_reduction_required = PAIN_REDUCTION_HEAVY
 
 /datum/surgery/amputate/repair/can_start(mob/user, mob/living/carbon/patient, obj/limb/L, obj/item/tool)
 	return !(L.status & LIMB_AMPUTATED)

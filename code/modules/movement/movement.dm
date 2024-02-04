@@ -20,7 +20,7 @@
 	if(!mover || !mover.pass_flags)
 		return NO_BLOCKED_MOVEMENT
 
-	var/mover_flags_pass = (mover.pass_flags.flags_pass|mover.flags_pass_temp) & ~mover.flags_pass_temp_negative
+	var/mover_flags_pass = mover.pass_flags.flags_pass|mover.flags_pass_temp
 
 	if (!density || (flags_can_pass & mover_flags_pass))
 		return NO_BLOCKED_MOVEMENT
@@ -48,7 +48,7 @@
 	if(!mover || !mover.pass_flags)
 		return NO_BLOCKED_MOVEMENT
 
-	var/mover_flags_pass = (mover.pass_flags.flags_pass|mover.flags_pass_temp) & ~mover.flags_pass_temp_negative
+	var/mover_flags_pass = mover.pass_flags.flags_pass|mover.flags_pass_temp
 
 	if(flags_atom & ON_BORDER && density && !(flags_can_pass & mover_flags_pass))
 		return target_dir & dir
@@ -102,14 +102,11 @@
 
 /atom/movable/proc/forceMove(atom/destination)
 	. = FALSE
-
 	if(destination)
 		. = doMove(destination)
 	else
 		CRASH("No valid destination passed into forceMove")
 
-	if(SEND_SIGNAL(src, COMSIG_MOVABLE_FORCEMOVED, destination))
-		return
 
 /atom/movable/proc/moveToNullspace()
 	return doMove(null)

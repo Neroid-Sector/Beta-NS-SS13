@@ -83,7 +83,6 @@ LINEN BINS
 	desc = "A linen bin. It looks rather cosy."
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "linenbin-full"
-	unslashable = TRUE
 	anchored = TRUE
 	var/amount = 20
 	var/list/sheets = list()

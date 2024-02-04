@@ -36,7 +36,6 @@
 	return
 
 /mob/living/silicon/emp_act(severity)
-	. = ..()
 	switch(severity)
 		if(1)
 			src.take_limb_damage(20)
@@ -48,6 +47,7 @@
 
 	to_chat(src, SPAN_DANGER("<B>*BZZZT*</B>"))
 	to_chat(src, SPAN_DANGER("Warning: Electromagnetic pulse detected."))
+	..()
 
 /mob/living/silicon/stun_effect_act(stun_amount, agony_amount)
 	return //immune

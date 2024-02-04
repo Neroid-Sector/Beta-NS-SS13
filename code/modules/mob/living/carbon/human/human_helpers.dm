@@ -219,9 +219,18 @@
 
 	return 0
 
+
+/mob/living/carbon/human/has_legs()
+	. = 0
+	if(has_limb("r_foot") && has_limb("r_leg"))
+		.++
+	if(has_limb("l_foot") && has_limb("l_leg"))
+		.++
+
 /mob/living/carbon/human/proc/disable_special_flags()
 	status_flags |= CANPUSH
 	anchored = FALSE
+	frozen = FALSE
 
 /mob/living/carbon/human/proc/disable_special_items()
 	set waitfor = FALSE // Scout decloak animation uses sleep(), which is problematic for taser gun
@@ -240,13 +249,13 @@
 		if(istype(i, /obj/item/device/motiondetector))
 			var/obj/item/device/motiondetector/md = i
 			md.toggle_active(src, old_active = TRUE, forced = TRUE)
-//		if(istype(i, /obj/item/weapon/gun/smartgun))
-//			var/obj/item/weapon/gun/smartgun/sg = i
-//			if(sg.motion_detector)
-//				sg.motion_detector = FALSE
-//				var/datum/action/item_action/smartgun/toggle_motion_detector/TMD = locate(/datum/action/item_action/smartgun/toggle_motion_detector) in sg.actions
-//				TMD.update_icon()
-//				sg.motion_detector()
+		if(istype(i, /obj/item/weapon/gun/smartgun))
+			var/obj/item/weapon/gun/smartgun/sg = i
+			if(sg.motion_detector)
+				sg.motion_detector = FALSE
+				var/datum/action/item_action/smartgun/toggle_motion_detector/TMD = locate(/datum/action/item_action/smartgun/toggle_motion_detector) in sg.actions
+				TMD.update_icon()
+				sg.motion_detector()
 
 /mob/living/carbon/human/proc/disable_headsets()
 	//Disable all radios to reduce radio spam for dead people

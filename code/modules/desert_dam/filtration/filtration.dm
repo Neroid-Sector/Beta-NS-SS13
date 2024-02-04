@@ -198,7 +198,7 @@ var/global/east_riverstart = 0
 		M.apply_damage(0.5,BURN)
 	else
 		var/dam_amount = 3
-		if(M.body_position == LYING_DOWN)
+		if(M.lying)
 			M.apply_damage(dam_amount,BURN)
 			M.apply_damage(dam_amount,BURN)
 			M.apply_damage(dam_amount,BURN)

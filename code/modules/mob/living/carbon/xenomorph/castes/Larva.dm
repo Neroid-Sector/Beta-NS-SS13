@@ -35,6 +35,7 @@
 	tier = 0  //Larva's don't count towards Pop limits
 	age = XENO_NO_AGE
 	crit_health = -25
+	gib_chance = 25
 	mob_size = MOB_SIZE_SMALL
 	base_actions = list(
 		/datum/action/xeno_action/onclick/xeno_resting,
@@ -129,8 +130,8 @@
 	else if(handcuffed || legcuffed)
 		icon_state = "[state_override || state]Larva Cuff"
 
-	else if(body_position == LYING_DOWN)
-		if(!HAS_TRAIT(src, TRAIT_INCAPACITATED) && !HAS_TRAIT(src, TRAIT_FLOORED))
+	else if(lying)
+		if((resting || sleeping) && (!knocked_down && !knocked_out && health > 0))
 			icon_state = "[state_override || state]Larva Sleeping"
 		else
 			icon_state = "[state_override || state]Larva Stunned"
@@ -154,7 +155,7 @@
 	if(!caste)
 		return FALSE
 
-	if(body_position) //No attacks while laying down
+	if(lying) //No attacks while laying down
 		return FALSE
 
 	A.attack_larva(src)

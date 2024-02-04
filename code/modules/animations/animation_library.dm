@@ -249,7 +249,7 @@ Can look good elsewhere as well.*/
 	var/pre_rappel_alpha = alpha
 	alpha = 20
 	dir = WEST
-	ADD_TRAIT(src, TRAIT_IMMOBILIZED, INTERACTION_TRAIT)
+	canmove = FALSE
 	var/matrix/initial_matrix = matrix()
 	initial_matrix.Turn(45)
 	apply_transform(initial_matrix)
@@ -257,4 +257,4 @@ Can look good elsewhere as well.*/
 	var/matrix/reset_matrix = matrix()
 	animate(src, 3, transform = reset_matrix, pixel_y = 0, alpha = pre_rappel_alpha, flags = ANIMATION_PARALLEL)
 	sleep(3)
-	REMOVE_TRAIT(src, TRAIT_IMMOBILIZED, INTERACTION_TRAIT)
+	canmove = TRUE

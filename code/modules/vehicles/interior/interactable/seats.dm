@@ -376,17 +376,28 @@
 			//if both seats on same tile have buckled mob, we become dense, otherwise, not dense.
 			if(buckled_mob)
 				if(VS.buckled_mob)
-					REMOVE_TRAIT(buckled_mob, TRAIT_UNDENSE, DOUBLE_SEATS_TRAIT)
-					REMOVE_TRAIT(VS.buckled_mob, TRAIT_UNDENSE, DOUBLE_SEATS_TRAIT)
+					buckled_mob.density = TRUE
+					VS.buckled_mob.density = TRUE
 				else
-					ADD_TRAIT(buckled_mob, TRAIT_UNDENSE, DOUBLE_SEATS_TRAIT)
+					buckled_mob.density = FALSE
 			else
 				if(VS.buckled_mob)
-					ADD_TRAIT(VS.buckled_mob, TRAIT_UNDENSE, DOUBLE_SEATS_TRAIT)
-				REMOVE_TRAIT(M, TRAIT_UNDENSE, DOUBLE_SEATS_TRAIT)
+					VS.buckled_mob.density = FALSE
+				M.density = TRUE
 			break
 
 	handle_rotation()
+
+/obj/structure/bed/chair/vehicle/unbuckle()
+	if(buckled_mob && buckled_mob.buckled == src)
+		buckled_mob.buckled = null
+		buckled_mob.anchored = initial(buckled_mob.anchored)
+		buckled_mob.update_canmove()
+
+		var/M = buckled_mob
+		buckled_mob = null
+
+		afterbuckle(M)
 
 //attack handling
 

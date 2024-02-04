@@ -5,7 +5,6 @@
 	icon_state = "nboard00"
 	density = FALSE
 	anchored = TRUE
-	unslashable = TRUE
 	var/notices = 0
 
 /obj/structure/noticeboard/Initialize()

@@ -445,7 +445,7 @@
 
 //ATTACK WITH BOTH HANDS COMBO
 
-/obj/structure/machinery/m56d_hmg/auto/attack_hand(mob/living/user)
+/obj/structure/machinery/m56d_hmg/auto/attack_hand(mob/user)
 	..()
 
 	var/turf/user_turf = get_turf(user)
@@ -466,7 +466,7 @@
 					return
 
 			if(user.get_active_hand() == null && user.get_inactive_hand() == null)
-				ADD_TRAIT(user, TRAIT_IMMOBILIZED, INTERACTION_TRAIT)
+				user.freeze()
 				user.set_interaction(src)
 				give_action(user, /datum/action/human_action/mg_exit)
 			else
@@ -515,13 +515,16 @@
 	..()
 	ADD_TRAIT(user, TRAIT_OVERRIDE_CLICKDRAG, TRAIT_SOURCE_WEAPON)
 	RegisterSignal(user, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(disable_interaction))
-	RegisterSignal(user, COMSIG_LIVING_SET_BODY_POSITION, PROC_REF(body_position_changed))
+	RegisterSignal(user, COMSIG_MOB_POST_UPDATE_CANMOVE, PROC_REF(disable_canmove_interaction))
 
 // DISMOUNT THE MG
 
 /obj/structure/machinery/m56d_hmg/auto/on_unset_interaction(mob/user)
 	REMOVE_TRAIT(user, TRAIT_OVERRIDE_CLICKDRAG, TRAIT_SOURCE_WEAPON)
-	UnregisterSignal(user, COMSIG_MOVABLE_PRE_MOVE)
+	UnregisterSignal(user, list(
+		COMSIG_MOVABLE_PRE_MOVE,
+		COMSIG_MOB_POST_UPDATE_CANMOVE
+	))
 	..()
 
 // GET ANIMATED
@@ -595,16 +598,16 @@
 	to_chat(user, SPAN_NOTICE("You rotate [src], using the tripod to support your pivoting movement."))
 
 
-/obj/structure/machinery/m56d_hmg/auto/proc/disable_interaction(mob/living/user, NewLoc, direction)
+/obj/structure/machinery/m56d_hmg/auto/proc/disable_interaction(mob/user, NewLoc, direction)
 	SIGNAL_HANDLER
 
-	if(user.body_position != STANDING_UP || get_dist(user,src) > 0 || user.is_mob_incapacitated() || !user.client)
+	if(user.lying || get_dist(user,src) > 0 || user.is_mob_incapacitated() || !user.client)
 		user.unset_interaction()
 
-/obj/structure/machinery/m56d_hmg/auto/proc/body_position_changed(mob/living/user, body_position, old_body_position)
+/obj/structure/machinery/m56d_hmg/auto/proc/disable_canmove_interaction(mob/user, canmove, laid_down, lying)
 	SIGNAL_HANDLER
 
-	if(body_position != STANDING_UP)
+	if(laid_down)
 		user.unset_interaction()
 
 /obj/structure/machinery/m56d_hmg/auto/proc/handle_rotating_gun(mob/user)

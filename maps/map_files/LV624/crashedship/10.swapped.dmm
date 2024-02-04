@@ -109,6 +109,10 @@
 	icon_state = "floor4"
 	},
 /area/lv624/lazarus/crashed_ship_containers)
+"qS" = (
+/obj/effect/landmark/objective_landmark/medium,
+/turf/open/gm/dirt,
+/area/lv624/lazarus/crashed_ship_containers)
 "sq" = (
 /obj/effect/landmark/crap_item,
 /turf/open/gm/dirt,
@@ -138,6 +142,13 @@
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/gm/dirt,
 /area/lv624/ground/barrens/north_east_barrens)
+"yS" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/effect/landmark/objective_landmark/science,
+/turf/open/gm/dirt,
+/area/lv624/lazarus/crashed_ship_containers)
 "zh" = (
 /obj/effect/spawner/random/toolbox,
 /turf/open/gm/dirt,
@@ -207,6 +218,12 @@
 /obj/structure/girder,
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/gm/dirt,
+/area/lv624/lazarus/crashed_ship_containers)
+"Io" = (
+/obj/effect/landmark/objective_landmark/science,
+/turf/open/shuttle{
+	icon_state = "floor4"
+	},
 /area/lv624/lazarus/crashed_ship_containers)
 "IT" = (
 /obj/structure/girder/displaced,
@@ -336,7 +353,7 @@ iK
 ng
 fb
 eC
-fb
+yS
 pd
 Wh
 cb
@@ -360,7 +377,7 @@ SS
 AT
 AI
 Pp
-Pa
+Io
 AI
 qk
 At
@@ -425,7 +442,7 @@ Vy
 Um
 cb
 WE
-AI
+qS
 iF
 AI
 xU
@@ -451,7 +468,7 @@ vh
 KY
 SS
 AI
-Pa
+Io
 fd
 Pa
 Pa

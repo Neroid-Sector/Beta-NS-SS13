@@ -51,7 +51,7 @@
 	if(!check_and_use_plasma_owner())
 		return
 
-	if(fendy.fortify && !fendy.mutation_type == DEFENDER_STEELCREST)
+	if(fendy.fortify && !fendy.steelcrest)
 		to_chat(fendy, SPAN_XENOWARNING("You cannot use headbutt while fortified."))
 		return
 
@@ -78,9 +78,7 @@
 	SPAN_XENOWARNING("You ram [carbone] with your armored crest!"))
 
 	if(carbone.stat != DEAD && (!(carbone.status_flags & XENO_HOST) || !HAS_TRAIT(carbone, TRAIT_NESTED)) )
-		var/h_damage = 30 - (fendy.crest_defense * 10)
-		if(fendy.mutation_type == DEFENDER_STEELCREST)
-			h_damage += 7.5
+		var/h_damage = 30 - (fendy.crest_defense * 10) + (fendy.steelcrest * 7.5) //30 if crest up, 20 if down, plus 7.5
 		carbone.apply_armoured_damage(get_xeno_damage_slash(carbone, h_damage), ARMOR_MELEE, BRUTE, "chest", 5)
 
 	var/facing = get_dir(fendy, carbone)
@@ -161,7 +159,7 @@
 	if (!istype(xeno))
 		return
 
-	if(xeno.crest_defense && xeno.mutation_type == DEFENDER_STEELCREST)
+	if(xeno.crest_defense && xeno.steelcrest)
 		to_chat(src, SPAN_XENOWARNING("You cannot fortify while your crest is already down!"))
 		return
 
@@ -209,7 +207,7 @@
 
 	if(fortify_state)
 		to_chat(X, SPAN_XENOWARNING("You tuck yourself into a defensive stance."))
-		if(X.mutation_type == DEFENDER_STEELCREST)
+		if(X.steelcrest)
 			X.armor_deflection_buff += 10
 			X.armor_explosive_buff += 60
 			X.ability_speed_modifier += 3
@@ -217,9 +215,10 @@
 		else
 			X.armor_deflection_buff += 30
 			X.armor_explosive_buff += 60
-			ADD_TRAIT(X, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY("Fortify"))
+			X.frozen = TRUE
 			X.anchored = TRUE
 			X.small_explosives_stun = FALSE
+			X.update_canmove()
 		RegisterSignal(owner, COMSIG_XENO_PRE_CALCULATE_ARMOURED_DAMAGE_PROJECTILE, PROC_REF(check_directional_armor))
 		X.mob_size = MOB_SIZE_IMMOBILE //knockback immune
 		X.mob_flags &= ~SQUEEZE_UNDER_VEHICLES
@@ -227,9 +226,9 @@
 		X.fortify = TRUE
 	else
 		to_chat(X, SPAN_XENOWARNING("You resume your normal stance."))
-		REMOVE_TRAIT(X, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY("Fortify"))
+		X.frozen = FALSE
 		X.anchored = FALSE
-		if(X.mutation_type == DEFENDER_STEELCREST)
+		if(X.steelcrest)
 			X.armor_deflection_buff -= 10
 			X.armor_explosive_buff -= 60
 			X.ability_speed_modifier -= 3
@@ -241,6 +240,7 @@
 		UnregisterSignal(owner, COMSIG_XENO_PRE_CALCULATE_ARMOURED_DAMAGE_PROJECTILE)
 		X.mob_size = MOB_SIZE_XENO //no longer knockback immune
 		X.mob_flags |= SQUEEZE_UNDER_VEHICLES
+		X.update_canmove()
 		X.update_icons()
 		X.fortify = FALSE
 

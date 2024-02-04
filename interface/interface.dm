@@ -11,16 +11,28 @@
 		to_chat(src, SPAN_DANGER("The wiki URL is not set in the server configuration."))
 	return
 
-/client/verb/worksheet()
-	set name = "Worksheet"
-	set desc = "Visit the worksheet."
+/client/verb/forum()
+	set name = "forum"
+	set desc = "Visit the forum."
 	set hidden = TRUE
 	if( CONFIG_GET(string/forumurl) )
-		if(tgui_alert(src, "This will open the worksheet in your browser. Are you sure?", "Confirm", list("Yes", "No")) != "Yes")
+		if(tgui_alert(src, "This will open the forum in your browser. Are you sure?", "Confirm", list("Yes", "No")) != "Yes")
 			return
 		src << link(CONFIG_GET(string/forumurl))
 	else
 		to_chat(src, SPAN_DANGER("The forum URL is not set in the server configuration."))
+	return
+
+/client/verb/rules()
+	set name = "rules"
+	set desc = "Read our rules."
+	set hidden = TRUE
+	if( CONFIG_GET(string/rulesurl) )
+		if(tgui_alert(src, "This will open the rules in your browser. Are you sure?", "Confirm", list("Yes", "No")) != "Yes")
+			return
+		src << link(CONFIG_GET(string/rulesurl))
+	else
+		to_chat(src, SPAN_DANGER("The rules URL is not set in the server configuration."))
 	return
 
 /client/verb/changelog()
@@ -46,10 +58,13 @@
 	src << link("[CONFIG_GET(string/discordurl)]")
 	return
 
-/client/verb/github()
-	set name = "Github"
-	set desc = "View our github!."
+/client/verb/submitbug()
+	set name = "Submit Bug"
+	set desc = "Submit a bug."
 	set hidden = TRUE
+
+	if(tgui_alert(src, "Please search for the bug first to make sure you aren't posting a duplicate.", "No dupe bugs please", list("OK", "Cancel")) != "OK")
+		return
 
 	if(tgui_alert(src, "This will open the GitHub in your browser. Are you sure?", "Confirm", list("Yes", "No")) != "Yes")
 		return

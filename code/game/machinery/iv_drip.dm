@@ -57,7 +57,7 @@
 
 	if(ishuman(usr))
 		var/mob/living/carbon/human/user = usr
-		if(user.is_mob_incapacitated() || get_dist(user, src) > 1 || user.blinded)
+		if(user.stat || get_dist(user, src) > 1 || user.blinded || user.lying)
 			return
 
 		if(!skillcheck(user, SKILL_SURGERY, SKILL_SURGERY_NOVICE))
@@ -179,7 +179,7 @@
 	if(!istype(usr, /mob/living))
 		return
 
-	if(usr.stat || usr.is_mob_incapacitated())
+	if(usr.stat || usr.lying)
 		return
 
 	mode = !mode

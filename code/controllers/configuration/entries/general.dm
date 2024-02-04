@@ -144,6 +144,21 @@ Administrative related.
 /datum/config_entry/string/ooc_color_normal
 	config_entry_value = "#1c52f5"
 
+/datum/config_entry/string/ooc_color_other
+	config_entry_value = "#2e78d9"
+
+/datum/config_entry/string/ooc_color_mods
+	config_entry_value = "#ffbf00"
+
+/datum/config_entry/string/ooc_color_debug
+	config_entry_value = "#6bd1b4"
+
+/datum/config_entry/string/ooc_color_admin
+	config_entry_value = "#ff8000"
+
+/datum/config_entry/string/ooc_color_default
+	config_entry_value = "#b82e00"
+
 /datum/config_entry/flag/usewhitelist
 
 /datum/config_entry/flag/usealienwhitelist
@@ -256,7 +271,7 @@ Voting
 
 // Gamemode to auto-switch to at the start of the round
 /datum/config_entry/string/gamemode_default
-	config_entry_value = "Distress Signal: Lowpop"
+	config_entry_value = "Extended"
 
 /datum/config_entry/number/rounds_until_hard_restart
 	config_entry_value = -1 // -1 is disabled by default, 0 is every round, x is after so many rounds
@@ -612,9 +627,3 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 	protection = CONFIG_ENTRY_HIDDEN|CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/flag/guest_ban
-
-/datum/config_entry/string/playersave_path
-	config_entry_value = "data/player_saves"
-	protection = CONFIG_ENTRY_HIDDEN|CONFIG_ENTRY_LOCKED
-
-/datum/config_entry/flag/auto_profile

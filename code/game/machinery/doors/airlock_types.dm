@@ -138,6 +138,7 @@
 	opacity = 0
 	assembly_type = /obj/structure/airlock_assembly/airlock_assembly_research
 	glass = 1
+	heat_proof = 1
 	req_one_access = list(ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_COMMAND, ACCESS_WY_COLONIAL)
 
 /obj/structure/machinery/door/airlock/glass_mining/colony
@@ -891,7 +892,7 @@
 /obj/structure/machinery/door/airlock/hatch/cockpit
 	icon = 'icons/obj/structures/doors/dropship1_pilot.dmi'
 	name = "cockpit"
-	req_access = list()
+	req_access = list(ACCESS_MARINE_DROPSHIP)
 	req_one_access = list()
 	unslashable = TRUE
 	unacidable = TRUE

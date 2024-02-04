@@ -12,7 +12,6 @@
 	icon_state = "pianobroken"
 	anchored = TRUE
 	density = TRUE
-	unslashable = TRUE
 
 /obj/structure/device/broken_moog
 	name = "broken vintage synthesizer"
@@ -21,4 +20,3 @@
 	icon_state = "minimoogbroken"
 	anchored = TRUE
 	density = TRUE
-	unslashable = TRUE

@@ -144,11 +144,8 @@
 /obj/structure/vehicle_locker{
 	pixel_y = 28
 	},
-/obj/structure/bed/chair/vehicle{
-	pixel_x = -8
-	},
-/obj/structure/bed/chair/vehicle{
-	pixel_x = 8
+/obj/effect/landmark/interior/spawn/vehicle_gunner_seat/armor{
+	dir = 4
 	},
 /turf/open/shuttle/vehicle{
 	icon_state = "floor_3_8_1"
@@ -297,14 +294,6 @@
 	},
 /area/vehicle/apc/command)
 "I" = (
-/obj/structure/bed/chair/vehicle{
-	dir = 1;
-	pixel_x = -8
-	},
-/obj/structure/bed/chair/vehicle{
-	dir = 1;
-	pixel_x = 8
-	},
 /turf/open/shuttle/vehicle{
 	icon_state = "floor_3_13"
 	},

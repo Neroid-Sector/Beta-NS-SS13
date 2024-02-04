@@ -14,7 +14,6 @@
 
 	name = "Windoor Assembly"
 	icon_state = "l_windoor_assembly01"
-	unslashable = TRUE
 	anchored = FALSE
 	density = FALSE
 	dir = NORTH

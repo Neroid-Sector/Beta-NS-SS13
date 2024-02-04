@@ -60,7 +60,6 @@
 
 
 /obj/item/weapon/stunprod/emp_act(severity)
-	. = ..()
 	switch(severity)
 		if(1)
 			charges = 0

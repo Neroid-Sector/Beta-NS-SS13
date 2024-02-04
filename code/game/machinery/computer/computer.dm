@@ -31,9 +31,8 @@
 	return 1
 
 /obj/structure/machinery/computer/emp_act(severity)
-	. = ..()
-	if(prob(20/severity))
-		set_broken()
+	if(prob(20/severity)) set_broken()
+	..()
 
 
 /obj/structure/machinery/computer/ex_act(severity)

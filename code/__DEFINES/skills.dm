@@ -39,7 +39,7 @@
 
 //spec_weapons skill
 //hidden. who can and can't use specialist weapons
-#define SKILL_SPEC_DEFAULT 7
+#define SKILL_SPEC_DEFAULT 0
 /// Is trained to use specialist gear, but hasn't picked a kit.
 #define SKILL_SPEC_TRAINED 1
 /// Can use RPG
@@ -60,14 +60,14 @@
 #define SKILL_SPEC_ALL 9
 
 //construction skill
-#define SKILL_CONSTRUCTION_DEFAULT 2
+#define SKILL_CONSTRUCTION_DEFAULT 0
 #define SKILL_CONSTRUCTION_TRAINED 1   //metal barricade construction (CT, mini-engis)
 #define SKILL_CONSTRUCTION_ENGI 2   //plasteel barricade, windows and girder construction, building machine&computer frames, (Combat Engi, OT, etc.)
 #define SKILL_CONSTRUCTION_MASTER 3   //Synths
 #define SKILL_CONSTRUCTION_MAX 3
 
 // engineer skill
-#define SKILL_ENGINEER_DEFAULT 2
+#define SKILL_ENGINEER_DEFAULT 0
 #define SKILL_ENGINEER_TRAINED 1   //barricade repair && c4 use (mini-engis, specs)
 #define SKILL_ENGINEER_ENGI 2   //plasteel barricade deconstruction, hacking&&planet engine fixing&&apc building, Telecomms fixing (Combat Engi, OT, etc.)
 #define SKILL_ENGINEER_MASTER 3   //Synths
@@ -130,7 +130,7 @@
 //powerloader skill
 //hidden
 //proficiency with powerloader, changes powerloader speed.
-#define SKILL_POWERLOADER_DEFAULT 1
+#define SKILL_POWERLOADER_DEFAULT 0
 #define SKILL_POWERLOADER_TRAINED 1 //
 #define SKILL_POWERLOADER_MASTER 2 //Pilot, CT, Req, OT, CE
 #define SKILL_POWERLOADER_MAX 2
@@ -166,7 +166,7 @@
 
 
 //pilot skill, hidden
-#define SKILL_PILOT_DEFAULT 1
+#define SKILL_PILOT_DEFAULT 0
 #define SKILL_PILOT_TRAINED 1 // DCC
 #define SKILL_PILOT_EXPERT 2 // Pilot, Synth
 #define SKILL_PILOT_MAX 2
@@ -192,8 +192,8 @@
 #define SKILL_DOMESTIC_MAX 2
 
 //multitile vehicle skills
-
-#define SKILL_VEHICLE_DEFAULT 2
+//Can't drive
+#define SKILL_VEHICLE_DEFAULT 0
 //Can drive small vehicles (truck)
 #define SKILL_VEHICLE_SMALL 1
 //Can drive large vehicles (apc, tank)
@@ -210,7 +210,7 @@
 #define SKILL_INTEL_MAX 2
 
 // Fireman carry - Separated from police skills for further rebalances. Determines how fast you carry someone.
-#define SKILL_FIREMAN_DEFAULT 3
+#define SKILL_FIREMAN_DEFAULT 0
 #define SKILL_FIREMAN_TRAINED 1
 #define SKILL_FIREMAN_SKILLED 2
 #define SKILL_FIREMAN_EXPERT 3

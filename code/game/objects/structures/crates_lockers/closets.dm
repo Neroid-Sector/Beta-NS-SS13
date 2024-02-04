@@ -79,11 +79,10 @@
 		M.forceMove(loc)
 		if(exit_stun)
 			M.apply_effect(exit_stun, STUN) //Action delay when going out of a closet
-		if(isliving(M))
-			var/mob/living/living_M = M
-			if(living_M.mobility_flags & MOBILITY_MOVE)
-				M.visible_message(SPAN_WARNING("[M] suddenly gets out of [src]!"),
-				SPAN_WARNING("You get out of [src] and get your bearings!"))
+		M.update_canmove() //Force the delay to go in action immediately
+		if(!M.lying)
+			M.visible_message(SPAN_WARNING("[M] suddenly gets out of [src]!"),
+			SPAN_WARNING("You get out of [src] and get your bearings!"))
 
 /obj/structure/closet/proc/open()
 	if(opened)
@@ -334,7 +333,7 @@
 	set category = "Object"
 	set name = "Toggle Open"
 
-	if(usr.is_mob_incapacitated())
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
 		return
 
 	if(usr.loc == src)

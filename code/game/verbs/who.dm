@@ -151,7 +151,7 @@
 	show_browser(usr, dat, "Who", "who", "size=600x800")
 
 
-/client/proc/staffwho()
+/client/verb/staffwho()
 	set name = "Staffwho"
 	set category = "Admin"
 

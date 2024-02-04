@@ -13,7 +13,7 @@
 	name = "Kill"
 
 /datum/player_action/kill/act(client/user, mob/target, list/params)
-	target.death()
+	target.death(create_cause_data("[user.key]"))
 	message_admins("[key_name_admin(user)] killed [key_name_admin(target)].")
 	return TRUE
 
@@ -34,16 +34,12 @@
 	name = "Toggle Sleeping"
 
 /datum/player_action/mob_sleep/act(client/user, mob/target, list/params)
-	if(!istype(target, /mob/living))
-		return TRUE
-	var/mob/living/living = target
-
 	if (!params["sleep"]) //if they're already slept, set their sleep to zero and remove the icon
-		living.sleeping = 0
-		living.RemoveSleepingIcon()
+		target.sleeping = 0
+		target.RemoveSleepingIcon()
 	else
-		living.sleeping = 9999999 //if they're not, sleep them and add the sleep icon, so other marines nearby know not to mess with them.
-		living.AddSleepingIcon()
+		target.sleeping = 9999999 //if they're not, sleep them and add the sleep icon, so other marines nearby know not to mess with them.
+		target.AddSleepingIcon()
 
 	message_admins("[key_name_admin(user)] toggled sleep on [key_name_admin(target)].")
 
@@ -113,13 +109,9 @@
 	name = "Toggle Frozen"
 
 /datum/player_action/toggle_frozen/act(client/user, mob/target, list/params)
-	var/frozen = text2num(params["freeze"])
-	if(frozen)
-		ADD_TRAIT(target, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ADMIN)
-	else
-		REMOVE_TRAIT(target, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ADMIN)
+	target.frozen = text2num(params["freeze"])
 
-	message_admins("[key_name_admin(user)] [frozen? "froze" : "unfroze"] [key_name_admin(target)]")
+	message_admins("[key_name_admin(user)] [target.frozen? "froze" : "unfroze"] [key_name_admin(target)]")
 	return TRUE
 
 // MESSAGE

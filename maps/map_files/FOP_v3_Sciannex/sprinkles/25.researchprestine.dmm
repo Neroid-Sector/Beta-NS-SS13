@@ -271,6 +271,17 @@
 	icon_state = "whitepurple"
 	},
 /area/template_noop)
+"sa" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12
+	},
+/obj/effect/landmark/objective_landmark/science,
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "whitepurple"
+	},
+/area/template_noop)
 "tc" = (
 /obj/structure/bed{
 	icon_state = "abed"
@@ -417,6 +428,17 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
 	dir = 9;
+	icon_state = "whitepurple"
+	},
+/area/template_noop)
+"Bl" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 12
+	},
+/obj/effect/landmark/objective_landmark/medium,
+/turf/open/floor/prison{
+	dir = 6;
 	icon_state = "whitepurple"
 	},
 /area/template_noop)
@@ -716,6 +738,13 @@
 	icon_state = "darkpurplefull2"
 	},
 /area/template_noop)
+"Qc" = (
+/obj/effect/landmark/objective_landmark/medium,
+/turf/open/floor/prison{
+	dir = 9;
+	icon_state = "whitepurple"
+	},
+/area/template_noop)
 "Qn" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/prison{
@@ -778,6 +807,17 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/prison{
 	dir = 8;
+	icon_state = "whitepurple"
+	},
+/area/template_noop)
+"Wo" = (
+/obj/structure/toilet{
+	dir = 8;
+	pixel_y = 8
+	},
+/obj/effect/landmark/objective_landmark/science,
+/turf/open/floor/prison{
+	dir = 5;
 	icon_state = "whitepurple"
 	},
 /area/template_noop)
@@ -846,7 +886,7 @@ LM
 Fc
 nw
 LM
-Fc
+Qc
 nw
 LM
 Fc
@@ -1050,7 +1090,7 @@ rb
 yv
 LM
 Hw
-yv
+Bl
 LM
 "}
 (13,1,1) = {"
@@ -1223,7 +1263,7 @@ DV
 aa
 Hp
 LM
-Hw
+Wo
 yv
 LM
 Hw
@@ -1257,7 +1297,7 @@ LM
 bz
 LM
 DE
-JQ
+sa
 LM
 DV
 NI

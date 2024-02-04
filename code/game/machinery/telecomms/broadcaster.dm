@@ -135,9 +135,6 @@
 			if(R.receive_range(display_freq, level) > -1 && OBJECTS_CAN_REACH(loc, radio_loc))
 				radios += R
 
-		if(GLOB.radio_communication_clarity < 100)
-			message = stars(message, GLOB.radio_communication_clarity)
-
 	// Get a list of mobs who can hear from the radios we collected.
 	var/list/receive = get_mobs_in_radio_ranges(radios)
 
@@ -168,7 +165,10 @@
 					comm_title = H.assigned_squad.name + " " + comm_title
 				else
 					if(H.assigned_fireteam)
-						comm_title = H.comm_title + " [H.assigned_fireteam]"
+						if(H.assigned_squad.fireteam_leaders[H.assigned_fireteam] == H)
+							comm_title = H.comm_title + " [H.assigned_fireteam] TL"
+						else
+							comm_title = H.comm_title + " [H.assigned_fireteam]"
 
 
 		else if(istype(M,/mob/living/silicon/decoy/ship_ai))

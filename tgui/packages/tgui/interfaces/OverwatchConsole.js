@@ -61,6 +61,7 @@ const SquadPanel = (props, context) => {
   const { act, data } = useBackend(context);
 
   const [category, setCategory] = useLocalState(context, 'selected', 'monitor');
+  let hello = 2;
 
   return (
     <>
@@ -87,20 +88,19 @@ const SquadPanel = (props, context) => {
             Supply Drop
           </Tabs.Tab>
         )}
-        {!!data.can_launch_bombardments && (
-          <Tabs.Tab
-            selected={category === 'ob'}
-            icon="bomb"
-            onClick={() => setCategory('ob')}>
-            Orbital Bombardment
-          </Tabs.Tab>
-        )}
+        <Tabs.Tab
+          selected={category === 'ob'}
+          icon="bomb"
+          onClick={() => setCategory('ob')}>
+          Orbital Bombardment
+        </Tabs.Tab>
+        <Tabs.Tab icon="map" onClick={() => act('tacmap_unpin')}>
+          Tactical Map
+        </Tabs.Tab>
       </Tabs>
       {category === 'monitor' && <SquadMonitor />}
       {category === 'supply' && data.can_launch_crates && <SupplyDrop />}
-      {category === 'ob' && data.can_launch_bombardments && (
-        <OrbitalBombardment />
-      )}
+      {category === 'ob' && <OrbitalBombardment />}
     </>
   );
 };
@@ -218,10 +218,10 @@ const RoleTable = (props, context) => {
     <Table m="1px" fontSize="12px" bold>
       <Table.Row>
         <Table.Cell textAlign="center" p="4px">
-          Platoon Sergeant
+          Squad Leader
         </Table.Cell>
         <Table.Cell collapsing p="4px">
-          Squad Sergeants
+          Fire Team Leaders
         </Table.Cell>
         <Table.Cell collapsing p="4px">
           Specialist
@@ -230,7 +230,7 @@ const RoleTable = (props, context) => {
           Smartgunner
         </Table.Cell>
         <Table.Cell collapsing p="4px">
-          Platoon Corpsmen
+          Hospital Corpsmen
         </Table.Cell>
         <Table.Cell collapsing p="4px">
           Combat Technicians
@@ -296,11 +296,11 @@ const SquadMonitor = (props, context) => {
     a = a.role;
     b = b.role;
     const roleValues = {
-      'Platoon Sergeant': 10,
-      'Squad Sergeant': 9,
+      'Squad Leader': 10,
+      'Fireteam Leader': 9,
       'Weapons Specialist': 8,
       'Smartgunner': 7,
-      'Platoon Corpsman': 6,
+      'Hospital Corpsman': 6,
       'Combat Technician': 5,
       'Rifleman': 4,
     };

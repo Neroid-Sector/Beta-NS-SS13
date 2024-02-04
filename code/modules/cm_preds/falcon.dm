@@ -119,7 +119,6 @@
 	qdel(src)
 
 /mob/hologram/falcon/emp_act()
-	. = ..()
 	new /obj/item/trash/falcon_drone/emp(loc)
 	QDEL_NULL(parent_drone)
 	qdel(src)

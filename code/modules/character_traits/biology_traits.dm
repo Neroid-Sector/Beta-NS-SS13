@@ -58,13 +58,13 @@
 		to_chat(target, SPAN_WARNING("Your species is too sophisticated for you be able to recieve the lisping trait."))
 		return
 
-	ADD_TRAIT(target, TRAIT_LISPING, ROUNDSTART_TRAIT)
+	ADD_TRAIT(target, TRAIT_LISPING, TRAIT_SOURCE_QUIRK)
 	target.speech_problem_flag = TRUE
 
 	..()
 
 /datum/character_trait/biology/lisp/unapply_trait(mob/living/carbon/human/target)
-	REMOVE_TRAIT(target, TRAIT_LISPING, ROUNDSTART_TRAIT)
+	REMOVE_TRAIT(target, TRAIT_LISPING, TRAIT_SOURCE_QUIRK)
 	target.speech_problem_flag = FALSE
 	..()
 
@@ -127,9 +127,9 @@
 		to_chat(target, SPAN_WARNING("Only riflemen can have the Hardcore trait."))
 		return
 
-	ADD_TRAIT(target, TRAIT_HARDCORE, ROUNDSTART_TRAIT)
+	ADD_TRAIT(target, TRAIT_HARDCORE, TRAIT_SOURCE_QUIRK)
 	..()
 
 /datum/character_trait/biology/hardcore/unapply_trait(mob/living/carbon/human/target)
-	REMOVE_TRAIT(target, TRAIT_HARDCORE, ROUNDSTART_TRAIT)
+	REMOVE_TRAIT(target, TRAIT_HARDCORE, TRAIT_SOURCE_QUIRK)
 	..()

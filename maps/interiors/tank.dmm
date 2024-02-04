@@ -6,7 +6,7 @@
 	name = "back entrance marker";
 	tag = "back"
 	},
-/obj/structure/phone_base{
+/obj/structure/transmitter{
 	dir = 8;
 	layer = 3.1;
 	name = "Tank Telephone";

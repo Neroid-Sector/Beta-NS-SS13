@@ -95,13 +95,7 @@
 	mob.next_delay_update = world.time + mob.next_delay_delay
 
 /client/Move(n, direct)
-	var/mob/living/living_mob
-	if(isliving(mob))
-		living_mob = mob
-
-	if(world.time < next_movement)
-		return
-	if(living_mob && living_mob.body_position == LYING_DOWN && mob.crawling)
+	if(world.time < next_movement || (mob.lying && mob.crawling))
 		return
 
 	next_move_dir_add = 0
@@ -140,17 +134,7 @@
 	if(!isliving(mob))
 		return mob.Move(n, direct)
 
-	if(mob.is_mob_incapacitated(TRUE))
-		return
-
-	if(mob.buckled)
-		// Handle buckled relay before mobility because buckling inherently immobilizes
-		// This means you can (try to) move with a cargo tug or powerloader while immobilized, which i think makes sense
-		return mob.buckled.relaymove(mob, direct)
-
-	if(!(living_mob.mobility_flags & MOBILITY_MOVE))
-		return
-	if(living_mob.body_position == LYING_DOWN && !living_mob.can_crawl)
+	if(!mob.canmove || mob.is_mob_incapacitated(TRUE) || (mob.lying && !mob.can_crawl))
 		return
 
 	//Check if you are being grabbed and if so attemps to break it
@@ -166,6 +150,9 @@
 		next_movement = world.time + MINIMAL_MOVEMENT_INTERVAL
 		return
 
+	if(mob.buckled)
+		return mob.buckled.relaymove(mob, direct)
+
 	if(!mob.z)//Inside an object, tell it we moved
 		var/atom/O = mob.loc
 		if(!O)
@@ -178,12 +165,14 @@
 		if(mob.next_move_slowdown)
 			move_delay += mob.next_move_slowdown
 			mob.next_move_slowdown = 0
+		if((mob.flags_atom & DIRLOCK) && mob.dir != direct)
+			move_delay += MOVE_REDUCTION_DIRECTION_LOCKED // by Geeves
 
 		mob.cur_speed = Clamp(10/(move_delay + 0.5), MIN_SPEED, MAX_SPEED)
 		//We are now going to move
 		moving = TRUE
 		mob.move_intentionally = TRUE
-		if(living_mob && living_mob.body_position == LYING_DOWN)
+		if(mob.lying)
 			//check for them not being a limbless blob (only humans have limbs)
 			if(ishuman(mob))
 				var/mob/living/carbon/human/human = mob

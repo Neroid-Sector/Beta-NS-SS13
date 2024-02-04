@@ -148,6 +148,7 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 		if(unansweredAhelps[receiver_client.computer_id]) unansweredAhelps.Remove(receiver_client.computer_id)
 		cmd_admin_pm(receiver_client, null)
 		return
+
 	else if(href_list["FaxView"])
 
 		var/datum/fax/info = locate(href_list["FaxView"])
@@ -163,14 +164,6 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 
 	else if(href_list["medals_panel"])
 		GLOB.medals_panel.tgui_interact(mob)
-
-	else if(href_list["tacmaps_panel"])
-		GLOB.tacmap_admin_panel.tgui_interact(mob)
-
-	else if(href_list["MapView"])
-		if(isxeno(mob))
-			return
-		GLOB.uscm_tacmap_status.tgui_interact(mob)
 
 	//NOTES OVERHAUL
 	if(href_list["add_merit_info"])
@@ -466,7 +459,6 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 /client/Destroy()
 	QDEL_NULL(soundOutput)
 	QDEL_NULL(obj_window)
-	QDEL_NULL(game_master_menu)
 	if(prefs)
 		prefs.owner = null
 		QDEL_NULL(prefs.preview_dummy)
@@ -737,7 +729,7 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 							winset(src, "srvkeybinds-[REF(key)]", "parent=default;name=[key];command=mentorsay")
 					else
 						winset(src, "srvkeybinds-[REF(key)]", "parent=default;name=[key];command=")
-				if(WHISPER_CHANNEL)
+				if("Whisper")
 					winset(src, "srvkeybinds-[REF(key)]", "parent=default;name=[key];command=whisper")
 
 /client/proc/toggle_fullscreen(new_value)

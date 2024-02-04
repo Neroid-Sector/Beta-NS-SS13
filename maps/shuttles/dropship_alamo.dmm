@@ -481,7 +481,7 @@
 /area/shuttle/drop1/sulaco)
 "Ho" = (
 /obj/structure/machinery/computer/dropship_weapons/dropship1,
-/obj/structure/phone_base/rotary{
+/obj/structure/transmitter/rotary{
 	name = "Alamo Telephone";
 	phone_category = "Dropship";
 	phone_id = "Alamo";

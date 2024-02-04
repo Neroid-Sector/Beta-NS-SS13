@@ -333,7 +333,7 @@ SUBSYSTEM_DEF(ticker)
 	if(mode)
 		GLOB.master_mode = SSmapping.configs[GROUND_MAP].force_mode ? SSmapping.configs[GROUND_MAP].force_mode : mode
 	else
-		GLOB.master_mode = "Distress Signal: Lowpop"
+		GLOB.master_mode = "Extended"
 	log_game("Saved mode is '[GLOB.master_mode]'")
 
 
@@ -439,7 +439,7 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/send_tip_of_the_round()
 	var/message
-	var/tip_file = pick("strings/marinetips.txt", "strings/metatips.txt", 15;"strings/memetips.txt")
+	var/tip_file = pick("strings/xenotips.txt", "strings/marinetips.txt", "strings/metatips.txt", 15;"strings/memetips.txt")
 	var/list/tip_list = file2list(tip_file)
 	if(length(tip_file))
 		message = pick(tip_list)

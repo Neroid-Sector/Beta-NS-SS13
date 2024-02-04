@@ -115,9 +115,7 @@
 			. += "Primary Objective: [html_decode(assigned_squad.primary_objective)]"
 		if(assigned_squad.secondary_objective)
 			. += "Secondary Objective: [html_decode(assigned_squad.secondary_objective)]"
-	if(faction == FACTION_MARINE)
-		. += ""
-		. += "<a href='?MapView=1'>View Tactical Map</a>"
+
 	if(mobility_aura)
 		. += "Active Order: MOVE"
 	if(protection_aura)
@@ -131,7 +129,7 @@
 			. += "Evacuation: [eta_status]"
 
 /mob/living/carbon/human/ex_act(severity, direction, datum/cause_data/cause_data)
-	if(body_position == LYING_DOWN)
+	if(lying)
 		severity *= EXPLOSION_PRONE_MULTIPLIER
 
 
@@ -170,7 +168,6 @@
 	var/obj/item/item1 = get_active_hand()
 	var/obj/item/item2 = get_inactive_hand()
 	apply_effect(round(knockdown_minus_armor), WEAKEN)
-	apply_effect(round(knockdown_minus_armor), STUN) // Remove this to let people crawl after an explosion. Funny but perhaps not desirable.
 	var/knockout_value = damage * 0.1
 	var/knockout_minus_armor = min(knockout_value * bomb_armor_mult * 0.5, 0.5 SECONDS) // the KO time is halved from the knockdown timer. basically same stun time, you just spend less time KO'd.
 	apply_effect(round(knockout_minus_armor), PARALYZE)
@@ -542,6 +539,49 @@
 						else if(U.has_sensor == oldsens)
 							U.set_sensors(usr)
 
+	if (href_list["squadfireteam"])
+
+		var/mob/living/carbon/human/target
+		var/mob/living/carbon/human/sl
+		if(href_list["squadfireteam_target"])
+			sl = src
+			for(var/mob/living/carbon/human/mar in sl.assigned_squad.marines_list)
+				if(href_list["squadfireteam_target"] == "\ref[mar]")
+					target = mar
+					break
+		else
+			sl = usr
+			target = src
+
+		if(sl.is_mob_incapacitated() || !hasHUD(sl,"squadleader"))
+			return
+
+		if(!target || !target.assigned_squad || !target.assigned_squad.squad_leader || target.assigned_squad.squad_leader != sl)
+			return
+
+		if(target.squad_status == "K.I.A.")
+			to_chat(sl, "[FONT_SIZE_BIG("<font color='red'>You can't assign K.I.A. marines to fireteams.</font>")]")
+			return
+
+		target.assigned_squad.manage_fireteams(target)
+
+	if (href_list["squad_status"])
+		var/mob/living/carbon/human/target
+		for(var/mob/living/carbon/human/mar in assigned_squad.marines_list)
+			if(href_list["squad_status_target"] == "\ref[mar]")
+				target = mar
+				break
+		if(!istype(target))
+			return
+
+		if(is_mob_incapacitated() && !hasHUD(src,"squadleader"))
+			return
+
+		if(!target.assigned_squad || !target.assigned_squad.squad_leader || target.assigned_squad.squad_leader != src)
+			return
+
+		assigned_squad.change_squad_status(target)
+
 	if(href_list["criminal"])
 		if(hasHUD(usr,"security"))
 			var/modified = 0
@@ -570,7 +610,7 @@
 				to_chat(usr, SPAN_DANGER("Unable to locate a data core entry for this person."))
 
 	if(href_list["secrecord"])
-		if(hasHUD(usr,"security") || isobserver(usr))
+		if(hasHUD(usr,"security"))
 			var/perpref = null
 			var/read = 0
 
@@ -582,7 +622,7 @@
 				if(E.fields["ref"] == perpref)
 					for(var/datum/data/record/R in GLOB.data_core.security)
 						if(R.fields["id"] == E.fields["id"])
-							if(hasHUD(usr,"security") || isobserver(usr))
+							if(hasHUD(usr,"security"))
 								to_chat(usr, "<b>Name:</b> [R.fields["name"]] <b>Criminal Status:</b> [R.fields["criminal"]]")
 								to_chat(usr, "<b>Incidents:</b> [R.fields["incident"]]")
 								to_chat(usr, "<a href='?src=\ref[src];secrecordComment=1'>\[View Comment Log\]</a>")
@@ -591,7 +631,7 @@
 			if(!read)
 				to_chat(usr, SPAN_DANGER("Unable to locate a data core entry for this person."))
 
-	if(href_list["secrecordComment"] && (hasHUD(usr,"security") || isobserver(usr)))
+	if(href_list["secrecordComment"] && hasHUD(usr,"security"))
 		var/perpref = null
 		if(wear_id)
 			var/obj/item/card/id/ID = wear_id.GetID()
@@ -620,8 +660,7 @@
 							continue
 						comment_markup += text("<i>Comment deleted by [] at []</i><br />", comment["deleted_by"], comment["deleted_at"])
 					to_chat(usr, comment_markup)
-					if(!isobserver(usr))
-						to_chat(usr, "<a href='?src=\ref[src];secrecordadd=1'>\[Add comment\]</a><br />")
+					to_chat(usr, "<a href='?src=\ref[src];secrecordadd=1'>\[Add comment\]</a><br />")
 
 		if(!read)
 			to_chat(usr, SPAN_DANGER("Unable to locate a data core entry for this person."))
@@ -1008,7 +1047,7 @@
 
 
 /mob/living/carbon/human/proc/handle_embedded_objects()
-	if((stat == DEAD) || body_position || buckled) // Shouldnt be needed, but better safe than sorry
+	if((stat == DEAD) || lying || buckled) // Shouldnt be needed, but better safe than sorry
 		return
 
 	for(var/obj/item/W in embedded_items)
@@ -1080,6 +1119,53 @@
 	var/dat = GLOB.data_core.get_manifest()
 
 	show_browser(src, dat, "Crew Manifest", "manifest", "size=400x750")
+
+/mob/living/carbon/human/verb/view_objective_memory()
+	set name = "View objectives"
+	set category = "IC"
+
+	if(!mind)
+		to_chat(src, "The game appears to have misplaced your mind datum.")
+		return
+
+	if(!skillcheck(usr, SKILL_INTEL, SKILL_INTEL_TRAINED) || faction != FACTION_MARINE && !(faction in FACTION_LIST_WY))
+		to_chat(usr, SPAN_WARNING("You have no access to the [MAIN_SHIP_NAME] intel network."))
+		return
+
+	mind.view_objective_memories(src)
+
+/mob/living/carbon/human/verb/view_research_objective_memory()
+	set name = "View research objectives"
+	set category = "IC"
+
+	if(!mind)
+		to_chat(src, "The game appears to have misplaced your mind datum.")
+		return
+
+	if(!skillcheck(usr, SKILL_RESEARCH, SKILL_RESEARCH_TRAINED) || faction != FACTION_MARINE && !(faction in FACTION_LIST_WY))
+		to_chat(usr, SPAN_WARNING("You have no access to the [MAIN_SHIP_NAME] research network."))
+		return
+
+	mind.view_research_objective_memories(src)
+
+/mob/living/carbon/human/verb/purge_objective_memory()
+	set name = "Reset view objectives"
+	set category = "OOC.Fix"
+
+	if(!mind)
+		to_chat(src, "The game appears to have misplaced your mind datum.")
+		return
+
+	if(tgui_alert(src, "Remove the faulty entry?", "Confirm", list("Yes", "No"), 10 SECONDS) == "Yes")
+		for(var/datum/cm_objective/retrieve_data/disk/Objective in src.mind.objective_memory.disks)
+			if(!Objective.disk.disk_color || !Objective.disk.display_color)
+				src.mind.objective_memory.disks -= Objective
+	else
+		return
+
+	if(tgui_alert(src, "Did it work?", "Confirm", list("Yes", "No"), 10 SECONDS) == "No")
+		for(var/datum/cm_objective/Objective in src.mind.objective_memory.disks)
+			src.mind.objective_memory.disks -= Objective
 
 /mob/living/carbon/human/proc/set_species(new_species, default_colour)
 	if(!new_species)
@@ -1650,9 +1736,3 @@
 		return FALSE
 
 	. = ..()
-
-/mob/living/carbon/human/make_dizzy(amount)
-	dizziness = min(500, dizziness + amount) // store what will be new value
-													// clamped to max 500
-	if(dizziness > 100 && !is_dizzy)
-		INVOKE_ASYNC(src, PROC_REF(dizzy_process))

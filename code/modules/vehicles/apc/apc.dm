@@ -34,8 +34,6 @@ GLOBAL_LIST_EMPTY(command_apc_list)
 
 	movement_sound = 'sound/vehicles/tank_driving.ogg'
 
-	light_range = 4
-
 	var/gunner_view_buff = 10
 
 	hardpoints_allowed = list(
@@ -60,6 +58,8 @@ GLOBAL_LIST_EMPTY(command_apc_list)
 	)
 
 	vehicle_flags = VEHICLE_CLASS_LIGHT
+
+	mob_size_required_to_hit = MOB_SIZE_XENO
 
 	dmg_multipliers = list(
 		"all" = 1,
@@ -108,8 +108,6 @@ GLOBAL_LIST_EMPTY(command_apc_list)
 		add_verb(M.client, list(
 			/obj/vehicle/multitile/proc/toggle_door_lock,
 			/obj/vehicle/multitile/proc/activate_horn,
-			/obj/vehicle/multitile/proc/switch_hardpoint,
-			/obj/vehicle/multitile/proc/cycle_hardpoint,
 			/obj/vehicle/multitile/proc/name_vehicle
 		))
 	else if(seat == VEHICLE_GUNNER)
@@ -137,8 +135,6 @@ GLOBAL_LIST_EMPTY(command_apc_list)
 		remove_verb(M.client, list(
 			/obj/vehicle/multitile/proc/toggle_door_lock,
 			/obj/vehicle/multitile/proc/activate_horn,
-			/obj/vehicle/multitile/proc/switch_hardpoint,
-			/obj/vehicle/multitile/proc/cycle_hardpoint,
 			/obj/vehicle/multitile/proc/name_vehicle,
 		))
 	else if(seat == VEHICLE_GUNNER)
@@ -260,15 +256,8 @@ GLOBAL_LIST_EMPTY(command_apc_list)
 	handle_direction(APC)
 	APC.update_icon()
 
-	return APC
-
 /obj/effect/vehicle_spawner/apc/unarmed/load_hardpoints(obj/vehicle/multitile/apc/V)
 	return
-
-/obj/effect/vehicle_spawner/apc/unarmed/broken/spawn_vehicle()
-	var/obj/vehicle/multitile/apc/apc = ..()
-	load_damage(apc)
-	apc.update_icon()
 
 //PRESET: default hardpoints, destroyed
 /obj/effect/vehicle_spawner/apc/unarmed/decrepit/spawn_vehicle()

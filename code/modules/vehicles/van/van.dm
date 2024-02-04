@@ -41,8 +41,7 @@
 	movement_sound = 'sound/vehicles/tank_driving.ogg'
 	honk_sound = 'sound/vehicles/honk_2_truck.ogg'
 
-	light_range = 3
-	vehicle_light_range = 6
+	vehicle_light_range = 8
 
 	move_max_momentum = 3
 
@@ -56,6 +55,8 @@
 	req_one_access = list()
 
 	door_locked = FALSE
+
+	mob_size_required_to_hit = MOB_SIZE_XENO
 
 	var/overdrive_next = 0
 	var/overdrive_cooldown = 15 SECONDS
@@ -91,13 +92,13 @@
 	if(mover in mobs_under) //can't collide with the thing you're buckled to
 		return NO_BLOCKED_MOVEMENT
 
-	if(isliving(mover))
-		var/mob/living/M = mover
+	if(ismob(mover))
+		var/mob/M = mover
 		if(M.mob_flags & SQUEEZE_UNDER_VEHICLES)
 			add_under_van(M)
 			return NO_BLOCKED_MOVEMENT
 
-		if(M.body_position == LYING_DOWN)
+		if(M.lying)
 			return NO_BLOCKED_MOVEMENT
 
 		if(M.mob_size >= MOB_SIZE_IMMOBILE && next_push < world.time)

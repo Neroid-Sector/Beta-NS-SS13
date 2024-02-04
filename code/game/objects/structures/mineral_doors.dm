@@ -52,12 +52,13 @@
 	if(isSwitchingStates) return
 	if(ismob(user))
 		var/mob/M = user
-		if(iscarbon(M))
-			var/mob/living/carbon/C = M
-			if(!C.handcuffed)
+		if(M.client)
+			if(iscarbon(M))
+				var/mob/living/carbon/C = M
+				if(!C.handcuffed)
+					SwitchState()
+			else
 				SwitchState()
-		else
-			SwitchState()
 
 /obj/structure/mineral_door/proc/SwitchState()
 	if(state)

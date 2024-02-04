@@ -134,7 +134,6 @@
 	to_chat(brainmob, SPAN_NOTICE(" Radio is [radio.listening==1 ? "now" : "no longer"] receiving broadcast. "))
 
 /obj/item/device/mmi/emp_act(severity)
-	. = ..()
 	if(!brainmob)
 		return
 	else
@@ -145,3 +144,4 @@
 				brainmob.emp_damage += rand(10,20)
 			if(3)
 				brainmob.emp_damage += rand(0,10)
+	..()

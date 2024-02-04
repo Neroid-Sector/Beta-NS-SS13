@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN 8
-#define SAVEFILE_VERSION_MAX 22
+#define SAVEFILE_VERSION_MAX 21
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -89,19 +89,12 @@
 			dual_wield_pref = DUAL_WIELD_FIRE
 		S["dual_wield_pref"] << dual_wield_pref
 
-	if(savefile_version < 22)
-		var/temp_ooccolor
-		S["ooccolor"] >> temp_ooccolor
-		if(temp_ooccolor == "#b82e00")
-			temp_ooccolor = "#1c52f5"
-		S["ooccolor"] << temp_ooccolor
-
 	savefile_version = SAVEFILE_VERSION_MAX
 	return 1
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey) return
-	path = "[CONFIG_GET(string/playersave_path)]/[copytext(ckey,1,2)]/[ckey]/[filename]"
+	path = "data/player_saves/[copytext(ckey,1,2)]/[ckey]/[filename]"
 	savefile_version = SAVEFILE_VERSION_MAX
 
 /proc/sanitize_keybindings(value)
@@ -115,27 +108,10 @@
 	return base_bindings
 
 /datum/preferences/proc/load_preferences()
-	if(!path)
-		return FALSE
-
-	if(!fexists(path))
-		return FALSE
-
+	if(!path) return 0
+	if(!fexists(path)) return 0
 	var/savefile/S = new /savefile(path)
-	if(!S)
-		return FALSE
-
-	if(!S.Lock())
-		to_chat(owner, SPAN_BOLDWARNING("Failed to load your preferences file. It may be in use by another process. Please try again."))
-
-		var/options = tgui_alert(owner, "Failed to load your preferences file. It may be in use by another process. Please try again.", "Failed to Load", list("Retry", "Disconnect"), timeout = FALSE)
-		if(options != "Retry")
-			qdel(owner, force = TRUE)
-			return FALSE
-
-		load_preferences()
-		return FALSE
-
+	if(!S) return 0
 	S.cd = "/"
 
 	S["version"] >> savefile_version
@@ -232,7 +208,7 @@
 	S["tooltips"] >> tooltips
 
 	//Sanitize
-	ooccolor = sanitize_hexcolor(ooccolor, CONFIG_GET(string/ooc_color_normal))
+	ooccolor = sanitize_hexcolor(ooccolor, CONFIG_GET(string/ooc_color_default))
 	lastchangelog = sanitize_text(lastchangelog, initial(lastchangelog))
 	UI_style = sanitize_inlist(UI_style, list("white", "dark", "midnight", "orange", "old"), initial(UI_style))
 	tgui_say = sanitize_integer(tgui_say, FALSE, TRUE, TRUE)
@@ -314,8 +290,6 @@
 
 	S["remembered_key_bindings"] << GLOB.keybindings_by_name
 
-	S.Unlock()
-
 	if(toggles_chat & SHOW_TYPING)
 		owner.typing_indicators = FALSE
 	else
@@ -331,9 +305,6 @@
 		return FALSE
 	var/savefile/S = new /savefile(path)
 	if(!S)
-		return FALSE
-	if(!S.Lock())
-		to_chat(owner, SPAN_BOLDWARNING("Failed to save your preferences file - it may be in use by another process. Please try again."))
 		return FALSE
 	S.cd = "/"
 
@@ -421,29 +392,15 @@
 	S["no_radial_labels_preference"] << no_radial_labels_preference
 	S["custom_cursors"] << custom_cursors
 
-	S.Unlock()
-
 	return TRUE
 
 /datum/preferences/proc/load_character(slot)
-	if(!path)
-		return FALSE
-
-	if(!fexists(path))
-		return FALSE
-
+	if(!path) return 0
+	if(!fexists(path)) return 0
 	var/savefile/S = new /savefile(path)
-	if(!S)
-		return FALSE
-
-	if(!S.Lock())
-		to_chat(owner, SPAN_BOLDWARNING("Failed to load your character slot - it may be in use by another process. Please try again."))
-		return FALSE
-
+	if(!S) return 0
 	S.cd = "/"
-
-	if(!slot)
-		slot = default_slot
+	if(!slot) slot = default_slot
 	slot = sanitize_integer(slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
 	if(slot != default_slot)
 		default_slot = slot
@@ -521,8 +478,6 @@
 	S["uplinklocation"] >> uplinklocation
 	S["exploit_record"] >> exploit_record
 
-	S.Unlock()
-
 	//Sanitize
 	metadata = sanitize_text(metadata, initial(metadata))
 	real_name = reject_bad_name(real_name)
@@ -569,7 +524,7 @@
 	preferred_armor = sanitize_inlist(preferred_armor, GLOB.armor_style_list, "Random")
 	//b_type = sanitize_text(b_type, initial(b_type))
 
-	alternate_option = sanitize_integer(alternate_option, 0, 2, initial(alternate_option))
+	alternate_option = sanitize_integer(alternate_option, 0, 3, initial(alternate_option))
 	if(!job_preference_list)
 		ResetJobs()
 	else
@@ -594,16 +549,9 @@
 	return 1
 
 /datum/preferences/proc/save_character()
-	if(!path)
-		return FALSE
+	if(!path) return 0
 	var/savefile/S = new /savefile(path)
-	if(!S)
-		return FALSE
-
-	if(!S.Lock())
-		to_chat(owner, SPAN_BOLDWARNING("Failed to save your character slot - it may be in use by another process. Please try again."))
-		return FALSE
-
+	if(!S) return 0
 	S.cd = "/character[default_slot]"
 
 	//Character
@@ -675,9 +623,7 @@
 	S["uplinklocation"] << uplinklocation
 	S["exploit_record"] << exploit_record
 
-	S.Unlock()
-
-	return TRUE
+	return 1
 
 /// checks through keybindings for outdated unbound keys and updates them
 /datum/preferences/proc/check_keybindings()

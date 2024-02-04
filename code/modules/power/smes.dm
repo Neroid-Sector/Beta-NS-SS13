@@ -390,7 +390,6 @@
 
 
 /obj/structure/machinery/power/smes/emp_act(severity)
-	. = ..()
 	outputting = 0
 	inputting = 0
 	output_level = 0
@@ -401,6 +400,7 @@
 		output_level = initial(output_level)
 		inputting = initial(inputting)
 		outputting = initial(outputting)
+	..()
 
 
 

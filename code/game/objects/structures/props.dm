@@ -11,7 +11,6 @@
 
 /obj/structure/prop/dam
 	density = TRUE
-	unslashable = TRUE
 
 /obj/structure/prop/dam/drill
 	name = "mining drill"
@@ -449,7 +448,6 @@
 	desc = "A rack full of hard drives, micro-computers, and ethernet cables."
 	icon = 'icons/obj/structures/props/server_equipment.dmi'
 	icon_state = "rackframe"
-	unslashable = TRUE
 	density = TRUE
 	health = 150
 
@@ -555,7 +553,6 @@
 	bound_width = 64
 	bound_height = 64
 	desc = "A passive electrical component that controls where and which circuits power flows into."
-	unslashable = TRUE
 
 //cash registers
 
@@ -565,7 +562,6 @@
 	icon = 'icons/obj/structures/props/cash_register.dmi'
 	icon_state = "cash_register"
 	density = TRUE
-	unslashable = TRUE
 	health = 50
 
 /obj/structure/prop/cash_register/open
@@ -588,7 +584,6 @@
 	desc = "Like rebar, but in space."
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "structure_lattice"
-	unslashable = TRUE
 	density = TRUE //impassable by default
 
 /obj/structure/prop/resin_prop
@@ -596,7 +591,6 @@
 	desc = "Well, it's useless now."
 	icon = 'icons/obj/resin_objects.dmi'
 	icon_state = "watertank"
-	unslashable = TRUE
 
 //industructible props
 /obj/structure/prop/invuln
@@ -658,7 +652,6 @@
 	health = 150
 	light_range = 6
 	light_on = TRUE
-	unslashable = TRUE
 	/// What obj this becomes when it gets to its next stage of construction / ignition
 	var/frame_type
 	/// What is used to progress to the next stage
@@ -812,14 +805,14 @@
 
 /obj/structure/prop/brazier/campfire/attackby(obj/item/attacking_item, mob/user)
 	if(!istype(attacking_item, /obj/item/stack/sheet/wood))
-		to_chat(user, SPAN_NOTICE("You cannot fuel [src] with [attacking_item]."))
+		to_chat(SPAN_NOTICE("You cannot fuel [src] with [attacking_item]."))
 		return
 	var/obj/item/stack/sheet/wood/fuel = attacking_item
 	if(remaining_fuel >= initial(remaining_fuel))
 		to_chat(user, SPAN_NOTICE("You cannot fuel [src] further."))
 		return
 	if(!fuel.use(1))
-		to_chat(user, SPAN_NOTICE("You do not have enough [attacking_item] to fuel [src]."))
+		to_chat(SPAN_NOTICE("You do not have enough [attacking_item] to fuel [src]."))
 		return
 	visible_message(SPAN_NOTICE("[user] fuels [src] with [fuel]."))
 	remaining_fuel++
@@ -862,7 +855,6 @@
 	desc = "Call a coder (or a mapper) you shouldn't be seeing this!"
 	icon = 'icons/obj/structures/props/ice_colony/props.dmi'
 	projectile_coverage = 10
-	unslashable = TRUE
 
 /obj/structure/prop/ice_colony/soil_net
 	name = "soil net"
@@ -953,7 +945,6 @@
 	layer = 4
 	health = 50
 	anchored = TRUE
-	unslashable = TRUE
 
 /obj/structure/prop/holidays/string_lights
 	name = "M1 pattern festive bulb strings"
@@ -1016,7 +1007,6 @@
 	icon = 'icons/obj/structures/props/generic_props.dmi'
 	icon_state = "tank"
 	density = TRUE
-	unslashable = TRUE
 
 /obj/structure/prop/static_tank/fuel
 	desc = "It contains Decatuxole-Hypospaldirol. A non-volatile liquid fuel type that tastes like oranges. Can't really be used for anything outside of atmos-rocket boosters."
@@ -1301,7 +1291,6 @@
 	desc = "A console designed by the Hunters to assist in flight pathing and navigation."
 	icon = 'icons/obj/structures/machinery/computer.dmi'
 	icon_state = "overwatch"
-	unslashable = TRUE
 	density = TRUE
 
 /obj/structure/prop/invuln/joey

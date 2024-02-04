@@ -28,23 +28,15 @@
 		/obj/structure/machinery/cm_vending/sorted/cargo_guns/cargo/blend,
 	)
 
-	/// The type of wall decoration we use, to avoid the wall changing icon all the time
-	var/decoration_type
-
-/turf/closed/wall/almayer/Initialize(mapload, ...)
-	if(!special_icon && prob(20))
-		decoration_type = rand(0,3)
-	return ..()
-
 /turf/closed/wall/almayer/update_icon()
-	if(decoration_type == null)
-		return ..()
+	..()
+	if(special_icon)
+		return
 	if(neighbors_list in list(EAST|WEST))
-		special_icon = TRUE
-		icon_state = "almayer_deco_wall[decoration_type]"
-	else // Wall connection was broken, return to normality
-		special_icon = FALSE
-	return ..()
+		var/r1 = rand(0,10) //Make a random chance for this to happen
+		var/r2 = rand(0,3) // Which wall if we do choose it
+		if(r1 >= 9)
+			overlays += image(icon, icon_state = "almayer_deco_wall[r2]")
 
 /turf/closed/wall/almayer/take_damage(dam, mob/M)
 	var/damage_check = max(0, damage + dam)
@@ -1227,7 +1219,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/wall/indestructible/splashscreen)
 	to_chat(user, SPAN_WARNING("You scrape ineffectively at \the [src]."))
 
 /turf/closed/wall/resin/attackby(obj/item/W, mob/living/user)
-	if(SEND_SIGNAL(src, COMSIG_WALL_RESIN_ATTACKBY, W, user) & COMPONENT_CANCEL_RESIN_ATTACKBY)
+	if(SEND_SIGNAL(src, COMSIG_WALL_RESIN_ATTACKBY, W, user) & COMPONENT_CANCEL_ATTACKBY)
 		return
 
 	if(!(W.flags_item & NOBLUDGEON))

@@ -16,7 +16,7 @@
 	set name = "Adjust mask"
 	set src in usr
 
-	if(usr.is_mob_incapacitated())
+	if(usr.canmove && !usr.stat && !usr.is_mob_restrained())
 		if(!src.hanging)
 			src.hanging = !src.hanging
 			gas_transfer_coefficient = 1 //gas is now escaping to the turf and vice versa

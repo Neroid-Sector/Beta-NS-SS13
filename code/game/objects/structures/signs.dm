@@ -3,7 +3,6 @@
 	anchored = TRUE
 	opacity = FALSE
 	density = FALSE
-	unslashable = TRUE
 	layer = WALL_OBJ_LAYER
 
 /obj/structure/sign/ex_act(severity)
@@ -107,11 +106,6 @@
 	name = "\improper Maximum Effort banner"
 	desc = "This banner depicts Delta Squad's motto. The Marines of Delta Squad adopted it after picking an old bomber movie for movie night a while back."
 	icon_state = "maximumeffort"
-
-/obj/structure/sign/banners/united_americas_flag
-	name = "\improper United Americas flag"
-	desc = "A flag of the United Americas. Inspires patriotism, fear, or revulsion depending on the viewer's political leanings."
-	icon_state = "ua_flag"
 
 //=====================//
 // SEMIOTIC STANDARD  //

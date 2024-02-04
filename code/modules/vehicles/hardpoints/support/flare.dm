@@ -19,8 +19,6 @@
 
 	origins = list(0, -2)
 
-	allowed_seat = VEHICLE_DRIVER
-
 	ammo = new /obj/item/ammo_magazine/hardpoint/flare_launcher
 	max_clips = 3
 
