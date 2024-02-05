@@ -1087,3 +1087,7 @@ cases. Override_icon_state should be a list.*/
 ///Called by /mob/living/carbon/swap_hand() when hands are swapped
 /obj/item/proc/hands_swapped(mob/living/carbon/swapper_of_hands)
 	return
+
+/obj/item/attack_alien(mob/living/carbon/xenomorph/M)
+    . = ..()
+    attack_hand(M)
