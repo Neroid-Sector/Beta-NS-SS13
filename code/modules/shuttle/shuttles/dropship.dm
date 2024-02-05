@@ -105,7 +105,7 @@
 			return
 
 /obj/docking_port/mobile/marine_dropship/midway
-	name = "Midway"
+	name = "Rio De Janeiro"
 	id = DROPSHIP_MIDWAY
 	width = 9
 	height = 18
@@ -301,7 +301,7 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_GROUNDSIDE_FORSAKEN_HANDLING)
 
 /datum/map_template/shuttle/midway
-	name = "Midway"
+	name = "Rio De Janeiro"
 	shuttle_id = DROPSHIP_MIDWAY
 
 /datum/map_template/shuttle/alamo

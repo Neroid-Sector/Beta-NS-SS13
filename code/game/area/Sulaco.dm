@@ -111,7 +111,7 @@
 	icon_state = "away2"
 
 /area/shuttle/midway
-	name = "\improper Dropship Midway"
+	name = "\improper Dropship Rio De Janeiro"
 	icon_state = "shuttlered"
 	base_muffle = MUFFLE_HIGH
 	soundscape_interval = 30

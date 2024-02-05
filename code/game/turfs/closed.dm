@@ -260,7 +260,7 @@
 	opacity = FALSE
 
 /turf/closed/shuttle/midway
-	name = "\improper Midway"
+	name = "\improper Rio De Janeiro"
 	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
 

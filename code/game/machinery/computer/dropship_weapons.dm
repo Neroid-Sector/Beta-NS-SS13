@@ -726,7 +726,7 @@
 	QDEL_NULL(firemission_envelope)
 
 /obj/structure/machinery/computer/dropship_weapons/midway
-	name = "\improper 'Midway' weapons controls"
+	name = "\improper 'Rio De Janeiro' weapons controls"
 	shuttle_tag = DROPSHIP_MIDWAY
 
 /obj/structure/machinery/computer/dropship_weapons/dropship1
