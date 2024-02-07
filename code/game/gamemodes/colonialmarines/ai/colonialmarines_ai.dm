@@ -4,7 +4,7 @@
 	required_players = 0
 	votable = TRUE
 
-	flags_round_type = MODE_INFESTATION|MODE_NEW_SPAWN|MODE_NO_XENO_EVOLVE
+	flags_round_type = MODE_INFESTATION|MODE_NEW_SPAWN
 
 	var/list/squad_limit = list(
 		/datum/squad/marine/alpha
@@ -16,17 +16,20 @@
 	var/game_started = FALSE
 
 	role_mappings = list(
+		/datum/job/command/commander = JOB_CO,
 		/datum/job/command/bridge/ai = JOB_SO,
 		/datum/job/marine/leader/ai = JOB_SQUAD_LEADER,
 		/datum/job/marine/medic/ai = JOB_SQUAD_MEDIC,
 		/datum/job/marine/tl/ai = JOB_SQUAD_TEAM_LEADER,
 		/datum/job/marine/smartgunner/ai = JOB_SQUAD_SMARTGUN,
 		/datum/job/marine/standard/ai = JOB_SQUAD_MARINE,
+		/datum/job/marine/specialist = JOB_SQUAD_SPECIALIST,
+		/datum/job/civilian/synthetic = JOB_SYNTH,
 	)
 
 	static_comms_amount = 0
 	requires_comms = FALSE
-	toggleable_flags = MODE_NO_JOIN_AS_XENO|MODE_HARDCORE_PERMA
+	toggleable_flags = MODE_NO_JOIN_AS_XENO
 
 /datum/game_mode/colonialmarines/ai/can_start()
 	return ..()

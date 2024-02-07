@@ -1504,6 +1504,25 @@
 	xeno_message(SPAN_XENOANNOUNCE("You sense that [english_list(defectors)] turned their backs against their sisters and the Queen in favor of their slavemasters!"), 3, hivenumber)
 	defectors.Cut()
 
+/datum/hive_status/corrupted/renegade/synthetic
+	name = "Synthetic Hive"
+	reporting_id = "synthetic"
+	hivenumber = XENO_HIVE_SYNTHETIC
+	prefix = "Synthetic "
+	color = "#6eeb52"
+
+	dynamic_evolution = FALSE
+	allow_no_queen_actions = TRUE
+	allow_no_queen_evo = TRUE
+	allow_queen_evolve = TRUE
+	ignore_slots = TRUE
+	latejoin_burrowed = FALSE
+
+/datum/hive_status/corrupted/renegade/synthetic/New()
+	. = ..()
+	hive_structures_limit[XENO_STRUCTURE_EGGMORPH] = 5
+	hive_structures_limit[XENO_STRUCTURE_EVOPOD] = 5
+
 //Xeno Resin Mark Shit, the very best place for it too :0)
 //Defines at the bottom of this list here will show up at the top in the mark menu
 /datum/xeno_mark_define
