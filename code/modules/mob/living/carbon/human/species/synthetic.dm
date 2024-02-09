@@ -13,10 +13,10 @@
 
 	bloodsplatter_type = /obj/effect/temp_visual/dir_setting/bloodsplatter/synthsplatter
 
-	total_health = 150 //more health than regular humans
+	total_health = 270 //more health than regular humans
 
 	brute_mod = 0.5
-	burn_mod = 0.9 //a small bit of resistance
+	burn_mod = 0.75 //a small bit of resistance
 
 	cold_level_1 = -1
 	cold_level_2 = -1
@@ -29,7 +29,7 @@
 	body_temperature = 350
 
 	mob_flags = KNOWS_TECHNOLOGY
-	flags = IS_WHITELISTED|NO_BREATHE|NO_CLONE_LOSS|NO_BLOOD|NO_POISON|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_NEURO|HAS_UNDERWEAR
+	flags = NO_BREATHE|NO_CLONE_LOSS|NO_BLOOD|NO_POISON|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_NEURO|HAS_UNDERWEAR
 
 	blood_color = BLOOD_COLOR_SYNTHETIC
 

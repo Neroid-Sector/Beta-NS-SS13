@@ -1,6 +1,8 @@
 
 #define LCPL_VARIANT "Lance Corporal"
 #define CPL_VARIANT "Corporal"
+#define SGT_VARIANT "Sergeant"
+
 
 /datum/job/marine/smartgunner
 	title = JOB_SQUAD_SMARTGUN
@@ -12,7 +14,7 @@
 	gear_preset = /datum/equipment_preset/uscm/sg
 	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>You are the smartgunner.</a> Your task is to provide heavy weapons support."
 
-	job_options = list(CPL_VARIANT = "CPL", LCPL_VARIANT = "LCPL")
+	job_options = list(CPL_VARIANT = "CPL", LCPL_VARIANT = "LCPL", SGT_VARIANT = "SGT")
 
 /datum/job/marine/smartgunner/set_spawn_positions(count)
 	spawn_positions = sg_slot_formula(count)
@@ -77,3 +79,4 @@ AddTimelock(/datum/job/marine/smartgunner, list(
 
 #undef LCPL_VARIANT
 #undef CPL_VARIANT
+#undef SGT_VARIANT

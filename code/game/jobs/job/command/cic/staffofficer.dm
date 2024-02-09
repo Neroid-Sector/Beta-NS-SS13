@@ -1,6 +1,7 @@
 
 #define SECOND_LT_VARIANT "Second Lieutenant"
 #define FIRST_LT_VARIANT "First Lieutenant"
+#define CAPTAIN_VARIANT "Captain"
 
 /datum/job/command/bridge
 	title = JOB_SO
@@ -12,7 +13,7 @@
 	gear_preset = /datum/equipment_preset/uscm_ship/so
 	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>Your job is to monitor the Marines, man the CIC, and listen to your superior officers.</a> You are in charge of logistics and the overwatch system. You are also in line to take command after other eligible superior commissioned officers."
 
-	job_options = list(FIRST_LT_VARIANT = "1stLt", SECOND_LT_VARIANT = "2ndLt")
+	job_options = list(FIRST_LT_VARIANT = "1stLt", SECOND_LT_VARIANT = "2ndLt", CAPTAIN_VARIANT = "CPT")
 
 /datum/job/command/bridge/set_spawn_positions(count)
 	spawn_positions = so_slot_formula(count)
@@ -60,3 +61,4 @@ AddTimelock(/datum/job/command/bridge, list(
 
 #undef SECOND_LT_VARIANT
 #undef FIRST_LT_VARIANT
+#undef CAPTAIN_VARIANT

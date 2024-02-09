@@ -27,8 +27,8 @@
 		/datum/job/civilian/synthetic = JOB_SYNTH,
 	)
 
-	static_comms_amount = 0
-	requires_comms = FALSE
+	static_comms_amount = 4
+	requires_comms = TRUE
 	toggleable_flags = MODE_NO_JOIN_AS_XENO
 
 /datum/game_mode/colonialmarines/ai/can_start()

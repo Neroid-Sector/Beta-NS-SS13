@@ -1,6 +1,8 @@
 
 #define SSGT_VARIANT "Staff Sergeant"
 #define GYSGT_VARIANT "Gunnery Sergeant"
+#define MSGT_VARIANT "Master Sergeant"
+#define FIRSTSGT_VARIANT "First Sergeant"
 
 /datum/job/marine/leader
 	title = JOB_SQUAD_LEADER
@@ -11,7 +13,7 @@
 	gear_preset = /datum/equipment_preset/uscm/leader
 	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>You are responsible for the men and women of your squad.</a> Make sure they are on task, working together, and communicating. You are also in charge of communicating with command and letting them know about the situation first hand. Keep out of harm's way."
 
-	job_options = list(GYSGT_VARIANT = "GYSGT", SSGT_VARIANT = "SSGT")
+	job_options = list(GYSGT_VARIANT = "GYSGT", SSGT_VARIANT = "SSGT", MSGT_VARIANT = "MSGT", FIRSTSGT_VARIANT= "1SGT")
 
 /datum/job/marine/leader/handle_job_options(option)
 	if(option != GYSGT_VARIANT)
@@ -55,3 +57,5 @@ AddTimelock(/datum/job/marine/leader, list(
 
 #undef SSGT_VARIANT
 #undef GYSGT_VARIANT
+#undef MSGT_VARIANT
+#undef FIRSTSGT_VARIANT

@@ -15,6 +15,12 @@
 	icon_state = "rasputin6"
 	},
 /area/shuttle/midway)
+"bM" = (
+/obj/item/dartboard,
+/turf/closed/shuttle/midway{
+	icon_state = "54"
+	},
+/area/shuttle/midway)
 "dr" = (
 /obj/structure/machinery/door_control{
 	id = "dropship_midway";
@@ -164,6 +170,12 @@
 	icon_state = "104"
 	},
 /area/shuttle/midway)
+"md" = (
+/obj/item/dartboard,
+/turf/closed/shuttle/midway{
+	icon_state = "42"
+	},
+/area/shuttle/midway)
 "mh" = (
 /obj/structure/shuttle/part/dropship1/right_inner_wing_connector{
 	name = "\improper Midway"
@@ -218,6 +230,7 @@
 	},
 /area/shuttle/midway)
 "rq" = (
+/obj/item/dartboard,
 /turf/closed/shuttle/midway{
 	icon_state = "77"
 	},
@@ -685,6 +698,7 @@
 	},
 /area/shuttle/midway)
 "Yr" = (
+/obj/item/dartboard,
 /turf/closed/shuttle/midway{
 	icon_state = "81"
 	},
@@ -759,7 +773,7 @@ jy
 ME
 dr
 BI
-dE
+md
 dE
 Bn
 hl
@@ -796,12 +810,12 @@ PP
 jW
 Dg
 WN
-ME
+Id
 Qk
 Id
 kC
 ME
-ME
+Id
 ME
 ME
 Kw
@@ -839,7 +853,7 @@ xy
 ME
 dr
 Lr
-yB
+bM
 yB
 sl
 Ed

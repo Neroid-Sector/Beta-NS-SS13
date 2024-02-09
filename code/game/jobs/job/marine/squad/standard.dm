@@ -2,6 +2,7 @@
 
 #define PVT_VARIANT "Private"
 #define PFC_VARIANT "Private First Class"
+#define LCPL_VARIANT "Lance Corporal"
 
 /datum/job/marine/standard
 	title = JOB_SQUAD_MARINE
@@ -10,7 +11,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_SQUAD
 	gear_preset = /datum/equipment_preset/uscm/pfc
 
-	job_options = list(PFC_VARIANT = "PFC", PVT_VARIANT = "PVT")
+	job_options = list(PFC_VARIANT = "PFC", PVT_VARIANT = "PVT", LCPL_VARIANT = "LCPL")
 
 /datum/job/marine/standard/on_config_load()
 	entry_message_body = "You are a rank-and-file <a href='[CONFIG_GET(string/wikiarticleurl)]/[URL_WIKI_MARINE_QUICKSTART]'>Marine of the USCM</a>, and that is your strength. What you lack alone, you gain standing shoulder to shoulder with the men and women of the corps. Ooh-rah!"
@@ -60,3 +61,4 @@
 
 #undef PVT_VARIANT
 #undef PFC_VARIANT
+#undef LCPL_VARIANT

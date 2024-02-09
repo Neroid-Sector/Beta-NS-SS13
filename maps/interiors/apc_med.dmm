@@ -11,6 +11,7 @@
 	pixel_x = -5
 	},
 /obj/item/device/defibrillator,
+/obj/item/storage/surgical_tray,
 /turf/open/shuttle/vehicle{
 	icon_state = "dark_sterile_green_11"
 	},
@@ -102,6 +103,7 @@
 	icon_state = "triagedecaltop";
 	pixel_y = -2
 	},
+/obj/structure/machinery/optable,
 /turf/open/shuttle/vehicle{
 	icon_state = "dark_sterile_green_7"
 	},
@@ -228,7 +230,6 @@
 /obj/structure/machinery/iv_drip{
 	anchored = 1
 	},
-/obj/structure/bed/roller,
 /obj/effect/landmark/interior/spawn/interior_viewport{
 	pixel_x = -6;
 	pixel_y = 23

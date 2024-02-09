@@ -10,7 +10,6 @@
 		WEAR_R_HAND = 'icons/mob/humans/onmob/hunter/items_righthand.dmi'
 	)
 	flags_equip_slot = SLOT_EAR
-	flags_item = ITEM_PREDATOR
 	flags_atom = FPRINT|USES_HEARING
 
 
@@ -49,13 +48,6 @@
 		return
 
 	var/mob/living/carbon/human/H = usr
-	if(!istype(H) || !HAS_TRAIT(usr, TRAIT_YAUTJA_TECH))
-		to_chat(usr, SPAN_WARNING("You do not know how to use this."))
-		return
-
-	if(!istype(H.gloves, /obj/item/clothing/gloves/yautja))
-		to_chat(usr, SPAN_WARNING("You need your bracers to control \the [src]!"))
-		return
 
 	var/mob/hologram/falcon/hologram = new /mob/hologram/falcon(usr.loc, usr, src, H.gloves)
 	usr.drop_inv_item_to_loc(src, hologram)
