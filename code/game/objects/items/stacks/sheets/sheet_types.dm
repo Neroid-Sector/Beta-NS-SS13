@@ -256,24 +256,6 @@ var/global/list/datum/stack_recipe/cardboard_recipes = list ( \
 		new/datum/stack_recipe("empty magazine box (M41A Incen)", /obj/item/ammo_box/magazine/incen/empty), \
 		new/datum/stack_recipe("empty magazine box (M41A LE)", /obj/item/ammo_box/magazine/le/empty), \
 		null, \
-		new/datum/stack_recipe("empty magazine box (XM51)", /obj/item/ammo_box/magazine/xm51/empty), \
-		null, \
-		new/datum/stack_recipe("empty magazine box (M41A MK1)", /obj/item/ammo_box/magazine/mk1/empty), \
-		new/datum/stack_recipe("empty magazine box (M41A MK1 AP)", /obj/item/ammo_box/magazine/mk1/ap/empty), \
-		null, \
-		new/datum/stack_recipe("empty drum box (M56B)", /obj/item/ammo_box/magazine/m56b/empty), \
-		new/datum/stack_recipe("empty drum box (M56B Irradiated)", /obj/item/ammo_box/magazine/m56b/dirty/empty), \
-		new/datum/stack_recipe("empty drum box (M56D)", /obj/item/ammo_box/magazine/m56d/empty), \
-		null, \
-		new/datum/stack_recipe("empty drum box (M2C)", /obj/item/ammo_box/magazine/m2c/empty), \
-		null, \
-		new/datum/stack_recipe("empty magazine box (M41AE2)", /obj/item/ammo_box/magazine/m41ae2/empty), \
-		new/datum/stack_recipe("empty magazine box (M41AE2 Holo-Target)", /obj/item/ammo_box/magazine/m41ae2/holo/empty), \
-		new/datum/stack_recipe("empty magazine box (M41AE2 HEAP)", /obj/item/ammo_box/magazine/m41ae2/heap/empty), \
-		null, \
-		new/datum/stack_recipe("empty flamer tank box (UT-Napthal)", /obj/item/ammo_box/magazine/flamer/empty), \
-		new/datum/stack_recipe("empty flamer tank box (Napalm B-Gel)", /obj/item/ammo_box/magazine/flamer/bgel/empty), \
-		null, \
 		new/datum/stack_recipe("empty shotgun shell box (Beanbag)", /obj/item/ammo_box/magazine/shotgun/beanbag/empty), \
 		new/datum/stack_recipe("empty shotgun shell box (Buckshot)", /obj/item/ammo_box/magazine/shotgun/buckshot/empty), \
 		new/datum/stack_recipe("empty shotgun shell box (Flechette)", /obj/item/ammo_box/magazine/shotgun/flechette/empty), \
