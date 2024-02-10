@@ -16,15 +16,12 @@
 	var/game_started = FALSE
 
 	role_mappings = list(
-		/datum/job/command/commander = JOB_CO,
 		/datum/job/command/bridge/ai = JOB_SO,
 		/datum/job/marine/leader/ai = JOB_SQUAD_LEADER,
 		/datum/job/marine/medic/ai = JOB_SQUAD_MEDIC,
 		/datum/job/marine/tl/ai = JOB_SQUAD_TEAM_LEADER,
 		/datum/job/marine/smartgunner/ai = JOB_SQUAD_SMARTGUN,
 		/datum/job/marine/standard/ai = JOB_SQUAD_MARINE,
-		/datum/job/marine/specialist = JOB_SQUAD_SPECIALIST,
-		/datum/job/civilian/synthetic = JOB_SYNTH,
 	)
 
 	static_comms_amount = 4

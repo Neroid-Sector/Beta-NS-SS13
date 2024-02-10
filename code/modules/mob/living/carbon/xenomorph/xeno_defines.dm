@@ -1495,7 +1495,7 @@
 	reporting_id = "synthetic"
 	hivenumber = XENO_HIVE_SYNTHETIC
 	prefix = "Synthetic "
-	color = "#6eeb52"
+	color = "#61dafc"
 
 	dynamic_evolution = FALSE
 	allow_no_queen_actions = TRUE
