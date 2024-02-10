@@ -72,9 +72,9 @@
 		return FALSE
 
 	// Create their vis object if needed
-	if(!xeno.backpack_icon_carrier)
-		xeno.backpack_icon_carrier = new(null, xeno)
-		xeno.vis_contents += xeno.backpack_icon_carrier
+	if(!xeno.backpack_icon_holder)
+		xeno.backpack_icon_holder = new(null, xeno)
+		xeno.vis_contents += xeno.backpack_icon_holder
 
 	target_mob.put_in_back(src)
 	return FALSE
@@ -487,6 +487,11 @@
 	desc = "A heavy-duty chestrig used by some USCM technicians."
 	icon_state = "marinesatch_techi"
 
+/obj/item/storage/backpack/marine/satchel/chestrig
+	name = "\improper USCM chestrig"
+	desc = "A chestrig used by some USCM personnel."
+	icon_state = "chestrig"
+
 GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/rto)
 
 /obj/item/storage/backpack/marine/satchel/rto
@@ -495,107 +500,35 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 	icon_state = "rto_backpack"
 	item_state = "rto_backpack"
 	has_gamemode_skin = FALSE
-	actions_types = list(/datum/action/item_action/rto_pack/use_phone)
 
 	flags_item = ITEM_OVERRIDE_NORTHFACE
-
-	var/obj/structure/transmitter/internal/internal_transmitter
 
 	var/phone_category = PHONE_MARINE
 	var/list/networks_receive = list(FACTION_MARINE)
 	var/list/networks_transmit = list(FACTION_MARINE)
-	var/base_icon
-
-/datum/action/item_action/rto_pack/use_phone/New(mob/living/user, obj/item/holder)
-	..()
-	name = "Use Phone"
-	button.name = name
-	button.overlays.Cut()
-	var/image/IMG = image('icons/obj/items/misc.dmi', button, "rpb_phone")
-	button.overlays += IMG
-
-/datum/action/item_action/rto_pack/use_phone/action_activate()
-	for(var/obj/item/storage/backpack/marine/satchel/rto/radio_backpack in owner)
-		radio_backpack.use_phone(owner)
-		return
-
-/obj/item/storage/backpack/marine/satchel/rto/post_skin_selection()
-	base_icon = icon_state
 
 /obj/item/storage/backpack/marine/satchel/rto/Initialize()
 	. = ..()
-	internal_transmitter = new(src)
-	internal_transmitter.relay_obj = src
-	internal_transmitter.phone_category = phone_category
-	internal_transmitter.enabled = FALSE
-	internal_transmitter.networks_receive = networks_receive
-	internal_transmitter.networks_transmit = networks_transmit
-	RegisterSignal(internal_transmitter, COMSIG_TRANSMITTER_UPDATE_ICON, PROC_REF(check_for_ringing))
-	GLOB.radio_packs += src
 
-/obj/item/storage/backpack/marine/satchel/rto/proc/check_for_ringing()
-	SIGNAL_HANDLER
-	update_icon()
+	AddComponent(/datum/component/phone, phone_category = phone_category, networks_receive = networks_receive, networks_transmit = networks_transmit)
+	RegisterSignal(src, COMSIG_ATOM_PHONE_PICKED_UP, PROC_REF(phone_picked_up))
+	RegisterSignal(src, COMSIG_ATOM_PHONE_HUNG_UP, PROC_REF(phone_hung_up))
+	RegisterSignal(src, COMSIG_ATOM_PHONE_RINGING, PROC_REF(phone_ringing))
+	RegisterSignal(src, COMSIG_ATOM_PHONE_STOPPED_RINGING, PROC_REF(phone_stopped_ringing))
 
-/obj/item/storage/backpack/marine/satchel/rto/update_icon()
-	. = ..()
-	if(!internal_transmitter)
+/obj/item/storage/backpack/marine/satchel/rto/proc/phone_picked_up()
+	icon_state = PHONE_OFF_BASE_UNIT_ICON_STATE
+
+/obj/item/storage/backpack/marine/satchel/rto/proc/phone_hung_up()
+	icon_state = PHONE_ON_BASE_UNIT_ICON_STATE
+
+/obj/item/storage/backpack/marine/satchel/rto/proc/phone_ringing()
+	icon_state = PHONE_RINGING_ICON_STATE
+
+/obj/item/storage/backpack/marine/satchel/rto/proc/phone_stopped_ringing()
+	if(icon_state == PHONE_OFF_BASE_UNIT_ICON_STATE)
 		return
-
-	if(!internal_transmitter.attached_to \
-		|| internal_transmitter.attached_to.loc != internal_transmitter)
-		icon_state = "[base_icon]_ear"
-		return
-
-	if(internal_transmitter.caller)
-		icon_state = "[base_icon]_ring"
-	else
-		icon_state = base_icon
-
-/obj/item/storage/backpack/marine/satchel/rto/forceMove(atom/dest)
-	. = ..()
-	if(isturf(dest))
-		internal_transmitter.set_tether_holder(src)
-	else
-		internal_transmitter.set_tether_holder(loc)
-
-/obj/item/storage/backpack/marine/satchel/rto/Destroy()
-	GLOB.radio_packs -= src
-	qdel(internal_transmitter)
-	return ..()
-
-/obj/item/storage/backpack/marine/satchel/rto/pickup(mob/user)
-	. = ..()
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.comm_title)
-			internal_transmitter.phone_id = "[H.comm_title] [H]"
-		else if(H.job)
-			internal_transmitter.phone_id = "[H.job] [H]"
-		else
-			internal_transmitter.phone_id = "[H]"
-
-		if(H.assigned_squad)
-			internal_transmitter.phone_id += " ([H.assigned_squad.name])"
-	else
-		internal_transmitter.phone_id = "[user]"
-
-	internal_transmitter.enabled = TRUE
-
-/obj/item/storage/backpack/marine/satchel/rto/dropped(mob/user)
-	. = ..()
-	internal_transmitter.phone_id = "[src]"
-	internal_transmitter.enabled = FALSE
-
-/obj/item/storage/backpack/marine/satchel/rto/proc/use_phone(mob/user)
-	internal_transmitter.attack_hand(user)
-
-
-/obj/item/storage/backpack/marine/satchel/rto/attackby(obj/item/W, mob/user)
-	if(internal_transmitter && internal_transmitter.attached_to == W)
-		internal_transmitter.attackby(W, user)
-	else
-		. = ..()
+	icon_state = PHONE_ON_BASE_UNIT_ICON_STATE
 
 /obj/item/storage/backpack/marine/satchel/rto/upp_net
 	name = "\improper UPP Radio Telephone Pack"
@@ -605,7 +538,6 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 /obj/item/storage/backpack/marine/satchel/rto/small
 	name = "\improper USCM Small Radio Telephone Pack"
 	max_storage_space = 10
-
 
 /obj/item/storage/backpack/marine/satchel/rto/small/upp_net
 	name = "\improper UPP Radio Telephone Pack"
@@ -697,7 +629,6 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 	name = "\improper M68 Thermal Cloak"
 	desc = "The lightweight thermal dampeners and optical camouflage provided by this cloak are weaker than those found in standard USCM ghillie suits. In exchange, the cloak can be worn over combat armor and offers the wearer high maneuverability and adaptability to many environments."
 	icon_state = "scout_cloak"
-	uniform_restricted = list(/obj/item/clothing/suit/storage/marine/M3S) //Need to wear Scout armor and helmet to equip this.
 	has_gamemode_skin = FALSE //same sprite for all gamemode.
 	var/camo_active = FALSE
 	var/camo_alpha = 10
@@ -745,6 +676,7 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 
 	RegisterSignal(H, COMSIG_GRENADE_PRE_PRIME, PROC_REF(cloak_grenade_callback))
 	RegisterSignal(H, COMSIG_HUMAN_EXTINGUISH, PROC_REF(wrapper_fizzle_camouflage))
+	RegisterSignal(H, COMSIG_MOB_EFFECT_CLOAK_CANCEL, PROC_REF(deactivate_camouflage))
 
 	camo_active = TRUE
 	ADD_TRAIT(H, TRAIT_CLOAKED, TRAIT_SOURCE_EQUIPMENT(WEAR_BACK))
@@ -774,12 +706,14 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 	deactivate_camouflage(wearer, TRUE, TRUE)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/deactivate_camouflage(mob/living/carbon/human/H, anim = TRUE, forced)
+	SIGNAL_HANDLER
 	if(!istype(H))
 		return FALSE
 
 	UnregisterSignal(H, list(
 	COMSIG_GRENADE_PRE_PRIME,
-	COMSIG_HUMAN_EXTINGUISH
+	COMSIG_HUMAN_EXTINGUISH,
+	COMSIG_MOB_EFFECT_CLOAK_CANCEL,
 	))
 
 	if(forced)
@@ -829,7 +763,7 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 
 /datum/action/item_action/specialist/toggle_cloak/can_use_action()
 	var/mob/living/carbon/human/H = owner
-	if(istype(H) && !H.is_mob_incapacitated() && !H.lying && holder_item == H.back)
+	if(istype(H) && !H.is_mob_incapacitated() && holder_item == H.back)
 		return TRUE
 
 /datum/action/item_action/specialist/toggle_cloak/action_activate()
@@ -1113,6 +1047,10 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 
 	max_storage_space = 21
 	camo_alpha = 10
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/upp/weak
+	desc = "A thermo-optic camouflage cloak commonly used by UPP commando units. This one is less effective than normal."
+	actions_types = null
 
 //----------TWE SECTION----------
 /obj/item/storage/backpack/rmc

@@ -357,6 +357,8 @@
 	burst_scatter_mult = SCATTER_AMOUNT_TIER_10
 	scatter_unwielded = SCATTER_AMOUNT_TIER_4
 
+/obj/item/weapon/gun/rifle/m41a/elite/xm40/ap
+	current_mag = /obj/item/ammo_magazine/rifle/xm40
 //-------------------------------------------------------
 //M41A TRUE AND ORIGINAL
 
@@ -1585,6 +1587,67 @@
 /obj/item/weapon/gun/rifle/m4ra/training
 	current_mag = /obj/item/ammo_magazine/rifle/m4ra/rubber
 
+// pve - kinda weird icon usage, uses urban M4RA sprite w/ custom attachie sprite
+/obj/item/weapon/gun/rifle/m4ra/pve
+	name = "\improper M4RA-R2 battle rifle"
+	desc = "The M4RA-R2 is a souped-up M4RA, the result of an ARMAT upgrade program that didn't pan out in huge numbers. Its main attraction is the ability to chamber and fire devastating <b>A19 depleted uranium rounds,</b> infamous for their overpenetration abilities and toxic effects on anyone unfortunate enough to survive a hit. The thicker barrel, of course, also has no issue with non-HV ammo."
+	desc_lore = "The USCMC was not terribly enthusiastic about unproven hand-held plasma weaponry. Before the XM99A was eventually adopted into use, the USCMC instead sought out a traditional squad-portable, precision, armor-piercing weapon, and contracted ARMAT to upgrade their M4RA platform to be capable of firing advanced AP rounds. They succeeded- sort of. <BR> <BR>  The R2 was rejected for several reasons. It's a killer, but also a piece of junk. It kicks hard enough that precision sights simply don't stay zeroed, and its oversized muzzle-device extends an already long barrel-length. Additionally, A19 ammo, already expensive, was driven to absurd highs by the ammunition's specs. Depleted uranium is expensive...and cutting the service life of the M4RA's barrel in half is even more expensive. <BR> <BR> Those that were made, however, are still service-ready and were issued where the XM99A was unavailable due to its production only just starting."
+	icon = 'icons/obj/items/weapons/guns/guns_by_map/urban/guns_obj.dmi'
+	icon_state = "m4ra"
+	item_state = "m4ra"
+	fire_sound = 'sound/weapons/gun_m4ra.ogg'
+	reload_sound = 'sound/weapons/handling/l42_reload.ogg'
+	unload_sound = 'sound/weapons/handling/l42_unload.ogg'
+
+	current_mag = /obj/item/ammo_magazine/rifle/m4ra/pve
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/reflex,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope/mini_iff,
+		/obj/item/attachable/flashlight/grip,
+	)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	wield_delay = WIELD_DELAY_VERY_FAST
+	aim_slowdown = SLOWDOWN_ADS_QUICK
+	map_specific_decoration = FALSE
+
+/obj/item/weapon/gun/rifle/m4ra/pve/set_gun_config_values()
+	..()
+	set_fire_delay(FIRE_DELAY_TIER_4)
+	recoil_unwielded = RECOIL_AMOUNT_TIER_1
+	recoil = RECOIL_AMOUNT_TIER_3
+
+
+// obnoxiously enough, need to do this manually...
+	item_icons = list(
+		WEAR_L_HAND = 'icons/obj/items/weapons/guns/guns_by_map/urban/guns_lefthand.dmi',
+		WEAR_R_HAND = 'icons/obj/items/weapons/guns/guns_by_map/urban/guns_righthand.dmi',
+		WEAR_BACK = 'icons/obj/items/weapons/guns/guns_by_map/urban/back.dmi'
+	)
+
+/obj/item/weapon/gun/rifle/m4ra/pve/handle_starting_attachment()
+	..()
+	var/obj/item/attachable/m4ra_barrel/pve/integrated = new(src)
+	integrated.flags_attach_features &= ~ATTACH_REMOVABLE
+	var/obj/item/attachable/old_barrel = attachments[integrated.slot]
+	if(old_barrel)
+		old_barrel.Detach(detaching_gub = src, drop_attachment = FALSE)
+		qdel(old_barrel)
+	integrated.Attach(src)
+	update_attachable(integrated.slot)
+
+
+
 //-------------------------------------------------------
 
 //L42A Battle Rifle
@@ -1865,3 +1928,123 @@
 	f90_shotgun_barrel.Attach(src)
 	update_attachable(f90_shotgun.slot)
 	update_attachable(f90_shotgun_barrel.slot)
+
+//-------------------------------------------------------
+//XM51, Breaching Scattergun
+
+/obj/item/weapon/gun/rifle/xm51
+	name = "\improper XM51 breaching scattergun"
+	desc = "An experimental shotgun model going through testing trials in the USCM. Based on the original civilian and CMB version, the XM51 is a mag-fed, pump-action shotgun. It utilizes special 16-gauge breaching rounds which are effective at breaching walls and doors. Users are advised not to employ the weapon against soft or armored targets due to low performance of the shells."
+	icon_state = "xm51"
+	item_state = "xm51"
+	fire_sound = 'sound/weapons/gun_shotgun_xm51.ogg'
+	reload_sound = 'sound/weapons/handling/l42_reload.ogg'
+	unload_sound = 'sound/weapons/handling/l42_unload.ogg'
+	current_mag = /obj/item/ammo_magazine/rifle/xm51
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/upp,
+		/obj/item/attachable/bayonet/co2,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/reflex,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight/grip,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/stock/xm51,
+	)
+	flags_equip_slot = SLOT_BACK
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	gun_category = GUN_CATEGORY_SHOTGUN
+	aim_slowdown = SLOWDOWN_ADS_SHOTGUN
+	map_specific_decoration = TRUE
+
+	var/pump_delay //How long we have to wait before we can pump the shotgun again.
+	var/pump_sound = "shotgunpump"
+	var/message_delay = 1 SECONDS //To stop message spam when trying to pump the gun constantly.
+	var/burst_count = 0 //To detect when the burst fire is near its end.
+	COOLDOWN_DECLARE(allow_message)
+	COOLDOWN_DECLARE(allow_pump)
+
+/obj/item/weapon/gun/rifle/xm51/set_gun_attachment_offsets()
+	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 18, "rail_x" = 12, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 15, "stock_y" = 16)
+
+/obj/item/weapon/gun/rifle/xm51/set_gun_config_values()
+	..()
+	set_fire_delay(FIRE_DELAY_TIER_4*2)
+	set_burst_amount(0)
+	burst_scatter_mult = SCATTER_AMOUNT_TIER_7
+	accuracy_mult = BASE_ACCURACY_MULT + 2*HIT_ACCURACY_MULT_TIER_8
+	accuracy_mult_unwielded = BASE_ACCURACY_MULT - HIT_ACCURACY_MULT_TIER_8
+	recoil = RECOIL_AMOUNT_TIER_4
+	recoil_unwielded = RECOIL_AMOUNT_TIER_2
+	scatter = SCATTER_AMOUNT_TIER_6
+
+/obj/item/weapon/gun/rifle/xm51/Initialize(mapload, spawn_empty)
+	. = ..()
+	pump_delay = FIRE_DELAY_TIER_8*3
+	additional_fire_group_delay += pump_delay
+
+/obj/item/weapon/gun/rifle/xm51/set_bullet_traits()
+	LAZYADD(traits_to_give, list(
+		BULLET_TRAIT_ENTRY_ID("turfs", /datum/element/bullet_trait_damage_boost, 30, GLOB.damage_boost_turfs), //2550, 2 taps colony walls, 4 taps reinforced walls
+		BULLET_TRAIT_ENTRY_ID("xeno turfs", /datum/element/bullet_trait_damage_boost, 0.23, GLOB.damage_boost_turfs_xeno), //2550*0.23 = 586, 2 taps resin walls, 3 taps thick resin
+		BULLET_TRAIT_ENTRY_ID("breaching", /datum/element/bullet_trait_damage_boost, 15, GLOB.damage_boost_breaching), //1275, enough to 1 tap airlocks
+		BULLET_TRAIT_ENTRY_ID("pylons", /datum/element/bullet_trait_damage_boost, 6, GLOB.damage_boost_pylons) //510, 4 shots to take out a pylon
+	))
+
+/obj/item/weapon/gun/rifle/xm51/unique_action(mob/user)
+	if(!COOLDOWN_FINISHED(src, allow_pump))
+		return
+	if(in_chamber)
+		if(COOLDOWN_FINISHED(src, allow_message))
+			to_chat(usr, SPAN_WARNING("<i>[src] already has a shell in the chamber!<i>"))
+			COOLDOWN_START(src, allow_message, message_delay)
+		return
+
+	playsound(user, pump_sound, 10, 1)
+	COOLDOWN_START(src, allow_pump, pump_delay)
+	ready_in_chamber()
+	burst_count = 0 //Reset the count for burst mode.
+
+/obj/item/weapon/gun/rifle/xm51/load_into_chamber(mob/user)
+	return in_chamber
+
+/obj/item/weapon/gun/rifle/xm51/reload_into_chamber(mob/user) //Don't chamber bullets after firing.
+	if(!current_mag)
+		update_icon()
+		return
+
+	in_chamber = null
+	if(current_mag.current_rounds <= 0 && flags_gun_features & GUN_AUTO_EJECTOR)
+		if (user.client?.prefs && (user.client?.prefs?.toggle_prefs & TOGGLE_AUTO_EJECT_MAGAZINE_OFF))
+			update_icon()
+		else if (!(flags_gun_features & GUN_BURST_FIRING) || !in_chamber) // Magazine will only unload once burstfire is over
+			var/drop_to_ground = TRUE
+			if (user.client?.prefs && (user.client?.prefs?.toggle_prefs & TOGGLE_AUTO_EJECT_MAGAZINE_TO_HAND))
+				drop_to_ground = FALSE
+				unwield(user)
+				user.swap_hand()
+			unload(user, TRUE, drop_to_ground) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
+			playsound(src, empty_sound, 25, 1)
+	if(gun_firemode == GUN_FIREMODE_BURSTFIRE & burst_count < burst_amount - 1) //Fire two (or more) shots in a burst without having to pump.
+		ready_in_chamber()
+		burst_count++
+		return in_chamber
+
+/obj/item/weapon/gun/rifle/xm51/replace_magazine(mob/user, obj/item/ammo_magazine/magazine) //Don't chamber a round when reloading.
+	user.drop_inv_item_to_loc(magazine, src) //Click!
+	current_mag = magazine
+	replace_ammo(user,magazine)
+	user.visible_message(SPAN_NOTICE("[user] loads [magazine] into [src]!"),
+		SPAN_NOTICE("You load [magazine] into [src]!"), null, 3, CHAT_TYPE_COMBAT_ACTION)
+	if(reload_sound)
+		playsound(user, reload_sound, 25, 1, 5)
+
+/obj/item/weapon/gun/rifle/xm51/cock_gun(mob/user)
+	return
+
+/obj/item/weapon/gun/rifle/xm51/cock(mob/user) //Stops the "You cock the gun." message where nothing happens.
+	return

@@ -5,7 +5,17 @@
 #define MINIMAP_FLAG_UPP (1<<3)
 #define MINIMAP_FLAG_CLF (1<<4)
 #define MINIMAP_FLAG_YAUTJA (1<<5)
-#define MINIMAP_FLAG_ALL (1<<6) - 1
+#define MINIMAP_FLAG_XENO_CORRUPTED (1<<6)
+#define MINIMAP_FLAG_XENO_ALPHA (1<<7)
+#define MINIMAP_FLAG_XENO_BRAVO (1<<8)
+#define MINIMAP_FLAG_XENO_CHARLIE (1<<9)
+#define MINIMAP_FLAG_XENO_DELTA (1<<10)
+#define MINIMAP_FLAG_XENO_FERAL (1<<11)
+#define MINIMAP_FLAG_XENO_TAMED (1<<12)
+#define MINIMAP_FLAG_XENO_MUTATED (1<<13)
+#define MINIMAP_FLAG_XENO_FORSAKEN (1<<14)
+#define MINIMAP_FLAG_XENO_RENEGADE (1<<15)
+#define MINIMAP_FLAG_ALL (1<<16) - 1
 
 ///Converts the overworld x and y to minimap x and y values
 #define MINIMAP_SCALE 2
@@ -45,7 +55,7 @@ GLOBAL_LIST_INIT(all_minimap_flags, bitfield2list(MINIMAP_FLAG_ALL))
 #define MINIMAP_AREA_CONTESTED_ZONE "#0603c4ee"
 
 #define MINIMAP_SQUAD_UNKNOWN "#d8d8d8"
-#define MINIMAP_SQUAD_ALPHA "#ed1c24"
+#define MINIMAP_SQUAD_ALPHA "#4148c8"
 #define MINIMAP_SQUAD_BRAVO "#fbc70e"
 #define MINIMAP_SQUAD_CHARLIE "#76418a"
 #define MINIMAP_SQUAD_DELTA "#0c0cae"
@@ -77,9 +87,3 @@ GLOBAL_LIST_INIT(all_minimap_flags, bitfield2list(MINIMAP_FLAG_ALL))
 
 #define TACMAP_BASE_OCCLUDED "Occluded"
 #define TACMAP_BASE_OPEN "Open"
-
-#define TACMAP_DEFAULT "Default"
-#define TACMAP_XENO "Xeno"
-#define TACMAP_YAUTJA "Yautja"
-#define TACMAP_FACTION "Faction"
-

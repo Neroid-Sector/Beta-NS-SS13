@@ -10,6 +10,11 @@
 	vendor_theme = VENDOR_THEME_USCM
 	vend_flags = VEND_CLUTTER_PROTECTION | VEND_LIMITED_INVENTORY | VEND_TO_HAND | VEND_LOAD_AMMO_BOXES
 
+/obj/structure/machinery/cm_vending/sorted/cargo_guns/Initialize()
+	. = ..()
+	if(z in SSmapping.levels_by_trait(ZTRAIT_GROUND))
+		malfunction()
+
 /obj/structure/machinery/cm_vending/sorted/cargo_guns/vend_fail()
 	return
 
@@ -41,6 +46,7 @@
 		list("M2C Heavy Machine Gun", round(scale * 2), /obj/item/storage/box/guncase/m2c, VENDOR_ITEM_REGULAR),
 		list("M240 Incinerator Unit", round(scale * 2), /obj/item/storage/box/guncase/flamer, VENDOR_ITEM_REGULAR),
 		list("M79 Grenade Launcher", round(scale * 3), /obj/item/storage/box/guncase/m79, VENDOR_ITEM_REGULAR),
+		list("XM51 Breaching Scattergun", round(scale * 3), /obj/item/storage/box/guncase/xm51, VENDOR_ITEM_REGULAR),
 
 		list("EXPLOSIVES", -1, null, null),
 		list("M15 Fragmentation Grenade", round(scale * 2), /obj/item/explosive/grenade/high_explosive/m15, VENDOR_ITEM_REGULAR),
@@ -101,7 +107,6 @@
 		list("Electronics Pouch", round(scale * 2), /obj/item/storage/pouch/electronics, VENDOR_ITEM_REGULAR),
 		list("Explosive Pouch", round(scale * 2), /obj/item/storage/pouch/explosive, VENDOR_ITEM_REGULAR),
 		list("Flare Pouch (Full)", round(scale * 5), /obj/item/storage/pouch/flare/full, VENDOR_ITEM_REGULAR),
-		list("Document Pouch", round(scale * 2), /obj/item/storage/pouch/document/small, VENDOR_ITEM_REGULAR),
 		list("Sling Pouch", round(scale * 2), /obj/item/storage/pouch/sling, VENDOR_ITEM_REGULAR),
 		list("Machete Pouch (Full)", round(scale * 0.5), /obj/item/storage/pouch/machete/full, VENDOR_ITEM_REGULAR),
 		list("Bayonet Pouch", round(scale * 2), /obj/item/storage/pouch/bayonet, VENDOR_ITEM_REGULAR),
@@ -175,22 +180,8 @@
 //Special cargo-specific vendor with vending offsets
 /obj/structure/machinery/cm_vending/sorted/cargo_guns/cargo
 	vend_flags = VEND_CLUTTER_PROTECTION | VEND_LIMITED_INVENTORY | VEND_LOAD_AMMO_BOXES //We want to vend to turf not hand, since we are in requisitions
-
-/obj/structure/machinery/cm_vending/sorted/cargo_guns/cargo/get_appropriate_vend_turf(mob/living/carbon/human/H)
-	var/turf/turf_to_vent_to
-	if(vend_x_offset != 0 || vend_y_offset != 0) //this will allow to avoid code below that suits only Almayer.
-		turf_to_vent_to = locate(x + vend_x_offset, y + vend_y_offset, z)
-	else
-		turf_to_vent_to = get_turf(get_step(src, NORTH))
-		if(H.loc == turf_to_vent_to)
-			turf_to_vent_to = get_turf(get_step(H.loc, WEST))
-		else
-			turf_to_vent_to = get_turf(get_step(src, SOUTH))
-			if(H.loc == turf_to_vent_to)
-				turf_to_vent_to = get_turf(get_step(H.loc, WEST))
-			else
-				turf_to_vent_to = H.loc
-	return turf_to_vent_to
+	vend_dir = WEST
+	vend_dir_whitelist = list(NORTH, SOUTH)
 
 /obj/structure/machinery/cm_vending/sorted/cargo_guns/cargo/blend
 	icon_state = "req_guns_wall"
@@ -209,6 +200,13 @@
 	req_access = list(ACCESS_MARINE_CARGO)
 	vendor_theme = VENDOR_THEME_USCM
 	vend_flags = VEND_CLUTTER_PROTECTION | VEND_LIMITED_INVENTORY | VEND_TO_HAND | VEND_LOAD_AMMO_BOXES
+	vend_dir = WEST
+	vend_dir_whitelist = list(SOUTHWEST, NORTHWEST)
+
+/obj/structure/machinery/cm_vending/sorted/cargo_ammo/Initialize()
+	. = ..()
+	if(z in SSmapping.levels_by_trait(ZTRAIT_GROUND))
+		malfunction()
 
 /obj/structure/machinery/cm_vending/sorted/cargo_ammo/vend_fail()
 	return
@@ -256,11 +254,13 @@
 		list("M41A MK1 AP Magazine (10x24mm)", round(scale * 2), /obj/item/ammo_magazine/rifle/m41aMK1/ap, VENDOR_ITEM_REGULAR),
 		list("M56D Drum Magazine", round(scale * 2), /obj/item/ammo_magazine/m56d, VENDOR_ITEM_REGULAR),
 		list("M2C Box Magazine", round(scale * 2), /obj/item/ammo_magazine/m2c, VENDOR_ITEM_REGULAR),
+		list("XM51 Magazine (16g)", round(scale * 3), /obj/item/ammo_magazine/rifle/xm51, VENDOR_ITEM_REGULAR),
 
 		list("SHOTGUN SHELL BOXES", -1, null, null),
 		list("Shotgun Shell Box (Buckshot x 100)", round(scale * 2), /obj/item/ammo_box/magazine/shotgun/buckshot, VENDOR_ITEM_REGULAR),
 		list("Shotgun Shell Box (Flechette x 100)", round(scale * 2), /obj/item/ammo_box/magazine/shotgun/flechette, VENDOR_ITEM_REGULAR),
 		list("Shotgun Shell Box (Slugs x 100)", round(scale * 2), /obj/item/ammo_box/magazine/shotgun, VENDOR_ITEM_REGULAR),
+		list("Shotgun Shell Box (16g) (Breaching x 120)", 1, /obj/item/ammo_box/magazine/shotgun/light/breaching, VENDOR_ITEM_REGULAR),
 		)
 
 /obj/structure/machinery/cm_vending/sorted/cargo_ammo/stock(obj/item/item_to_stock, mob/user)
@@ -307,22 +307,6 @@
 /obj/structure/machinery/cm_vending/sorted/cargo_ammo/cargo
 	vend_flags = VEND_CLUTTER_PROTECTION | VEND_LIMITED_INVENTORY | VEND_LOAD_AMMO_BOXES //We want to vend to turf not hand, since we are in requisitions
 
-/obj/structure/machinery/cm_vending/sorted/cargo_ammo/cargo/get_appropriate_vend_turf(mob/living/carbon/human/H)
-	var/turf/turf_to_vent_to
-	if(vend_x_offset != 0 || vend_y_offset != 0) //this will allow to avoid code below that suits only Almayer.
-		turf_to_vent_to = locate(x + vend_x_offset, y + vend_y_offset, z)
-	else
-		turf_to_vent_to = get_turf(get_step(src, NORTHWEST))
-		if(H.loc == turf_to_vent_to)
-			turf_to_vent_to = get_turf(get_step(H.loc, WEST))
-		else
-			turf_to_vent_to = get_turf(get_step(src, SOUTHWEST))
-			if(H.loc == turf_to_vent_to)
-				turf_to_vent_to = get_turf(get_step(H.loc, WEST))
-			else
-				turf_to_vent_to = H.loc
-	return turf_to_vent_to
-
 //------------ATTACHMENTS VENDOR---------------
 
 /obj/structure/machinery/cm_vending/sorted/attachments
@@ -331,6 +315,14 @@
 	req_access = list(ACCESS_MARINE_CARGO)
 	vendor_theme = VENDOR_THEME_USCM
 	icon_state = "req_attach"
+	vend_dir = WEST
+	vend_dir_whitelist = list(SOUTHEAST, NORTHEAST)
+	vend_flags = VEND_CLUTTER_PROTECTION | VEND_LIMITED_INVENTORY //We want to vend to turf not hand, since we are in requisitions
+
+/obj/structure/machinery/cm_vending/sorted/attachments/Initialize()
+	. = ..()
+	if(z in SSmapping.levels_by_trait(ZTRAIT_GROUND))
+		malfunction()
 
 /obj/structure/machinery/cm_vending/sorted/attachments/vend_fail()
 	return
@@ -379,22 +371,6 @@
 		list("M44 Magnum Sharpshooter Stock", round(scale * 4.5), /obj/item/attachable/stock/revolver, VENDOR_ITEM_REGULAR)
 		)
 
-/obj/structure/machinery/cm_vending/sorted/attachments/get_appropriate_vend_turf(mob/living/carbon/human/H)
-	var/turf/turf_to_vent_to
-	if(vend_x_offset != 0 || vend_y_offset != 0) //this will allow to avoid code below that suits only Almayer.
-		turf_to_vent_to = locate(x + vend_x_offset, y + vend_y_offset, z)
-	else
-		turf_to_vent_to = get_turf(get_step(src, NORTHEAST))
-		if(H.loc == turf_to_vent_to)
-			turf_to_vent_to = get_turf(get_step(H.loc, WEST))
-		else
-			turf_to_vent_to = get_turf(get_step(src, SOUTHEAST))
-			if(H.loc == turf_to_vent_to)
-				turf_to_vent_to = get_turf(get_step(H.loc, WEST))
-			else
-				turf_to_vent_to = loc
-	return turf_to_vent_to
-
 /obj/structure/machinery/cm_vending/sorted/attachments/blend
 	icon_state = "req_attach_wall"
 	tiles_with = list(
@@ -402,7 +378,6 @@
 		/obj/structure/machinery/door/airlock,
 		/turf/closed/wall/almayer,
 	)
-	vend_flags = VEND_CLUTTER_PROTECTION | VEND_LIMITED_INVENTORY //We want to vend to turf not hand, since we are in requisitions
 
 //------------UNIFORM VENDOR---------------
 
@@ -455,6 +430,9 @@
 		list("MASKS", -1, null, null, null),
 		list("Gas Mask", 20, /obj/item/clothing/mask/gas, VENDOR_ITEM_REGULAR),
 		list("Heat Absorbent Coif", 10, /obj/item/clothing/mask/rebreather/scarf, VENDOR_ITEM_REGULAR),
+
+		list("MISCELLANEOUS", -1, null, null),
+		list("Bedroll", 30, /obj/item/roller/bedroll, VENDOR_ITEM_REGULAR),
 		)
 
 /obj/structure/machinery/cm_vending/sorted/uniform_supply/ui_state(mob/user)

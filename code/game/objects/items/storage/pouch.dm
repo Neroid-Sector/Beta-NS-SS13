@@ -683,6 +683,18 @@
 	new /obj/item/reagent_container/hypospray/autoinjector/stimulant/redemption_stimulant(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/stimulant/speed_stimulant(src)
 
+/obj/item/storage/pouch/medical/socmed/not_op/fill_preset_inventory()
+	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/bicaridine(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/kelotane(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/oxycodone(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/emergency(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/emergency(src)
+	new /obj/item/tool/extinguisher/mini(src)
+
 /obj/item/storage/pouch/medical/socmed/dutch
 	name = "\improper Dutch's Medical Pouch"
 	desc = "A pouch bought from a black market trader by Dutch quite a few years ago. Rumoured to be stolen from secret USCM assets. Its contents have been slowly used up and replaced over the years."
@@ -832,6 +844,15 @@
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/splint(src)
+
+/obj/item/storage/pouch/medkit/full/toxin/fill_preset_inventory()
+	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/storage/pill_bottle/antitox(src)
+	new /obj/item/storage/pill_bottle/antitox(src)
+	new /obj/item/roller(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
 
 /obj/item/storage/pouch/pressurized_reagent_canister
 	name = "Pressurized Reagent Canister Pouch"
@@ -1059,35 +1080,12 @@
 	inner = null
 	update_icon()
 
-/obj/item/storage/pouch/document
-	name = "large document pouch"
-	desc = "It can contain papers, folders, disks, technical manuals, and clipboards."
-	icon_state = "document"
-	storage_slots = 21
-	max_w_class = SIZE_MEDIUM
-	max_storage_space = 21
-	storage_flags = STORAGE_FLAGS_POUCH|STORAGE_CLICK_GATHER
-	can_hold = list(
-		/obj/item/paper,
-		/obj/item/clipboard,
-		/obj/item/document_objective/paper,
-		/obj/item/document_objective/report,
-		/obj/item/document_objective/folder,
-		/obj/item/disk/objective,
-		/obj/item/document_objective/technical_manual,
-	)
-
-/obj/item/storage/pouch/document/small
-	name = "small document pouch"
-	desc = "A smaller version of the document pouch. It can contain papers, folders, disks, technical manuals, and clipboards."
-	storage_slots = 7
-
 /obj/item/storage/pouch/flare
 	name = "flare pouch"
 	desc = "A pouch designed to hold flares. Refillable with an M94 flare pack."
 	max_w_class = SIZE_SMALL
-	storage_slots = 8
-	max_storage_space = 8
+	storage_slots = 21
+	max_storage_space = 21
 	storage_flags = STORAGE_FLAGS_POUCH|STORAGE_USING_DRAWING_METHOD
 	icon_state = "flare"
 	can_hold = list(/obj/item/device/flashlight/flare,/obj/item/device/flashlight/flare/signal)
@@ -1173,7 +1171,7 @@
 /obj/item/storage/pouch/tools
 	name = "tools pouch"
 	desc = "It's designed to hold maintenance tools - screwdriver, wrench, cable coil, etc. It also has a hook for an entrenching tool or light replacer."
-	storage_slots = 4
+	storage_slots = 5
 	max_w_class = SIZE_MEDIUM
 	icon_state = "tools"
 	can_hold = list(
@@ -1215,17 +1213,20 @@
 	new /obj/item/tool/wirecutters(src)
 	new /obj/item/device/multitool(src)
 	new /obj/item/tool/wrench(src)
+	new /obj/item/stack/cable_coil(src)
 
 /obj/item/storage/pouch/tools/pfc/fill_preset_inventory()
 	new /obj/item/tool/screwdriver(src)
 	new /obj/item/tool/wirecutters(src)
 	new /obj/item/tool/weldingtool(src)
 	new /obj/item/tool/wrench(src)
+	new /obj/item/stack/cable_coil(src)
 
 /obj/item/storage/pouch/tools/synth/fill_preset_inventory()
 	new /obj/item/tool/screwdriver(src)
 	new /obj/item/device/multitool(src)
 	new /obj/item/tool/weldingtool(src)
+	new /obj/item/stack/cable_coil(src)
 	new /obj/item/stack/cable_coil(src)
 
 /obj/item/storage/pouch/tools/tank/fill_preset_inventory()
@@ -1233,12 +1234,14 @@
 	new /obj/item/tool/wrench(src)
 	new /obj/item/tool/weldingtool/hugetank(src)
 	new /obj/item/tool/extinguisher/mini(src)
+	new /obj/item/stack/cable_coil(src)
 
 /obj/item/storage/pouch/tools/mortar/fill_preset_inventory()
 	new /obj/item/tool/crowbar(src)
 	new /obj/item/tool/wrench(src)
 	new /obj/item/tool/wirecutters(src)
 	new /obj/item/tool/shovel/etool(src)
+	new /obj/item/stack/cable_coil(src)
 
 /obj/item/storage/pouch/tools/tactical/full/fill_preset_inventory()
 	new /obj/item/tool/screwdriver/tactical(src)
@@ -1255,6 +1258,7 @@
 	new /obj/item/tool/wirecutters(src)
 	new /obj/item/tool/weldingtool(src)
 	new /obj/item/tool/wrench(src)
+	new /obj/item/stack/cable_coil(src)
 
 /obj/item/storage/pouch/sling
 	name = "sling strap"
@@ -1372,7 +1376,7 @@
 	item_state = "machete_holster"
 	max_w_class = SIZE_LARGE
 	storage_flags = STORAGE_FLAGS_POUCH|STORAGE_USING_DRAWING_METHOD|STORAGE_ALLOW_QUICKDRAW
-	can_hold = list(/obj/item/weapon/claymore/mercsword/machete)
+	can_hold = list(/obj/item/weapon/sword/machete)
 
 	var/sheathe_sound = 'sound/weapons/gun_rifle_draw.ogg'
 	var/draw_sound = 'sound/weapons/gun_rifle_draw.ogg'
@@ -1392,4 +1396,4 @@
 	playsound(src, draw_sound, vol = 15, vary = TRUE)
 
 /obj/item/storage/pouch/machete/full/fill_preset_inventory()
-	new /obj/item/weapon/claymore/mercsword/machete(src)
+	new /obj/item/weapon/sword/machete(src)

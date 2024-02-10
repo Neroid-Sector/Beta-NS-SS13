@@ -22,10 +22,9 @@
 #define COMSIG_SENTRY_EMPTY_AMMO_ALERT "signal_sentry_empty_ammo"
 #define COMSIG_SENTRY_DESTROYED_ALERT "signal_sentry_destroyed"
 
-/// from /obj/structure/transmitter/update_icon()
-#define COMSIG_TRANSMITTER_UPDATE_ICON "transmitter_update_icon"
-
 #define COMSIG_TENT_COLLAPSING "tent_collapsing"
 
 /// from /obj/proc/afterbuckle()
 #define COSMIG_OBJ_AFTER_BUCKLE "signal_obj_after_buckle"
+
+#define COMSIG_STRUCTURE_CRATE_SQUAD_LAUNCHED "structure_crate_squad_launched"

@@ -37,6 +37,16 @@ GLOBAL_LIST_INIT(frozen_items, list(SQUAD_MARINE_1 = list(), SQUAD_MARINE_2 = li
 /obj/structure/machinery/computer/cryopod/alpha
 	cryotype = SQUAD_MARINE_1
 
+/obj/structure/machinery/computer/cryopod/alpha/Initialize()
+	. = ..()
+
+	RegisterSignal(SSdcs, COMSIG_GLOB_PLATOON_NAME_CHANGE, PROC_REF(rename_platoon))
+
+/obj/structure/machinery/computer/cryopod/alpha/proc/rename_platoon(datum/source, new_name, old_name)
+	SIGNAL_HANDLER
+
+	cryotype = new_name
+
 /obj/structure/machinery/computer/cryopod/bravo
 	cryotype = SQUAD_MARINE_2
 
@@ -145,6 +155,7 @@ GLOBAL_LIST_INIT(frozen_items, list(SQUAD_MARINE_1 = list(), SQUAD_MARINE_2 = li
 	icon_state = "cryo_rear"
 	anchored = TRUE
 	density = TRUE
+	unslashable = TRUE
 
 	var/orient_right = null //Flips the sprite.
 

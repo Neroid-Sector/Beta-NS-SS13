@@ -88,6 +88,7 @@
 
 /obj/structure/largecrate/supply
 	name = "supply crate"
+	fill_from_loc = FALSE
 	var/list/supplies = list()
 
 /obj/structure/largecrate/supply/Initialize()
@@ -154,6 +155,11 @@
 	name = "\improper M41A magazine case (x10)"
 	desc = "An ammunition case containing 10 M41A magazines."
 	supplies = list(/obj/item/ammo_magazine/rifle = 10)
+
+/obj/structure/largecrate/supply/ammo/m41amk1
+	name = "\improper M41A magazine case (x20)"
+	desc = "An ammunition case containing 20 M41A MK1 magazines."
+	supplies = list(/obj/item/ammo_magazine/rifle/m41aMK1 = 20)
 
 /obj/structure/largecrate/supply/ammo/m41a_box
 	name = "\improper M41A ammunition box case (x4)"
@@ -233,7 +239,7 @@
 	icon_state = "secure_crate"
 
 /obj/structure/largecrate/supply/supplies/flares
-	name = "Flare supply crate (x200)"
+	name = "Flare supply crate (x525)"
 	desc = "A supply crate containing two crates of flares."
 	supplies = list(/obj/item/ammo_box/magazine/misc/flares = 2)
 
@@ -329,6 +335,7 @@
 	name = "machine crate"
 	desc = "A crate containing a pre-assembled machine."
 	icon_state = "secure_crate_strapped"
+	fill_from_loc = FALSE
 	var/dir_needed = EAST //If set to anything but 0, will check that space before spawning in.
 	var/unmovable = 1 //If set to 1, then on examine, the user will see a warning that states the contents cannot be moved after opened.
 

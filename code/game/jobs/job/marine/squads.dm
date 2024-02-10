@@ -11,11 +11,11 @@
 	var/sub_leader
 
 /datum/squad_type/marine_squad
-	name = "Squad"
-	lead_name = "Squad Leader"
+	name = "Platoon"
+	lead_name = "Platoon Sergeant"
 	lead_icon = "leader"
-	sub_squad = "Fireteam"
-	sub_leader = "Fireteam Leader"
+	sub_squad = "Squad"
+	sub_leader = "Squad Sergeant"
 
 /datum/squad_type/marsoc_team
 	name = "Team"
@@ -52,7 +52,7 @@
 	/// maximum # of fireteam leaders allowed in the suqad
 	var/max_tl = 2
 	/// maximum # of smartgunners allowed in the squad
-	var/max_smartgun = 1
+	var/max_smartgun = 2
 	/// maximum # of squad leaders allowed in the squad
 	var/max_leaders = 1
 	/// Squad headsets default radio frequency
@@ -70,24 +70,23 @@
 	var/faction = FACTION_MARINE
 
 	/// What will the assistant squad leader be called
-	var/squad_type = "Squad" //Referenced for aSL details. Squad/Team/Cell etc.
+	var/squad_type = "Platoon" //Referenced for aSL details. Squad/Team/Cell etc.
 	/// Squad leaders icon
 	var/lead_icon //Referenced for SL's 'L' icon. If nulled, won't override icon for aSLs.
 
 	//vvv Do not set these in squad defines
 	var/mob/living/carbon/human/squad_leader = null //Who currently leads it.
 	var/list/fireteam_leaders = list(
-									"FT1" = null,
-									"FT2" = null,
-									"FT3" = null
+									"SQ1" = null,
+									"SQ2" = null,
 									) //FT leaders stored here
 	var/list/list/fireteams = list(
-							"FT1" = list(),
-							"FT2" = list(),
-							"FT3" = list()
-							) //3 FTs where references to marines stored.
+							"SQ1" = list(),
+							"SQ2" = list(),
+							)
 	var/list/squad_info_data = list()
 
+	var/num_riflemen = 0
 	var/num_engineers = 0
 	var/num_medics = 0
 	var/num_leaders = 0
@@ -116,18 +115,19 @@
 
 /datum/squad/marine
 	name = "Root"
-	usable = TRUE
 	active = TRUE
 	faction = FACTION_MARINE
 	lead_icon = "leader"
 
 /datum/squad/marine/alpha
 	name = SQUAD_MARINE_1
-	equipment_color = "#e61919"
-	chat_color = "#e67d7d"
+	equipment_color = "#cfc8c8"
+	chat_color = "#d2d6fe"
 	access = list(ACCESS_MARINE_ALPHA)
 	radio_freq = ALPHA_FREQ
 	minimap_color = MINIMAP_SQUAD_ALPHA
+	use_stripe_overlay = TRUE
+	usable = TRUE
 
 /datum/squad/marine/bravo
 	name = SQUAD_MARINE_2
@@ -205,6 +205,17 @@
 	squad_type = "Team"
 	lead_icon = "soctl"
 	minimap_color = MINIMAP_SQUAD_SOF
+
+	active = FALSE
+	roundstart = FALSE
+	locked = TRUE
+
+/datum/squad/marine/cbrn
+	name = SQUAD_CBRN
+	equipment_color = "#3B2A7B" //Chemical Corps Purple
+	chat_color = "#553EB2"
+	radio_freq = CBRN_FREQ
+	minimap_color = "#3B2A7B"
 
 	active = FALSE
 	roundstart = FALSE
@@ -289,12 +300,37 @@
 	. = ..()
 
 	tracking_id = SStracking.setup_trackers()
-	SStracking.setup_trackers(null, "FT1")
-	SStracking.setup_trackers(null, "FT2")
-	SStracking.setup_trackers(null, "FT3")
+	SStracking.setup_trackers(null, "SQ1")
+	SStracking.setup_trackers(null, "SQ2")
 	update_all_squad_info()
 
 	RegisterSignal(SSdcs, COMSIG_GLOB_MODE_POSTSETUP, PROC_REF(setup_supply_drop_list))
+
+/datum/squad/marine/alpha/New()
+	. = ..()
+
+	RegisterSignal(SSdcs, COMSIG_GLOB_PLATOON_NAME_CHANGE, PROC_REF(rename_platoon))
+
+/datum/squad/marine/alpha/proc/rename_platoon(datum/source, new_name, old_name)
+	SIGNAL_HANDLER
+
+	name = new_name
+
+	for(var/mob/living/carbon/human/marine in marines_list)
+		if(!istype(marine.wear_id, /obj/item/card/id))
+			continue
+
+		var/obj/item/card/id/marine_card = marine.wear_id
+		var/datum/weakref/marine_card_registered = marine.wear_id.registered_ref
+
+		if(!istype(marine_card_registered))
+			continue
+
+		if(marine != marine_card_registered.resolve())
+			continue
+
+		marine_card.assignment = "[new_name] [marine.job]"
+		marine_card.name = "[marine_card.registered_name]'s ID Card ([marine_card.assignment])"
 
 /datum/squad/proc/setup_supply_drop_list()
 	SIGNAL_HANDLER
@@ -453,6 +489,11 @@
 	var/list/extra_access = list()
 
 	switch(GET_DEFAULT_ROLE(M.job))
+		if(JOB_SQUAD_MARINE)
+			assignment = JOB_SQUAD_MARINE
+			num_riflemen++
+			var/squad_number = (Ceiling(num_riflemen / 2) > 2) ? pick(1, 2) : Ceiling(num_riflemen / 2)
+			assign_fireteam("SQ[squad_number]", M)
 		if(JOB_SQUAD_ENGI)
 			assignment = JOB_SQUAD_ENGI
 			num_engineers++
@@ -468,15 +509,20 @@
 			assignment = JOB_SQUAD_TEAM_LEADER
 			num_tl++
 			M.important_radio_channels += radio_freq
+			var/squad_number = (num_tl > 2) ? pick(1, 2) : num_tl
+			assign_fireteam("SQ[squad_number]", M)
+			assign_ft_leader("SQ[squad_number]", M)
 		if(JOB_SQUAD_SMARTGUN)
 			assignment = JOB_SQUAD_SMARTGUN
 			num_smartgun++
+			var/squad_number = (num_smartgun > 2) ? pick(1, 2) : num_smartgun
+			assign_fireteam("SQ[squad_number]", M)
 		if(JOB_SQUAD_LEADER)
 			if(squad_leader && GET_DEFAULT_ROLE(squad_leader.job) != JOB_SQUAD_LEADER) //field promoted SL
 				var/old_lead = squad_leader
 				demote_squad_leader() //replaced by the real one
 				SStracking.start_tracking(tracking_id, old_lead)
-			assignment = squad_type + " Leader"
+			assignment = squad_type + " Sergeant"
 			squad_leader = M
 			SStracking.set_leader(tracking_id, M)
 			SStracking.start_tracking("marine_sl", M)
@@ -604,12 +650,12 @@
 		if(JOB_SQUAD_MEDIC)
 			old_lead.comm_title = "HM"
 		if(JOB_SQUAD_TEAM_LEADER)
-			old_lead.comm_title = "FTL"
+			old_lead.comm_title = "SqSgt"
 		if(JOB_SQUAD_SMARTGUN)
 			old_lead.comm_title = "SG"
 		if(JOB_SQUAD_LEADER)
 			if(!leader_killed)
-				old_lead.comm_title = "Sgt"
+				old_lead.comm_title = "PltSgt"
 		if(JOB_MARINE_RAIDER)
 			old_lead.comm_title = "Op."
 		if(JOB_MARINE_RAIDER_SL)
@@ -699,6 +745,19 @@
 			to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("You were assigned to [fireteam].")))
 	H.hud_set_squad()
 
+	// I'm not fixing how cursed these strings are, god save us all if someone (or me (https://i.imgur.com/nSy81Bn.png)) has to change these again
+	if(H.wear_id)
+		if(fireteam == "SQ1")
+			H.wear_id.access += ACCESS_SQUAD_ONE
+		if(fireteam == "SQ2")
+			H.wear_id.access += ACCESS_SQUAD_TWO
+
+	for(var/obj/item/device/radio/headset/cycled_headset in H)
+		if(!("Squad Sergeant" in cycled_headset.tracking_options))
+			continue
+
+		cycled_headset.locate_setting = cycled_headset.tracking_options["Squad Sergeant"]
+
 /datum/squad/proc/unassign_fireteam(mob/living/carbon/human/H, upd_ui = TRUE)
 	fireteams[H.assigned_fireteam].Remove(H)
 	var/ft = H.assigned_fireteam
@@ -713,6 +772,15 @@
 		to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("You were unassigned from [ft].")))
 	H.hud_set_squad()
 
+	if(H.wear_id)
+		H.wear_id.access.Remove(ACCESS_SQUAD_ONE, ACCESS_SQUAD_TWO)
+
+	for(var/obj/item/device/radio/headset/cycled_headset in H)
+		if(!("Platoon Sergeant" in cycled_headset.tracking_options))
+			continue
+
+		cycled_headset.locate_setting = cycled_headset.tracking_options["Platoon Sergeant"]
+
 /datum/squad/proc/assign_ft_leader(fireteam, mob/living/carbon/human/H, upd_ui = TRUE)
 	if(fireteam_leaders[fireteam])
 		unassign_ft_leader(fireteam, FALSE, FALSE)
@@ -723,6 +791,12 @@
 	SStracking.start_tracking("marine_sl", H)
 	if(H.stat == CONSCIOUS)
 		to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("You were assigned as [fireteam] Team Leader.")))
+
+	for(var/obj/item/device/radio/headset/cycled_headset in H)
+		if(!("Platoon Sergeant" in cycled_headset.tracking_options))
+			continue
+
+		cycled_headset.locate_setting = cycled_headset.tracking_options["Platoon Sergeant"]
 
 /datum/squad/proc/unassign_ft_leader(fireteam, clear_group_id, upd_ui = TRUE)
 	if(!fireteam_leaders[fireteam])
@@ -736,104 +810,7 @@
 	if(!H.stat)
 		to_chat(H, FONT_SIZE_HUGE(SPAN_BLUE("You were unassigned as [fireteam] Team Leader.")))
 
-/datum/squad/proc/unassign_all_ft_leaders()
-	for(var/team in fireteam_leaders)
-		if(fireteam_leaders[team])
-			unassign_ft_leader(team, TRUE, TRUE)
-
 /datum/squad/proc/reassign_ft_tracker_group(fireteam, old_id, new_id)
 	for(var/mob/living/carbon/human/H in fireteams[fireteam])
 		SStracking.stop_tracking(old_id, H)
 		SStracking.start_tracking(new_id, H)
-
-//moved the main proc for ft management from human.dm here to make it support both examine and squad info way to edit fts
-/datum/squad/proc/manage_fireteams(mob/living/carbon/human/target)
-	var/obj/item/card/id/ID = target.get_idcard()
-	if(!ID || !(ID.rank in ROLES_MARINES))
-		return
-	if(ID.rank == JOB_SQUAD_LEADER || squad_leader == target) //if SL/aSL are chosen
-		var/choice = tgui_input_list(squad_leader, "Manage Fireteams and Team leaders.", "Fireteams Management", list("Cancel", "Unassign Fireteam 1 Leader", "Unassign Fireteam 2 Leader", "Unassign Fireteam 3 Leader", "Unassign all Team Leaders"))
-		if(target.assigned_squad != src)
-			return //in case they somehow change squad while SL is choosing
-		if(squad_leader.is_mob_incapacitated() || !hasHUD(squad_leader,"squadleader"))
-			return //if SL got knocked out or demoted while choosing
-		switch(choice)
-			if("Unassign Fireteam 1 Leader") unassign_ft_leader("FT1", TRUE)
-			if("Unassign Fireteam 2 Leader") unassign_ft_leader("FT2", TRUE)
-			if("Unassign Fireteam 3 Leader") unassign_ft_leader("FT3", TRUE)
-			if("Unassign all Team Leaders") unassign_all_ft_leaders()
-			else return
-		target.hud_set_squad()
-		return
-	if(target.assigned_fireteam)
-		if(fireteam_leaders[target.assigned_fireteam] == target) //Check if person already is FT leader
-			var/choice = tgui_input_list(squad_leader, "Manage Fireteams and Team leaders.", "Fireteams Management", list("Cancel", "Unassign from Team Leader position"))
-			if(target.assigned_squad != src)
-				return
-			if(squad_leader.is_mob_incapacitated() || !hasHUD(squad_leader,"squadleader"))
-				return
-			if(choice == "Unassign from Team Leader position")
-				unassign_ft_leader(target.assigned_fireteam, TRUE)
-			target.hud_set_squad()
-			return
-
-		var/choice = tgui_input_list(squad_leader, "Manage Fireteams and Team leaders.", "Fireteams Management", list("Remove from Fireteam", "Assign to Fireteam 1", "Assign to Fireteam 2", "Assign to Fireteam 3", "Assign as Team Leader"))
-		if(target.assigned_squad != src)
-			return
-		if(squad_leader.is_mob_incapacitated() || !hasHUD(squad_leader,"squadleader"))
-			return
-		switch(choice)
-			if("Remove from Fireteam") unassign_fireteam(target)
-			if("Assign to Fireteam 1") assign_fireteam("FT1", target)
-			if("Assign to Fireteam 2") assign_fireteam("FT2", target)
-			if("Assign to Fireteam 3") assign_fireteam("FT3", target)
-			if("Assign as Team Leader") assign_ft_leader(target.assigned_fireteam, target)
-			else return
-		target.hud_set_squad()
-		return
-
-	var/choice = tgui_input_list(squad_leader, "Manage Fireteams and Team leaders.", "Fireteams Management", list("Cancel", "Assign to Fireteam 1", "Assign to Fireteam 2", "Assign to Fireteam 3"))
-	if(target.assigned_squad != src)
-		return
-	if(squad_leader.is_mob_incapacitated() || !hasHUD(squad_leader,"squadleader"))
-		return
-	switch(choice)
-		if("Assign to Fireteam 1") assign_fireteam("FT1", target)
-		if("Assign to Fireteam 2") assign_fireteam("FT2", target)
-		if("Assign to Fireteam 3") assign_fireteam("FT3", target)
-		else return
-	target.hud_set_squad()
-	return
-
-//Managing MIA and KIA statuses for marines
-/datum/squad/proc/change_squad_status(mob/living/carbon/human/target)
-	if(target == squad_leader)
-		return //you can't mark yourself KIA
-	var/choice = tgui_input_list(squad_leader, "Marine status management: M.I.A. for missing marines, K.I.A. for confirmed unrevivable dead.", "Squad Management", list("Cancel", "Remove status", "M.I.A.", "K.I.A."))
-	if(target.assigned_squad != src)
-		return //in case they somehow change squad while SL is choosing
-	if(squad_leader.is_mob_incapacitated() || !hasHUD(squad_leader,"squadleader"))
-		return //if SL got knocked out or demoted while choosing
-	switch(choice)
-		if("Remove status") target.squad_status = null
-		if("M.I.A.")
-			target.squad_status = choice
-			to_chat(squad_leader, FONT_SIZE_BIG(SPAN_BLUE("You set [target]'s status as Missing In Action.")))
-			if(target.stat == CONSCIOUS)
-				to_chat(target, FONT_SIZE_HUGE(SPAN_BLUE("You were marked as Missing In Action by Squad Leader.")))
-		if("K.I.A.")
-			target.squad_status = choice
-			if(target.assigned_fireteam)
-				if(fireteam_leaders[target.assigned_fireteam] == target)
-					unassign_ft_leader(target.assigned_fireteam, TRUE, FALSE)
-				unassign_fireteam(target, FALSE)
-			to_chat(squad_leader, FONT_SIZE_BIG(SPAN_BLUE("You set [target]'s status as Killed In Action. If they were Team Leader or in fireteam, they were demoted and unassigned.")))
-			if(target.stat == CONSCIOUS)
-				to_chat(target, FONT_SIZE_HUGE(SPAN_BLUE("You were marked as Killed In Action by Squad Leader.")))
-		else return
-	if(target.assigned_fireteam)
-		update_fireteam(target.assigned_fireteam)
-	else
-		update_free_mar()
-	target.hud_set_squad()
-	return

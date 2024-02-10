@@ -9,7 +9,7 @@
 
 
 /mob/living/carbon/human/attack_alien(mob/living/carbon/xenomorph/M, dam_bonus)
-	if(M.fortify || M.burrow)
+	if(M.fortify || HAS_TRAIT(M, TRAIT_ABILITY_BURROWED))
 		return XENO_NO_DELAY_ACTION
 
 	var/intent = M.a_intent
@@ -92,7 +92,7 @@
 
 			M.flick_attack_overlay(src, "slash")
 			var/obj/limb/affecting
-			affecting = get_limb(rand_zone(M.zone_selected, 70))
+			affecting = get_limb(M.mob_flags & AI_CONTROLLED ? rand_zone() : rand_zone(M.zone_selected, 70))
 			if(!affecting) //No organ, just get a random one
 				affecting = get_limb(rand_zone(null, 0))
 			if(!affecting) //Still nothing??
@@ -209,7 +209,7 @@
 				SPAN_DANGER("You tackle down [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
 			else
 				playsound(loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
-				if (knocked_down)
+				if (HAS_TRAIT(src, TRAIT_FLOORED))
 					M.visible_message(SPAN_DANGER("[M] tries to tackle [src], but they are already down!"), \
 					SPAN_DANGER("You try to tackle [src], but they are already down!"), null, 5, CHAT_TYPE_XENO_COMBAT)
 				else
@@ -220,7 +220,7 @@
 
 //Every other type of nonhuman mob
 /mob/living/attack_alien(mob/living/carbon/xenomorph/M)
-	if(M.fortify || M.burrow)
+	if(M.fortify || HAS_TRAIT(M, TRAIT_ABILITY_BURROWED))
 		return XENO_NO_DELAY_ACTION
 
 	switch(M.a_intent)
@@ -517,45 +517,45 @@
 //Prying open doors
 /obj/structure/machinery/door/airlock/attack_alien(mob/living/carbon/xenomorph/M)
 	var/turf/cur_loc = M.loc
-	if(isElectrified())
-		if(shock(M, 100))
-			return XENO_NO_DELAY_ACTION
+
+	. = XENO_NO_DELAY_ACTION
+
+	if(M.action_busy)
+		to_chat(M, SPAN_WARNING("You are already doing something!"))
+		return
+
+	if(M.claw_type >= CLAW_TYPE_SHARP)
+		M.animation_attack_on(src)
+		playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
+		take_damage(damage_cap / XENO_HITS_TO_DESTROY_DOOR)
+		. = XENO_ATTACK_ACTION
+
+	if(isElectrified() && shock(M, 100))
+		return
 
 	if(!density)
 		to_chat(M, SPAN_WARNING("[src] is already open!"))
-		return XENO_NO_DELAY_ACTION
+		return
 
 	if(heavy)
 		to_chat(M, SPAN_WARNING("[src] is too heavy to open."))
-		return XENO_NO_DELAY_ACTION
+		return
 
 	if(welded)
-		if(M.claw_type >= CLAW_TYPE_SHARP)
-			M.animation_attack_on(src)
-			playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
-			take_damage(damage_cap / XENO_HITS_TO_DESTROY_WELDED_DOOR)
-			return XENO_ATTACK_ACTION
-		else
-			to_chat(M, SPAN_WARNING("[src] is welded shut."))
-			return XENO_NO_DELAY_ACTION
+		to_chat(M, SPAN_WARNING("[src] is welded shut."))
+		return
 
 	if(locked)
-		if(M.claw_type >= CLAW_TYPE_SHARP)
-			M.animation_attack_on(src)
-			playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
-			take_damage(HEALTH_DOOR / XENO_HITS_TO_DESTROY_BOLTED_DOOR)
-			return XENO_ATTACK_ACTION
-		else
-			to_chat(M, SPAN_WARNING("[src] is bolted down tight."))
-			return XENO_NO_DELAY_ACTION
+		to_chat(M, SPAN_WARNING("[src] is bolted down tight."))
+		return
 
 	if(!istype(cur_loc))
-		return XENO_NO_DELAY_ACTION //Some basic logic here
+		return //Some basic logic here
 
 	if(M.action_busy)
-		return XENO_NO_DELAY_ACTION
+		return
 
-	if(M.lying)
+	if(M.is_mob_incapacitated() || M.body_position != STANDING_UP)
 		return XENO_NO_DELAY_ACTION
 
 	var/delay
@@ -574,7 +574,7 @@
 	if(do_after(M, delay, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
 		if(M.loc != cur_loc)
 			return XENO_NO_DELAY_ACTION //Make sure we're still there
-		if(M.lying)
+		if(M.is_mob_incapacitated() || M.body_position != STANDING_UP)
 			return XENO_NO_DELAY_ACTION
 		if(locked)
 			to_chat(M, SPAN_WARNING("[src] is bolted down tight."))
@@ -663,7 +663,7 @@
 
 	M.animation_attack_on(src)
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
-	update_health(rand(M.melee_damage_lower, M.melee_damage_upper))
+	update_health(rand(M.melee_damage_lower, M.melee_damage_upper) * M.melee_sentry_damage_multiplier)
 	if(health <= 0)
 		M.visible_message(SPAN_DANGER("[M] slices \the [src] apart!"), \
 		SPAN_DANGER("You slice \the [src] apart!"), null, 5, CHAT_TYPE_XENO_COMBAT)
@@ -893,6 +893,7 @@
 //Crates, closets, other paraphernalia
 /obj/structure/closet/attack_alien(mob/living/carbon/xenomorph/M)
 	if(!unacidable)
+		playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
 		M.animation_attack_on(src)
 		if(!opened)
 			var/difficulty = 70 //if its just closed we can smash open quite easily
@@ -903,6 +904,7 @@
 				M.visible_message(SPAN_DANGER("[M] smashes \the [src] open!"), \
 				SPAN_DANGER("You smash \the [src] open!"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		else
+			take_damage(M.melee_damage_upper)
 			M.visible_message(SPAN_DANGER("[M] smashes [src]!"), \
 			SPAN_DANGER("You smash [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)
 		return XENO_ATTACK_ACTION
@@ -936,6 +938,7 @@
 			M.visible_message(SPAN_DANGER("[M] smashes [src] beyond recognition!"), \
 			SPAN_DANGER("You enter a frenzy and smash [src] apart!"), null, 5, CHAT_TYPE_XENO_COMBAT)
 			malfunction()
+			tip_over()
 		else
 			M.visible_message(SPAN_DANGER("[M] [M.slashes_verb] [src]!"), \
 			SPAN_DANGER("You [M.slash_verb] [src]!"), null, 5, CHAT_TYPE_XENO_COMBAT)

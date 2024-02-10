@@ -101,8 +101,8 @@ var/list/ai_verbs_default = list(
 // aiPDA = new/obj/item/device/pda/ai(src)
 	SetName(pickedName)
 	anchored = TRUE
-	canmove = 0
-	density = TRUE
+	ADD_TRAIT(src, TRAIT_IMMOBILIZED, TRAIT_SOURCE_INHERENT)
+	set_density(TRUE)
 	forceMove(loc)
 
 	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
@@ -301,8 +301,8 @@ var/list/ai_verbs_default = list(
 	return 0
 
 /mob/living/silicon/ai/emp_act(severity)
+	. = ..()
 	if (prob(30)) view_core()
-	..()
 
 /mob/living/silicon/ai/Topic(href, href_list)
 	if(usr != src)

@@ -28,7 +28,7 @@
 
 //TODO: Integrate defence zones and targeting body parts with the actual organ system, move these into organ definitions.
 
-//The base miss chance for the different defence zones
+/// The base miss chance for the different defence zones
 var/list/global/base_miss_chance = list(
 	"head" = 10,
 	"chest" = 0,
@@ -48,7 +48,7 @@ var/list/global/base_miss_chance = list(
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
 //Also used to weight the protection value that armor provides for covering that body part when calculating protection from full-body effects.
 var/list/global/organ_rel_size = list(
-	"head" = 15,
+	"head" = 20,
 	"chest" = 70,
 	"groin" = 30,
 	"l_leg" = 25,
@@ -60,7 +60,7 @@ var/list/global/organ_rel_size = list(
 	"l_foot" = 10,
 	"r_foot" = 10,
 	"eyes" = 5,
-	"mouth" = 15,
+	"mouth" = 5,
 )
 
 // This is much faster than a string comparison
@@ -311,14 +311,11 @@ var/global/list/limb_types_by_name = list(
 /mob/proc/is_mob_restrained()
 	return
 
+/// Returns if the mob is incapacitated and unable to perform general actions
 /mob/proc/is_mob_incapacitated(ignore_restrained)
-	return (stat || stunned || knocked_down || knocked_out || (!ignore_restrained && is_mob_restrained()) || status_flags & FAKEDEATH)
-
-
-//returns how many non-destroyed legs the mob has (currently only useful for humans)
-/mob/proc/has_legs()
-	return 2
-
+	// note that stat includes knockout via unconscious
+	// TODO: re-re-re-figure out if we need TRAIT_FLOORED here or using TRAIT_INCAPACITATED only is acceptable deviance from legacy behavior
+	return (stat || (!ignore_restrained && is_mob_restrained()) || (status_flags & FAKEDEATH) || HAS_TRAIT(src, TRAIT_INCAPACITATED))
 /mob/proc/get_eye_protection()
 	return EYE_PROTECTION_NONE
 
@@ -480,7 +477,7 @@ var/global/list/limb_types_by_name = list(
 	set name = "Pick Up"
 	set category = "Object"
 
-	if(!canmove || stat || is_mob_restrained() || !Adjacent(pickupify))
+	if(is_mob_incapacitated() || !Adjacent(pickupify))
 		return
 
 	if(world.time <= next_move)

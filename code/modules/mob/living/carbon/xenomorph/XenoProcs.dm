@@ -150,7 +150,7 @@
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state(permissive = FALSE)
 	if(!permissive)
-		if(is_mob_incapacitated() || lying || buckled || evolving || !isturf(loc))
+		if(is_mob_incapacitated() || body_position == LYING_DOWN || buckled || evolving || !isturf(loc))
 			to_chat(src, SPAN_WARNING("You cannot do this in your current state."))
 			return FALSE
 		else if(caste_type != XENO_CASTE_QUEEN && observed_xeno)
@@ -302,10 +302,10 @@
 					apply_effect(3, WEAKEN)
 					throwing = FALSE
 					return
-			if(iscolonysynthetic(H) && prob(60))
+			if(issynth(H) && prob(80))
 				visible_message(SPAN_DANGER("[H] withstands being pounced and slams down [src]!"),
 					SPAN_XENODANGER("[H] throws you down after withstanding the pounce!"), null, 5)
-				apply_effect(1.5, WEAKEN)
+				apply_effect(3.5, WEAKEN)
 				throwing = FALSE
 				return
 
@@ -319,16 +319,17 @@
 	if (pounceAction.freeze_self)
 		if(pounceAction.freeze_play_sound)
 			playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
-		canmove = FALSE
-		frozen = TRUE
-		pounceAction.freeze_timer_id = addtimer(CALLBACK(src, PROC_REF(unfreeze)), pounceAction.freeze_time, TIMER_STOPPABLE)
-
+		ADD_TRAIT(src, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY("Pounce"))
+		pounceAction.freeze_timer_id = addtimer(CALLBACK(src, PROC_REF(unfreeze_pounce)), pounceAction.freeze_time, TIMER_STOPPABLE)
 	pounceAction.additional_effects(M)
 
 	if(pounceAction.slash)
 		M.attack_alien(src, pounceAction.slash_bonus_damage)
 
 	throwing = FALSE //Reset throwing since something was hit.
+
+/mob/living/carbon/xenomorph/proc/unfreeze_pounce()
+	REMOVE_TRAIT(src, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY("Pounce"))
 
 /mob/living/carbon/xenomorph/proc/pounced_mob_wrapper(mob/living/L)
 	pounced_mob(L)
@@ -626,7 +627,7 @@
 	if(!TC)
 		TC = new(tackle_min + tackle_min_offset, tackle_max + tackle_max_offset, tackle_chance*tackle_mult)
 		LAZYSET(tackle_counter, M, TC)
-		RegisterSignal(M, COMSIG_MOB_KNOCKED_DOWN, PROC_REF(tackle_handle_lying_changed))
+		RegisterSignal(M, COMSIG_LIVING_SET_BODY_POSITION, PROC_REF(tackle_handle_lying_changed))
 
 	if (TC.tackle_reset_id)
 		deltimer(TC.tackle_reset_id)
@@ -638,8 +639,11 @@
 	else
 		reset_tackle(M)
 
-/mob/living/carbon/xenomorph/proc/tackle_handle_lying_changed(mob/M)
+/mob/living/carbon/xenomorph/proc/tackle_handle_lying_changed(mob/living/M, body_position)
 	SIGNAL_HANDLER
+	if(body_position != LYING_DOWN)
+		return
+
 	// Infected mobs do not have their tackle counter reset if
 	// they get knocked down or get up from a knockdown
 	if(M.status_flags & XENO_HOST)
@@ -652,11 +656,11 @@
 	if (TC)
 		qdel(TC)
 		LAZYREMOVE(tackle_counter, M)
-		UnregisterSignal(M, COMSIG_MOB_KNOCKED_DOWN)
+		UnregisterSignal(M, COMSIG_LIVING_SET_BODY_POSITION)
 
 
 /mob/living/carbon/xenomorph/burn_skin(burn_amount)
-	if(burrow)
+	if(HAS_TRAIT(src, TRAIT_ABILITY_BURROWED))
 		return FALSE
 
 	if(caste.fire_immunity & FIRE_IMMUNITY_NO_DAMAGE)
@@ -693,6 +697,12 @@
 	to_chat(src, SPAN_INFO("shift click the compass to watch the mark, alt click to stop tracking"))
 
 /mob/living/carbon/xenomorph/proc/stop_tracking_resin_mark(destroyed, silent = FALSE) //tracked_marker shouldnt be nulled outside this PROC!! >:C
+	if(QDELETED(src))
+		return
+
+	if(!hud_used)
+		CRASH("hud_used is null in stop_tracking_resin_mark")
+
 	var/atom/movable/screen/mark_locator/ML = hud_used.locate_marker
 	ML.overlays.Cut()
 
@@ -732,11 +742,7 @@
 	var/turf/supplier_turf = get_turf(nest_structural_base)
 	var/obj/effect/alien/weeds/supplier_weeds = locate(/obj/effect/alien/weeds) in supplier_turf
 	if(!supplier_weeds)
-		to_chat(src, SPAN_XENOBOLDNOTICE("There are no weeds here! Nesting hosts requires hive weeds."))
-		return
-
-	if(supplier_weeds.weed_strength < WEED_LEVEL_HIVE)
-		to_chat(src, SPAN_XENOBOLDNOTICE("The weeds here are not strong enough for nesting hosts."))
+		to_chat(src, SPAN_XENOBOLDNOTICE("There are no weeds here! Nesting hosts requires any sort of weeds."))
 		return
 
 	if(!supplier_turf.density)
@@ -749,15 +755,18 @@
 
 	if(!host_to_nest.Adjacent(supplier_turf))
 		to_chat(src, SPAN_XENONOTICE("The host must be directly next to the wall its being nested on!"))
+		step(host_to_nest, dir_to_nest)
 		return
 
 	if(!locate(dir_to_nest) in GLOB.cardinals)
 		to_chat(src, SPAN_XENONOTICE("The host must be directly next to the wall its being nested on!"))
+		step_to(host_to_nest, src)
 		return
 
 	for(var/obj/structure/bed/nest/preexisting_nest in get_turf(host_to_nest))
 		if(preexisting_nest.dir == dir_to_nest)
 			to_chat(src, SPAN_XENONOTICE("There is already a host nested here!"))
+			step_to(host_to_nest, src)
 			return
 
 	var/obj/structure/bed/nest/applicable_nest = new(get_turf(host_to_nest))
@@ -771,3 +780,6 @@
 
 	SSminimaps.remove_marker(src)
 	add_minimap_marker()
+
+/mob/living/carbon/xenomorph/lying_angle_on_lying_down(new_lying_angle)
+	return // Do not rotate xenos around on the floor, their sprite is already top-down'ish

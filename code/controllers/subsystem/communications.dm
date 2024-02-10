@@ -107,6 +107,7 @@ var/const/MAX_FREQ = 1468 // ---------------------------------------------------
 var/const/HC_FREQ = 1471
 var/const/SOF_FREQ = 1472
 var/const/PVST_FREQ = 1473
+var/const/CBRN_FREQ = 1474
 
 //Ship department channels
 var/const/SENTRY_FREQ = 1480
@@ -162,6 +163,7 @@ var/list/radiochannels = list(
 	SQUAD_MARINE_5 = ECHO_FREQ,
 	SQUAD_MARINE_CRYO = CRYO_FREQ,
 	SQUAD_SOF = SOF_FREQ,
+	SQUAD_CBRN = CBRN_FREQ,
 
 	RADIO_CHANNEL_ALAMO = DS1_FREQ,
 	RADIO_CHANNEL_NORMANDY = DS2_FREQ,
@@ -262,6 +264,7 @@ SUBSYSTEM_DEF(radio)
 		"[DELTA_FREQ]" = "deltaradio",
 		"[ECHO_FREQ]" = "echoradio",
 		"[CRYO_FREQ]" = "cryoradio",
+		"[CBRN_FREQ]" = "hcradio",
 		"[SOF_FREQ]" = "hcradio",
 		"[HC_FREQ]" = "hcradio",
 		"[PVST_FREQ]" = "pvstradio",
@@ -305,21 +308,31 @@ SUBSYSTEM_DEF(radio)
 	return frequency
 
 /datum/controller/subsystem/radio/proc/get_available_tcomm_zs(frequency)
-	//Returns lists of Z levels that have comms
-	var/list/target_zs = SSmapping.levels_by_trait(ZTRAIT_ADMIN)
-	var/list/extra_zs = SSmapping.levels_by_trait(ZTRAIT_AWAY)
-	if(length(extra_zs))
-		target_zs += extra_zs
-	for(var/obj/structure/machinery/telecomms/T as anything in tcomm_machines_ground)
-		if(!length(T.freq_listening) || (frequency in T.freq_listening))
-			target_zs += SSmapping.levels_by_trait(ZTRAIT_GROUND)
-			break
-	for(var/obj/structure/machinery/telecomms/T as anything in tcomm_machines_almayer)
-		if(!length(T.freq_listening) || (frequency in T.freq_listening))
-			target_zs += SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)
-			target_zs += SSmapping.levels_by_trait(ZTRAIT_RESERVED)
-			break
-	SEND_SIGNAL(src, COMSIG_SSRADIO_GET_AVAILABLE_TCOMMS_ZS, target_zs)
+	if(SSticker?.mode?.requires_comms)
+		//Returns lists of Z levels that have comms
+		var/list/target_zs = SSmapping.levels_by_trait(ZTRAIT_ADMIN)
+		var/list/extra_zs = SSmapping.levels_by_trait(ZTRAIT_AWAY)
+		if(length(extra_zs))
+			target_zs += extra_zs
+		for(var/obj/structure/machinery/telecomms/T as anything in tcomm_machines_ground)
+			if(!length(T.freq_listening) || (frequency in T.freq_listening))
+				target_zs += SSmapping.levels_by_trait(ZTRAIT_GROUND)
+				break
+		for(var/obj/structure/machinery/telecomms/T as anything in tcomm_machines_almayer)
+			if(!length(T.freq_listening) || (frequency in T.freq_listening))
+				target_zs += SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)
+				target_zs += SSmapping.levels_by_trait(ZTRAIT_RESERVED)
+				break
+		SEND_SIGNAL(src, COMSIG_SSRADIO_GET_AVAILABLE_TCOMMS_ZS, target_zs)
+		return target_zs
+
+	var/list/target_zs = list()
+
+	target_zs += SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)
+	target_zs += SSmapping.levels_by_trait(ZTRAIT_RESERVED)
+	target_zs += SSmapping.levels_by_trait(ZTRAIT_GROUND)
+	target_zs += SSmapping.levels_by_trait(ZTRAIT_ADMIN)
+
 	return target_zs
 
 /datum/controller/subsystem/radio/proc/add_tcomm_machine(obj/machine)

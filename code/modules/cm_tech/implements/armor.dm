@@ -154,8 +154,8 @@
 	scrappable = FALSE
 	FF_projectile_durability_mult = 0.3
 
-	armor_health = 100
-	armor_maxhealth = 100
+	armor_health = 300
+	armor_maxhealth = 300
 
 	armor_shattersound = 'sound/effects/ceramic_shatter.ogg'
 

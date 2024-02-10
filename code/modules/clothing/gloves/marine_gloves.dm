@@ -6,7 +6,7 @@
 	desc = "Standard issue marine tactical gloves. It reads: 'knit by Marine Widows Association'."
 	icon_state = "black"
 	item_state = "black"
-	siemens_coefficient = 0.6
+	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	flags_cold_protection = BODY_FLAG_HANDS
 	flags_heat_protection = BODY_FLAG_HANDS
@@ -40,7 +40,6 @@
 	desc = "These gloves will protect the wearer from electric shock."
 	icon_state = "lightbrown"
 	item_state = "lightbrowngloves"
-	siemens_coefficient = 0
 
 /obj/item/clothing/gloves/marine/black
 	name = "marine black combat gloves"
@@ -52,6 +51,14 @@
 	icon_state = "brown"
 	item_state = "brown"
 	adopts_squad_color = FALSE
+
+/obj/item/clothing/gloves/marine/medical
+	name = "marine medical combat gloves"
+	desc = "Standard issue marine sterile gloves, offers regular protection whilst offering the user a better grip when performing medical work."
+	icon_state = "latex"
+	item_state = "lgloves"
+	adopts_squad_color = FALSE
+
 
 /obj/item/clothing/gloves/marine/officer
 	name = "officer gloves"
@@ -203,3 +210,11 @@
 	desc = "Standard issue tactical gloves used by the royal marines."
 	icon_state = "rmc_gloves"
 	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+
+/obj/item/clothing/gloves/marine/veteran/cbrn
+	name = "\improper M3 MOPP gloves"
+	desc = "M3 MOPP gloves are made of treated venlar designed to protect the user’s hands against contamination whilst working in CBRN environments. Special care has been taken to give the user’s hands enough dexterity to fully service a rifle or utilize most handheld tools, while circular adhesive patterns on the fingers provide the user with enhanced grips. Standard CBRN protocol dictates that the gloves are expected to have a lifespan of maximum effectiveness of around twenty-four hours once exposed to moderate levels of contamination and that users are recommended to discard and replace them afterwards."
+	icon_state = "cbrn"
+	item_state = "cbrn"
+	armor_bio = CLOTHING_ARMOR_GIGAHIGHPLUS
+	armor_rad = CLOTHING_ARMOR_GIGAHIGHPLUS

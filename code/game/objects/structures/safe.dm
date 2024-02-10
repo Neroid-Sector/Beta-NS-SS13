@@ -54,10 +54,6 @@ FLOOR SAFES
 	tumbler_2_pos = 0
 	tumbler_2_open = (rand(0,10) * 5)
 
-	if(is_ground_level(loc.z))
-		//adding an objective for cracking open the safe
-		new /datum/cm_objective/crack_safe(src)
-
 	for(var/obj/item/I in loc)
 		if(space >= maxspace)
 			return
@@ -67,11 +63,6 @@ FLOOR SAFES
 
 	if(spawnkey)
 		new /obj/item/paper/safe_key(loc) //Spawn the key on top of the safe.
-
-/obj/structure/safe/Destroy()
-	qdel(objective)
-	objective = null
-	return ..()
 
 /obj/structure/safe/proc/check_unlocked(mob/user as mob, canhear)
 	if(user && canhear)
@@ -222,3 +213,28 @@ FLOOR SAFES
 
 /obj/structure/safe/floor/hide(intact)
 	invisibility = intact ? 101 : 0
+
+//almayer
+
+/obj/structure/safe/co_office
+
+/obj/structure/safe/co_office/Initialize()
+	. = ..()
+	new /obj/item/clothing/glasses/monocle(src)
+	new /obj/item/book/codebook(src)
+	new /obj/item/coin/silver/falcon(src)
+	new /obj/item/weapon/telebaton(src)
+	new /obj/item/moneybag(src)
+
+/obj/structure/safe/cl_office
+
+/obj/structure/safe/cl_office/Initialize()
+	. = ..()
+	new /obj/item/clothing/suit/armor/bulletproof(src)
+	new /obj/item/weapon/gun/pistol/es4(src)
+	new /obj/item/ammo_magazine/pistol/es4(src)
+	new /obj/item/ammo_magazine/pistol/es4(src)
+	new /obj/item/clothing/accessory/storage/holster(src)
+	new /obj/item/spacecash/c1000/counterfeit(src)
+	new /obj/item/spacecash/c1000/counterfeit(src)
+	new /obj/item/coin/platinum(src)

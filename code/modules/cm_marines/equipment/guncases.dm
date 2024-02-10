@@ -81,6 +81,18 @@
 	new /obj/item/ammo_magazine/rifle/m41aMK1(src)
 	new /obj/item/ammo_magazine/rifle/m41aMK1(src)
 
+
+/obj/item/storage/box/guncase/m41aMK1AP
+	name = "\improper M41A pulse rifle MK1 AP case"
+	desc = "A gun case containing the M41A pulse rifle MK1 loaded with AP rounds. It can only use proprietary MK1 magazines."
+	storage_slots = 3
+	can_hold = list(/obj/item/weapon/gun/rifle/m41aMK1, /obj/item/ammo_magazine/rifle/m41aMK1)
+
+/obj/item/storage/box/guncase/m41aMK1AP/fill_preset_inventory()
+	new /obj/item/weapon/gun/rifle/m41aMK1/ap(src)
+	new /obj/item/ammo_magazine/rifle/m41aMK1/ap(src)
+	new /obj/item/ammo_magazine/rifle/m41aMK1/ap(src)
+
 //------------
 //M79 grenade launcher
 /obj/item/storage/box/guncase/m79
@@ -335,6 +347,21 @@
 	new /obj/item/device/vulture_spotter_tripod(src)
 	new /obj/item/device/vulture_spotter_scope/skillless(src, WEAKREF(rifle))
 	new /obj/item/tool/screwdriver(src) // Spotter scope needs a screwdriver to disassemble
+
+/obj/item/storage/box/guncase/xm51
+	name = "\improper XM51 breaching scattergun case"
+	desc = "A gun case containing the XM51 Breaching Scattergun. Comes with two spare magazines, two spare shell boxes, an optional stock and a belt to holster the weapon."
+	storage_slots = 7
+	can_hold = list(/obj/item/weapon/gun/rifle/xm51, /obj/item/ammo_magazine/rifle/xm51, /obj/item/storage/belt/gun/xm51, /obj/item/attachable/stock/xm51)
+
+/obj/item/storage/box/guncase/xm51/fill_preset_inventory()
+	new /obj/item/attachable/stock/xm51(src)
+	new /obj/item/weapon/gun/rifle/xm51(src)
+	new /obj/item/ammo_magazine/rifle/xm51(src)
+	new /obj/item/ammo_magazine/rifle/xm51(src)
+	new /obj/item/ammo_magazine/shotgun/light/breaching(src)
+	new /obj/item/ammo_magazine/shotgun/light/breaching(src)
+	new /obj/item/storage/belt/gun/xm51(src)
 
 //Handgun case for Military police vendor three mag , a railflashligh and the handgun.
 

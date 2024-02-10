@@ -1,3 +1,8 @@
+
+#define SECOND_LT_VARIANT "Second Lieutenant"
+#define FIRST_LT_VARIANT "First Lieutenant"
+#define CAPTAIN_VARIANT "Captain"
+
 /datum/job/command/bridge
 	title = JOB_SO
 	total_positions = 4
@@ -6,7 +11,9 @@
 	scaled = FALSE
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_ship/so
-	entry_message_body = "<a href='%WIKIPAGE%'>Your job is to monitor the Marines, man the CIC, and listen to your superior officers.</a> You are in charge of logistics and the overwatch system. You are also in line to take command after other eligible superior commissioned officers."
+	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>Your job is to monitor the Marines, man the CIC, and listen to your superior officers.</a> You are in charge of logistics and the overwatch system. You are also in line to take command after other eligible superior commissioned officers."
+
+	job_options = list(FIRST_LT_VARIANT = "1stLt", SECOND_LT_VARIANT = "2ndLt", CAPTAIN_VARIANT = "CPT")
 
 /datum/job/command/bridge/set_spawn_positions(count)
 	spawn_positions = so_slot_formula(count)
@@ -26,6 +33,12 @@
 /datum/job/command/bridge/generate_entry_message(mob/living/carbon/human/H)
 	return ..()
 
+/datum/job/command/bridge/handle_job_options(option)
+	if(option != FIRST_LT_VARIANT)
+		gear_preset = /datum/equipment_preset/uscm_ship/so/lesser_rank
+	else
+		gear_preset = /datum/equipment_preset/uscm_ship/so
+
 AddTimelock(/datum/job/command/bridge, list(
 	JOB_SQUAD_LEADER = 1 HOURS,
 	JOB_HUMAN_ROLES = 15 HOURS
@@ -35,3 +48,17 @@ AddTimelock(/datum/job/command/bridge, list(
 	name = JOB_SO
 	icon_state = "so_spawn"
 	job = /datum/job/command/bridge
+
+/datum/job/command/bridge/ai
+	total_positions = 1
+	spawn_positions = 1
+
+/datum/job/command/bridge/ai/set_spawn_positions(count)
+	return spawn_positions
+
+/datum/job/command/bridge/ai/get_total_positions(latejoin = 0)
+	return latejoin ? total_positions : spawn_positions
+
+#undef SECOND_LT_VARIANT
+#undef FIRST_LT_VARIANT
+#undef CAPTAIN_VARIANT

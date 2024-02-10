@@ -1,6 +1,7 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 #define MAIN_SHIP_NAME SSmapping.get_main_ship_name()
-#define MAIN_SHIP_DEFAULT_NAME "USS Almayer"
+#define MAIN_SHIP_DEFAULT_NAME "USS Canetoad"
+#define SHIP_MAP_NAMES list("USS Almayer", "USS Golden Arrow", "USS Canetoad")
 //=================================================
 //Please don't edit these values without speaking to Errorage first ~Carn
 //Admin Permissions
@@ -152,14 +153,6 @@ var/list/nato_phonetic_alphabet = list("Alpha", "Bravo", "Charlie", "Delta", "Ec
 //Used for autocall procs on ERT
 var/distress_cancel = 0
 var/destroy_cancel = 0
-
-//Coordinate obsfucator
-//Used by the rangefinders and linked systems to prevent coords collection/prefiring
-
-/// A number between -500 and 500.
-var/global/obfs_x = 0
-/// A number between -500 and 500.
-var/global/obfs_y = 0
 
 // Which lobby art is on display
 // This is updated by the lobby art turf when it initializes

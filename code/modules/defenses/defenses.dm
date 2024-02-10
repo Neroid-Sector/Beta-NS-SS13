@@ -101,10 +101,14 @@
 	power_on_action()
 	update_icon()
 
+	GLOB.all_active_defenses += src
+
 /obj/structure/machinery/defenses/proc/power_off()
 	turned_on = FALSE
 	power_off_action()
 	update_icon()
+
+	GLOB.all_active_defenses -= src
 
 /**
  * Update state category for this structure.
@@ -147,12 +151,12 @@
 /obj/structure/machinery/defenses/start_processing()
 	if(!machine_processing)
 		machine_processing = TRUE
-		fast_machines += src
+	START_PROCESSING(SSdefprocess, src)
 
 /obj/structure/machinery/defenses/stop_processing()
 	if(machine_processing)
 		machine_processing = FALSE
-		fast_machines -= src
+	STOP_PROCESSING(SSdefprocess, src)
 
 /obj/structure/machinery/defenses/proc/earn_kill()
 	kills++
@@ -248,42 +252,8 @@
 				else
 					to_chat(user, SPAN_WARNING("\The [src] is already encrypted by laptop [linked_laptop.serial_number]. You must load its encryption key to decrypt."))
 				return
-		if(health < health_max * 0.25)
-			to_chat(user, SPAN_WARNING("\The [src] is too damaged to pick up!"))
-			return
 
-		if(static)
-			to_chat(user, SPAN_WARNING("\The [src] is bolted to the ground!"))
-			return
-
-		if(linked_laptop)
-			to_chat(user, SPAN_WARNING("\The [src] is currently encrypted by [linked_laptop]. To deconstruct \the [src] it must first be unlinked."))
-			return
-
-		user.visible_message(SPAN_NOTICE("[user] begins disassembling \the [src]."), SPAN_NOTICE("You begin disassembling \the [src]."))
-
-		if(!do_after(user, disassemble_time * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, src))
-			return
-
-		if(health < health_max * 0.25) //repeat check
-			to_chat(user, SPAN_WARNING("\The [src] is too damaged to pick up!"))
-			return
-
-		user.visible_message(SPAN_NOTICE("[user] disassembles [src]."), SPAN_NOTICE("You disassemble [src]."))
-
-		playsound(loc, 'sound/mecha/mechmove04.ogg', 30, 1)
-		var/turf/T = get_turf(src)
-		if(!faction_group) //Littly trolling for stealing marines turrets, bad boys!
-			for(var/i in user.faction_group)
-				LAZYADD(faction_group, i)
-		power_off()
-		HD.forceMove(T)
-		transfer_label_component(HD)
-		HD.dropped = 1
-		HD.update_icon()
-		placed = 0
-		forceMove(HD)
-
+		disassemble(user)
 		return
 
 	if(HAS_TRAIT(O, TRAIT_TOOL_WRENCH))
@@ -344,6 +314,44 @@
 		return
 
 	return TRUE
+
+
+/obj/structure/machinery/defenses/proc/disassemble(mob/user)
+	if(health < health_max * 0.25)
+		to_chat(user, SPAN_WARNING("\The [src] is too damaged to pick up!"))
+		return
+
+	if(static)
+		to_chat(user, SPAN_WARNING("\The [src] is bolted to the ground!"))
+		return
+
+	if(linked_laptop)
+		to_chat(user, SPAN_WARNING("\The [src] is currently encrypted by [linked_laptop]. To deconstruct \the [src] it must first be unlinked."))
+		return
+
+	user.visible_message(SPAN_NOTICE("[user] begins disassembling \the [src]."), SPAN_NOTICE("You begin disassembling \the [src]."))
+
+	if(!do_after(user, disassemble_time * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD, src))
+		return
+
+	if(health < health_max * 0.25) //repeat check
+		to_chat(user, SPAN_WARNING("\The [src] is too damaged to pick up!"))
+		return
+
+	user.visible_message(SPAN_NOTICE("[user] disassembles [src]."), SPAN_NOTICE("You disassemble [src]."))
+
+	playsound(loc, 'sound/mecha/mechmove04.ogg', 30, 1)
+	var/turf/T = get_turf(src)
+	if(!faction_group) //Littly trolling for stealing marines turrets, bad boys!
+		for(var/i in user.faction_group)
+			LAZYADD(faction_group, i)
+	power_off()
+	HD.forceMove(T)
+	transfer_label_component(HD)
+	HD.dropped = 1
+	HD.update_icon()
+	placed = 0
+	forceMove(HD)
 
 /obj/structure/machinery/defenses/attack_hand(mob/user)
 	if(!attack_hand_checks(user))
@@ -408,9 +416,9 @@
 		damaged_action(damage)
 
 	if(stat == DEFENSE_DAMAGED)
-		density = FALSE
+		set_density(FALSE)
 	else
-		density = initial(density)
+		set_density(initial(density))
 
 	update_icon()
 
@@ -431,6 +439,7 @@
 		turned_on = FALSE
 
 /obj/structure/machinery/defenses/emp_act(severity)
+	. = ..()
 	if(turned_on)
 		if(prob(50))
 			visible_message("[icon2html(src, viewers(src))] <span class='danger'>[src] beeps and buzzes wildly, flashing odd symbols on its screen before shutting down!</span>")
@@ -464,6 +473,8 @@
 	return
 
 /obj/structure/machinery/defenses/Destroy()
+	GLOB.all_active_defenses -= src
+
 	if(owner_mob)
 		owner_mob = null
 	HD = null // FIXME: Might also need to delete. Unsure.

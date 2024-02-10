@@ -147,6 +147,7 @@
 		"cmblogo.png" = 'html/images/cmblogo.png',
 		"faxwylogo.png" = 'html/images/faxwylogo.png',
 		"faxbackground.jpg" = 'html/images/faxbackground.jpg',
+		"colonialspacegruntsEZ.png" = 'html/images/colonialspacegruntsEZ.png',
 	)
 
 /datum/asset/spritesheet/chat
@@ -206,10 +207,10 @@
 
 /datum/asset/spritesheet/playtime_rank/register()
 	var/icon_file = 'icons/mob/hud/hud.dmi'
-	var/tier1_state = "hudxenoupgrade2"
-	var/tier2_state = "hudxenoupgrade3"
-	var/tier3_state = "hudxenoupgrade4"
-	var/tier4_state = "hudxenoupgrade5"
+	var/tier1_state = "hudxenoupgrade1"
+	var/tier2_state = "hudxenoupgrade2"
+	var/tier3_state = "hudxenoupgrade3"
+	var/tier4_state = "hudxenoupgrade4"
 
 	var/icon/tier1_icon = icon(icon_file, tier1_state, SOUTH)
 	var/icon/tier2_icon = icon(icon_file, tier2_state, SOUTH)
@@ -281,8 +282,8 @@
 		list("Med", "hudsquad_med"),
 		list("SG", "hudsquad_gun"),
 		list("Spc", "hudsquad_spec"),
-		list("TL", "hudsquad_tl"),
-		list("SL", "hudsquad_leader"),
+		list("SqSgt", "hudsquad_tl"),
+		list("PltSgt", "hudsquad_leader"),
 	)
 
 	for(var/datum/squad/marine/squad in RoleAuthority.squads)
@@ -297,24 +298,27 @@
 			background.Crop(25,25,32,32)
 			background.Scale(16,16)
 
-			Insert("squad-[squad]-hud-[iconref[1]]", background)
+			Insert("squad-[copytext(REF(squad), 2, 12)]-hud-[iconref[1]]", background)
 	return ..()
 
 /datum/asset/spritesheet/vending_products
 	name = "vending"
 
 /datum/asset/spritesheet/vending_products/register()
-	for (var/k in GLOB.vending_products)
+	for(var/k in GLOB.vending_products)
 		var/atom/item = k
 		var/icon_file = initial(item.icon)
 		var/icon_state = initial(item.icon_state)
 		var/icon/I
 
-		if (!ispath(item, /atom))
+		if(!ispath(item, /atom))
 			log_debug("not atom! [item]")
 			continue
 
-		if (sprites[icon_file])
+		var/imgid = replacetext(replacetext("[k]", "/obj/item/", ""), "/", "-")
+
+		if(sprites[imgid])
+			stack_trace("[imgid] has already been registered in vending products spritesheet!")
 			continue
 
 		if(icon_state in icon_states(icon_file))
@@ -338,7 +342,6 @@
 				item = new k()
 				I = icon(item.icon, item.icon_state, SOUTH)
 				qdel(item)
-		var/imgid = replacetext(replacetext("[k]", "/obj/item/", ""), "/", "-")
 
 		Insert(imgid, I)
 	return ..()

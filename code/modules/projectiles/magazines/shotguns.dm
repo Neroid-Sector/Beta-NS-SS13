@@ -78,6 +78,22 @@ var/list/shotgun_boxes_12g = list(
 	default_ammo = /datum/ammo/bullet/shotgun/beanbag
 	handful_state = "beanbag_slug"
 	caliber = "20g"
+
+/obj/item/ammo_magazine/shotgun/buckshot/special
+	name = "box of buckshot shells, USCM special type"
+	desc = "A box filled with buckshot spread shotgun shells, USCM special type. 12 Gauge."
+	default_ammo = /datum/ammo/bullet/shotgun/buckshot/special
+/obj/item/ammo_magazine/shotgun/light/breaching
+	name = "box of breaching shells"
+	desc = "A box filled with breaching shotgun shells. 16 Gauge."
+	icon_state = "breaching"
+	item_state = "breaching"
+	max_rounds = 30 //6 handfuls of 6 shells, 12 rounds in a XM51 mag
+	transfer_handful_amount = 6
+	default_ammo = /datum/ammo/bullet/shotgun/light/breaching
+	handful_state = "breaching_shell"
+	caliber = "16g"
+
 //-------------------------------------------------------
 
 /*
@@ -88,7 +104,7 @@ also doesn't really matter. You can only reload them with handfuls.
 /obj/item/ammo_magazine/internal/shotgun
 	name = "shotgun tube"
 	desc = "An internal magazine. It is not supposed to be seen or removed."
-	default_ammo = /datum/ammo/bullet/shotgun/slug
+	default_ammo = /datum/ammo/bullet/shotgun/buckshot
 	caliber = "12g"
 	max_rounds = 9
 	chamber_closed = 0
@@ -145,6 +161,9 @@ also doesn't really matter. You can only reload them with handfuls.
 /obj/item/ammo_magazine/internal/shotgun/cmb/m3717
 	max_rounds = 5
 
+/obj/item/ammo_magazine/internal/shotgun/special
+	default_ammo = /datum/ammo/bullet/shotgun/buckshot/special
+
 //-------------------------------------------------------
 
 /*
@@ -192,6 +211,10 @@ var/list/shotgun_handfuls_12g = list(
 	default_ammo = /datum/ammo/bullet/shotgun/buckshot
 	handful_state = "buckshot_shell"
 
+/obj/item/ammo_magazine/handful/shotgun/buckshot/special
+	name = "handful of shotgun buckshot shells, USCM special type (12g)"
+	default_ammo = /datum/ammo/bullet/shotgun/buckshot/special
+
 /obj/item/ammo_magazine/handful/shotgun/buckshot/incendiary
 	name = "handful of incendiary buckshot shells (12g)"
 	icon_state = "incen_buckshot_5"
@@ -230,7 +253,6 @@ var/list/shotgun_handfuls_12g = list(
 	name = "handful of beanbag slugs (20g)"
 	caliber = "20g"
 
-
 /obj/item/ammo_magazine/handful/shotgun/heavy
 	name = "handful of heavy shotgun slugs (8g)"
 	icon_state = "heavy_slug_4"
@@ -268,6 +290,17 @@ var/list/shotgun_handfuls_12g = list(
 	icon_state = "heavy_beanbag_4"
 	handful_state = "heavy_beanbag"
 	default_ammo = /datum/ammo/bullet/shotgun/heavy/beanbag
+
+/obj/item/ammo_magazine/handful/shotgun/light/breaching
+	name = "handful of breaching shells (16g)"
+	icon_state = "breaching_shell_6"
+	handful_state = "breaching_shell"
+	max_rounds = 6 //XM51 magazines are 12 rounds total, two handfuls should be enough to reload a mag
+	current_rounds = 6
+	transfer_handful_amount = 6
+	default_ammo = /datum/ammo/bullet/shotgun/light/breaching
+	caliber = "16g"
+	gun_type = /obj/item/weapon/gun/rifle/xm51
 
 /obj/item/ammo_magazine/handful/shotgun/twobore
 	name = "handful of shotgun slugs (2 bore)"

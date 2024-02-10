@@ -20,8 +20,8 @@
 	maxf = 1489
 
 	var/list/inbuilt_tracking_options = list(
-		"Squad Leader" = TRACKER_SL,
-		"Fireteam Leader" = TRACKER_FTL,
+		"Platoon Sergeant" = TRACKER_SL,
+		"Squad Sergeant" = TRACKER_FTL,
 		"Landing Zone" = TRACKER_LZ
 	)
 	var/list/tracking_options = list()
@@ -62,6 +62,16 @@
 		for(var/cycled_channel in radiochannels)
 			if(radiochannels[cycled_channel] == frequency)
 				default_freq = cycled_channel
+
+	RegisterSignal(SSdcs, COMSIG_GLOB_PLATOON_NAME_CHANGE, PROC_REF(rename_platoon))
+
+	if(SQUAD_MARINE_1 == default_freq && SQUAD_MARINE_1 != GLOB.main_platoon_name)
+		rename_platoon(null, GLOB.main_platoon_name, SQUAD_MARINE_1)
+
+/obj/item/device/radio/headset/proc/rename_platoon(datum/source, new_name, old_name)
+	SIGNAL_HANDLER
+
+	set_frequency(frequency)
 
 /obj/item/device/radio/headset/Destroy()
 	wearer = null
@@ -396,6 +406,17 @@
 	frequency = PUB_FREQ
 	has_hud = TRUE
 
+/obj/item/device/radio/headset/almayer/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+
+	if((user == user.assigned_squad?.fireteam_leaders["SQ1"] || user == user.assigned_squad?.fireteam_leaders["SQ2"]) && ("Platoon Sergeant" in tracking_options))
+		locate_setting = tracking_options["Platoon Sergeant"]
+		return
+
+	if(((user in user.assigned_squad?.fireteams["SQ1"]) || (user in user.assigned_squad?.fireteams["SQ2"])) && ("Squad Sergeant" in tracking_options))
+		locate_setting = tracking_options["Squad Sergeant"]
+		return
+
 /obj/item/device/radio/headset/almayer/verb/enter_tree()
 	set name = "Enter Techtree"
 	set desc = "Enter the Marine techtree"
@@ -493,6 +514,7 @@
 	initial_keys = list(/obj/item/device/encryptionkey/mcom)
 	volume = RADIO_VOLUME_CRITICAL
 	multibroadcast_cooldown = LOW_MULTIBROADCAST_COOLDOWN
+	frequency = ALPHA_FREQ
 
 /obj/item/device/radio/headset/almayer/mcom/alt
 	initial_keys = list(/obj/item/device/encryptionkey/mcom/alt)
@@ -566,7 +588,9 @@
 	volume = RADIO_VOLUME_CRITICAL
 
 /obj/item/device/radio/headset/almayer/marine
-	initial_keys = list(/obj/item/device/encryptionkey/public)
+	name = "marine radio headset"
+	desc = "A standard marine radio headset. When worn, grants access to Squad Leader tracker. Click tracker with empty hand to open Squad Info window."
+	frequency = ALPHA_FREQ
 
 //############################## ALPHA ###############################
 /obj/item/device/radio/headset/almayer/marine/alpha
@@ -760,11 +784,6 @@
 	if(istype(H, /mob/living/carbon/human))
 		if(H.assigned_squad)
 			switch(H.assigned_squad.name)
-				if(SQUAD_MARINE_1)
-					name = "[SQUAD_MARINE_1] radio headset"
-					desc = "This is used by [SQUAD_MARINE_1] squad members."
-					icon_state = "alpha_headset"
-					frequency = ALPHA_FREQ
 				if(SQUAD_MARINE_2)
 					name = "[SQUAD_MARINE_2] radio headset"
 					desc = "This is used by [SQUAD_MARINE_2] squad members."
@@ -788,6 +807,12 @@
 					name = "[SQUAD_MARINE_CRYO] radio headset"
 					desc = "This is used by [SQUAD_MARINE_CRYO] squad members."
 					frequency = CRYO_FREQ
+
+			if(H.assigned_squad.name == GLOB.main_platoon_name)
+				name = "[GLOB.main_platoon_name] radio headset"
+				desc = "This is used by [GLOB.main_platoon_name] squad members."
+				icon_state = "alpha_headset"
+				frequency = ALPHA_FREQ
 
 			switch(GET_DEFAULT_ROLE(H.job))
 				if(JOB_SQUAD_LEADER)
@@ -848,6 +873,14 @@
 	inbuilt_tracking_options = list(
 		"Corporate Liaison" = TRACKER_CL
 	)
+
+/obj/item/device/radio/headset/distress/cbrn
+	name = "\improper CBRN headset"
+	desc = "A headset given to CBRN marines. Channels are as follows: :g - public, :v - marine command, :a - alpha squad, :b - bravo squad, :c - charlie squad, :d - delta squad, :n - engineering, :m - medbay, :u - requisitions, :j - JTAC, :t - intel"
+	frequency = CBRN_FREQ
+	initial_keys = list(/obj/item/device/encryptionkey/public, /obj/item/device/encryptionkey/mcom)
+	ignore_z = TRUE
+	has_hud = TRUE
 
 /obj/item/device/radio/headset/distress/pmc/hvh
 	desc = "A special headset used by corporate personnel. Channels are as follows: :o - colony."

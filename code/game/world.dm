@@ -71,8 +71,6 @@ var/list/reboot_sfx = file2list("config/reboot_sfx.txt")
 		RoleAuthority = new /datum/authority/branch/role()
 		to_world(SPAN_DANGER("\b Job setup complete"))
 
-	if(!EvacuationAuthority) EvacuationAuthority = new
-
 	initiate_minimap_icons()
 
 	change_tick_lag(CONFIG_GET(number/ticklag))
@@ -91,8 +89,8 @@ var/list/reboot_sfx = file2list("config/reboot_sfx.txt")
 	update_status()
 
 	//Scramble the coords obsfucator
-	obfs_x = rand(-500, 500) //A number between -100 and 100
-	obfs_y = rand(-500, 500) //A number between -100 and 100
+	GLOB.obfs_x = rand(-500, 500) //A number between -100 and 100
+	GLOB.obfs_y = rand(-500, 500) //A number between -100 and 100
 
 	spawn(3000) //so we aren't adding to the round-start lag
 		if(CONFIG_GET(flag/ToRban))
@@ -172,11 +170,6 @@ var/world_topic_spam_protect_time = world.timeofday
 	if(length(T) > CONFIG_GET(number/topic_max_size))
 		response["statuscode"] = 413
 		response["response"] = "Payload too large"
-		return json_encode(response)
-
-	if(SSfail_to_topic?.IsRateLimited(addr))
-		response["statuscode"] = 429
-		response["response"] = "Rate limited"
 		return json_encode(response)
 
 	var/logging = CONFIG_GET(flag/log_world_topic)
@@ -306,14 +299,11 @@ var/world_topic_spam_protect_time = world.timeofday
 	var/s = ""
 
 	if(CONFIG_GET(string/servername))
-		s += "<a href=\"[CONFIG_GET(string/forumurl)]\"><b>[CONFIG_GET(string/servername)]</b></a>"
-
-	if(SSmapping?.configs)
-		var/datum/map_config/MG = SSmapping.configs[GROUND_MAP]
-		s += "<br>Map: [MG?.map_name ? "<b>[MG.map_name]</b>" : ""]"
-	if(SSticker?.mode)
-		s += "<br>Mode: <b>[SSticker.mode.name]</b>"
+		s += "<a href=\"[CONFIG_GET(string/discordurl)]\"><b>[CONFIG_GET(string/servername)]</b></a>"
+		s += "<br>Hosted by: <b>[CONFIG_GET(string/hostedby)]</b>"
 		s += "<br>Round time: <b>[duration2text()]</b>"
+		s += "<br>An RP server focused on a tight knit platoon fighting xenos!"
+		s += "<br>Shoot the shit *and* shoot shit."
 
 	world.status = s
 

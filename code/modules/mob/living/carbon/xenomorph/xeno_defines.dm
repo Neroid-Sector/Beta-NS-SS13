@@ -101,7 +101,7 @@
 	var/caste_luminosity = 0
 
 	/// if fire_immunity is set to be vulnerable, how much will fire damage be multiplied. Defines in xeno.dm
-	var/fire_vulnerability_mult = 0
+	var/fire_vulnerability_mult = 1
 
 	var/burrow_cooldown = 5 SECONDS
 	var/tunnel_cooldown = 100
@@ -279,7 +279,6 @@
 	var/allowed_nest_distance = 15 //How far away do we allow nests from an ovied Queen. Default 15 tiles.
 	var/obj/effect/alien/resin/special/pylon/core/hive_location = null //Set to ref every time a core is built, for defining the hive location
 	var/crystal_stored = 0 //How much stockpiled material is stored for the hive to use.
-	var/xenocon_points = 0 //Xeno version of DEFCON
 
 	var/datum/mutator_set/hive_mutators/mutators = new
 	var/tier_slot_multiplier = 1
@@ -363,7 +362,7 @@
 	/// This number divides the total xenos counted for slots to give the max number of lesser drones
 	var/playable_lesser_drones_max_divisor = 3
 
-	var/datum/tacmap/xeno/tacmap
+	var/datum/tacmap/drawing/xeno/tacmap
 	var/minimap_type = MINIMAP_FLAG_XENO
 
 /datum/hive_status/New()
@@ -371,6 +370,7 @@
 	hive_ui = new(src)
 	mark_ui = new(src)
 	faction_ui = new(src)
+	minimap_type = get_minimap_flag_for_faction(hivenumber)
 	tacmap = new(src, minimap_type)
 	if(!internal_faction)
 		internal_faction = name
@@ -1034,7 +1034,7 @@
 
 	return faction_is_ally(living_mob.faction)
 
-/datum/hive_status/proc/faction_is_ally(faction, ignore_queen_check = FALSE)
+/datum/hive_status/proc/faction_is_ally(faction, ignore_queen_check = TRUE)
 	if(faction == internal_faction)
 		return TRUE
 	if(!ignore_queen_check && !living_xeno_queen)
@@ -1410,20 +1410,6 @@
 /datum/hive_status/corrupted/renegade/faction_is_ally(faction, ignore_queen_check = TRUE)
 	return ..()
 
-/datum/hive_status/proc/on_queen_death() //break alliances on queen's death
-	if(allow_no_queen_actions || living_xeno_queen)
-		return
-	var/broken_alliances = FALSE
-	for(var/faction in allies)
-		if(!allies[faction])
-			continue
-		change_stance(faction, FALSE)
-		broken_alliances = TRUE
-
-
-	if(broken_alliances)
-		xeno_message(SPAN_XENOANNOUNCE("With the death of the Queen, all alliances have been broken."), 3, hivenumber)
-
 /datum/hive_status/proc/change_stance(faction, should_ally)
 	if(faction == name)
 		return
@@ -1503,6 +1489,25 @@
 
 	xeno_message(SPAN_XENOANNOUNCE("You sense that [english_list(defectors)] turned their backs against their sisters and the Queen in favor of their slavemasters!"), 3, hivenumber)
 	defectors.Cut()
+
+/datum/hive_status/corrupted/renegade/synthetic
+	name = "Synthetic Hive"
+	reporting_id = "synthetic"
+	hivenumber = XENO_HIVE_SYNTHETIC
+	prefix = "Synthetic "
+	color = "#61dafc"
+
+	dynamic_evolution = FALSE
+	allow_no_queen_actions = TRUE
+	allow_no_queen_evo = TRUE
+	allow_queen_evolve = TRUE
+	ignore_slots = TRUE
+	latejoin_burrowed = FALSE
+
+/datum/hive_status/corrupted/renegade/synthetic/New()
+	. = ..()
+	hive_structures_limit[XENO_STRUCTURE_EGGMORPH] = 5
+	hive_structures_limit[XENO_STRUCTURE_EVOPOD] = 5
 
 //Xeno Resin Mark Shit, the very best place for it too :0)
 //Defines at the bottom of this list here will show up at the top in the mark menu

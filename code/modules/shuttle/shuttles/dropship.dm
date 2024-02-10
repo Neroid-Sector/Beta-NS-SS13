@@ -104,6 +104,15 @@
 			set_security_level(SEC_LEVEL_RED)
 			return
 
+/obj/docking_port/mobile/marine_dropship/midway
+	name = "Rio De Janeiro"
+	id = DROPSHIP_MIDWAY
+	width = 9
+	height = 18
+
+	dwidth = 4
+	dheight = 8
+
 /obj/docking_port/mobile/marine_dropship/alamo
 	name = "Alamo"
 	id = DROPSHIP_ALAMO
@@ -219,7 +228,7 @@
 		dropship.control_doors("unlock", "all", force=FALSE)
 		var/obj/structure/machinery/computer/shuttle/dropship/flight/console = dropship.getControlConsole()
 		console?.update_equipment()
-	if(is_ground_level(z) && !SSobjectives.first_drop_complete)
+	if(is_ground_level(z))
 		SSticker.mode.ds_first_landed(src)
 		SSticker.mode.flags_round_type |= MODE_DS_LANDED
 
@@ -234,8 +243,8 @@
 /obj/docking_port/stationary/marine_dropship/on_departure(obj/docking_port/mobile/departing_shuttle)
 	. = ..()
 	turn_off_landing_lights()
-	var/obj/docking_port/mobile/marine_dropship/shuttle = departing_shuttle
-	for(var/obj/structure/dropship_equipment/eq as anything in shuttle.equipments)
+	var/obj/docking_port/mobile/marine_dropship/dropship = departing_shuttle
+	for(var/obj/structure/dropship_equipment/eq as anything in dropship.equipments)
 		eq.on_launch()
 
 /obj/docking_port/stationary/marine_dropship/lz1
@@ -259,6 +268,12 @@
 	id = ALMAYER_DROPSHIP_LZ2
 	auto_open = TRUE
 	roundstart_template = /datum/map_template/shuttle/normandy
+
+/obj/docking_port/stationary/marine_dropship/golden_arrow_hangar
+	name = "Hangar Bay"
+	id = GOLDEN_ARROW_LZ
+	auto_open = TRUE
+	roundstart_template = /datum/map_template/shuttle/midway
 
 /obj/docking_port/stationary/marine_dropship/crash_site
 	auto_open = TRUE
@@ -284,6 +299,10 @@
 			affected_mob.apply_effect(3, WEAKEN)
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_GROUNDSIDE_FORSAKEN_HANDLING)
+
+/datum/map_template/shuttle/midway
+	name = "Rio De Janeiro"
+	shuttle_id = DROPSHIP_MIDWAY
 
 /datum/map_template/shuttle/alamo
 	name = "Alamo"

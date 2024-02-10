@@ -79,9 +79,6 @@
 		spawn(0)
 			//Deleting Almayer, for performance!
 			SSitem_cleanup.delete_almayer()
-	if(SSxenocon)
-		//Don't need XENOCON
-		SSxenocon.wait = 30 MINUTES
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -144,7 +141,6 @@
 		original.statistic_exempt = TRUE
 		original.buckled = start_nest
 		original.setDir(start_nest.dir)
-		original.update_canmove()
 		start_nest.buckled_mob = original
 		start_nest.afterbuckle(original)
 

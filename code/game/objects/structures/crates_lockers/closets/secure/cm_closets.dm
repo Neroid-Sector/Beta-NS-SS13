@@ -32,6 +32,8 @@ GLOBAL_LIST_EMPTY(co_secure_boxes)
 
 /obj/structure/closet/secure_closet/securecom/Initialize()
 	. = ..()
+	new /obj/item/storage/box/kit/honorguard(src)
+	new /obj/item/storage/box/kit/honorguard(src)
 	GLOB.co_secure_boxes += src
 
 /obj/structure/closet/secure_closet/securecom/Destroy()
@@ -105,8 +107,6 @@ GLOBAL_LIST_EMPTY(co_secure_boxes)
 	new /obj/item/storage/belt/gun/m4a3(src)
 	new /obj/item/storage/backpack/marine/satchel/intel(src)
 	new /obj/item/clothing/suit/storage/marine/rto/intel(src)
-	new /obj/item/storage/pouch/document(src)
-	new /obj/item/storage/pouch/document(src)
 	new /obj/item/device/motiondetector/intel(src)
 	new /obj/item/tool/crowbar(src)
 	new /obj/item/clothing/accessory/storage/webbing(src)

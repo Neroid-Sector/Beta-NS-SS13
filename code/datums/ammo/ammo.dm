@@ -89,6 +89,9 @@
 	/// The flicker that plays when a bullet hits a target. Usually red. Can be nulled so it doesn't show up at all.
 	var/hit_effect_color = "#FF0000"
 
+	/// Changes the freq of firing sound based on ammo type
+	var/firing_freq_offset = FALSE
+
 /datum/ammo/New()
 	set_bullet_traits()
 
@@ -138,7 +141,7 @@
 /datum/ammo/proc/knockback(mob/living/living_mob, obj/projectile/fired_projectile, max_range = 2)
 	if(!living_mob || living_mob == fired_projectile.firer)
 		return
-	if(fired_projectile.distance_travelled > max_range || living_mob.lying)
+	if(fired_projectile.distance_travelled > max_range || living_mob.body_position == LYING_DOWN)
 		return //Two tiles away or more, basically.
 
 	if(living_mob.mob_size >= MOB_SIZE_BIG)
@@ -164,9 +167,9 @@
 /datum/ammo/proc/knockback_effects(mob/living/living_mob, obj/projectile/fired_projectile)
 	if(iscarbonsizexeno(living_mob))
 		var/mob/living/carbon/xenomorph/target = living_mob
-		target.apply_effect(0.7, WEAKEN) // 0.9 seconds of stun, per agreement from Balance Team when switched from MC stuns to exact stuns
-		target.apply_effect(1, SUPERSLOW)
-		target.apply_effect(2, SLOW)
+		target.apply_effect(1, WEAKEN)
+		target.apply_effect(2, SUPERSLOW)
+		target.apply_effect(4, SLOW)
 		to_chat(target, SPAN_XENODANGER("You are shaken by the sudden impact!"))
 	else
 		living_mob.apply_stamina_damage(fired_projectile.ammo.damage, fired_projectile.def_zone, ARMOR_BULLET)
@@ -180,8 +183,8 @@
 	else
 		living_mob.apply_stamina_damage(fired_projectile.ammo.damage, fired_projectile.def_zone, ARMOR_BULLET)
 
-/datum/ammo/proc/pushback(mob/target_mob, obj/projectile/fired_projectile, max_range = 2)
-	if(!target_mob || target_mob == fired_projectile.firer || fired_projectile.distance_travelled > max_range || target_mob.lying)
+/datum/ammo/proc/pushback(mob/living/target_mob, obj/projectile/fired_projectile, max_range = 2)
+	if(!target_mob || target_mob == fired_projectile.firer || fired_projectile.distance_travelled > max_range || target_mob.body_position == LYING_DOWN)
 		return
 
 	if(target_mob.mob_size >= MOB_SIZE_BIG)

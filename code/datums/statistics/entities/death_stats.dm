@@ -79,6 +79,9 @@
 		log_message += " from [key_name(cause_data.resolve_mob())]"
 		cause_mob.attack_log += "\[[time_stamp()]\] [key_name(cause_mob)] killed [key_name(src)] with [cause_data.cause_name]."
 
+		if(iscarbon(src)) // no mice overkill sadly
+			cause_mob.life_kills_total += life_value
+
 	attack_log += "[log_message]."
 
 	if(!mind || statistic_exempt)
@@ -109,9 +112,6 @@
 	new_death.cause_role_name = cause_data?.role
 	new_death.cause_faction_name = cause_data?.faction
 
-	if(cause_mob)
-		cause_mob.life_kills_total += life_value
-
 	if(getBruteLoss())
 		new_death.total_brute = round(getBruteLoss())
 	if(getFireLoss())
@@ -140,16 +140,16 @@
 	new_death.detach()
 	return new_death
 
-/mob/living/carbon/human/track_mob_death(cause, cause_mob)
-	. = ..(cause, cause_mob, job)
+/mob/living/carbon/human/track_mob_death(datum/cause_data/cause_data, turf/death_loc)
+	. = ..()
 	if(statistic_exempt || !mind)
 		return
 	var/datum/entity/player_stats/human/human_stats = mind.setup_human_stats()
 	if(human_stats && human_stats.death_list)
 		human_stats.death_list.Insert(1, .)
 
-/mob/living/carbon/xenomorph/track_mob_death(cause, cause_mob)
-	var/datum/entity/statistic/death/new_death = ..(cause, cause_mob, caste_type)
+/mob/living/carbon/xenomorph/track_mob_death(datum/cause_data/cause_data, turf/death_loc)
+	var/datum/entity/statistic/death/new_death = ..()
 	if(!new_death)
 		return
 	new_death.is_xeno = TRUE // this was placed beneath the if below, which meant gibbing as a xeno wouldn't track properly in stats

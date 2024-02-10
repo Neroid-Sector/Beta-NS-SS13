@@ -24,7 +24,7 @@
 	set name = "Eject ID Card"
 	set src in oview(1)
 
-	if(!usr || usr.stat || usr.lying) return
+	if(!usr || usr.is_mob_incapacitated()) return
 
 	if(scan)
 		to_chat(usr, "You remove \the [scan] from \the [src].")
@@ -483,8 +483,8 @@
 	return
 
 /obj/structure/machinery/computer/med_data/emp_act(severity)
+	. = ..()
 	if(inoperable())
-		..(severity)
 		return
 
 	for(var/datum/data/record/R as anything in GLOB.data_core.medical)
@@ -508,8 +508,6 @@
 			GLOB.data_core.medical -= R
 			qdel(R)
 			continue
-
-	..(severity)
 
 
 /obj/structure/machinery/computer/med_data/laptop

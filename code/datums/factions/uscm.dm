@@ -31,10 +31,11 @@
 			if(JOB_MARINE_RAIDER_CMD) marine_rk = "soccmd"
 		if(squad.squad_leader == current_human)
 			switch(squad.squad_type)
-				if("Squad") marine_rk = "leader_a"
+				if("Platoon") marine_rk = "leader_a"
 				if("Team") marine_rk = "soctl_a"
-
 			current_human.langchat_styles = "langchat_bolded" // bold text for bold leaders
+		else if(squad.fireteam_leaders["SQ1"] == current_human || squad.fireteam_leaders["SQ2"] == current_human)
+			current_human.langchat_styles = "langchat_smaller_bolded"
 		else
 			current_human.langchat_styles = initial(current_human.langchat_styles)
 
@@ -75,7 +76,7 @@
 				marine_rk = "co"
 				border_rk = "command"
 			if(JOB_SO)
-				marine_rk = "so"
+				marine_rk = "wo_co"
 				border_rk = "command"
 			if(JOB_AUXILIARY_OFFICER)
 				marine_rk = "aso"
@@ -189,6 +190,19 @@
 			if(JOB_CMB_OBS)
 				marine_rk = "obs"
 				icon_prefix = "cmb_"
+			// Check squad marines here too, for the unique ones
+			if(JOB_SQUAD_ENGI)
+				marine_rk = "engi"
+			if(JOB_SQUAD_MEDIC)
+				marine_rk = "med"
+			if(JOB_SQUAD_SPECIALIST)
+				marine_rk = "spec"
+			if(JOB_SQUAD_SMARTGUN)
+				marine_rk = "gun"
+			if(JOB_SQUAD_TEAM_LEADER)
+				marine_rk = "tl"
+			if(JOB_SQUAD_LEADER)
+				marine_rk = "leader"
 
 		if(marine_rk)
 			var/image/I = image('icons/mob/hud/marine_hud.dmi', current_human, "hudsquad")

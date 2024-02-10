@@ -165,10 +165,11 @@ Defined in conflicts.dm of the #defines folder.
 		// Apply bullet traits from attachment to gun's current projectile
 		G.in_chamber.apply_bullet_trait(L)
 
-/obj/item/attachable/proc/Detach(mob/user, obj/item/weapon/gun/detaching_gub)
+/obj/item/attachable/proc/Detach(mob/user, obj/item/weapon/gun/detaching_gub, drop_attachment = TRUE)
 	if(!istype(detaching_gub)) return //Guns only
 
-	detaching_gub.on_detach(user)
+	if(user)
+		detaching_gub.on_detach(user, src)
 
 	if(flags_attach_features & ATTACH_ACTIVATION)
 		activate_attachment(detaching_gub, null, TRUE)
@@ -182,7 +183,8 @@ Defined in conflicts.dm of the #defines folder.
 			qdel(X)
 			break
 
-	forceMove(get_turf(detaching_gub))
+	if(drop_attachment)
+		forceMove(get_turf(detaching_gub))
 
 	if(sharp)
 		detaching_gub.sharp = 0
@@ -556,7 +558,7 @@ Defined in conflicts.dm of the #defines folder.
 	..()
 	G.attachable_offset["muzzle_x"] = 27
 
-/obj/item/attachable/mateba/Detach(mob/user, obj/item/weapon/gun/detaching_gub)
+/obj/item/attachable/mateba/Detach(mob/user, obj/item/weapon/gun/detaching_gub, drop_attachment = TRUE)
 	..()
 	detaching_gub.attachable_offset["muzzle_x"] = 20
 
@@ -847,7 +849,7 @@ Defined in conflicts.dm of the #defines folder.
 	. = ..()
 	G.AddElement(/datum/element/drop_retrieval/gun, retrieval_slot)
 
-/obj/item/attachable/magnetic_harness/Detach(mob/user, obj/item/weapon/gun/detaching_gub)
+/obj/item/attachable/magnetic_harness/Detach(mob/user, obj/item/weapon/gun/detaching_gub, drop_attachment = TRUE)
 	. = ..()
 	detaching_gub.RemoveElement(/datum/element/drop_retrieval/gun, retrieval_slot)
 
@@ -871,7 +873,7 @@ Defined in conflicts.dm of the #defines folder.
 	G.attachable_offset["under_y"] = 12
 
 
-/obj/item/attachable/magnetic_harness/lever_sling/Detach(mob/user, obj/item/weapon/gun/detaching_gub)
+/obj/item/attachable/magnetic_harness/lever_sling/Detach(mob/user, obj/item/weapon/gun/detaching_gub, drop_attachment = TRUE)
 	. = ..()
 	detaching_gub.attachable_offset["under_x"] = 24
 	detaching_gub.attachable_offset["under_y"] = 16
@@ -923,7 +925,7 @@ Defined in conflicts.dm of the #defines folder.
 	. = ..()
 	RegisterSignal(gun, COMSIG_GUN_RECALCULATE_ATTACHMENT_BONUSES, PROC_REF(handle_attachment_recalc))
 
-/obj/item/attachable/scope/Detach(mob/user, obj/item/weapon/gun/detaching_gub)
+/obj/item/attachable/scope/Detach(mob/user, obj/item/weapon/gun/detaching_gub, drop_attachment = TRUE)
 	. = ..()
 	UnregisterSignal(detaching_gub, COMSIG_GUN_RECALCULATE_ATTACHMENT_BONUSES)
 
@@ -2086,6 +2088,43 @@ Defined in conflicts.dm of the #defines folder.
 	flags_attach_features = NO_FLAGS
 	hud_offset_mod = 2
 
+/obj/item/attachable/stock/xm51
+	name = "\improper XM51 stock"
+	desc = "A specialized stock designed for XM51 breaching shotguns. Helps the user absorb the recoil of the weapon while also reducing scatter. Integrated mechanisms inside the stock allow use of a devastating two-shot burst. This comes at a cost of the gun becoming too unwieldy to holster, worse handling and mobility."
+	icon_state = "xm51_stock"
+	attach_icon = "xm51_stock_a"
+	wield_delay_mod = WIELD_DELAY_FAST
+	hud_offset_mod = 3
+	melee_mod = 10
+
+/obj/item/attachable/stock/xm51/Initialize(mapload, ...)
+	. = ..()
+	select_gamemode_skin(type)
+	//it makes stuff much better when two-handed
+	accuracy_mod = HIT_ACCURACY_MULT_TIER_3
+	recoil_mod = -RECOIL_AMOUNT_TIER_4
+	scatter_mod = -SCATTER_AMOUNT_TIER_8
+	movement_onehanded_acc_penalty_mod = -MOVEMENT_ACCURACY_PENALTY_MULT_TIER_4
+	//and allows for burst-fire
+	burst_mod = BURST_AMOUNT_TIER_2
+	//but it makes stuff much worse when one handed
+	accuracy_unwielded_mod = -HIT_ACCURACY_MULT_TIER_5
+	recoil_unwielded_mod = RECOIL_AMOUNT_TIER_5
+	scatter_unwielded_mod = SCATTER_AMOUNT_TIER_6
+	//and makes you slower
+	aim_speed_mod = CONFIG_GET(number/slowdown_med)
+
+/obj/item/attachable/stock/xm51/select_gamemode_skin(expected_type, list/override_icon_state, list/override_protection)
+	. = ..()
+	var/new_attach_icon
+	switch(SSmapping.configs[GROUND_MAP].camouflage_type)
+		if("snow")
+			attach_icon = new_attach_icon ? new_attach_icon : "s_" + attach_icon
+		if("desert")
+			attach_icon = new_attach_icon ? new_attach_icon : "d_" + attach_icon
+		if("classic")
+			attach_icon = new_attach_icon ? new_attach_icon : "c_" + attach_icon
+
 /obj/item/attachable/stock/mod88
 	name = "\improper Mod 88 burst stock"
 	desc = "Increases the fire rate and burst amount on the Mod 88. Some versions act as a holster for the weapon when un-attached. This is a test item and should not be used in normal gameplay (yet)."
@@ -2227,6 +2266,11 @@ Defined in conflicts.dm of the #defines folder.
 			attach_icon = new_attach_icon ? new_attach_icon : "d_" + attach_icon
 		if("classic")
 			attach_icon = new_attach_icon ? new_attach_icon : "c_" + attach_icon
+
+/obj/item/attachable/m4ra_barrel/pve
+	name = "M4RA-R2 muzzle break"
+	icon_state = "pve_m4ra_barrel"
+	attach_icon = "pve_m4ra_barrel"
 
 /obj/item/attachable/upp_rpg_breech
 	name = "HJRA-12 Breech"
@@ -2533,7 +2577,7 @@ Defined in conflicts.dm of the #defines folder.
 		R.flags_equip_slot &= ~SLOT_WAIST //Can't wear it on the belt slot with stock on when we attach it first time.
 
 // When taking it off we want to undo everything not statwise
-/obj/item/attachable/stock/revolver/Detach(mob/user, obj/item/weapon/gun/detaching_gub)
+/obj/item/attachable/stock/revolver/Detach(mob/user, obj/item/weapon/gun/detaching_gub, drop_attachment = TRUE)
 	..()
 	var/obj/item/weapon/gun/revolver/m44/R = detaching_gub
 	if(!istype(R))
@@ -2671,7 +2715,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/attached_gun/grenade/unique_action(mob/user)
 	if(!ishuman(usr))
 		return
-	if(!user.canmove || user.stat || user.is_mob_restrained() || !user.loc || !isturf(usr.loc))
+	if(user.is_mob_incapacitated() || !isturf(usr.loc))
 		to_chat(user, SPAN_WARNING("Not right now."))
 		return
 
@@ -3260,7 +3304,7 @@ Defined in conflicts.dm of the #defines folder.
 
 	RegisterSignal(G, COMSIG_ITEM_DROPPED, PROC_REF(handle_drop))
 
-/obj/item/attachable/bipod/Detach(mob/user, obj/item/weapon/gun/detaching_gub)
+/obj/item/attachable/bipod/Detach(mob/user, obj/item/weapon/gun/detaching_gub, drop_attachment = TRUE)
 	UnregisterSignal(detaching_gub, COMSIG_ITEM_DROPPED)
 
 	if(bipod_deployed)

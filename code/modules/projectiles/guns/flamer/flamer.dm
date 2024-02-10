@@ -17,17 +17,23 @@
 	reload_sound = 'sound/weapons/handling/flamer_reload.ogg'
 	aim_slowdown = SLOWDOWN_ADS_INCINERATOR
 	current_mag = /obj/item/ammo_magazine/flamer_tank
-	var/fuel_pressure = 1 //Pressure setting of the attached fueltank, controls how much fuel is used per tile
-	var/max_range = 9 //9 tiles, 7 is screen range, controlled by the type of napalm in the canister. We max at 9 since diagonal bullshit.
+	start_automatic = TRUE
 
 	attachable_allowed = list( //give it some flexibility.
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/attached_gun/extinguisher,
-		/obj/item/attachable/attached_gun/flamer_nozzle
+		/obj/item/attachable/attached_gun/extinguisher/pyro,
+		/obj/item/attachable/attached_gun/flamer_nozzle,
 	)
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_TRIGGER_SAFETY
 	gun_category = GUN_CATEGORY_HEAVY
+
+	//Pressure setting of the attached fueltank, controls how much fuel is used per tile
+	var/fuel_pressure = 1
+
+	//max range of flames that can fire, can change depending on fueling
+	var/max_range = 9
 
 
 /obj/item/weapon/gun/flamer/Initialize(mapload, spawn_empty)
@@ -51,7 +57,7 @@
 
 /obj/item/weapon/gun/flamer/set_gun_config_values()
 	..()
-	set_fire_delay(FIRE_DELAY_TIER_5 * 5)
+	set_fire_delay(FIRE_DELAY_TIER_11)
 
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
 	toggle_gun_safety()
@@ -249,6 +255,9 @@
 
 /obj/item/weapon/gun/flamer/deathsquad/nolock
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY
+
+/obj/item/weapon/gun/flamer/deathsquad/standard
+	current_mag = /obj/item/ammo_magazine/flamer_tank
 
 /obj/item/weapon/gun/flamer/M240T
 	name = "\improper M240-T incinerator unit"
@@ -458,7 +467,8 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	tied_reagent = new R.type() // Can't get deleted this way
 	tied_reagent.make_alike(R)
 
-	tied_reagents = obj_reagents
+	if(obj_reagents)
+		tied_reagents = obj_reagents
 
 	target_clicked = target
 
@@ -739,7 +749,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		switch(angle) //this reduces power when the explosion is going around corners
 			if (45)
 				spread_power *= 0.75
-			else //turns out angles greater than 90 degrees almost never happen. This bit also prevents trying to spread backwards
+			if (90 to 180) //turns out angles greater than 90 degrees almost never happen. This bit also prevents trying to spread backwards
 				continue
 
 		switch(spread_direction)

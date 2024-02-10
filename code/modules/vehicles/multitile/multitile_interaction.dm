@@ -134,22 +134,23 @@
 	take_damage_type(O.force * 0.05, "blunt", user) //Melee weapons from people do very little damage
 
 // Frame repairs on the vehicle itself
-/obj/vehicle/multitile/proc/handle_repairs(obj/item/O, mob/user)
+/obj/vehicle/multitile/proc/handle_repairs(obj/item/repairing_item, mob/user)
 	if(user.action_busy)
 		return
+
 	var/max_hp = initial(health)
 	if(health > max_hp)
 		health = max_hp
 		to_chat(user, SPAN_NOTICE("The hull is fully intact."))
 		for(var/obj/item/hardpoint/holder/H in hardpoints)
 			if(H.health > 0)
-				if(!iswelder(O))
-					to_chat(user, SPAN_WARNING("You need welding tool to repair \the [H.name]."))
+				if(!iswelder(repairing_item))
+					to_chat(user, SPAN_WARNING("You need welding tool to repair [H.name]."))
 					return
-				if(!HAS_TRAIT(O, TRAIT_TOOL_BLOWTORCH))
+				if(!HAS_TRAIT(repairing_item, TRAIT_TOOL_BLOWTORCH))
 					to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
 					return
-				H.handle_repair(O, user)
+				H.handle_repair(repairing_item, user)
 				update_icon()
 				return
 			else
@@ -158,25 +159,25 @@
 
 	var/repair_message = "welding structural struts back in place"
 	var/sound_file = 'sound/items/weldingtool_weld.ogg'
-	var/obj/item/tool/weldingtool/WT
+	var/obj/item/tool/weldingtool/welder
 
 	// For health < 75%, the frame needs welderwork, otherwise wrench
 	if(health < max_hp * 0.75)
-		if(!iswelder(O))
+		if(!iswelder(repairing_item))
 			to_chat(user, SPAN_NOTICE("The frame is way too busted! Try using a [SPAN_HELPFUL("welder")]."))
 			return
 
-		if(!HAS_TRAIT(O, TRAIT_TOOL_BLOWTORCH))
+		if(!HAS_TRAIT(repairing_item, TRAIT_TOOL_BLOWTORCH))
 			to_chat(user, SPAN_NOTICE("You need a more powerful blowtorch!"))
 			return
 
-		WT = O
-		if(!WT.isOn())
-			to_chat(user, SPAN_WARNING("\The [WT] needs to be on!"))
+		welder = repairing_item
+		if(!welder.isOn())
+			to_chat(user, SPAN_WARNING("[welder] needs to be on!"))
 			return
 
 	else
-		if(!HAS_TRAIT(O, TRAIT_TOOL_WRENCH))
+		if(!HAS_TRAIT(repairing_item, TRAIT_TOOL_WRENCH))
 			to_chat(user, SPAN_NOTICE("The frame is structurally sound, but there are a lot of loose nuts and bolts. Try using a [SPAN_HELPFUL("wrench")]."))
 			return
 
@@ -184,7 +185,7 @@
 		sound_file = 'sound/items/Ratchet.ogg'
 
 	var/amount_fixed_adjustment = user.get_skill_duration_multiplier(SKILL_ENGINEER)
-	user.visible_message(SPAN_WARNING("[user] [repair_message] on \the [src]."), SPAN_NOTICE("You begin [repair_message] on \the [src]."))
+	user.visible_message(SPAN_WARNING("[user] [repair_message] on [src]."), SPAN_NOTICE("You begin [repair_message] on [src]."))
 	playsound(get_turf(user), sound_file, 25)
 
 	while(health < max_hp)
@@ -192,27 +193,33 @@
 			playsound(get_turf(user), sound_file, 25)
 
 		if(!do_after(user, 1 SECONDS, INTERRUPT_ALL, BUSY_ICON_BUILD))
-			user.visible_message(SPAN_WARNING("[user] stops [repair_message] on \the [src]."), SPAN_NOTICE("You stop [repair_message] on \the [src]. Hull integrity is at [SPAN_HELPFUL(100.0*health/max_hp)]%."))
+			user.visible_message(SPAN_WARNING("[user] stops [repair_message] on [src]."), SPAN_NOTICE("You stop [repair_message] on [src]. Hull integrity is at [SPAN_HELPFUL(100.0*health/max_hp)]%."))
 			return
 
 		health = min(health + max_hp/100 * (5 / amount_fixed_adjustment), max_hp)
-
-		if(WT)
-			WT.remove_fuel(1, user)
-			if(WT.get_fuel() < 1)
-				user.visible_message(SPAN_WARNING("[user] stops [repair_message] on \the [src]."), SPAN_NOTICE("You stop [repair_message] on \the [src]. Hull integrity is at [SPAN_HELPFUL(100.0*health/max_hp)]%."))
-				return
-			if(health >= max_hp * 0.75)
-				user.visible_message(SPAN_WARNING("[user] finishes [repair_message] on \the [src]."), SPAN_NOTICE("You finish [repair_message] on \the [src]. The frame is structurally sound now, but there are a lot of loose nuts and bolts. Try using a [SPAN_HELPFUL("wrench")]."))
-				return
+		if(health >= max_hp * 0.50)
+			set_light_on(vehicle_light_range && vehicle_light_power)
+			light_holder.set_light_on(vehicle_light_range && vehicle_light_power)
+			to_chat(user, SPAN_NOTICE("[src]'s lights flicker to life!"))
 
 		to_chat(user, SPAN_NOTICE("Hull integrity is at [SPAN_HELPFUL(100.0*health/max_hp)]%."))
 
+		if(!welder)
+			continue
+
+		welder.remove_fuel(1, user)
+		if(welder.get_fuel() < 1)
+			user.visible_message(SPAN_WARNING("[user] stops [repair_message] on [src]."), SPAN_NOTICE("You stop [repair_message] on [src]. Hull integrity is at [SPAN_HELPFUL(100.0*health/max_hp)]%."))
+			return
+		if(health >= max_hp * 0.75)
+			user.visible_message(SPAN_WARNING("[user] finishes [repair_message] on [src]."), SPAN_NOTICE("You finish [repair_message] on [src]. The frame is structurally sound now, but there are a lot of loose nuts and bolts. Try using a [SPAN_HELPFUL("wrench")]."))
+			return
+
 	health = initial(health)
-	lighting_holder.set_light_range(vehicle_light_range)
+
 	toggle_cameras_status(TRUE)
 	update_icon()
-	user.visible_message(SPAN_NOTICE("[user] finishes [repair_message] on \the [src]."), SPAN_NOTICE("You finish [repair_message] on \the [src]. Hull integrity is at [SPAN_HELPFUL(100.0*health/max_hp)]%. "))
+	user.visible_message(SPAN_NOTICE("[user] finishes [repair_message] on [src]."), SPAN_NOTICE("You finish [repair_message] on [src]. Hull integrity is at [SPAN_HELPFUL(100.0*health/max_hp)]%. "))
 	return
 
 //Special case for entering the vehicle without using the verb
@@ -330,80 +337,61 @@
 
 	healthcheck()
 
-/obj/vehicle/multitile/handle_click(mob/living/user, atom/A, list/mods)
+/obj/vehicle/multitile/on_set_interaction(mob/user)
+	RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, PROC_REF(crew_mousedown))
+	RegisterSignal(user, COMSIG_MOB_MOUSEDRAG, PROC_REF(crew_mousedrag))
+	RegisterSignal(user, COMSIG_MOB_MOUSEUP, PROC_REF(crew_mouseup))
 
-	var/seat
-	for(var/vehicle_seat in seats)
-		if(seats[vehicle_seat] == user)
-			seat = vehicle_seat
-			break
+/obj/vehicle/multitile/on_unset_interaction(mob/user)
+	UnregisterSignal(user, list(COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEDRAG))
 
-	if(istype(A, /atom/movable/screen) || !seat)
+	var/obj/item/hardpoint/hardpoint = get_mob_hp(user)
+	if(hardpoint)
+		SEND_SIGNAL(hardpoint, COMSIG_GUN_INTERRUPT_FIRE) //abort fire when crew leaves
+
+/// Relays crew mouse release to active hardpoint.
+/obj/vehicle/multitile/proc/crew_mouseup(datum/source, atom/object, turf/location, control, params)
+	SIGNAL_HANDLER
+	var/obj/item/hardpoint/hardpoint = get_mob_hp(source)
+	if(!hardpoint)
 		return
 
-	if(seat == VEHICLE_DRIVER)
-		if(mods["shift"] && !mods["alt"])
-			A.examine(user)
-			return
+	hardpoint.stop_fire(source, object, location, control, params)
 
-		if(mods["ctrl"] && !mods["alt"])
-			activate_horn()
-			return
+/// Relays crew mouse movement to active hardpoint.
+/obj/vehicle/multitile/proc/crew_mousedrag(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
+	SIGNAL_HANDLER
+	var/obj/item/hardpoint/hardpoint = get_mob_hp(source)
+	if(!hardpoint)
+		return
 
-		var/obj/item/hardpoint/HP = active_hp[seat]
-		if(!HP)
-			to_chat(user, SPAN_WARNING("Please select an active hardpoint first."))
-			return
+	hardpoint.change_target(source, src_object, over_object, src_location, over_location, src_control, over_control, params)
 
-		if(!HP.can_activate(user, A))
-			return
+/// Checks for special control keybinds, else relays crew mouse press to active hardpoint.
+/obj/vehicle/multitile/proc/crew_mousedown(datum/source, atom/object, turf/location, control, params)
+	SIGNAL_HANDLER
 
-		HP.activate(user, A)
+	var/list/modifiers = params2list(params)
+	if(modifiers[SHIFT_CLICK] || modifiers[MIDDLE_CLICK] || modifiers[RIGHT_CLICK]) //don't step on examine, point, etc
+		return
 
-	if(seat == VEHICLE_GUNNER)
-		if(mods["shift"] && !mods["middle"])
-			if(vehicle_flags & VEHICLE_TOGGLE_SHIFT_CLICK_GUNNER)
-				shoot_other_weapon(user, seat, A)
-			else
-				A.examine(user)
-			return
-		if(mods["middle"] && !mods["shift"])
-			if(!(vehicle_flags & VEHICLE_TOGGLE_SHIFT_CLICK_GUNNER))
-				shoot_other_weapon(user, seat, A)
-			return
-		if(mods["alt"])
-			toggle_gyrostabilizer()
-			return
-		if(mods["ctrl"])
-			activate_support_module(user, seat, A)
-			return
+	var/seat = get_mob_seat(source)
+	switch(seat)
+		if(VEHICLE_DRIVER)
+			if(modifiers[LEFT_CLICK] && modifiers[CTRL_CLICK])
+				activate_horn()
+				return
+		if(VEHICLE_GUNNER)
+			if(modifiers[LEFT_CLICK] && modifiers[ALT_CLICK])
+				toggle_gyrostabilizer()
+				return
 
-		var/obj/item/hardpoint/HP = active_hp[seat]
-		if(!HP)
-			to_chat(user, SPAN_WARNING("Please select an active hardpoint first."))
-			return
+	var/obj/item/hardpoint/hardpoint = get_mob_hp(source)
+	if(!hardpoint)
+		to_chat(source, SPAN_WARNING("Please select an active hardpoint first."))
+		return
 
-		if(!HP.can_activate(user, A))
-			return
-
-		HP.activate(user, A)
-
-	if(seat == VEHICLE_SUPPORT_GUNNER_ONE || seat == VEHICLE_SUPPORT_GUNNER_TWO)
-		if(mods["shift"])
-			A.examine(user)
-			return
-		if(mods["middle"] || mods["alt"] || mods["ctrl"])
-			return
-
-		var/obj/item/hardpoint/HP = active_hp[seat]
-		if(!HP)
-			to_chat(user, SPAN_WARNING("Please select an active hardpoint first."))
-			return
-
-		if(!HP.can_activate(user, A))
-			return
-
-		HP.activate(user, A)
+	hardpoint.start_fire(source, object, location, control, params)
 
 /obj/vehicle/multitile/proc/handle_player_entrance(mob/M)
 	if(!M || M.client == null) return

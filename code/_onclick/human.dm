@@ -64,7 +64,7 @@
 
 /mob/living/carbon/human/UnarmedAttack(atom/A, proximity, click_parameters)
 
-	if(lying) //No attacks while laying down
+	if(body_position == LYING_DOWN) //No attacks while laying down
 		return 0
 
 	var/obj/item/clothing/gloves/G = gloves // not typecast specifically enough in defines
@@ -80,15 +80,19 @@
 		to_chat(src, SPAN_NOTICE("You try to move your [temp.display_name], but cannot!"))
 		return
 
+	if(SEND_SIGNAL(A, COMSIG_ATOM_BEFORE_HUMAN_ATTACK_HAND, src, click_parameters) & COMPONENT_CANCEL_HUMAN_ATTACK_HAND)
+		return
+
 	A.attack_hand(src, click_parameters)
 
 /datum/proc/handle_click(mob/living/carbon/human/user, atom/A, params) //Heres our handle click relay proc thing.
 	return HANDLE_CLICK_PASS_THRU
 
 /atom/proc/attack_hand(mob/user)
+	SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, user)
 	return
 
-/mob/living/carbon/human/MouseDrop_T(atom/dropping, mob/user)
+/mob/living/carbon/human/MouseDrop_T(atom/dropping, mob/living/user)
 	if(user != src)
 		return . = ..()
 
@@ -99,7 +103,7 @@
 			if(xeno.stat != DEAD) // If the Xeno is alive, fight back
 				var/mob/living/carbon/carbon_user = user
 				if(!carbon_user || !carbon_user.ally_of_hivenumber(xeno.hivenumber))
-					user.KnockDown(rand(xeno.caste.tacklestrength_min, xeno.caste.tacklestrength_max))
+					carbon_user.KnockDown(rand(xeno.caste.tacklestrength_min, xeno.caste.tacklestrength_max))
 					playsound(user.loc, 'sound/weapons/pierce.ogg', 25, TRUE)
 					user.visible_message(SPAN_WARNING("\The [user] tried to unstrap \the [back_item] from [xeno] but instead gets a tail swipe to the head!"))
 					return
@@ -152,7 +156,5 @@
 
 	target.Move(user.loc, get_dir(target.loc, user.loc))
 	target.update_transform(TRUE)
-
-	target.update_canmove()
 
 

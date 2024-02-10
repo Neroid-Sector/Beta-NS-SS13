@@ -164,6 +164,7 @@
 	anchored = TRUE
 	opacity = TRUE
 	density = TRUE
+	unslashable = TRUE
 	icon = 'icons/obj/apc.dmi'
 	icon_state = "apc"
 
@@ -311,6 +312,16 @@
 	reagents.add_reagent("nutriment", 15)
 	reagents.add_reagent("sugar", 9)
 	bitesize = 8
+
+/obj/item/reagent_container/food/snacks/mre_pack/thanksgiving
+	name = "\improper USCM Prepared Meal (turkey)"
+	desc = "A tray of standard USCM food. A few slices of turkey and some regenerated mashed potatos with a rather viscous gravy on top. A classic, if rather half-hearted, Thanksgiving meal."
+	icon_state = "MREe"
+
+/obj/item/reagent_container/food/snacks/mre_pack/thanksgiving/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 10)
+	bitesize = 3
 
 /obj/item/storage/box/pizza
 	name = "food delivery box"

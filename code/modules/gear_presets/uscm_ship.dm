@@ -101,7 +101,7 @@
 //*****************************************************************************************************/
 
 /datum/equipment_preset/uscm_ship/reporter
-	name = "Combat Correspondent"
+	name = "Combat Correspondent (CIV)"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND
 
 	access = list(
@@ -142,7 +142,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/notepad(new_human), WEAR_IN_BACK)
 
 /datum/equipment_preset/uscm_ship/reporter_uscm
-	name = "Combat Correspondent"
+	name = "Combat Correspondent (USCM)"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
 	access = list(
 		ACCESS_MARINE_COMMAND,
@@ -535,20 +535,23 @@
 //*****************************************************************************************************/
 
 /datum/equipment_preset/uscm_ship/so
-	name = "USCM Staff Officer (SO)"
+	name = "USCM Platoon Commander (PltCo)"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
 
 	idtype = /obj/item/card/id/silver
-	access = list(ACCESS_MARINE_COMMAND, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_DATABASE, ACCESS_MARINE_MEDBAY)
 	assignment = JOB_SO
 	rank = JOB_SO
-	paygrade = "MO1"
-	role_comm_title = "SO"
+	paygrade = "MO2"
+	role_comm_title = "PltCo"
 	minimum_age = 25
 	skills = /datum/skills/SO
 
-	minimap_icon = list("cic" = MINIMAP_ICON_COLOR_BRONZE)
+	minimap_icon = list("cic" = MINIMAP_ICON_COLOR_SILVER)
 	minimap_background = MINIMAP_ICON_BACKGROUND_CIC
+
+/datum/equipment_preset/uscm_ship/so/New()
+	. = ..()
+	access = get_access(ACCESS_LIST_MARINE_MAIN)
 
 /datum/equipment_preset/uscm_ship/so/load_gear(mob/living/carbon/human/new_human)
 	var/back_item = /obj/item/storage/backpack/satchel
@@ -564,6 +567,17 @@
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(new_human), WEAR_L_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(new_human), WEAR_R_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/device/binoculars/range(new_human), WEAR_L_HAND)
+
+/datum/equipment_preset/uscm_ship/so/load_status(mob/living/carbon/human/new_human, client/mob_client)
+	. = ..()
+
+	if(!new_human.client)
+		return
+
+	add_verb(new_human.client, /client/proc/commander_rename_platoon)
+
+/datum/equipment_preset/uscm_ship/so/lesser_rank
+	paygrade = "MO1"
 
 //*****************************************************************************************************/
 

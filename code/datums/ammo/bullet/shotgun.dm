@@ -153,6 +153,16 @@
 /datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/M,obj/projectile/P)
 	knockback(M,P)
 
+/datum/ammo/bullet/shotgun/buckshot/special
+	name = "buckshot shell, USCM special type"
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread/special
+
+	accurate_range = 8
+	max_range = 8
+	damage = 60
+	bonus_projectiles_amount = EXTRA_PROJECTILES_TIER_8
+	firing_freq_offset = SOUND_FREQ_LOW
+
 //buckshot variant only used by the masterkey shotgun attachment.
 /datum/ammo/bullet/shotgun/buckshot/masterkey
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread/masterkey
@@ -166,7 +176,7 @@
 	accuracy_var_low = PROJECTILE_VARIANCE_TIER_6
 	accuracy_var_high = PROJECTILE_VARIANCE_TIER_6
 	accurate_range = 4
-	max_range = 6
+	max_range = 4
 	damage = 65
 	damage_var_low = PROJECTILE_VARIANCE_TIER_8
 	damage_var_high = PROJECTILE_VARIANCE_TIER_8
@@ -178,6 +188,14 @@
 
 /datum/ammo/bullet/shotgun/spread/masterkey
 	damage = 20
+
+/datum/ammo/bullet/shotgun/spread/special
+	name = "additional buckshot, USCM special type"
+
+	accurate_range = 8
+	max_range = 8
+	damage = 90
+	firing_freq_offset = SOUND_FREQ_LOW
 
 /*
 					8 GAUGE SHOTGUN AMMO
@@ -309,6 +327,32 @@
 	penetration = ARMOR_PENETRATION_TIER_10
 	scatter = SCATTER_AMOUNT_TIER_4
 
+/*
+					16 GAUGE SHOTGUN AMMO
+*/
+
+/datum/ammo/bullet/shotgun/light/breaching
+	name = "light breaching shell"
+	icon_state = "flechette"
+	handful_state = "breaching_shell"
+	multiple_handful_name = TRUE
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/light/breaching/spread
+
+	accuracy_var_low = PROJECTILE_VARIANCE_TIER_6
+	accuracy_var_high = PROJECTILE_VARIANCE_TIER_6
+	damage = 55
+	max_range = 5
+	bonus_projectiles_amount = EXTRA_PROJECTILES_TIER_3
+	penetration = ARMOR_PENETRATION_TIER_1
+
+/datum/ammo/bullet/shotgun/light/breaching/spread
+	name = "additional light breaching fragments"
+	bonus_projectiles_amount = 0
+	accuracy_var_low = PROJECTILE_VARIANCE_TIER_6
+	accuracy_var_high = PROJECTILE_VARIANCE_TIER_6
+	scatter = SCATTER_AMOUNT_TIER_3
+	damage = 10
+
 //Enormous shell for Van Bandolier's superheavy double-barreled hunting gun.
 /datum/ammo/bullet/shotgun/twobore
 	name = "two bore bullet"
@@ -334,7 +378,7 @@
 	if(P.distance_travelled > 8)
 		knockback(M, P, 12)
 
-	else if(!M || M == P.firer || M.lying) //These checks are included in knockback and would be redundant above.
+	else if(!M || M == P.firer || M.body_position == LYING_DOWN) //These checks are included in knockback and would be redundant above.
 		return
 
 	shake_camera(M, 3, 4)

@@ -203,6 +203,13 @@
 	icon_state = "default"
 	plating_type = /turf/open/floor/plating/almayer
 
+/// Admin level thunderdome floor. Doesn't get damaged by explosions and such for pristine testing
+/turf/open/floor/tdome
+	icon = 'icons/turf/almayer.dmi'
+	icon_state = "plating"
+	plating_type = /turf/open/floor/tdome
+	hull_floor = TRUE
+
 //Cargo elevator
 /turf/open/floor/almayer/empty
 	name = "empty space"
@@ -271,6 +278,9 @@
 
 /turf/open/floor/almayer/uscm/directional
 	icon_state = "logo_directional"
+
+/turf/open/floor/almayer/uscm/directional/up_down
+	icon_state = "logo_directional1"
 
 /turf/open/floor/almayer/no_build
 	allow_construction = FALSE

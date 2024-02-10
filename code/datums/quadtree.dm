@@ -10,14 +10,14 @@
 	var/z_level
 
 	/// Don't divide further when truthy
-	var/final
+	var/final_divide = FALSE
 
 /datum/quadtree/New(datum/shape/rectangle/rect, z)
 	. = ..()
 	boundary = rect
 	z_level = z
 	if(boundary.width <= QUADTREE_BOUNDARY_MINIMUM_WIDTH || boundary.height <= QUADTREE_BOUNDARY_MINIMUM_HEIGHT)
-		final = TRUE
+		final_divide = TRUE
 
 // By design i guess, discarding branch discards rest with BYOND soft-GCing
 // There should never be anything else but SSquadtree referencing quadtrees,
@@ -38,8 +38,8 @@
 	return QDEL_HINT_IWILLGC // Shouldn't have to begin with
 
 /datum/coords/qtplayer
-	/// Relevant client the coords are associated to
-	var/client/player
+	/// Relevant mob the coords are associated to
+	var/mob/player
 	/// Truthy if player is an observer
 	var/is_observer = FALSE
 
@@ -103,7 +103,7 @@
 		player_coords = list(p_coords)
 		return TRUE
 
-	else if(!final && player_coords.len >= QUADTREE_CAPACITY)
+	else if(!final_divide && player_coords.len >= QUADTREE_CAPACITY)
 		if(!is_divided)
 			subdivide()
 		if(nw_branch.insert_player(p_coords))
@@ -132,13 +132,15 @@
 	if(!player_coords)
 		return
 	for(var/datum/coords/qtplayer/P as anything in player_coords)
-		if(!P.player) // Basically client is gone
+		if(!P.player)
 			continue
 		if((flags & QTREE_EXCLUDE_OBSERVER) && P.is_observer)
 			continue
 		if(range.contains(P))
 			if(flags & QTREE_SCAN_MOBS)
-				found_players.Add(P.player.mob)
-			else
 				found_players.Add(P.player)
+				continue
 
+			if(P.player.client)
+				found_players.Add(P.player.client)
+				continue

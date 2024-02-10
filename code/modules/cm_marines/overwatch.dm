@@ -39,8 +39,11 @@
 
 /obj/structure/machinery/computer/overwatch/Initialize()
 	. = ..()
-	tacmap = new(src, minimap_type)
 
+	if (faction == FACTION_MARINE)
+		tacmap = new /datum/tacmap/drawing(src, minimap_type)
+	else
+		tacmap = new(src, minimap_type) // Non-drawing version
 
 /obj/structure/machinery/computer/overwatch/Destroy()
 	QDEL_NULL(tacmap)
@@ -315,8 +318,13 @@
 	data["can_launch_crates"] = has_supply_pad
 	data["has_crate_loaded"] = supply_crate
 	data["supply_cooldown"] = COOLDOWN_TIMELEFT(current_squad, next_supplydrop)
-	data["ob_cooldown"] = COOLDOWN_TIMELEFT(almayer_orbital_cannon, ob_firing_cooldown)
-	data["ob_loaded"] = almayer_orbital_cannon.chambered_tray
+
+	data["can_launch_bombardments"] = FALSE
+
+	if(almayer_orbital_cannon)
+		data["ob_cooldown"] = COOLDOWN_TIMELEFT(almayer_orbital_cannon, ob_firing_cooldown)
+		data["ob_loaded"] = almayer_orbital_cannon.chambered_tray
+		data["can_launch_bombardments"] = TRUE
 
 	data["operator"] = operator.name
 
@@ -330,7 +338,7 @@
 	if(.)
 		return
 
-	var/mob/user = usr
+	var/mob/user = ui.user
 
 	if((user.contents.Find(src) || (in_range(src, user) && istype(loc, /turf))) || (ishighersilicon(user)))
 		user.set_interaction(src)
@@ -375,22 +383,48 @@
 			return TRUE
 
 		if("message")
-			if(current_squad)
-				var/input = sanitize_control_chars(stripped_input(user, "Please write a message to announce to the squad:", "Squad Message"))
-				if(input)
-					current_squad.send_message(input, 1) //message, adds username
-					current_squad.send_maptext(input, "Squad Message:")
-					visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("Message '[input]' sent to all Marines of squad '[current_squad]'.")]")
-					log_overwatch("[key_name(user)] sent '[input]' to squad [current_squad].")
+			if(!current_squad)
+				return TRUE
+
+			var/input = tgui_input_text(user, "Please write a message to announce to the squad:", "Squad Message")
+			if(!input)
+				return TRUE
+
+			current_squad.send_message(input, 1) //message, adds username
+			current_squad.send_maptext(input, "Platoon Message:")
+			visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("Message '[input]' sent to all Marines of platoon '[current_squad]'.")]")
+			log_overwatch("[key_name(user)] sent '[input]' to platoon [current_squad].")
+
+			var/comm_paygrade = user.get_paygrade()
+
+			for(var/mob/dead/observer/cycled_observer in GLOB.player_list)
+				if(cycled_observer.client && cycled_observer.client.prefs && (cycled_observer.client.prefs.toggles_chat & CHAT_GHOSTRADIO))
+					var/ghost_message = "<span class='medium'><span class='orange'><span class='name'>[comm_paygrade][user] (<a href='byond://?src=\ref[cycled_observer];track=\ref[user]'>F</a>)</span> messaged squad '[current_squad]': <span class='body'>\"[input]\"</span></span></span>"
+					cycled_observer.show_message(ghost_message)
+
+			return TRUE
 
 		if("sl_message")
-			if(current_squad)
-				var/input = sanitize_control_chars(stripped_input(user, "Please write a message to announce to the squad leader:", "SL Message"))
-				if(input)
-					current_squad.send_message(input, 1, 1) //message, adds username, only to leader
-					current_squad.send_maptext(input, "Squad Leader Message:", 1)
-					visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("Message '[input]' sent to Squad Leader [current_squad.squad_leader] of squad '[current_squad]'.")]")
-					log_overwatch("[key_name(user)] sent '[input]' to Squad Leader [current_squad.squad_leader] of squad [current_squad].")
+			if(!current_squad)
+				return TRUE
+
+			var/input = tgui_input_text(user, "Please write a message to announce to the Platoon leader:", "SL Message")
+			if(!input)
+				return TRUE
+
+			current_squad.send_message(input, 1, 1) //message, adds username, only to leader
+			current_squad.send_maptext(input, "Platoon Sergeant Message:", 1)
+			visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("Message '[input]' sent to Platoon Sergeant [current_squad.squad_leader] of platoon '[current_squad]'.")]")
+			log_overwatch("[key_name(user)] sent '[input]' to Platoon Sergeant [current_squad.squad_leader] of squad [current_squad].")
+
+			var/comm_paygrade = user.get_paygrade()
+
+			for(var/mob/dead/observer/cycled_observer in GLOB.player_list)
+				if(cycled_observer.client && cycled_observer.client.prefs && (cycled_observer.client.prefs.toggles_chat & CHAT_GHOSTRADIO))
+					var/ghost_message = "<span class='medium'><span class='orange'><span class='name'>[comm_paygrade][user] (<a href='byond://?src=\ref[cycled_observer];track=\ref[user]'>F</a>)</span> messaged platoon leader of '[current_squad]': <span class='body'>\"[input]\"</span></span></span>"
+					cycled_observer.show_message(ghost_message)
+
+			return TRUE
 
 		if("check_primary")
 			if(current_squad) //This is already checked, but ehh.
@@ -776,7 +810,7 @@
 	playsound(T,'sound/effects/alert.ogg', 25, 1)  //Placeholder
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/structure/machinery/computer/overwatch, alert_ob), T), 2 SECONDS)
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/structure/machinery/computer/overwatch, begin_fire)), 6 SECONDS)
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/structure/machinery/computer/overwatch, fire_bombard), user, A, T), 6 SECONDS + 6)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/structure/machinery/computer/overwatch, fire_bombard), user, T), 6 SECONDS + 6)
 
 /obj/structure/machinery/computer/overwatch/proc/begin_fire()
 	for(var/mob/living/carbon/H in GLOB.alive_mob_list)
@@ -787,23 +821,20 @@
 	visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("Orbital bombardment for squad '[current_squad]' has fired! Impact imminent!")]")
 	current_squad.send_message("WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!")
 
-/obj/structure/machinery/computer/overwatch/proc/fire_bombard(mob/user, area/A, turf/T)
-	if(!A || !T)
+/obj/structure/machinery/computer/overwatch/proc/fire_bombard(mob/user,turf/T)
+	if(!T)
 		return
 
 	var/ob_name = lowertext(almayer_orbital_cannon.tray.warhead.name)
 	var/mutable_appearance/warhead_appearance = mutable_appearance(almayer_orbital_cannon.tray.warhead.icon, almayer_orbital_cannon.tray.warhead.icon_state)
-	notify_ghosts(header = "Bombardment Inbound", message = "\A [ob_name] targeting [A.name] has been fired!", source = T, alert_overlay = warhead_appearance, extra_large = TRUE)
-	message_admins(FONT_SIZE_HUGE("ALERT: [key_name(user)] fired an orbital bombardment in [A.name] for squad '[current_squad]' [ADMIN_JMP(T)]"))
-	log_attack("[key_name(user)] fired an orbital bombardment in [A.name] for squad '[current_squad]'")
+	notify_ghosts(header = "Bombardment Inbound", message = "\A [ob_name] targeting [get_area(T)] has been fired!", source = T, alert_overlay = warhead_appearance, extra_large = TRUE)
 
 	/// Project ARES interface log.
-	log_ares_bombardment(user.name, ob_name, "X[x_bomb], Y[y_bomb] in [A.name]")
+	log_ares_bombardment(user.name, ob_name, "X[x_bomb], Y[y_bomb] in [get_area(T)]")
 
 	busy = FALSE
-	var/turf/target = locate(T.x + rand(-3, 3), T.y + rand(-3, 3), T.z)
-	if(target && istype(target))
-		almayer_orbital_cannon.fire_ob_cannon(target, user)
+	if(istype(T))
+		almayer_orbital_cannon.fire_ob_cannon(T, user, current_squad)
 		user.count_niche_stat(STATISTICS_NICHE_OB)
 
 /obj/structure/machinery/computer/overwatch/proc/handle_supplydrop()
@@ -844,18 +875,14 @@
 
 	busy = TRUE
 	C.visible_message(SPAN_WARNING("\The [C] loads into a launch tube. Stand clear!"))
-	C.anchored = TRUE //To avoid accidental pushes
-	current_squad.send_message("'[C.name]' supply drop incoming. Heads up!")
-	current_squad.send_maptext(C.name, "Incoming Supply Drop:")
-	var/datum/squad/S = current_squad //in case the operator changes the overwatched squad mid-drop
-	COOLDOWN_START(S, next_supplydrop, 500 SECONDS)
+	SEND_SIGNAL(C, COMSIG_STRUCTURE_CRATE_SQUAD_LAUNCHED, current_squad)
+	COOLDOWN_START(current_squad, next_supplydrop, 500 SECONDS)
 	if(ismob(usr))
 		var/mob/M = usr
 		M.count_niche_stat(STATISTICS_NICHE_CRATES)
 
 	playsound(C.loc,'sound/effects/bamf.ogg', 50, 1)  //Ehh
-	var/obj/structure/droppod/supply/pod = new()
-	C.forceMove(pod)
+	var/obj/structure/droppod/supply/pod = new(null, C)
 	pod.launch(T)
 	visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("'[C.name]' supply drop launched! Another launch will be available in five minutes.")]")
 	busy = FALSE
@@ -902,6 +929,16 @@
 /obj/structure/supply_drop/alpha
 	icon_state = "alphadrop"
 	squad = SQUAD_MARINE_1
+
+/obj/structure/supply_drop/alpha/Initialize(mapload, ...)
+	. = ..()
+
+	RegisterSignal(SSdcs, COMSIG_GLOB_PLATOON_NAME_CHANGE, PROC_REF(rename_platoon))
+
+/obj/structure/supply_drop/alpha/proc/rename_platoon(datum/source, new_name, old_name)
+	SIGNAL_HANDLER
+
+	squad = new_name
 
 /obj/structure/supply_drop/bravo
 	icon_state = "bravodrop"

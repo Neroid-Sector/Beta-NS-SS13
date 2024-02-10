@@ -105,7 +105,7 @@ Class Procs:
 	var/list/component_parts //list of all the parts used to build it, if made from certain kinds of frames.
 	var/manual = 0
 	layer = OBJ_LAYER
-	var/machine_processing = 0 // whether the machine is busy and requires process() calls in scheduler.
+	var/machine_processing = 0 // whether the machine is busy and requires process() calls in scheduler. // Please replace this by DF_ISPROCESSING in another refactor --fira
 	throwpass = 1
 	projectile_coverage = PROJECTILE_COVERAGE_MEDIUM
 	var/power_machine = FALSE //Whether the machine should process on power, or normal processor
@@ -175,10 +175,10 @@ Class Procs:
 		. += SPAN_WARNING("[msg]")
 
 /obj/structure/machinery/emp_act(severity)
+	. = ..()
 	if(use_power && stat == 0)
 		use_power(7500/severity)
 	new /obj/effect/overlay/temp/emp_sparks (loc)
-	..()
 
 
 /obj/structure/machinery/ex_act(severity)
@@ -229,7 +229,11 @@ Class Procs:
 		return TRUE
 	if(inoperable())
 		return 1
-	if(usr.is_mob_restrained() || usr.lying || usr.stat)
+	if(isliving(usr))
+		var/mob/living/living = usr
+		if(living.body_position == LYING_DOWN) // legacy. if you too find it doesn't make sense, consider removing it
+			return TRUE
+	if(usr.is_mob_restrained())
 		return 1
 	if(!is_valid_user(usr))
 		to_chat(usr, SPAN_DANGER("You don't have the dexterity to do this!"))
@@ -251,10 +255,10 @@ Class Procs:
 	else
 		return src.attack_hand(user)
 
-/obj/structure/machinery/attack_hand(mob/user as mob)
+/obj/structure/machinery/attack_hand(mob/living/user as mob)
 	if(inoperable(MAINT))
 		return TRUE
-	if(user.lying || user.stat)
+	if(user.is_mob_incapacitated())
 		return TRUE
 	if(!is_valid_user(user))
 		to_chat(usr, SPAN_DANGER("You don't have the dexterity to do this!"))
