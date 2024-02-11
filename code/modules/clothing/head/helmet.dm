@@ -974,7 +974,7 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	anti_hug = 10
 	time_to_unequip = 20
 	time_to_equip = 20
-	equip_sounds = list('sound/handling/putting_on_armor1.ogg')
+	equip_sounds = list('sound/handling/helmetscrew.mp3')
 
 //=============================//PMCS\\==================================\\
 //=======================================================================\\
