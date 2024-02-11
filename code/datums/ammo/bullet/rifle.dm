@@ -102,7 +102,7 @@
 	name = "high-explosive armor-piercing rifle bullet"
 
 	headshot_state = HEADSHOT_OVERLAY_HEAVY
-	damage = 55//big damage, doesn't actually blow up because thats stupid.
+	damage = 35//big damage, doesn't actually blow up because thats stupid.
 	penetration = ARMOR_PENETRATION_TIER_8
 	shrapnel_chance = SHRAPNEL_CHANCE_TIER_7
 
@@ -209,7 +209,7 @@
 	name = "heavy high-explosive armor-piercing rifle bullet"
 
 	headshot_state = HEADSHOT_OVERLAY_HEAVY
-	damage = 65
+	damage = 45
 	penetration = ARMOR_PENETRATION_TIER_10
 
 /datum/ammo/bullet/rifle/kramer
