@@ -53,6 +53,24 @@
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
 	flags_equip_slot = SLOT_FACE
 
+/obj/item/clothing/mask/gas/odst
+	name = "\improper M30 pattern compression bonnet"
+	desc = "A bonnet with built in padding and deigned to carry FORECON operator's communication gear and cushion the head during high G-Force Re-entry. The front has a small mask to interface with the MK6 compression suit Helmet airsupply."
+	icon_state = "pmc_mask"
+	anti_hug = 3
+	vision_impair = VISION_IMPAIR_NONE
+	armor_melee = CLOTHING_ARMOR_LOW
+	armor_bullet = CLOTHING_ARMOR_NONE
+	armor_laser = CLOTHING_ARMOR_NONE
+	armor_energy = CLOTHING_ARMOR_NONE
+	armor_bomb = CLOTHING_ARMOR_LOW
+	armor_bio = CLOTHING_ARMOR_HIGH
+	armor_rad = CLOTHING_ARMOR_LOW
+	armor_internaldamage = CLOTHING_ARMOR_NONE
+	flags_inventory = COVERMOUTH|ALLOWINTERNALS|BLOCKGASEFFECT|ALLOWREBREATH
+	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
+	flags_equip_slot = SLOT_FACE
+
 /obj/item/clothing/mask/gas/pmc/marsoc
 	name = "\improper SOF armored balaclava"
 	desc = "Designed for maximum protection -- and badassery. Provides protection against facial attacks, filters toxins, and conceals the wearer's identity."

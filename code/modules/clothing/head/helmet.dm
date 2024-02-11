@@ -966,11 +966,15 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
 	flags_armor_protection = BODY_FLAG_HEAD|BODY_FLAG_FACE|BODY_FLAG_EYES|FULL_DECAP_PROTECTION|BLOCKGASEFFECT|NOPRESSUREDMAGE
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ|ALLOWINTERNALS
+	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROT
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
 	built_in_visors = list(new /obj/item/device/helmet_visor, new /obj/item/device/helmet_visor/medical/advanced, new /obj/item/device/helmet_visor/night_vision/marine_raider, new /obj/item/device/helmet_visor/welding_visor/tanker)
 	start_down_visor_type = /obj/item/device/helmet_visor/welding_visor/tanker
 	anti_hug = 10
+	time_to_unequip = 20
+	time_to_equip = 20
+	equip_sounds = list('sound/handling/putting_on_armor1.ogg')
 
 //=============================//PMCS\\==================================\\
 //=======================================================================\\

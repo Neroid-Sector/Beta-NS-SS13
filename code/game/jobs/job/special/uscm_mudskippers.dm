@@ -8,7 +8,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/commander
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
-	entry_message_body = "Greetings Major Commander" //Middle paragraph. This one is typically written per role and declared here.
+	entry_message_body = "Greetings Commander" //Middle paragraph. This one is typically written per role and declared here.
 /obj/effect/landmark/start/mudskipper/msco
 	name = JOB_MS_CO
 	icon_state = "xo_spawn"
