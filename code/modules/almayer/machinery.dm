@@ -167,9 +167,9 @@
     desc = "The IBM series 10 computer retrofitted to work as a sensor computer for the ship. While somewhat dated it still serves its purpose."
     icon = 'icons/obj/structures/props/almayer_props.dmi'
     icon_state = "sensor_comp1"
-    var/countdown_max = 100 // Maxiumum value in ticks.
+    var/countdown_max = 600 // Maxiumum value in ticks.
     var/operation_complete = FALSE // If the multitooling was complete
-    var/countdown_step = 50 // How many seconds between precentage annoucements
+    var/countdown_step = 50 // How many seconds between percentage annoucements
     var/terminal_in_use = FALSE
 
 /obj/structure/prop/almayer/computers/hackable_comp/attackby(obj/item/W, mob/user)
@@ -185,10 +185,15 @@
 /obj/structure/prop/almayer/computers/hackable_comp/proc/special_countdown()
     var/temp_countdown = 0
     terminal_in_use = FALSE
+    if(temp_countdown == 0)
+        talkas("Operation in commencing please wait.")
+    if (countdown_max == 0 && countdown_step == 0)
+        to_chat(world, SPAN_WARNING("Admin dummy, tried to divide by zero. Point and laugh."))
+        return
     while(temp_countdown < countdown_max)
         sleep(countdown_step)
         temp_countdown += countdown_step
-        talkas("Operation in progress. [((temp_countdown / countdown_max) * 100)] percent complete.")
+        talkas("Operation in progress. [round(((temp_countdown / countdown_max) * 100),0.5)] percent complete.")
     if(temp_countdown >= countdown_max)
         talkas("Operation complete.")
         operation_complete = TRUE
