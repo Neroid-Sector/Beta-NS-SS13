@@ -163,8 +163,8 @@
 	icon_state = "sensor_comp3"
 
 /obj/structure/prop/almayer/computers/hackable_comp
-    name = "sensor computer"
-    desc = "The IBM series 10 computer retrofitted to work as a sensor computer for the ship. While somewhat dated it still serves its purpose."
+    name = "Secure computer"
+    desc = "The IBM series 10 computer retrofitted to work as a sensor computer or some kind of sentry control network. While somewhat dated it still serves its purpose."
     icon = 'icons/obj/structures/props/almayer_props.dmi'
     icon_state = "sensor_comp1"
     var/countdown_max = 1200 // Maxiumum value in ticks.
@@ -202,20 +202,6 @@
         talkas("Download complete.")
         operation_complete = TRUE
         return
-
-/obj/structure/prop/almayer/computers/hackable_comp/proc/talkas(str, delay) //Talk as. Delay in BYOND ticks (about 1/10 of a second per tick) If not provided, delay calculated automatically depending in message length.
-    if (!str) return
-    var/list/heard = get_mobs_in_view(world_view_size, src)
-    src.langchat_speech(str, heard, GLOB.all_languages, skip_language_check = TRUE)
-    src.visible_message("<b>[src]</b> says, \"[str]\"")
-    var/talkdelay = delay
-    if (!talkdelay)
-        if ((length("[str]")) <= 64)
-            talkdelay = 40
-        if ((length("[str]")) > 64)
-            talkdelay = 60
-    sleep(talkdelay)
-    return
 
 /obj/structure/prop/almayer/missile_tube
 	name = "\improper Mk 33 ASAT launcher system"

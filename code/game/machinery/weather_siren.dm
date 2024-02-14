@@ -38,10 +38,18 @@
 	unslashable = 1
 	use_power = USE_POWER_NONE
 	health = 0
-	var/id
 
-
-
-/obj/structure/machinery/checkpoint_broadcaster/proc/play_checkpoint_warning()
-	playsound(loc, 'sound/effects/weather_warning.ogg', 50, 0)
-	visible_message(SPAN_DANGER("The [src] crackles to life spewing a menacing warning in a monotone voice."))
+/obj/structure/machinery/checkpoint_broadcaster/proc/play/(str)
+	var/pa_pick =  str
+	if (!pa_pick) return
+	switch(pa_pick)
+		if("pa1")
+			playsound(loc, 'sound/PA/checkpoint/Papers.mp3')
+			talkas("placeholder text")
+			return
+		if("pa2")
+			playsound(loc, 'sound/PA/checkpoint/Papers.mp3')
+			talkas("placeholder text")
+			return
+		else
+			return
