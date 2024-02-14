@@ -167,15 +167,16 @@
     desc = "The IBM series 10 computer retrofitted to work as a sensor computer for the ship. While somewhat dated it still serves its purpose."
     icon = 'icons/obj/structures/props/almayer_props.dmi'
     icon_state = "sensor_comp1"
-    var/countdown_max = 600 // Maxiumum value in ticks.
+    var/countdown_max = 1200 // Maxiumum value in ticks.
     var/operation_complete = FALSE // If the multitooling was complete
-    var/countdown_step = 50 // How many seconds between percentage annoucements
+    var/countdown_step = 150 // How many seconds between percentage annoucements
     var/terminal_in_use = FALSE
 
 /obj/structure/prop/almayer/computers/hackable_comp/attackby(obj/item/W, mob/user)
     terminal_in_use = TRUE
+    playsound(loc, 'sound/machines/lockdownalarm.ogg', 25)
     if((HAS_TRAIT(W, TRAIT_TOOL_MULTITOOL)) && operation_complete == FALSE)
-        if(do_after(user, 50, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+        if(do_after(user, 80, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
             for(var/obj/structure/prop/almayer/computers/hackable_comp/H in world)
                 if(H.terminal_in_use == TRUE)
                     INVOKE_ASYNC(H, TYPE_PROC_REF(/obj/structure/prop/almayer/computers/hackable_comp, special_countdown))
@@ -186,16 +187,19 @@
     var/temp_countdown = 0
     terminal_in_use = FALSE
     if(temp_countdown == 0)
-        talkas("Operation in commencing please wait.")
+        playsound(loc, 'sound/machines/computer_startup.mp3', 25)
+        talkas("Initiating Download please wait...")
     if (countdown_max == 0 && countdown_step == 0)
         to_chat(world, SPAN_WARNING("Admin dummy, tried to divide by zero. Point and laugh."))
         return
     while(temp_countdown < countdown_max)
         sleep(countdown_step)
         temp_countdown += countdown_step
-        talkas("Operation in progress. [round(((temp_countdown / countdown_max) * 100),0.5)] percent complete.")
+        playsound(loc, 'sound/machines/dialup.mp3', 25)
+        talkas("Download in progress. [round(((temp_countdown / countdown_max) * 100),0.5)] percent complete.")
     if(temp_countdown >= countdown_max)
-        talkas("Operation complete.")
+        playsound(loc, 'sound/machines/fax.ogg', 25)
+        talkas("Download complete.")
         operation_complete = TRUE
         return
 
