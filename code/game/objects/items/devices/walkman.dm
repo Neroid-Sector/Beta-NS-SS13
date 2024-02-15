@@ -516,3 +516,13 @@
 	desc = "The shell on this cassette is broken, it still looks like it'll work, though!"
 	icon_state = "cassette_worstmap"
 	side1_icon = "cassette_worstmap"
+
+/obj/item/device/portalradio
+	name = "cheap radio"
+	desc = "A small FM/AM radio that sometimes can get a rogue signal even out here."
+	icon_state = "portal_radio"
+	w_class = SIZE_SMALL
+	flags_equip_slot = SLOT_WAIST
+
+/obj/item/device/portalradio/attack_self(mob/user)
+	..(playsound(loc, 'sound/machines/memesong.mp3', 35))
