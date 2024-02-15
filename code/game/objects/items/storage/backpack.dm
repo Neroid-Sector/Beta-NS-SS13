@@ -713,7 +713,7 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 	icon_state = "scout_cloak"
 	has_gamemode_skin = FALSE //same sprite for all gamemode.
 	var/camo_active = FALSE
-	var/camo_alpha = 20
+	var/camo_alpha = 25
 	var/allow_gun_usage = FALSE
 	var/cloak_cooldown
 
