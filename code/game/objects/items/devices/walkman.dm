@@ -521,7 +521,7 @@
 	name = "cheap radio"
 	desc = "A small FM/AM radio that sometimes can get a rogue signal even out here."
 	icon_state = "portal_radio"
-	w_class = SIZE_SMALL
+	w_class = SIZE_MEDIUM
 	flags_equip_slot = SLOT_WAIST
 
 /obj/item/device/portalradio/attack_self(mob/user)
