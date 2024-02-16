@@ -215,3 +215,107 @@
 /obj/structure/shuttle/part/dropship2/transparent/right_outer_bottom_wing
 	icon_state = "6"
 
+/obj/structure/shuttle/part/waco
+	name = "\improper Waco"
+	icon = 'icons/turf/waco.dmi'
+	icon_state = "1"
+	opacity = TRUE
+
+/obj/structure/shuttle/part/waco/ex_act(severity, direction)
+	return FALSE
+
+/obj/structure/shuttle/part/waco/transparent
+	opacity = FALSE
+
+/obj/structure/shuttle/part/waco/transparent/nose_top_right
+	icon_state = "102"
+
+/obj/structure/shuttle/part/waco/transparent/nose_center
+	icon_state = "101"
+
+/obj/structure/shuttle/part/waco/transparent/nose_top_left
+	icon_state = "100"
+
+/obj/structure/shuttle/part/waco/nose_front_left
+	icon_state = "95"
+
+/obj/structure/shuttle/part/waco/nose_front_right
+	icon_state = "99"
+
+/obj/structure/shuttle/part/waco/transparent/inner_right_weapons
+	icon_state = "90"
+
+/obj/structure/shuttle/part/waco/transparent/outer_right_weapons
+	icon_state = "91"
+
+/obj/structure/shuttle/part/waco/transparent/inner_left_weapons
+	icon_state = "85"
+
+/obj/structure/shuttle/part/waco/transparent/outer_left_weapons
+	icon_state = "84"
+
+/obj/structure/shuttle/part/waco/transparent/upper_right_wing
+	icon_state = "74"
+
+/obj/structure/shuttle/part/waco/transparent/middle_right_wing
+	icon_state = "70"
+
+/obj/structure/shuttle/part/waco/transparent/lower_right_wing
+	icon_state = "65"
+
+/obj/structure/shuttle/part/waco/transparent/upper_left_wing
+	icon_state = "71"
+
+/obj/structure/shuttle/part/waco/transparent/middle_left_wing
+	icon_state = "66"
+
+/obj/structure/shuttle/part/waco/transparent/lower_left_wing
+	icon_state = "61"
+
+/obj/structure/shuttle/part/waco/lower_left_wall
+	icon_state = "46"
+
+/obj/structure/shuttle/part/waco/lower_right_wall
+	icon_state = "49"
+
+/obj/structure/shuttle/part/waco/transparent/engine_left_cap
+	icon_state = "40"
+
+/obj/structure/shuttle/part/waco/transparent/engine_right_cap
+	icon_state = "41"
+
+/obj/structure/shuttle/part/waco/transparent/engine_left_exhaust
+	icon_state = "16"
+
+/obj/structure/shuttle/part/waco/transparent/engine_right_exhaust
+	icon_state = "17"
+
+/obj/structure/shuttle/part/waco/bottom_left_wall
+	icon_state = "9"
+
+/obj/structure/shuttle/part/waco/bottom_right_wall
+	icon_state = "15"
+
+/obj/structure/shuttle/part/waco/left_inner_wing_connector
+	icon_state = "7"
+
+/obj/structure/shuttle/part/waco/right_inner_wing_connector
+	icon_state = "8"
+
+/obj/structure/shuttle/part/waco/left_outer_wing_connector
+	icon_state = "3"
+
+/obj/structure/shuttle/part/waco/right_outer_wing_connector
+	icon_state = "4"
+
+/obj/structure/shuttle/part/waco/transparent/left_outer_bottom_wing
+	icon_state = "1"
+
+/obj/structure/shuttle/part/waco/transparent/left_outer_inner_wing
+	icon_state = "2"
+
+/obj/structure/shuttle/part/waco/transparent/right_inner_bottom_wing
+	icon_state = "5"
+
+/obj/structure/shuttle/part/waco/transparent/right_outer_bottom_wing
+	icon_state = "6"
