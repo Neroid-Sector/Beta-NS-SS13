@@ -984,7 +984,7 @@
 	alpha = 0;
 	desc = "A sturdy metal drop pod.";
 	height = 1;
-	id = "droppod6";
+	id = "droppod1";
 	name = "drop pod"
 	},
 /turf/open/floor/plating,
@@ -5887,7 +5887,7 @@
 	alpha = 0;
 	desc = "A sturdy metal drop pod.";
 	height = 1;
-	id = "droppod3";
+	id = "droppod2";
 	name = "drop pod"
 	},
 /turf/open/floor/plating,
@@ -6220,7 +6220,7 @@
 	alpha = 0;
 	desc = "A sturdy metal drop pod.";
 	height = 1;
-	id = "droppod1";
+	id = "droppod3";
 	name = "drop pod"
 	},
 /turf/open/floor/plating,
@@ -12801,7 +12801,7 @@
 	alpha = 0;
 	desc = "A sturdy metal drop pod.";
 	height = 1;
-	id = "droppod2";
+	id = "droppod5";
 	name = "drop pod"
 	},
 /turf/open/floor/plating,
@@ -16942,7 +16942,7 @@
 	alpha = 0;
 	desc = "A sturdy metal drop pod.";
 	height = 1;
-	id = "droppod5";
+	id = "droppod6";
 	name = "drop pod"
 	},
 /turf/open/floor/plating,
@@ -23237,9 +23237,9 @@ as
 as
 as
 as
-as
-as
-as
+vI
+vI
+vI
 as
 as
 as
@@ -23389,9 +23389,9 @@ as
 as
 as
 as
-as
-as
-as
+vI
+dh
+vI
 as
 as
 as
@@ -23541,9 +23541,9 @@ as
 as
 as
 as
-as
-as
-as
+vI
+se
+vI
 as
 as
 as
@@ -23693,9 +23693,9 @@ as
 as
 as
 as
-as
-as
-as
+vI
+sR
+vI
 as
 as
 as
@@ -23845,9 +23845,9 @@ as
 as
 as
 as
-as
-as
-as
+vI
+se
+vI
 as
 as
 as
@@ -23997,9 +23997,9 @@ as
 as
 as
 as
-as
-as
-as
+vI
+tP
+vI
 as
 as
 as
@@ -24149,9 +24149,9 @@ as
 as
 as
 as
-as
-as
-as
+vI
+se
+vI
 as
 as
 as
@@ -24301,9 +24301,9 @@ as
 as
 as
 as
-as
-as
-as
+vI
+HU
+vI
 as
 as
 as
@@ -24453,9 +24453,9 @@ as
 as
 as
 as
-as
-as
-as
+vI
+se
+vI
 as
 as
 as
@@ -24605,9 +24605,9 @@ as
 as
 as
 as
-as
-as
-as
+vI
+Ne
+vI
 as
 as
 as
@@ -24755,11 +24755,11 @@ as
 as
 as
 as
-vI
-vI
-vI
 as
 as
+vI
+se
+vI
 as
 as
 as
@@ -24907,8 +24907,10 @@ as
 as
 as
 as
+as
+as
 vI
-tP
+Zc
 vI
 as
 as
@@ -24918,14 +24920,12 @@ as
 as
 as
 as
-Ya
-Ya
-Ya
-Ya
-Ya
-Ya
-Ya
-Ya
+as
+as
+as
+as
+as
+as
 as
 as
 as
@@ -25059,8 +25059,10 @@ as
 as
 as
 as
+as
+as
 vI
-se
+vI
 vI
 as
 as
@@ -25070,14 +25072,12 @@ as
 as
 as
 as
-Ya
-mq
-mq
-mq
-mq
-mq
-mq
-Ya
+as
+as
+as
+as
+as
+as
 as
 as
 as
@@ -25211,9 +25211,6 @@ as
 as
 as
 as
-vI
-Ne
-vI
 as
 as
 as
@@ -25222,14 +25219,17 @@ as
 as
 as
 as
-Ya
-mq
-mq
-mq
-mq
-mq
-mq
-Ya
+as
+as
+as
+as
+as
+as
+as
+as
+as
+as
+as
 as
 as
 as
@@ -25363,9 +25363,6 @@ as
 as
 as
 as
-vI
-se
-vI
 as
 as
 as
@@ -25374,14 +25371,17 @@ as
 as
 as
 as
-Ya
-mq
-mq
-mq
-mq
-mq
-mq
-Ya
+as
+as
+as
+as
+as
+as
+as
+as
+as
+as
+as
 as
 as
 as
@@ -25515,9 +25515,6 @@ as
 as
 as
 as
-vI
-sR
-vI
 as
 as
 as
@@ -25526,14 +25523,17 @@ as
 as
 as
 as
-Ya
-mq
-mq
-mq
-mq
-mq
-mq
-Ya
+as
+as
+as
+as
+as
+as
+as
+as
+as
+as
+as
 as
 as
 as
@@ -25667,9 +25667,6 @@ as
 as
 as
 as
-vI
-se
-vI
 as
 as
 as
@@ -25678,14 +25675,17 @@ as
 as
 as
 as
-Ya
-mq
-mq
-mq
-mq
-mq
-mq
-Ya
+as
+as
+as
+as
+as
+as
+as
+as
+as
+as
+as
 as
 as
 as
@@ -25819,9 +25819,6 @@ as
 as
 as
 as
-vI
-HU
-vI
 as
 as
 as
@@ -25830,14 +25827,17 @@ as
 as
 as
 as
-Ya
-mq
-mq
-mq
-mq
-mq
-mq
-Ya
+as
+as
+as
+as
+as
+as
+as
+as
+as
+as
+as
 as
 as
 as
@@ -25971,9 +25971,6 @@ as
 as
 as
 as
-vI
-se
-vI
 as
 as
 as
@@ -25982,14 +25979,17 @@ as
 as
 as
 as
-Ya
-Ya
-Ya
-Ya
-Ya
-Ya
-Ya
-Ya
+as
+as
+as
+as
+as
+as
+as
+as
+as
+as
+as
 as
 as
 as
@@ -26123,9 +26123,9 @@ as
 as
 as
 as
-vI
-Zc
-vI
+as
+as
+as
 as
 as
 as
@@ -26275,9 +26275,9 @@ as
 as
 as
 as
-vI
-se
-vI
+as
+as
+as
 as
 as
 as
@@ -26427,9 +26427,9 @@ as
 as
 as
 as
-vI
-dh
-vI
+as
+as
+as
 as
 as
 as
@@ -26579,9 +26579,9 @@ as
 as
 as
 as
-vI
-vI
-vI
+as
+as
+as
 as
 as
 as
