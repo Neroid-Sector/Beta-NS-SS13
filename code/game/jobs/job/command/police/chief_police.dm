@@ -11,10 +11,10 @@ AddTimelock(/datum/job/command/warrant, list(
 	JOB_COMMAND_ROLES = 5 HOURS
 ))
 
-/obj/effect/landmark/start/mpsl
+/obj/effect/landmark/start/warrant
 	name = JOB_CHIEF_POLICE
 	icon_state = "cmp_spawn"
-	job = /datum/job/command/mpsl
+	job = /datum/job/command/warrant
 
 //MP SL
 /datum/job/command/mpsl
