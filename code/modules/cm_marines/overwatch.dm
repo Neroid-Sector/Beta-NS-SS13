@@ -560,7 +560,7 @@
 		current_squad.send_message("Attention: A new Squad Leader has been set: [selected_sl.real_name].")
 		visible_message("[icon2html(src, viewers(src))] [SPAN_BOLDNOTICE("[selected_sl.real_name] is the new Squad Leader of squad '[current_squad]'! Logging to enlistment file.")]")
 
-	to_chat(selected_sl, "[icon2html(src, selected_sl)] <font size='3' color='blue'><B>Overwatch: You've been promoted to \'[selected_sl.job == JOB_SQUAD_LEADER ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [current_squad.name]. Your headset has access to the command channel (:v).</B></font>")
+	to_chat(selected_sl, "[icon2html(src, selected_sl)] <font size='3' color='blue'><B>Overwatch: You've been promoted to \'[selected_sl.job == list(JOB_SQUAD_LEADER, JOB_MS_SL, JOB_HD_SL, JOB_TR_SL, JOB_POLICE_SL) ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [current_squad.name]. Your headset has access to the command channel (:v).</B></font>")
 	to_chat(user, "[icon2html(src, usr)] [selected_sl.real_name] is [current_squad]'s new leader!")
 
 	if(selected_sl.assigned_fireteam)
@@ -575,7 +575,7 @@
 	SStracking.set_leader(current_squad.tracking_id, selected_sl)
 	SStracking.start_tracking("marine_sl", selected_sl)
 
-	if(selected_sl.job == JOB_SQUAD_LEADER)//a real SL
+	if(selected_sl.job == list(JOB_SQUAD_LEADER, JOB_MS_SL, JOB_HD_SL, JOB_TR_SL, JOB_POLICE_SL))//a real SL
 		selected_sl.comm_title = "SL"
 	else //an acting SL
 		selected_sl.comm_title = "aSL"

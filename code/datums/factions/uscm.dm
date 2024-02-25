@@ -161,7 +161,7 @@
 				marine_rk = "wo_co"
 			if(JOB_WO_XO, JOB_MS_PC, JOB_HD_PC, JOB_TR_PC)
 				marine_rk = "wo_xo"
-			if(JOB_WO_CHIEF_POLICE, JOB_MS_HGSL)
+			if(JOB_WO_CHIEF_POLICE, JOB_MS_HGSL, JOB_POLICE_SL)
 				marine_rk = "hgsl"
 			if(JOB_WO_SO, JOB_MS_VHG)
 				marine_rk = "vhg"

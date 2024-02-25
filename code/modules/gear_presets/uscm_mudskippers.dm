@@ -228,6 +228,15 @@
 	minimap_icon = list("cic" = MINIMAP_ICON_COLOR_HEAD)
 	minimap_background = MINIMAP_ICON_BACKGROUND_CIC
 
+	utility_under = list(/obj/item/clothing/under/marine, /obj/item/clothing/under/marine/officer/command, /obj/item/clothing/under/marine/officer/boiler)
+	utility_hat = list(/obj/item/clothing/head/cmcap,/obj/item/clothing/head/beret/cm/tan)
+	utility_extra = list(/obj/item/clothing/glasses/sunglasses,/obj/item/clothing/glasses/sunglasses/big,/obj/item/clothing/glasses/sunglasses/aviator,/obj/item/clothing/glasses/mbcg)
+
+	service_under = list(/obj/item/clothing/under/marine/officer/formal/white, /obj/item/clothing/under/marine/officer/formal/black)
+	service_shoes = list(/obj/item/clothing/shoes/dress/commander)
+	service_extra = list(/obj/item/clothing/suit/storage/jacket/marine/dress/officer/bomber)
+	service_hat = list(/obj/item/clothing/head/beret/cm, /obj/item/clothing/head/beret/marine/commander/dress, /obj/item/clothing/head/beret/marine/commander/black, /obj/item/clothing/head/marine/peaked/service)
+
 	dress_extra = list(/obj/item/storage/large_holster/ceremonial_sword/full)
 
 /datum/equipment_preset/uscm_mudskippers/xo/New()
@@ -762,6 +771,10 @@
 
 	minimap_icon = "cmp"
 
+/datum/equipment_preset/uscm_mudskippers/hgsl/New()
+	. = ..()
+	access = get_access(ACCESS_LIST_MARINE_ALL)
+
 
 /datum/equipment_preset/uscm_mudskippers/hgsl/load_gear(mob/living/carbon/human/new_human)
 
@@ -812,6 +825,10 @@
 	idtype = /obj/item/card/id/silver
 
 	minimap_icon = "mp"
+
+/datum/equipment_preset/uscm_mudskippers/vhg/New()
+	. = ..()
+	access = get_access(ACCESS_LIST_MARINE_ALL)
 
 /datum/equipment_preset/uscm_mudskippers/vhg/load_gear(mob/living/carbon/human/new_human)
 
