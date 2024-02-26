@@ -410,6 +410,19 @@
 								"sound/music/walkman/hairmetal/6-2-2.ogg",\
 								"sound/music/walkman/hairmetal/6-2-3.ogg"))
 
+/obj/item/device/cassette_tape/Mixheavymetal
+	name = "red-black cassette"
+	id = 19
+	desc = "A plastic cassette tape with a red sticker with black stripes."
+	icon_state = "cassette_red_black"
+	side1_icon = "cassette_red_black"
+	songs = list("side1" = list("sound/music/walkman/hairmetal/6-1-1.ogg",\
+								"sound/music/walkman/heavymetal/5-1-2.ogg",\
+								"sound/music/walkman/pop1/1-1-3.ogg"),\
+				"side2" = list("sound/music/walkman/hiphop/8-2-1.ogg",\
+								"sound/music/walkman/surf/10-2-2.ogg",\
+								"sound/music/walkman/pop1/1-2-3.ogg"))
+
 /obj/item/device/cassette_tape/indie
 	name = "rising sun cassette"
 	id = 8
