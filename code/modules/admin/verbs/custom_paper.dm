@@ -1,8 +1,21 @@
+
+//Orignal Staff only cereate paper, not affected by event settings
 /client/proc/create_custom_paper()
 	set name = "Create Custom Paper"
 	set category = "Admin.Events"
 
 	customise_paper()
+
+
+//Player version of create paper, affected only by event settings, but not usual admin checks.
+//TODO, add the actual checks and toggles, but for now TM system will do.
+/client/verb/create_fancy_paper()
+	set name = "Fancy Paper"
+	set desc = "Make a fancy HTML paper, use of copy paste from an external editor is advised"
+	set category = "Event.Fax"
+
+	customise_paper()
+
 
 /client/proc/customise_paper(obj/item/paper/sheet)
 	var/new_sheet = FALSE
