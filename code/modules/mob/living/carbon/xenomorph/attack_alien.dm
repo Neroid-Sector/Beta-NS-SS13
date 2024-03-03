@@ -50,7 +50,7 @@
 			if(M.behavior_delegate && M.behavior_delegate.handle_slash(src))
 				return XENO_NO_DELAY_ACTION
 
-			if(stat == DEAD)
+			if(stat == DEAD || (status_flags & FAKEDEATH))
 				to_chat(M, SPAN_WARNING("[src] is dead, why would you want to touch it?"))
 				return XENO_NO_DELAY_ACTION
 
@@ -287,13 +287,13 @@
 	SPAN_DANGER("You nudge your head against [src]."), null, 5, CHAT_TYPE_XENO_FLUFF)
 
 /mob/living/proc/is_xeno_grabbable()
-	if(stat == DEAD)
+	if(stat == DEAD || (status_flags & FAKEDEATH))
 		return FALSE
 
 	return TRUE
 
 /mob/living/carbon/human/is_xeno_grabbable()
-	if(stat != DEAD || chestburst)
+	if(((stat != DEAD) && !(status_flags & FAKEDEATH)) || chestburst)
 		return TRUE
 
 	if(status_flags & XENO_HOST)

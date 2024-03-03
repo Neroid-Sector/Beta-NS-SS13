@@ -26,6 +26,8 @@
 	var/list/active_transfusions = list()
 
 	var/datum/huntdata/hunter_data //Stores all information relating to Hunters for use with their HUD and other systems.
+	
+	var/mob/living/carbon/cortical_borer/borer = null
 
 /mob/living/carbon/vv_get_dropdown()
 	. = ..()

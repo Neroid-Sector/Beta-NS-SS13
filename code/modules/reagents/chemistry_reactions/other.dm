@@ -456,6 +456,13 @@
 	required_reagents = list("eggplasma" = 1, "xenobloodroyal" = 1)
 	result_amount = 2
 
+/datum/chemical_reaction/borer_cure
+	name = "Anti-Enzyme"
+	id = "bcure"
+	result = "bcure"
+	required_reagents = list("benzyme" = 2, "anti_toxin" = 4)
+	result_amount = 3
+	mob_react = FALSE
 /datum/chemical_reaction/antineurotoxin
 	name = "Anti-Neurotoxin"
 	id = "antineurotoxin"

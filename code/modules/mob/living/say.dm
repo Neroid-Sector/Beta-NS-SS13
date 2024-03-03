@@ -119,12 +119,17 @@ var/list/department_radio_keys = list(
 					hearturfs += M.locs[1]
 					for(var/obj/O in M.contents)
 						if(O.flags_atom & USES_HEARING)
-							listening_obj |= O
+							listening_obj |= 0
+					for(var/mob/inner_mob in M.contents)
+						listening |= inner_mob
+						for(var/mob/living/captive_brain/brain in inner_mob)
+							listening |= brain
 				else if(istype(I, /obj/))
 					var/obj/O = I
 					hearturfs += O.locs[1]
 					if(O.flags_atom & USES_HEARING)
 						listening_obj |= O
+
 
 			for(var/mob/M as anything in GLOB.player_list)
 				if((M.stat == DEAD || isobserver(M)) && M.client && M.client.prefs && (M.client.prefs.toggles_chat & CHAT_GHOSTEARS))
@@ -132,6 +137,10 @@ var/list/department_radio_keys = list(
 					continue
 				if(M.loc && (M.locs[1] in hearturfs))
 					listening |= M
+					for(var/mob/inner_mob in M.contents)
+						listening |= inner_mob
+						for(var/mob/living/captive_brain/brain in inner_mob)
+							listening |= brain
 
 		var/speech_bubble_test = say_test(message)
 		var/image/speech_bubble = image('icons/mob/effects/talk.dmi', src, "[bubble_type][speech_bubble_test]", FLY_LAYER)
