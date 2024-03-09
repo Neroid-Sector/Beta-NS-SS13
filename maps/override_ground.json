@@ -11,7 +11,7 @@
     "monkey_types": [
         "neaera"
     ],
-    "camouflage": "snow",
+    "camouflage": "jungle",
     "traits": [{ "Ground": true }],
     "gamemodes": [
         "Distress Signal",
