@@ -741,7 +741,7 @@
 	if(prob(50))
 		new_human.equip_to_slot_or_del(new /obj/item/device/chameleon(new_human), WEAR_IN_BACK)
 	else
-		new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m42_night_goggles/upp(new_human), WEAR_R_HAND)
+		new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m42_night_goggles/upp(new_human), WEAR_IN_BACK)
 
 
 /datum/equipment_preset/proc/pick_ranger_kit(mob/living/carbon/human/new_human)
@@ -889,7 +889,7 @@
 	if(prob(50))
 		new_human.equip_to_slot_or_del(new /obj/item/device/chameleon(new_human), WEAR_IN_BACK)
 	else
-		new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m42_night_goggles/upp(new_human), WEAR_R_HAND)
+		new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m42_night_goggles/upp(new_human), WEAR_IN_BACK)
 
 
 /datum/equipment_preset/clf/soldier/ranger/get_antag_clothing_equipment()
