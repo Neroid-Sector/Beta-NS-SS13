@@ -322,9 +322,28 @@
 		/obj/item/clothing/head/headband/red,
 		/obj/item/clothing/head/headband/rebel,
 		/obj/item/clothing/head/headband/rambo,
+		/obj/item/clothing/head/militia/ranger,
+		/obj/item/clothing/head/militia/ranger/noface,
 		)
 	new_human.equip_to_slot_or_del(new helmetpath, WEAR_HEAD)
 
+/datum/equipment_preset/proc/spawn_ranger_helmet(mob/living/carbon/human/new_human)
+	if(!istype(new_human)) return
+	var/rangerhelmetpath = pick(
+		/obj/item/clothing/head/militia/bucket,
+		/obj/item/clothing/head/militia/ranger,
+		/obj/item/clothing/head/militia/ranger/noface,
+		)
+	new_human.equip_to_slot_or_del(new rangerhelmetpath, WEAR_HEAD)
+
+/datum/equipment_preset/proc/spawn_ranger_mask(mob/living/carbon/human/new_human)
+	if(!istype(new_human)) return
+	var/rangermaskpath = pick(
+		/obj/item/clothing/mask/gas,
+		/obj/item/clothing/mask/rebreather,
+		/obj/item/clothing/mask/balaclava,
+		)
+	new_human.equip_to_slot_or_del(new rangermaskpath, WEAR_FACE)
 
 /datum/equipment_preset/proc/spawn_rebel_shoes(mob/living/carbon/human/new_human)
 	if(!istype(new_human)) return
