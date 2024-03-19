@@ -1495,7 +1495,22 @@
 	armor_bio = CLOTHING_ARMOR_LOW
 	armor_rad = CLOTHING_ARMOR_VERYLOW
 	armor_internaldamage = CLOTHING_ARMOR_HIGH
+	storage_slots = 0
 
+/obj/item/clothing/suit/storage/militia/ranger/leader
+	name = "colonial militia ranger armor"
+	desc = "Constructed from salvaged longstreet tank plating. This armor covers the wearer and provides impressive protection from anything but anti-tank weapons."
+	icon = 'icons/obj/items/clothing/cm_suits.dmi'
+	icon_state = "mlu_ranger_leader"
+	armor_melee = CLOTHING_ARMOR_VERYHIGH
+	armor_bullet = CLOTHING_ARMOR_VERYHIGHPLUS
+	armor_laser = CLOTHING_ARMOR_HIGH
+	armor_energy = CLOTHING_ARMOR_LOW
+	armor_bomb = CLOTHING_ARMOR_VERYHIGH
+	armor_bio = CLOTHING_ARMOR_LOW
+	armor_rad = CLOTHING_ARMOR_VERYLOW
+	armor_internaldamage = CLOTHING_ARMOR_HIGH
+	storage_slots = 2
 /obj/item/clothing/suit/storage/CMB
 	name = "\improper CMB jacket"
 	desc = "A black jacket worn by Colonial Marshals. The back is enscribed with the powerful letters of 'MARSHAL' representing justice, authority, and protection in the outer rim. The laws of the Earth stretch beyond the Sol."

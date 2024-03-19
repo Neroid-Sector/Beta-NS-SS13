@@ -733,6 +733,15 @@
 	name = "MLU Ranger helmet"
 	desc = "A sturdy helmet made from the reclaimed plating of a longstreet tank. The front features a small plate to protect the wearer's face from shrapnel or debris in combat."
 	icon_state = "mlu_ranger"
+	flags_armor_protection = BODY_FLAG_HEAD|BODY_FLAG_FACE
+	armor_bullet = CLOTHING_ARMOR_MEDIUMLOW
+	armor_bomb = CLOTHING_ARMOR_VERYHIGH
+
+/obj/item/clothing/head/militia/ranger/noface
+	name = "MLU Ranger helmet"
+	desc = "A sturdy helmet made from the reclaimed plating of a longstreet tank. The front features a small plate to protect the wearer's face from shrapnel or debris in combat."
+	icon_state = "mlu_ranger2"
+	flags_armor_protection = BODY_FLAG_HEAD
 	armor_bullet = CLOTHING_ARMOR_MEDIUMLOW
 	armor_bomb = CLOTHING_ARMOR_VERYHIGH
 
