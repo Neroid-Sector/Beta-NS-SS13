@@ -729,6 +729,13 @@
 	desc = "This metal bucket appears to have been modified with padding and chin-straps, plus an eye-slit carved into the \"front\". Presumably, it is intended to be worn on the head, possibly for protection."
 	icon_state = "bucket"
 
+/obj/item/clothing/head/militia/ranger
+	name = "MLU Ranger helmet"
+	desc = "A sturdy helmet made from the reclaimed plating of a longstreet tank. The front features a small plate to protect the wearer's face from shrapnel or debris in combat."
+	icon_state = "mlu_ranger"
+	armor_bullet = CLOTHING_ARMOR_MEDIUMLOW
+	armor_bomb = CLOTHING_ARMOR_VERYHIGH
+
 /obj/item/clothing/head/general
 	name = "\improper armored General cap"
 	desc = "A sturdy general officer's cap. More protective than it seems. Please don't ditch this for a helmet like a punk."
