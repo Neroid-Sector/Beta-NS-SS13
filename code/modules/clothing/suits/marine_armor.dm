@@ -1482,6 +1482,7 @@
 /obj/item/clothing/suit/storage/militia/ranger
 	name = "colonial militia ranger armor"
 	desc = "Constructed from salvaged longstreet tank plating. This armor covers the wearer and provides impressive protection from anything but anti-tank weapons."
+	icon = 'icons/obj/items/clothing/cm_suits.dmi'
 	icon_state = "mlu_ranger"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS
 	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS
