@@ -29,11 +29,6 @@
 			to_chat(user, SPAN_WARNING("[src] already has a [O.name] attached."))
 			return
 
-		//only can clamp friendly vehicles
-		if(!get_target_lock(user.faction_group))
-			to_chat(user, SPAN_WARNING("You can attach clamp to vehicles of your faction only."))
-			return
-
 		if(!skillcheck(user, SKILL_POLICE, SKILL_POLICE_SKILLED))
 			to_chat(user, SPAN_WARNING("You don't know how to use \the [O.name]."))
 			return
