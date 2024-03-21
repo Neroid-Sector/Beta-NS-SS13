@@ -25,6 +25,8 @@
 
 	luminosity = 5
 
+	health = 500
+
 	move_max_momentum = 3
 	move_turn_momentum_loss_factor = 1
 

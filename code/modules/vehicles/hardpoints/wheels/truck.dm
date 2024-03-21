@@ -21,14 +21,15 @@
 	icon_state = "Civilian_truck_wheels"
 	disp_icon = "truck"
 	disp_icon_state = "civtruckwheels"
-
+	health = 50
 /obj/item/hardpoint/locomotion/truck/wheels/civvan
 	name = "civilian van wheels"
 	desc = "Integral to the movement of the civilian van."
 	icon_state = "Civilian_van_wheels"
 	disp_icon = "truck"
 	disp_icon_state = "civvanwheels"
-
+	health = 25
+	move_delay = VEHICLE_SPEED_SUPERFAST
 
 	//TRUCK Treads
 /obj/item/hardpoint/locomotion/truck/treads
