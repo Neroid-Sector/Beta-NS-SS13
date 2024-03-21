@@ -29,24 +29,24 @@
 	. = ..()
 
 /datum/ammo/rocket/on_hit_mob(mob/M, obj/projectile/P)
-	cell_explosion(get_turf(M), 350, 75, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, P.weapon_cause_data)
+	cell_explosion(get_turf(M), 350, 100, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, P.weapon_cause_data)
 	smoke.set_up(1, get_turf(M))
 	if(ishuman_strict(M)) // No yautya or synths. Makes humans gib on direct hit.
 		M.ex_act(350, P.dir, P.weapon_cause_data, 100)
 	smoke.start()
 
 /datum/ammo/rocket/on_hit_obj(obj/O, obj/projectile/P)
-	cell_explosion(get_turf(O), 350, 75, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, P.weapon_cause_data)
+	cell_explosion(get_turf(O), 350, 100, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, P.weapon_cause_data)
 	smoke.set_up(1, get_turf(O))
 	smoke.start()
 
 /datum/ammo/rocket/on_hit_turf(turf/T, obj/projectile/P)
-	cell_explosion(T, 350, 75, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, P.weapon_cause_data)
+	cell_explosion(T, 350, 100, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, P.weapon_cause_data)
 	smoke.set_up(1, T)
 	smoke.start()
 
 /datum/ammo/rocket/do_at_max_range(obj/projectile/P)
-	cell_explosion(get_turf(P), 350, 75, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, P.weapon_cause_data)
+	cell_explosion(get_turf(P), 350, 100, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, P.weapon_cause_data)
 	smoke.set_up(1, get_turf(P))
 	smoke.start()
 
@@ -70,14 +70,14 @@
 	M.apply_effect(2, PARALYZE)
 	if(ishuman_strict(M)) // No yautya or synths. Makes humans gib on direct hit.
 		M.ex_act(300, P.dir, P.weapon_cause_data, 100)
-	cell_explosion(T, 100, 50, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, P.weapon_cause_data)
+	cell_explosion(T, 500, 250, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, P.weapon_cause_data)
 	smoke.set_up(1, T)
 	smoke.start()
 
 /datum/ammo/rocket/ap/on_hit_obj(obj/O, obj/projectile/P)
 	var/turf/T = get_turf(O)
 	O.ex_act(150, P.dir, P.weapon_cause_data, 100)
-	cell_explosion(T, 500, 350, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, P.weapon_cause_data)
+	cell_explosion(T, 500, 250, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, P.weapon_cause_data)
 	smoke.set_up(1, T)
 	smoke.start()
 
@@ -98,7 +98,7 @@
 	if(!hit_something)
 		T.ex_act(150, P.dir, P.weapon_cause_data, 200)
 
-	cell_explosion(T, 500, 350, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, P.weapon_cause_data)
+	cell_explosion(T, 500, 250, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, P.weapon_cause_data)
 	smoke.set_up(1, T)
 	smoke.start()
 
@@ -119,7 +119,7 @@
 				continue
 	if(!hit_something)
 		T.ex_act(250, P.dir, P.weapon_cause_data)
-	cell_explosion(T, 500, 350, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, P.weapon_cause_data)
+	cell_explosion(T, 500, 250, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, P.weapon_cause_data)
 	smoke.set_up(1, T)
 	smoke.start()
 
@@ -131,7 +131,7 @@
 		M.at_munition_interior_explosion_effect(cause_data = create_cause_data("Anti-Tank Rocket"))
 		M.interior_crash_effect()
 		var/turf/T = get_turf(M.loc)
-		M.ex_act(150, P.dir, P.weapon_cause_data, 100)
+		M.ex_act(550, P.dir, P.weapon_cause_data, 100)
 		smoke.set_up(1, T)
 		smoke.start()
 		return
@@ -151,7 +151,7 @@
 		M.at_munition_interior_explosion_effect(cause_data = create_cause_data("Anti-Tank Rocket"))
 		M.interior_crash_effect()
 		var/turf/T = get_turf(M.loc)
-		M.ex_act(150, P.dir, P.weapon_cause_data, 100)
+		M.ex_act(550, P.dir, P.weapon_cause_data, 100)
 		smoke.set_up(1, T)
 		smoke.start()
 		return
