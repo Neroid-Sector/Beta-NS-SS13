@@ -25,3 +25,21 @@
 				sign_type = replacetext(lowertext(sign_type), " ", "") // lowercase, strip spaces - along with choices for user options, avoids huge if-else-else
 				src.ChangeSign(sign_type)
 				to_chat(user, "You change the barsign.")
+
+//----------corp signs----------//
+
+/obj/structure/sign/double/corpsign
+	icon = 'icons/obj/structures/props/barsigns.dmi'
+	icon_state = "empty"
+	anchored = TRUE
+
+/obj/structure/sign/double/corpsign/New()
+	..()
+	ChangeSign(pick("walmart"))
+	return
+
+/obj/structure/sign/double/corpsign/proc/ChangeSign(Text)
+	src.icon_state = "[Text]"
+	//on = 0
+	//brightness_on = 4 //uncomment these when the lighting fixes get in
+	return
