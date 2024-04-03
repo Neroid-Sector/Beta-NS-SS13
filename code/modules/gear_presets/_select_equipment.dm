@@ -354,11 +354,8 @@
 		/obj/item/clothing/shoes/leather,
 		/obj/item/clothing/shoes/combat,
 		/obj/item/clothing/shoes/swat,
-		/obj/item/clothing/shoes/marine/brown/knife,
 		/obj/item/clothing/shoes/veteran/pmc/knife,
 		/obj/item/clothing/shoes/red/knife,
-		/obj/item/clothing/shoes/marine/jungle/knife,
-		/obj/item/clothing/shoes/marine/knife,
 		)
 	new_human.equip_to_slot_or_del(new shoespath, WEAR_FEET)
 

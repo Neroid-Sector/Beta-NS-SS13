@@ -192,6 +192,7 @@
 #define STATISTICS_NICHE_DEFENSES_BUILT "Defenses Built"
 
 #define STATISTICS_NICHE_CORGI   "Corgis Murdered"
+#define STATISTICS_NICHE_OTTER   "Otters Murdered"
 #define STATISTICS_NICHE_CAT "Cats Murdered"
 #define STATISTICS_NICHE_COW "Cows Murdered"
 #define STATISTICS_NICHE_CHICKEN "Chickens Murdered"

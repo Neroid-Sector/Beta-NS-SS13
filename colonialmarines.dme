@@ -2072,6 +2072,7 @@
 #include "code\modules\mob\living\simple_animal\friendly\farm_animals.dm"
 #include "code\modules\mob\living\simple_animal\friendly\lizard.dm"
 #include "code\modules\mob\living\simple_animal\friendly\mouse.dm"
+#include "code\modules\mob\living\simple_animal\friendly\otter.dm"
 #include "code\modules\mob\living\simple_animal\friendly\spiderbot.dm"
 #include "code\modules\mob\living\simple_animal\friendly\tomato.dm"
 #include "code\modules\mob\living\simple_animal\hostile\alien.dm"
