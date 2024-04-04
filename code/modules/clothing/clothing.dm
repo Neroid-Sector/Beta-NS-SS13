@@ -137,7 +137,14 @@
 
 	LAZYREMOVE(objects_of_interest, src)
 
-
+/obj/item/clothing/ears/earmuffs/earplugs
+	name = "military issue earplugs"
+	desc = "Protects your hearing from loud noises, and the screams of the dying. Don't forget your Ear-pro. maggots."
+	icon_state = "earplugs"
+	item_state = "earplugs"
+	flags_equip_slot = SLOT_EAR
+	clothing_traits = list(TRAIT_EAR_PROTECTION)
+	black_market_value = 20
 ///////////////////////////////////////////////////////////////////////
 //Suit
 /obj/item/clothing/suit
