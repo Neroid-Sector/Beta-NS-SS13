@@ -22,7 +22,7 @@
 	desc = "The actual goggle part of the M2 night vision system."
 	icon_state = "stub" //our actual icon is a part of our helmet.
 	item_state = null
-	vision_flags = SEE_TURFS
+	vision_flags = SEE_INFRA|SEE_MOBS
 	flags_item = NODROP|DELONDROP|ITEM_ABSTRACT
 	flags_inventory = CANTSTRIP
 
@@ -31,9 +31,9 @@
 	gender = NEUTER
 	desc = "A headset and night vision goggles system for the M4RA Battle Rifle. Allows highlighted imaging of surroundings, as well as the ability to view the suit sensor health status readouts of other marines. Click it to toggle."
 	icon = 'icons/obj/items/clothing/glasses.dmi'
-	icon_state = "m4ra_goggles"
-	deactive_state = "m4ra_goggles_0"
-	vision_flags = SEE_TURFS
+	icon_state = "s_ghillie_goggles"
+	deactive_state = "s_ghillie_goggles_0"
+	vision_flags = SEE_INFRA|SEE_MOBS
 	hud_type = MOB_HUD_MEDICAL_BASIC
 	toggleable = TRUE
 	fullscreen_vision = null
@@ -45,9 +45,9 @@
 	gender = NEUTER
 	desc = "A headset and night vision goggles system for the M4RA Battle Rifle. Allows highlighted imaging of surroundings, as well as the ability to view the health statuses of others. Click it to toggle."
 	icon = 'icons/obj/items/clothing/glasses.dmi'
-	icon_state = "m4_goggles"
-	deactive_state = "m4_goggles_0"
-	vision_flags = SEE_TURFS
+	icon_state = "s_ghillie_goggles"
+	deactive_state = "s_ghillie_goggles_0"
+	vision_flags = SEE_INFRA|SEE_MOBS
 	hud_type = MOB_HUD_MEDICAL_ADVANCED
 	toggleable = TRUE
 	fullscreen_vision = null
@@ -58,9 +58,9 @@
 	gender = NEUTER
 	desc = "A headset and night vision goggles system for the M42 Scout Rifle. Allows highlighted imaging of surroundings. Click it to toggle."
 	icon = 'icons/obj/items/clothing/glasses.dmi'
-	icon_state = "m42_goggles"
-	deactive_state = "m42_goggles_0"
-	vision_flags = SEE_TURFS
+	icon_state = "ghillie_goggles"
+	deactive_state = "ghillie_goggles_0"
+	vision_flags = SEE_INFRA|SEE_MOBS
 	toggleable = TRUE
 	fullscreen_vision = null
 	actions_types = list(/datum/action/item_action/toggle)
@@ -73,9 +73,9 @@
 /obj/item/clothing/glasses/night/m42_night_goggles/m42c
 	name = "\improper M42C special operations sight"
 	desc = "A specialized variation of the M42 scout sight system, intended for use with the high-power M42C anti-tank sniper rifle. Allows for highlighted imaging of surroundings, as well as detection of thermal signatures even from a great distance. Click it to toggle."
-	icon_state = "m56_goggles"
-	deactive_state = "m56_goggles_0"
-	vision_flags = SEE_TURFS|SEE_MOBS
+	icon_state = "s_ghillie_goggles"
+	deactive_state = "s_ghillie_goggles_0"
+	vision_flags = SEE_INFRA|SEE_MOBS|SEE_MOBS
 
 /obj/item/clothing/glasses/night/m42_night_goggles/upp
 	name = "\improper Type 9 commando goggles"
@@ -95,7 +95,7 @@
 	deactive_state = "m56_goggles_0"
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle, /datum/action/item_action/m56_goggles/far_sight)
-	vision_flags = SEE_TURFS
+	vision_flags = SEE_INFRA|SEE_MOBS
 	fullscreen_vision = null
 	req_skill = SKILL_SPEC_WEAPONS
 	req_skill_level = SKILL_SPEC_SMARTGUN
@@ -201,7 +201,7 @@
 /obj/item/clothing/glasses/night/m56_goggles/whiteout
 	name = "\improper M56T head mounted sight"
 	desc = "A headset and goggles system for the M56T 'Terminator' Smartgun. Has a low-light vision processor as well as a system allowing detection of thermal signatures though solid surfaces."
-	vision_flags = SEE_TURFS|SEE_MOBS
+	vision_flags = SEE_INFRA|SEE_MOBS|SEE_MOBS
 
 /obj/item/clothing/glasses/night/yautja
 	name = "bio-mask nightvision"
@@ -239,7 +239,7 @@
 	icon = 'icons/obj/items/clothing/glasses.dmi'
 	icon_state = "refurb_meson"
 	deactive_state = "degoggles"
-	vision_flags = SEE_TURFS
+	vision_flags = SEE_INFRA|SEE_MOBS
 	toggleable = TRUE
 	fullscreen_vision = null
 	actions_types = list(/datum/action/item_action/toggle)
