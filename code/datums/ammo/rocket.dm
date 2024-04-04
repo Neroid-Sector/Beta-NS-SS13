@@ -134,6 +134,12 @@
 		M.ex_act(550, P.dir, P.weapon_cause_data, 100)
 		smoke.set_up(1, T)
 		smoke.start()
+		if(istype(O, /obj/vehicle/multitile/civtruck))
+			drop_flame(get_turf(O), P.weapon_cause_data)
+			return
+		if(istype(O, /obj/vehicle/multitile/civvan))
+			drop_flame(get_turf(O), P.weapon_cause_data)
+			return
 		return
 	return ..()
 

@@ -82,9 +82,8 @@
 /datum/ammo/bullet/on_hit_obj(obj/O, obj/projectile/P)
 	if(istype(O, /obj/vehicle/multitile/civvan))
 		var/obj/vehicle/multitile/M = O
-		playsound(M, 'sound/effects/Glassbr3.ogg', 35)
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
 		M.munition_interior_bullet_effect(cause_data = create_cause_data("Anti-Tank Rocket"))
-		var/turf/T = get_turf(M.loc)
 		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
 		return
 	return ..()
@@ -92,9 +91,8 @@
 /datum/ammo/bullet/on_hit_obj(obj/O, obj/projectile/P)
 	if(istype(O, /obj/vehicle/multitile/civtruck))
 		var/obj/vehicle/multitile/M = O
-		playsound(M, 'sound/effects/Glassbr3.ogg', 35)
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
 		M.munition_interior_bullet_effect(cause_data = create_cause_data("Anti-Tank Rocket"))
-		var/turf/T = get_turf(M.loc)
 		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
 		return
 	return ..()
@@ -102,9 +100,8 @@
 /datum/ammo/bullet/on_hit_obj(obj/O, obj/projectile/P)
 	if(istype(O, /obj/vehicle/multitile/van))
 		var/obj/vehicle/multitile/M = O
-		playsound(M, 'sound/effects/Glassbr3.ogg', 35)
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
 		M.munition_interior_bullet_effect(cause_data = create_cause_data("Anti-Tank Rocket"))
-		var/turf/T = get_turf(M.loc)
 		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
 		return
 	return ..()
