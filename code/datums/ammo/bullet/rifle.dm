@@ -91,6 +91,16 @@
 		BULLET_TRAIT_ENTRY(/datum/element/bullet_trait_penetrating)
 	))
 
+/datum/ammo/bullet/rifle/on_hit_obj(obj/O, obj/projectile/P)
+	if(istype(O, /obj/vehicle/multitile/apc))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 35)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Anti-Tank Rocket"))
+		var/turf/T = get_turf(M.loc)
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	return ..()
+
 /datum/ammo/bullet/rifle/le
 	name = "armor-shredding rifle bullet"
 
