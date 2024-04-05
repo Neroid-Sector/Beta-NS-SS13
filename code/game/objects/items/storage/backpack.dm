@@ -708,7 +708,7 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 /obj/item/storage/backpack/marine/satchel/scout_cloak
 	name = "\improper M68 Thermal Cloak"
 	desc = "The lightweight thermal dampeners and optical camouflage provided by this cloak are weaker than those found in standard USCM ghillie suits. In exchange, the cloak can be worn over combat armor and offers the wearer high maneuverability and adaptability to many environments."
-	max_storage_space = 1
+	max_storage_space = 0
 	w_class = SIZE_LARGE
 	icon_state = "scout_cloak"
 	has_gamemode_skin = FALSE //same sprite for all gamemode.
