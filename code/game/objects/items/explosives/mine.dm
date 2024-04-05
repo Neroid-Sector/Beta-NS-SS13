@@ -42,7 +42,15 @@
 	prime() //We don't care about how strong the explosion was.
 
 /obj/item/explosive/mine/emp_act()
-	disarm() //Same here. Don't care about the effect strength.
+	if(prob(60))
+		triggered = TRUE
+		if(tripwire)
+			var/direction = reverse_dir[src.dir]
+			var/step_direction = get_step(src, direction)
+			tripwire.forceMove(step_direction)
+		prime()
+	if(prob(40))
+		disarm() //Same here. Don't care about the effect strength.
 
 
 //checks for things that would prevent us from placing the mine.
