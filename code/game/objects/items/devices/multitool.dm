@@ -78,7 +78,10 @@
 
 /obj/item/device/multitool/hackingdevice/attack_self(mob/user)
 	..()
-	icon_state = "ssdd_open"
+	if (icon_state == "ssdd_open")
+		icon_state = "ssdd_closed"
+	else
+		icon_state = "ssdd_open"
 	update_icon()
 
 
