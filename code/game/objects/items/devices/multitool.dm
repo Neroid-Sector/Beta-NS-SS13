@@ -58,3 +58,30 @@
 	else
 		to_chat(user, SPAN_WARNING("ERROR: Could not locate local APC."))
 		user.balloon_alert(user, "could not locate!")
+
+//advanced hacking tool
+
+/obj/item/device/multitool/hackingdevice
+	name = "\improper SSDD"
+	desc = "A small handheld tool with its own leather case. Used to override various machine functions. Contains loose wires for tapping in and a small computer terminal. Primarily used to pulse Airlock and APC wires on a shortwave frequency. It contains a small data buffer as well."
+	icon = 'icons/obj/items/devices.dmi'
+	icon_state = "ssdd_closed"
+	item_state = "ssdd_closed"
+	pickup_sound = 'sound/handling/multitool_pickup.ogg'
+	drop_sound = 'sound/handling/multitool_drop.ogg'
+	flags_atom = FPRINT|CONDUCT
+	force = 5
+	w_class = SIZE_SMALL
+	throwforce = 5
+	throw_range = 15
+	throw_speed = SPEED_VERY_FAST
+
+/obj/item/device/multitool/hackingdevice/attack_self(mob/user)
+	..()
+	icon_state = "ssdd_open"
+	update_icon()
+
+
+	matter = list("metal" = 50,"glass" = 20)
+	inherent_traits = list(TRAIT_TOOL_MULTITOOL)
+
