@@ -84,7 +84,5 @@
 		icon_state = "ssdd_open"
 	update_icon()
 
-
-	matter = list("metal" = 50,"glass" = 20)
 	inherent_traits = list(TRAIT_TOOL_MULTITOOL)
 
