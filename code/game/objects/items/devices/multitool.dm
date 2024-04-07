@@ -61,9 +61,9 @@
 
 //advanced hacking tool
 
-/obj/item/device/multitool/hackingdevice
+/obj/item/device/hackingdevice
 	name = "\improper SSDD"
-	desc = "A small handheld tool with its own leather case. Used to override various machine functions. Contains loose wires for tapping in and a small computer terminal. Primarily used to pulse Airlock and APC wires on a shortwave frequency. It contains a small data buffer as well."
+	desc = "A complex handheld tool manufactured by Seegson. Packed in its own leather case the device is able to be used to override various machine functions. Contains loose wires for tapping in and a small computer terminal. Primarily used to pulse Airlock and APC wires on a shortwave frequency. It contains a small data buffer, keyboard, and memory tape as well, all of which are affixed to the leather case."
 	icon = 'icons/obj/items/devices.dmi'
 	icon_state = "ssdd_closed"
 	item_state = "ssdd_closed"
@@ -76,7 +76,7 @@
 	throw_range = 15
 	throw_speed = SPEED_VERY_FAST
 
-/obj/item/device/multitool/hackingdevice/attack_self(mob/user)
+/obj/item/device/hackingdevice/attack_self(mob/user)
 	..()
 	if (icon_state == "ssdd_open")
 		icon_state = "ssdd_closed"
