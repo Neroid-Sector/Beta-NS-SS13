@@ -468,6 +468,35 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 
 //-------- Gangsters --------//
 #define JOB_Gangster "Gangster"
+#define JOB_Gangster_Leader "Gangster"
+
+#define JOB_Gangster_Clown_Leader "Insane Clown Posse Gang leader"
+#define JOB_Gangster_Clown "Insane Clown Posse Gangster"
+
+#define JOB_Gangster_BB_Leader "Gang Leader"
+#define JOB_Gangster_BB "Gangster"
+
+#define JOB_Gangster_YK_Leader "Yakuza Clan Leader"
+#define JOB_Gangster_YK "Yakuza"
+
+#define JOB_Gangster_CD_Leader "Cult of Dyonisis Leader"
+#define JOB_Gangster_CD "Maenad"
+
+#define JOB_Syndicate_Leader "Syndicate Leader"
+#define JOB_Syndicate_Operator "Syndicate Operative."
+#define JOB_Syndicate_Nukie "Syndicate Nuclear Operative."
+
+
+//--------Cults --------//
+
+//--Sons of Marina--//
+#define JOB_SOM_Leader "Sons of Marina Leader"
+#define JOB_SOM_Priest "Sons of Marina Priest"
+#define JOB_SOM_Leader "Sons of Marina Minuteman"
+
+//--Followers of the Noon Day Devil--//
+#define JOB_NDD_Leader "Cult of the Noonday Devil Leader"
+#define JOB_SNDD_Leader "FNDD Cultist"
 
 //-------- Aliens --------//
 #define JOB_PREDATOR "Predator"
