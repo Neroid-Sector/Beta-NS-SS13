@@ -456,6 +456,20 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 
 #define DUTCH_JOB_LIST list(JOB_DUTCH_ARNOLD, JOB_DUTCH_RIFLEMAN, JOB_DUTCH_MINIGUNNER, JOB_DUTCH_FLAMETHROWER, JOB_DUTCH_MEDIC)
 
+//-------- Politicians --------//
+#define JOB_MLP_CAN "Candidate(Miners Liberation Party)"
+#define JOB_UA_CAN "Candidate(United Americas)"
+#define JOB_VR_CAN "Candidate(Voodoo Rationale`)"
+
+//--guards--//
+#define JOB_MLP_Guard"Bodyguard(MLP)"
+#define JOB_UA_Guard"Bodyguard(UA)"
+#define JOB_VR_Guard "Bodyguard(VR)"
+
+//-------- Gangsters --------//
+#define JOB_Gangster "Gangster"
+
+//-------- Aliens --------//
 #define JOB_PREDATOR "Predator"
 #define JOB_XENOMORPH    "Xenomorph"
 #define JOB_XENOMORPH_QUEEN  "Queen"
