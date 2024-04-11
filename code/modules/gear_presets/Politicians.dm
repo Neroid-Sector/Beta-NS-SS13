@@ -86,7 +86,7 @@
 /datum/equipment_preset/VR/candidate
 	name = "Candidate(Voodoo Rationale`)"
 	flags = EQUIPMENT_PRESET_EXTRA
-	assignment = JOB_MLP_CAN
+	assignment = JOB_VR_CAN
 	rank = "CAN"
 
 /datum/equipment_preset/VR/candidate/load_gear(mob/living/carbon/human/new_human)
