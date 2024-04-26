@@ -117,7 +117,7 @@
 	icon_state = "rxfm5_eva"
 	item_state = "eva"
 	muzzle_flash = "muzzle_laser"
-	fire_sound = 'sound/weapons/Laser4.ogg'
+	fire_sound = 'sound/weapons/energygun.mp3'
 	w_class = SIZE_MEDIUM
 	gun_category = GUN_CATEGORY_HANDGUN
 	flags_equip_slot = SLOT_WAIST
@@ -178,7 +178,7 @@
 	flags_equip_slot = SLOT_WAIST
 	charge_cost = 200
 	ammo = /datum/ammo/energy/laz_uzi
-	fire_sound = 'sound/weapons/Laser4.ogg'
+	fire_sound = 'sound/weapons/energygun.mp3'
 	has_charge_meter = FALSE
 	charge_icon = "+laz_uzi_empty"
 	start_automatic = TRUE
@@ -206,9 +206,9 @@
 	muzzle_flash = "muzzle_laser"
 	gun_category = GUN_CATEGORY_SMG
 	flags_equip_slot = SLOT_WAIST
-	charge_cost = 200
-	ammo = /datum/ammo/energy/laz_uzi
-	fire_sound = 'sound/weapons/Laser3.ogg'
+	charge_cost = 20
+	ammo = /datum/ammo/energy/laz_rifle
+	fire_sound = 'sound/weapons/energygun.mp3'
 	has_charge_meter = FALSE
 	charge_icon = "+laz_uzi_empty"
 	start_automatic = TRUE
@@ -231,12 +231,12 @@
 // Lots of bits for it so splitting off an area
 /obj/item/weapon/gun/energy/taser
 	name = "disabler gun"
-	desc = "An advanced stun device capable of firing balls of ionized electricity. Used for nonlethal takedowns. "
+	desc = "An advanced directed scalar energy device. It is adjusted to the human body's average frequency and disrupts nervous impluses temporarily. Used for nonlethal takedowns. "
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "taser"
 	item_state = "taser"
 	muzzle_flash = null //TO DO.
-	fire_sound = 'sound/weapons/Taser.ogg'
+	fire_sound = 'sound/weapons/electrical_zap.mp3'
 	w_class = SIZE_MEDIUM
 	ammo = /datum/ammo/energy/taser/precise
 	charge_cost = 625 // approx 16 shots.
@@ -250,7 +250,7 @@
 
 /obj/item/weapon/gun/energy/taser/set_gun_config_values()
 	..()
-	set_fire_delay(FIRE_DELAY_TIER_7)
+	set_fire_delay(FIRE_DELAY_TIER_VULTURE)
 	accuracy_mult = BASE_ACCURACY_MULT
 	accuracy_mult_unwielded = BASE_ACCURACY_MULT
 	damage_mult = BASE_BULLET_DAMAGE_MULT
