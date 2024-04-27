@@ -236,7 +236,63 @@
 	spawn_merc_weapon(new_human,1,2)
 
 //*****************************************************************************************************/
+/datum/equipment_preset/other/freelancer/trauma_team/medic
+	name = "Trauma Team Operative"
+	paygrade = "Freelancer Medic"
+	flags = EQUIPMENT_PRESET_EXTRA
+	assignment = "Trauma Team Operative"
+	skills = /datum/skills/freelancer/combat_medic
 
+/datum/equipment_preset/other/freelancer/trauma_team/medic/load_race(mob/living/carbon/human/new_human, client/mob_client)
+	..()
+	ADD_TRAIT(new_human, TRAIT_EMOTE_CD_EXEMPT, TRAIT_SOURCE_JOB)
+
+/datum/equipment_preset/other/freelancer/trauma_team/medic/load_gear(mob/living/carbon/human/new_human)
+
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/trauma_team(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/trauma_team(new_human), WEAR_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/specialist/trauma_team(new_human), WEAR_HANDS)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/medhud(new_human), WEAR_EYES)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/pmc(new_human), WEAR_FACE)
+	pick_trauma_helmet(new_human)
+	pick_trauma_armor(new_human)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine/brown/knife(new_human), WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/accessory/storage/surg_vest/drop_green/equipped(new_human), WEAR_ACCESSORY)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack(new_human), WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/noskill(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/noskill(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/belt/medical/lifesaver/full(new_human), WEAR_WAIST)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/first_responder/full(new_human), WEAR_L_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/autoinjector/full(new_human), WEAR_R_STORE)
+//gun
+	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/fp9000/pmc(new_human), WEAR_J_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/fp9000(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/fp9000(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/fp9000(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/fp9000(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/fp9000(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/fp9000(new_human), WEAR_IN_JACKET)
+//Randomized armor
+/datum/equipment_preset/proc/pick_trauma_helmet(mob/living/carbon/human/new_human)
+	if(!istype(new_human)) return
+	var/trauma_helmet = pick(
+		/obj/item/clothing/head/helmet/marine/odst/trauma_team,
+		/obj/item/clothing/head/helmet/marine/odst/trauma_team/alt,
+		)
+	new_human.equip_to_slot_or_del(new trauma_helmet, WEAR_HEAD)
+
+/datum/equipment_preset/proc/pick_trauma_armor(mob/living/carbon/human/new_human)
+	if(!istype(new_human)) return
+	var/trauma_armor = pick(
+		/obj/item/clothing/suit/storage/marine/veteran/trauma_team,
+		/obj/item/clothing/suit/storage/marine/veteran/trauma_team/alt,
+		)
+	new_human.equip_to_slot_or_del(new trauma_armor, WEAR_JACKET)
+
+//*****************************************************************************************************/
 /datum/equipment_preset/other/elite_merc
 	name = "MLU Miltia"
 

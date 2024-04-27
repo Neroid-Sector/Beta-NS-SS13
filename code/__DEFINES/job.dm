@@ -495,7 +495,7 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_SOM_Militia "Sons of Marina Minuteman"
 
 //--Followers of the Noon Day Devil--//
-#define JOB_NDD_Leader "Cult of the Noonday Devil Leader"
+#define JOB_NDD_Leader "Followers of the Noonday Devil Leader"
 #define JOB_SNDD_Leader "FNDD Cultist"
 
 //-------- Aliens --------//
