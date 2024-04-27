@@ -976,6 +976,18 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	time_to_equip = 20
 	equip_sounds = list('sound/handling/helmetscrew.mp3')
 
+/obj/item/clothing/head/helmet/marine/odst/trauma_team
+	name = "\improper Decadencia Verde Pattern Tactical Armor"
+	desc = "A modification of the standard Nanotrasen Systems Decadencia armor. Designed with high-profile security operators and corporate mercenaries. This Varient features a large medical insignia."
+	icon_state = "trauma1"
+	start_down_visor_type = null
+	built_in_visors = list(new /obj/item/device/helmet_visor, new /obj/item/device/helmet_visor/medical/advanced, new /obj/item/device/helmet_visor/night_vision/marine_raider, )
+
+/obj/item/clothing/head/helmet/marine/odst/trauma_team/alt
+	name = "\improper Decadencia Verde Pattern Tactical Armor"
+	desc = "A modification of the standard Nanotrasen Systems Decadencia armor. Designed with high-profile security operators and corporate mercenaries. This Varient features a large medical insignia."
+	icon_state = "trauma2"
+
 //=============================//PMCS\\==================================\\
 //=======================================================================\\
 

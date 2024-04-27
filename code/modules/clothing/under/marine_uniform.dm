@@ -692,6 +692,16 @@
 	icon_state = "mercenary_engineer_uniform"
 	worn_state = "mercenary_engineer_uniform"
 
+//===========================//Trauma team - MERCENARY\\================================\\
+//=====================================================================\\
+
+/obj/item/clothing/under/marine/veteran/trauma_team
+	name = "\improper Decadencia Verde Pattern Tactical Suit"
+	desc = "A modification of the standard Nanotrasen Systems Decadencia armor. Designed with high-profile security operators and corporate mercenaries. This Varient features a large medical insignia."
+	icon_state = "trauma_jumpsuit"
+	worn_state = "trauma_jumpsuit"
+	flags_cold_protection = ICE_PLANET_MIN_COLD_PROT
+	has_sensor = UNIFORM_NO_SENSORS
 
 ////// Civilians /////////
 

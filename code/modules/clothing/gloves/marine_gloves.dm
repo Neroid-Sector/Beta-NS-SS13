@@ -100,6 +100,12 @@
 	armor_internaldamage = CLOTHING_ARMOR_ULTRAHIGH
 	unacidable = TRUE
 
+/obj/item/clothing/gloves/marine/specialist/trauma_team
+	name = "\improper Decadencia Verde Pattern Tactical Armored surgery gloves"
+	desc = "A modification of the standard Nanotrasen Systems Decadencia armor. Designed with high-profile security operators and corporate mercenaries. These are a medical varient."
+	icon_state = "trauma"
+	item_state = "trauma"
+
 /obj/item/clothing/gloves/marine/M3G
 	name = "\improper M3-G4 Grenadier gloves"
 	desc = "A pair of plated, but nimble, gloves."
