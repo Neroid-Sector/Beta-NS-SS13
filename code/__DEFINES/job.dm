@@ -467,24 +467,24 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_VR_Guard "Bodyguard(VR)"
 
 //-------- Gangsters --------//
-#define JOB_Gangster "Gangster"
-#define JOB_Gangster_Leader "Gangster"
+#define JOB_GANGSTER "Gangster"
+#define JOB_GANGSTER_LEADER "Gangster"
 
-#define JOB_Gangster_Clown_Leader "Insane Clown Posse Gang leader"
-#define JOB_Gangster_Clown "Insane Clown Posse Gangster"
+#define JOB_GANGSTER_Clown_LEADER "Insane Clown Posse Gang leader"
+#define JOB_GANGSTER_Clown "Insane Clown Posse Gangster"
 
-#define JOB_Gangster_BB_Leader "Gang Leader"
-#define JOB_Gangster_BB "Gangster"
+#define JOB_GANGSTER_BB_LEADER "Gang Leader"
+#define JOB_GANGSTER_BB "Gangster"
 
-#define JOB_Gangster_YK_Leader "Yakuza Clan Leader"
-#define JOB_Gangster_YK "Yakuza"
+#define JOB_GANGSTER_YK_LEADER "Yakuza Clan Leader"
+#define JOB_GANGSTER_YK "Yakuza"
 
-#define JOB_Gangster_CD_Leader "Cult of Dyonisis Leader"
-#define JOB_Gangster_CD "Maenad"
+#define JOB_GANGSTER_CD_LEADER "Cult of Dyonisis Leader"
+#define JOB_GANGSTER_CD "Maenad"
 
-#define JOB_Syndicate_Leader "Syndicate Leader"
-#define JOB_Syndicate_Operator "Syndicate Operative."
-#define JOB_Syndicate_Nukie "Syndicate Nuclear Operative."
+#define JOB_SYNDICATE_LEADER "Syndicate Leader"
+#define JOB_SYNDICATE_OP "Syndicate Operative."
+#define JOB_SYNDICATE_NUKIE "Syndicate Nuclear Operative."
 
 
 //--------Cults --------//
