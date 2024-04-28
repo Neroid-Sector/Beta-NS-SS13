@@ -166,7 +166,60 @@
 	desc = "This pamphlet was designed for Intelligence Officers operating on Earth to interact with the local populaces of the Latin American states, but only for IOs who managed to sleep through Dialects and Mannerisms Class."
 	trait = /datum/character_trait/language/spanish
 
+/obj/item/pamphlet/language/french
+	name = "The Phantom of the Opera"
+	desc = "A pamphlet written primarily in French, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/bantu
 
+/obj/item/pamphlet/language/celtic
+	name = "Outlander"
+	desc = "A pamphlet written primarily in Celtic, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/celtic
+
+/obj/item/pamphlet/language/farsi
+	name = "The Kite Runner"
+	desc = "A pamphlet written primarily in Farsi, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/farsi
+
+/obj/item/pamphlet/language/arabic
+	name = "The Blue Elephant"
+	desc = "A pamphlet written primarily in Arabic, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/arabic
+
+/obj/item/pamphlet/language/korean
+	name = "Pachinko"
+	desc = "A pamphlet written primarily in Korean, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/korean
+
+/obj/item/pamphlet/language/finnish
+	name = "Kalevala"
+	desc = "A pamphlet written primarily in Finnish, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/finnish
+
+/obj/item/pamphlet/language/swedish
+	name = "Den allvarsamma leken"
+	desc = "A pamphlet written primarily in Swedish, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/swedish
+
+/obj/item/pamphlet/language/latin
+	name = "De Rerum Natura"
+	desc = "A pamphlet written primarily in Latin, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/latin
+
+/obj/item/pamphlet/language/berber
+	name = "For Bread Alone"
+	desc = "A pamphlet written primarily in Berber, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/berber
+
+/obj/item/pamphlet/language/bantu
+	name = "Mchanga wa Wakati"
+	desc = "A pamphlet written primarily in Bantu, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/bantu
+
+/obj/item/pamphlet/language/hindi
+	name = "Gunahon Ka Devta"
+	desc = "A pamphlet written primarily in Hindi, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/hindi
 
 //Restricted languages, spawnable for events.
 
