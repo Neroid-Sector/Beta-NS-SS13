@@ -23,7 +23,6 @@
 	name = "Gangster"
 	flags = EQUIPMENT_PRESET_EXTRA
 	assignment = JOB_GANGSTER
-	rank = JOB_GANGSTER
 	idtype = /obj/item/card/id/lanyard
 
 /datum/equipment_preset/Gangster/generic/New()
@@ -47,7 +46,6 @@
 	name = "Gangster Leader"
 	flags = EQUIPMENT_PRESET_EXTRA
 	assignment = JOB_GANGSTER_LEADER
-	rank = JOB_GANGSTER_LEADER
 	idtype = /obj/item/card/id/lanyard
 
 /datum/equipment_preset/Gangster/generic/leader/New()
