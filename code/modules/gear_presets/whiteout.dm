@@ -11,7 +11,7 @@
 					LANGUAGE_CELTIC, LANGUAGE_FARSI, LANGUAGE_ARABIC,
 					LANGUAGE_KOREAN, LANGUAGE_SWEDISH, LANGUAGE_LATIN,
 					LANGUAGE_SPANISH, LANGUAGE_YAUTJA, LANGUAGE_XENOMORPH,
-					LANGUAGE_TSL) //Synths after all.
+					LANGUAGE_TSL, LANGUAGE_RUSOEK,) //Synths after all.
 
 	skills = /datum/skills/everything //They are Synths, programmed for Everything.
 	idtype = /obj/item/card/id/pmc/ds

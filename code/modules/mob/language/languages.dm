@@ -192,6 +192,17 @@
 
 	syllables = list("kai", "svā", "haiṅ", "nama", "as", "te", "skār", "he", "lo", "āp", "kai", "ka", "hāṁ ", "tum", "ho", "acchā", "maiṁ", "vād", "aur", "ṭh", "īk", "dek", "ha", "bahut", "sam", "nahīṅ","hārā", "merā", "se", "ke", "śubh", "yātr")
 
+/datum/language/rusoek
+	name = LANGUAGE_RUSOEK
+	desc = "A common creole language spawned out of the borders of UA and UPP space from some Korean settlements."
+	speech_verb = "Yayy"
+	ask_verb = "Eykaiyy"
+	exclaim_verb = "chillana"
+	color = "russian"
+	key = "20"
+
+	syllables = list("a", "b", "j", "k", "p", "r", "s", "t", "y", "pke", "ate", "teapitjy", "yotkuy", "teruite", "taykuk", "yptike", "petto", "itkuppitj", "etjajit", "app", "kaip", "sutipioty")
+
 // Special Languages
 
 /datum/language/commando

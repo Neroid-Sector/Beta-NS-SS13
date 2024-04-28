@@ -221,6 +221,11 @@
 	desc = "A pamphlet written primarily in Hindi, you could probably learn something from reading it."
 	trait = /datum/character_trait/language/hindi
 
+/obj/item/pamphlet/language/rusoek
+	name = "Piy yoyyupiyapiop pop kuyyiey"
+	desc = "A pamphlet written primarily in Rusoek, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/rusoek
+
 //Restricted languages, spawnable for events.
 
 /obj/item/pamphlet/language/yautja

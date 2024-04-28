@@ -58,6 +58,11 @@
 	applyable = TRUE
 	cost = 2
 
+/datum/character_trait/language/rusoek
+	language_name = LANGUAGE_RUSOEK
+	applyable = TRUE
+	cost = 2
+
 /datum/character_trait/language/finnish
 	language_name = LANGUAGE_FINNISH
 	applyable = TRUE

@@ -15,6 +15,7 @@
 #define LANGUAGE_BERBER "Berber"
 #define LANGUAGE_BANTU "Bantu"
 #define LANGUAGE_HINDI "Hindi"
+#define LANGUAGE_RUSOEK "Rusoek"
 
 #define LANGUAGE_TSL "Tactical Sign Language"
 #define LANGUAGE_YAUTJA "Sainja"
