@@ -1,3 +1,27 @@
+/obj/item/stack/deployable_fence
+	name = "deployable fence"
+	desc = "A rolled up segment of chainlink fence"
+	icon = 'icons/obj/items/marine-items.dmi'
+	icon_state = "barbed_wire"
+	w_class = SIZE_SMALL
+	max_amount = 50
+	var/deployfence = /obj/structure/fence
+
+
+/obj/item/stack/deployable_fence/attack_self(mob/user)
+	..()
+	var/turf/open/T = user.loc
+	if(!(istype(T) && T.allow_construction))
+		to_chat(user, SPAN_WARNING("[src] must be placed on a proper surface!"))
+		return
+	if(do_after(user, 0.5 SECONDS, INTERRUPT_ALL, BUSY_ICON_BUILD, src))
+		playsound(loc, 'sound/effects/metalhit.ogg', 25, TRUE)
+		to_chat(user, SPAN_NOTICE(" You deploy [src]."))
+		var/obj/structure/fence/R = new deployfence(usr.loc)
+		src.transfer_fingerprints_to(R)
+		R.add_fingerprint(user)
+		qdel(src)
+
 /obj/structure/fence
 	name = "fence"
 	desc = "A large metal mesh strewn between two poles. Intended as a cheap way to separate areas, while allowing one to see through it."
@@ -234,3 +258,25 @@
 		health -= round(exposed_volume / 100)
 		healthcheck(0) //Don't make hit sounds, it's dumb with fire/heat
 	..()
+
+
+/obj/item/stack/deployable_fence/full_stack
+	amount = STACK_50
+
+/obj/item/storage/briefcase/fence
+	name = "deployable fence box"
+	desc = "Contains segments of a deployable fence."
+	icon_state = "inf_box"
+	item_state = "syringe_kit"
+	max_storage_space = 21
+
+/obj/item/storage/briefcase/fence/Initialize()
+	. = ..()
+	new /obj/item/stack/deployable_fence/full_stack(src)
+	new /obj/item/stack/deployable_fence/full_stack(src)
+	new /obj/item/stack/deployable_fence/full_stack(src)
+	new /obj/item/stack/deployable_fence/full_stack(src)
+	new /obj/item/stack/deployable_fence/full_stack(src)
+	new /obj/item/stack/deployable_fence/full_stack(src)
+	new /obj/item/stack/deployable_fence/full_stack(src)
+
