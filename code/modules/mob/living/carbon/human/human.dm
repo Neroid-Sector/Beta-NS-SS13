@@ -1738,3 +1738,13 @@
 		return FALSE
 
 	. = ..()
+
+
+
+/mob/living/carbon/human/point_to_atom(atom/A, turf/T)
+	if(isitem(A))
+		var/obj/item/item = A
+		if(item == get_active_hand() || item == get_inactive_hand())
+			item.showoff(src)
+			return TRUE
+	return ..()
