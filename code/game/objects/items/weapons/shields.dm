@@ -130,7 +130,7 @@
 	item_state = "ballisticshield"
 	base_icon_state = "ballisticshield"
 	passive_block = 60
-	readied_block = 90
+	readied_block = 99
 
 /obj/item/weapon/shield/riot/ballistic/uscm
 	flags_atom = FPRINT|CONDUCT
@@ -141,4 +141,4 @@
 	item_state = "ballisticshield"
 	base_icon_state = "ballisticshield"
 	passive_block = 60
-	readied_block = 90
+	readied_block = 99
