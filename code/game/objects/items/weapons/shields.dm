@@ -131,3 +131,14 @@
 	base_icon_state = "ballisticshield"
 	passive_block = 60
 	readied_block = 90
+
+/obj/item/weapon/shield/riot/ballistic/uscm
+	flags_atom = FPRINT|CONDUCT
+	throw_speed = SPEED_SLOW
+	name = "M-10 Ballistic shield"
+	desc = "The M-10 Ballistic shield is a heavy steel panel covered in thin venlar cover to prevent spalling. The Shield is faily protective against small arms and rocks, but is rather cumbersome and thuss not very popular among marines."
+	icon_state = "ballisticshield"
+	item_state = "ballisticshield"
+	base_icon_state = "ballisticshield"
+	passive_block = 60
+	readied_block = 90

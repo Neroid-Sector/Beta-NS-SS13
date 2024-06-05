@@ -398,11 +398,14 @@
 
 /obj/item/storage/box/kit/pursuit/fill_preset_inventory()
 	new /obj/item/weapon/gun/smg/m39(src)
+	new /obj/item/weapon/shield/riot/ballistic/uscm(src)
+	new /obj/item/storage/large_holster/machete/full(src)
 	new /obj/item/attachable/stock/smg/collapsible/brace(src)
 	new /obj/item/attachable/magnetic_harness(src)
-	new /obj/item/storage/large_holster/machete/full(src)
-	new /obj/item/ammo_magazine/smg/m39/extended(src)
-
+	new /obj/item/ammo_magazine/smg/m39/penetrating(src)
+	new /obj/item/maintenance_jack(src)
+	new /obj/item/explosive/plastic/breaching_charge(src)
+	new /obj/item/explosive/plastic/breaching_charge(src)
 
 /obj/item/storage/box/kit/mini_engineer
 	name = "\improper Combat Technician Support Kit"
