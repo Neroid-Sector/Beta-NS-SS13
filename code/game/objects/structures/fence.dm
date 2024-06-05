@@ -2,7 +2,7 @@
 	name = "deployable fence"
 	desc = "A rolled up segment of chainlink fence"
 	icon = 'icons/obj/items/marine-items.dmi'
-	icon_state = "barbed_wire"
+	icon_state = "deployable_fence"
 	w_class = SIZE_SMALL
 	max_amount = 50
 	var/deployfence = /obj/structure/fence
