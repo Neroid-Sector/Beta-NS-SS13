@@ -36,12 +36,6 @@
 	var/list/turf_block = get_deployment_area(ref_turf)
 	for(var/turf/turf as anything in turf_block)
 		var/area/area = get_area(turf)
-		if(!area.can_build_special && !unrestricted_deployment)
-			if(message_receiver)
-				to_chat(message_receiver, SPAN_WARNING("You cannot deploy tents on restricted areas."))
-			if(display_error)
-				new /obj/effect/overlay/temp/tent_deployment_area/error(turf)
-			return FALSE
 		if(istype(turf, /turf/open/shuttle))
 			if(message_receiver)
 				to_chat(message_receiver, SPAN_BOLDWARNING("What are you doing?!! Don't build that on the shuttle please!"))
@@ -91,10 +85,6 @@
 			deploy_turf = locate(deploy_turf.x - dim_x, deploy_turf.y + off_y, deploy_turf.z)
 
 	if(!istype(deploy_turf) || (deploy_turf.x + dim_x > world.maxx) || (deploy_turf.y + dim_y > world.maxy)) // Map border basically
-		return
-
-	if(!is_ground_level(deploy_turf.z) && !unrestricted_deployment)
-		to_chat(user, SPAN_WARNING("USCM Operational Tents are intended for operations, not ship or space recreation."))
 		return
 
 	var/list/obj/effect/overlay/temp/tent_deployment_area/turf_overlay = list()

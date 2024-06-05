@@ -41,7 +41,7 @@
 /obj/item/mortar_shell/frag/detonate(turf/T)
 	create_shrapnel(T, 60, cause_data = cause_data)
 	sleep(2)
-	cell_explosion(T, 60, 20, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, cause_data)
+	cell_explosion(T, 60, 200, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, cause_data)
 
 /obj/item/mortar_shell/incendiary
 	name = "\improper 80mm incendiary mortar shell"
