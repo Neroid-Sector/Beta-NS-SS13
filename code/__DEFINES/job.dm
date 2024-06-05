@@ -480,7 +480,7 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_GANGSTER_YK_LEADER "Yakuza Clan Leader"
 #define JOB_GANGSTER_YK "Yakuza"
 
-#define JOB_GANGSTER_CD_LEADER "Children of Dyonisis Leader"
+#define JOB_GANGSTER_CD_LEADER "Children of Dionysus Leader"
 #define JOB_GANGSTER_CD "Maenad"
 
 #define JOB_SYNDICATE_LEADER "Syndicate Leader"
