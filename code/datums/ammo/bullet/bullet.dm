@@ -105,3 +105,7 @@
 		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
 		return
 	return ..()
+
+/datum/ammo/bullet/on_hit_mob(mob/M, obj/projectile/P, mob/user)
+	shake_camera(M, 3, 1)
+	return ..()
