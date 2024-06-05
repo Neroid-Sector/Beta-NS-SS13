@@ -393,7 +393,7 @@
 
 
 /obj/item/storage/box/kit/pursuit
-	name = "\improper M39 Point Man Kit"
+	name = "\improper Point Man Pointman Breacher Kit"
 	pro_case_overlay = "pursuit"
 
 /obj/item/storage/box/kit/pursuit/fill_preset_inventory()
@@ -405,6 +405,7 @@
 	new /obj/item/ammo_magazine/smg/m39/penetrating(src)
 	new /obj/item/ammo_magazine/smg/m39/penetrating(src)
 	new /obj/item/maintenance_jack(src)
+	new /obj/item/tool/weldingtool/simple(src)
 	new /obj/item/explosive/plastic/breaching_charge(src)
 	new /obj/item/explosive/plastic/breaching_charge(src)
 	new /obj/item/explosive/plastic/breaching_charge(src)
