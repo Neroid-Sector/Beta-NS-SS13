@@ -403,7 +403,9 @@
 	new /obj/item/attachable/stock/smg/collapsible/brace(src)
 	new /obj/item/attachable/magnetic_harness(src)
 	new /obj/item/ammo_magazine/smg/m39/penetrating(src)
+	new /obj/item/ammo_magazine/smg/m39/penetrating(src)
 	new /obj/item/maintenance_jack(src)
+	new /obj/item/explosive/plastic/breaching_charge(src)
 	new /obj/item/explosive/plastic/breaching_charge(src)
 	new /obj/item/explosive/plastic/breaching_charge(src)
 
