@@ -138,14 +138,14 @@
 
 	job_options = list(SL_E4 = "Cpl", SL_E5 = "Sgt", SL_E6 = "Ssgt", SL_E7 = "GySgt", SL_E8 = "MSgt")
 
-/datum/job/civilian/reporter/handle_job_options(option)
+/datum/job/uscm/mudskipper/mssl/handle_job_options(option)
 	if(option == SL_E4)
 		gear_preset = /datum/equipment_preset/uscm_mudskippers/leader/full/cpl
-	if(option == SL_E6)
+	else if(option == SL_E6)
 		gear_preset = /datum/equipment_preset/uscm_mudskippers/leader/full/ssgt
-	if(option == SL_E7)
+	else if(option == SL_E7)
 		gear_preset = /datum/equipment_preset/uscm_mudskippers/leader/full/gysgt
-	if(option == SL_E8)
+	else if(option == SL_E8)
 		gear_preset = /datum/equipment_preset/uscm_mudskippers/leader/full/msgt
 	else
 		gear_preset = /datum/equipment_preset/uscm_mudskippers/leader/full
