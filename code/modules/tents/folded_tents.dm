@@ -35,7 +35,6 @@
 	. = TRUE
 	var/list/turf_block = get_deployment_area(ref_turf)
 	for(var/turf/turf as anything in turf_block)
-		var/area/area = get_area(turf)
 		if(istype(turf, /turf/open/shuttle))
 			if(message_receiver)
 				to_chat(message_receiver, SPAN_BOLDWARNING("What are you doing?!! Don't build that on the shuttle please!"))

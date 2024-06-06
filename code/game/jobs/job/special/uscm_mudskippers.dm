@@ -1,3 +1,10 @@
+//=========
+#define SL_E4 "Cpl"
+#define SL_E5 "Sgt"
+#define SL_E6 "SSgt"
+#define SL_E7 "GySgt"
+#define SL_E8 "MSg"
+
 //----Command---//
 /datum/job/uscm/mudskipper/msco
 	title = JOB_MS_CO
@@ -128,6 +135,22 @@
 	gear_preset = /datum/equipment_preset/uscm_mudskippers/leader/full
 	entry_message_intro = "" // Shown on roundstart and latejoin. Top paragraph. Replaced with a generic "You are a [role name]" if not included
 	entry_message_body = "Read https://neroid-sector.com/wiki/index.php?title=Squad_roles for more info.  Ensure that you read SOP <a href='https://neroid-sector.com/wiki/index.php?title=Mudskippers_SOP'>" //Middle paragraph. This one is typically written per role and declared here.
+
+	job_options = list(SL_E4 = "Cpl", SL_E5 = "Sgt", SL_E6 = "Ssgt", SL_E7 = "GySgt", SL_E8 = "MSgt")
+
+/datum/job/civilian/reporter/handle_job_options(option)
+	if(option == SL_E4)
+		gear_preset = /datum/equipment_preset/uscm_mudskippers/leader/full/cpl
+	if(option == SL_E6)
+		gear_preset = /datum/equipment_preset/uscm_mudskippers/leader/full/ssgt
+	if(option == SL_E7)
+		gear_preset = /datum/equipment_preset/uscm_mudskippers/leader/full/gysgt
+	if(option == SL_E8)
+		gear_preset = /datum/equipment_preset/uscm_mudskippers/leader/full/msgt
+	else
+		gear_preset = /datum/equipment_preset/uscm_mudskippers/leader/full
+
+
 /obj/effect/landmark/start/mudskipper/mssl
 	name = JOB_MS_SL
 	icon_state = "xo_spawn"

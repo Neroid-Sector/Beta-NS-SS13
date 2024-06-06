@@ -447,6 +447,18 @@
 	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41aMK1/heap(new_human), WEAR_IN_R_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41aMK1/heap(new_human), WEAR_IN_R_STORE)
 
+/datum/equipment_preset/uscm_mudskippers/leader/full/cpl
+	paygrade = "ME4"
+
+/datum/equipment_preset/uscm_mudskippers/leader/full/ssgt
+	paygrade = "ME6"
+
+/datum/equipment_preset/uscm_mudskippers/leader/full/gysgt
+	paygrade = "ME7"
+
+/datum/equipment_preset/uscm_mudskippers/leader/full/msgt
+	paygrade = "ME8"
+
 //---SG---//
 /datum/equipment_preset/uscm_mudskippers/sg
 	name = "Squad Smartgunner(mudskippers)"
