@@ -72,7 +72,7 @@
 	name = "Coil of explosive concertina wire"
 	desc = "A rolled up spool of fragwire. A nasty thing to mix in with normal wire, it explodes into fragments when touched due to a volitile explosive compound in its core. !!!USE WITH CAUTION!!!"
 	icon = 'icons/obj/items/marine-items.dmi'
-	icon_state = "concertina_wire"
+	icon_state = "frag_wire"
 	w_class = SIZE_SMALL
 	max_amount = 25
 	var/deployfragconcertina = /obj/item/explosive/fragwire
