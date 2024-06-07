@@ -235,3 +235,37 @@
 	return paygrade
 
 /*****************************************************************************************************/
+
+/datum/equipment_preset/uscm_event/uaac/tis/io
+	name = "UAAC-TIS OWLF Operative"
+	minimum_age = 25
+	skills = /datum/skills/tis
+
+	assignment = JOB_TIS_IO
+	rank = "UAAC-TIS Intelligence Officer"
+	paygrade = "NO1"
+	role_comm_title = "TIS-IO"
+	flags = EQUIPMENT_PRESET_EXTRA
+
+/datum/equipment_preset/uscm_event/uaac/tis/io/load_gear(mob/living/carbon/human/new_human)
+	var/back_item = /obj/item/storage/backpack/satchel/lockable
+	if (new_human.client && new_human.client.prefs && (new_human.client.prefs.backbag == 1))
+		back_item = /obj/item/storage/backpack/satchel/lockable
+
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/tis(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/uaac/tis/io(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine/knife(new_human), WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/full(new_human), WEAR_WAIST)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/webbing(new_human), WEAR_JACKET)
+	if(new_human.disabilities & NEARSIGHTED)
+		new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud/hidden/prescription(new_human), WEAR_EYES)
+	else
+		new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud/hidden(new_human), WEAR_EYES)
+	new_human.equip_to_slot_or_del(new back_item(new_human), WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/document(new_human), WEAR_L_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(new_human), WEAR_R_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/accessory/patch/tis(new_human), WEAR_ACCESSORY)
+	new_human.equip_to_slot_or_del(new /obj/item/device/taperecorder(new_human), WEAR_IN_R_STORE)
+
+	to_chat(new_human, SPAN_WARNING("You are an Intelligence Officer for UAAC-TIS, an intelligence agency with tremendous power. You are tasked with retrieving or transporting sensitive materials to and from a location, you may also be involved in sensative operations. You are outside the normal USCM chain of command."))
+/*****************************************************************************************************/
