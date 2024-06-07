@@ -20,7 +20,12 @@
 		var/obj/structure/fence/R = new deployfence(usr.loc)
 		src.transfer_fingerprints_to(R)
 		R.add_fingerprint(user)
-		qdel(src)
+		if (amount <= 1)
+			qdel(src)
+		else {
+			amount = amount - 1
+			update_icon()
+		}
 
 /obj/structure/fence
 	name = "fence"

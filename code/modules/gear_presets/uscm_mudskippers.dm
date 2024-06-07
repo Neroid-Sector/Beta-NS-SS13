@@ -377,6 +377,9 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/medhud(new_human), WEAR_IN_L_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/accessory/health/ceramic_plate(new_human), WEAR_L_HAND)
 
+/datum/equipment_preset/uscm_mudskippers/pc/o2
+	paygrade = "MO2"
+
 //------Squad------//
 
 //---SL---//
@@ -447,16 +450,16 @@
 	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41aMK1/heap(new_human), WEAR_IN_R_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41aMK1/heap(new_human), WEAR_IN_R_STORE)
 
-/datum/equipment_preset/uscm_mudskippers/leader/full/cpl
+/datum/equipment_preset/uscm_mudskippers/leader/full/e4
 	paygrade = "ME4"
 
-/datum/equipment_preset/uscm_mudskippers/leader/full/ssgt
+/datum/equipment_preset/uscm_mudskippers/leader/full/e6
 	paygrade = "ME6"
 
-/datum/equipment_preset/uscm_mudskippers/leader/full/gysgt
+/datum/equipment_preset/uscm_mudskippers/leader/full/e7
 	paygrade = "ME7"
 
-/datum/equipment_preset/uscm_mudskippers/leader/full/msgt
+/datum/equipment_preset/uscm_mudskippers/leader/full/e8
 	paygrade = "ME8"
 
 //---SG---//
@@ -526,6 +529,15 @@
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/flamertank(new_human), WEAR_R_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank(new_human), WEAR_IN_R_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank(new_human), WEAR_IN_R_STORE)
+
+/datum/equipment_preset/uscm_mudskippers/sg/full/e2
+	paygrade = "ME2"
+
+/datum/equipment_preset/uscm_mudskippers/sg/full/e3
+	paygrade = "ME3"
+
+/datum/equipment_preset/uscm_mudskippers/sg/full/e4
+	paygrade = "ME4"
 
 //---Medic---//
 /datum/equipment_preset/uscm_mudskippers/medic
@@ -603,6 +615,9 @@
 	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41aMK1/heap(new_human), WEAR_IN_R_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41aMK1/heap(new_human), WEAR_IN_R_STORE)
 
+/datum/equipment_preset/uscm_mudskippers/medic/full/e4
+	paygrade = "ME4"
+
 //---Engi---//
 /datum/equipment_preset/uscm_mudskippers/engineer
 	name = "Squad Combat Technician(mudskippers)"
@@ -677,6 +692,9 @@
 	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41aMK1/heap(new_human), WEAR_IN_JACKET)
 	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41aMK1/heap(new_human), WEAR_IN_JACKET)
 
+/datum/equipment_preset/uscm_mudskippers/engineer/full/e3
+	paygrade = "ME3"
+
 //---RFM---//
 /datum/equipment_preset/uscm_mudskippers/rfm
 	name = "Squad Rifleman(mudskippers)"
@@ -748,6 +766,16 @@
 	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41aMK1/heap(new_human), WEAR_IN_R_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41aMK1/heap(new_human), WEAR_IN_R_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41aMK1/heap(new_human), WEAR_IN_R_STORE)
+
+/datum/equipment_preset/uscm_mudskippers/rfm/full/e1
+	paygrade = "ME2"
+
+/datum/equipment_preset/uscm_mudskippers/rfm/full/e3
+	paygrade = "ME3"
+
+/datum/equipment_preset/uscm_mudskippers/rfm/full/e4
+	paygrade = "ME4"
+
 
 
 /datum/equipment_preset/proc/pick_rfm_kit(mob/living/carbon/human/new_human)
@@ -957,7 +985,7 @@
 	)
 	assignment = JOB_MS_INTEL
 	rank = JOB_MS_INTEL
-	paygrade = "MO1"
+	paygrade = "CWO2"
 	role_comm_title = "IO"
 	skills = /datum/skills/intel
 
@@ -976,6 +1004,17 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/accessory/patch/mudskippers(new_human), WEAR_ACCESSORY)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/accessory/patch(new_human), WEAR_ACCESSORY)
 
+/datum/equipment_preset/uscm_mudskippers/intel/wo3
+	paygrade = "CWO3"
+
+/datum/equipment_preset/uscm_mudskippers/intel/wo4
+	paygrade = "CWO4"
+
+/datum/equipment_preset/uscm_mudskippers/intel/wo5
+	paygrade = "CWO5"
+
+/datum/equipment_preset/uscm_mudskippers/intel/o1
+	paygrade = "O1"
 
 //----Medical----//
 /datum/equipment_preset/uscm_ship/uscm_mudskippers/medical
