@@ -15,7 +15,7 @@
 		to_chat(user, SPAN_WARNING("[src] must be placed on a proper surface!"))
 		return
 	if(do_after(user, 0.5 SECONDS, INTERRUPT_ALL, BUSY_ICON_BUILD, src))
-		playsound(loc, 'sound/effects/metalhit.ogg', 25, TRUE)
+		playsound(loc, 'sound/effects/pry1.ogg', 25, TRUE)
 		to_chat(user, SPAN_NOTICE(" You deploy [src]."))
 		var/obj/structure/fence/R = new deployfence(usr.loc)
 		src.transfer_fingerprints_to(R)

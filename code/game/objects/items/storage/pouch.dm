@@ -1169,7 +1169,7 @@
 /obj/item/storage/pouch/construction
 	name = "construction pouch"
 	desc = "It's designed to hold construction materials - glass/metal sheets, metal rods, barbed wire, cable coil, and empty sandbags. It also has two hooks for an entrenching tool and light replacer."
-	storage_slots = 3
+	storage_slots = 5
 	max_w_class = SIZE_MEDIUM
 	icon_state = "construction"
 	can_hold = list(
@@ -1182,12 +1182,16 @@
 		/obj/item/stack/sandbags_empty,
 		/obj/item/device/lightreplacer,
 		/obj/item/weapon/gun/smg/nailgun/compact,
+		/obj/item/stack/concertina_wire,
+		/obj/item/stack/fragwire,
 	)
 
 /obj/item/storage/pouch/construction/full/fill_preset_inventory()
 	new /obj/item/stack/sheet/plasteel(src, 50)
 	new /obj/item/stack/sheet/metal(src, 50)
 	new /obj/item/stack/sandbags_empty(src, 50)
+	new /obj/item/stack/concertina_wire(src, 50)
+	new /obj/item/stack/fragwire(src, 25)
 
 /obj/item/storage/pouch/construction/full_barbed_wire/fill_preset_inventory()
 	new /obj/item/stack/sheet/plasteel(src, 50)
