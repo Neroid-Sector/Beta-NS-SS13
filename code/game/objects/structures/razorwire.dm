@@ -38,7 +38,7 @@
 	opacity = FALSE
 	health = 50
 	layer = RESIN_STRUCTURE_LAYER
-	var/damage = 15
+	var/damage = 8
 	var/penetration = 50
 
 	var/target_limbs = list(
@@ -57,4 +57,4 @@
 
 	H.apply_armoured_damage(damage, penetration = penetration, def_zone = pick(target_limbs))
 	H.apply_effect(3, SLOW)
-	playsound(user.loc, 'sound/items/Wirecutter.ogg', 25, 1, 6)
+	playsound(loc, 'sound/items/Wirecutter.ogg', 25)
