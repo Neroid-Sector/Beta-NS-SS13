@@ -3,7 +3,7 @@
 	name = "Coil of concertina wire"
 	desc = "A rolled up spool of razor wire"
 	icon = 'icons/obj/items/marine-items.dmi'
-	icon_state = "deployable_fence"
+	icon_state = "concertina_wire"
 	w_class = SIZE_SMALL
 	max_amount = 50
 	var/deployconcertina = /obj/item/device/assembly/razorwire
@@ -28,12 +28,11 @@
 			update_icon()
 		}
 
-
 /obj/item/device/assembly/razorwire
 	name = "razorwire"
 	desc = "A nasty spool of razor wire. Ouch."
-	icon = 'icons/obj/structures/alien/structures.dmi'
-	icon_state = "resin_spike"
+	icon = 'icons/obj/structures/barricades.dmi'
+	icon_state = "concertina_wire"
 	density = FALSE
 	opacity = FALSE
 	health = 50
@@ -58,3 +57,5 @@
 	H.apply_armoured_damage(damage, penetration = penetration, def_zone = pick(target_limbs))
 	H.apply_effect(3, SLOW)
 	playsound(loc, 'sound/items/Wirecutter.ogg', 25)
+
+
