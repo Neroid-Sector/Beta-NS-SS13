@@ -486,6 +486,11 @@
 /obj/item/weapon/gun/rifle/kramer/tactical
 	starting_attachment_types = list(/obj/item/attachable/stock/rifle, /obj/item/attachable/extended_barrel, /obj/item/attachable/flashlight/grip, /obj/item/attachable/reflex)
 
+
+/obj/item/weapon/gun/rifle/kramer/dmr
+	starting_attachment_types = list(/obj/item/attachable/stock/rifle/collapsible, /obj/item/attachable/extended_barrel, /obj/item/attachable/bipod, /obj/item/attachable/scope/mini)
+	current_mag = /obj/item/ammo_magazine/rifle/kramer/heap
+
 //----------------------------------------------
 //Special gun for the CO to replace the smartgun
 
@@ -601,7 +606,7 @@
 
 /obj/item/weapon/gun/rifle/m46c/tactical
 	name = "\improper M46T pulse rifle"
-	desc = "A prototype M46T, a heavily customized version of the prototype M46C, issued to UAAC-TIS Escort Officers only. Comes standard with a suppressor, angled grip, solid stock and reflex sight. Uses standard MK1 & MK2 rifle magazines."
+	desc = "A prototype M46T, a heavily customized version of the prototype M46C, issued to UAAC-TIS Forces only. Comes standard with a suppressor, angled grip, solid stock and reflex sight. Uses standard MK1 & MK2 rifle magazines."
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "m46t"
 	item_state = "m46t"
@@ -694,9 +699,8 @@
 	. = ..()
 	if(iff_enabled)
 		modify_fire_delay(FIRE_DELAY_TIER_12)
-		remove_firemode(GUN_FIREMODE_BURSTFIRE)
-		remove_firemode(GUN_FIREMODE_AUTOMATIC)
-
+		add_firemode(GUN_FIREMODE_BURSTFIRE)
+		add_firemode(GUN_FIREMODE_AUTOMATIC)
 	else
 		add_firemode(GUN_FIREMODE_BURSTFIRE)
 		add_firemode(GUN_FIREMODE_AUTOMATIC)
@@ -790,8 +794,8 @@
 
 /obj/item/weapon/gun/rifle/mar40/set_gun_config_values()
 	..()
-	set_fire_delay(FIRE_DELAY_TIER_9)
-	set_burst_amount(BURST_AMOUNT_TIER_4)
+	set_fire_delay(FIRE_DELAY_TIER_12)
+	set_burst_amount(FIRE_DELAY_TIER_11)
 	set_burst_delay(FIRE_DELAY_TIER_11)
 	accuracy_mult = BASE_ACCURACY_MULT
 	accuracy_mult_unwielded = BASE_ACCURACY_MULT - HIT_ACCURACY_MULT_TIER_7
@@ -1695,6 +1699,10 @@
 
 /obj/item/weapon/gun/rifle/l42a/training
 	current_mag = /obj/item/ammo_magazine/rifle/l42a/rubber
+
+/obj/item/weapon/gun/rifle/l42a/dmr
+	starting_attachment_types = list(/obj/item/attachable/stock/rifle/collapsible, /obj/item/attachable/extended_barrel, /obj/item/attachable/bipod, /obj/item/attachable/scope/mini)
+	current_mag = /obj/item/ammo_magazine/rifle/l42a/heap
 
 //-------------------------------------------------------
 //-------------------------------------------------------

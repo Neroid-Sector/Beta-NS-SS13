@@ -145,11 +145,11 @@
 				marine_rk = "tises"
 			if(JOB_TIS_IO)
 				marine_rk = "tisio"
-			if(JOB_TIS_SIO)
+			if(JOB_TIS_SIO, JOB_TIS_OWLF)
 				marine_rk = "tissio"
 			if(JOB_TIS_SA)
 				marine_rk = "tissa"
-			if(JOB_TIS_CO)
+			if(JOB_TIS_CO, JOB_TIS_OWLF_LEAD)
 				marine_rk = "tisco"
 			// Riot MPs
 			if(JOB_RIOT)

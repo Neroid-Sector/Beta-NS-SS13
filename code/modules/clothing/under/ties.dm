@@ -910,7 +910,7 @@
 	..()
 	return
 
-/obj/item/clothing/accessory/storage/owlf_vest
+/obj/item/clothing/accessory/storage/webbing/owlf_vest
 	name = "\improper OWLF agent vest"
 	desc = "This is a fancy-looking ballistics vest, meant to be attached to a uniform." //No stats for these yet, just placeholder implementation.
 	icon = 'icons/obj/items/clothing/ties.dmi'

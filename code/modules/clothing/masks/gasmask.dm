@@ -91,8 +91,13 @@
 	icon_state = "bear_mask"
 	anti_hug = 2
 
-
-
+/obj/item/clothing/mask/gas/owlf_mask
+	name = "\improper OWLF gas mask"
+	desc = "A close-fitting mask that can be connected to an air supply."
+	icon_state = "owlf_mask"
+	item_state = "owlf_mask"
+	flags_armor_protection = 30
+	w_class = SIZE_SMALL
 
 //Plague Dr suit can be found in clothing/suits/bio.dm
 /obj/item/clothing/mask/gas/plaguedoctor
