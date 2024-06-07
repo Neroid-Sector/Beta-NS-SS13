@@ -343,7 +343,7 @@
 
 	job_options = list(IO_WO2 = "CWO2", IO_WO3 = "CWO3", IO_WO4 = "CWO4", IO_WO5 = "CWO5", IO_O1 = "2ndLT")
 
-/datum/job/uscm/mudskipper/mssl/handle_job_options(option)
+/datum/job/uscm/mudskipper/msio/handle_job_options(option)
 	if(option == IO_WO3)
 		gear_preset = /datum/equipment_preset/uscm_mudskippers/intel/wo3
 	else if(option == IO_WO4)
