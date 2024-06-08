@@ -985,7 +985,7 @@
 	)
 	assignment = JOB_MS_INTEL
 	rank = JOB_MS_INTEL
-	paygrade = "CWO2"
+	paygrade = "W-2"
 	role_comm_title = "IO"
 	skills = /datum/skills/intel
 
@@ -1005,16 +1005,16 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/accessory/patch(new_human), WEAR_ACCESSORY)
 
 /datum/equipment_preset/uscm_mudskippers/intel/wo3
-	paygrade = "CWO3"
+	paygrade = "W-3"
 
 /datum/equipment_preset/uscm_mudskippers/intel/wo4
-	paygrade = "CWO4"
+	paygrade = "W-3"
 
 /datum/equipment_preset/uscm_mudskippers/intel/wo5
-	paygrade = "CWO5"
+	paygrade = "W-4"
 
 /datum/equipment_preset/uscm_mudskippers/intel/o1
-	paygrade = "O1"
+	paygrade = "MO1"
 
 //----Medical----//
 /datum/equipment_preset/uscm_ship/uscm_mudskippers/medical
