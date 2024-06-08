@@ -27,7 +27,7 @@
 	)
 	assignment = JOB_POLICE
 	rank = JOB_POLICE
-	paygrade = "ME4"
+	paygrade = "W-1"
 	role_comm_title = "MP"
 	skills = /datum/skills/ms/rifleman
 
@@ -88,7 +88,7 @@
 	)
 	assignment = JOB_POLICE_SL
 	rank = JOB_POLICE_SL
-	paygrade = "ME5"
+	paygrade = "W-3"
 	role_comm_title = "MP SL"
 	skills = /datum/skills/ms/sl
 	minimap_icon = "hgsl"
@@ -147,7 +147,7 @@
 	)
 	assignment = JOB_WARDEN
 	rank = JOB_WARDEN
-	paygrade = "ME6"
+	paygrade = "W-5"
 	role_comm_title = "MW"
 	skills = /datum/skills/ms/sl
 
@@ -252,7 +252,7 @@
 	access = list()
 	assignment = JOB_RIOT
 	rank = JOB_RIOT
-	paygrade = "ME5"
+	paygrade = "W-1"
 	role_comm_title = "RMP"
 	skills = /datum/skills/CMP
 
@@ -300,6 +300,6 @@
 
 	assignment = JOB_RIOT_CHIEF
 	rank = JOB_RIOT_CHIEF
-	paygrade = "MO1"
+	paygrade = "MO2"
 	role_comm_title = "CRMP"
 	skills = /datum/skills/CMP

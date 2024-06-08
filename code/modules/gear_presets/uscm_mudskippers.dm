@@ -804,7 +804,7 @@
 	access = list(ACCESS_LIST_MARINE_ALL)
 	assignment = JOB_MS_HGSL
 	rank = JOB_MS_HGSL
-	paygrade = "ME5"
+	paygrade = "W-4"
 	role_comm_title = "HGSL"
 	skills = /datum/skills/ms/sl
 	idtype = /obj/item/card/id/silver
@@ -859,7 +859,7 @@
 	access = list(ACCESS_LIST_MARINE_ALL)
 	assignment = JOB_MS_VHG
 	rank = JOB_MS_VHG
-	paygrade = "ME4"
+	paygrade = "W-2"
 	role_comm_title = "VHG"
 	skills = /datum/skills/ms/rifleman
 	idtype = /obj/item/card/id/silver
@@ -913,7 +913,7 @@
 	access = list(ACCESS_MARINE_COMMAND, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT)
 	assignment = JOB_MS_PILOT
 	rank = JOB_MS_PILOT
-	paygrade = "MO1"
+	paygrade = "ME4"
 	role_comm_title = "DP"
 	skills = /datum/skills/pilot
 
@@ -930,9 +930,18 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine/knife(new_human), WEAR_FEET)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/accessory/patch/mudskippers(new_human), WEAR_ACCESSORY)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/accessory/patch(new_human), WEAR_ACCESSORY)
-//---Warrant Officer--//
 
-//this space left intentionally blank
+/datum/equipment_preset/uscm_mudskippers/po/e5
+	paygrade = "ME5"
+
+/datum/equipment_preset/uscm_mudskippers/po/w1
+	paygrade = "W-1"
+
+/datum/equipment_preset/uscm_mudskippers/po/w2
+	paygrade = "W-2"
+
+/datum/equipment_preset/uscm_mudskippers/po/w3
+	paygrade = "W-3"
 
 //---Tank Crwmn---//
 /datum/equipment_preset/uscm_mudskippers/tank
@@ -949,7 +958,7 @@
 	)
 	assignment = JOB_MS_CREWMAN
 	rank = JOB_MS_CREWMAN
-	paygrade = "ME4"
+	paygrade = "W-1"
 	role_comm_title = "CRMN"
 	minimum_age = 30
 	skills = /datum/skills/tank_crew
