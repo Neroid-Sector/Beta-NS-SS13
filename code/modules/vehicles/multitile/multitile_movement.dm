@@ -297,7 +297,7 @@
 		cell_explosion(target, explosion_strength, explosion_falloff, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, cause_data)
 
 
-/obj/vehicle/multitile/proc/munition_interior_bullet_effect(shrapnel = TRUE, shrapnel_count = 10, datum/cause_data/cause_data)
+/obj/vehicle/multitile/proc/munition_interior_bullet_effect(shrapnel = TRUE, shrapnel_count = 50, datum/cause_data/cause_data)
 	if(!interior)
 		return
 
