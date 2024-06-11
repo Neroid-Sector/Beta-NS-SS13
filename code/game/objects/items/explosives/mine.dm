@@ -407,3 +407,6 @@
 
 /obj/item/explosive/atmine/upp
 	var/iff_signal = FACTION_UPP
+
+/obj/item/explosive/atmine/no_iff
+	iff_signal = null
