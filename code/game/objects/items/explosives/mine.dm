@@ -322,3 +322,23 @@
 	customizable = TRUE
 	matter = list("metal" = 3750)
 	has_blast_wave_dampener = TRUE
+
+
+/obj/item/explosive/atmine
+	name = "m20 anti-vehicle mine"
+	desc = "An anti vehicle mine."
+	icon = 'icons/obj/items/weapons/grenade.dmi'
+	icon_state = "m20at"
+	health = 50
+	use_dir = TRUE
+
+/obj/item/explosive/atmine/Crossed(atom/movable/AM)
+	. = ..()
+	var/obj/vehicle/multitile/V = AM
+	if(!istype(V))
+		return
+
+	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25)
+	create_shrapnel(loc, 50, dir, angle, , cause_data)
+	cell_explosion(loc, 10, 20, EXPLOSION_FALLOFF_SHAPE_LINEAR, dir, cause_data)
+	qdel(src)
