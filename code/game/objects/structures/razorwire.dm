@@ -55,6 +55,7 @@
 	layer = RESIN_STRUCTURE_LAYER
 	var/damage = 12
 	var/penetration = 50
+	var/dismantlewire = /obj/item/stack/concertina_wire
 
 	var/target_limbs = list(
 		"l_leg",
@@ -77,6 +78,32 @@
 	playsound(loc, 'sound/handling/disk_pickup.ogg', 25)
 	playsound(loc, 'sound/effects/rip1.ogg', 25)
 
+
+/obj/structure/device/razorwire/attackby(obj/item/W, mob/user)
+	if(HAS_TRAIT(W, TRAIT_TOOL_WRENCH))
+		if(user.action_busy)
+			return
+		else
+			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+			anchored = !anchored
+			to_chat(user, SPAN_NOTICE("You [anchored ? "wrench" : "unwrench"] \the [src]."))
+	else
+		if(HAS_TRAIT(W, TRAIT_TOOL_WIRECUTTERS))
+			if(user.action_busy)
+				return
+			else
+				user.visible_message(SPAN_NOTICE("[user] starts cutting [src]."), \
+				SPAN_NOTICE("You start cutting [src]."))
+			if(!do_after(user, 30, INTERRUPT_NO_NEEDHAND, BUSY_ICON_FRIENDLY))
+				user.visible_message(SPAN_WARNING("[user] stops dismantling [src]."), \
+					SPAN_WARNING("You stop dismantling [src]."))
+				return
+			user.visible_message(SPAN_NOTICE("[user] finishes dismantling [src]."), \
+			SPAN_NOTICE("You finish dismantling [src]."))
+			var/obj/item/stack/concertina_wire/R = new dismantlewire(usr.loc)
+			src.transfer_fingerprints_to(R)
+			R.add_fingerprint(user)
+			qdel(src)
 
 /obj/item/stack/concertina_wire/full_stack
 	amount = STACK_50
@@ -140,6 +167,7 @@
 	var/penetration = 50
 	angle = 360
 	use_dir = TRUE
+	var/dismantlefragwire = /obj/item/stack/fragwire
 
 	var/target_limbs = list(
 		"l_leg",
@@ -162,6 +190,40 @@
 	create_shrapnel(loc, 50, dir, angle, , cause_data)
 	cell_explosion(loc, 10, 20, EXPLOSION_FALLOFF_SHAPE_LINEAR, dir, cause_data)
 	qdel(src)
+
+
+/obj/item/explosive/fragwire/attackby(obj/item/W, mob/user)
+	if(HAS_TRAIT(W, TRAIT_TOOL_WRENCH))
+		if(user.action_busy)
+			return
+		else
+			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+			anchored = !anchored
+			to_chat(user, SPAN_NOTICE("You [anchored ? "wrench" : "unwrench"] \the [src]."))
+	else
+		if(HAS_TRAIT(W, TRAIT_TOOL_WIRECUTTERS))
+			if(user.action_busy)
+				return
+			else
+				user.visible_message(SPAN_NOTICE("[user] starts cutting [src]."), \
+				SPAN_NOTICE("You start cutting [src]."))
+			if(!do_after(user, 30, INTERRUPT_NO_NEEDHAND, BUSY_ICON_FRIENDLY))
+				user.visible_message(SPAN_WARNING("[user] stops dismantling [src]."), \
+					SPAN_WARNING("You stop dismantling [src]."))
+				return
+			if(prob(90))
+				playsound(loc, 'sound/effects/zippo_close.ogg', 25)
+				playsound(loc, 'sound/effects/rip1.ogg', 25)
+				create_shrapnel(loc, 50, dir, angle, , cause_data)
+				cell_explosion(loc, 10, 20, EXPLOSION_FALLOFF_SHAPE_LINEAR, dir, cause_data)
+				qdel(src)
+				return
+			user.visible_message(SPAN_NOTICE("[user] finishes dismantling [src]."), \
+			SPAN_NOTICE("You finish dismantling [src]."))
+			var/obj/item/stack/fragwire/R = new dismantlefragwire(usr.loc)
+			src.transfer_fingerprints_to(R)
+			R.add_fingerprint(user)
+			qdel(src)
 
 
 /obj/item/stack/fragwire/full_stack
