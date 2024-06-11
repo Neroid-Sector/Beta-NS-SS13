@@ -571,7 +571,7 @@
 	can_hold = list(/obj/item/atmine)
 
 /obj/item/storage/box/explosive_atmines/fill_preset_inventory()
-	for(var/i in 1 to 10)
+	for(var/i in 1 to 5)
 		new /obj/item/atmine(src)
 
 /obj/item/storage/box/m94
