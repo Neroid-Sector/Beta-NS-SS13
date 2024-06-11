@@ -396,6 +396,8 @@
 				choosemax = rand(1,5)
 				randomitems = list(/obj/item/storage/box/explosive_mines,
 								/obj/item/storage/box/explosive_mines,
+								/obj/item/storage/box/explosive_atmines,
+								/obj/item/storage/box/explosive_atmines,
 								/obj/item/explosive/grenade/high_explosive/m15,
 								/obj/item/explosive/grenade/high_explosive/m15,
 								/obj/item/explosive/grenade/high_explosive,
@@ -725,6 +727,7 @@
 							/obj/item/ammo_magazine/sniper/flak)
 		if(4) // Give them explosives + Grenades for the Grenade spec. Might be too many grenades, but we'll find out.
 			spawnitems = list(/obj/item/storage/box/explosive_mines,
+							/obj/item/storage/box/explosive_atmines,
 							/obj/item/storage/belt/grenade/full,
 							/obj/item/storage/box/nade_box,
 							/obj/item/storage/box/nade_box/frag)
