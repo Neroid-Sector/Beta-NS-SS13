@@ -562,6 +562,18 @@
 	for(var/i in 1 to 5)
 		new /obj/item/explosive/mine/pmc(src)
 
+/obj/item/storage/box/explosive_atmines
+	name = "\improper M20 mine box"
+	desc = "A secure box holding five M20 anti-vehicle mines."
+	icon_state = "minebox"
+	w_class = SIZE_LARGE
+	max_storage_space = 20
+	can_hold = list(/obj/item/atmine)
+
+/obj/item/storage/box/explosive_atmines/fill_preset_inventory()
+	for(var/i in 1 to 10)
+		new /obj/item/atmine(src)
+
 /obj/item/storage/box/m94
 	name = "\improper M94 marking flare pack"
 	desc = "A packet of eight M94 Marking Flares. Carried by USCM soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp."
