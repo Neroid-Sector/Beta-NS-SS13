@@ -324,14 +324,50 @@
 	has_blast_wave_dampener = TRUE
 
 
-/obj/item/explosive/atmine
+/obj/item/atmine
 	name = "m20 anti-vehicle mine"
 	desc = "An anti vehicle mine."
 	icon = 'icons/obj/items/weapons/grenade.dmi'
 	icon_state = "m20at"
+	w_class = SIZE_MEDIUM
+	var/deploy_atmine = /obj/item/explosive/atmine
+
+/obj/item/atmine/attack_self(mob/user)
+	..()
+	var/turf/open/T = user.loc
+	if(!(istype(T) && T.allow_construction))
+		to_chat(user, SPAN_WARNING("[src] must be inflated on a proper surface!"))
+		return
+	if(locate(/obj/item/explosive/mine) in get_turf(src))
+		to_chat(user, SPAN_WARNING("There already is a mine at this position!"))
+		return
+	if(locate(/obj/item/explosive/atmine) in get_turf(src))
+		to_chat(user, SPAN_WARNING("There already is a mine at this position!"))
+		return
+	if(do_after(user, 0.5 SECONDS, INTERRUPT_ALL, BUSY_ICON_BUILD, src))
+		playsound(loc, 'sound/effects/toolbox.ogg', 25, TRUE)
+		to_chat(user, SPAN_NOTICE(" You inflate [src]."))
+		var/obj/item/explosive/atmine/R = new deploy_atmine(usr.loc)
+		src.transfer_fingerprints_to(R)
+		R.add_fingerprint(user)
+		qdel(src)
+
+/obj/item/explosive/atmine
+	name = "m20 anti-vehicle mine"
+	desc = "An anti vehicle mine."
+	icon = 'icons/obj/items/weapons/grenade.dmi'
+	icon_state = "m20at_active"
 	health = 50
-	use_dir = TRUE
+	anchored = TRUE
+	use_dir = FALSE
 	var/iff_signal = FACTION_MARINE
+	var/defuse_atmine = /obj/item/atmine
+
+/obj/item/explosive/atmine/proc/det_atmine(mob/user)
+	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25)
+	create_shrapnel(loc, 10, dir, angle, , cause_data)
+	cell_explosion(loc, 1500, 300, EXPLOSION_FALLOFF_SHAPE_LINEAR, dir, cause_data)
+	qdel(src)
 
 /obj/item/explosive/atmine/Crossed(atom/movable/AM)
 	. = ..()
@@ -340,9 +376,30 @@
 		return
 	if(V.get_target_lock(iff_signal))
 		return
+	det_atmine()
 
 
-	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25)
-	create_shrapnel(loc, 10, dir, angle, , cause_data)
-	cell_explosion(loc, 510, 20, EXPLOSION_FALLOFF_SHAPE_LINEAR, dir, cause_data)
-	qdel(src)
+/obj/item/explosive/atmine/attackby(obj/item/W, mob/user)
+	if(HAS_TRAIT(W, TRAIT_TOOL_MULTITOOL))
+		if(user.action_busy)
+			return
+		if(user.faction == iff_signal)
+			user.visible_message(SPAN_NOTICE("[user] starts disarming [src]."), \
+			SPAN_NOTICE("You start disarming [src]."))
+		else
+			user.visible_message(SPAN_NOTICE("[user] starts fiddling with \the [src], trying to disarm it."), \
+			SPAN_NOTICE("You start disarming [src], but you don't know its IFF data. This might end badly..."))
+		if(!do_after(user, 30, INTERRUPT_NO_NEEDHAND, BUSY_ICON_FRIENDLY))
+			user.visible_message(SPAN_WARNING("[user] stops disarming [src]."), \
+				SPAN_WARNING("You stop disarming [src]."))
+			return
+		if(user.faction != iff_signal)
+			if(prob(40))
+				det_atmine()
+				return
+		user.visible_message(SPAN_NOTICE("[user] finishes disarming [src]."), \
+		SPAN_NOTICE("You finish disarming [src]."))
+		var/obj/item/atmine/R = new defuse_atmine(usr.loc)
+		src.transfer_fingerprints_to(R)
+		R.add_fingerprint(user)
+		qdel(src)
