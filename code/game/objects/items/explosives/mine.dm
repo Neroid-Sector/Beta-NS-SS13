@@ -336,7 +336,7 @@
 	..()
 	var/turf/open/T = user.loc
 	if(!(istype(T) && T.allow_construction))
-		to_chat(user, SPAN_WARNING("[src] must be inflated on a proper surface!"))
+		to_chat(user, SPAN_WARNING("[src] must be deployed on a proper surface!"))
 		return
 	if(locate(/obj/item/explosive/mine) in get_turf(src))
 		to_chat(user, SPAN_WARNING("There already is a mine at this position!"))
@@ -403,3 +403,7 @@
 		src.transfer_fingerprints_to(R)
 		R.add_fingerprint(user)
 		qdel(src)
+
+
+/obj/item/explosive/atmine/upp
+	var/iff_signal = FACTION_UPP
