@@ -593,7 +593,7 @@
 	w_class = SIZE_SMALL
 	var/activated = 0
 	var/icon_activated = "ir_beacon_active"
-	var/supply_drop = 0 //0 = Regular ammo, 1 = Rocket, 2 = Smartgun, 3 = Sniper, 4 = Explosives + GL
+	var/supply_drop = 0
 
 /obj/item/device/whiskey_supply_beacon/attack_self(mob/user)
 	..()
@@ -667,7 +667,7 @@
 	anchored = TRUE
 	w_class = 10
 	icon_state = "[icon_activated]"
-	playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
+	playsound(src, 'sound/effects/sos-morse-code.ogg', 15, 1)
 	to_chat(user, "You activate the [src]. Now toss it, the supplies will arrive in a moment!")
 
 	var/mob/living/carbon/C = user
@@ -675,6 +675,8 @@
 		C.toggle_throw_mode(THROW_MODE_NORMAL)
 
 	sleep(100) //10 seconds should be enough.
+	playsound(src, 'sound/effects/dropship_incoming.ogg', 15, 1)
+	sleep(20)
 	var/turf/T = get_turf(src) //Make sure we get the turf we're tossing this on.
 	drop_supplies(T, supply_drop)
 	playsound(src,'sound/effects/bamf.ogg', 50, 1)
@@ -701,6 +703,7 @@
 							/obj/item/ammo_magazine/rocket/ap,
 							/obj/item/ammo_magazine/rocket/ap,
 							/obj/item/ammo_magazine/rocket/ap,
+							/obj/item/ammo_magazine/rocket/wp,
 							/obj/item/ammo_magazine/rocket/wp,
 							/obj/item/ammo_magazine/rocket/wp)
 		if(2) //Smartgun supplies
