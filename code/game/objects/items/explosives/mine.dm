@@ -331,14 +331,18 @@
 	icon_state = "m20at"
 	health = 50
 	use_dir = TRUE
+	var/iff_signal = FACTION_MARINE
 
 /obj/item/explosive/atmine/Crossed(atom/movable/AM)
 	. = ..()
 	var/obj/vehicle/multitile/V = AM
 	if(!istype(V))
 		return
+	if(V.get_target_lock(iff_signal))
+		return
+
 
 	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25)
-	create_shrapnel(loc, 50, dir, angle, , cause_data)
-	cell_explosion(loc, 10, 20, EXPLOSION_FALLOFF_SHAPE_LINEAR, dir, cause_data)
+	create_shrapnel(loc, 10, dir, angle, , cause_data)
+	cell_explosion(loc, 510, 20, EXPLOSION_FALLOFF_SHAPE_LINEAR, dir, cause_data)
 	qdel(src)
