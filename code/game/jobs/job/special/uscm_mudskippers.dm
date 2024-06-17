@@ -149,7 +149,7 @@
 
 	job_options = list(PC_O1 = "2ndLT", PC_O2 = "1stLT")
 
-/datum/job/uscm/mudskipper/mssl/handle_job_options(option)
+/datum/job/uscm/mudskipper/mspc/handle_job_options(option)
 	if(option == PC_O2 )
 		gear_preset = /datum/equipment_preset/uscm_mudskippers/pc/o2
 	else
@@ -205,7 +205,7 @@
 
 	job_options = list(CT_E3 = "Lcpl", CT_E4 = "Cpl")
 
-/datum/job/uscm/mudskipper/mssl/handle_job_options(option)
+/datum/job/uscm/mudskipper/msengie/handle_job_options(option)
 	if(option == CT_E3)
 		gear_preset = /datum/equipment_preset/uscm_mudskippers/engineer/full/e3
 	else
@@ -229,7 +229,7 @@
 
 	job_options = list(MED_E3 = "Lcpl", MED_E4 = "Cpl")
 
-/datum/job/uscm/mudskipper/mssl/handle_job_options(option)
+/datum/job/uscm/mudskipper/msmedic/handle_job_options(option)
 	if(option == MED_E4)
 		gear_preset = /datum/equipment_preset/uscm_mudskippers/medic/full/e4
 	else
@@ -254,7 +254,7 @@
 
 	job_options = list(SG_E2 = "Pfc", SG_E3 = "Lcpl", SG_E4 = "Cpl")
 
-/datum/job/uscm/mudskipper/mssl/handle_job_options(option)
+/datum/job/uscm/mudskipper/mssg/handle_job_options(option)
 	if(option == SG_E2)
 		gear_preset = /datum/equipment_preset/uscm_mudskippers/sg/full/e2
 	else if(option == SG_E4)
@@ -280,7 +280,7 @@
 
 	job_options = list(RFM_E1 = "Pfc", RFM_E2 = "Pfc", RFM_E3 = "Lcpl", RFM_E4 = "Cpl")
 
-/datum/job/uscm/mudskipper/mssl/handle_job_options(option)
+/datum/job/uscm/mudskipper/msrfm/handle_job_options(option)
 	if(option == RFM_E1)
 		gear_preset = /datum/equipment_preset/uscm_mudskippers/rfm/full/e1
 	else if(option == RFM_E3)
