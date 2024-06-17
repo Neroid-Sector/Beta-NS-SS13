@@ -604,19 +604,19 @@
 //version full of type 71 mags
 /obj/item/storage/belt/marine/upp/full/fill_preset_inventory()
 	for(var/i = 1 to storage_slots)
-		new /obj/item/ammo_magazine/rifle/type71(src)
+		new /obj/item/ammo_magazine/rifle/type71/ap(src)
 
 /obj/item/storage/belt/marine/upp/scarce/fill_preset_inventory()
-	new /obj/item/ammo_magazine/rifle/type71(src)
-	new /obj/item/ammo_magazine/rifle/type71(src)
-	new /obj/item/ammo_magazine/rifle/type71(src)
+	new /obj/item/ammo_magazine/rifle/type71/heap(src)
+	new /obj/item/ammo_magazine/rifle/type71/heap(src)
+	new /obj/item/ammo_magazine/rifle/type71/heap(src)
 
 /obj/item/storage/belt/marine/upp/sapper/fill_preset_inventory()
-	new /obj/item/ammo_magazine/rifle/type71(src)
-	new /obj/item/ammo_magazine/rifle/type71(src)
 	new /obj/item/ammo_magazine/rifle/type71/ap(src)
 	new /obj/item/ammo_magazine/rifle/type71/ap(src)
-	new /obj/item/ammo_magazine/rifle/type71/ap(src)
+	new /obj/item/ammo_magazine/rifle/type71/heap(src)
+	new /obj/item/ammo_magazine/rifle/type71/heap(src)
+	new /obj/item/ammo_magazine/rifle/type71/heap(src)
 
 // M56E HMG gunner belt
 /obj/item/storage/belt/marine/m2c
