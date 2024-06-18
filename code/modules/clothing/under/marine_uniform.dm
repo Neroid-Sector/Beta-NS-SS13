@@ -463,7 +463,7 @@
 //=======================================================================\\
 
 /obj/item/clothing/under/marine/reconnaissance
-	name = "\improper USCM uniform"
+	name = "\improper USCM FORECON uniform"
 	desc = "Torn, Burned and blood stained. This uniform has seen much more than you could possibly imagine."
 	icon_state = "recon_marine"
 	worn_state = "recon_marine"

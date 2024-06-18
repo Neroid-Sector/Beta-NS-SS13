@@ -143,3 +143,10 @@
 	icon_state = "wardenblueclothes"
 	item_state = "wardenblueclothes"
 	flags_jumpsuit = FALSE
+
+/obj/item/clothing/under/rank/shipping_captain
+	desc = "The insignia on this uniform tells you that this person is the captain of a comercial vessel."
+	name = "comercial ship captain's uniform"
+	icon_state = "hosblueclothes"
+	item_state = "hosblueclothes"
+	flags_jumpsuit = FALSE
