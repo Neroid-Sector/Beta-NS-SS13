@@ -480,6 +480,11 @@
 		if(3)
 			cut_suit_jacket(FALSE)
 
+/obj/item/clothing/under/marine/forecon
+	desc = "Torn, Burned and blood stained. This uniform has seen much more than you could possibly imagine."
+	icon_state = "forcon_marine"
+	worn_state = "forcon_marine"
+	flags_atom = NO_SNOW_TYPE
 
 //=========================//RESPONDERS\\================================\\
 //=======================================================================\\

@@ -751,12 +751,7 @@
 	w_class = SIZE_LARGE //Allow storage containers that's medium or below
 	storage_slots = null
 	max_w_class = SIZE_MEDIUM
-	max_storage_space = 6 //weight system like backpacks, hold enough for 2 medium (normal) size items, or 3 small items, or 6 tiny items
-	cant_hold = list( //Prevent inventory powergame
-		/obj/item/storage/firstaid,
-		/obj/item/storage/bible,
-		/obj/item/storage/toolkit,
-		)
+	max_storage_space = 12 //weight system like backpacks, hold enough for 2 medium (normal) size items, or 3 small items, or 6 tiny items
 	storage_flags = NONE //no verb, no quick draw, no tile gathering
 
 /obj/item/clothing/accessory/storage/holster
