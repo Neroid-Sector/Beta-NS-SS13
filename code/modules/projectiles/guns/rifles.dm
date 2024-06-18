@@ -1280,7 +1280,7 @@
 
 	reload_sound = 'sound/weapons/handling/hpr_reload.ogg'
 	unload_sound = 'sound/weapons/handling/hpr_unload.ogg'
-	fire_sound = 'sound/weapons/gun_hpr.ogg'
+	fire_sound = "gun_pulse"
 	aim_slowdown = SLOWDOWN_ADS_LMG
 	current_mag = /obj/item/ammo_magazine/rifle/lmg
 	attachable_allowed = list(
@@ -1649,13 +1649,14 @@
 
 /obj/item/weapon/gun/rifle/l42a
 	name = "\improper L42A battle rifle"
-	desc = "The L42A Battle Rifle, found commonly around the frontiers of the Galaxy. It's commonly used by colonists for self defense, as well as many colonial militias, whomever they serve due to it's rugged reliability and ease of use without much training. This rifle was put up for adoption by the USCM and tested for a time, but ultimately lost to the M4RA already in service."
+	desc = "The L42A Battle Rifle, is a combat rifle designed for the CCN, and Colonial Coastguard. The weapon features a complex miniaturized magnetic internal autoloader to chamber new rounds, and is prone to shocking the user with static discharges."
+	desc_lore = "The L42A Battle Rifle, found commonly around the frontiers of the Galaxy. It's commonly used by colonists for self defense, as well as many colonial militias, whomever they serve due to it's rugged reliability and ease of use without much training. This rifle was adopted for use by the CCN, and put up for adoption by the USCM and tested for a time, but ultimately lost to the M4RA already in service with the USCM. It still sees use by the CCN."
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "l42mk1"
 	item_state = "l42mk1"
 	reload_sound = 'sound/weapons/handling/l42_reload.ogg'
 	unload_sound = 'sound/weapons/handling/l42_unload.ogg'
-	fire_sound = 'sound/weapons/gun_carbine.ogg'
+	fire_sound = 'sound/weapons/gun_carbine.mp3'
 	current_mag = /obj/item/ammo_magazine/rifle/l42a
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -1688,7 +1689,7 @@
 
 /obj/item/weapon/gun/rifle/l42a/set_gun_config_values()
 	..()
-	set_fire_delay(FIRE_DELAY_TIER_9)
+	set_fire_delay(FIRE_DELAY_TIER_8)
 	set_burst_amount(0)
 	accuracy_mult = BASE_ACCURACY_MULT + HIT_ACCURACY_MULT_TIER_5
 	accuracy_mult_unwielded = BASE_ACCURACY_MULT - HIT_ACCURACY_MULT_TIER_4
