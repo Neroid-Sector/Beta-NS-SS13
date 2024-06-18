@@ -6,7 +6,7 @@
 	icon_state = "front_cannon"
 	disp_icon = "apc"
 	disp_icon_state = "frontalcannon"
-	activation_sounds = list('sound/weapons/gun_smartgun1.ogg', 'sound/weapons/gun_smartgun2.ogg', 'sound/weapons/gun_smartgun3.ogg')
+	activation_sounds = list('sound/weapons/gun_smartgun1.mp3', 'sound/weapons/gun_smartgun2.mp3', 'sound/weapons/gun_smartgun3.mp3', 'sound/weapons/gun_smartgun4.mp3')
 
 	damage_multiplier = 0.11
 

@@ -4,7 +4,7 @@
 	unload_sound = 'sound/weapons/handling/smg_unload.ogg'
 	cocked_sound = 'sound/weapons/gun_cocked2.ogg'
 
-	fire_sound = 'sound/weapons/gun_m39.ogg'
+	fire_sound = "gun_pulse_smg"
 	force = 5
 	w_class = SIZE_LARGE
 	movement_onehanded_acc_penalty_mult = 4
