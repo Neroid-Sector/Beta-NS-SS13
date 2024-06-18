@@ -1649,8 +1649,8 @@
 
 /obj/item/weapon/gun/rifle/l42a
 	name = "\improper L42A battle rifle"
-	desc = "The L42A Battle Rifle, is a combat rifle designed for the CCN, and Colonial Coastguard. The weapon features a complex miniaturized magnetic internal autoloader to chamber new rounds, and is prone to shocking the user with static discharges."
-	desc_lore = "The L42A Battle Rifle, found commonly around the frontiers of the Galaxy. It's commonly used by colonists for self defense, as well as many colonial militias, whomever they serve due to it's rugged reliability and ease of use without much training. This rifle was adopted for use by the CCN, and put up for adoption by the USCM and tested for a time, but ultimately lost to the M4RA already in service with the USCM. It still sees use by the CCN."
+	desc = "The L42A Battle Rifle, is a combat rifle designed for the CCA, and Colonial Coastguard. The weapon features a complex miniaturized magnetic internal autoloader to chamber new rounds, and is prone to shocking the user with static discharges."
+	desc_lore = "The L42A Battle Rifle, found commonly around the frontiers of the Galaxy. It's commonly used by colonists for self defense, as well as many colonial militias, whomever they serve due to it's rugged reliability and ease of use without much training. This rifle was adopted for use by the CCA, and put up for adoption by the USCM and tested for a time, but ultimately lost to the M4RA already in service with the USCM. It still sees use by the CCA."
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "l42mk1"
 	item_state = "l42mk1"
