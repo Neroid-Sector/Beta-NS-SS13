@@ -27,10 +27,38 @@
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset(new_human), WEAR_L_EAR)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/colonist/ua_civvies(new_human), WEAR_BODY)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(new_human), WEAR_FEET)
+
 	new_human.equip_to_slot(new /obj/item/attachable/bayonet(new_human), WEAR_L_STORE)
 	new_human.equip_to_slot(new /obj/item/device/flashlight(new_human), WEAR_R_STORE)
 	new_human.equip_to_slot(new /obj/item/weapon/baseballbat/metal(new_human), WEAR_R_HAND)
 	new_human.equip_to_slot(new /obj/item/weapon/gun/pistol/t73(new_human), WEAR_L_HAND)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73(new_human), WEAR_IN_BACK)
+	. = ..()
+
+//------
+
+/datum/equipment_preset/gangster/generic_elite
+	name = "Gangster elite(generic)"
+	flags = EQUIPMENT_PRESET_EXTRA
+	assignment = JOB_GANGSTER
+	rank = JOB_GANGSTER
+	skills = /datum/skills/civilian/survivor/prisoner
+
+/datum/equipment_preset/gangster/generic_elite/load_status(mob/living/carbon/human/new_human)
+
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/colonist/ua_civvies(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/vest(new_human), WEAR_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(new_human), WEAR_FEET)
+
+	new_human.equip_to_slot(new /obj/item/attachable/bayonet(new_human), WEAR_L_STORE)
+	new_human.equip_to_slot(new /obj/item/device/flashlight(new_human), WEAR_R_STORE)
+	new_human.equip_to_slot(new /obj/item/weapon/baseballbat/metal(new_human), WEAR_R_HAND)
+	new_human.equip_to_slot(new /obj/item/weapon/gun/smg/ppsh/with_drum_mag(new_human), WEAR_L_HAND)
+	new_human.equip_to_slot(new /obj/item/weapon/gun/pistol/t73(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73(new_human), WEAR_IN_BACK)
@@ -52,10 +80,10 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/colonist/ua_civvies(new_human), WEAR_BODY)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/vest(new_human), WEAR_JACKET)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(new_human), WEAR_FEET)
+
 	new_human.equip_to_slot(new /obj/item/attachable/bayonet(new_human), WEAR_L_STORE)
 	new_human.equip_to_slot(new /obj/item/device/flashlight(new_human), WEAR_R_STORE)
 	new_human.equip_to_slot(new /obj/item/weapon/baseballbat/metal(new_human), WEAR_R_HAND)
-	new_human.equip_to_slot(new /obj/item/weapon/gun/smg/ppsh/with_drum_mag(new_human), WEAR_L_HAND)
 	new_human.equip_to_slot(new /obj/item/weapon/gun/pistol/t73/leader(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73_impact(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73(new_human), WEAR_IN_BACK)
@@ -139,7 +167,88 @@
 	. = ..()
 
 //====BackBiter-Gangster====//
+/datum/equipment_preset/gangster/backbiter
+	name = "Gangster(Backbiter)"
+	flags = EQUIPMENT_PRESET_EXTRA
+	assignment = JOB_GANGSTER_BB
+	rank = JOB_GANGSTER_BB
+	skills = /datum/skills/civilian/survivor/prisoner
 
+/datum/equipment_preset/gangster/backbiter/load_gear(mob/living/carbon/human/new_human)
+	new_human.h_style = "Mohawk"
+	new_human.r_hair = 0
+	new_human.g_hair = 100
+	new_human.b_hair = 0
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/rank/worker_overalls(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(new_human), WEAR_FEET)
+
+	new_human.equip_to_slot(new /obj/item/attachable/bayonet(new_human), WEAR_L_STORE)
+	new_human.equip_to_slot(new /obj/item/device/flashlight(new_human), WEAR_R_STORE)
+	new_human.equip_to_slot(new /obj/item/weapon/bikechain(new_human), WEAR_R_HAND)
+	new_human.equip_to_slot(new /obj/item/weapon/gun/pistol/t73(new_human), WEAR_L_HAND)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73(new_human), WEAR_IN_BACK)
+	. = ..()
+
+//------
+
+/datum/equipment_preset/gangster/backbiter_elite
+	name = "Gangster elite(Backbiter)"
+	flags = EQUIPMENT_PRESET_EXTRA
+	assignment = JOB_GANGSTER_BB
+	rank = JOB_GANGSTER_BB
+	skills = /datum/skills/civilian/survivor/prisoner
+
+/datum/equipment_preset/gangster/backbiter_elite/load_status(mob/living/carbon/human/new_human)
+	new_human.h_style = "Mohawk"
+	new_human.r_hair = 0
+	new_human.g_hair = 100
+	new_human.b_hair = 0
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/rank/worker_overalls(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(new_human), WEAR_FEET)
+
+	new_human.equip_to_slot(new /obj/item/attachable/bayonet(new_human), WEAR_L_STORE)
+	new_human.equip_to_slot(new /obj/item/device/flashlight(new_human), WEAR_R_STORE)
+	new_human.equip_to_slot(new /obj/item/weapon/bikechain(new_human), WEAR_R_HAND)
+	new_human.equip_to_slot(new /obj/item/weapon/gun/pistol/t73(new_human), WEAR_L_HAND)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73(new_human), WEAR_IN_BACK)
+	. = ..()
+
+//------
+
+/datum/equipment_preset/gangster/backbiter_leader
+	name = "Gangster Leader(Backbiter)"
+	flags = EQUIPMENT_PRESET_EXTRA
+	assignment = JOB_GANGSTER_BB_LEADER
+	rank = JOB_GANGSTER_BB_LEADER
+	skills = /datum/skills/civilian/survivor/gangleader
+
+/datum/equipment_preset/gangster/backbiter_leader/load_status(mob/living/carbon/human/new_human)
+	new_human.h_style = "Mohawk"
+	new_human.r_hair = 0
+	new_human.g_hair = 100
+	new_human.b_hair = 0
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/colonist/ua_civvies(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/vest(new_human), WEAR_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(new_human), WEAR_FEET)
+
+	new_human.equip_to_slot(new /obj/item/attachable/bayonet(new_human), WEAR_L_STORE)
+	new_human.equip_to_slot(new /obj/item/device/flashlight(new_human), WEAR_R_STORE)
+	new_human.equip_to_slot(new /obj/item/weapon/baseballbat/metal(new_human), WEAR_R_HAND)
+	new_human.equip_to_slot(new /obj/item/weapon/gun/pistol/t73/leader(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73_impact(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73(new_human), WEAR_IN_BACK)
+	. = ..()
 
 //====Yakuza-Gangster====//
 
@@ -151,11 +260,15 @@
 	skills = /datum/skills/civilian/survivor/prisoner
 
 /datum/equipment_preset/gangster/yakuza/load_gear(mob/living/carbon/human/new_human)
+	new_human.r_hair = 0
+	new_human.g_hair = 0
+	new_human.b_hair = 0
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset(new_human), WEAR_L_EAR)
-	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket/really_black(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket/charcoal(new_human), WEAR_BODY)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/dress(new_human), WEAR_FEET)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/voice/space_ninja(new_human), WEAR_FACE)
+
 	new_human.equip_to_slot(new /obj/item/attachable/bayonet(new_human), WEAR_L_STORE)
 	new_human.equip_to_slot(new /obj/item/device/flashlight(new_human), WEAR_R_STORE)
 	new_human.equip_to_slot(new /obj/item/storage/large_holster/katana/full(new_human), WEAR_WAIST)
@@ -176,12 +289,16 @@
 	skills = /datum/skills/civilian/survivor/prisoner
 
 /datum/equipment_preset/gangster/yakuza_elite/load_gear(mob/living/carbon/human/new_human)
+	new_human.r_hair = 0
+	new_human.g_hair = 0
+	new_human.b_hair = 0
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset(new_human), WEAR_L_EAR)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket/really_black(new_human), WEAR_BODY)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/dress(new_human), WEAR_FEET)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/vest(new_human), WEAR_JACKET)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/voice/space_ninja(new_human), WEAR_FACE)
+
 	new_human.equip_to_slot(new /obj/item/attachable/bayonet(new_human), WEAR_L_STORE)
 	new_human.equip_to_slot(new /obj/item/device/flashlight(new_human), WEAR_R_STORE)
 	new_human.equip_to_slot(new /obj/item/storage/large_holster/katana/full(new_human), WEAR_WAIST)
@@ -202,10 +319,15 @@
 	skills = /datum/skills/civilian/survivor/gangleader
 
 /datum/equipment_preset/gangster/yakuza_leader/load_gear(mob/living/carbon/human/new_human)
+	new_human.r_hair = 0
+	new_human.g_hair = 0
+	new_human.b_hair = 0
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset(new_human), WEAR_L_EAR)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket/navy(new_human), WEAR_BODY)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/dress(new_human), WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/fedora(new_human), WEAR_HEAD)
+
 	new_human.equip_to_slot(new /obj/item/attachable/bayonet(new_human), WEAR_L_STORE)
 	new_human.equip_to_slot(new /obj/item/device/flashlight(new_human), WEAR_R_STORE)
 	new_human.equip_to_slot(new /obj/item/weapon/pole/fancy_cane/this_is_a_knife/katana_sharp(new_human), WEAR_R_HAND)
