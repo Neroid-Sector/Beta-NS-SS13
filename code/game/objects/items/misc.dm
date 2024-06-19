@@ -149,6 +149,8 @@
 /obj/item/weapon/pole/fancy_cane/this_is_a_knife/katana
 	stored_item = new /obj/item/weapon/sword/katana
 
+/obj/item/weapon/pole/fancy_cane/this_is_a_knife/katana_sharp
+	stored_item = new /obj/item/weapon/sword/katana/sharp
 // IN SHOTGUNS.DM!!
 
 /*obj/item/weapon/pole/fancy_cane/gun

@@ -60,6 +60,13 @@
 	item_state = "lgloves"
 	adopts_squad_color = FALSE
 
+/obj/item/clothing/gloves/marine/medical/blue
+	name = "marine medical combat gloves"
+	desc = "Standard issue marine sterile gloves, offers regular protection whilst offering the user a better grip when performing medical work."
+	icon_state = "latex"
+	item_state = "lgloves"
+	adopts_squad_color = FALSE
+	color =  "#00ccff"
 
 /obj/item/clothing/gloves/marine/officer
 	name = "officer gloves"
