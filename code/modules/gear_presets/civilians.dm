@@ -1,4 +1,4 @@
-/datum/equipment_preset/gangster
+/datum/equipment_preset/civilian
 	name = "gangster"
 	faction = FACTION_MERCENARY
 	faction_group = FACTION_LIST_HUMANOID
@@ -6,16 +6,16 @@
 	idtype = /obj/item/card/id/lanyard
 	skills = /datum/skills/civilian
 
-/datum/equipment_preset/gangster/load_status(mob/living/carbon/human/new_human)
+/datum/equipment_preset/civilian/load_status(mob/living/carbon/human/new_human)
 	new_human.nutrition = NUTRITION_NORMAL
 
-/datum/equipment_preset/gangster/New()
+/datum/equipment_preset/civilian/New()
 	. = ..()
 	access = get_access(ACCESS_LIST_COLONIAL_ALL)
 
 //====Generic-Gangsters====//
 
-/datum/equipment_preset/civlian/generic
+/datum/equipment_preset/civilian/generic
 	name = "Civilian(generic)"
 	flags = EQUIPMENT_PRESET_EXTRA
 	assignment = JOB_COLONIST
