@@ -1693,6 +1693,7 @@
 #include "code\modules\gear_presets\_select_equipment.dm"
 #include "code\modules\gear_presets\agents.dm"
 #include "code\modules\gear_presets\cbrn.dm"
+#include "code\modules\gear_presets\civilians.dm"
 #include "code\modules\gear_presets\clf.dm"
 #include "code\modules\gear_presets\cmb.dm"
 #include "code\modules\gear_presets\colonist.dm"

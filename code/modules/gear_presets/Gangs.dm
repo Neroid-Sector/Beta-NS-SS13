@@ -2,7 +2,7 @@
 	name = "gangster"
 	faction = FACTION_MERCENARY
 	faction_group = FACTION_LIST_HUMANOID
-	languages = list(LANGUAGE_ENGLISH, LANGUAGE_RUSSIAN, LANGUAGE_JAPANESE)
+	languages = list(LANGUAGE_RUSOEK, LANGUAGE_ENGLISH, LANGUAGE_RUSSIAN, LANGUAGE_JAPANESE)
 	idtype = /obj/item/card/id/lanyard
 	skills = /datum/skills/civilian
 
@@ -96,6 +96,7 @@
 	flags = EQUIPMENT_PRESET_EXTRA
 	assignment = JOB_GANGSTER_CLOWN
 	rank = JOB_GANGSTER_CLOWN
+	languages = list(LANGUAGE_FRENCH, LANGUAGE_ENGLISH)
 	skills = /datum/skills/civilian/survivor/prisoner
 
 /datum/equipment_preset/gangster/clown/load_status(mob/living/carbon/human/new_human)
@@ -119,6 +120,7 @@
 	flags = EQUIPMENT_PRESET_EXTRA
 	assignment = JOB_GANGSTER_CLOWN
 	rank = JOB_GANGSTER_CLOWN
+	languages = list(LANGUAGE_FRENCH, LANGUAGE_ENGLISH)
 	skills = /datum/skills/civilian/survivor/prisoner
 
 /datum/equipment_preset/gangster/clown_elite/load_status(mob/living/carbon/human/new_human)
@@ -148,6 +150,7 @@
 	flags = EQUIPMENT_PRESET_EXTRA
 	assignment = JOB_GANGSTER_CLOWN_LEADER
 	rank = JOB_GANGSTER_CLOWN_LEADER
+	languages = list(LANGUAGE_FRENCH, LANGUAGE_ENGLISH)
 	skills = /datum/skills/civilian/survivor/gangleader
 
 /datum/equipment_preset/gangster/clown_leader/load_status(mob/living/carbon/human/new_human)
@@ -172,6 +175,7 @@
 	flags = EQUIPMENT_PRESET_EXTRA
 	assignment = JOB_GANGSTER_BB
 	rank = JOB_GANGSTER_BB
+	languages = list(LANGUAGE_SPANISH, LANGUAGE_RUSOEK, LANGUAGE_ENGLISH)
 	skills = /datum/skills/civilian/survivor/prisoner
 
 /datum/equipment_preset/gangster/backbiter/load_gear(mob/living/carbon/human/new_human)
@@ -201,6 +205,7 @@
 	flags = EQUIPMENT_PRESET_EXTRA
 	assignment = JOB_GANGSTER_BB
 	rank = JOB_GANGSTER_BB
+	languages = list(LANGUAGE_SPANISH, LANGUAGE_RUSOEK, LANGUAGE_ENGLISH)
 	skills = /datum/skills/civilian/survivor/prisoner
 
 /datum/equipment_preset/gangster/backbiter_elite/load_status(mob/living/carbon/human/new_human)
@@ -233,6 +238,7 @@
 	flags = EQUIPMENT_PRESET_EXTRA
 	assignment = JOB_GANGSTER_BB_LEADER
 	rank = JOB_GANGSTER_BB_LEADER
+	languages = list(LANGUAGE_SPANISH, LANGUAGE_RUSOEK, LANGUAGE_ENGLISH)
 	skills = /datum/skills/civilian/survivor/gangleader
 
 /datum/equipment_preset/gangster/backbiter_leader/load_status(mob/living/carbon/human/new_human)
@@ -262,7 +268,7 @@
 	flags = EQUIPMENT_PRESET_EXTRA
 	assignment = JOB_GANGSTER_YK
 	rank = JOB_GANGSTER_YK
-	languages = list(LANGUAGE_JAPANESE, LANGUAGE_ENGLISH)
+	languages = list(LANGUAGE_JAPANESE, LANGUAGE_ENGLISH, LANGUAGE_CELTIC)
 	skills = /datum/skills/civilian/survivor/prisoner
 
 /datum/equipment_preset/gangster/yakuza/load_gear(mob/living/carbon/human/new_human)
@@ -292,7 +298,7 @@
 	flags = EQUIPMENT_PRESET_EXTRA
 	assignment = JOB_GANGSTER_YK
 	rank = JOB_GANGSTER_YK
-	languages = list(LANGUAGE_JAPANESE, LANGUAGE_ENGLISH)
+	languages = list(LANGUAGE_JAPANESE, LANGUAGE_ENGLISH, LANGUAGE_CELTIC)
 	skills = /datum/skills/civilian/survivor/prisoner
 
 /datum/equipment_preset/gangster/yakuza_elite/load_gear(mob/living/carbon/human/new_human)
@@ -323,7 +329,7 @@
 	flags = EQUIPMENT_PRESET_EXTRA
 	assignment = JOB_GANGSTER_YK_LEADER
 	rank = JOB_GANGSTER_YK_LEADER
-	languages = list(LANGUAGE_JAPANESE, LANGUAGE_ENGLISH)
+	languages = list(LANGUAGE_JAPANESE, LANGUAGE_ENGLISH, LANGUAGE_CELTIC)
 	skills = /datum/skills/civilian/survivor/gangleader
 
 /datum/equipment_preset/gangster/yakuza_leader/load_gear(mob/living/carbon/human/new_human)
