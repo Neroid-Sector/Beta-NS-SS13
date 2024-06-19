@@ -262,6 +262,7 @@
 	flags = EQUIPMENT_PRESET_EXTRA
 	assignment = JOB_GANGSTER_YK
 	rank = JOB_GANGSTER_YK
+	languages = list(LANGUAGE_JAPANESE, LANGUAGE_ENGLISH)
 	skills = /datum/skills/civilian/survivor/prisoner
 
 /datum/equipment_preset/gangster/yakuza/load_gear(mob/living/carbon/human/new_human)
@@ -291,6 +292,7 @@
 	flags = EQUIPMENT_PRESET_EXTRA
 	assignment = JOB_GANGSTER_YK
 	rank = JOB_GANGSTER_YK
+	languages = list(LANGUAGE_JAPANESE, LANGUAGE_ENGLISH)
 	skills = /datum/skills/civilian/survivor/prisoner
 
 /datum/equipment_preset/gangster/yakuza_elite/load_gear(mob/living/carbon/human/new_human)
@@ -321,6 +323,7 @@
 	flags = EQUIPMENT_PRESET_EXTRA
 	assignment = JOB_GANGSTER_YK_LEADER
 	rank = JOB_GANGSTER_YK_LEADER
+	languages = list(LANGUAGE_JAPANESE, LANGUAGE_ENGLISH)
 	skills = /datum/skills/civilian/survivor/gangleader
 
 /datum/equipment_preset/gangster/yakuza_leader/load_gear(mob/living/carbon/human/new_human)
