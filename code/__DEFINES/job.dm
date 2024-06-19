@@ -477,8 +477,8 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_GANGSTER_CLOWN_LEADER "Insane Clown Posse Gang leader"
 #define JOB_GANGSTER_CLOWN "Insane Clown Posse Gangster"
 
-#define JOB_GANGSTER_BB_LEADER "Gang Leader"
-#define JOB_GANGSTER_BB "Gangster"
+#define JOB_GANGSTER_BB_LEADER "Back-Biters Gang Leader"
+#define JOB_GANGSTER_BB "Back-Biters Gangster"
 
 #define JOB_GANGSTER_YK_LEADER "Yakuza Clan Leader"
 #define JOB_GANGSTER_YK "Yakuza"
