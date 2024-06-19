@@ -481,7 +481,7 @@
 			cut_suit_jacket(FALSE)
 
 /obj/item/clothing/under/marine/forecon
-	desc = "Special USCM BDUs printed with a high contrast pattern used on airless worlds, and mixed urban colony enviroments and orbital stations. The Forecon units of the USCM wear an extra harnesses for use with a parachute or the Mk5 compression suit."
+	desc = "Special USCM BDUs printed with a high contrast pattern used on airless worlds, and mixed urban colony enviroments and orbital stations. The uniforms of Forecon units of the USCM wear an extra harnesses for use with a parachute or the Mk5 compression suit."
 	icon_state = "forcon_marine"
 	worn_state = "forcon_marine"
 	flags_atom = NO_SNOW_TYPE
