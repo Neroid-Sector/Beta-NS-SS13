@@ -108,7 +108,7 @@
 
 	new_human.equip_to_slot(new /obj/item/toy/bikehorn(new_human), WEAR_L_STORE)
 	new_human.equip_to_slot(new /obj/item/device/flashlight(new_human), WEAR_R_STORE)
-	new_human.equip_to_slot(new /obj/item/weapon/gun/smg/uzi(new_human), WEAR_L_HAND)
+	new_human.equip_to_slot(new /obj/item/weapon/gun/smg/uzi(new_human), WEAR_R_HAND)
 	new_human.equip_to_slot(new/obj/item/weapon/gun/shotgun/double/sawn(new_human), WEAR_L_HAND)
 	new_human.equip_to_slot(new /obj/item/ammo_magazine/smg/uzi(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot(new /obj/item/ammo_magazine/smg/uzi(new_human), WEAR_IN_BACK)
