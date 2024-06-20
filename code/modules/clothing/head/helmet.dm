@@ -110,7 +110,7 @@
 	flags_armor_protection = 0
 
 /obj/item/clothing/head/helmet/hop
-	name = "crew resource's hat"
+	name = "human resource's hat"
 	desc = "A stylish hat that both protects you from enraged former-crewmembers and gives you a false sense of authority."
 	icon_state = "hopcap"
 	flags_inventory = NO_FLAGS

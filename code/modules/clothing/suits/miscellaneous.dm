@@ -56,6 +56,10 @@
 	item_state = "pirate"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_ARMS
 
+/obj/item/clothing/suit/pirate/clf
+	name = "Improvised commissar coat"
+	desc = "The wearer of this coat demands respect, for he is above suspicion."
+
 
 /obj/item/clothing/suit/hgpirate
 	name = "pirate captain coat"
