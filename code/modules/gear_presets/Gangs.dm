@@ -109,8 +109,11 @@
 	new_human.equip_to_slot(new /obj/item/toy/bikehorn(new_human), WEAR_L_STORE)
 	new_human.equip_to_slot(new /obj/item/device/flashlight(new_human), WEAR_R_STORE)
 	new_human.equip_to_slot(new /obj/item/weapon/gun/smg/uzi(new_human), WEAR_L_HAND)
+	new_human.equip_to_slot(new/obj/item/weapon/gun/shotgun/double/sawn(new_human), WEAR_L_HAND)
 	new_human.equip_to_slot(new /obj/item/ammo_magazine/smg/uzi(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot(new /obj/item/ammo_magazine/smg/uzi(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/handful/shotgun/buckshot(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/handful/shotgun/buckshot(new_human), WEAR_IN_BACK)
 	. = ..()
 
 //------
@@ -134,9 +137,9 @@
 
 	new_human.equip_to_slot(new /obj/item/toy/bikehorn(new_human), WEAR_L_STORE)
 	new_human.equip_to_slot(new /obj/item/device/flashlight(new_human), WEAR_R_STORE)
-	new_human.equip_to_slot(new /obj/item/weapon/gun/rifle/ar10(new_human), WEAR_R_HAND)
-	new_human.equip_to_slot(new /obj/item/ammo_magazine/rifle/ar10(new_human), WEAR_IN_BACK)
-	new_human.equip_to_slot(new /obj/item/ammo_magazine/rifle/ar10(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/weapon/gun/rifle/m16(new_human), WEAR_R_HAND)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/rifle/m16(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/rifle/m16(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot(new /obj/item/weapon/gun/smg/uzi(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot(new /obj/item/ammo_magazine/smg/uzi(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot(new /obj/item/ammo_magazine/smg/uzi(new_human), WEAR_IN_BACK)
@@ -163,10 +166,13 @@
 
 	new_human.equip_to_slot(new /obj/item/toy/bikehorn(new_human), WEAR_L_STORE)
 	new_human.equip_to_slot(new /obj/item/device/flashlight(new_human), WEAR_R_STORE)
+	new_human.equip_to_slot(new /obj/item/weapon/gun/shotgun/pump(new_human), WEAR_L_HAND)
 	new_human.equip_to_slot(new /obj/item/weapon/gun/pistol/t73/leader(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73_impact(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/handful/shotgun/buckshot(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/handful/shotgun/buckshot(new_human), WEAR_IN_BACK)
 	. = ..()
 
 //====BackBiter-Gangster====//
@@ -224,11 +230,11 @@
 	new_human.equip_to_slot(new /obj/item/attachable/bayonet(new_human), WEAR_L_STORE)
 	new_human.equip_to_slot(new /obj/item/device/flashlight(new_human), WEAR_R_STORE)
 	new_human.equip_to_slot(new /obj/item/weapon/bikechain(new_human), WEAR_IN_BACK)
-	new_human.equip_to_slot(new /obj/item/weapon/gun/smg/mp5(new_human), WEAR_R_HAND)
+	new_human.equip_to_slot(new /obj/item/weapon/gun/smg/nailgun(new_human), WEAR_R_HAND)
 	new_human.equip_to_slot(new /obj/item/weapon/gun/revolver/cmb(new_human), WEAR_IN_BACK)
-	new_human.equip_to_slot(new /obj/item/ammo_magazine/smg/mp5(new_human), WEAR_IN_BACK)
-	new_human.equip_to_slot(new /obj/item/ammo_magazine/smg/mp5(new_human), WEAR_IN_BACK)
-	new_human.equip_to_slot(new /obj/item/ammo_magazine/smg/mp5(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/smg/nailgun(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/smg/nailgun(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/smg/nailgun(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot(new /obj/item/ammo_magazine/revolver/cmb(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot(new /obj/item/ammo_magazine/revolver/cmb(new_human), WEAR_IN_BACK)
 	. = ..()
@@ -355,5 +361,189 @@
 	. = ..()
 //====Dyonisis-Gangster====//
 
+/datum/equipment_preset/gangster/dionysus_male
+	name = "Gangster(Dionysus-Male)"
+	flags = EQUIPMENT_PRESET_EXTRA
+	assignment = JOB_GANGSTER_CD
+	rank =JOB_GANGSTER_CD
+	skills = /datum/skills/civilian/survivor/prisoner
+
+/datum/equipment_preset/gangster/dionysus_male/load_gear(mob/living/carbon/human/new_human)
+	new_human.gender = MALE
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/stripper/mankini(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/collectable/tophat(new_human), WEAR_HEAD)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/dress(new_human), WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/cigarette/weed(new_human), WEAR_FACE)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/accessory/red(new_human), WEAR_ACCESSORY)
+
+	new_human.equip_to_slot(new /obj/item/attachable/bayonet(new_human), WEAR_L_STORE)
+	new_human.equip_to_slot(new /obj/item/device/flashlight(new_human), WEAR_R_STORE)
+	new_human.equip_to_slot(new /obj/item/weapon/broken_bottle(new_human), WEAR_R_HAND)
+	new_human.equip_to_slot(new /obj/item/weapon/gun/pistol/m1911(new_human), WEAR_L_HAND)
+	new_human.equip_to_slot(new /obj/item/storage/pill_bottle/ultrazine/skillless(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/reagent_container/food/drinks/cans/beer(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/reagent_container/syringe/drugs(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/m1911(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/m1911(new_human), WEAR_IN_BACK)
+	. = ..()
+//------
+
+/datum/equipment_preset/gangster/dionysus_female
+	name = "Gangster(Dionysus-Female)"
+	flags = EQUIPMENT_PRESET_EXTRA
+	assignment = JOB_GANGSTER_CD
+	rank =JOB_GANGSTER_CD
+	skills = /datum/skills/civilian/survivor/prisoner
+
+/datum/equipment_preset/gangster/dionysus_female/load_gear(mob/living/carbon/human/new_human)
+	new_human.gender = FEMALE
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/swimsuit/purple(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/nursehat(new_human), WEAR_HEAD)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/dress(new_human), WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/cigarette/weed(new_human), WEAR_FACE)
+
+	new_human.equip_to_slot(new /obj/item/attachable/bayonet(new_human), WEAR_L_STORE)
+	new_human.equip_to_slot(new /obj/item/device/flashlight(new_human), WEAR_R_STORE)
+	new_human.equip_to_slot(new /obj/item/weapon/broken_bottle(new_human), WEAR_R_HAND)
+	new_human.equip_to_slot(new /obj/item/weapon/gun/pistol/m1911(new_human), WEAR_L_HAND)
+	new_human.equip_to_slot(new /obj/item/storage/pill_bottle/ultrazine/skillless(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/reagent_container/food/drinks/cans/beer(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/reagent_container/syringe/drugs(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/m1911(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/m1911(new_human), WEAR_IN_BACK)
+	. = ..()
+
+//------
+
+/datum/equipment_preset/gangster/dionysus_male_elite
+	name = "Gangster elite(Dionysus-Male)"
+	flags = EQUIPMENT_PRESET_EXTRA
+	assignment = JOB_GANGSTER_CD
+	rank = JOB_GANGSTER_CD
+	skills = /datum/skills/civilian/survivor/prisoner
+
+/datum/equipment_preset/gangster/dionysus_male_elite/load_status(mob/living/carbon/human/new_human)
+	new_human.gender = MALE
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/rank/bartender(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/webbing(new_human), WEAR_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/bowlerhat(new_human), WEAR_HEAD)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/dress(new_human), WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/big(new_human), WEAR_EYES)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/cigarette/weed(new_human), WEAR_FACE)
+
+	new_human.equip_to_slot(new /obj/item/attachable/bayonet(new_human), WEAR_L_STORE)
+	new_human.equip_to_slot(new /obj/item/device/flashlight(new_human), WEAR_R_STORE)
+	new_human.equip_to_slot(new /obj/item/weapon/gun/smg/mp5(new_human), WEAR_R_HAND)
+	new_human.equip_to_slot(new /obj/item/weapon/gun/pistol/m1911(new_human), WEAR_L_HAND)
+	new_human.equip_to_slot(new /obj/item/storage/pill_bottle/ultrazine/skillless(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/reagent_container/food/drinks/cans/beer(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/reagent_container/syringe/drugs(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/smg/mp5(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/smg/mp5(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/smg/mp5(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/m1911(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/m1911(new_human), WEAR_IN_BACK)
+	. = ..()
+
+/datum/equipment_preset/gangster/dionysus_female_elite
+	name = "Gangster elite(Dionysus-Female)"
+	flags = EQUIPMENT_PRESET_EXTRA
+	assignment = JOB_GANGSTER_CD
+	rank = JOB_GANGSTER_CD
+	skills = /datum/skills/civilian/survivor/prisoner
+
+/datum/equipment_preset/gangster/dionysus_female_elite/load_status(mob/living/carbon/human/new_human)
+	new_human.gender = FEMALE
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/blackskirt(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/webbing(new_human), WEAR_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/bowlerhat(new_human), WEAR_HEAD)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/dress(new_human), WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/big(new_human), WEAR_EYES)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/cigarette/weed(new_human), WEAR_FACE)
+
+	new_human.equip_to_slot(new /obj/item/attachable/bayonet(new_human), WEAR_L_STORE)
+	new_human.equip_to_slot(new /obj/item/device/flashlight(new_human), WEAR_R_STORE)
+	new_human.equip_to_slot(new /obj/item/weapon/gun/smg/mp5(new_human), WEAR_R_HAND)
+	new_human.equip_to_slot(new /obj/item/weapon/gun/pistol/m1911(new_human), WEAR_L_HAND)
+	new_human.equip_to_slot(new /obj/item/storage/pill_bottle/ultrazine/skillless(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/reagent_container/food/drinks/cans/beer(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/reagent_container/syringe/drugs(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/smg/mp5(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/smg/mp5(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/smg/mp5(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/m1911(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/m1911(new_human), WEAR_IN_BACK)
+	. = ..()
+
+//------
+
+/datum/equipment_preset/gangster/dionysus_male_leader
+	name = "Gangster Leader(Dionysus-Male)"
+	flags = EQUIPMENT_PRESET_EXTRA
+	assignment = JOB_GANGSTER_CD_LEADER
+	rank = JOB_GANGSTER_CD_LEADER
+	skills = /datum/skills/civilian/survivor/gangleader
+
+/datum/equipment_preset/gangster/dionysus_male_leader/load_status(mob/living/carbon/human/new_human)
+	new_human.gender = MALE
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket/burgundy(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/dress(new_human), WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/big(new_human), WEAR_EYES)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/cigarette/cigar/havana(new_human), WEAR_FACE)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/fedora(new_human), WEAR_HEAD)
+
+	new_human.equip_to_slot(new /obj/item/tool/lighter/zippo/gold(new_human), WEAR_L_STORE)
+	new_human.equip_to_slot(new /obj/item/device/flashlight(new_human), WEAR_R_STORE)
+	new_human.equip_to_slot(new /obj/item/weapon/gun/shotgun/double/cane(new_human), WEAR_R_HAND)
+	new_human.equip_to_slot(new /obj/item/weapon/gun/pistol/t73/leader(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73_impact(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/reagent_container/syringe/drugs(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/reagent_container/syringe/drugs(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/reagent_container/syringe/drugs(new_human), WEAR_IN_BACK)
+	. = ..()
+
+//------
+
+/datum/equipment_preset/gangster/dionysus_female_leader
+	name = "Gangster Leader(Dionysus-Female)"
+	flags = EQUIPMENT_PRESET_EXTRA
+	assignment = JOB_GANGSTER_CD_LEADER
+	rank = JOB_GANGSTER_CD_LEADER
+	skills = /datum/skills/civilian/survivor/gangleader
+
+/datum/equipment_preset/gangster/dionysus_female_leader/load_status(mob/living/carbon/human/new_human)
+	new_human.gender = MALE
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/wedding/bride_white(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/accessory/storage/black_vest/waistcoat(new_human), WEAR_ACCESSORY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/dress(new_human), WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/big(new_human), WEAR_EYES)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/cigarette/cigar/havana(new_human), WEAR_FACE)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/fedora(new_human), WEAR_HEAD)
+
+	new_human.equip_to_slot(new /obj/item/tool/lighter/zippo/gold(new_human), WEAR_L_STORE)
+	new_human.equip_to_slot(new /obj/item/device/flashlight(new_human), WEAR_R_STORE)
+	new_human.equip_to_slot(new /obj/item/weapon/gun/shotgun/double/cane(new_human), WEAR_R_HAND)
+	new_human.equip_to_slot(new /obj/item/weapon/gun/pistol/t73/leader(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73_impact(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/t73(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/reagent_container/syringe/drugs(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/reagent_container/syringe/drugs(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/reagent_container/syringe/drugs(new_human), WEAR_IN_BACK)
+	. = ..()
 
 //====Syndicate-Gangster====//
