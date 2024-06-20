@@ -550,3 +550,29 @@
 	. = ..()
 
 //====Syndicate-Gangster====//
+/datum/equipment_preset/gangster/Syndicate
+	name = "Syndicate Operative"
+	flags = EQUIPMENT_PRESET_EXTRA
+	assignment = JOB_SYNDICATE_OP
+	rank = JOB_SYNDICATE_OP
+	skills = /datum/skills/civilian/survivor/prisoner
+
+/datum/equipment_preset/gangster/Syndicate/load_gear(mob/living/carbon/human/new_human)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/fluff/turtleneck(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night(new_human), WEAR_EYES)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/headband/red(new_human), WEAR_HEAD)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine/knife(new_human), WEAR_FEET)
+
+	new_human.equip_to_slot(new /obj/item/storage/pouch/explosive/C4(new_human), WEAR_L_STORE)
+	new_human.equip_to_slot(new /obj/item/device/flashlight(new_human), WEAR_R_STORE)
+	new_human.equip_to_slot(new /obj/item/weapon/gun/pistol/np92/suppressed(new_human), WEAR_L_HAND)
+	new_human.equip_to_slot(new /obj/item/card/id/syndicate(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/weapon/chloroform(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/reagent_container/hypospray/autoinjector/chloralhydrate(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/np92/suppressed(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/np92/suppressed(new_human), WEAR_IN_BACK)
+	. = ..()
+
+//------

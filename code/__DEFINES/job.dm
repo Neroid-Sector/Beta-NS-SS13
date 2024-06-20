@@ -488,6 +488,7 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 
 #define JOB_SYNDICATE_LEADER "Syndicate Leader"
 #define JOB_SYNDICATE_OP "Syndicate Operative."
+#define JOB_SYNDICATE_SPECOP "Civilian."
 #define JOB_SYNDICATE_NUKIE "Syndicate Nuclear Operative."
 
 

@@ -420,6 +420,12 @@
 	valid_accessory_slots = list(ACCESSORY_SLOT_DECOR,)
 	black_market_value = 35
 
+/obj/item/clothing/suit/storage/marine/odst/syndicate
+	name = "\improper Type-32S Balenciaga armored Compression Suit"
+	desc = "A syndicate agent's compression suit, you'll look just like a real murderous syndicate agent in this!"
+	icon_state = "syndicate"
+	item_state = "space_suit_syndicate"
+
 /obj/item/clothing/suit/storage/marine/leader
 	name = "\improper B12 pattern marine armor"
 	desc = "A lightweight suit of carbon fiber body armor built for quick movement. Designed in a lovely forest green. Use it to toggle the built-in flashlight."

@@ -988,6 +988,13 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	desc = "A modification of the standard Nanotrasen Systems Decadencia armor. Designed with high-profile security operators and corporate mercenaries. This Varient features a large medical insignia."
 	icon_state = "trauma2"
 
+
+/obj/item/clothing/head/helmet/marine/odst/syndicate
+	name = "\improper Type-32S Balenciaga armored Compression Helmet"
+	icon_state = "syndicate"
+	item_state = "syndicate"
+	desc = "A syndicate agent's space helmet, you'll look just like a real murderous syndicate agent in this!"
+
 //=============================//PMCS\\==================================\\
 //=======================================================================\\
 
