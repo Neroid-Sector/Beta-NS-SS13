@@ -420,11 +420,19 @@
 	valid_accessory_slots = list(ACCESSORY_SLOT_DECOR,)
 	black_market_value = 35
 
-/obj/item/clothing/suit/storage/marine/odst/syndicate
+/obj/item/clothing/suit/storage/marine/syndi_light
 	name = "\improper Type-32S Balenciaga armored Compression Suit"
 	desc = "A syndicate agent's compression suit, you'll look just like a real murderous syndicate agent in this!"
-	icon_state = "syndicate"
-	item_state = "space_suit_syndicate"
+	icon_state = "rig-syndi"
+	item_state = "rig-syndi"
+	item_state_slots = list(WEAR_JACKET = "rig-syndi")
+
+/obj/item/clothing/suit/storage/marine/odst/syndi_elite
+	name = "\improper Type-32S Balenciaga R.I.G. Suit"
+	desc = "A syndicate agent's R.I.G. compression suit, you'll look just like a real murderous syndicate agent in this!"
+	icon_state = "rig-syndie"
+	item_state = "rig-syndie"
+	item_state_slots = list(WEAR_JACKET = "rig-syndie")
 
 /obj/item/clothing/suit/storage/marine/leader
 	name = "\improper B12 pattern marine armor"

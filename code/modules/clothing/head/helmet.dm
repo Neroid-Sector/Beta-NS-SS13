@@ -995,6 +995,80 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	item_state = "syndicate"
 	desc = "A syndicate agent's space helmet, you'll look just like a real murderous syndicate agent in this!"
 
+/obj/item/clothing/head/helmet/marine/odst/syndicate/elite
+	name = "\improper Type-32S Balenciaga R.I.G. Helmet"
+	icon_state = "syndicate"
+	item_state = "rig0-syndi"
+	desc = "A syndicate agent's space helmet, you'll look just like a real murderous syndicate agent in this!"
+	icon_state = "rig0-syndi"
+	built_in_visors = list()
+	start_down_visor_type = null
+	light_range = 4
+	light_power = 2
+	var/hslvisor_color = "syndi" //Determines used sprites: hardhat[on]_[hardhat_color]
+	var/toggleable = TRUE
+	actions_types = list(/datum/action/item_action/toggle)
+	flags_inventory = BLOCKSHARPOBJ
+
+	/// Can it be be broken by xenomorphs?
+	var/can_be_broken = TRUE
+	/// The sound it makes when broken by a xenomorph.
+	var/breaking_sound = 'sound/handling/click_2.ogg'
+
+/obj/item/clothing/head/helmet/marine/odst/syndicate/elite/Initialize()
+	. = ..()
+	update_icon()
+
+/obj/item/clothing/head/helmet/marine/odst/syndicate/elite/update_icon()
+	. = ..()
+	if(light_on)
+		icon_state = "rig[light_on]_[hslvisor_color]"
+		item_state = "rig[light_on]_[hslvisor_color]"
+	else
+		icon_state = initial(icon_state)
+		item_state = initial(item_state)
+
+/obj/item/clothing/head/helmet/marine/odst/syndicate/elite/attack_self(mob/user)
+	. = ..()
+
+	if(!toggleable)
+		to_chat(user, SPAN_WARNING("You cannot toggle [src] on or off."))
+		return FALSE
+
+	if(!isturf(user.loc))
+		to_chat(user, SPAN_WARNING("You cannot turn the light [light_on ? "off" : "on"] while in [user.loc].")) //To prevent some lighting anomalies.
+		return FALSE
+
+	turn_light(user, !light_on)
+
+/obj/item/clothing/head/helmet/marine/odst/syndicate/elite/turn_light(mob/user, toggle_on)
+
+	. = ..()
+	if(. != CHECKS_PASSED)
+		return
+
+	set_light_on(toggle_on)
+	if(user == loc)
+		user.update_inv_head()
+
+	for(var/datum/action/current_action as anything in actions)
+		current_action.update_button_icon()
+
+	update_icon()
+
+/obj/item/clothing/head/helmet/marine/odst/syndicate/elite/attack_alien(mob/living/carbon/xenomorph/attacking_xeno)
+	if(!can_be_broken)
+		return
+
+	if(turn_light(attacking_xeno, toggle_on = FALSE) != CHECKS_PASSED)
+		return
+
+	if(!breaking_sound)
+		return
+
+	playsound(loc, breaking_sound, 25, 1)
+
+
 //=============================//PMCS\\==================================\\
 //=======================================================================\\
 
