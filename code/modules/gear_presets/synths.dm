@@ -541,6 +541,27 @@
 	new_human.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack(new_human.back), WEAR_IN_R_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/stack/sheet/glass/reinforced/large_stack(new_human.back), WEAR_IN_R_STORE)
 
+//*****************************************************************************************************/
+
+/datum/equipment_preset/synth/working_joe/dionysus
+	name = "Gangster Synth (Dionysus)"
+
+/datum/equipment_preset/synth/working_joe/dionysus/load_gear(mob/living/carbon/human/new_human)
+	new_human.gender = FEMALE
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/schoolgirl(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/dress(new_human), WEAR_HANDS)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/blue(new_human), WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
+
+	new_human.equip_to_slot(new /obj/item/attachable/bayonet(new_human), WEAR_L_STORE)
+	new_human.equip_to_slot(new /obj/item/device/flashlight(new_human), WEAR_R_STORE)
+	new_human.equip_to_slot(new /obj/item/weapon/chloroform(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/handcuffs(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/reagent_container/syringe/drugs(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/reagent_container/syringe/drugs(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot(new /obj/item/storage/pill_bottle/ultrazine/skillless(new_human), WEAR_IN_BACK)
+
 /datum/equipment_preset/synth/working_joe/load_race(mob/living/carbon/human/new_human)
 	. = ..()
 	new_human.h_style = "Bald"
@@ -562,7 +583,6 @@
 	new_human.change_real_name(new_human, "Working Joe #[rand(100)][rand(100)]")
 
 //*****************************************************************************************************/
-
 /datum/equipment_preset/synth/survivor/cultist_synth
 	name = "Cultist - Xeno Cultist Synthetic"
 	faction = FACTION_XENOMORPH

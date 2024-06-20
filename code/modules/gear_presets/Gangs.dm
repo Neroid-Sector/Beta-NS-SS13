@@ -359,7 +359,7 @@
 	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/auto9(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/auto9(new_human), WEAR_IN_BACK)
 	. = ..()
-//====Dyonisis-Gangster====//
+//====Dionysus-Gangster====//
 
 /datum/equipment_preset/gangster/dionysus_male
 	name = "Gangster(Dionysus-Male)"
@@ -399,6 +399,7 @@
 
 /datum/equipment_preset/gangster/dionysus_female/load_gear(mob/living/carbon/human/new_human)
 	new_human.gender = FEMALE
+	new_human.f_style = "Shaved"
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset(new_human), WEAR_L_EAR)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/swimsuit/purple(new_human), WEAR_BODY)
@@ -460,6 +461,7 @@
 
 /datum/equipment_preset/gangster/dionysus_female_elite/load_status(mob/living/carbon/human/new_human)
 	new_human.gender = FEMALE
+	new_human.f_style = "Shaved"
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset(new_human), WEAR_L_EAR)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/blackskirt(new_human), WEAR_BODY)
@@ -524,7 +526,8 @@
 	skills = /datum/skills/civilian/survivor/gangleader
 
 /datum/equipment_preset/gangster/dionysus_female_leader/load_status(mob/living/carbon/human/new_human)
-	new_human.gender = MALE
+	new_human.gender = FEMALE
+	new_human.f_style = "Shaved"
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset(new_human), WEAR_L_EAR)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/wedding/bride_white(new_human), WEAR_BODY)
