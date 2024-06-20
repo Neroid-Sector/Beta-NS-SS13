@@ -362,6 +362,7 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_UPP_SPECIALIST "UPP Serzhant"
 #define JOB_UPP_LEADER "UPP Master Serzhant"
 #define JOB_UPP_POLICE "UPP Politsiya"
+#define JOB_UPP_LT_OFFICER "UPP Krig-Komissar"
 #define JOB_UPP_LT_OFFICER "UPP Leytenant"
 #define JOB_UPP_LT_DOKTOR "UPP Leytenant Doktor"
 #define JOB_UPP_SRLT_OFFICER "UPP Senior Leytenant"
@@ -396,6 +397,7 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_CLF_SPECIALIST "Insurgent Field Specialist"
 #define JOB_CLF_LEADER "Insurgent Cell Leader"
 #define JOB_CLF_COMMANDER "Insurgent Cell Commander"
+#define JOB_CLF_COMMISSAR "Insurgent Cell Commander"
 #define JOB_CLF_SYNTH "Insurgent Multipurpose Synthetic"
 
 #define CLF_JOB_LIST list(JOB_CLF, JOB_CLF_ENGI, JOB_CLF_MEDIC, JOB_CLF_SPECIALIST, JOB_CLF_LEADER, JOB_CLF_COMMANDER, JOB_CLF_SYNTH)
