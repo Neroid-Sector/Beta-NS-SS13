@@ -177,7 +177,10 @@
 	name = "mustard gas"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "mustard"
+	time_to_live = 100
+	opacity = FALSE
 	smokeranking = SMOKE_RANK_HIGH
+
 
 /obj/effect/particle_effect/smoke/mustard/Move()
 	. = ..()
@@ -188,7 +191,7 @@
 	if(!istype(creature) || issynth(creature))
 		return FALSE
 
-	creature.burn_skin(0.75)
+	creature.burn_skin(2)
 	if(creature.coughedtime != 1)
 		creature.coughedtime = 1
 		if(ishuman(creature)) //Humans only to avoid issues
@@ -257,6 +260,7 @@
 	color = "#80c7e4"
 	var/xeno_affecting = FALSE
 	opacity = FALSE
+	time_to_live = 30
 	alpha = 75
 
 /obj/effect/particle_effect/smoke/cn20/xeno

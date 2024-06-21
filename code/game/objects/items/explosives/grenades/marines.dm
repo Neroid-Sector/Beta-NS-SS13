@@ -507,6 +507,42 @@
 
 /*
 //================================================
+			Poison Gas Grenades
+//================================================
+*/
+/obj/item/explosive/grenade/mustard_gas
+	name = "\improper HD canister"
+	desc = "A canister grenade of deadly mustard gas. It is set to detonate in 4 seconds."
+	icon_state = "flashbang2"//temp icon
+	color = "#996633"
+	det_time = 40
+	item_state = "grenade_phos_clf"//temp icon
+	underslug_launchable = FALSE
+	harmful = TRUE
+	antigrief_protection = TRUE
+	/// The nerve gas datum
+	var/datum/effect_system/smoke_spread/mustard/mustard_gas
+	/// The typepath of the nerve gas
+	var/mustard_gas_type = /datum/effect_system/smoke_spread/mustard
+	/// The radius the gas will reach
+	var/mustard_gas_radius = 10
+
+/obj/item/explosive/grenade/mustard_gas/Initialize(mapload, ...)
+	. = ..()
+	mustard_gas = new mustard_gas_type
+	mustard_gas.attach(src)
+
+/obj/item/explosive/grenade/mustard_gas/Destroy()
+	QDEL_NULL(mustard_gas)
+	return ..()
+
+/obj/item/explosive/grenade/mustard_gas/prime()
+	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+	mustard_gas.set_up(mustard_gas_radius, 0, get_turf(src), null, 6)
+	mustard_gas.start()
+	qdel(src)
+/*
+//================================================
 			Airburst Smoke Grenades
 //================================================
 */
