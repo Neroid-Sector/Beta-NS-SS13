@@ -335,6 +335,50 @@
 	return TRUE
 
 //////////////////////////////////////
+// FLESH GAS
+////////////////////////////////////
+/obj/effect/particle_effect/smoke/flesheater
+	name = "Flesh Eating Bacteria"
+	smokeranking = SMOKE_RANK_HIGH
+	color = "#80e48d"
+	var/xeno_affecting = FALSE
+	opacity = FALSE
+	time_to_live = 30
+	alpha = 75
+
+	var/target_limbs = list(
+		"head",
+		"chest",
+		"groin",
+		"l_arm",
+		"l_hand",
+		"r_arm",
+		"r_hand",
+		"l_leg",
+		"l_foot",
+		"r_leg",
+		"r_foot")
+
+
+/obj/effect/particle_effect/smoke/flesheater/affect(mob/living/carbon/human/creature)
+	if(!istype(creature) || issynth(creature))
+		return FALSE
+
+	creature.incision_depths["head"] = SURGERY_DEPTH_SHALLOW
+	if(creature.coughedtime != 1)
+		creature.coughedtime = 1
+		if(ishuman(creature)) //Humans only to avoid issues
+			creature.emote("gasp")
+		addtimer(VARSET_CALLBACK(creature, coughedtime, 0), 2 SECONDS)
+	creature.updatehealth()
+	return
+
+/obj/effect/particle_effect/smoke/flesheater/Move()
+	. = ..()
+	for(var/mob/living/carbon/human/creature in get_turf(src))
+		affect(creature)
+
+//////////////////////////////////////
 // FLASHBANG SMOKE
 ////////////////////////////////////
 
@@ -636,6 +680,9 @@
 
 /datum/effect_system/smoke_spread/cn20/xeno
 	smoke_type = /obj/effect/particle_effect/smoke/cn20/xeno
+
+/datum/effect_system/smoke_spread/flesheater
+	smoke_type = /obj/effect/particle_effect/smoke/flesheater
 
 // XENO SMOKES
 

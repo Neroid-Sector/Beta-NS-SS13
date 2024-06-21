@@ -541,6 +541,41 @@
 	mustard_gas.set_up(mustard_gas_radius, 0, get_turf(src), null, 6)
 	mustard_gas.start()
 	qdel(src)
+
+//================================================
+/obj/item/explosive/grenade/flesh_gas
+	name = "\improper (!!!DANGER BACTERIA INSIDE!!!) canister"
+	desc = "A canister grenade of aerosolized deadly flesh eating bacteria. It is set to detonate in 4 seconds."
+	desc_lore = "The bacteria inside will die on contact with air after a few seconds, and is designed by lassalle bionational for use in urban areas."
+	icon_state = "flashbang2"//temp icon
+	color = "#339952"
+	det_time = 40
+	item_state = "grenade_phos_clf"//temp icon
+	underslug_launchable = FALSE
+	harmful = TRUE
+	antigrief_protection = TRUE
+	/// The nerve gas datum
+	var/datum/effect_system/smoke_spread/flesheater/flesh_gas
+	/// The typepath of the nerve gas
+	var/flesh_gas_type = /datum/effect_system/smoke_spread/flesheater
+	/// The radius the gas will reach
+	var/flesh_gas_radius = 10
+
+/obj/item/explosive/grenade/flesh_gas/Initialize(mapload, ...)
+	. = ..()
+	flesh_gas = new flesh_gas_type
+	flesh_gas.attach(src)
+
+/obj/item/explosive/grenade/flesh_gas/Destroy()
+	QDEL_NULL(flesh_gas)
+	return ..()
+
+/obj/item/explosive/grenade/flesh_gas/prime()
+	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+	flesh_gas.set_up(flesh_gas_radius, 0, get_turf(src), null, 6)
+	flesh_gas.start()
+	qdel(src)
+
 /*
 //================================================
 			Airburst Smoke Grenades
