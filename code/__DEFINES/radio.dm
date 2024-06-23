@@ -18,7 +18,7 @@
 
 //Radio channels
 #define RADIO_CHANNEL_BLANK "UNSET"
-#define RADIO_CHANNEL_ALMAYER "Almayer"
+#define RADIO_CHANNEL_ALMAYER "UA Open net."
 #define RADIO_CHANNEL_ALAMO "Alamo"
 #define RADIO_CHANNEL_COMMAND "Command"
 #define RADIO_CHANNEL_COLONY "Colony"
@@ -38,11 +38,11 @@
 #define RADIO_CHANNEL_SPECIAL "special"
 
 //CLF Comms
-#define RADIO_CHANNEL_CLF_GEN "CLF"
-#define RADIO_CHANNEL_CLF_CMD "CLF Command"
-#define RADIO_CHANNEL_CLF_CCT "CLF CCT"
-#define RADIO_CHANNEL_CLF_MED "CLF Med"
-#define RADIO_CHANNEL_CLF_ENGI "CLF Engi"
+#define RADIO_CHANNEL_CLF_GEN "Insurgent"
+#define RADIO_CHANNEL_CLF_CMD "Insurgent Command"
+#define RADIO_CHANNEL_CLF_CCT "Insurgent CCT"
+#define RADIO_CHANNEL_CLF_MED "Insurgent Med"
+#define RADIO_CHANNEL_CLF_ENGI "Insurgent Engi"
 
 //UPP Comms
 #define RADIO_CHANNEL_UPP_GEN "UPP"

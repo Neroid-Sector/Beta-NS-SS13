@@ -706,7 +706,7 @@
 	role_comm_title = "Commissar"
 	skills = /datum/skills/commander
 
-/datum/equipment_preset/clf/leader/New()
+/datum/equipment_preset/clf/leader/komissar/New()
 	. = ..()
 	access = get_access(ACCESS_LIST_CLF_BASE) + list(ACCESS_CLF_ARMORY, ACCESS_CLF_LEADERSHIP, ACCESS_CLF_FLIGHT)
 
@@ -731,11 +731,6 @@
 
 	new_human.equip_to_slot_or_del(new /obj/item/tool/crowbar(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/weapon/telebaton(new_human), WEAR_R_HAND)
-	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/t73/leader(new_human), WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/t73_impact(new_human), WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/t73_impact(new_human), WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new  /obj/item/ammo_magazine/pistol/t73_impact(new_human), WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new  /obj/item/ammo_magazine/pistol/t73_impact(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/flashlight(new_human), WEAR_L_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/ert(new_human), WEAR_R_STORE)
 
