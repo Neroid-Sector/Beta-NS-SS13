@@ -1,8 +1,8 @@
 /datum/equipment_preset/civilian
 	name = "civi"
-	faction = FACTION_MERCENARY
+	faction = FACTION_COLONIST
 	faction_group = FACTION_LIST_HUMANOID
-	languages = list(LANGUAGE_ENGLISH, LANGUAGE_RUSSIAN, LANGUAGE_JAPANESE)
+	languages = list(LANGUAGE_ENGLISH, LANGUAGE_JAPANESE, LANGUAGE_CELTIC)
 	idtype = /obj/item/card/id/lanyard
 	skills = /datum/skills/civilian
 
