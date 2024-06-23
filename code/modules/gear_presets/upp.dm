@@ -72,6 +72,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/UPP, WEAR_L_EAR)
 	//head
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/UPP, WEAR_HEAD)
+	new_human.equip_to_slot_or_del(new /obj/item/prop/helmetgarb/helmet_nvg/marsoc, WEAR_IN_HELMET)
 	//body
 	var/obj/item/clothing/under/marine/veteran/UPP/UPP = new()
 	new_human.equip_to_slot_or_del(UPP, WEAR_BODY)
@@ -417,6 +418,7 @@
 	//head
 	var/headgear = prob(70) ? /obj/item/clothing/head/helmet/marine/veteran/UPP/engi : /obj/item/clothing/head/uppcap/ushanka
 	new_human.equip_to_slot_or_del(new headgear, WEAR_HEAD)
+	new_human.equip_to_slot_or_del(new /obj/item/prop/helmetgarb/helmet_nvg/marsoc/upp, WEAR_IN_HELMET)
 	//body
 	var/obj/item/clothing/under/marine/veteran/UPP/engi/UPP = new()
 	var/obj/item/clothing/accessory/storage/tool_webbing/equipped/W = new()
@@ -545,6 +547,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/UPP, WEAR_L_EAR)
 	//head
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/UPP/heavy, WEAR_HEAD)
+	new_human.equip_to_slot_or_del(new /obj/item/prop/helmetgarb/helmet_nvg/marsoc/upp, WEAR_IN_HELMET)
 	//body
 	var/obj/item/clothing/under/marine/veteran/UPP/UPP = new()
 	new_human.equip_to_slot_or_del(UPP, WEAR_BODY)
@@ -672,6 +675,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/UPP, WEAR_L_EAR)
 	//head
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/UPP/heavy, WEAR_HEAD)
+	new_human.equip_to_slot_or_del(new /obj/item/prop/helmetgarb/helmet_nvg/marsoc/upp, WEAR_IN_HELMET)
 	//body
 	var/obj/item/clothing/under/marine/veteran/UPP/UPP = new()
 	new_human.equip_to_slot_or_del(UPP, WEAR_BODY)
@@ -2564,6 +2568,7 @@
 	//head
 	var/headgear = prob(70) ? /obj/item/clothing/head/helmet/marine/veteran/UPP/engi : /obj/item/clothing/head/uppcap/ushanka
 	new_human.equip_to_slot_or_del(new headgear, WEAR_HEAD)
+	new_human.equip_to_slot_or_del(new /obj/item/prop/helmetgarb/helmet_nvg/marsoc/upp, WEAR_IN_HELMET)
 	//body
 	var/obj/item/clothing/under/marine/veteran/UPP/engi/UPP = new()
 	var/obj/item/clothing/accessory/storage/tool_webbing/equipped/W = new()

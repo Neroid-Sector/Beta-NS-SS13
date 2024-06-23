@@ -464,6 +464,11 @@
 	desc = "With an integrated self-recharging battery, nothing can stop you. Put them on your helmet and press the button and it's go-time."
 	infinite_charge = TRUE
 
+/obj/item/prop/helmetgarb/helmet_nvg/marsoc/upp //for UPP
+	name = "\improper Type-3 night vision goggles"
+	desc = "With an integrated self-recharging battery, nothing can stop you. Put them on your helmet and press the button and it's go-time."
+	infinite_charge = TRUE
+
 #undef NVG_SHAPE_COSMETIC
 #undef NVG_SHAPE_BROKEN
 #undef NVG_SHAPE_PATCHED
