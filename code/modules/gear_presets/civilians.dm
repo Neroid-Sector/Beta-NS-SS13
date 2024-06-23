@@ -1,5 +1,5 @@
 /datum/equipment_preset/civilian
-	name = "gangster"
+	name = "civi"
 	faction = FACTION_MERCENARY
 	faction_group = FACTION_LIST_HUMANOID
 	languages = list(LANGUAGE_ENGLISH, LANGUAGE_RUSSIAN, LANGUAGE_JAPANESE)

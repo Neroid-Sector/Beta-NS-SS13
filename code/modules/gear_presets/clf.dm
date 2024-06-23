@@ -1,6 +1,6 @@
 /datum/equipment_preset/clf
 	name = FACTION_CLF
-	languages = list(LANGUAGE_JAPANESE, LANGUAGE_ENGLISH)
+	languages = list(LANGUAGE_JAPANESE, LANGUAGE_FRENCH, LANGUAGE_FRENCH, LANGUAGE_HINDI, LANGUAGE_ENGLISH)
 	assignment = JOB_CLF
 	rank = FACTION_CLF
 	faction = FACTION_CLF
@@ -76,6 +76,40 @@
 		spawn_rebel_rifle(new_human)
 
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/CLF(new_human), WEAR_L_EAR)
+
+/datum/equipment_preset/clf/soldier/elite
+	name = "Insurgent ELITE Soldier"
+	flags = EQUIPMENT_PRESET_EXTRA
+	assignment = JOB_CLF_E
+	rank = JOB_CLF
+	role_comm_title = "Strm.Tpr."
+	skills = /datum/skills/mercenary/elite
+
+/datum/equipment_preset/clf/soldier/elite/load_gear(mob/living/carbon/human/new_human)
+	//TODO: add unique backpacks and satchels
+	//clothes
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/CLF/command, WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/mercenary/miner, WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/mercenary/miner, WEAR_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran, WEAR_HANDS)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/mercenary/miner, WEAR_HEAD)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/pmc/knife, WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/pmc, WEAR_FACE)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m42_night_goggles, WEAR_EYES)
+	//storage items, belt spawning is handled in the spawn elite weapon proc.
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/autoinjector/full, WEAR_L_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/explosive/upp, WEAR_R_STORE)
+	//backpack and stuff in it
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack, WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/explosive/plastic, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/firstaid/regular/response, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/packet/smoke, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/packet/hefa, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/attachments(new_human), WEAR_IN_BACK)
+
+	new_human.equip_to_slot_or_del(new /obj/item/storage/belt/marine(new_human), WEAR_WAIST)
+	spawn_weapon(/obj/item/weapon/gun/rifle/type71/flamer/leader, /obj/item/ammo_magazine/rifle/type71/heap, new_human)
+
 
 /datum/equipment_preset/clf/soldier/get_antag_clothing_equipment()
 	return list(
@@ -188,6 +222,56 @@
 
 	spawn_rebel_weapon(new_human)
 	spawn_rebel_weapon(new_human,1)
+
+
+/datum/equipment_preset/clf/engineer/elite
+	name = "Insurgent ELITE Engineer"
+	flags = EQUIPMENT_PRESET_EXTRA
+	assignment = JOB_CLF_ENGI_E
+	rank = JOB_CLF_ENGI
+	role_comm_title = "Strm.Tpr."
+
+/datum/equipment_preset/clf/engineer/elite/load_gear(mob/living/carbon/human/new_human)
+	//TODO: add backpacks and satchels
+	//snowflake webbing
+	var/obj/item/clothing/under/marine/veteran/mercenary/support/SUPPORT = new()
+	var/obj/item/clothing/accessory/storage/black_vest/W = new()
+	SUPPORT.attach_accessory(new_human, W)
+	W.hold.storage_slots = 7
+	new_human.equip_to_slot_or_del(SUPPORT, WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/bicaridine, WEAR_IN_ACCESSORY)
+	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/bicaridine, WEAR_IN_ACCESSORY)
+	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/kelotane, WEAR_IN_ACCESSORY)
+	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/kelotane, WEAR_IN_ACCESSORY)
+	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/tramadol, WEAR_IN_ACCESSORY)
+	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/tramadol, WEAR_IN_ACCESSORY)
+	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/emergency, WEAR_IN_ACCESSORY)
+	//clothes
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/CLF/command, WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/mercenary/support, WEAR_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran, WEAR_HANDS)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/mercenary/support/engineer, WEAR_HEAD)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/pmc/knife, WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/pmc, WEAR_FACE)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m42_night_goggles, WEAR_EYES)
+	//storage items
+	new_human.equip_to_slot_or_del(new /obj/item/device/motiondetector/hacked/clf, WEAR_WAIST)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/shotgun/large, WEAR_L_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/tactical/full, WEAR_R_STORE)
+	//backpack and stuff in it
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/engineerpack/ert, WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/explosive/plastic, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/defenses/handheld/sentry/mini, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/defenses/handheld/sentry/mini, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/firstaid/regular/response, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/attachments(new_human), WEAR_IN_BACK)
+	//gun
+	spawn_merc_elite_weapon(new_human, 9, 100, 0) //only shotguns
+
+
 
 /datum/equipment_preset/clf/engineer/get_antag_clothing_equipment()
 	return list(
@@ -315,6 +399,49 @@
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/large(new_human), WEAR_R_STORE)
 
 	spawn_rebel_smg(new_human)
+
+/datum/equipment_preset/clf/medic/elite
+	name = "Insurgent ELITE Medic"
+	flags = EQUIPMENT_PRESET_EXTRA
+	assignment = JOB_CLF_MEDIC_E
+	rank = JOB_CLF_MEDIC
+	role_comm_title = "Strm.Tpr."
+	skills = /datum/skills/mercenary/elite/medic
+
+
+/datum/equipment_preset/clf/medic/elite/load_gear(mob/living/carbon/human/new_human)
+	//webbing
+	var/obj/item/clothing/under/marine/veteran/mercenary/support/SUPPORT = new()
+	var/obj/item/clothing/accessory/storage/surg_vest/equipped/W = new()
+	SUPPORT.attach_accessory(new_human, W)
+	new_human.equip_to_slot_or_del(SUPPORT, WEAR_BODY)
+	//clothing
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/medhud, WEAR_EYES)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/mercenary/support, WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/CLF/command, WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/mercenary/support, WEAR_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran, WEAR_HANDS)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/mercenary/support, WEAR_HEAD)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/pmc/knife, WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/pmc, WEAR_FACE)
+	//storage items
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/large, WEAR_L_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/medkit/full_advanced, WEAR_R_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/belt/medical/lifesaver/upp/full, WEAR_WAIST)
+	//backpack and stuff in it
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack, WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/defibrillator/upgraded, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/defibrillator/upgraded, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/roller, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/roller/surgical, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/tool/surgery/synthgraft, WEAR_IN_BACK) //Line in vest.
+	new_human.equip_to_slot_or_del(new /obj/item/device/healthanalyzer, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/packet/smoke, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/attachments(new_human), WEAR_IN_BACK)
+	//gun
+	spawn_merc_elite_weapon(new_human, 9, 100, 0) //only shotguns
+
 
 /datum/equipment_preset/clf/medic/get_antag_clothing_equipment()
 	return list(
@@ -524,6 +651,41 @@
 		list("Heat Absorbent Coif", 0, /obj/item/clothing/mask/rebreather/scarf, MARINE_CAN_BUY_MASK, VENDOR_ITEM_REGULAR)
 	)
 
+/datum/equipment_preset/clf/specialist/heavy/elite
+	name = "Insurgent ELITE (Heavy)"
+	flags = EQUIPMENT_PRESET_EXTRA
+	assignment = JOB_CLF_SPECIALIST_E
+	rank = JOB_CLF
+	role_comm_title = "Strm.Tpr."
+	skills = /datum/skills/mercenary/elite/heavy
+
+/datum/equipment_preset/clf/specialist/heavy/elite/load_gear(mob/living/carbon/human/new_human)
+	//TODO: add backpacks and satchels
+	//clothes
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/CLF/command, WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/mercenary, WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/mercenary/heavy, WEAR_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran, WEAR_HANDS)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/mercenary, WEAR_HEAD)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/pmc/knife, WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/pmc, WEAR_FACE)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m42_night_goggles, WEAR_EYES)
+	//storage items
+	new_human.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/heavy, WEAR_WAIST)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/pressurized_reagent_canister/oxycodone, WEAR_L_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/autoinjector/full, WEAR_R_STORE)
+	//backpack and stuff in it
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack, WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/firstaid/regular/response, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/packet/m15, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/packet/phosphorus, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/minigun(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/minigun(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/minigun(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/minigun(new_human), WEAR_IN_BACK)
+	//gun
+	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/minigun/upp(new_human), WEAR_J_STORE)
+
 /datum/equipment_preset/clf/specialist/get_antag_gear_equipment()
 	return list(
 		list("GUNNER KITS (CHOOSE 1)", 0, null, null, null),
@@ -596,6 +758,42 @@
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/ert(new_human), WEAR_R_STORE)
 
 	spawn_weapon(/obj/item/weapon/gun/rifle/mar40, /obj/item/ammo_magazine/rifle/mar40, new_human)
+
+/datum/equipment_preset/clf/leader/elite
+	name = "Insurgent ELITE (Leader)"
+	flags = EQUIPMENT_PRESET_EXTRA
+	assignment = JOB_CLF_LEADER_E
+	rank = JOB_CLF_LEADER
+	flags = EQUIPMENT_PRESET_EXTRA
+	role_comm_title = "Strm.Tpr. LDR"
+
+/datum/equipment_preset/clf/leader/elite/load_gear(mob/living/carbon/human/new_human)
+	//clothes
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/CLF/command, WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/mercenary, WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/mercenary, WEAR_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran, WEAR_HANDS)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/mercenary, WEAR_HEAD)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/pmc/knife, WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/pmc, WEAR_FACE)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/medhud, WEAR_EYES)
+	//storage items
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/explosive/C4, WEAR_L_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/autoinjector/full, WEAR_R_STORE)
+	//backpack and stuff in it
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack, WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/attachments(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/packet/m15, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/packet/smoke, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/packet/phosphorus/upp, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/binoculars/range, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/firstaid/regular/response, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/motiondetector/hacked/clf, WEAR_IN_BACK)
+	//gun
+	new_human.equip_to_slot_or_del(new /obj/item/storage/belt/marine(new_human), WEAR_WAIST)
+	spawn_weapon(/obj/item/weapon/gun/rifle/type71/flamer/leader, /obj/item/ammo_magazine/rifle/type71/heap, new_human) //lower shotgun chance, but not zero
+
+
 
 /datum/equipment_preset/clf/leader/get_antag_clothing_equipment()
 	return list(
@@ -702,7 +900,7 @@
 	name = "Insurgent Commissar"
 	flags = EQUIPMENT_PRESET_EXTRA
 	assignment = JOB_CLF_COMMISSAR
-	rank = JOB_CLF_COMMISSAR
+	rank = JOB_CLF_COMMANDER
 	role_comm_title = "Commissar"
 	skills = /datum/skills/commander
 
@@ -1319,3 +1517,6 @@
 		list("Shoulder Holster", 10, /obj/item/clothing/accessory/storage/holster, null, VENDOR_ITEM_REGULAR),
 		list("Webbing", 10, /obj/item/clothing/accessory/storage/webbing, null, VENDOR_ITEM_REGULAR)
 	)
+
+//*****************************************************************************************************/
+
