@@ -68,6 +68,164 @@
 	playsound(T, 'sound/weapons/gun_flare.ogg', 50, 1, 4)
 	deploy_camera(T)
 
+/obj/item/mortar_shell/flash
+	name = "\improper 80mm Nova-Flash Starburst mortar shell"
+	desc = "An 80mm mortar shell, loaded with a blinding phosphorus charge, that explodes extra loudly. Best used on rioters."
+	icon_state = "mortar_ammo_fsh"
+	var/strength = 50
+	var/no_damage = FALSE
+
+/obj/item/mortar_shell/flash/detonate(turf/T)
+	explosion(T, 0, 1, 1, 1, explosion_cause_data = cause_data)
+
+	for(var/obj/structure/closet/L in hear(14, T))
+		SEND_SIGNAL(L, COMSIG_CLOSET_FLASHBANGED, src)
+
+	for(var/mob/living/carbon/M in hear(14, T))
+		bang(T, M)
+
+	playsound(src.loc, 'sound/effects/bang.ogg', 250, 1)
+
+	new/obj/effect/particle_effect/smoke/flashbang(T)
+	qdel(src)
+	return
+
+/obj/item/mortar_shell/flash/proc/bang(turf/T , mob/living/carbon/M)
+
+	if(isxeno(M))
+		return
+
+	to_chat(M, SPAN_WARNING("<B>BANG</B>"))
+
+	for(var/obj/item/device/chameleon/S in M)
+		S.disrupt(M)
+
+	var/trained_human = FALSE
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(skillcheck(H, SKILL_POLICE, SKILL_POLICE_SKILLED))
+			trained_human = TRUE
+
+		var/list/protections = list(H.glasses, H.wear_mask, H.head)
+		var/total_eye_protection = 0
+
+		for(var/obj/item/clothing/C in protections)
+			if(C && (C.flags_armor_protection & BODY_FLAG_EYES))
+				total_eye_protection += C.armor_energy
+
+		if(total_eye_protection >= strength)
+			to_chat(M, SPAN_HELPFUL("Your gear protects you from \the [src]."))
+			return
+
+	var/weaken_amount
+	var/paralyze_amount
+	var/deafen_amount
+
+	if(M.flash_eyes())
+		weaken_amount += 2
+		paralyze_amount += 10
+
+	if((get_dist(M, T) <= 2 || src.loc == M.loc || src.loc == M))
+		if(trained_human)
+			weaken_amount += 2
+			paralyze_amount += 1
+		else
+			weaken_amount += 10
+			paralyze_amount += 3
+			deafen_amount += 15
+			if(!no_damage)
+				if((prob(14) || (M == src.loc && prob(70))))
+					M.ear_damage += rand(1, 10)
+				else
+					M.ear_damage += rand(0, 5)
+
+	else if(get_dist(M, T) <= 5)
+		if(!trained_human)
+			weaken_amount += 8
+			deafen_amount += 10
+			if(!no_damage)
+				M.ear_damage += rand(0, 3)
+
+	else if(!trained_human)
+		weaken_amount += 4
+		deafen_amount += 5
+		if(!no_damage)
+			M.ear_damage += rand(0, 1)
+
+	if(HAS_TRAIT(M, TRAIT_EAR_PROTECTION))
+		weaken_amount *= 0.85
+		paralyze_amount *= 0.85
+		deafen_amount = 0
+		to_chat(M, SPAN_HELPFUL("Your gear protects you from the worst of the 'bang'."))
+
+	M.apply_effect(weaken_amount, WEAKEN)
+	M.apply_effect(paralyze_amount, PARALYZE)
+	if(deafen_amount)
+		M.SetEarDeafness(max(M.ear_deaf, deafen_amount))
+
+//This really should be in mob not every check
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
+		if (E && E.damage >= E.min_bruised_damage)
+			to_chat(M, SPAN_WARNING("Your eyes start to burn badly!"))
+			if(!no_damage)
+				if (E.damage >= E.min_broken_damage)
+					to_chat(M, SPAN_WARNING("You can't see anything!"))
+	if (M.ear_damage >= 15)
+		to_chat(M, SPAN_WARNING("Your ears start to ring badly!"))
+		if(!no_damage)
+			if (prob(M.ear_damage - 10 + 5))
+				to_chat(M, SPAN_WARNING("You can't hear anything!"))
+				M.sdisabilities |= DISABILITY_DEAF
+	else
+		if (M.ear_damage >= 5)
+			to_chat(M, SPAN_WARNING("Your ears start to ring!"))
+
+/obj/item/mortar_shell/airburst
+	name = "\improper 80mm air-burst mortar shell"
+	desc = "An 80mm mortar shell, loaded with a cluster charge."
+	icon_state = "mortar_ammo_air"
+
+//---Gas Shells---\\
+
+/obj/item/mortar_shell/gas
+	name = "\improper (DEV USE ONLY!)"
+	desc = "If you're seeing this something has gone wrong"
+	icon_state = "mortar_ammo_gas"
+
+/obj/item/mortar_shell/smoke
+	name = "\improper 80mm smoke mortar shell"
+	desc = "An 80mm mortar shell, loaded with a smoke charge."
+	icon_state = "mortar_ammo_smk"
+
+/obj/item/mortar_shell/smoke/detonate(turf/T)
+	explosion(T, 0, 0, 0.1, 7, explosion_cause_data = cause_data)
+	new /obj/item/explosive/grenade/smokebomb/primed(T)
+
+/obj/item/mortar_shell/cn20
+	name = "\improper 80mm cn20 mortar shell"
+	desc = "An 80mm mortar shell, loaded with a cn20 nerve gas canister."
+	icon_state = "mortar_ammo_cn20"
+
+/obj/item/mortar_shell/cn20/detonate(turf/T)
+	explosion(T, 0, 0, 0.1, 7, explosion_cause_data = cause_data)
+	new /obj/item/explosive/grenade/nerve_gas/primed(T)
+
+
+/obj/item/mortar_shell/mustard
+	name = "\improper 80mm mustard gas mortar shell"
+	desc = "An 80mm mortar shell, loaded with a mustard gas canister."
+	icon_state = "mortar_ammo_must"
+
+/obj/item/mortar_shell/mustard/detonate(turf/T)
+	explosion(T, 0, 0, 0.1, 7, explosion_cause_data = cause_data)
+	new /obj/item/explosive/grenade/mustard_gas/primed(T)
+
+
+//===other-stuff===\\
+
+
 /obj/item/mortar_shell/custom
 	name = "\improper 80mm custom mortar shell"
 	desc = "An 80mm mortar shell."
@@ -185,164 +343,7 @@
 	addtimer(CALLBACK(src, PROC_REF(detonate), loc), 5 SECONDS)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), (src)), 5.5 SECONDS)
 
-/obj/item/mortar_shell/airburst
-	name = "\improper 80mm air-burst mortar shell"
-	desc = "An 80mm mortar shell, loaded with a cluster charge."
-	icon_state = "mortar_ammo_air"
 
-//--WIP--\\
-
-
-
-/obj/item/mortar_shell/flash
-	name = "\improper 80mm Nova-Flash Starburst mortar shell"
-	desc = "An 80mm mortar shell, loaded with a blinding phosphorus charge, that explodes extra loudly. Best used on rioters."
-	icon_state = "mortar_ammo_fsh"
-	var/strength = 50
-	var/no_damage = FALSE
-
-/obj/item/mortar_shell/flash/detonate(turf/T)
-	explosion(T, 0, 1, 1, 1, explosion_cause_data = cause_data)
-
-	for(var/obj/structure/closet/L in hear(14, T))
-		SEND_SIGNAL(L, COMSIG_CLOSET_FLASHBANGED, src)
-
-	for(var/mob/living/carbon/M in hear(14, T))
-		bang(T, M)
-
-	playsound(src.loc, 'sound/effects/bang.ogg', 250, 1)
-
-	new/obj/effect/particle_effect/smoke/flashbang(T)
-	qdel(src)
-	return
-
-/obj/item/mortar_shell/flash/proc/bang(turf/T , mob/living/carbon/M)
-
-	if(isxeno(M))
-		return
-
-	to_chat(M, SPAN_WARNING("<B>BANG</B>"))
-
-	for(var/obj/item/device/chameleon/S in M)
-		S.disrupt(M)
-
-	var/trained_human = FALSE
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(skillcheck(H, SKILL_POLICE, SKILL_POLICE_SKILLED))
-			trained_human = TRUE
-
-		var/list/protections = list(H.glasses, H.wear_mask, H.head)
-		var/total_eye_protection = 0
-
-		for(var/obj/item/clothing/C in protections)
-			if(C && (C.flags_armor_protection & BODY_FLAG_EYES))
-				total_eye_protection += C.armor_energy
-
-		if(total_eye_protection >= strength)
-			to_chat(M, SPAN_HELPFUL("Your gear protects you from \the [src]."))
-			return
-
-	var/weaken_amount
-	var/paralyze_amount
-	var/deafen_amount
-
-	if(M.flash_eyes())
-		weaken_amount += 2
-		paralyze_amount += 10
-
-	if((get_dist(M, T) <= 2 || src.loc == M.loc || src.loc == M))
-		if(trained_human)
-			weaken_amount += 2
-			paralyze_amount += 1
-		else
-			weaken_amount += 10
-			paralyze_amount += 3
-			deafen_amount += 15
-			if(!no_damage)
-				if((prob(14) || (M == src.loc && prob(70))))
-					M.ear_damage += rand(1, 10)
-				else
-					M.ear_damage += rand(0, 5)
-
-	else if(get_dist(M, T) <= 5)
-		if(!trained_human)
-			weaken_amount += 8
-			deafen_amount += 10
-			if(!no_damage)
-				M.ear_damage += rand(0, 3)
-
-	else if(!trained_human)
-		weaken_amount += 4
-		deafen_amount += 5
-		if(!no_damage)
-			M.ear_damage += rand(0, 1)
-
-	if(HAS_TRAIT(M, TRAIT_EAR_PROTECTION))
-		weaken_amount *= 0.85
-		paralyze_amount *= 0.85
-		deafen_amount = 0
-		to_chat(M, SPAN_HELPFUL("Your gear protects you from the worst of the 'bang'."))
-
-	M.apply_effect(weaken_amount, WEAKEN)
-	M.apply_effect(paralyze_amount, PARALYZE)
-	if(deafen_amount)
-		M.SetEarDeafness(max(M.ear_deaf, deafen_amount))
-
-//This really should be in mob not every check
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
-		if (E && E.damage >= E.min_bruised_damage)
-			to_chat(M, SPAN_WARNING("Your eyes start to burn badly!"))
-			if(!no_damage)
-				if (E.damage >= E.min_broken_damage)
-					to_chat(M, SPAN_WARNING("You can't see anything!"))
-	if (M.ear_damage >= 15)
-		to_chat(M, SPAN_WARNING("Your ears start to ring badly!"))
-		if(!no_damage)
-			if (prob(M.ear_damage - 10 + 5))
-				to_chat(M, SPAN_WARNING("You can't hear anything!"))
-				M.sdisabilities |= DISABILITY_DEAF
-	else
-		if (M.ear_damage >= 5)
-			to_chat(M, SPAN_WARNING("Your ears start to ring!"))
-
-
-//---Gas Shells---\\
-
-/obj/item/mortar_shell/gas
-	name = "\improper (DEV USE ONLY!)"
-	desc = "If you're seeing this something has gone wrong"
-	icon_state = "mortar_ammo_gas"
-
-/obj/item/mortar_shell/smoke
-	name = "\improper 80mm smoke mortar shell"
-	desc = "An 80mm mortar shell, loaded with a smoke charge."
-	icon_state = "mortar_ammo_smk"
-
-/obj/item/mortar_shell/smoke/detonate(turf/T)
-	explosion(T, 0, 0, 0.5, 7, explosion_cause_data = cause_data)
-	new /obj/item/explosive/grenade/smokebomb/primed(T)
-
-/obj/item/mortar_shell/cn20
-	name = "\improper 80mm cn20 mortar shell"
-	desc = "An 80mm mortar shell, loaded with a cn20 nerve gas canister."
-	icon_state = "mortar_ammo_cn20"
-
-/obj/item/mortar_shell/cn20/detonate(turf/T)
-	explosion(T, 0, 0, 0.5, 7, explosion_cause_data = cause_data)
-	new /obj/item/explosive/grenade/nerve_gas/primed(T)
-
-
-/obj/item/mortar_shell/mustard
-	name = "\improper 80mm mustard gas mortar shell"
-	desc = "An 80mm mortar shell, loaded with a mustard gas canister."
-	icon_state = "mortar_ammo_must"
-
-/obj/item/mortar_shell/mustard/detonate(turf/T)
-	explosion(T, 0, 0, 0.5, 7, explosion_cause_data = cause_data)
-	new /obj/item/explosive/grenade/mustard_gas/primed(T)
 
 //--------Crates---------//
 
