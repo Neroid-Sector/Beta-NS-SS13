@@ -418,6 +418,14 @@
 	smoke.start()
 	qdel(src)
 
+/obj/item/explosive/grenade/smokebomb/primed
+	smoke_radius = 8
+	det_time = 0
+
+/obj/item/explosive/grenade/smokebomb/primed/Initialize()
+	. = ..()
+	activate()
+
 /obj/item/explosive/grenade/phosphorus
 	name = "\improper M40 HPDP grenade"
 	desc = "The M40 HPDP is a small, but powerful phosphorus grenade. It is set to detonate in 2 seconds."

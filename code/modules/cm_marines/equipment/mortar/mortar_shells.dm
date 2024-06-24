@@ -185,11 +185,17 @@
 	addtimer(CALLBACK(src, PROC_REF(detonate), loc), 5 SECONDS)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), (src)), 5.5 SECONDS)
 
+/obj/item/mortar_shell/airburst
+	name = "\improper 80mm air-burst mortar shell"
+	desc = "An 80mm mortar shell, loaded with a cluster charge."
+	icon_state = "mortar_ammo_air"
+
+//--WIP--\\
 
 
 
 /obj/item/mortar_shell/flash
-	name = "\improper 80mm starburst mortar shell"
+	name = "\improper 80mm Nova-Flash Starburst mortar shell"
 	desc = "An 80mm mortar shell, loaded with a blinding phosphorus charge, that explodes extra loudly. Best used on rioters."
 	icon_state = "mortar_ammo_fsh"
 	var/strength = 50
@@ -302,14 +308,6 @@
 		if (M.ear_damage >= 5)
 			to_chat(M, SPAN_WARNING("Your ears start to ring!"))
 
-/obj/item/mortar_shell/airburst
-	name = "\improper 80mm air-burst mortar shell"
-	desc = "An 80mm mortar shell, loaded with a cluster charge."
-	icon_state = "mortar_ammo_air"
-
-
-
-
 
 //---Gas Shells---\\
 
@@ -318,21 +316,25 @@
 	desc = "If you're seeing this something has gone wrong"
 	icon_state = "mortar_ammo_gas"
 
-/obj/item/mortar_shell/gas/smoke
+/obj/item/mortar_shell/smoke
 	name = "\improper 80mm smoke mortar shell"
 	desc = "An 80mm mortar shell, loaded with a smoke charge."
 	icon_state = "mortar_ammo_smk"
 
-/obj/item/mortar_shell/gas/cn20
+/obj/item/mortar_shell/smoke/detonate(turf/T)
+	new /obj/item/explosive/grenade/smokebomb/primed(T)
+	playsound(T, 'sound/effects/bamf.ogg', 50, 1, 4)
+
+/obj/item/mortar_shell/cn20
 	name = "\improper 80mm cn20 mortar shell"
 	desc = "An 80mm mortar shell, loaded with a cn20 nerve gas canister."
 	icon_state = "mortar_ammo_cn20"
 
 
-/obj/item/mortar_shell/gas/mustard
+/obj/item/mortar_shell/mustard
 	name = "\improper 80mm mustard gas mortar shell"
 	desc = "An 80mm mortar shell, loaded with a mustard gas canister."
-	icon_state = "mortar_ammo_mustard"
+	icon_state = "mortar_ammo_must"
 
 
 
