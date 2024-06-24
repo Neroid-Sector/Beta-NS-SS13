@@ -420,7 +420,7 @@
 
 /obj/item/explosive/grenade/smokebomb/primed
 	smoke_radius = 8
-	det_time = 5
+	det_time = 6
 	item_state = "mortar"
 	icon_state = "mortar"
 
@@ -516,8 +516,8 @@
 	nerve_gas_type = /datum/effect_system/smoke_spread/cn20/xeno
 
 /obj/item/explosive/grenade/nerve_gas/primed
-	nerve_gas_radius = 20
-	det_time = 5
+	nerve_gas_radius = 16
+	det_time = 6
 	item_state = "mortar"
 	icon_state = "mortar"
 
@@ -565,7 +565,7 @@
 
 /obj/item/explosive/grenade/mustard_gas/primed
 	mustard_gas_radius = 20
-	det_time = 5
+	det_time = 6
 	item_state = "mortar"
 	icon_state = "mortar"
 

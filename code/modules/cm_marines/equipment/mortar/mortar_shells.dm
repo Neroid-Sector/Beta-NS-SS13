@@ -325,7 +325,6 @@
 	explosion(T, 0, 0, 0.5, 7, explosion_cause_data = cause_data)
 	new /obj/item/explosive/grenade/smokebomb/primed(T)
 
-
 /obj/item/mortar_shell/cn20
 	name = "\improper 80mm cn20 mortar shell"
 	desc = "An 80mm mortar shell, loaded with a cn20 nerve gas canister."
