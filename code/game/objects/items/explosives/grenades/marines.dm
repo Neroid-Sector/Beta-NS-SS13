@@ -420,7 +420,7 @@
 
 /obj/item/explosive/grenade/smokebomb/primed
 	smoke_radius = 8
-	det_time = 0
+	det_time = 5
 
 /obj/item/explosive/grenade/smokebomb/primed/Initialize()
 	. = ..()

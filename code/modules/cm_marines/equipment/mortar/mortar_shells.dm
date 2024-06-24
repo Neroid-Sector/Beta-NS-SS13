@@ -322,6 +322,7 @@
 	icon_state = "mortar_ammo_smk"
 
 /obj/item/mortar_shell/smoke/detonate(turf/T)
+	explosion(T, 0, 0, 0.5, 7, explosion_cause_data = cause_data)
 	new /obj/item/explosive/grenade/smokebomb/primed(T)
 	playsound(T, 'sound/effects/bamf.ogg', 50, 1, 4)
 
