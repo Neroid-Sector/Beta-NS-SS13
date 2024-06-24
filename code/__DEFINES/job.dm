@@ -262,6 +262,7 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define	JOB_TR_FSO "Tunnel Rats Squad Forward Observer"
 #define JOB_TR_MEDIC "Tunnel Rats Squad Hospital Corpsman"
 #define JOB_TR_ENGINEER "Tunnel Rats Squad Combat Technician"
+#define JOB_TR_MORTAR "Tunnel Rats Squad CSW Operator"
 #define JOB_TR_SMARTGUNNER "Tunnel Rats Squad Smartgunner"
 #define JOB_TR_SL "Tunnel Rats Squad Leader"
 
