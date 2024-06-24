@@ -191,14 +191,20 @@
 	if(!istype(creature) || issynth(creature))
 		return FALSE
 
-	creature.burn_skin(2)
-	if(creature.coughedtime != 1)
-		creature.coughedtime = 1
-		if(ishuman(creature)) //Humans only to avoid issues
-			creature.emote("gasp")
-		addtimer(VARSET_CALLBACK(creature, coughedtime, 0), 2 SECONDS)
-	creature.updatehealth()
-	return
+	if(creature.wear_mask && (creature.wear_mask.flags_inventory & BLOCKGASEFFECT))
+		creature.burn_skin(0.5)
+		creature.updatehealth()
+		return
+	else
+		creature.burn_skin(3)
+		creature.apply_damage(3, OXY)
+		if(creature.coughedtime != 1)
+			creature.coughedtime = 1
+			if(ishuman(creature)) //Humans only to avoid issues
+				creature.emote("gasp")
+			addtimer(VARSET_CALLBACK(creature, coughedtime, 0), 2 SECONDS)
+		creature.updatehealth()
+		return
 
 /////////////////////////////////////////////
 // Phosphorus Gas
