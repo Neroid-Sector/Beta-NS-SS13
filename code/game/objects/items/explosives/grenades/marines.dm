@@ -421,6 +421,8 @@
 /obj/item/explosive/grenade/smokebomb/primed
 	smoke_radius = 8
 	det_time = 5
+	item_state = "mortar"
+	icon_state = "mortar"
 
 /obj/item/explosive/grenade/smokebomb/primed/Initialize()
 	. = ..()
@@ -492,7 +494,7 @@
 	/// The typepath of the nerve gas
 	var/nerve_gas_type = /datum/effect_system/smoke_spread/cn20
 	/// The radius the gas will reach
-	var/nerve_gas_radius = 10
+	var/nerve_gas_radius = 8
 
 /obj/item/explosive/grenade/nerve_gas/Initialize(mapload, ...)
 	. = ..()
@@ -512,6 +514,16 @@
 /obj/item/explosive/grenade/nerve_gas/xeno
 	name = "\improper CN20-X canister grenade"
 	nerve_gas_type = /datum/effect_system/smoke_spread/cn20/xeno
+
+/obj/item/explosive/grenade/nerve_gas/primed
+	nerve_gas_radius = 20
+	det_time = 5
+	item_state = "mortar"
+	icon_state = "mortar"
+
+/obj/item/explosive/grenade/nerve_gas/primed/Initialize()
+	. = ..()
+	activate()
 
 /*
 //================================================
@@ -533,7 +545,7 @@
 	/// The typepath of the nerve gas
 	var/mustard_gas_type = /datum/effect_system/smoke_spread/mustard
 	/// The radius the gas will reach
-	var/mustard_gas_radius = 10
+	var/mustard_gas_radius = 8
 
 /obj/item/explosive/grenade/mustard_gas/Initialize(mapload, ...)
 	. = ..()
@@ -549,6 +561,17 @@
 	mustard_gas.set_up(mustard_gas_radius, 0, get_turf(src), null, 6)
 	mustard_gas.start()
 	qdel(src)
+
+
+/obj/item/explosive/grenade/mustard_gas/primed
+	mustard_gas_radius = 20
+	det_time = 5
+	item_state = "mortar"
+	icon_state = "mortar"
+
+/obj/item/explosive/grenade/mustard_gas/primed/Initialize()
+	. = ..()
+	activate()
 
 //================================================
 /obj/item/explosive/grenade/flesh_gas

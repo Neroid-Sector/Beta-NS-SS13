@@ -324,12 +324,16 @@
 /obj/item/mortar_shell/smoke/detonate(turf/T)
 	explosion(T, 0, 0, 0.5, 7, explosion_cause_data = cause_data)
 	new /obj/item/explosive/grenade/smokebomb/primed(T)
-	playsound(T, 'sound/effects/bamf.ogg', 50, 1, 4)
+
 
 /obj/item/mortar_shell/cn20
 	name = "\improper 80mm cn20 mortar shell"
 	desc = "An 80mm mortar shell, loaded with a cn20 nerve gas canister."
 	icon_state = "mortar_ammo_cn20"
+
+/obj/item/mortar_shell/cn20/detonate(turf/T)
+	explosion(T, 0, 0, 0.5, 7, explosion_cause_data = cause_data)
+	new /obj/item/explosive/grenade/nerve_gas/primed(T)
 
 
 /obj/item/mortar_shell/mustard
@@ -337,7 +341,9 @@
 	desc = "An 80mm mortar shell, loaded with a mustard gas canister."
 	icon_state = "mortar_ammo_must"
 
-
+/obj/item/mortar_shell/mustard/detonate(turf/T)
+	explosion(T, 0, 0, 0.5, 7, explosion_cause_data = cause_data)
+	new /obj/item/explosive/grenade/mustard_gas/primed(T)
 
 //--------Crates---------//
 
