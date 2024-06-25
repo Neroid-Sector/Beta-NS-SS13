@@ -196,7 +196,6 @@
 	supplies = list(/obj/item/ammo_magazine/m56d = 6)
 
 
-
 /obj/structure/largecrate/supply/explosives
 	name = "explosives supply crate"
 	desc = "A case containing explosives."

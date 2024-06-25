@@ -119,9 +119,6 @@
 		if(user.z != targeted_atom.z && !coord)
 			to_chat(user, SPAN_WARNING("You cannot get a direct laser from where you are."))
 			return FALSE
-		if(!(is_ground_level(targeted_atom.z)))
-			to_chat(user, SPAN_WARNING("INVALID TARGET: target must be on the surface."))
-			return FALSE
 		if(user.sight & SEE_TURFS)
 			var/list/turf/path = getline2(user, targeted_atom, include_from_atom = FALSE)
 			for(var/turf/T in path)

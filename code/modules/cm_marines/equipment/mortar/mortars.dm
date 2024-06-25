@@ -215,9 +215,6 @@
 		if(busy)
 			to_chat(user, SPAN_WARNING("Someone else is currently using [src]."))
 			return
-		if(!is_ground_level(z))
-			to_chat(user, SPAN_WARNING("You cannot fire [src] here."))
-			return
 		if(targ_x == 0 && targ_y == 0) //Mortar wasn't set
 			to_chat(user, SPAN_WARNING("[src] needs to be aimed first."))
 			return
