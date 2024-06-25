@@ -463,6 +463,15 @@
 	smoke.start()
 	qdel(src)
 
+/obj/item/explosive/grenade/phosphorus/primed
+	det_time = 6
+	item_state = "mortar"
+	icon_state = "mortar"
+
+/obj/item/explosive/grenade/phosphorus/primed/Initialize()
+	. = ..()
+	activate()
+
 /obj/item/explosive/grenade/phosphorus/upp
 	name = "\improper Type 8 WP grenade"
 	desc = "A deadly gas grenade found within the ranks of the UPP. Designed to spill white phosphorus on the target. It explodes 2 seconds after the pin has been pulled."

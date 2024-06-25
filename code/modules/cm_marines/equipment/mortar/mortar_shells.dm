@@ -47,7 +47,7 @@
 	name = "\improper 80mm incendiary mortar shell"
 	desc = "An 80mm mortar shell, loaded with a Type B napalm charge. Perfect for long-range area denial."
 	icon_state = "mortar_ammo_inc"
-	var/radius = 5
+	var/radius = 7
 	var/flame_level = BURN_TIME_TIER_5 + 5 //Type B standard, 50 base + 5 from chemfire code.
 	var/burn_level = BURN_LEVEL_TIER_2
 	var/flameshape = FLAMESHAPE_DEFAULT
@@ -57,6 +57,38 @@
 	explosion(T, 0, 2, 4, 7, explosion_cause_data = cause_data)
 	flame_radius(cause_data, radius, T, flame_level, burn_level, flameshape, null, fire_type)
 	playsound(T, 'sound/weapons/gun_flamethrower2.ogg', 35, 1, 4)
+
+/obj/item/mortar_shell/shaped
+	name = "\improper 80mm incendiary mortar shell"
+	desc = "An 80mm mortar shell, loaded with a Shaped napalm charge. Perfect for clearing large areas and trenches."
+	icon_state = "mortar_ammo_inc"
+	var/radius = 7
+	var/flame_level = BURN_TIME_TIER_1
+	var/burn_level = BURN_LEVEL_TIER_9
+	var/flameshape = FLAMESHAPE_STAR
+	var/fire_type = FIRE_VARIANT_DEFAULT
+
+/obj/item/mortar_shell/shaped/detonate(turf/T)
+	explosion(T, 0, 2, 4, 7, explosion_cause_data = cause_data)
+	flame_radius(cause_data, radius, T, flame_level, burn_level, flameshape, null, fire_type)
+	playsound(T, 'sound/weapons/gun_flamethrower2.ogg', 35, 1, 4)
+
+
+/obj/item/mortar_shell/wp
+	name = "\improper 80mm White Phosphorus mortar shell"
+	desc = "An 80mm mortar shell, loaded with a Willey Pete charge. Perfect for long-range area denial."
+	icon_state = "mortar_ammo_wp"
+	var/radius = 6
+	var/flame_level = BURN_TIME_TIER_4
+	var/burn_level = BURN_LEVEL_TIER_7
+	var/flameshape = FLAMESHAPE_DEFAULT
+	var/fire_type = FIRE_VARIANT_DEFAULT
+
+/obj/item/mortar_shell/wp/detonate(turf/T)
+	explosion(T, 0, 2, 4, 7, explosion_cause_data = cause_data)
+	sleep(2)
+	new /obj/item/explosive/grenade/phosphorus/primed(T)
+	flame_radius(cause_data, radius, T, flame_level, burn_level, flameshape, null, fire_type)
 
 /obj/item/mortar_shell/flare
 	name = "\improper 80mm flare/camera mortar shell"
@@ -224,7 +256,6 @@
 
 
 //===other-stuff===\\
-
 
 /obj/item/mortar_shell/custom
 	name = "\improper 80mm custom mortar shell"
