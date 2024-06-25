@@ -61,7 +61,7 @@
 /obj/item/mortar_shell/shaped
 	name = "\improper 80mm incendiary mortar shell"
 	desc = "An 80mm mortar shell, loaded with a Shaped napalm charge. Perfect for clearing large areas and trenches."
-	icon_state = "mortar_ammo_inc"
+	icon_state = "mortar_ammo_shaped"
 	var/radius = 7
 	var/flame_level = BURN_TIME_TIER_1
 	var/burn_level = BURN_LEVEL_TIER_9
@@ -218,6 +218,37 @@
 	name = "\improper 80mm air-burst mortar shell"
 	desc = "An 80mm mortar shell, loaded with a cluster charge."
 	icon_state = "mortar_ammo_air"
+	var/total_amount = 10 // how many times will the shell fire?
+	var/instant_amount = 2 // how many explosions per time it fires?
+	var/delay_between_clusters = 0.4 SECONDS // how long between each firing?
+
+/obj/item/mortar_shell/airburst/proc/start_cluster(turf/target)
+	set waitfor = 0
+
+	var/range_num = 7
+	var/list/turf_list = list()
+
+	for(var/turf/T in range(range_num, target))
+		turf_list += T
+
+	for(var/i = 1 to total_amount)
+		for(var/k = 1 to instant_amount)
+			var/turf/selected_turf = pick(turf_list)
+			if(protected_by_pylon(TURF_PROTECTION_MORTAR, selected_turf))
+				continue
+			var/area/selected_area = get_area(selected_turf)
+			if(CEILING_IS_PROTECTED(selected_area?.ceiling, CEILING_PROTECTION_TIER_2))
+				continue
+			fire_in_a_hole(selected_turf)
+
+		sleep(delay_between_clusters)
+	QDEL_IN(src, 5 SECONDS)
+
+/obj/item/mortar_shell/airburst/proc/fire_in_a_hole(turf/T)
+	explosion(T, 0, 0.05, 0.1, 2, explosion_cause_data = cause_data)
+
+/obj/item/mortar_shell/airburst/detonate(turf/T)
+	start_cluster(T)
 
 //---Gas Shells---\\
 
