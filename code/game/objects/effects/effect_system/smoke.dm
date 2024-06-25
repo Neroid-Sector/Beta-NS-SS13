@@ -198,6 +198,45 @@
 	else
 		creature.burn_skin(3)
 		creature.apply_damage(3, OXY)
+		creature.apply_damage(1, TOX)
+		creature.apply_internal_damage(1, "lungs")
+		if(creature.coughedtime != 1)
+			creature.coughedtime = 1
+			if(ishuman(creature)) //Humans only to avoid issues
+				creature.emote("gasp")
+			addtimer(VARSET_CALLBACK(creature, coughedtime, 0), 2 SECONDS)
+		creature.updatehealth()
+		return
+
+/////////////////////////////////////////////
+// Mustard Gas
+/////////////////////////////////////////////
+
+/obj/effect/particle_effect/smoke/chlorine
+	name = "chlorine gas"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "mustard"
+	color = "#ADFF2F"
+	time_to_live = 100
+	opacity = FALSE
+	smokeranking = SMOKE_RANK_HIGH
+
+
+/obj/effect/particle_effect/smoke/chlorine/Move()
+	. = ..()
+	for(var/mob/living/carbon/human/creature in get_turf(src))
+		affect(creature)
+
+/obj/effect/particle_effect/smoke/chlorine/affect(mob/living/carbon/human/creature)
+	if(!istype(creature) || issynth(creature))
+		return FALSE
+
+	if(creature.wear_mask && (creature.wear_mask.flags_inventory & BLOCKGASEFFECT))
+		return
+	else
+		creature.apply_damage(3, OXY)
+		creature.apply_damage(2, TOX)
+		creature.apply_internal_damage(1, "lungs")
 		if(creature.coughedtime != 1)
 			creature.coughedtime = 1
 			if(ishuman(creature)) //Humans only to avoid issues
@@ -674,6 +713,9 @@
 
 /datum/effect_system/smoke_spread/mustard
 	smoke_type = /obj/effect/particle_effect/smoke/mustard
+
+/datum/effect_system/smoke_spread/chlorine
+	smoke_type = /obj/effect/particle_effect/smoke/chlorine
 
 /datum/effect_system/smoke_spread/phosphorus
 	smoke_type = /obj/effect/particle_effect/smoke/phosphorus

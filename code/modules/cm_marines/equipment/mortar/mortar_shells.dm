@@ -40,7 +40,7 @@
 
 /obj/item/mortar_shell/frag/detonate(turf/T)
 	create_shrapnel(T, 60, cause_data = cause_data)
-	sleep(2)
+	sleep(1)
 	cell_explosion(T, 60, 200, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, cause_data)
 
 /obj/item/mortar_shell/incendiary
@@ -59,7 +59,7 @@
 	playsound(T, 'sound/weapons/gun_flamethrower2.ogg', 35, 1, 4)
 
 /obj/item/mortar_shell/shaped
-	name = "\improper 80mm incendiary mortar shell"
+	name = "\improper 80mm incendiary shaped blast mortar shell"
 	desc = "An 80mm mortar shell, loaded with a Shaped napalm charge. Perfect for clearing large areas and trenches."
 	icon_state = "mortar_ammo_shaped"
 	var/radius = 7
@@ -108,7 +108,7 @@
 	var/no_damage = FALSE
 
 /obj/item/mortar_shell/flash/detonate(turf/T)
-	explosion(T, 0, 1, 1, 1, explosion_cause_data = cause_data)
+	explosion(T, 0, 0, 0.1, 1, explosion_cause_data = cause_data)
 
 	for(var/obj/structure/closet/L in hear(14, T))
 		SEND_SIGNAL(L, COMSIG_CLOSET_FLASHBANGED, src)
@@ -248,6 +248,8 @@
 	explosion(T, 0, 0.05, 0.1, 2, explosion_cause_data = cause_data)
 
 /obj/item/mortar_shell/airburst/detonate(turf/T)
+	playsound(T, 'sound/effects/spike_spray.ogg', 50, 1, 4)
+	sleep(5)
 	start_cluster(T)
 
 //---Gas Shells---\\
@@ -257,13 +259,23 @@
 	desc = "If you're seeing this something has gone wrong"
 	icon_state = "mortar_ammo_gas"
 
+/obj/item/mortar_shell/chlorine
+	name = "\improper 80mm chlorine gas mortar shell"
+	desc = "An 80mm mortar shell, loaded with a chlorine gas canister."
+	icon_state = "mortar_ammo_gas"
+
+/obj/item/mortar_shell/chlorine/detonate(turf/T)
+	explosion(T, 0, 0, 0.05, 7, explosion_cause_data = cause_data)
+	sleep(1)
+	new /obj/item/explosive/grenade/chlorine_gas/primed(T)
+
 /obj/item/mortar_shell/smoke
 	name = "\improper 80mm smoke mortar shell"
 	desc = "An 80mm mortar shell, loaded with a smoke charge."
 	icon_state = "mortar_ammo_smk"
 
 /obj/item/mortar_shell/smoke/detonate(turf/T)
-	explosion(T, 0, 0, 0.1, 7, explosion_cause_data = cause_data)
+	explosion(T, 0, 0, 0.05, 7, explosion_cause_data = cause_data)
 	new /obj/item/explosive/grenade/smokebomb/primed(T)
 
 /obj/item/mortar_shell/cn20
@@ -272,7 +284,7 @@
 	icon_state = "mortar_ammo_cn20"
 
 /obj/item/mortar_shell/cn20/detonate(turf/T)
-	explosion(T, 0, 0, 0.1, 7, explosion_cause_data = cause_data)
+	explosion(T, 0, 0, 0.05, 7, explosion_cause_data = cause_data)
 	new /obj/item/explosive/grenade/nerve_gas/primed(T)
 
 
@@ -282,7 +294,7 @@
 	icon_state = "mortar_ammo_must"
 
 /obj/item/mortar_shell/mustard/detonate(turf/T)
-	explosion(T, 0, 0, 0.1, 7, explosion_cause_data = cause_data)
+	explosion(T, 0, 0, 0.05, 7, explosion_cause_data = cause_data)
 	new /obj/item/explosive/grenade/mustard_gas/primed(T)
 
 
