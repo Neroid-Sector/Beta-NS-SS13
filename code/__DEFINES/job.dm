@@ -209,6 +209,23 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 
 #define JOB_WY_GOON_LIST list(JOB_WY_GOON, JOB_WY_GOON_LEAD)
 
+//-------- WY blackops --------//
+
+//Ronin Security
+#define JOB_RONIN_RFN "Ronin Security Rifleman"
+#define JOB_RONIN_MEDIC "Ronin Security Surgeon"
+#define JOB_RONIN_COMTECH "Ronin Security Assault Technician"
+#define JOB_RONIN_BREACHER "Ronin Security Breacher"
+#define JOB_RONIN_HEAVY "Ronin Security Heavy Rifleman"
+#define JOB_RONIN_GUNNER "Ronin Security Gunner"
+#define JOB_RONIN_LEADER "Ronin Security Team Leader"
+#define JOB_RONIN_SYNTH "Ronin Security Suport Synthetic"
+#define JOB_RONIN_ADJUNCT "Ronin Security Corporate Adjunct"
+
+//Internal Affairs
+#define JOB_IAIT_OPR "Internal Affairs Intervention Team Operator"
+#define JOB_IAIT_TL "Internal Affairs Intervention Team leader"
+
 //---- Contractors ----//
 #define JOB_CONTRACTOR "VAIPO Mercenary"
 #define JOB_CONTRACTOR_ST "VAIPO Mercenary"

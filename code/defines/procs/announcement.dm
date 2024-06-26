@@ -126,7 +126,7 @@
 	for(var/mob/T in targets)
 		if(isobserver(T))
 			continue
-		if(!ishuman(T) || isyautja(T) || !is_mainship_level(T.z))
+		if(!ishuman(T) || isyautja(T) || is_ground_level(T.z)) //changed to make it so instead of removing people that are not on the mainship, it instead removes form the list people on the ground. Circumvents the issue of event map not being the mainship Zlevel.
 			targets.Remove(T)
 
 	if(!isnull(signature))
