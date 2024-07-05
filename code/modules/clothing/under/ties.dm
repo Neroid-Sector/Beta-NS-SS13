@@ -924,7 +924,7 @@
 
 /obj/item/clothing/accessory/flak
 	name = "M67 flak vest"
-	desc = "An older model of flak jacket worn by combat support personnel such as dropship crew, or occasionally by smartgunners. Much comfier than it's M70 successor, can be worn under most combat armor, however ballistic protection leaves much to be desired..."
+	desc = "An older model of flak jacket worn by combat support personnel such as dropship crew, and smartgunners. Much comfier than it's M70 successor, can be worn under most combat armor, however ballistic protection leaves much to be desired..."
 	icon_state = "flak"
 	item_state = "flak"
 	var/tucked_in = FALSE
