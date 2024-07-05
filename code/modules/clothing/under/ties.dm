@@ -381,6 +381,16 @@
 	desc = "A fire-resistant shoulder patch, worn by the men and women of the 173rd Airborne Reconnaissance Platoon."
 	icon_state = "upppatch"
 
+/obj/item/clothing/accessory/patch/uppvdv
+	name = "UPP Airborne Reconnaissance patch"
+	desc = "A fire-resistant shoulder patch, worn by the men and women of the 173rd Airborne Reconnaissance Platoon."
+	icon_state = "vdvpatch"
+
+/obj/item/clothing/accessory/patch/uppnaval
+	name = "UPP Airborne Reconnaissance patch"
+	desc = "A fire-resistant shoulder patch, worn by the men and women of the 173rd Airborne Reconnaissance Platoon."
+	icon_state = "navalpatch"
+
 /obj/item/clothing/accessory/patch/cmb
 	name = "CMB QRF patch"
 	desc = "A fire-resistant shoulder patch, worn by colonial QRF members."
@@ -918,6 +928,9 @@
 	icon_state = "flak"
 	item_state = "flak"
 	var/tucked_in = FALSE
+	armor_melee = CLOTHING_ARMOR_MEDIUM
+	armor_bullet = CLOTHING_ARMOR_LOW
+	armor_bomb = CLOTHING_ARMOR_MEDIUMHIGH
 
 /obj/item/clothing/accessory/flak/get_examine_text(mob/user)
 	. = ..()
