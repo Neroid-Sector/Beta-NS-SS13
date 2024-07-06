@@ -304,6 +304,8 @@
 		/obj/item/clothing/suit/storage/militia/partial,
 		/obj/item/clothing/suit/armor/bulletproof,
 		/obj/item/clothing/suit/armor/vest,
+		/obj/item/clothing/suit/storage/marine/clf/hunter,
+		/obj/item/clothing/suit/storage/marine/clf/riot,
 		/obj/item/clothing/suit/storage/marine/faction/UPP/support,
 		)
 	new_human.equip_to_slot_or_del(new suitpath, WEAR_JACKET)
