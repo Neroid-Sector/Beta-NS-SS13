@@ -236,65 +236,73 @@
 //=========================//Corporate\\================================\\
 //=======================================================================\\
 
-/obj/item/clothing/suit/storage/jacket/marine/service/corporate/tan_vest
+/obj/item/clothing/suit/storage/jacket/marine/corporate
+	name = "Tan vest"
 	has_buttons = FALSE
 	icon_state = "vest_tan"
 	item_state = "vest_tan"
 	flags_atom = NO_SNOW_TYPE
 
-/obj/item/clothing/suit/storage/jacket/marine/service/corporate/grey_vest
+/obj/item/clothing/suit/storage/jacket/marine/corporate/tan_vest
+	name = "Tan vest"
+	has_buttons = FALSE
+	icon_state = "vest_tan"
+	item_state = "vest_tan"
+	flags_atom = NO_SNOW_TYPE
+
+/obj/item/clothing/suit/storage/jacket/marine/corporate/grey_vest
+	name = "Grey Vest"
 	has_buttons = FALSE
 	icon_state = "vest_grey"
 	item_state = "vest_grey"
 	flags_atom = NO_SNOW_TYPE
 
-/obj/item/clothing/suit/storage/jacket/marine/service/corporate/ivy
-	has_buttons = TRUE
+/obj/item/clothing/suit/storage/jacket/marine/corporate/ivy
+	name = "Ivy Jacket"
 	icon_state = "corporate_ivy"
 	flags_atom = NO_SNOW_TYPE
-	initial_icon_state = "corporate_ivy"
 
-/obj/item/clothing/suit/storage/jacket/marine/service/corporate/formal
-	has_buttons = TRUE
-	icon_state = "corporate_ivy"
+/obj/item/clothing/suit/storage/jacket/marine/corporate/formal
+	name = "Formal Jacket"
+	icon_state = "corporate_formal"
+	item_state = "corporate_formal"
 	flags_atom = NO_SNOW_TYPE
-	initial_icon_state = "corporate_ivy"
 
-/obj/item/clothing/suit/storage/jacket/marine/service/corporate/black
-	has_buttons = TRUE
-	icon_state = "corporate_ivy"
+/obj/item/clothing/suit/storage/jacket/marine/corporate/black
+	name = "Black Jacket"
+	icon_state = "corporate_black"
+	item_state = "corporate_black"
 	flags_atom = NO_SNOW_TYPE
-	initial_icon_state = "corporate_ivy"
 
-/obj/item/clothing/suit/storage/jacket/marine/service/corporate/brown
-	has_buttons = TRUE
-	icon_state = "corporate_ivy"
+/obj/item/clothing/suit/storage/jacket/marine/corporate/brown
+	name = "Brown Jacket"
+	icon_state = "corporate_brown"
+	item_state = "corporate_brown"
 	flags_atom = NO_SNOW_TYPE
-	initial_icon_state = "corporate_ivy"
 
-/obj/item/clothing/suit/storage/jacket/marine/service/corporate/blue
-	has_buttons = TRUE
-	icon_state = "corporate_ivy"
+/obj/item/clothing/suit/storage/jacket/marine/corporate/blue
+	name = "Blue Jacket"
+	icon_state = "corporate_blue"
+	item_state = "corporate_blue"
 	flags_atom = NO_SNOW_TYPE
-	initial_icon_state = "corporate_ivy"
 
-/obj/item/clothing/suit/storage/jacket/marine/service/corporate/kahki
-	has_buttons = TRUE
-	icon_state = "corporate_ivy"
+/obj/item/clothing/suit/storage/jacket/marine/corporate/kahki
+	name = "Kahki Jacket"
+	icon_state = "jacket_kahki"
+	item_state = "jacket_kahki"
 	flags_atom = NO_SNOW_TYPE
-	initial_icon_state = "corporate_ivy"
 
-/obj/item/clothing/suit/storage/jacket/marine/service/corporate/red
-	has_buttons = TRUE
-	icon_state = "corporate_ivy"
+/obj/item/clothing/suit/storage/jacket/marine/corporate/red
+	name = "Red Jacket"
+	icon_state = "jacket_red"
+	item_state = "jacket_red"
 	flags_atom = NO_SNOW_TYPE
-	initial_icon_state = "corporate_ivy"
 
-/obj/item/clothing/suit/storage/jacket/marine/service/corporate/grey
-	has_buttons = TRUE
-	icon_state = "corporate_ivy"
+/obj/item/clothing/suit/storage/jacket/marine/corporate/grey
+	name = "Grey Jacket"
+	icon_state = "corporate_grey"
+	item_state = "corporate_grey"
 	flags_atom = NO_SNOW_TYPE
-	initial_icon_state = "corporate_ivy"
 
 //=========================//PROVOST\\================================\\
 //=======================================================================\\

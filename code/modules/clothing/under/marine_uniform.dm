@@ -898,6 +898,12 @@
 	icon_state = "liaison_formal"
 	worn_state = "liaison_formal"
 
+/obj/item/clothing/under/liaison_suit/formal_shirt
+	name = "liaison's formal attire"
+	desc = "A formal, white suit. Looks like something you'd wear to a funeral, a Weyland-Yutani corporate dinner, or both. Stiff as a board, but makes you feel like rolling out of a Rolls-Royce."
+	icon_state = "corporate_formal"
+	worn_state = "corporate_formal"
+
 /obj/item/clothing/under/liaison_suit/suspenders
 	name = "liaison's attire"
 	desc = "A collared shirt, complimented by a pair of suspenders. Worn by Weyland-Yutani employees who ask the tough questions. Smells faintly of cigars and bad acting."
@@ -909,6 +915,36 @@
 	desc = "A stiff but casual blue blazer. Similar can be found in any Weyland-Yutani office. Only the finest wear for the galaxy's most cunning."
 	icon_state = "liaison_blue_blazer"
 	worn_state = "liaison_blue_blazer"
+
+/obj/item/clothing/under/liaison_suit/ivy
+	name = "liaison's Ivy Shirt"
+	desc = "A stiff but casual collared shirt,. Similar can be found in any Weyland-Yutani office. Only the finest wear for the galaxy's most cunning."
+	icon_state = "corporate_ivy"
+	worn_state = "corporate_ivy"
+
+/obj/item/clothing/under/liaison_suit/brown
+	name = "liaison's Brown shirt"
+	desc = "A stiff but casual collared shirt,. Similar can be found in any Weyland-Yutani office. Only the finest wear for the galaxy's most cunning."
+	icon_state = "corporate_brown"
+	worn_state = "corporate_brown"
+
+/obj/item/clothing/under/liaison_suit/blue
+	name = "liaison's Blue shirt"
+	desc = "A stiff but casual collared shirt,. Similar can be found in any Weyland-Yutani office. Only the finest wear for the galaxy's most cunning."
+	icon_state =  "corporate_blue"
+	worn_state =  "corporate_blue"
+
+/obj/item/clothing/under/liaison_suit/black
+	name = "liaison's blue blazer"
+	desc = "A stiff but casual collared shirt,. Similar can be found in any Weyland-Yutani office. Only the finest wear for the galaxy's most cunning."
+	icon_state = "corporate_black"
+	worn_state = "corporate_black"
+
+/obj/item/clothing/under/liaison_suit/field
+	name = "liaison's field attire"
+	desc = "A classy fit for wearing in the field."
+	icon_state = "corporate_field"
+	worn_state = "corporate_field"
 
 /obj/item/clothing/under/marine/reporter
 	name = "combat correspondent uniform"
