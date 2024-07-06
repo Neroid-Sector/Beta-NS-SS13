@@ -803,6 +803,20 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	desc = "An experimental brain-bucket. A dust ruffle hangs from back. Moderately better at deflecting blunt objects at the cost of humiliation, can also hold a second visor optic. But who will be laughing at the memorial? Not you, you'll be busy getting medals for your intel work."
 	specialty = "XM12 pattern intel"
 
+/obj/item/clothing/head/helmet/marine/clf
+	icon_state = "clf_m10"
+	item_state = "clf_m10"
+	flags_atom = NO_SNOW_TYPE
+	desc = "An m10 helmet stolen from the corpse of a fallen Marine, now put to use against the UA by an insurgent. It's had most of the electronics and tracking equipment ripped out in favor of some bespoke augmentaions."
+	built_in_visors = list(new /obj/item/device/helmet_visor/welding_visor, new /obj/item/device/helmet_visor/night_vision)
+
+/obj/item/clothing/head/helmet/marine/clf/heavy
+	icon_state = "clf_m10heavy"
+	item_state = "clf_m10heavy"
+	flags_inv_hide = HIDEMASK|HIDEALLHAIR|HIDEEARS|HIDETOPHAIR
+	flags_atom = NO_SNOW_TYPE
+	desc = "An m10 helmet stolen from the corpse of a fallen Marine, now put to use against the UA by an insurgent. It's had most of the electronics and tracking equipment ripped out in favor of some bespoke augmentaions."
+
 /obj/item/clothing/head/helmet/marine/specialist
 	name = "\improper B18 helmet"
 	desc = "The B18 Helmet that goes along with the B18 Defensive Armor. It's heavy, reinforced, and protects more of the face."

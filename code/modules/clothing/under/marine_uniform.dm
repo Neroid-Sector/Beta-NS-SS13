@@ -9,13 +9,13 @@
 	icon_state = "marine_jumpsuit"
 	worn_state = "marine_jumpsuit"
 	armor_melee = CLOTHING_ARMOR_LOW
-	armor_bullet = CLOTHING_ARMOR_LOW
+	armor_bullet = CLOTHING_ARMOR_NONE
 	armor_laser = CLOTHING_ARMOR_NONE
 	armor_energy = CLOTHING_ARMOR_NONE
 	armor_bomb = CLOTHING_ARMOR_NONE
-	armor_bio = CLOTHING_ARMOR_NONE
+	armor_bio = CLOTHING_ARMOR_VERYLOW
 	armor_rad = CLOTHING_ARMOR_NONE
-	armor_internaldamage = CLOTHING_ARMOR_LOW
+	armor_internaldamage = CLOTHING_ARMOR_VERYLOW
 	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
 	///Makes it so that we can see the right name in the vendor.
 	var/specialty = "USCM"
@@ -750,6 +750,8 @@
 	has_sensor = UNIFORM_HAS_SENSORS
 	sensor_faction = FACTION_COLONIST
 
+//---INSURGENT UNIS---\\\
+
 /obj/item/clothing/under/colonist/clf
 	name = "\improper Improvised Insurgent uniform"
 	desc = "A stylish grey-green jumpsuit - standard issue for colonists. This version appears to have the colony logo ripped off, and replaced with the flag of the insurgents."
@@ -757,6 +759,28 @@
 	worn_state = "clf_uniform"
 	sensor_faction = FACTION_CLF
 
+/obj/item/clothing/under/colonist/clf/fighter
+	name = "\improper Improvised Insurgent uniform"
+	desc = "A stylish brown colonist uniform. This version appears to have the colony logo ripped off, and replaced with the flag of the insurgents."
+	icon_state = "clf_fighter"
+	worn_state = "clf_fighter"
+	sensor_faction = FACTION_CLF
+
+/obj/item/clothing/under/colonist/clf/medic
+	name = "\improper Improvised Insurgent Medic uniform"
+	desc = "A medical colonist uniform. This version appears to have the colony logo ripped off, and replaced with the flag of the insurgents."
+	icon_state = "clf_medic"
+	worn_state = "clf_medic"
+	sensor_faction = FACTION_CLF
+
+/obj/item/clothing/under/colonist/clf/leader
+	name = "\improper Improvised Insurgent Leader uniform"
+	desc = "A stylish colonist uniform that might have once belonged to a workboss. This version appears to have the colony logo ripped off, and replaced with the flag of the insurgents."
+	icon_state = "clf_leader"
+	worn_state = "clf_leader"
+	sensor_faction = FACTION_CLF
+
+//***********************************/
 /obj/item/clothing/under/colonist/ua_civvies
 	name = "\improper UA gray utility uniform"
 	desc = "A stylish gray jumpsuit - standard issue for UA civilian support personnel."

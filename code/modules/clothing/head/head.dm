@@ -730,20 +730,43 @@
 	icon_state = "bucket"
 
 /obj/item/clothing/head/militia/ranger
-	name = "MLU Ranger helmet"
-	desc = "A sturdy helmet made from the reclaimed plating of a longstreet tank. The front features a small plate to protect the wearer's face from shrapnel or debris in combat."
+	name = "Insurgent Ranger helmet"
+	desc = "A sturdy helmet made from a mining helmet and reinforced with the reclaimed plating of an armored vehicle. The front features a small plate to protect the wearer's face from shrapnel or debris in combat."
 	icon_state = "mlu_ranger"
 	flags_armor_protection = BODY_FLAG_HEAD|BODY_FLAG_FACE
 	armor_bullet = CLOTHING_ARMOR_MEDIUMLOW
 	armor_bomb = CLOTHING_ARMOR_VERYHIGH
 
 /obj/item/clothing/head/militia/ranger/noface
-	name = "MLU Ranger helmet"
-	desc = "A sturdy helmet made from the reclaimed plating of a longstreet tank. The front features a small plate to protect the wearer's face from shrapnel or debris in combat."
+	name = "Insurgent Ranger helmet"
+	desc = "A sturdy helmet made from a mining helmet and reinforced with the reclaimed plating of an armored vehicle."
 	icon_state = "mlu_ranger2"
 	flags_armor_protection = BODY_FLAG_HEAD
 	armor_bullet = CLOTHING_ARMOR_MEDIUMLOW
 	armor_bomb = CLOTHING_ARMOR_VERYHIGH
+
+/obj/item/clothing/head/militia/ranger/lamp
+	name = "Insurgent Ranger helmet"
+	desc = "A sturdy helmet made from a mining helmet and reinforced with thereclaimed plating of an armored vehicle."
+	icon_state = "mlu_ranger3"
+	flags_armor_protection = BODY_FLAG_HEAD
+	armor_bullet = CLOTHING_ARMOR_MEDIUMLOW
+	armor_bomb = CLOTHING_ARMOR_VERYHIGH
+
+/obj/item/clothing/head/militia/riot
+	name = "Insurgent helmet"
+	desc = "A sturdy UA Riot officer's helmet stolen by an insurgent. Its paint has been stripped and replaced with a dull brown and grey to better blend in."
+	icon_state = "clf_riot"
+	flags_armor_protection = BODY_FLAG_HEAD
+	armor_bullet = CLOTHING_ARMOR_MEDIUMLOW
+
+/obj/item/clothing/head/militia/mining
+	name = "Insurgent Work helmet"
+	desc = "A sturdy worker's helmet repurposed by an insurgent. Its bright safety yellow paint has been stripped and replaced with a dull brown and grey to better blend in."
+	icon_state = "clf_miner"
+	flags_armor_protection = BODY_FLAG_HEAD
+	armor_bullet = CLOTHING_ARMOR_MEDIUMLOW
+
 
 /obj/item/clothing/head/general
 	name = "\improper armored General cap"

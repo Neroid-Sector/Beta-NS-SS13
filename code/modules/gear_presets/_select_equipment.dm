@@ -304,6 +304,7 @@
 		/obj/item/clothing/suit/storage/militia/partial,
 		/obj/item/clothing/suit/armor/bulletproof,
 		/obj/item/clothing/suit/armor/vest,
+		/obj/item/clothing/suit/storage/marine/faction/UPP/support,
 		)
 	new_human.equip_to_slot_or_del(new suitpath, WEAR_JACKET)
 
@@ -313,9 +314,7 @@
 	var/helmetpath = pick(
 		/obj/item/clothing/head/militia,
 		/obj/item/clothing/head/militia/bucket,
-		/obj/item/clothing/head/helmet,
 		/obj/item/clothing/head/helmet/skullcap,
-		/obj/item/clothing/head/helmet/swat,
 		/obj/item/clothing/head/hardhat,
 		/obj/item/clothing/head/welding,
 		/obj/item/clothing/head/bandana,
@@ -324,6 +323,9 @@
 		/obj/item/clothing/head/headband/rambo,
 		/obj/item/clothing/head/militia/ranger,
 		/obj/item/clothing/head/militia/ranger/noface,
+		/obj/item/clothing/head/militia/ranger/lamp,
+		/obj/item/clothing/head/militia/mining,
+		/obj/item/clothing/head/militia/riot,
 		)
 	new_human.equip_to_slot_or_del(new helmetpath, WEAR_HEAD)
 

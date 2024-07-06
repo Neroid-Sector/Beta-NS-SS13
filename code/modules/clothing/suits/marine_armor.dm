@@ -359,12 +359,14 @@
 /obj/item/clothing/suit/storage/marine/MP/CO/jacket
 	name = "\improper M3 pattern commanding officer armored coat"
 	desc = "A robust, well-polished suit of armor for the Commanding Officer. Custom-made to fit its owner with special straps to operate a smartgun. Show those Marines who's really in charge. This one has a coat over it for added warmth."
+	w_class = 2
 	icon_state = "bridge_coat_armored"
 	item_state = "bridge_coat_armored"
 	item_state_slots = list(WEAR_JACKET = "bridge_coat_armored")
 	valid_accessory_slots = list(ACCESSORY_SLOT_MEDAL, ACCESSORY_SLOT_RANK)
 	armor_bullet = CLOTHING_ARMOR_HIGHPLUS
 	armor_internaldamage = CLOTHING_ARMOR_HIGHPLUS
+
 /obj/item/clothing/suit/storage/marine/MP/CO/bomber
 	name = "\improper M3 pattern commanding officer armored jacket"
 	desc = "A robust, well-polished suit of armor for the Commanding Officer. Custom-made to fit its owner with special straps to operate a smartgun. Show those Marines who's really in charge. This one has a jacket over it for added warmth."
@@ -372,6 +374,7 @@
 	item_state = "co_bomber_armored"
 	item_state_slots = list(WEAR_JACKET = "co_bomber_armored")
 	valid_accessory_slots = list(ACCESSORY_SLOT_MEDAL, ACCESSORY_SLOT_RANK)
+
 /obj/item/clothing/suit/storage/marine/smartgunner
 	name = "\improper M56 combat harness"
 	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories."
@@ -1315,7 +1318,7 @@
 	flags_inventory = BLOCKSHARPOBJ|BLOCK_KNOCKDOWN
 	flags_armor_protection = BODY_FLAG_ALL_BUT_HEAD
 	armor_melee = CLOTHING_ARMOR_VERYHIGHPLUS
-	armor_bullet = CLOTHING_ARMOR_VERYHIGHPLUS
+	armor_bullet = CLOTHING_ARMOR_ULTRAHIGHPLUS
 	armor_bomb = CLOTHING_ARMOR_VERYHIGHPLUS
 	armor_bio = CLOTHING_ARMOR_MEDIUMLOW
 	armor_rad = CLOTHING_ARMOR_MEDIUMHIGH
@@ -1407,7 +1410,7 @@
 
 //this one is for CLF
 /obj/item/clothing/suit/storage/militia
-	name = "colonial militia hauberk"
+	name = "Insurgent militia hauberk"
 	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops."
 	icon = 'icons/obj/items/clothing/cm_suits.dmi'
 	icon_state = "rebel_armor"
@@ -1457,8 +1460,8 @@
 	pockets.max_storage_space = 8
 
 /obj/item/clothing/suit/storage/militia/vest
-	name = "colonial militia vest"
-	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This extremely light variant protects only the chest and abdomen."
+	name = "Insurgent militia vest"
+	desc = "The hauberk of a insurgent militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This extremely light variant protects only the chest and abdomen."
 	icon_state = "clf_2"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN
 	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN
@@ -1466,8 +1469,8 @@
 	movement_compensation = SLOWDOWN_ARMOR_MEDIUM
 
 /obj/item/clothing/suit/storage/militia/brace
-	name = "colonial militia brace"
-	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This extremely light variant has some of the chest pieces removed."
+	name = "Insurgent militia brace"
+	desc = "The hauberk of a insurgent militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This extremely light variant has some of the chest pieces removed."
 	icon_state = "clf_3"
 	flags_armor_protection = BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS
 	flags_cold_protection = BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS
@@ -1475,20 +1478,20 @@
 	movement_compensation = SLOWDOWN_ARMOR_MEDIUM
 
 /obj/item/clothing/suit/storage/militia/partial
-	name = "colonial militia partial hauberk"
-	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This even lighter variant has some of the arm pieces removed."
+	name = "Insurgent militia partial hauberk"
+	desc = "The hauberk of a insurgent militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This even lighter variant has some of the arm pieces removed."
 	icon_state = "clf_4"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_LEGS
 	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS
 	slowdown = 0.2
 
 /obj/item/clothing/suit/storage/militia/smartgun
-	name = "colonial militia harness"
-	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This one has straps interweaved with the plates, that allow the user to fire a captured smartgun, if a bit uncomfortably."
+	name = "Insurgent militia harness"
+	desc = "The hauberk of a insurgent militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This one has straps interweaved with the plates, that allow the user to fire a captured smartgun, if a bit uncomfortably."
 	flags_inventory = BLOCKSHARPOBJ|SMARTGUN_HARNESS
 
 /obj/item/clothing/suit/storage/militia/ranger
-	name = "colonial militia ranger armor"
+	name = "Insurgent ranger armor"
 	desc = "Constructed from salvaged longstreet tank plating. This armor covers the wearer and provides impressive protection from anything but anti-tank weapons. The primary downside is due to crude construction, and the large size of the plates it is incredibly cumbersome to move in."
 	icon = 'icons/obj/items/clothing/cm_suits.dmi'
 	icon_state = "mlu_ranger"
@@ -1521,6 +1524,38 @@
 	armor_rad = CLOTHING_ARMOR_VERYLOW
 	armor_internaldamage = CLOTHING_ARMOR_HIGH
 	storage_slots = 2
+
+/obj/item/clothing/suit/storage/marine/clf/riot
+	name = "\improper UA-M1 Repainted body armor"
+	desc = "An Repaired Set of UA-M1 body armor that is employed by UA security, riot control and union-busting teams. This Set of Armor Has Been Repainted in Dark Brown Colours and has Handmade Kneepads and Armpads added to it, Is Used by the insurgents since the previous owners aren't using them for the defense of the UA anymore."
+	icon_state = "clf_ua"
+	storage_slots = 2
+
+/obj/item/clothing/suit/storage/marine/ghillie/clf
+	name = "\improper Camouflaged Hunting Gear Rig"
+	desc = "An Camouflaged Hunter Gear Rig that has an Armor Plate on the Body while it sports handmade kneepads, is the basic gear used by the more elite Insurgent Freedom Fighters. This Armor Features civilian grade thermal dampening."
+	icon_state = "clf_hunter"
+	storage_slots = 3
+
+/obj/item/clothing/suit/storage/marine/clf/hunter
+	name = "\improper Camouflaged Hunting Gear Rig"
+	desc = "A Civilian style Hunting Rig that has an venlar breast plate, and handmade kneepads, is among the basic gear used by most Insurgent Freedom Fighters."
+	icon_state = "clf_hunter"
+	storage_slots = 3
+
+/obj/item/clothing/suit/storage/marine/clf/upplight
+	name = "\improper UA-M1 Repainted body armor"
+	desc = "A set of UPP combat Armor modified by insurgents to be more lightweight and mobile."
+	icon_state = "clf_combat"
+	storage_slots = 3
+
+/obj/item/clothing/suit/storage/marine/clf/uppheavy
+	name = "\improper UA-M1 Repainted body armor"
+	desc = "An extremely heavy-duty set of body armor made out of Handcrafted Armor Plates, Repurposed Surplus Ballistic Vests and Several Armors Combined in one, Heavy and Highly Resistant, Made by the Insurgents For Their Autogunners and to Show that they are Prepared for Something Bigger than a Guerrilla War."
+	icon_state = "clf_heavy"
+	storage_slots = 2
+
+//*************************/
 /obj/item/clothing/suit/storage/CMB
 	name = "\improper CMB jacket"
 	desc = "A black jacket worn by Colonial Marshals. The back is enscribed with the powerful letters of 'MARSHAL' representing justice, authority, and protection in the outer rim. The laws of the Earth stretch beyond the Sol."

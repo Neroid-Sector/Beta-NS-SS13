@@ -401,11 +401,11 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_CLF_COMMISSAR "Insurgent Political Commissar"
 #define JOB_CLF_SYNTH "Insurgent Multipurpose Synthetic"
 
-#define JOB_CLF_E "Insurgent Storm Trooper"
-#define JOB_CLF_ENGI_E "Insurgent Storm Trooper Technician"
-#define JOB_CLF_MEDIC_E "Insurgent Storm trooper Medic"
-#define JOB_CLF_SPECIALIST_E "Insurgent Storm TrooperSpecialist"
-#define JOB_CLF_LEADER_E "Insurgent Storm Trooper Cell Leader"
+#define JOB_CLF_E "Insurgent Commando"
+#define JOB_CLF_ENGI_E "Insurgent Commando Technician"
+#define JOB_CLF_MEDIC_E "Insurgent Commando Medic"
+#define JOB_CLF_SPECIALIST_E "Insurgent Commando Specialist"
+#define JOB_CLF_LEADER_E "Insurgent Commando Leader"
 
 #define CLF_JOB_LIST list(JOB_CLF, JOB_CLF_ENGI, JOB_CLF_MEDIC, JOB_CLF_SPECIALIST, JOB_CLF_LEADER, JOB_CLF_COMMANDER, JOB_CLF_COMMISSAR, JOB_CLF_SYNTH, JOB_CLF_E, JOB_CLF_ENGI_E, JOB_CLF_MEDIC_E, JOB_CLF_SPECIALIST_E, JOB_CLF_LEADER_E)
 

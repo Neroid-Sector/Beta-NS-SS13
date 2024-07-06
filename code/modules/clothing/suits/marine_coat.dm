@@ -233,6 +233,69 @@
 	has_buttons = FALSE
 
 
+//=========================//Corporate\\================================\\
+//=======================================================================\\
+
+/obj/item/clothing/suit/storage/jacket/marine/service/corporate/tan_vest
+	has_buttons = FALSE
+	icon_state = "vest_tan"
+	item_state = "vest_tan"
+	flags_atom = NO_SNOW_TYPE
+
+/obj/item/clothing/suit/storage/jacket/marine/service/corporate/grey_vest
+	has_buttons = FALSE
+	icon_state = "vest_grey"
+	item_state = "vest_grey"
+	flags_atom = NO_SNOW_TYPE
+
+/obj/item/clothing/suit/storage/jacket/marine/service/corporate/ivy
+	has_buttons = TRUE
+	icon_state = "corporate_ivy"
+	flags_atom = NO_SNOW_TYPE
+	initial_icon_state = "corporate_ivy"
+
+/obj/item/clothing/suit/storage/jacket/marine/service/corporate/formal
+	has_buttons = TRUE
+	icon_state = "corporate_ivy"
+	flags_atom = NO_SNOW_TYPE
+	initial_icon_state = "corporate_ivy"
+
+/obj/item/clothing/suit/storage/jacket/marine/service/corporate/black
+	has_buttons = TRUE
+	icon_state = "corporate_ivy"
+	flags_atom = NO_SNOW_TYPE
+	initial_icon_state = "corporate_ivy"
+
+/obj/item/clothing/suit/storage/jacket/marine/service/corporate/brown
+	has_buttons = TRUE
+	icon_state = "corporate_ivy"
+	flags_atom = NO_SNOW_TYPE
+	initial_icon_state = "corporate_ivy"
+
+/obj/item/clothing/suit/storage/jacket/marine/service/corporate/blue
+	has_buttons = TRUE
+	icon_state = "corporate_ivy"
+	flags_atom = NO_SNOW_TYPE
+	initial_icon_state = "corporate_ivy"
+
+/obj/item/clothing/suit/storage/jacket/marine/service/corporate/kahki
+	has_buttons = TRUE
+	icon_state = "corporate_ivy"
+	flags_atom = NO_SNOW_TYPE
+	initial_icon_state = "corporate_ivy"
+
+/obj/item/clothing/suit/storage/jacket/marine/service/corporate/red
+	has_buttons = TRUE
+	icon_state = "corporate_ivy"
+	flags_atom = NO_SNOW_TYPE
+	initial_icon_state = "corporate_ivy"
+
+/obj/item/clothing/suit/storage/jacket/marine/service/corporate/grey
+	has_buttons = TRUE
+	icon_state = "corporate_ivy"
+	flags_atom = NO_SNOW_TYPE
+	initial_icon_state = "corporate_ivy"
+
 //=========================//PROVOST\\================================\\
 //=======================================================================\\
 
