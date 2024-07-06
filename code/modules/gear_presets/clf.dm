@@ -736,7 +736,7 @@
 	//clothes
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/CLF/command, WEAR_L_EAR)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/colonist/clf/fighter, WEAR_BODY)
-	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/ghillie/clf(new_human), WEAR_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/ghillie/clf, WEAR_JACKET)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran, WEAR_HANDS)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/mercenary/miner, WEAR_HEAD)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/pmc/knife, WEAR_FEET)
