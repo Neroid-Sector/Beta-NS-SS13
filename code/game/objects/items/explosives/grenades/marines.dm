@@ -423,6 +423,8 @@
 	det_time = 6
 	item_state = "mortar"
 	icon_state = "mortar"
+	indestructible = TRUE
+	anchored = TRUE
 
 /obj/item/explosive/grenade/smokebomb/primed/Initialize()
 	. = ..()
@@ -467,6 +469,8 @@
 	det_time = 6
 	item_state = "mortar"
 	icon_state = "mortar"
+	indestructible = TRUE
+	anchored = TRUE
 
 /obj/item/explosive/grenade/phosphorus/primed/Initialize()
 	. = ..()
@@ -529,6 +533,8 @@
 	det_time = 6
 	item_state = "mortar"
 	icon_state = "mortar"
+	indestructible = TRUE
+	anchored = TRUE
 
 /obj/item/explosive/grenade/nerve_gas/primed/Initialize()
 	. = ..()
@@ -577,6 +583,8 @@
 	det_time = 6
 	item_state = "mortar"
 	icon_state = "mortar"
+	indestructible = TRUE
+	anchored = TRUE
 
 /obj/item/explosive/grenade/mustard_gas/primed/Initialize()
 	. = ..()
@@ -621,6 +629,8 @@
 	det_time = 6
 	item_state = "mortar"
 	icon_state = "mortar"
+	indestructible = TRUE
+	anchored = TRUE
 
 /obj/item/explosive/grenade/chlorine_gas/primed/Initialize()
 	. = ..()
