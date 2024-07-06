@@ -663,6 +663,7 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	var/list/total_visors = built_in_visors + inserted_visors
 
 	if(!length(total_visors))
+		to_chat(user, SPAN_WARNING("There are no visors to swap to."))
 		return FALSE
 
 	if(active_visor)
@@ -687,6 +688,7 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 
 	active_visor = null
 	recalculate_visors(user)
+	to_chat(user, SPAN_WARNING("There are no visors to swap to currently."))
 	return FALSE
 
 /datum/action/item_action/cycle_helmet_huds/New(Target, obj/item/holder)
@@ -807,7 +809,7 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	icon_state = "clf_m10"
 	item_state = "clf_m10"
 	flags_atom = NO_SNOW_TYPE
-	desc = "An m10 helmet stolen from the corpse of a fallen Marine, now put to use against the UA by an insurgent. It's had most of the electronics and tracking equipment ripped out in favor of some bespoke augmentaions."
+	desc = "An m10 helmet stolen from the corpse of a fallen Marine, now put to use against the UA by an insurgent. It's had most of the electronics and tracking equipment ripped out in favor of some bespoke augmentaions. Damage to the battery has rendered the Infared sight unreliable."
 	built_in_visors = list(new /obj/item/device/helmet_visor/welding_visor, new /obj/item/device/helmet_visor/night_vision)
 
 /obj/item/clothing/head/helmet/marine/clf/heavy
@@ -815,7 +817,7 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	item_state = "clf_m10heavy"
 	flags_inv_hide = HIDEMASK|HIDEALLHAIR|HIDEEARS|HIDETOPHAIR
 	flags_atom = NO_SNOW_TYPE
-	desc = "An m10 helmet stolen from the corpse of a fallen Marine, now put to use against the UA by an insurgent. It's had most of the electronics and tracking equipment ripped out in favor of some bespoke augmentaions."
+	desc = "An m10 helmet stolen from the corpse of a fallen Marine, now put to use against the UA by an insurgent. It's had most of the electronics and tracking equipment ripped out in favor of some bespoke augmentaions. Damage to the battery has rendered the Infared sight unreliable."
 
 /obj/item/clothing/head/helmet/marine/specialist
 	name = "\improper B18 helmet"
