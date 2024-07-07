@@ -1,6 +1,6 @@
 //********Concertina-Wire********/
 /obj/item/stack/concertina_wire
-	name = "Coil of concertina wire"
+	name = "Coil of concertina style razor wire"
 	desc = "A rolled up spool of razor wire"
 	icon = 'icons/obj/items/marine-items.dmi'
 	icon_state = "concertina_wire"
