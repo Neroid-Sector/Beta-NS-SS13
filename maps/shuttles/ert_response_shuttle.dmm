@@ -18,7 +18,7 @@
 	},
 /area/shuttle/ert)
 "d" = (
-/obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/lifeboat/blastdoor,
+/obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/blastdoor,
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin15"
 	},
@@ -277,7 +277,7 @@ r
 b
 b
 b
-v
+b
 "}
 (5,1,1) = {"
 W
