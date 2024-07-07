@@ -73,9 +73,10 @@
 	if(!istype(H))
 		return
 
+	to_chat(AM, SPAN_DANGER("The barbed wire slices into you!"))
 	H.apply_armoured_damage(damage, penetration = penetration, def_zone = pick(target_limbs))
 	H.apply_effect(3, SUPERSLOW)
-	playsound(loc, 'sound/handling/disk_pickup.ogg', 25)
+	playsound(loc, 'sound/effects/barbed_wire_movement.ogg', 25)
 	playsound(loc, 'sound/effects/rip1.ogg', 25)
 
 
@@ -182,9 +183,10 @@
 	if(!istype(H))
 		return
 
+	to_chat(AM, SPAN_DANGER("The barbed wire slices into you!"))
 	H.apply_armoured_damage(damage, penetration = penetration, def_zone = pick(target_limbs))
 	H.apply_effect(3, SUPERSLOW)
-	playsound(loc, 'sound/handling/disk_pickup.ogg', 25)
+	playsound(loc, 'sound/effects/barbed_wire_movement.ogg', 25)
 	playsound(loc, 'sound/effects/zippo_close.ogg', 25)
 	playsound(loc, 'sound/effects/rip1.ogg', 25)
 	create_shrapnel(loc, 50, dir, angle, , cause_data)
