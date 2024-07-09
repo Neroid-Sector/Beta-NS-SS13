@@ -405,11 +405,30 @@
 		qdel(src)
 
 
+/obj/item/atmine/upp
+	name = "m20 anti-vehicle mine"
+	desc = "An anti vehicle mine."
+	icon = 'icons/obj/items/weapons/grenade.dmi'
+	icon_state = "m20at"
+	w_class = SIZE_MEDIUM
+	deploy_atmine = /obj/item/explosive/atmine/upp
+
+/obj/item/atmine/clf
+	name = "m20 anti-vehicle mine"
+	desc = "An anti vehicle mine."
+	icon = 'icons/obj/items/weapons/grenade.dmi'
+	icon_state = "m20at"
+	w_class = SIZE_MEDIUM
+	deploy_atmine = /obj/item/explosive/atmine/clf
+
+
 /obj/item/explosive/atmine/upp
 	iff_signal = FACTION_UPP
+	defuse_atmine = /obj/item/atmine/upp
 
 /obj/item/explosive/atmine/clf
 	iff_signal = FACTION_CLF
+	defuse_atmine = /obj/item/atmine/clf
 
 /obj/item/explosive/atmine/no_iff
 	iff_signal = null

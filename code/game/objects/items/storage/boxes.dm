@@ -574,9 +574,25 @@
 	for(var/i in 1 to 5)
 		new /obj/item/atmine(src)
 
+/obj/item/storage/box/explosive_atmines/upp
+	name = "\improper M20 mine box"
+	desc = "A secure box holding five M20 anti-vehicle mines."
+	icon_state = "minebox"
+	w_class = SIZE_LARGE
+	max_storage_space = 20
+	can_hold = list(/obj/item/atmine/upp)
+
 /obj/item/storage/box/explosive_atmines/upp/fill_preset_inventory()
 	for(var/i in 1 to 5)
 		new /obj/item/atmine/upp(src)
+
+/obj/item/storage/box/explosive_atmines/clf
+	name = "\improper M20 mine box"
+	desc = "A secure box holding five M20 anti-vehicle mines."
+	icon_state = "minebox"
+	w_class = SIZE_LARGE
+	max_storage_space = 20
+	can_hold = list(/obj/item/atmine/clf)
 
 /obj/item/storage/box/explosive_atmines/clf/fill_preset_inventory()
 	for(var/i in 1 to 5)
