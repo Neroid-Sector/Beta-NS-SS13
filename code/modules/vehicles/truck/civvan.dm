@@ -107,6 +107,19 @@
 		"right" = list(-1, 0)
 	)
 
+/obj/vehicle/multitile/civvan/bank
+	name = "Commerical Armored Transport"
+	icon_state = "banktruck"
+	passengers_slots = 4
+	xenos_slots = 4
+	interior_map = /datum/map_template/interior/civvan
+	health = 1000
+
+	entrances = list(
+		"left" = list(2, 0),
+		"right" = list(-1, 0)
+	)
+
 /*
 ** PRESETS SPAWNERS
 */
