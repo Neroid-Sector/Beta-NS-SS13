@@ -107,6 +107,64 @@
 	desc = "This banner depicts Delta Squad's motto. The Marines of Delta Squad adopted it after picking an old bomber movie for movie night a while back."
 	icon_state = "maximumeffort"
 
+/obj/structure/sign/banners/flork
+	name = "\improper Modern Art Painting"
+	desc = "This painting was commissioned by Maj Blackbriar some time after the unit's arrival over LV-254. The meaning is unclear."
+	icon_state = "mylife"
+
+//============//
+//  Flags  //
+//==========//
+
+/obj/structure/sign/banners/uaflag
+	name = "\improper United Americas Flag"
+	desc = "The Offical Flag of the United Americas."
+	icon_state = "ua_flag"
+
+/obj/structure/sign/banners/uaflagworn
+	name = "\improper Battered United Americas Flag"
+	desc = "The Offical Flag of the United Americas. This one has seen some action."
+	icon_state = "ua_flag"
+
+/obj/structure/sign/banners/cmflag
+	name = "\improper United States Colonial Marines Corps Flag"
+	desc = "The Offical Flag of the USCMC."
+	icon_state = "cmflag"
+
+/obj/structure/sign/banners/cmflagworn
+	name = "\improper Battered United States Colonial Marines Corps Flag"
+	desc = "The Offical Flag of the USCMC. This one has seen some action."
+	icon_state = "cmflag_worn"
+
+/obj/structure/sign/banners/tweflag
+	name = "\improper Three World Empire Flag"
+	desc = "The Offical Flag of the TWE."
+	icon_state = "tweflag"
+
+/obj/structure/sign/banners/tweflagworn
+	name = "\improper Battered Three World Empire Flag"
+	desc = "The Offical Flag of the TWE. This one has seen some action."
+	icon_state = "tweflag_worn"
+
+/obj/structure/sign/banners/uppflag
+	name = "\improper Union of Progressive Peoples Flag"
+	desc = "The Offical Flag of the UPP."
+	icon_state = "uppflag"
+
+/obj/structure/sign/banners/uppflagworn
+	name = "\improper Battered Union of Progressive Peoples Flag"
+	desc = "The Offical Flag of the UPP. This one has seen some action."
+	icon_state = "uppflag"
+
+/obj/structure/sign/banners/mluflag
+	name = "\improper Miners Liberation Union Flag"
+	desc = "The Offical Flag of the MLU."
+	icon_state = "mluflag"
+
+/obj/structure/sign/banners/mluflagworn
+	name = "\improper Battered Miners Liberation Union Flag"
+	desc = "The Offical Flag of the MLU. This one has seen some action."
+	icon_state = "mluflag_worn"
 //=====================//
 // SEMIOTIC STANDARD  //
 //===================//
