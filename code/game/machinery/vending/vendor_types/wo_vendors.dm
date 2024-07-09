@@ -195,6 +195,13 @@
 		list("SMG Ammunition Box (10x20mm AP)", round(scale * 0.75), /obj/item/ammo_box/rounds/smg/ap, VENDOR_ITEM_REGULAR),
 		)
 
+/obj/structure/machinery/cm_vending/sorted/cargo_ammo/wo/blend
+		icon_state = "req_ammo_wall"
+		tiles_with = list(
+			/obj/structure/window/framed/almayer,
+			/obj/structure/machinery/door/airlock,
+			/turf/closed/wall/almayer)
+
 //------------ARMAMENTS VENDOR---------------
 
 /obj/structure/machinery/cm_vending/sorted/cargo_guns/wo
@@ -322,3 +329,11 @@
 		list("Night Vision Visor", round(scale * 10), /obj/item/device/helmet_visor/night_vision, VENDOR_ITEM_REGULAR),
 		list("Welding Visor", round(scale * 10), /obj/item/device/helmet_visor/welding_visor, VENDOR_ITEM_REGULAR),
 			)
+
+/obj/structure/machinery/cm_vending/sorted/cargo_guns/wo/blend
+	icon_state = "req_guns_wall"
+	tiles_with = list(
+		/obj/structure/window/framed/almayer,
+		/obj/structure/machinery/door/airlock,
+		/turf/closed/wall/almayer,
+	)
