@@ -12,9 +12,6 @@
 	},
 /area/shuttle/drop1/sulaco)
 "at" = (
-/obj/structure/platform{
-	dir = 4
-	},
 /obj/structure/bed/chair/office/dark{
 	dir = 8;
 	layer = 3.25
@@ -33,6 +30,9 @@
 	dir = 8;
 	pixel_x = -17;
 	pixel_y = -10
+	},
+/obj/structure/platform/ship{
+	dir = 4
 	},
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin15"
@@ -84,6 +84,15 @@
 "cC" = (
 /obj/structure/shuttle/part/dropship1/nose_front_right,
 /turf/template_noop,
+/area/shuttle/drop1/sulaco)
+"cQ" = (
+/obj/structure/stairs,
+/obj/structure/platform/ship{
+	dir = 4
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
 /area/shuttle/drop1/sulaco)
 "de" = (
 /turf/closed/shuttle/dropship1{
@@ -886,7 +895,7 @@ ws
 TK
 il
 il
-ug
+cQ
 at
 WQ
 de

@@ -153,9 +153,6 @@
 	},
 /area/shuttle/drop2/sulaco)
 "jz" = (
-/obj/structure/platform{
-	dir = 4
-	},
 /obj/structure/bed/chair/office/dark{
 	dir = 8;
 	layer = 3.25
@@ -174,6 +171,9 @@
 	dir = 8;
 	pixel_x = -17;
 	pixel_y = -10
+	},
+/obj/structure/platform/ship{
+	dir = 4
 	},
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin15"
@@ -476,6 +476,15 @@
 "Fq" = (
 /obj/structure/platform{
 	dir = 8
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/drop2/sulaco)
+"Gg" = (
+/obj/structure/stairs,
+/obj/structure/platform/ship{
+	dir = 4
 	},
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin15"
@@ -904,7 +913,7 @@ mz
 SY
 PJ
 PJ
-Hr
+Gg
 jz
 Kl
 Cl
