@@ -208,3 +208,20 @@
 /obj/structure/platform_decoration/mineral/sandstone/runed
 	name = "sandstone temple platform corner"
 	color = "#b29082"
+
+/obj/structure/platform/ship
+	icon_state = "ship_platform"
+	name = "raised deck platform"
+
+/obj/structure/platform/ship/decco
+	name = "raised deck platform corner"
+	icon_state = "ship_platform_deco"
+
+/obj/structure/platform/ship/stair_cut
+	icon_state = "ship_platform_stair"//icon will be honked in all dirs except (1), that's because the behavior breaks if it ain't (1)
+	dir = 1
+
+/obj/structure/platform/ship/stair_cut/alt
+	icon_state = "ship_platform_stair_alt"
+	dir = 1
+
