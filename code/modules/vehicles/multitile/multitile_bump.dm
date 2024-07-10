@@ -106,12 +106,14 @@
 	return TRUE
 
 /obj/structure/surface/handle_vehicle_bump(obj/vehicle/multitile/V)
+	detach_all()
 	playsound(V, 'sound/effects/metal_crash.ogg', 20)
 	visible_message(SPAN_DANGER("\The [V] crushes \the [src]!"))
 	qdel(src)
 	return TRUE
 
 /obj/structure/surface/table/handle_vehicle_bump(obj/vehicle/multitile/V)
+	detach_all()
 	playsound(V, 'sound/effects/metal_crash.ogg', 20)
 	visible_message(SPAN_DANGER("\The [V] crushes \the [src]!"))
 	if(prob(50))
@@ -120,6 +122,7 @@
 	return TRUE
 
 /obj/structure/surface/rack/handle_vehicle_bump(obj/vehicle/multitile/V)
+	detach_all()
 	playsound(V, 'sound/effects/metal_crash.ogg', 20)
 	visible_message(SPAN_DANGER("\The [V] crushes \the [src]!"))
 	deconstruct()
@@ -334,17 +337,6 @@
 			qdel(src)
 	return FALSE
 
-/obj/structure/machinery/door/poddoor/hybrisa/handle_vehicle_bump(obj/vehicle/multitile/V)
-	if(!unacidable)
-		if(vehicle_resistant)
-			visible_message(SPAN_DANGER("\The [V] can't destroy [src]!"))
-			playsound(V, 'sound/effects/metal_crash.ogg', 35)
-		else
-			visible_message(SPAN_DANGER("\The [V] crushes [src]!"))
-			playsound(V, 'sound/effects/metal_crash.ogg', 35)
-			qdel(src)
-	return FALSE
-
 /obj/structure/machinery/cm_vending/handle_vehicle_bump(obj/vehicle/multitile/V)
 	visible_message(SPAN_DANGER("\The [V] pushes [src] over!"))
 	playsound(V, 'sound/effects/metal_crash.ogg', 20)
@@ -352,24 +344,10 @@
 	return TRUE
 
 /obj/structure/machinery/m56d_post/handle_vehicle_bump(obj/vehicle/multitile/V)
+	new /obj/item/device/m56d_post(loc)
 	playsound(V, 'sound/effects/metal_crash.ogg', 20)
 	visible_message(SPAN_DANGER("\The [V] drives over \the [src]!"))
-
-	if(gun_mounted)
-		var/obj/item/device/m56d_gun/HMG = new(loc)
-		transfer_label_component(HMG)
-		HMG.rounds = gun_rounds
-		HMG.has_mount = TRUE
-		if(gun_health)
-			HMG.health = gun_health
-		HMG.update_icon()
-		qdel(src)
-	else
-		var/obj/item/device/m56d_post/post = new(loc)
-		post.health = health
-		transfer_label_component(post)
-		qdel(src)
-
+	qdel(src)
 	return TRUE
 
 /obj/structure/machinery/m56d_hmg/handle_vehicle_bump(obj/vehicle/multitile/V)
@@ -377,9 +355,7 @@
 	HMG.name = name
 	HMG.rounds = rounds
 	HMG.has_mount = TRUE
-	HMG.health = health
 	HMG.update_icon()
-	transfer_label_component(HMG)
 	playsound(V, 'sound/effects/metal_crash.ogg', 20)
 	visible_message(SPAN_DANGER("\The [V] drives over \the [src]!"))
 	qdel(src)
@@ -395,7 +371,7 @@
 	var/obj/item/device/m2c_gun/HMG = new(loc)
 	HMG.name = name
 	HMG.rounds = rounds
-	HMG.overheat_value = floor(0.5 * overheat_value)
+	HMG.overheat_value = round(0.5 * overheat_value)
 	if(HMG.overheat_value <= 10)
 		HMG.overheat_value = 0
 	HMG.update_icon()
@@ -505,7 +481,7 @@
 
 /obj/vehicle/handle_vehicle_bump(obj/vehicle/multitile/V)
 	V.take_damage_type(5, "blunt", V)
-	health = health - ceil(maxhealth/2.8) //we destroy any simple vehicle in 3 crushes
+	health = health - Ceiling(maxhealth/2.8) //we destroy any simple vehicle in 3 crushes
 	healthcheck()
 
 	visible_message(SPAN_DANGER("\The [V] crushes into \the [src]!"))
@@ -666,7 +642,7 @@
 			//Check what dir they should be facing to be looking directly at the vehicle
 			else if(dir_between == dir) //front hit (facing the vehicle)
 				blocked = TRUE
-			else if(dir_between == GLOB.reverse_dir[dir]) // rear hit (facing directly away from the vehicle)
+			else if(dir_between == reverse_dir[dir]) // rear hit (facing directly away from the vehicle)
 				takes_damage = TRUE
 			//side hit
 			else if(caste.caste_type == XENO_CASTE_QUEEN) // queen blocks even with sides
@@ -737,7 +713,7 @@
 		//this adds more flexibility for trample damage
 		damage_percentage *= VEHICLE_TRAMPLE_DAMAGE_APC_REDUCTION
 
-		damage_percentage -= floor((armor_deflection*(armor_integrity/100)) / VEHICLE_TRAMPLE_DAMAGE_REDUCTION_ARMOR_MULT) // Ravager reduces percentage by ~50% by virtue of having very high armor.
+		damage_percentage -= round((armor_deflection*(armor_integrity/100)) / VEHICLE_TRAMPLE_DAMAGE_REDUCTION_ARMOR_MULT) // Ravager reduces percentage by ~50% by virtue of having very high armor.
 
 		if(locate(/obj/item/hardpoint/support/overdrive_enhancer) in V)
 			damage_percentage += VEHICLE_TRAMPLE_DAMAGE_OVERDRIVE_BUFF
@@ -745,7 +721,7 @@
 		damage_percentage = max(VEHICLE_TRAMPLE_DAMAGE_OVERDRIVE_BUFF, max(0, damage_percentage))
 		damage_percentage = max(damage_percentage, VEHICLE_TRAMPLE_DAMAGE_MIN)
 
-		apply_damage(floor((maxHealth / 100) * damage_percentage), BRUTE)
+		apply_damage(round((maxHealth / 100) * damage_percentage), BRUTE)
 		last_damage_data = create_cause_data("[initial(V.name)] roadkill", V.seats[VEHICLE_DRIVER])
 		var/mob/living/driver = V.get_seat_mob(VEHICLE_DRIVER)
 		log_attack("[key_name(src)] was rammed by [key_name(driver)] with [V].")
@@ -755,7 +731,7 @@
 		return TRUE
 	else if (mob_moved)
 		if(momentum_penalty)
-			V.move_momentum = floor(V.move_momentum*0.8)
+			V.move_momentum = Floor(V.move_momentum*0.8)
 			V.update_next_move()
 		playsound(loc, "punch", 25, 1)
 		return TRUE
@@ -764,7 +740,7 @@
 
 //BURROWER
 /mob/living/carbon/xenomorph/burrower/handle_vehicle_bump(obj/vehicle/multitile/V)
-	if(HAS_TRAIT(src, TRAIT_ABILITY_BURROWED))
+	if(burrow)
 		return TRUE
 	else
 		return . = ..()
@@ -780,7 +756,7 @@
 			visible_message(SPAN_DANGER("[src] digs it's claws into the ground, slowing [V]'s movement!"),
 			SPAN_DANGER("You dig your claws into the ground, slowing [V]'s movement!"))
 			var/mob_moved = step(src, V.last_move_dir)
-			V.move_momentum = floor(V.move_momentum/3)
+			V.move_momentum = Floor(V.move_momentum/3)
 			V.update_next_move()
 			return mob_moved
 
