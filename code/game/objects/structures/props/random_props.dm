@@ -1,7 +1,7 @@
 /obj/structure/prop/random_props
 	name = "random prop"
 	desc = "laugh at the mapper who fucked up"
-	icon = 'icons/obj/structures/props/64x64_randomprops.dmi'
+	icon = 'icons/obj/structures/props/random_props.dmi'
 	icon_state = "hybrisa"
 	bound_width = 32
 	bound_height = 64
@@ -26,12 +26,15 @@
 	icon_state = "zbunkbed"
 
 /obj/structure/prop/random_props/bunkbed2
+	name = "Bunk-Bed"
 	icon_state = "zbunkbed2"
 
 /obj/structure/prop/random_props/bunkbed3
+	name = "Bunk-Bed"
 	icon_state = "zbunkbed3"
 
 /obj/structure/prop/random_props/bunkbed4
+	name = "Bunk-Bed"
 	icon_state = "zbunkbed4"
 
 /obj/structure/prop/random_props/bunkbed5
