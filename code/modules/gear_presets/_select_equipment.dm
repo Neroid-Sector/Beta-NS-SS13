@@ -1051,3 +1051,13 @@ var/list/rebel_rifles = list(
 			new_human.equip_to_slot_or_del(new /obj/item/storage/belt/gun/type47/t73(new_human), WEAR_WAIST)
 		if (4)
 			new_human.equip_to_slot_or_del(new /obj/item/storage/belt/marine/upp(new_human), WEAR_WAIST)
+
+/datum/equipment_preset/proc/spawn_som_helmet(mob/living/carbon/human/new_human)
+	if(!istype(new_human)) return
+	var/helmetpath = pick(
+		/obj/item/clothing/head/helmet/skullcap,
+		/obj/item/clothing/head/welding,
+		/obj/item/clothing/head/bandana,
+		/obj/item/clothing/head/militia/riot,
+		)
+	new_human.equip_to_slot_or_del(new helmetpath, WEAR_HEAD)

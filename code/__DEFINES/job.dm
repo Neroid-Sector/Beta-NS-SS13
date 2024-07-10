@@ -504,9 +504,9 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 //--------Cults --------//
 
 //--Sons of Marina--//
-#define JOB_SOM_Leader "Sons of Marina Leader"
-#define JOB_SOM_Priest "Sons of Marina Priest"
-#define JOB_SOM_Militia "Sons of Marina Minuteman"
+#define JOB_SOM_LDR "Sons of Marina Leader"
+#define JOB_SOM_PRIEST "Sons of Marina Shaman"
+#define JOB_SOM_MILITIA "Sons of Marina Minuteman"
 
 //--Followers of the Noon Day Devil--//
 #define JOB_NDD_Leader "Followers of the Noonday Devil Leader"

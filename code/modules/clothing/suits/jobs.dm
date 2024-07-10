@@ -81,6 +81,11 @@
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	time_to_equip = 2 SECONDS
 
+//SOM
+/obj/item/clothing/suit/cultist_hoodie/som
+	name = "Enviromental Poncho."
+	desc = "A weather proof garment made of treated synthetic fabrics. Man colonists argue it looks eerie and weird, almost as if it belongs to a cult."
+
 //Chaplain
 /obj/item/clothing/suit/nun
 	name = "nun robe"
