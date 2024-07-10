@@ -10,6 +10,8 @@
 	health = 350
 	firing_arc = 120
 
+	origins = list(0, -2)
+
 	ammo = new /obj/item/ammo_magazine/hardpoint/m56_cupola
 	max_clips = 1
 
