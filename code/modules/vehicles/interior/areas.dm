@@ -27,3 +27,7 @@
 /area/vehicle/van
 	name = "van interior"
 	icon_state = "van"
+
+/area/interior/vehicle/arc
+	name = "arc interior"
+	icon_state = "apc"
