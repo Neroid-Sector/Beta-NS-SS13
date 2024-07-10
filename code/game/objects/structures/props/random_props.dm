@@ -58,12 +58,15 @@
 	icon_state = "wymanhole"
 
 /obj/structure/prop/random_props/manhole_o
+	desc = "An access point to the underground service tunnels."
 	icon_state = "wymanhole_open"
 
 /obj/structure/prop/random_props/manhole_maint
+	desc = "An access point to the underground service tunnels."
 	icon_state = "maintenancehatch_alt"
 
 /obj/structure/prop/random_props/manhole_maint_o
+	desc = "An access point to the underground service tunnels."
 	icon_state = "maintenancehatch_alt_open"
 
 //Stock barriers
