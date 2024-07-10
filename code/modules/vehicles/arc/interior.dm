@@ -10,4 +10,3 @@
 	icon_state = "arc_chassis"
 	layer = ABOVE_TURF_LAYER
 	mouse_opacity = FALSE
-
