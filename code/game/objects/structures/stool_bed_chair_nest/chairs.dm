@@ -257,6 +257,9 @@
 	debris = list()
 	picked_up_item = null
 
+/obj/structure/bed/chair/comfy/arc
+	layer = BELOW_OBJ_LAYER
+
 /obj/structure/bed/chair/comfy/orange
 	icon_state = "comfychair_orange"
 

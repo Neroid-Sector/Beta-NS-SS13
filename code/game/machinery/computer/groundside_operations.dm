@@ -322,6 +322,10 @@
 			var/obj/item/clothing/head/helmet/marine/helm = H.head
 			return helm.camera
 
+/obj/structure/machinery/computer/groundside_operations/arc
+	icon = 'icons/obj/vehicles/interiors/arcint.dmi'
+	icon_state = "groundsideop_computer"
+
 /obj/structure/machinery/computer/groundside_operations/upp
 	announcement_title = UPP_COMMAND_ANNOUNCE
 	announcement_faction = FACTION_UPP
