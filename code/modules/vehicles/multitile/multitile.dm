@@ -360,6 +360,13 @@
 			return seat
 	return null
 
+/// Get active hardpoint of crewmember.
+/obj/vehicle/multitile/proc/get_mob_hp(mob/crew)
+	var/seat = get_mob_seat(crew)
+	if(seat)
+		return active_hp[seat]
+	return null
+
 /obj/vehicle/multitile/proc/get_passengers()
 	if(interior)
 		return interior.get_passengers()

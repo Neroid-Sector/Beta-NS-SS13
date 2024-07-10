@@ -14,7 +14,7 @@
 
 /datum/cm_objective/retrieve_data/New()
 	. = ..()
-	decryption_password = "[pick(GLOB.alphabet_uppercase)][rand(100,999)][pick(GLOB.alphabet_uppercase)][rand(10,99)]"
+	decryption_password = "[pick(alphabet_uppercase)][rand(100,999)][pick(alphabet_uppercase)][rand(10,99)]"
 
 /datum/cm_objective/retrieve_data/pre_round_start()
 	SSobjectives.statistics["data_retrieval_total_instances"]++
@@ -193,7 +193,7 @@
 			disk_color = "Bloodied blue"
 			display_color = "#5296e3"
 
-	label = "[pick(GLOB.greek_letters)]-[rand(100,999)]"
+	label = "[pick(alphabet_uppercase)][rand(100,999)]"
 	name = "[disk_color] computer disk [label]"
 	objective = new /datum/cm_objective/retrieve_data/disk(src)
 	retrieve_objective = new /datum/cm_objective/retrieve_item/document(src)
@@ -222,7 +222,7 @@
 
 /obj/structure/machinery/computer/objective/Initialize()
 	. = ..()
-	label = "[pick(GLOB.greek_letters)]-[rand(100,999)]"
+	label = "[pick(alphabet_uppercase)][rand(100,999)]"
 	name = "data terminal [label]"
 	objective = new /datum/cm_objective/retrieve_data/terminal(src)
 

@@ -39,4 +39,4 @@
 #define COMSIG_INTEL_DISK_COMPLETED "intel_disk_completed"
 
 /// from /obj/vehicle/multitile/arc/toggle_antenna()
-#define COMSIG_ARC_ANTENNA_TOGGLED "arc_antenna_toggled""
+#define COMSIG_ARC_ANTENNA_TOGGLED "arc_antenna_toggled"
