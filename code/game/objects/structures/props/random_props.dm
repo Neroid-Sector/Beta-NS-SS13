@@ -28,18 +28,18 @@
 /obj/structure/prop/random_props/bunkbed2
 	icon_state = "zbunkbed2"
 
-/obj/structure/prop/random_props/bunkbed2
+/obj/structure/prop/random_props/bunkbed3
 	icon_state = "zbunkbed3"
 
-/obj/structure/prop/random_props/bunkbed2
+/obj/structure/prop/random_props/bunkbed4
 	icon_state = "zbunkbed4"
 
-/obj/structure/prop/random_props/bunkbed2
+/obj/structure/prop/random_props/bunkbed5
 	name = "Prison Bunk-Bed"
 	icon_state = "prisonbed"
 
 //hospital
-/obj/structure/prop/random_props/bunkbed2
+/obj/structure/prop/random_props/med_curtain
 	name = "Hospital Curtain"
 	desc = "A privacy curtain used in hospitals to obscure patients and operations, or divide larger 	rooms."
 	icon_state = "hospitalcurtain"
