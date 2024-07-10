@@ -125,7 +125,7 @@
 			src.attack_alien(user)
 			return
 		src.attack_hand(user)
-	return
+	return ..()
 
 /obj/structure/machinery/computer/attack_hand()
 	. = ..()

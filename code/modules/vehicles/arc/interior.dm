@@ -1,6 +1,6 @@
 /obj/structure/interior_exit/vehicle/arc
 	name = "ARC side door"
-	icon = 'icons/obj/vehicles/interiors/arc.dmi'
+	icon = 'icons/obj/vehicles/interiors/arcint.dmi'
 	icon_state = "exit_door"
 
 /obj/structure/prop/vehicle/arc

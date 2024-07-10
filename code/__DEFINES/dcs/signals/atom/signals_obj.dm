@@ -32,4 +32,11 @@
 
 #define COMSIG_STRUCTURE_CRATE_SQUAD_LAUNCHED "structure_crate_squad_launched"
 
-#define COMSIG_ARC_ANTENNA_TOGGLED "arc_antenna_toggled"
+/// from /datum/cm_objective/retrieve_data/disk/process()
+#define COMSIG_INTEL_DISK_LOST_POWER "intel_disk_lost_power"
+
+/// from /datum/cm_objective/retrieve_data/disk/complete()
+#define COMSIG_INTEL_DISK_COMPLETED "intel_disk_completed"
+
+/// from /obj/vehicle/multitile/arc/toggle_antenna()
+#define COMSIG_ARC_ANTENNA_TOGGLED "arc_antenna_toggled""
