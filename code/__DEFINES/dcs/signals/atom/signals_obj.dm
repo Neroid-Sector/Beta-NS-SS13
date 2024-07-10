@@ -31,3 +31,5 @@
 #define COSMIG_OBJ_AFTER_BUCKLE "signal_obj_after_buckle"
 
 #define COMSIG_STRUCTURE_CRATE_SQUAD_LAUNCHED "structure_crate_squad_launched"
+
+#define COMSIG_ARC_ANTENNA_TOGGLED "arc_antenna_toggled"
