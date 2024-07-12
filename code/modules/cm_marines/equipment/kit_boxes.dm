@@ -151,6 +151,24 @@
 	new /obj/item/clothing/head/helmet/marine/specialist(src)
 	new /obj/item/clothing/suit/storage/marine/specialist(src)
 
+
+/obj/item/storage/box/spec/clf/sniper
+	name = "\improper Sniper equipment case"
+	desc = "A large case containing your very own long-range sniper rifle, and equipment.\nDrag this sprite onto yourself to open it up! NOTE: You cannot put items back inside this case."
+	kit_overlay = "sniper"
+
+/obj/item/storage/box/spec/clf/sniper/fill_preset_inventory()
+	// sniper
+	new /obj/item/clothing/suit/storage/marine/ghillie/clf(src)
+	new /obj/item/clothing/glasses/night/m42_night_goggles/upp(src)
+	new /obj/item/ammo_magazine/sniper/svd(src)
+	new /obj/item/ammo_magazine/sniper/svd(src)
+	new /obj/item/ammo_magazine/sniper/svd(src)
+	new /obj/item/ammo_magazine/sniper/svd(src)
+	new /obj/item/device/binoculars/civ(src)
+	new /obj/item/weapon/gun/rifle/sniper/svd(src)
+	new /obj/item/facepaint/sniper(src)
+
 //-----------------SPEC KIT BOX------------------
 //For events/WO, allows the user to choose a specalist kit out of available ones in spec_kit_boxes_left list in gloabl_lists.dm
 
@@ -484,6 +502,13 @@
 	new /obj/item/attachable/reddot(src)
 	new /obj/item/attachable/lasersight(src)
 	new /obj/item/storage/belt/gun/m4a3(src)
+
+/obj/item/storage/box/kit/nvgs
+	name = "\improper UPP Infared Goggles case"
+	pro_case_overlay = "sniper"
+
+/obj/item/storage/box/kit/nvgs/fill_preset_inventory()
+	new /obj/item/clothing/glasses/night/m42_night_goggles/upp(src)
 
 /obj/item/storage/box/kit/cryo_self_defense
 	name = "\improper Cryo Self Defense Kit"

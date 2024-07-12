@@ -156,7 +156,7 @@
 //-----Gallows-----\\
 
 /obj/structure/prop/random_props/gallows
-	name = "Hung Pair MLU Soldiers"
+	name = "Hung Pair of MLU Soldiers"
 	desc = "A pair of MLU fighters hung for their crimes."
 	icon = 'icons/obj/structures/props/gallows.dmi'
 	icon_state = "gallows"

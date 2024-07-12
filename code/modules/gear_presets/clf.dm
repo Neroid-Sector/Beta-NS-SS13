@@ -669,7 +669,6 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/clf/heavy, WEAR_HEAD)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/pmc/knife, WEAR_FEET)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/pmc, WEAR_FACE)
-	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m42_night_goggles/upp, WEAR_EYES)
 	//storage items
 	new_human.equip_to_slot_or_del(new /obj/item/storage/belt/gun/type47/np92, WEAR_WAIST)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/pressurized_reagent_canister/oxycodone, WEAR_L_STORE)
@@ -685,6 +684,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/pkp(new_human), WEAR_IN_BACK)
 	//gun
 	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/pkp(new_human), WEAR_J_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/kit/nvgs(new_human), WEAR_R_HAND)
 
 /datum/equipment_preset/clf/specialist/heavy/elite_at
 	name = "Insurgent Heavy(Elite-Tank Hunter)"
@@ -705,7 +705,6 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/clf/heavy, WEAR_HEAD)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/pmc/knife, WEAR_FEET)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/pmc, WEAR_FACE)
-	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m42_night_goggles/upp, WEAR_EYES)
 	//storage items
 	new_human.equip_to_slot_or_del(new /obj/item/storage/belt/gun/type47/np92, WEAR_WAIST)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/pressurized_reagent_canister/oxycodone, WEAR_L_STORE)
@@ -722,6 +721,7 @@
 	//gun
 	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/launcher/rocket/upp(new_human), WEAR_J_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/type71/carbine(new_human), WEAR_R_HAND)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/kit/nvgs(new_human), WEAR_L_HAND)
 
 /datum/equipment_preset/clf/specialist/heavy/elite_marksman
 	name = "Insurgent Heavy(Elite-Marksman)"
@@ -736,12 +736,10 @@
 	//clothes
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/CLF/command, WEAR_L_EAR)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/colonist/clf/fighter, WEAR_BODY)
-	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/ghillie/clf, WEAR_JACKET)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran, WEAR_HANDS)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/mercenary/miner, WEAR_HEAD)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/pmc/knife, WEAR_FEET)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/pmc, WEAR_FACE)
-	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m42_night_goggles/upp, WEAR_EYES)
 	//storage items
 	new_human.equip_to_slot_or_del(new /obj/item/storage/belt/gun/type47/np92/suppressed, WEAR_WAIST)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/pressurized_reagent_canister/oxycodone, WEAR_L_STORE)
@@ -751,12 +749,9 @@
 	new_human.equip_to_slot_or_del(new /obj/item/storage/firstaid/regular/response, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/box/packet/m15, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/box/packet/phosphorus, WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/svd(new_human), WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/svd(new_human), WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/svd(new_human), WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/svd(new_human), WEAR_IN_BACK)
 	//gun
-	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/sniper/svd(new_human), WEAR_J_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/spec/clf/sniper(new_human), WEAR_R_HAND)
+
 
 /datum/equipment_preset/clf/specialist/get_antag_gear_equipment()
 	return list(
@@ -1049,7 +1044,8 @@
 	if(prob(50))
 		new_human.equip_to_slot_or_del(new /obj/item/device/chameleon(new_human), WEAR_IN_BACK)
 	else
-		new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m42_night_goggles/upp(new_human), WEAR_IN_BACK)
+		new_human.equip_to_slot_or_del(new /obj/item/storage/box/kit/nvgs(new_human), WEAR_R_HAND)
+
 
 
 /datum/equipment_preset/proc/pick_ranger_kit(mob/living/carbon/human/new_human)
@@ -1197,7 +1193,7 @@
 	if(prob(50))
 		new_human.equip_to_slot_or_del(new /obj/item/device/chameleon(new_human), WEAR_IN_BACK)
 	else
-		new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m42_night_goggles/upp(new_human), WEAR_IN_BACK)
+		new_human.equip_to_slot_or_del(new /obj/item/storage/box/kit/nvgs(new_human), WEAR_R_HAND)
 
 
 /datum/equipment_preset/clf/soldier/ranger/get_antag_clothing_equipment()
