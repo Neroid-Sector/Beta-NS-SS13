@@ -507,7 +507,7 @@
 
 /obj/item/prop/helmetgarb/helmet_gasmask
 	name = "\improper M5 integrated gasmask"
-	desc = "The USCM had its funding pulled for these when it became apparent that not every deployed enlisted was wearing a helmet 24/7; much to the bafflement of UA High Command."
+	desc = "The USCM had its funding pulled for these when it became apparent that the built in filters were insufficent for protecting against most chemical or biohazardous threats."
 	icon_state = "helmet_gasmask"
 
 /obj/item/prop/helmetgarb/helmet_gasmask/on_enter_storage(obj/item/storage/internal/helmet_internal_inventory)
