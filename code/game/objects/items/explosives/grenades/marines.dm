@@ -637,6 +637,53 @@
 	activate()
 
 //================================================
+/obj/item/explosive/grenade/toxic_gas
+	name = "\improper MZS Gas canister"
+	desc = "A canister grenade of deadly MZS gas. It is set to detonate in 4 seconds."
+	icon_state = "flashbang2"//temp icon
+	color = "#649933"
+	det_time = 40
+	item_state = "grenade_phos_clf"//temp icon
+	underslug_launchable = FALSE
+	harmful = TRUE
+	antigrief_protection = TRUE
+	/// The nerve gas datum
+	var/datum/effect_system/smoke_spread/toxic/toxic_gas
+	/// The typepath of the nerve gas
+	var/toxic_gas_type = /datum/effect_system/smoke_spread/toxic
+	/// The radius the gas will reach
+	var/toxic_gas_radius = 8
+
+/obj/item/explosive/grenade/toxic_gas/Initialize(mapload, ...)
+	. = ..()
+	toxic_gas = new toxic_gas_type
+	toxic_gas.attach(src)
+
+/obj/item/explosive/grenade/toxic_gas/Destroy()
+	QDEL_NULL(toxic_gas)
+	return ..()
+
+/obj/item/explosive/grenade/toxic_gas/prime()
+	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+	toxic_gas.set_up(toxic_gas_radius, 0, get_turf(src), null, 6)
+	toxic_gas.start()
+	qdel(src)
+
+
+/obj/item/explosive/grenade/toxic_gas/primed
+	toxic_gas_radius = 20
+	det_time = 6
+	item_state = "mortar"
+	icon_state = "mortar"
+	indestructible = TRUE
+	anchored = TRUE
+
+/obj/item/explosive/grenade/toxic_gas/primed/Initialize()
+	. = ..()
+	activate()
+
+//================================================
+
 /obj/item/explosive/grenade/flesh_gas
 	name = "\improper (!!!DANGER BACTERIA INSIDE!!!) canister"
 	desc = "A canister grenade of aerosolized deadly flesh eating bacteria. It is set to detonate in 4 seconds."
