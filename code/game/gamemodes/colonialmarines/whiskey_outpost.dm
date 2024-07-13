@@ -778,6 +778,8 @@
 			/obj/item/storage/firstaid/regular,
 			/obj/item/storage/box/donkpockets,
 			/obj/item/storage/box/donkpockets,
+			/obj/item/clothing/mask/gas,
+			/obj/item/clothing/mask/gas,
 			/obj/item/stack/sandbags_empty/full,
 			/obj/item/storage/box/m94,
 			/obj/item/storage/box/m94,
