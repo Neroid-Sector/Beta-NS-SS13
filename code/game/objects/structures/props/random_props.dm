@@ -180,7 +180,7 @@
 	desc_lore = "A statue of the Sons of Marina's goddess. When questioned as to how it was built, the Cultists claim to have no knowledge of who built it, or what the words on the sword say. Further study of the statue shows no signs of tools, hands or other traditional methods used in it's manufacture. It's almost as if the stone grew into that shape on its own."
 	icon_state = "marina_statue"
 	bound_width = 64
-	bound_height = 128
+	bound_height = 64
 
 //---Streetlight---\\
 
