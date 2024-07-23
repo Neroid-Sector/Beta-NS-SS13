@@ -163,6 +163,25 @@
 	bound_width = 128
 	bound_height = 128
 
+//-----Statues-----\\
+
+/obj/structure/prop/random_props/statue
+	name = "Statue root object. WHY THE FUCK AM I HERE DEV MAN!"
+	desc = " Im the root statue. mock the mapper/admin for not changing this"
+	icon = 'icons/obj/structures/props/lrgstatues.dmi'
+	icon_state = "marina_statue"
+	bound_width = 128
+	bound_height = 128
+
+//-marina goddess
+/obj/structure/prop/random_props/statue/marina
+	name = "Statue of Marina Prime"
+	desc = "A large overgrown stone statue of the Sons of Marina's goddess. The face is twisted into an unsettling expression, and a large 'tail?' made of iron curls from beneath the stone statue's dress. In one hand the statue holds a stone sword with words inscribed in an unknown language."
+	desc_lore = "A statue of the Sons of Marina's goddess. When questioned as to how it was built, the Cultists claim to have no knowledge of who built it, or what the words on the sword say. Further study of the statue shows no signs of tools, hands or other traditional methods used in it's manufacture. It's almost as if the stone grew into that shape on its own."
+	icon_state = "marina_statue"
+	bound_width = 64
+	bound_height = 128
+
 //---Streetlight---\\
 
 /obj/structure/machinery/colony_floodlight/traffic
