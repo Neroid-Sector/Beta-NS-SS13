@@ -386,6 +386,15 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_mod = HIT_ACCURACY_MULT_TIER_4
 	velocity_mod = AMMO_SPEED_TIER_1
 
+/obj/item/attachable/extended_barrel/sa80
+	icon_state = "sa80"
+	attach_icon = "sa80_a"
+
+/obj/item/attachable/extended_barrel/sa80/New()
+	..()
+	accuracy_mod = HIT_ACCURACY_MULT_TIER_4
+	velocity_mod = AMMO_SPEED_TIER_1
+
 /obj/item/attachable/heavy_barrel
 	name = "barrel charger"
 	desc = "A hyper threaded barrel extender that fits to the muzzle of most firearms. Increases bullet speed and velocity.\nGreatly increases projectile damage at the cost of accuracy and firing speed."
@@ -2302,6 +2311,22 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/type71/New()
 	..()
+
+/obj/item/attachable/stock/ak
+	name = "Type 71 Stock"
+	desc = "This isn't supposed to be seperated from the gun, how'd this happen?"
+	icon = 'icons/obj/items/weapons/guns/attachments/stock.dmi'
+	icon_state = "ak_stock"
+	attach_icon = "ak_stock"
+	slot = "stock"
+	wield_delay_mod = WIELD_DELAY_NONE
+	flags_attach_features = NO_FLAGS
+	melee_mod = 15
+	size_mod = 0
+
+/obj/item/attachable/stock/ak/New()
+	..()
+
 
 /obj/item/attachable/stock/smg
 	name = "submachinegun stock"

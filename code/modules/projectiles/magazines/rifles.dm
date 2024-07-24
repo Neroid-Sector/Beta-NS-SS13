@@ -312,6 +312,32 @@
 	ammo_band_color = AMMO_BAND_COLOR_HEAP
 
 //-------------------------------------------------------
+//UPP AK RIFLE
+
+/obj/item/ammo_magazine/rifle/ak84s
+	name = "\improper AK84s magazine (5.45x39mm)"
+	desc = "A 5.45x39mm high-capacity casket magazine for the ak84s rifle."
+	caliber = "5.45x39mm"
+	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/upp.dmi'
+	icon_state = "ak84s"
+	ammo_band_icon = "+ak84s_band"
+	ammo_band_icon_empty = "+ak84s_band_e"
+	default_ammo = /datum/ammo/bullet/rifle/type71
+	max_rounds = 30
+	gun_type = /obj/item/weapon/gun/rifle/type71
+
+/obj/item/ammo_magazine/rifle/ak84s/ap
+	name = "\improper AK84s AP magazine (5.45x39mm)"
+	desc = "A 5.45x39mm high-capacity casket magazine containing armor piercing rounds for the ak84s rifle."
+	default_ammo = /datum/ammo/bullet/rifle/type71/ap
+	ammo_band_color = AMMO_BAND_COLOR_AP
+
+/obj/item/ammo_magazine/rifle/ak84s/heap
+	name = "\improper AK84s HEAP magazine (5.45x39mm)"
+	desc = "A 5.45x39mm high-capacity casket magazine containing the standard high explosive armor piercing rounds for the ak84s rifle."
+	default_ammo = /datum/ammo/bullet/rifle/type71/heap
+	ammo_band_color = AMMO_BAND_COLOR_HEAP
+
 //UPP TYPE 71 RIFLE
 
 /obj/item/ammo_magazine/rifle/type71
@@ -527,4 +553,32 @@
 	icon_state = "aug_dmr"
 	item_state = "aug_dmr"
 	default_ammo = /datum/ammo/bullet/rifle/heap
+	ammo_band_color = AMMO_BAND_COLOR_HEAP
+
+/obj/item/ammo_magazine/rifle/sa80
+	name = "\improper sa80 magazine (10x24mm)"
+	desc = "A 10mm assault rifle magazine used by the royal marines."
+	caliber = "10x24mm"
+	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/twe_ammo.dmi'
+	icon_state = "sa80"
+	item_state = "sa80"
+	w_class = SIZE_MEDIUM
+	default_ammo = /datum/ammo/bullet/rifle
+	max_rounds = 30
+	gun_type = /obj/item/weapon/gun/rifle/sa80
+	ammo_band_icon = "+sa80_band"
+	ammo_band_icon_empty = "+sa80_band_e"
+
+/obj/item/ammo_magazine/rifle/sa80/ap
+	name = "\improper AP sa80 magazine (10x24mm)"
+	desc = "A 10mm assault rifle magazine used by the royal marines."
+	default_ammo = /datum/ammo/bullet/rifle/ap
+	max_rounds = 30
+	ammo_band_color = AMMO_BAND_COLOR_AP
+
+/obj/item/ammo_magazine/rifle/sa80/heap
+	name = "\improper HEAP sa80 magazine (10x24mm)"
+	desc = "A 10mm assault rifle magazine used by the royal marines."
+	default_ammo = /datum/ammo/bullet/rifle/heap
+	max_rounds = 30
 	ammo_band_color = AMMO_BAND_COLOR_HEAP

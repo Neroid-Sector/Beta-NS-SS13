@@ -260,3 +260,47 @@
 	w_class = SIZE_SMALL
 	max_rounds = 48
 	gun_type = /obj/item/weapon/gun/smg/nailgun
+
+
+//---RMC---\\
+
+/obj/item/ammo_magazine/smg/p90rmc
+	name = "\improper p90 HV magazine (10x20mm)"
+	desc = "A 10x20mm caseless high-velocity submachinegun magazine. Powerful propellant allows the bullet increased velocity and minor penetration capabilities, noticeably improving its efficacy at medium ranges, although it still suffers significantly compared to a rifle bullet."
+	caliber = "10x20mm"
+	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/twe_ammo.dmi'
+	icon_state = "p90"
+	max_rounds = 50
+	w_class = SIZE_MEDIUM
+	gun_type = /obj/item/weapon/gun/smg/p90rmc
+	default_ammo = /datum/ammo/bullet/smg
+	ammo_band_icon = "+m39_band"
+	ammo_band_icon_empty = "+m39_band_e"
+
+/obj/item/ammo_magazine/smg/p90rmc/ap
+	name = "\improper p90 AP magazine (10x20mm)"
+	desc = "A 10x20mm caseless high-velocity submachinegun magazine. Powerful propellant allows the bullet increased velocity and minor penetration capabilities, noticeably improving its efficacy at medium ranges, although it still suffers significantly compared to a rifle bullet."
+	caliber = "10x20mm"
+	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/twe_ammo.dmi'
+	icon_state = "p90"
+	max_rounds = 50
+	w_class = SIZE_MEDIUM
+	gun_type = /obj/item/weapon/gun/smg/p90rmc
+	default_ammo = /datum/ammo/bullet/smg/ap
+	ammo_band_icon = "+m39_band"
+	ammo_band_icon_empty = "+m39_band_e"
+	ammo_band_color = AMMO_BAND_COLOR_AP
+
+/obj/item/ammo_magazine/smg/p90rmc/heap
+	name = "\improper p90 HEAP magazine (10x20mm)"
+	desc = "A 10x20mm caseless high-velocity submachinegun magazine. Powerful propellant allows the bullet increased velocity and minor penetration capabilities, noticeably improving its efficacy at medium ranges, although it still suffers significantly compared to a rifle bullet."
+	caliber = "10x20mm"
+	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/twe_ammo.dmi'
+	icon_state = "p90"
+	max_rounds = 50
+	w_class = SIZE_MEDIUM
+	gun_type = /obj/item/weapon/gun/smg/p90rmc
+	default_ammo = /datum/ammo/bullet/smg/heap
+	ammo_band_icon = "+m39_band"
+	ammo_band_icon_empty = "+m39_band_e"
+	ammo_band_color = AMMO_BAND_COLOR_AP
