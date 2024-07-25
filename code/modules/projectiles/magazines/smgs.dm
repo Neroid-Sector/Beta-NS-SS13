@@ -279,7 +279,7 @@
 
 /obj/item/ammo_magazine/smg/p90rmc/ap
 	name = "\improper p90 AP magazine (10x20mm)"
-	desc = "A 10x20mm caseless high-velocity submachinegun magazine. Powerful propellant allows the bullet increased velocity and minor penetration capabilities, noticeably improving its efficacy at medium ranges, although it still suffers significantly compared to a rifle bullet."
+	desc = "A 10x20mm caseless AP submachinegun magazine. Powerful propellant allows the bullet increased velocity and minor penetration capabilities, noticeably improving its efficacy at medium ranges, although it still suffers significantly compared to a rifle bullet."
 	caliber = "10x20mm"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/twe_ammo.dmi'
 	icon_state = "p90"
@@ -293,7 +293,7 @@
 
 /obj/item/ammo_magazine/smg/p90rmc/heap
 	name = "\improper p90 HEAP magazine (10x20mm)"
-	desc = "A 10x20mm caseless high-velocity submachinegun magazine. Powerful propellant allows the bullet increased velocity and minor penetration capabilities, noticeably improving its efficacy at medium ranges, although it still suffers significantly compared to a rifle bullet."
+	desc = "A 10x20mm caseless HEAP submachinegun magazine. Powerful propellant allows the bullet increased velocity and minor penetration capabilities, noticeably improving its efficacy at medium ranges, although it still suffers significantly compared to a rifle bullet."
 	caliber = "10x20mm"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/twe_ammo.dmi'
 	icon_state = "p90"

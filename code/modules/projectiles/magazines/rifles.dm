@@ -610,3 +610,60 @@
 	default_ammo = /datum/ammo/bullet/rifle/heap
 	max_rounds = 30
 	ammo_band_color = AMMO_BAND_COLOR_HEAP
+
+/obj/item/ammo_magazine/rifle/sa80/extended
+	name = "\improper sa80 magazine (10x24mm)"
+	desc = "A 10mm assault rifle magazine used by the royal marines."
+	caliber = "10x24mm"
+	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/twe_ammo.dmi'
+	icon_state = "sa80_ext"
+	item_state = "sa80_ext"
+	w_class = SIZE_MEDIUM
+	default_ammo = /datum/ammo/bullet/rifle
+	max_rounds = 60
+	gun_type = /obj/item/weapon/gun/rifle/sa80
+	ammo_band_icon = "+sa80_band"
+	ammo_band_icon_empty = "+sa80_band_e"
+
+/obj/item/ammo_magazine/rifle/sa80/extended/ap
+	name = "\improper AP sa80 magazine (10x24mm)"
+	desc = "A 10mm assault rifle magazine used by the royal marines."
+	default_ammo = /datum/ammo/bullet/rifle/ap
+	max_rounds = 60
+	ammo_band_color = AMMO_BAND_COLOR_AP
+
+/obj/item/ammo_magazine/rifle/sa80/extended/heap
+	name = "\improper HEAP sa80 magazine (10x24mm)"
+	desc = "A 10mm assault rifle magazine used by the royal marines."
+	default_ammo = /datum/ammo/bullet/rifle/heap
+	max_rounds = 60
+	ammo_band_color = AMMO_BAND_COLOR_HEAP
+
+
+/obj/item/ammo_magazine/rifle/sa80/lmg
+	name = "\improper sa80 magazine (10x24mm)"
+	desc = "A 10mm assault rifle magazine used by the royal marines."
+	caliber = "10x24mm"
+	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/twe_ammo.dmi'
+	icon_state = "sa80_box"
+	item_state = "sa80_box"
+	w_class = SIZE_MEDIUM
+	default_ammo = /datum/ammo/bullet/rifle
+	max_rounds = 100
+	gun_type = /obj/item/weapon/gun/rifle/sa80
+	ammo_band_icon = "+sa80_band"
+	ammo_band_icon_empty = "+sa80_band_e"
+
+/obj/item/ammo_magazine/rifle/sa80/lmg/ap
+	name = "\improper AP sa80 magazine (10x24mm)"
+	desc = "A 10mm assault rifle magazine used by the royal marines."
+	default_ammo = /datum/ammo/bullet/rifle/ap
+	max_rounds = 100
+	ammo_band_color = AMMO_BAND_COLOR_AP
+
+/obj/item/ammo_magazine/rifle/sa80/lmg/heap
+	name = "\improper HEAP sa80 magazine (10x24mm)"
+	desc = "A 10mm assault rifle magazine used by the royal marines."
+	default_ammo = /datum/ammo/bullet/rifle/heap
+	max_rounds = 100
+	ammo_band_color = AMMO_BAND_COLOR_HEAP

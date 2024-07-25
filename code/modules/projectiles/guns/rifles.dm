@@ -1280,7 +1280,7 @@
 
 	reload_sound = 'sound/weapons/handling/hpr_reload.ogg'
 	unload_sound = 'sound/weapons/handling/hpr_unload.ogg'
-	fire_sound = "gun_pulse"
+	fire_sound = "gun_smartgun_rattle"
 	aim_slowdown = SLOWDOWN_ADS_LMG
 	current_mag = /obj/item/ammo_magazine/rifle/lmg
 	attachable_allowed = list(
@@ -1978,7 +1978,7 @@
 	fire_sound = "gun_pulse"
 	reload_sound = 'sound/weapons/handling/m41_reload.ogg'
 	unload_sound = 'sound/weapons/handling/m41_unload.ogg'
-	current_mag = /obj/item/ammo_magazine/rifle/rmc_f90
+	current_mag = /obj/item/ammo_magazine/rifle/rmc_f90/heap
 	flags_equip_slot = NO_FLAGS
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -2110,7 +2110,7 @@
 
 /obj/item/weapon/gun/rifle/sa80
 	name = "\improper SA80 pulse rifle"
-	desc = "An older design of the Pulse Rifle commonly used by the RMC. Uses 10x24mm caseless ammunition."
+	desc = "An older design of Pulse Rifle commonly used by the TWE. Uses 10x24mm caseless ammunition."
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/twe_guns.dmi'
 	icon_state = "sa80"
 	item_state = "sa80"
@@ -2123,7 +2123,6 @@
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonet/upp,
 		/obj/item/attachable/bayonet/rmc,
-		/obj/item/attachable/extended_barrel/sa80,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/flashlight,
@@ -2136,10 +2135,13 @@
 		/obj/item/ammo_magazine/rifle/sa80,
 		/obj/item/ammo_magazine/rifle/sa80/ap,
 		/obj/item/ammo_magazine/rifle/sa80/heap,
+		/obj/item/ammo_magazine/rifle/sa80/extended,
+		/obj/item/ammo_magazine/rifle/sa80/extended/ap,
+		/obj/item/ammo_magazine/rifle/sa80/extended/heap,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
-	starting_attachment_types = list(/obj/item/attachable/scope/mini_iff, /obj/item/attachable/extended_barrel/sa80, /obj/item/attachable/verticalgrip)
+	starting_attachment_types = list(/obj/item/attachable/scope/mini_iff, /obj/item/attachable/verticalgrip)
 	start_automatic = TRUE
 
 /obj/item/weapon/gun/rifle/sa80/set_gun_attachment_offsets()
@@ -2159,11 +2161,88 @@
 	recoil_unwielded = RECOIL_AMOUNT_TIER_2
 
 /obj/item/weapon/gun/rifle/sa80/rifleman
-	starting_attachment_types = list(/obj/item/attachable/scope/mini_iff, /obj/item/attachable/extended_barrel/sa80, )
+	starting_attachment_types = list(/obj/item/attachable/scope/mini_iff, /obj/item/attachable/verticalgrip)
 
-	random_spawn_chance = 50
-	random_under_chance = 40
-	random_spawn_under = list(
-		/obj/item/attachable/attached_gun/grenade,
+/obj/item/weapon/gun/rifle/sa80/rifleman/handle_starting_attachment()
+	..()
+	var/obj/item/attachable/extended_barrel/sa80/sa80_barrel = new(src)
+	sa80_barrel.flags_attach_features &= ~ATTACH_REMOVABLE
+	sa80_barrel.hidden = FALSE
+	sa80_barrel.Attach(src)
+	update_attachable(sa80_barrel.slot)
+
+//sa80 Machinegun
+
+/obj/item/weapon/gun/rifle/sa80/ugl
+	name = "\improper SA80 pulse rifle"
+	desc = "An older design of Pulse Rifle commonly used by the TWE. This one features a built in UGL Uses 10x24mm caseless ammunition."
+	icon = 'icons/obj/items/weapons/guns/guns_by_faction/twe_guns.dmi'
+	icon_state = "sa80_gl"
+	item_state = "sa80"
+
+/obj/item/weapon/gun/rifle/sa80/ugl
+	starting_attachment_types = list(/obj/item/attachable/scope/mini_iff, )
+
+/obj/item/weapon/gun/rifle/sa80/ugl/handle_starting_attachment()
+	..()
+	var/obj/item/attachable/attached_gun/grenade/mk1/sa80_ugl = new(src)
+	var/obj/item/attachable/extended_barrel/sa80/sa80_barrel = new(src)
+	sa80_ugl.flags_attach_features &= ~ATTACH_REMOVABLE
+	sa80_barrel.flags_attach_features &= ~ATTACH_REMOVABLE
+	sa80_barrel.hidden = FALSE
+	sa80_ugl.hidden = TRUE
+	sa80_ugl.Attach(src)
+	sa80_barrel.Attach(src)
+	update_attachable(sa80_ugl.slot)
+	update_attachable(sa80_barrel.slot)
+
+//sa80 Machinegun
+
+/obj/item/weapon/gun/rifle/sa80/lmg
+	name = "\improper SA80 infantry support pulse machinegun"
+	desc = "An older design of Pulse Rifle commonly used by the TWE. Uses 10x24mm caseless ammunition."
+	icon = 'icons/obj/items/weapons/guns/guns_by_faction/twe_guns.dmi'
+	icon_state = "sa80_lmg"
+	item_state = "sa80"
+	fire_sound = "gun_smartgun_rattle"
+	reload_sound = 'sound/weapons/handling/hpr_reload.ogg'
+	unload_sound = 'sound/weapons/handling/hpr_unload.ogg'
+	current_mag = /obj/item/ammo_magazine/rifle/sa80/lmg/heap
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/upp,
+		/obj/item/attachable/bayonet/rmc,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/reflex,
+		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/scope/mini_iff,
 	)
+	accepted_ammo = list(
+		/obj/item/ammo_magazine/rifle/sa80/lmg,
+		/obj/item/ammo_magazine/rifle/sa80/lmg/ap,
+		/obj/item/ammo_magazine/rifle/sa80/lmg/heap,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	starting_attachment_types = list(/obj/item/attachable/scope/mini_iff, /obj/item/attachable/verticalgrip)
+	start_automatic = TRUE
+
+/obj/item/weapon/gun/rifle/sa80/set_gun_attachment_offsets()
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 11, "rail_y" = 21, "under_x" = 23, "under_y" = 16, "stock_x" = 24, "stock_y" = 14)
+
+/obj/item/weapon/gun/rifle/sa80/set_gun_config_values()
+	..()
+	set_fire_delay(FIRE_DELAY_TIER_10)
+	set_burst_amount(BURST_AMOUNT_TIER_4)
+	set_burst_delay(FIRE_DELAY_TIER_10)
+	accuracy_mult = BASE_ACCURACY_MULT + HIT_ACCURACY_MULT_TIER_3
+	accuracy_mult_unwielded = BASE_ACCURACY_MULT - HIT_ACCURACY_MULT_TIER_7
+	scatter = SCATTER_AMOUNT_TIER_9
+	burst_scatter_mult = SCATTER_AMOUNT_TIER_9
+	scatter_unwielded = SCATTER_AMOUNT_TIER_2
+	damage_mult = BASE_BULLET_DAMAGE_MULT + BULLET_DAMAGE_MULT_TIER_2
+	recoil_unwielded = RECOIL_AMOUNT_TIER_2
