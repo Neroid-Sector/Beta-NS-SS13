@@ -646,6 +646,13 @@ Defined in conflicts.dm of the #defines folder.
 	movement_onehanded_acc_penalty_mod = MOVEMENT_ACCURACY_PENALTY_MULT_TIER_5
 
 
+/obj/item/attachable/reflex/sa80_irons
+
+	name = "SA80 Carry Handle"
+	desc = "the carry handle and iron sights of an SA80"
+	icon_state = "sa80_iron"
+	attach_icon = "sa80_iron_a"
+
 /obj/item/attachable/flashlight
 	name = "rail flashlight"
 	desc = "A flashlight, for rails, on guns. Can be toggled on and off. A better light source than standard M3 pattern armor lights."
@@ -3435,6 +3442,14 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "bipod_m60"
 	attach_icon = "vulture_bipod"
 	heavy_bipod = TRUE
+
+/obj/item/attachable/bipod/sa80
+	name = "bipod"
+	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. \nGreatly increases accuracy and reduces recoil when properly placed, but also increases weapon size and slows firing speed."
+	icon = 'icons/obj/items/weapons/guns/attachments/barrel.dmi'
+	icon_state = "sa80_bipod"
+	attach_icon = "sa80_bipod_a"
+	slot = "muzzle"
 
 /obj/item/attachable/burstfire_assembly
 	name = "burst fire assembly"

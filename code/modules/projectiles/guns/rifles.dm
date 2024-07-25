@@ -2107,7 +2107,6 @@
 	update_attachable(f90_shotgun.slot)
 	update_attachable(f90_shotgun_barrel.slot)
 
-
 /obj/item/weapon/gun/rifle/sa80
 	name = "\improper SA80 pulse rifle"
 	desc = "An older design of Pulse Rifle commonly used by the TWE. Uses 10x24mm caseless ammunition."
@@ -2127,6 +2126,7 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/reflex,
+		/obj/item/attachable/reflex/sa80_irons,
 		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/scope/mini_iff,
@@ -2141,7 +2141,7 @@
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
-	starting_attachment_types = list(/obj/item/attachable/scope/mini_iff, /obj/item/attachable/verticalgrip)
+	starting_attachment_types = list(/obj/item/attachable/reflex/sa80_irons, /obj/item/attachable/verticalgrip)
 	start_automatic = TRUE
 
 /obj/item/weapon/gun/rifle/sa80/set_gun_attachment_offsets()
@@ -2207,6 +2207,8 @@
 	fire_sound = "gun_smartgun_rattle"
 	reload_sound = 'sound/weapons/handling/hpr_reload.ogg'
 	unload_sound = 'sound/weapons/handling/hpr_unload.ogg'
+	w_class = SIZE_HUGE
+	gun_category = GUN_CATEGORY_HEAVY
 	current_mag = /obj/item/ammo_magazine/rifle/sa80/lmg/heap
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -2217,6 +2219,7 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/reflex,
+		/obj/item/attachable/reflex/sa80_irons,
 		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/scope/mini_iff,
@@ -2227,22 +2230,34 @@
 		/obj/item/ammo_magazine/rifle/sa80/lmg/heap,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
-	starting_attachment_types = list(/obj/item/attachable/scope/mini_iff, /obj/item/attachable/verticalgrip)
+	wield_delay = WIELD_DELAY_VERY_SLOW
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	starting_attachment_types = list(/obj/item/attachable/scope/mini_iff, /obj/item/attachable/verticalgrip, )
 	start_automatic = TRUE
 
-/obj/item/weapon/gun/rifle/sa80/set_gun_attachment_offsets()
-	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 11, "rail_y" = 21, "under_x" = 23, "under_y" = 16, "stock_x" = 24, "stock_y" = 14)
+/obj/item/weapon/gun/rifle/sa80/lmg/set_gun_attachment_offsets()
+	attachable_offset = list("muzzle_x" = 36, "muzzle_y" = 19,"rail_x" = 11, "rail_y" = 21, "under_x" = 4, "under_y" = 13, "stock_x" = 24, "stock_y" = 14)
 
-/obj/item/weapon/gun/rifle/sa80/set_gun_config_values()
+/obj/item/weapon/gun/rifle/sa80/lmg/set_gun_config_values()
 	..()
-	set_fire_delay(FIRE_DELAY_TIER_10)
-	set_burst_amount(BURST_AMOUNT_TIER_4)
-	set_burst_delay(FIRE_DELAY_TIER_10)
+	set_fire_delay(FIRE_DELAY_TIER_7)
+	set_burst_amount(BURST_AMOUNT_TIER_5)
+	set_burst_delay(FIRE_DELAY_TIER_LMG)
 	accuracy_mult = BASE_ACCURACY_MULT + HIT_ACCURACY_MULT_TIER_3
 	accuracy_mult_unwielded = BASE_ACCURACY_MULT - HIT_ACCURACY_MULT_TIER_7
 	scatter = SCATTER_AMOUNT_TIER_9
 	burst_scatter_mult = SCATTER_AMOUNT_TIER_9
 	scatter_unwielded = SCATTER_AMOUNT_TIER_2
 	damage_mult = BASE_BULLET_DAMAGE_MULT + BULLET_DAMAGE_MULT_TIER_2
-	recoil_unwielded = RECOIL_AMOUNT_TIER_2
+	recoil_unwielded = RECOIL_AMOUNT_TIER_1
+
+/obj/item/weapon/gun/rifle/sa80/lmg/handle_starting_attachment()
+	..()
+	var/obj/item/attachable/bipod/sa80/sa80_lmg_barrel = new(src)
+	sa80_lmg_barrel.flags_attach_features &= ~ATTACH_REMOVABLE
+	sa80_lmg_barrel.hidden = FALSE
+	sa80_lmg_barrel.Attach(src)
+	update_attachable(sa80_lmg_barrel.slot)
+
+/obj/item/weapon/gun/rifle/sa80/lmg/rifleman
+	starting_attachment_types = list(/obj/item/attachable/reflex/sa80_irons, /obj/item/attachable/verticalgrip, )
