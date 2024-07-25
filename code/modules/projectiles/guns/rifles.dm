@@ -1364,9 +1364,9 @@
 		/obj/item/ammo_magazine/rifle/type71,
 		/obj/item/ammo_magazine/rifle/type71/ap,
 		/obj/item/ammo_magazine/rifle/type71/heap,
-		/obj/item/ammo_magazine/rifle/ak84s,
-		/obj/item/ammo_magazine/rifle/ak84s/ap,
-		/obj/item/ammo_magazine/rifle/ak84s/heap,)
+		/obj/item/ammo_magazine/rifle/ak4047,
+		/obj/item/ammo_magazine/rifle/ak4047/ap,
+		/obj/item/ammo_magazine/rifle/ak4047/heap,)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	flags_equip_slot = SLOT_BACK
@@ -1593,9 +1593,9 @@
 //-------------------------------------------------------
 //UPP AK84s RIFLE
 
-/obj/item/weapon/gun/rifle/ak84s
-	name = "\improper Ak84s pulse rifle"
-	desc = "The primary service rifle of the UPP space forces, the AK84s is an ergonomic, lightweight pulse rifle chambered in 5.45x39mm. In accordance with doctrinal principles of overmatch and suppression, the rifle has a high rate of fire and a high-capacity casket magazine. Despite lackluster precision, an integrated recoil-dampening mechanism makes the rifle surprisingly controllable in bursts."
+/obj/item/weapon/gun/rifle/ak4047
+	name = "\improper AK–4047 pulse rifle"
+	desc = "The primary service rifle of the UPP space forces, the AK–4047 pulse rifle is a cheap bulky but, lightweight pulse rifle chambered in 5.45x39mm. In accordance with doctrinal principles of overmatch and suppression, the rifle has a high rate of fire and a high-capacity casket magazine. Despite lackluster precision, an integrated recoil-dampening mechanism makes the rifle surprisingly controllable in bursts."
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/upp.dmi'
 	icon_state = "ak84s"
 	item_state = "ak84s"
@@ -1603,7 +1603,7 @@
 	fire_sound = 'sound/weapons/gun_type71.ogg'
 	reload_sound = 'sound/weapons/handling/m41_reload.ogg'
 	unload_sound = 'sound/weapons/handling/m41_unload.ogg'
-	current_mag = /obj/item/ammo_magazine/rifle/ak84s/heap
+	current_mag = /obj/item/ammo_magazine/rifle/ak4047/heap
 	wield_delay = WIELD_DELAY_FAST
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight, // Rail
@@ -1615,25 +1615,24 @@
 		/obj/item/attachable/bayonet/upp,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/lasersight,
-		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/attached_gun/grenade,
 		)
 	accepted_ammo = list(
 		/obj/item/ammo_magazine/rifle/type71,
 		/obj/item/ammo_magazine/rifle/type71,
 		/obj/item/ammo_magazine/rifle/type71/heap,
-		/obj/item/ammo_magazine/rifle/ak84s,
-		/obj/item/ammo_magazine/rifle/ak84s/ap,
-		/obj/item/ammo_magazine/rifle/ak84s/heap,)
+		/obj/item/ammo_magazine/rifle/ak4047,
+		/obj/item/ammo_magazine/rifle/ak4047/ap,
+		/obj/item/ammo_magazine/rifle/ak4047/heap,)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	flags_equip_slot = SLOT_BACK
 	start_automatic = TRUE
 
-/obj/item/weapon/gun/rifle/ak84s/set_gun_attachment_offsets()
+/obj/item/weapon/gun/rifle/ak4047/set_gun_attachment_offsets()
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 10, "rail_y" = 23, "under_x" = 20, "under_y" = 13, "stock_x" = 11, "stock_y" = 13)
 
-/obj/item/weapon/gun/rifle/ak84s/set_gun_config_values()
+/obj/item/weapon/gun/rifle/ak4047/set_gun_config_values()
 	..()
 	set_fire_delay(FIRE_DELAY_TIER_9)
 	set_burst_amount(BURST_AMOUNT_TIER_5)
@@ -1646,12 +1645,30 @@
 	damage_mult = BASE_BULLET_DAMAGE_MULT //10~ more damage than m41, as well as higher ap from bullet, slightly higher DPS, 133>137.5
 	recoil_unwielded = RECOIL_AMOUNT_TIER_3
 
-/obj/item/weapon/gun/rifle/ak84s/handle_starting_attachment()
+/obj/item/weapon/gun/rifle/ak4047/handle_starting_attachment()
 	..()
 	var/obj/item/attachable/stock/ak/STOCK = new(src)
 	STOCK.flags_attach_features &= ~ATTACH_REMOVABLE
 	STOCK.Attach(src)
 	update_attachable(STOCK.slot)
+
+/obj/item/weapon/gun/rifle/ak4047/rifleman
+	random_spawn_chance = 50
+	random_rail_chance = 70
+	random_spawn_rail = list(
+		/obj/item/attachable/reflex,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/reddot,
+	)
+	random_muzzle_chance = 50
+	random_spawn_muzzle = list(
+		/obj/item/attachable/bayonet/upp,
+	)
+	random_under_chance = 40
+	random_spawn_under = list(
+		/obj/item/attachable/attached_gun/grenade,
+	)
+
 
 //M4RA Battle Rifle, standard USCM DMR
 
@@ -2014,6 +2031,7 @@
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonet/upp,
+		/obj/item/attachable/bayonet/rmc,
 		/obj/item/attachable/extended_barrel/sa80,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/magnetic_harness,
@@ -2049,3 +2067,12 @@
 	damage_mult = BASE_BULLET_DAMAGE_MULT + BULLET_DAMAGE_MULT_TIER_2
 	recoil_unwielded = RECOIL_AMOUNT_TIER_2
 
+/obj/item/weapon/gun/rifle/sa80/rifleman
+	starting_attachment_types = list(/obj/item/attachable/scope/mini_iff, /obj/item/attachable/extended_barrel/sa80, )
+
+	random_spawn_chance = 50
+	random_under_chance = 40
+	random_spawn_under = list(
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/verticalgrip,
+	)

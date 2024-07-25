@@ -708,6 +708,7 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonet/upp,
+		/obj/item/attachable/bayonet/rmc,
 		/obj/item/attachable/bayonet/co2,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/scope/mini,

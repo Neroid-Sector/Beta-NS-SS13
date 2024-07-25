@@ -2313,7 +2313,7 @@ Defined in conflicts.dm of the #defines folder.
 	..()
 
 /obj/item/attachable/stock/ak
-	name = "Type 71 Stock"
+	name = "ak84s Stock"
 	desc = "This isn't supposed to be seperated from the gun, how'd this happen?"
 	icon = 'icons/obj/items/weapons/guns/attachments/stock.dmi'
 	icon_state = "ak_stock"
