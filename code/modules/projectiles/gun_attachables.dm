@@ -916,6 +916,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/damage_falloff_scoped_buff
 	var/ignore_clash_fog = FALSE
 	var/using_scope
+	var/glint_message_range = 25
 
 /obj/item/attachable/scope/New()
 	..()
@@ -957,6 +958,11 @@ Defined in conflicts.dm of the #defines folder.
 		G.damage_falloff_mult += damage_falloff_scoped_buff
 		using_scope = TRUE
 		RegisterSignal(user, COMSIG_LIVING_ZOOM_OUT, PROC_REF(remove_scoped_buff))
+
+	for(var/mob/current_mob as anything in get_mobs_in_z_level_range(get_turf(user), glint_message_range) - user)
+		var/relative_dir = get_dir(current_mob, user)
+		var/final_dir = dir2text(relative_dir)
+		to_chat(current_mob, SPAN_HIGHDANGER("You see a suspicious glint [final_dir ? "the [final_dir]" : "nearby"]!"))
 
 /obj/item/attachable/scope/proc/remove_scoped_buff(mob/living/carbon/user, obj/item/weapon/gun/G)
 	SIGNAL_HANDLER
