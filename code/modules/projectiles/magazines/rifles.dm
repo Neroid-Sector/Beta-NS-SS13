@@ -513,6 +513,22 @@
 	gun_type = /obj/item/weapon/gun/boltaction/vulture
 	w_class = SIZE_MEDIUM // maybe small? This shit's >4 inches long mind you
 
+//=A-M35/6=\\
+
+/obj/item/ammo_magazine/rifle/am35
+	name = "\improper E-M35 magazine (10x24mm)"
+	desc = "A non refillable combination pellet hopper, and battery pack for the A-M35 plasma rifle."
+	caliber = "10x24mm"
+	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/colony.dmi'
+	icon_state = "a-m36"
+	item_state = "a-m36"
+	flags_magazine = AMMUNITION_CANNOT_REMOVE_BULLETS
+	w_class = SIZE_MEDIUM
+	default_ammo = /datum/ammo/bullet/rifle/am35/plasma
+	max_rounds = 150
+	gun_type = /obj/item/weapon/gun/rifle/am35
+
+
 //=ROYAL MARINES=\\
 
 /obj/item/ammo_magazine/rifle/rmc_f90

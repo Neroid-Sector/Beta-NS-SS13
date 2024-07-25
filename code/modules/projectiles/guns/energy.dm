@@ -117,7 +117,7 @@
 	icon_state = "rxfm5_eva"
 	item_state = "eva"
 	muzzle_flash = "muzzle_laser"
-	fire_sound = 'sound/weapons/energygun.mp3'
+	fire_sound = 'sound/weapons/laser3.ogg'
 	w_class = SIZE_MEDIUM
 	gun_category = GUN_CATEGORY_HANDGUN
 	flags_equip_slot = SLOT_WAIST
@@ -178,7 +178,7 @@
 	flags_equip_slot = SLOT_WAIST
 	charge_cost = 200
 	ammo = /datum/ammo/energy/laz_uzi
-	fire_sound = 'sound/weapons/energygun.mp3'
+	fire_sound = 'sound/weapons/laser3.ogg'
 	has_charge_meter = FALSE
 	charge_icon = "+laz_uzi_empty"
 	start_automatic = TRUE
@@ -208,7 +208,7 @@
 	flags_equip_slot = SLOT_WAIST
 	charge_cost = 20
 	ammo = /datum/ammo/energy/laz_rifle
-	fire_sound = 'sound/weapons/energygun.mp3'
+	fire_sound = 'sound/weapons/laser3.ogg'
 	has_charge_meter = FALSE
 	charge_icon = "+laz_uzi_empty"
 	start_automatic = TRUE

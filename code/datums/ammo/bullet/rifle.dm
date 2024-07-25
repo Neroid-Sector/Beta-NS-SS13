@@ -239,3 +239,29 @@
 	headshot_state = HEADSHOT_OVERLAY_HEAVY
 	damage = 70
 	penetration = ARMOR_PENETRATION_TIER_10
+
+
+/datum/ammo/bullet/rifle/am35/plasma
+	name = "plasma bolt"
+	icon_state = "bluespace"
+	flags_ammo_behavior = AMMO_ENERGY
+	damage_type = BURN
+	damage = 75
+	accurate_range = 15
+	effective_range_max = 21
+	max_range = 10
+	shell_speed = AMMO_SPEED_TIER_6
+	scatter = SCATTER_AMOUNT_TIER_9
+	accuracy = HIT_ACCURACY_TIER_9
+	damage_falloff = DAMAGE_FALLOFF_TIER_8
+
+/datum/ammo/bullet/rifle/am35/plasma/set_bullet_traits()
+	. = ..()
+	LAZYADD(traits_to_give, list(
+		BULLET_TRAIT_ENTRY(/datum/element/bullet_trait_penetrating)
+	))
+
+/datum/ammo/bullet/rifle/am35/plasma/on_hit_mob(mob/living/M, obj/projectile/P)
+	..()
+	if(prob(50)) //small chance for one to ignite on hit
+		M.fire_act()
