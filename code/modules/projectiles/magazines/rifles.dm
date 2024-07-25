@@ -525,7 +525,7 @@
 	flags_magazine = AMMUNITION_CANNOT_REMOVE_BULLETS
 	w_class = SIZE_MEDIUM
 	default_ammo = /datum/ammo/bullet/rifle/am35/plasma
-	max_rounds = 150
+	max_rounds = 15
 	gun_type = /obj/item/weapon/gun/rifle/am35
 
 

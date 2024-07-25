@@ -14,6 +14,7 @@
 	throw_speed = SPEED_VERY_FAST
 	/// If FALSE won't change icon_state to a camo marine bino.
 	var/uses_camo = TRUE
+	var/glint_message_range = 30
 
 
 	//matter = list("metal" = 50,"glass" = 50)
@@ -31,6 +32,11 @@
 		return
 
 	zoom(user, 11, 12)
+
+	for(var/mob/current_mob as anything in get_mobs_in_z_level_range(get_turf(user), glint_message_range) - user)
+		var/relative_dir = get_dir(current_mob, user)
+		var/final_dir = dir2text(relative_dir)
+		to_chat(current_mob, SPAN_HIGHDANGER("You see a suspicious glint [final_dir ? "the [final_dir]" : "nearby"]!"))
 
 /obj/item/device/binoculars/dropped(/obj/item/item, mob/user)
 	. = ..()
