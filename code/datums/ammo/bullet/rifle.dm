@@ -247,13 +247,14 @@
 	flags_ammo_behavior = AMMO_ENERGY
 	damage_type = BURN
 	damage = 75
-	accurate_range = 15
+	penetration = ARMOR_PENETRATION_TIER_10
+	accurate_range = 21
 	effective_range_max = 21
-	max_range = 10
+	max_range = 30
 	shell_speed = AMMO_SPEED_TIER_6
 	scatter = SCATTER_AMOUNT_TIER_9
 	accuracy = HIT_ACCURACY_TIER_9
-	damage_falloff = DAMAGE_FALLOFF_TIER_8
+	damage_falloff = 99
 
 /datum/ammo/bullet/rifle/am35/plasma/set_bullet_traits()
 	. = ..()
