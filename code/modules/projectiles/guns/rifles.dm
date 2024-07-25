@@ -1630,7 +1630,7 @@
 	start_automatic = TRUE
 
 /obj/item/weapon/gun/rifle/ak4047/set_gun_attachment_offsets()
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 10, "rail_y" = 23, "under_x" = 20, "under_y" = 13, "stock_x" = 11, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 10, "rail_y" = 23, "under_x" = 20, "under_y" = 13, "stock_x" = 12, "stock_y" = 17)
 
 /obj/item/weapon/gun/rifle/ak4047/set_gun_config_values()
 	..()
@@ -2052,7 +2052,7 @@
 	start_automatic = TRUE
 
 /obj/item/weapon/gun/rifle/sa80/set_gun_attachment_offsets()
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 19,"rail_x" = 11, "rail_y" = 21, "under_x" = 23, "under_y" = 16, "stock_x" = 24, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 11, "rail_y" = 21, "under_x" = 23, "under_y" = 16, "stock_x" = 24, "stock_y" = 14)
 
 /obj/item/weapon/gun/rifle/sa80/set_gun_config_values()
 	..()
