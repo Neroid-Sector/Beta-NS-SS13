@@ -266,3 +266,23 @@
 	..()
 	if(prob(50)) //small chance for one to ignite on hit
 		M.fire_act()
+
+/datum/ammo/bullet/rifle/am36/plasma
+	name = "plasma bolt"
+	icon_state = "bluespace"
+	flags_ammo_behavior = AMMO_ENERGY
+	damage_type = BURN
+	damage = 35
+	penetration = ARMOR_PENETRATION_TIER_10
+	accurate_range = 5
+	effective_range_max = 11
+	max_range = 10
+	shell_speed = AMMO_SPEED_TIER_4
+	scatter = SCATTER_AMOUNT_TIER_9
+	accuracy = HIT_ACCURACY_TIER_9
+	damage_falloff = 2
+
+/datum/ammo/bullet/rifle/am36/plasma/on_hit_mob(mob/living/M, obj/projectile/P)
+	..()
+	if(prob(75)) //small chance for one to ignite on hit
+		M.fire_act()
