@@ -227,6 +227,8 @@
 	max_rounds = 40
 	gun_type = /obj/item/weapon/gun/rifle/mar40
 	w_class = SIZE_MEDIUM
+	ammo_band_icon = "+mar40_band"
+	ammo_band_icon_empty = "+mar40_band_e"
 
 /obj/item/ammo_magazine/rifle/mar40/extended
 	name = "\improper MAR extended magazine (7.62x39mm)"
@@ -235,6 +237,18 @@
 	bonus_overlay = "mar40_ex"
 	icon_state = "mar40_extended"
 
+/obj/item/ammo_magazine/rifle/mar40/ap
+	name = "\improper MAR AP magazine (7.62x39mm)"
+	desc = "A 7.62x39mm magazine for the MAR series of firearms."
+	default_ammo = /datum/ammo/bullet/rifle/mar40/ap
+	ammo_band_color = AMMO_BAND_COLOR_AP
+
+/obj/item/ammo_magazine/rifle/mar40/rubber
+	name = "\improper MAR Rubber magazine (7.62x39mm)"
+	desc = "A 7.62x39mm rubber rounds magazine for the MAR series of firearms."
+	default_ammo = /datum/ammo/bullet/rifle/rubber
+	ammo_band_color = AMMO_BAND_COLOR_RUBBER
+
 /obj/item/ammo_magazine/rifle/mar40/lmg
 	name = "\improper MAR drum magazine (7.62x39mm)"
 	desc = "A 7.62x39mm drum magazine for the MAR-50 LMG."
@@ -242,6 +256,13 @@
 	icon_state = "mar50"
 	max_rounds = 100
 	gun_type = /obj/item/weapon/gun/rifle/mar40/lmg
+
+/obj/item/ammo_magazine/rifle/mar40/lmg/ap
+	name = "\improper MAR AP drum magazine (7.62x39mm)"
+	desc = "A 7.62x39mm magazine for the MAR series of firearms."
+	icon_state = "mar50_ap"
+	default_ammo = /datum/ammo/bullet/rifle/mar40/ap
+	ammo_band_color = AMMO_BAND_COLOR_AP
 
 //-------------------------------------------------------
 //M16 RIFLE

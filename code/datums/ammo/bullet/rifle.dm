@@ -202,6 +202,12 @@
 	damage = 35
 	penetration = 0
 
+/datum/ammo/bullet/rifle/mar40/ap
+	name = "armor piercing rifle bullet"
+
+	damage = 35
+	penetration = ARMOR_PENETRATION_TIER_5
+
 /datum/ammo/bullet/rifle/type71
 	name = "heavy rifle bullet"
 

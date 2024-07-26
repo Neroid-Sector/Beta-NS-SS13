@@ -688,6 +688,57 @@
 		click_empty(user)
 	return FALSE
 
+/obj/item/weapon/gun/smg/p90
+	name = "\improper FN-P90 pulse submachinegun"
+	desc = "The FN Herstal FN-P90 submachinegun. Occasionally carried by light-infantry, scouts, engineers and medics. A lightweight, lower caliber alternative to the various Pulse weapons used the RMC. Fires 10x20mm rounds out of 50 round magazines."
+	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
+	icon_state = "p90"
+	item_state = "p90"
+	flags_equip_slot = SLOT_BACK
+	current_mag = /obj/item/ammo_magazine/smg/p90
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/reflex,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/upp,
+		/obj/item/attachable/bayonet/rmc,
+		/obj/item/attachable/bayonet/co2,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/magnetic_harness,
+	)
+	accepted_ammo = list(
+		/obj/item/ammo_magazine/smg/p90,
+		/obj/item/ammo_magazine/smg/p90/ap,
+		/obj/item/ammo_magazine/smg/p90/heap,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	starting_attachment_types = list()
+	map_specific_decoration = FALSE
+
+/obj/item/weapon/gun/smg/p90rmc/set_gun_attachment_offsets()
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 18,"rail_x" = 20, "rail_y" = 23, "under_x" = 21, "under_y" = 16, "stock_x" = 24, "stock_y" = 15)
+
+/obj/item/weapon/gun/smg/p90/set_gun_config_values()
+	..()
+	set_fire_delay(FIRE_DELAY_TIER_SMG)
+	set_burst_delay(FIRE_DELAY_TIER_SMG)
+	set_burst_amount(BURST_AMOUNT_TIER_3)
+	accuracy_mult = BASE_ACCURACY_MULT
+	accuracy_mult_unwielded = BASE_ACCURACY_MULT - HIT_ACCURACY_MULT_TIER_5
+	scatter = SCATTER_AMOUNT_TIER_4
+	burst_scatter_mult = SCATTER_AMOUNT_TIER_3
+	scatter_unwielded = SCATTER_AMOUNT_TIER_2
+	damage_mult = BASE_BULLET_DAMAGE_MULT
+	recoil_unwielded = RECOIL_AMOUNT_TIER_5
+	fa_max_scatter = SCATTER_AMOUNT_TIER_10 + 0.5
+
 //-------ROYAL MARINES---------\\
 
 /obj/item/weapon/gun/smg/p90rmc
@@ -738,6 +789,6 @@
 	scatter = SCATTER_AMOUNT_TIER_4
 	burst_scatter_mult = SCATTER_AMOUNT_TIER_4
 	scatter_unwielded = SCATTER_AMOUNT_TIER_4
-	damage_mult = BASE_BULLET_DAMAGE_MULT
+	damage_mult = BASE_BULLET_DAMAGE_MULT + 0.2
 	recoil_unwielded = RECOIL_AMOUNT_TIER_5
 	fa_max_scatter = SCATTER_AMOUNT_TIER_10 + 0.5
