@@ -107,7 +107,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/storage/box/m94, WEAR_IN_BACK) //3.25
 	new_human.equip_to_slot_or_del(new /obj/item/storage/box/m94, WEAR_IN_BACK) //4.25
 	//body
-	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/type71/rifleman, WEAR_J_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/ak4047/rifleman, WEAR_J_STORE)
 	//waist
 	new_human.equip_to_slot_or_del(new /obj/item/storage/belt/marine/upp/full, WEAR_WAIST)
 	//rpocket
@@ -194,7 +194,7 @@
 		list("Sandbags x25", 5, /obj/item/stack/sandbags_empty/half, null, VENDOR_ITEM_RECOMMENDED),
 
 		list("SPECIAL AMMUNITION", 0, null, null, null),
-		list("Type 71 HEAP Magazine (5.45x39mm)", 10, /obj/item/ammo_magazine/rifle/type71/heap , null, VENDOR_ITEM_REGULAR),
+		list("Type 71 HEAP Magazine (5.45x39mm)", 10, /obj/item/ammo_magazine/rifle/ak4047/heap , null, VENDOR_ITEM_REGULAR),
 
 		list("ATTACHMENTS", 0, null, null, null),
 		list("Angled Grip", 10, /obj/item/attachable/angledgrip, null, VENDOR_ITEM_REGULAR),
@@ -364,7 +364,7 @@
 		list("Stasis Bag", 6, /obj/item/bodybag/cryobag, null, VENDOR_ITEM_REGULAR),
 
 		list("SPECIAL AMMUNITION", 0, null, null, null),
-		list("Type 71 HEAP Magazine (5.45x39mm)", 10, /obj/item/ammo_magazine/rifle/type71/heap , null, VENDOR_ITEM_REGULAR),
+		list("Type 71 HEAP Magazine (5.45x39mm)", 10, /obj/item/ammo_magazine/rifle/ak4047/heap , null, VENDOR_ITEM_REGULAR),
 
 		list("ATTACHMENTS", 0, null, null, null),
 		list("Angled Grip", 10, /obj/item/attachable/angledgrip, null, VENDOR_ITEM_REGULAR),
@@ -498,7 +498,7 @@
 		list("Sandbags x25", 10, /obj/item/stack/sandbags_empty/half, null, VENDOR_ITEM_RECOMMENDED),
 
 		list("SPECIAL AMMUNITION", 0, null, null, null),
-		list("Type 71 HEAP Magazine (5.45x39mm)", 3, /obj/item/ammo_magazine/rifle/type71/heap , null, VENDOR_ITEM_REGULAR),
+		list("Type 71 HEAP Magazine (5.45x39mm)", 3, /obj/item/ammo_magazine/rifle/ak4047/heap , null, VENDOR_ITEM_REGULAR),
 
 		list("ATTACHMENTS", 0, null, null, null),
 		list("Angled Grip", 10, /obj/item/attachable/angledgrip, null, VENDOR_ITEM_REGULAR),
@@ -920,7 +920,7 @@
 		list("Medical HUD Glasses", 4, /obj/item/clothing/glasses/hud/health, null, VENDOR_ITEM_MANDATORY),
 
 		list("SPECIAL AMMUNITION", 0, null, null, null),
-		list("Type 71 HEAP Magazine (5.45x39mm)", 3, /obj/item/ammo_magazine/rifle/type71/heap , null, VENDOR_ITEM_REGULAR),
+		list("Type 71 HEAP Magazine (5.45x39mm)", 3, /obj/item/ammo_magazine/rifle/ak4047/heap , null, VENDOR_ITEM_REGULAR),
 
 		list("ATTACHMENTS", 0, null, null, null),
 		list("Angled Grip", 10, /obj/item/attachable/angledgrip, null, VENDOR_ITEM_REGULAR),
@@ -1072,7 +1072,7 @@
 		list("Medical HUD Glasses", 4, /obj/item/clothing/glasses/hud/health, null, VENDOR_ITEM_MANDATORY),
 
 		list("SPECIAL AMMUNITION", 0, null, null, null),
-		list("Type 71 HEAP Magazine (5.45x39mm)", 3, /obj/item/ammo_magazine/rifle/type71/heap , null, VENDOR_ITEM_REGULAR),
+		list("Type 71 HEAP Magazine (5.45x39mm)", 3, /obj/item/ammo_magazine/rifle/ak4047/heap , null, VENDOR_ITEM_REGULAR),
 
 		list("ATTACHMENTS", 0, null, null, null),
 		list("Angled Grip", 10, /obj/item/attachable/angledgrip, null, VENDOR_ITEM_REGULAR),
@@ -1235,7 +1235,7 @@
 		list("Medical HUD Glasses", 4, /obj/item/clothing/glasses/hud/health, null, VENDOR_ITEM_MANDATORY),
 
 		list("SPECIAL AMMUNITION", 0, null, null, null),
-		list("Type 71 HEAP Magazine (5.45x39mm)", 3, /obj/item/ammo_magazine/rifle/type71/heap , null, VENDOR_ITEM_REGULAR),
+		list("Type 71 HEAP Magazine (5.45x39mm)", 3, /obj/item/ammo_magazine/rifle/ak4047/heap , null, VENDOR_ITEM_REGULAR),
 
 		list("ATTACHMENTS", 0, null, null, null),
 		list("Angled Grip", 10, /obj/item/attachable/angledgrip, null, VENDOR_ITEM_REGULAR),
@@ -1395,7 +1395,7 @@
 		list("Medical HUD Glasses", 4, /obj/item/clothing/glasses/hud/health, null, VENDOR_ITEM_MANDATORY),
 
 		list("SPECIAL AMMUNITION", 0, null, null, null),
-		list("Type 71 HEAP Magazine (5.45x39mm)", 3, /obj/item/ammo_magazine/rifle/type71/heap , null, VENDOR_ITEM_REGULAR),
+		list("Type 71 HEAP Magazine (5.45x39mm)", 3, /obj/item/ammo_magazine/rifle/ak4047/heap , null, VENDOR_ITEM_REGULAR),
 		list("ATTACHMENTS", 0, null, null, null),
 		list("Angled Grip", 10, /obj/item/attachable/angledgrip, null, VENDOR_ITEM_REGULAR),
 		list("Extended Barrel", 10, /obj/item/attachable/extended_barrel, null, VENDOR_ITEM_REGULAR),
@@ -1555,7 +1555,7 @@
 		list("Medical HUD Glasses", 4, /obj/item/clothing/glasses/hud/health, null, VENDOR_ITEM_MANDATORY),
 
 		list("SPECIAL AMMUNITION", 0, null, null, null),
-		list("Type 71 HEAP Magazine (5.45x39mm)", 3, /obj/item/ammo_magazine/rifle/type71/heap , null, VENDOR_ITEM_REGULAR),
+		list("Type 71 HEAP Magazine (5.45x39mm)", 3, /obj/item/ammo_magazine/rifle/ak4047/heap , null, VENDOR_ITEM_REGULAR),
 
 		list("ATTACHMENTS", 0, null, null, null),
 		list("Angled Grip", 10, /obj/item/attachable/angledgrip, null, VENDOR_ITEM_REGULAR),
@@ -1716,7 +1716,7 @@
 		list("Medical HUD Glasses", 4, /obj/item/clothing/glasses/hud/health, null, VENDOR_ITEM_MANDATORY),
 
 		list("SPECIAL AMMUNITION", 0, null, null, null),
-		list("Type 71 HEAP Magazine (5.45x39mm)", 10, /obj/item/ammo_magazine/rifle/type71/heap , null, VENDOR_ITEM_REGULAR),
+		list("Type 71 HEAP Magazine (5.45x39mm)", 10, /obj/item/ammo_magazine/rifle/ak4047/heap , null, VENDOR_ITEM_REGULAR),
 
 		list("ATTACHMENTS", 0, null, null, null),
 		list("Angled Grip", 10, /obj/item/attachable/angledgrip, null, VENDOR_ITEM_REGULAR),
@@ -2840,15 +2840,15 @@
 		new_human.equip_to_slot_or_del(new maybegloves, WEAR_HANDS)
 
 	//gun
-	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/type71/carbine, WEAR_R_HAND)
+	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/ak4047, WEAR_R_HAND)
 
 	//webbing or belt?
 	if(prob(30))
 		var/obj/item/clothing/accessory/storage/webbing/W = new()
 		UPP.attach_accessory(new_human, W)
-		new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71, WEAR_IN_ACCESSORY)
-		new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71, WEAR_IN_ACCESSORY)
-		new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71, WEAR_IN_ACCESSORY)
+		new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak4047, WEAR_IN_ACCESSORY)
+		new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak4047, WEAR_IN_ACCESSORY)
+		new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak4047, WEAR_IN_ACCESSORY)
 	else if(prob(30))
 		new_human.equip_to_slot_or_del(new /obj/item/storage/belt/marine/upp/scarce, WEAR_WAIST)
 	//if you fail the rolls you must scavenge the ammo from your fallen brethren

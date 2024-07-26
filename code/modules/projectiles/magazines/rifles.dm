@@ -337,7 +337,7 @@
 
 /obj/item/ammo_magazine/rifle/ak4047
 	name = "\improper AK-4047 magazine (5.45x39mm)"
-	desc = "A 5.45x39mm high-capacity casket magazine for the AK-4047 rifle."
+	desc = "A 5.45x39mm high-capacity casket magazine for the AK-4047 rifle. (Also fits in the type71)"
 	caliber = "5.45x39mm"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/upp.dmi'
 	icon_state = "ak84s"
@@ -349,13 +349,13 @@
 
 /obj/item/ammo_magazine/rifle/ak4047/ap
 	name = "\improper AK-4047 AP magazine (5.45x39mm)"
-	desc = "A 5.45x39mm high-capacity casket magazine containing armor piercing rounds for the AK-4047 rifle."
+	desc = "A 5.45x39mm high-capacity casket magazine containing armor piercing rounds for the AK-4047 rifle.(Also fits in the type71)"
 	default_ammo = /datum/ammo/bullet/rifle/type71/ap
 	ammo_band_color = AMMO_BAND_COLOR_AP
 
 /obj/item/ammo_magazine/rifle/ak4047/heap
 	name = "\improper AK-4047 HEAP magazine (5.45x39mm)"
-	desc = "A 5.45x39mm high-capacity casket magazine containing the standard high explosive armor piercing rounds for the AK-4047 rifle."
+	desc = "A 5.45x39mm high-capacity casket magazine containing the standard high explosive armor piercing rounds for the AK-4047 rifle.(Also fits in the type71)"
 	default_ammo = /datum/ammo/bullet/rifle/type71/heap
 	ammo_band_color = AMMO_BAND_COLOR_HEAP
 
@@ -363,7 +363,7 @@
 
 /obj/item/ammo_magazine/rifle/type71
 	name = "\improper Type 71 magazine (5.45x39mm)"
-	desc = "A 5.45x39mm high-capacity casket magazine for the Type 71 rifle."
+	desc = "A 5.45x39mm high-capacity casket magazine for the Type 71 rifle.(Also fits in the ak4047)"
 	caliber = "5.45x39mm"
 	icon = 'icons/obj/items/weapons/guns/ammo_by_faction/upp.dmi'
 	icon_state = "type71"
@@ -375,13 +375,13 @@
 
 /obj/item/ammo_magazine/rifle/type71/ap
 	name = "\improper Type 71 AP magazine (5.45x39mm)"
-	desc = "A 5.45x39mm high-capacity casket magazine containing armor piercing rounds for the Type 71 rifle."
+	desc = "A 5.45x39mm high-capacity casket magazine containing armor piercing rounds for the Type 71 rifle.(Also fits in the ak4047)"
 	default_ammo = /datum/ammo/bullet/rifle/type71/ap
 	ammo_band_color = AMMO_BAND_COLOR_AP
 
 /obj/item/ammo_magazine/rifle/type71/heap
 	name = "\improper Type 71 HEAP magazine (5.45x39mm)"
-	desc = "A 5.45x39mm high-capacity casket magazine containing the standard high explosive armor piercing rounds for the Type 71 rifle."
+	desc = "A 5.45x39mm high-capacity casket magazine containing the standard high explosive armor piercing rounds for the Type 71 rifle.(Also fits in the ak4047)"
 	default_ammo = /datum/ammo/bullet/rifle/type71/heap
 	ammo_band_color = AMMO_BAND_COLOR_HEAP
 

@@ -604,7 +604,7 @@
 //version full of type 71 mags
 /obj/item/storage/belt/marine/upp/full/fill_preset_inventory()
 	for(var/i = 1 to storage_slots)
-		new /obj/item/ammo_magazine/rifle/type71/ap(src)
+		new /obj/item/ammo_magazine/rifle/ak4047/ap(src)
 
 /obj/item/storage/belt/marine/upp/scarce/fill_preset_inventory()
 	new /obj/item/ammo_magazine/rifle/type71/heap(src)

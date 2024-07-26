@@ -1600,8 +1600,8 @@
 	icon_state = "ak84s"
 	item_state = "ak84s"
 
-	fire_sound = 'sound/weapons/gun_type71.ogg'
-	reload_sound = 'sound/weapons/handling/m41_reload.ogg'
+	fire_sound = 'sound/weapons/gun_ak4047.mp3'
+	reload_sound = 'sound/weapons/ak4047_reload.mp3'
 	unload_sound = 'sound/weapons/handling/m41_unload.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/ak4047/heap
 	wield_delay = WIELD_DELAY_FAST
@@ -1630,7 +1630,7 @@
 	start_automatic = TRUE
 
 /obj/item/weapon/gun/rifle/ak4047/set_gun_attachment_offsets()
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 10, "rail_y" = 23, "under_x" = 20, "under_y" = 13, "stock_x" = 11, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 23, "under_x" = 20, "under_y" = 13, "stock_x" = 11, "stock_y" = 14)
 
 /obj/item/weapon/gun/rifle/ak4047/set_gun_config_values()
 	..()
