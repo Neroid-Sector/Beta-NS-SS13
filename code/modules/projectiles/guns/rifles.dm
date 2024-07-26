@@ -1630,7 +1630,7 @@
 	start_automatic = TRUE
 
 /obj/item/weapon/gun/rifle/ak4047/set_gun_attachment_offsets()
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 10, "rail_y" = 23, "under_x" = 20, "under_y" = 13, "stock_x" = 12, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 10, "rail_y" = 23, "under_x" = 20, "under_y" = 13, "stock_x" = 11, "stock_y" = 14)
 
 /obj/item/weapon/gun/rifle/ak4047/set_gun_config_values()
 	..()
@@ -1922,6 +1922,14 @@
 	damage_mult = BASE_BULLET_DAMAGE_MULT
 	recoil_unwielded = RECOIL_AMOUNT_TIER_1
 
+/obj/item/weapon/gun/rifle/am35/rmc
+	name = "\improper a-m35 Phased infantry Rifle"
+	desc = "A low powered plasma rifle. The gun features a togglable binary trigger for rapid fire, and fully automatic fire. Unlike a traditional rifle this weapon Uses vaporized cadmium telluride pellets."
+	desc_lore = "Developed to combat heavier infantry the am-35 is a Hyperdyne developed plasma rifle commonly used by well funded PMC contractors. Due to the reduced scale of the weapon, it struggles to pen the hides of even soft skin armored vehilces, but it does just fine against even the toughest infantry. Its larger brother the P.I.G. is a much better suited weapon for anti vehicle combat."
+	icon = 'icons/obj/items/weapons/guns/guns_by_faction/twe_guns.dmi'
+	icon_state = "a-m36"
+	item_state = "a-m35"
+
 /obj/item/weapon/gun/rifle/am36
 	name = "\improper a-m36 experimental Phased infantry Rifle"
 	desc = "A low powered plasma rifle. The gun features a togglable binary trigger for rapid fire, and fully automatic fire. Unlike a traditional rifle this weapon Uses vaporized cadmium telluride pellets."
@@ -1968,14 +1976,6 @@
 	recoil_unwielded = RECOIL_AMOUNT_TIER_1
 
 //=ROYAL MARINES=\\
-
-/obj/item/weapon/gun/rifle/am35/rmc
-	name = "\improper a-m35 Phased infantry Rifle"
-	desc = "A low powered plasma rifle. The gun features a togglable binary trigger for rapid fire, and fully automatic fire. Unlike a traditional rifle this weapon Uses vaporized cadmium telluride pellets."
-	desc_lore = "Developed to combat heavier infantry the am-35 is a Hyperdyne developed plasma rifle commonly used by well funded PMC contractors. Due to the reduced scale of the weapon, it struggles to pen the hides of even soft skin armored vehilces, but it does just fine against even the toughest infantry. Its larger brother the P.I.G. is a much better suited weapon for anti vehicle combat."
-	icon = 'icons/obj/items/weapons/guns/guns_by_faction/twe_guns.dmi'
-	icon_state = "a-m35"
-	item_state = "a-m36"
 
 /obj/item/weapon/gun/rifle/rmc_f90
 	name = "\improper F903A1 Rifle"
@@ -2237,7 +2237,6 @@
 	gun_category = GUN_CATEGORY_HEAVY
 	current_mag = /obj/item/ammo_magazine/rifle/sa80/lmg/heap
 	attachable_allowed = list(
-		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonet/upp,
 		/obj/item/attachable/bayonet/rmc,
@@ -2247,7 +2246,6 @@
 		/obj/item/attachable/reflex,
 		/obj/item/attachable/reflex/sa80_irons,
 		/obj/item/attachable/attached_gun/shotgun,
-		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/scope/mini_iff,
 	)
 	accepted_ammo = list(
@@ -2262,7 +2260,7 @@
 	start_automatic = TRUE
 
 /obj/item/weapon/gun/rifle/sa80/lmg/set_gun_attachment_offsets()
-	attachable_offset = list("muzzle_x" = 36, "muzzle_y" = 19,"rail_x" = 11, "rail_y" = 21, "under_x" = 3, "under_y" = 12, "stock_x" = 24, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 36, "muzzle_y" = 19,"rail_x" = 11, "rail_y" = 21, "under_x" = 3, "under_y" = 13, "stock_x" = 24, "stock_y" = 14)
 
 /obj/item/weapon/gun/rifle/sa80/lmg/set_gun_config_values()
 	..()
