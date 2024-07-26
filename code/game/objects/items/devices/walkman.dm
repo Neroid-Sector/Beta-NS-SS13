@@ -523,6 +523,17 @@
 	icon_state = "portal_radio"
 	w_class = SIZE_MEDIUM
 	flags_equip_slot = SLOT_WAIST
+	var/spamcheck = 0
 
 /obj/item/device/portalradio/attack_self(mob/user)
-	..(playsound(loc, 'sound/machines/memesong.mp3', 35))
+	..()
+
+	if (spamcheck)
+		return
+
+	playsound(get_turf(src), 'sound/machines/memesong.mp3', 35, 1, vary = 0)
+
+	spamcheck = 1
+	addtimer(VARSET_CALLBACK(src, spamcheck, FALSE), 60 SECONDS)
+
+

@@ -105,11 +105,10 @@
 
 /obj/structure/device/razorwire/ex_act()
 	if(prob(40))
-		playsound(loc, 'sound/effects/barbed_wire_movement.ogg', 100)
+		playsound(loc, 'sound/effects/clang.ogg', 100)
 		qdel(src)
 	else
 		playsound(loc, 'sound/effects/barbed_wire_movement.ogg', 100)
-		SPAN_BOLDWARNING("[src] resists the blast!")
 
 
 /obj/item/stack/concertina_wire/full_stack
