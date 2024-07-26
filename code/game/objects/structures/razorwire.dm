@@ -11,6 +11,7 @@
 
 /obj/item/stack/concertina_wire/attack_self(mob/user)
 	..()
+
 	var/turf/open/T = user.loc
 	if(!(istype(T) && T.allow_construction))
 		to_chat(user, SPAN_WARNING("[src] must be placed on a proper surface!"))
