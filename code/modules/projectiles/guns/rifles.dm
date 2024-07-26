@@ -1373,7 +1373,7 @@
 	start_automatic = TRUE
 
 /obj/item/weapon/gun/rifle/type71/set_gun_attachment_offsets()
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 10, "rail_y" = 23, "under_x" = 20, "under_y" = 13, "stock_x" = 11, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 10, "rail_y" = 23, "under_x" = 20, "under_y" = 13, "stock_x" = 11, "stock_y" = 11)
 
 /obj/item/weapon/gun/rifle/type71/set_gun_config_values()
 	..()
@@ -1925,7 +1925,7 @@
 /obj/item/weapon/gun/rifle/am36
 	name = "\improper a-m36 experimental Phased infantry Rifle"
 	desc = "A low powered plasma rifle. The gun features a togglable binary trigger for rapid fire, and fully automatic fire. Unlike a traditional rifle this weapon Uses vaporized cadmium telluride pellets."
-	desc_lore = "Developed to combat heavier infantry the am-35 is a Hyperdyne developed plasma rifle commonly used by well funded PMC contractors. Due to the reduced scale of the weapon, it struggles to pen the hides of even soft skin armored vehilces, but it does just fine against even the toughest infantry. Its larger brother the P.I.G. is a much better suited weapon for anti vehicle combat."
+	desc_lore = "Developed to combat heavier infantry the am-36 is a Hyperdyne developed plasma rifle used by well funded PMC contractors. Due to the reduced scale of the weapon, it struggles to pen the hides of even soft skin armored vehilces, but it does just fine against even the toughest infantry. Its larger brother the P.I.G. is a much better suited weapon for anti vehicle combat."
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "a-m36"
 	item_state = "a-m36"
@@ -1968,6 +1968,14 @@
 	recoil_unwielded = RECOIL_AMOUNT_TIER_1
 
 //=ROYAL MARINES=\\
+
+/obj/item/weapon/gun/rifle/am35/rmc
+	name = "\improper a-m35 Phased infantry Rifle"
+	desc = "A low powered plasma rifle. The gun features a togglable binary trigger for rapid fire, and fully automatic fire. Unlike a traditional rifle this weapon Uses vaporized cadmium telluride pellets."
+	desc_lore = "Developed to combat heavier infantry the am-35 is a Hyperdyne developed plasma rifle commonly used by well funded PMC contractors. Due to the reduced scale of the weapon, it struggles to pen the hides of even soft skin armored vehilces, but it does just fine against even the toughest infantry. Its larger brother the P.I.G. is a much better suited weapon for anti vehicle combat."
+	icon = 'icons/obj/items/weapons/guns/guns_by_faction/twe_guns.dmi'
+	icon_state = "a-m35"
+	item_state = "a-m36"
 
 /obj/item/weapon/gun/rifle/rmc_f90
 	name = "\improper F903A1 Rifle"
@@ -2012,6 +2020,9 @@
 	scatter_unwielded = SCATTER_AMOUNT_TIER_2
 	damage_mult = BASE_BULLET_DAMAGE_MULT + BULLET_DAMAGE_MULT_TIER_2
 	recoil_unwielded = RECOIL_AMOUNT_TIER_2
+
+/obj/item/weapon/gun/rifle/rmc_f90/civi
+	current_mag = /obj/item/ammo_magazine/rifle/rmc_f90
 
 /obj/item/weapon/gun/rifle/rmc_f90/a_grip
 	name = "\improper F903A2 Rifle"
@@ -2160,6 +2171,8 @@
 	damage_mult = BASE_BULLET_DAMAGE_MULT + BULLET_DAMAGE_MULT_TIER_2
 	recoil_unwielded = RECOIL_AMOUNT_TIER_2
 
+//sa80 scoped
+
 /obj/item/weapon/gun/rifle/sa80/rifleman
 	starting_attachment_types = list(/obj/item/attachable/scope/mini_iff, /obj/item/attachable/verticalgrip)
 
@@ -2171,7 +2184,7 @@
 	sa80_barrel.Attach(src)
 	update_attachable(sa80_barrel.slot)
 
-//sa80 Machinegun
+//sa80 UGL
 
 /obj/item/weapon/gun/rifle/sa80/ugl
 	name = "\improper SA80 pulse rifle"
@@ -2195,6 +2208,19 @@
 	sa80_barrel.Attach(src)
 	update_attachable(sa80_ugl.slot)
 	update_attachable(sa80_barrel.slot)
+
+//sa80 UGL w/irons
+
+/obj/item/weapon/gun/rifle/sa80/ugl/rifleman
+	starting_attachment_types = list(/obj/item/attachable/reflex/sa80_irons, )
+
+/obj/item/weapon/gun/rifle/sa80/ugl/rifleman/handle_starting_attachment()
+	..()
+	var/obj/item/attachable/attached_gun/grenade/mk1/sa80_ugl = new(src)
+	sa80_ugl.flags_attach_features &= ~ATTACH_REMOVABLE
+	sa80_ugl.hidden = TRUE
+	sa80_ugl.Attach(src)
+	update_attachable(sa80_ugl.slot)
 
 //sa80 Machinegun
 
@@ -2232,11 +2258,11 @@
 
 	wield_delay = WIELD_DELAY_VERY_SLOW
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
-	starting_attachment_types = list(/obj/item/attachable/scope/mini_iff, /obj/item/attachable/verticalgrip, )
+	starting_attachment_types = list(/obj/item/attachable/scope/mini_iff, )
 	start_automatic = TRUE
 
 /obj/item/weapon/gun/rifle/sa80/lmg/set_gun_attachment_offsets()
-	attachable_offset = list("muzzle_x" = 36, "muzzle_y" = 19,"rail_x" = 11, "rail_y" = 21, "under_x" = 4, "under_y" = 13, "stock_x" = 24, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 36, "muzzle_y" = 19,"rail_x" = 11, "rail_y" = 21, "under_x" = 3, "under_y" = 12, "stock_x" = 24, "stock_y" = 14)
 
 /obj/item/weapon/gun/rifle/sa80/lmg/set_gun_config_values()
 	..()
@@ -2254,10 +2280,17 @@
 /obj/item/weapon/gun/rifle/sa80/lmg/handle_starting_attachment()
 	..()
 	var/obj/item/attachable/bipod/sa80/sa80_lmg_barrel = new(src)
+	var/obj/item/attachable/verticalgrip/sa80_lmg_grip= new(src)
 	sa80_lmg_barrel.flags_attach_features &= ~ATTACH_REMOVABLE
+	sa80_lmg_grip.flags_attach_features &= ~ATTACH_REMOVABLE
 	sa80_lmg_barrel.hidden = FALSE
+	sa80_lmg_grip.hidden = FALSE
 	sa80_lmg_barrel.Attach(src)
+	sa80_lmg_grip.Attach(src)
 	update_attachable(sa80_lmg_barrel.slot)
+	update_attachable(sa80_lmg_grip.slot)
+
+//sa80 Machinegun w/irons
 
 /obj/item/weapon/gun/rifle/sa80/lmg/rifleman
-	starting_attachment_types = list(/obj/item/attachable/reflex/sa80_irons, /obj/item/attachable/verticalgrip, )
+	starting_attachment_types = list(/obj/item/attachable/reflex/sa80_irons, )

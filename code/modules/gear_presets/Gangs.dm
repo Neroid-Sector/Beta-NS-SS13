@@ -324,7 +324,7 @@
 	new_human.equip_to_slot(new /obj/item/attachable/bayonet(new_human), WEAR_L_STORE)
 	new_human.equip_to_slot(new /obj/item/device/flashlight(new_human), WEAR_R_STORE)
 	new_human.equip_to_slot(new /obj/item/storage/large_holster/katana/full(new_human), WEAR_WAIST)
-	new_human.equip_to_slot(new /obj/item/weapon/gun/rifle/rmc_f90/a_grip(new_human), WEAR_R_HAND)
+	new_human.equip_to_slot(new /obj/item/weapon/gun/rifle/rmc_f90/civi(new_human), WEAR_R_HAND)
 	new_human.equip_to_slot(new /obj/item/weapon/gun/pistol/mod88/flashlight(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot(new /obj/item/ammo_magazine/pistol/mod88/normalpoint/extended(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot(new /obj/item/ammo_magazine/rifle/rmc_f90(new_human), WEAR_IN_BACK)

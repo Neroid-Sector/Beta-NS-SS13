@@ -77,7 +77,7 @@
 //Marine service & tanker jacket + MP themed variants
 /obj/item/clothing/suit/storage/jacket/marine/service
 	name = "marine service jacket"
-	desc = "A service jacket typically worn by officers of the USCM. It has shards of light Kevlar to help protect against stabbing weapons and bullets."
+	desc = "A service jacket typically worn by officers of the USCM. It has shards of light Venlar to help protect against stabbing weapons and bullets."
 	has_buttons = TRUE
 	icon_state = "coat_officer"
 

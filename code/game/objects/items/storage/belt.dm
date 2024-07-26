@@ -1877,3 +1877,14 @@
 	handle_item_insertion(new /obj/item/weapon/gun/pistol/vp78())
 	for(var/i in 1 to storage_slots - 1)
 		new /obj/item/ammo_magazine/pistol/vp78(src)
+
+/obj/item/storage/belt/gun/l905/blackwatch
+	name = "\improper L905 gunbelt"
+	desc = "Finely-tooled leather, a L905, and six magazines. More than enough for the standard RMC commando."
+	icon_state = "blackwatch"
+	item_state = "blackwatch"
+
+/obj/item/storage/belt/gun/l905/blackwatch/full/fill_preset_inventory()
+	handle_item_insertion(new /obj/item/weapon/gun/pistol/vp78())
+	for(var/i in 1 to storage_slots - 1)
+		new /obj/item/ammo_magazine/pistol/vp78(src)

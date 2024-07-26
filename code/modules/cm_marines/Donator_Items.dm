@@ -1205,7 +1205,7 @@
 
 /obj/item/clothing/under/marine/fluff/sanctum_uniform //NO USER
 	name = "Sanctum Fatigues"
-	desc = "Fatigues with Kevlar fibers for a bit more protection than most clothing.  UNIQUE DONOR ITEM"
+	desc = "Fatigues with Venlar fibers for a bit more protection than most clothing.  UNIQUE DONOR ITEM"
 	icon_state = "Sanctum_u"
 	worn_state = "Sanctum_u"
 	flags_jumpsuit = FALSE

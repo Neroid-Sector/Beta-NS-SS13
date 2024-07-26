@@ -878,3 +878,9 @@
 /obj/item/clothing/head/beret/royal_marine/team_leader
 	icon_state = "rmc_beret_tl"
 	item_state = "rmc_beret_tl"
+
+/obj/item/clothing/head/beret/royal_marine/bw
+	name = "tammie"
+	desc = "A traditional Scottish bonnet, a tam o' shanter, or tammie. Only a Wee Panzy would take this off in favor of a 'protective' helmet. Ye' arent a pazy are ye'?"
+	icon_state = "bw_tammie"
+	item_state = "bw_tammie"

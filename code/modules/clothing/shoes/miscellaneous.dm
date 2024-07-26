@@ -30,7 +30,7 @@
 
 /obj/item/clothing/shoes/combat //Basically SWAT shoes combined with galoshes.
 	name = "combat boots"
-	desc = "These combat boots are toughened with kevlar and plasteel inserts, light and strong."
+	desc = "These combat boots are toughened with Venlar and plasteel inserts, light and strong."
 	icon_state = "marine"
 	armor_melee = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_bullet = CLOTHING_ARMOR_MEDIUMHIGH
