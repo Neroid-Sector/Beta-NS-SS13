@@ -64,9 +64,6 @@
 		"r_foot"
 	)
 
-/obj/structure/device/razorwire/ex_act()
-	qdel()
-
 /obj/structure/device/razorwire/Crossed(atom/movable/AM)
 	. = ..()
 	var/mob/living/carbon/H = AM
@@ -105,6 +102,15 @@
 			src.transfer_fingerprints_to(R)
 			R.add_fingerprint(user)
 			qdel(src)
+
+/obj/structure/device/razorwire/ex_act()
+	if(prob(40))
+		playsound(loc, 'sound/effects/barbed_wire_movement.ogg', 100)
+		qdel(src)
+	else
+		playsound(loc, 'sound/effects/barbed_wire_movement.ogg', 100)
+		SPAN_BOLDWARNING("[src] resists the blast!")
+
 
 /obj/item/stack/concertina_wire/full_stack
 	amount = STACK_50
@@ -193,6 +199,10 @@
 	cell_explosion(loc, 10, 20, EXPLOSION_FALLOFF_SHAPE_LINEAR, dir, cause_data)
 	qdel(src)
 
+/obj/item/explosive/fragwire/ex_act()
+	create_shrapnel(loc, 50, dir, angle, , cause_data)
+	cell_explosion(loc, 10, 20, EXPLOSION_FALLOFF_SHAPE_LINEAR, dir, cause_data)
+	qdel(src)
 
 /obj/item/explosive/fragwire/attackby(obj/item/W, mob/user)
 	if(HAS_TRAIT(W, TRAIT_TOOL_WRENCH))
@@ -207,15 +217,22 @@
 			if(user.action_busy)
 				return
 			else
-				user.visible_message(SPAN_NOTICE("[user] starts cutting [src]."), \
-				SPAN_NOTICE("You start cutting [src]."))
+				user.visible_message(SPAN_NOTICE("[user] starts cutting [src]. This will take a delicate hand."), \
+				SPAN_NOTICE("You start cutting [src]. This will take a delicate hand."))
 			if(!do_after(user, 30, INTERRUPT_NO_NEEDHAND, BUSY_ICON_FRIENDLY))
 				user.visible_message(SPAN_WARNING("[user] stops dismantling [src]."), \
 					SPAN_WARNING("You stop dismantling [src]."))
 				return
-			if(prob(90))
+			if(prob(80))
+				user.visible_message(SPAN_BOLDWARNING("Careful there... [user] shouldn't be tampering with this [src]."), \
+				SPAN_BOLDWARNING("Careful there... You shouldn't be tampering with this [src]."))
+				if(!do_after(user, 30, INTERRUPT_NO_NEEDHAND, BUSY_ICON_FRIENDLY))
+					user.visible_message(SPAN_WARNING("[user] stops dismantling [src]."), \
+					SPAN_BOLDWARNING("You stop dismantling [src]."))
+					return
+				user.visible_message(SPAN_BOLDWARNING("OH SHIT!"), \
+				SPAN_BOLDWARNING("OH SHIT!"))
 				playsound(loc, 'sound/effects/zippo_close.ogg', 25)
-				playsound(loc, 'sound/effects/rip1.ogg', 25)
 				create_shrapnel(loc, 50, dir, angle, , cause_data)
 				cell_explosion(loc, 10, 20, EXPLOSION_FALLOFF_SHAPE_LINEAR, dir, cause_data)
 				qdel(src)
