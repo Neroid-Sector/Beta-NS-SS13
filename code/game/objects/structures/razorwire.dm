@@ -224,8 +224,8 @@
 					SPAN_WARNING("You stop dismantling [src]."))
 				return
 			if(prob(80))
-				user.visible_message(SPAN_BOLDWARNING("Careful there... [user] shouldn't be tampering with this [src]."), \
-				SPAN_BOLDWARNING("Careful there... You shouldn't be tampering with this [src]."))
+				user.visible_message(SPAN_BOLDWARNING("Careful there... [user] shouldn't be tampering with [src]."), \
+				SPAN_BOLDWARNING("Careful there... You shouldn't be tampering with [src]."))
 				if(!do_after(user, 30, INTERRUPT_NO_NEEDHAND, BUSY_ICON_FRIENDLY))
 					user.visible_message(SPAN_WARNING("[user] stops dismantling [src]."), \
 					SPAN_BOLDWARNING("You stop dismantling [src]."))
