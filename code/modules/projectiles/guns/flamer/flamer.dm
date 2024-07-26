@@ -58,7 +58,7 @@
 
 /obj/item/weapon/gun/flamer/gun_safety_handle(mob/user)
 	to_chat(user, SPAN_NOTICE("You [SPAN_BOLD(flags_gun_features & GUN_TRIGGER_SAFETY ? "extinguish" : "ignite")] the pilot light."))
-	playsound(user,'sound/weapons/handling/flamer_ignition.ogg', 25, 1)
+	playsound(user,'sound/weapons/handling/flamer_ignition.mp3', 25, 1)
 	update_icon()
 
 /obj/item/weapon/gun/flamer/get_examine_text(mob/user)

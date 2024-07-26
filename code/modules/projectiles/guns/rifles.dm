@@ -1878,13 +1878,13 @@
 
 /obj/item/weapon/gun/rifle/am35
 	name = "\improper a-m35 Phased Infantry Rifle"
-	desc = "A low powered plasma rifle. The gun features a togglable binary trigger for rapid fire. Unlike a traditional rifle this weapon Uses vaporized cadmium telluride pellets."
-	desc_lore = "Developed to combat heavier infantry the am-35 is a Hyperdyne developed plasma rifle commonly used by TWE marksmen, and well funded mercenries the galaxy over. Due to the reduced scale of the weapon, it struggles to pen the hides of even soft skin armored vehilces, but it does just fine against even the toughest infantry. Its larger brother the P.I.G. is a much better suited weapon for anti vehicle combat."
+	desc = "A low powered plasma rifle. The gun features a togglable binary trigger for rapid fire. Use of this mode is not recommended at longer ranges as the magnetic field does not receive sufficient time to re-focus the plasma stream, leading to a lower accuracy at range. Unlike a traditional rifle this weapon Uses vaporized cadmium telluride pellets."
+	desc_lore = "Developed to combat heavier infantry and thin skinned armored vehicles the am-35 is a Hyperdyne developed plasma rifle commonly used by well funded mercenries the galaxy over. Due to the reduced scale of the weapon, it struggles to pen the hides of even soft skin armored vehicles, but it does just fine against even the toughest infantry. Its larger brother the P.I.G. is a much better suited weapon for anti vehicle combat, and so the weapon has not seen much use outside of niche marksmen assignments. "
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "a-m36"
 	item_state = "a-m36"
 	muzzle_flash = "muzzle_flash_blue"
-	fire_sound = 'sound/weapons/energygun.mp3'
+	fire_sound = 'sound/weapons/plasmagun.mp3'
 	reload_sound = 'sound/weapons/handling/m41_reload.ogg'
 	unload_sound = 'sound/weapons/handling/m41_unload.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/am35
@@ -1923,9 +1923,9 @@
 	recoil_unwielded = RECOIL_AMOUNT_TIER_1
 
 /obj/item/weapon/gun/rifle/am35/rmc
-	name = "\improper a-m35 Phased infantry Rifle"
-	desc = "A low powered plasma rifle. The gun features a togglable binary trigger for rapid fire, and fully automatic fire. Unlike a traditional rifle this weapon Uses vaporized cadmium telluride pellets."
-	desc_lore = "Developed to combat heavier infantry the am-35 is a Hyperdyne developed plasma rifle commonly used by well funded PMC contractors. Due to the reduced scale of the weapon, it struggles to pen the hides of even soft skin armored vehilces, but it does just fine against even the toughest infantry. Its larger brother the P.I.G. is a much better suited weapon for anti vehicle combat."
+	name = "\improper a-m35 Marksman Phased infantry Rifle"
+	desc = "A low powered plasma rifle. The gun features a togglable binary trigger for rapid fire. Use of this mode is not recommended at longer ranges as the magnetic field does not receive sufficient time to re-focus the plasma stream, leading to a lower accuracy at range. Unlike a traditional rifle this weapon Uses vaporized cadmium telluride pellets."
+	desc_lore = "Developed to combat heavier infantry and thin skinned armored vehicles the am-35 is a Hyperdyne developed plasma rifle commonly used by TWE marksmen, and well funded PMC contractors. Due to the reduced scale of the weapon, it struggles to pen the hides of even soft skin armored vehicles, but it does just fine against even the toughest infantry. Its larger brother the P.I.G. is a much better suited weapon for anti vehicle combat, and so the weapon has not seen much use outside of niche marksmen assignments."
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "a-m35"
 	item_state = "a-m36"
@@ -1933,12 +1933,12 @@
 /obj/item/weapon/gun/rifle/am36
 	name = "\improper a-m36 experimental Phased infantry Rifle"
 	desc = "A low powered plasma rifle. The gun features a togglable binary trigger for rapid fire, and fully automatic fire. Unlike a traditional rifle this weapon Uses vaporized cadmium telluride pellets."
-	desc_lore = "Developed to combat heavier infantry the am-36 is a Hyperdyne developed plasma rifle used by well funded PMC contractors. Due to the reduced scale of the weapon, it struggles to pen the hides of even soft skin armored vehilces, but it does just fine against even the toughest infantry. Its larger brother the P.I.G. is a much better suited weapon for anti vehicle combat."
+	desc_lore = "Developed to combat heavier infantry and thin skinned armored vehicles the am-36 is a fully automatic version of Hyperdyne's am-35 plasma rifle, and is occasionally used by very well funded PMC contractors. Due to the reduced scale of the weapon, it struggles to pen the hides of even soft skin armored vehicles, but it does just fine against even the toughest infantry. Its larger brother the P.I.G. is a much better suited weapon for anti vehicle combat. This combined with high costs has resigned the weapon to being more of a novel choice for overpayed mercenaries than any real military applications."
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
 	icon_state = "a-m36"
 	item_state = "a-m36"
 	muzzle_flash = "muzzle_flash_blue"
-	fire_sound = 'sound/weapons/laser3.ogg'
+	fire_sound = 'sound/weapons/plasmagun.mp3'
 	reload_sound = 'sound/weapons/handling/m41_reload.ogg'
 	unload_sound = 'sound/weapons/handling/m41_unload.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/am36

@@ -360,6 +360,7 @@
 	health = 50
 	anchored = TRUE
 	use_dir = FALSE
+	angle = 360
 	var/iff_signal = FACTION_MARINE
 	var/defuse_atmine = /obj/item/atmine
 
@@ -421,6 +422,14 @@
 	w_class = SIZE_MEDIUM
 	deploy_atmine = /obj/item/explosive/atmine/clf
 
+/obj/item/atmine/twe
+	name = "m20 anti-vehicle mine"
+	desc = "An anti vehicle mine."
+	icon = 'icons/obj/items/weapons/grenade.dmi'
+	icon_state = "m20at"
+	w_class = SIZE_MEDIUM
+	deploy_atmine = /obj/item/explosive/atmine/twe
+
 
 /obj/item/explosive/atmine/upp
 	iff_signal = FACTION_UPP
@@ -429,6 +438,10 @@
 /obj/item/explosive/atmine/clf
 	iff_signal = FACTION_CLF
 	defuse_atmine = /obj/item/atmine/clf
+
+/obj/item/explosive/atmine/twe
+	iff_signal = FACTION_TWE
+	defuse_atmine = /obj/item/atmine/twe
 
 /obj/item/explosive/atmine/no_iff
 	iff_signal = null
