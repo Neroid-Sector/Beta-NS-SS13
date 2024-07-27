@@ -51,8 +51,8 @@
 	interior_id = "cmb_atruck"
 
 /datum/map_template/interior/atruck_med
-	name = "med Atruck"
-	interior_id = "med_atruck"
+	name = "med atruck"
+	interior_id = "atruck_med"
 
 /datum/map_template/interior/btr
 	name = "btr"

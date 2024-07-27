@@ -373,6 +373,26 @@
 
 	return ..()
 
+//Varients
+
+//-Trauma Team
+
+/obj/vehicle/multitile/atruck/trauma
+	name = "Armored Trauma Team Ambulance"
+	desc = "A rather tough looking old hunk of metal with four wheels, you know what to do. Entrance on the back and sides."
+
+	icon = 'icons/obj/vehicles/atruck.dmi'
+	icon_state = "trauma_truck"
+	interior_map = /datum/map_template/interior/atruck_med
+	honk_sound = 'sound/vehicles/vehicle_siren.mp3'
+
+/obj/vehicle/multitile/atruck/cmb
+	name = "Armored CMB Transport"
+	icon = 'icons/obj/vehicles/atruck.dmi'
+	icon_state = "cmb_truck"
+	interior_map = /datum/map_template/interior/atruck_cmb
+	honk_sound = 'sound/vehicles/vehicle_siren.mp3'
+
 /*
 ** PRESETS SPAWNERS
 */
@@ -423,4 +443,18 @@
 	V.add_hardpoint(new /obj/item/hardpoint/locomotion/atruck)
 
 
-/obj/vehicle/multitile/atruck/ambulance
+//PRESET: wheels installed
+/obj/effect/vehicle_spawner/atruck
+	name = "trauma team"
+	icon_state = "atruck"
+
+/obj/effect/vehicle_spawner/atruck/trauma/fixed/spawn_vehicle()
+	var/obj/vehicle/multitile/atruck/trauma/atruck = new (loc)
+
+	load_misc(atruck)
+	load_hardpoints(atruck)
+	handle_direction(atruck)
+	atruck.update_icon()
+
+/obj/effect/vehicle_spawner/atruck/trauma/fixed/load_hardpoints(obj/vehicle/multitile/atruck/trauma/V)
+	V.add_hardpoint(new /obj/item/hardpoint/locomotion/atruck)
