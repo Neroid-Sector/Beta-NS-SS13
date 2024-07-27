@@ -42,22 +42,13 @@
 	xenos_slots = 4
 	interior_map = /datum/map_template/interior/civvan
 
-	entrances = list(
-		"left" = list(2, 0),
-		"right" = list(-1, 0)
-	)
-
 /obj/vehicle/multitile/civvan/civvan_3
 	name = "CMB van"
 	icon_state = "cmbvan"
 	passengers_slots = 4
 	xenos_slots = 4
 	interior_map = /datum/map_template/interior/civvan
-
-	entrances = list(
-		"left" = list(2, 0),
-		"right" = list(-1, 0)
-	)
+	honk_sound = 'sound/vehicles/vehicle_siren.mp3'
 
 /obj/vehicle/multitile/civvan/blu
 	name = "civilian van"
@@ -66,10 +57,6 @@
 	xenos_slots = 4
 	interior_map = /datum/map_template/interior/civvan
 
-	entrances = list(
-		"left" = list(2, 0),
-		"right" = list(-1, 0)
-	)
 
 /obj/vehicle/multitile/civvan/grn
 	name = "civilian van"
@@ -78,11 +65,6 @@
 	xenos_slots = 4
 	interior_map = /datum/map_template/interior/civvan
 
-	entrances = list(
-		"left" = list(2, 0),
-		"right" = list(-1, 0)
-	)
-
 /obj/vehicle/multitile/civvan/ylw
 	name = "civilian van"
 	icon_state = "civvan_ylw"
@@ -90,22 +72,13 @@
 	xenos_slots = 4
 	interior_map = /datum/map_template/interior/civvan
 
-	entrances = list(
-		"left" = list(2, 0),
-		"right" = list(-1, 0)
-	)
-
 /obj/vehicle/multitile/civvan/civvan_4
 	name = "Civilian Ambulance"
 	icon_state = "ambulance"
 	passengers_slots = 5
 	xenos_slots = 4
 	interior_map = /datum/map_template/interior/civvan
-
-	entrances = list(
-		"left" = list(2, 0),
-		"right" = list(-1, 0)
-	)
+	honk_sound = 'sound/vehicles/vehicle_siren.mp3'
 
 /obj/vehicle/multitile/civvan/bank
 	name = "Commerical Armored Transport"
@@ -114,11 +87,6 @@
 	xenos_slots = 4
 	interior_map = /datum/map_template/interior/civvan
 	health = 1000
-
-	entrances = list(
-		"left" = list(2, 0),
-		"right" = list(-1, 0)
-	)
 
 /*
 ** PRESETS SPAWNERS

@@ -421,3 +421,6 @@
 
 /obj/effect/vehicle_spawner/atruck/fixed/load_hardpoints(obj/vehicle/multitile/atruck/V)
 	V.add_hardpoint(new /obj/item/hardpoint/locomotion/atruck)
+
+
+/obj/vehicle/multitile/atruck/ambulance

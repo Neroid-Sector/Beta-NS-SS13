@@ -50,6 +50,10 @@
 	name = "CMB Atruck"
 	interior_id = "cmb_atruck"
 
+/datum/map_template/interior/atruck_med
+	name = "med Atruck"
+	interior_id = "med_atruck"
+
 /datum/map_template/interior/btr
 	name = "btr"
 	interior_id = "btr"
