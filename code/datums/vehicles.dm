@@ -42,6 +42,18 @@
 	name = "Van"
 	interior_id = "van"
 
+/datum/map_template/interior/atruck
+	name = "Atruck"
+	interior_id = "atruck"
+
+/datum/map_template/interior/atruck_cmb
+	name = "CMB Atruck"
+	interior_id = "cmb_atruck"
+
+/datum/map_template/interior/btr
+	name = "btr"
+	interior_id = "btr"
+
 /datum/map_template/interior/truck
 	name = "Truck"
 	interior_id = "truck"
