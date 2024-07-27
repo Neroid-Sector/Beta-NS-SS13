@@ -387,7 +387,7 @@
 	honk_sound = 'sound/vehicles/vehicle_siren.mp3'
 
 /obj/vehicle/multitile/atruck/cmb
-	name = "Armored CMB Transport"
+	name = "Armored CMB S.W.A.T. Transport"
 	icon = 'icons/obj/vehicles/atruck.dmi'
 	icon_state = "cmb_truck"
 	interior_map = /datum/map_template/interior/atruck_cmb
@@ -443,18 +443,34 @@
 	V.add_hardpoint(new /obj/item/hardpoint/locomotion/atruck)
 
 
-//PRESET: wheels installed
-/obj/effect/vehicle_spawner/atruck
+//trauma
+/obj/effect/vehicle_spawner/atruck/trauma
 	name = "trauma team"
-	icon_state = "atruck"
+	icon_state = "trauma_truck"
 
 /obj/effect/vehicle_spawner/atruck/trauma/fixed/spawn_vehicle()
-	var/obj/vehicle/multitile/atruck/trauma/atruck = new (loc)
+	var/obj/vehicle/multitile/atruck/trauma/atruck_trauma = new (loc)
 
-	load_misc(atruck)
-	load_hardpoints(atruck)
-	handle_direction(atruck)
-	atruck.update_icon()
+	load_misc(atruck_trauma)
+	load_hardpoints(atruck_trauma)
+	handle_direction(atruck_trauma)
+	atruck_trauma.update_icon()
 
 /obj/effect/vehicle_spawner/atruck/trauma/fixed/load_hardpoints(obj/vehicle/multitile/atruck/trauma/V)
+	V.add_hardpoint(new /obj/item/hardpoint/locomotion/atruck)
+
+//trauma
+/obj/effect/vehicle_spawner/atruck/cmb
+	name = "SWAT truck"
+	icon_state = "cmb_truck"
+
+/obj/effect/vehicle_spawner/atruck/cmb/fixed/spawn_vehicle()
+	var/obj/vehicle/multitile/atruck/cmb/atruck_cmb = new (loc)
+
+	load_misc(atruck_cmb)
+	load_hardpoints(atruck_cmb)
+	handle_direction(atruck_cmb)
+	atruck_cmb.update_icon()
+
+/obj/effect/vehicle_spawner/atruck/cmb/fixed/load_hardpoints(obj/vehicle/multitile/atruck/trauma/V)
 	V.add_hardpoint(new /obj/item/hardpoint/locomotion/atruck)

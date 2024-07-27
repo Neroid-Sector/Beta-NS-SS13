@@ -261,6 +261,9 @@
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack(new_human), WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/noskill(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/noskill(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/explosive/plastic/breaching_charge(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/tool/crowbar/tactical(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/defibrillator/compact_adv(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/belt/medical/lifesaver/full(new_human), WEAR_WAIST)
@@ -290,6 +293,49 @@
 		/obj/item/clothing/suit/storage/marine/veteran/trauma_team/alt,
 		)
 	new_human.equip_to_slot_or_del(new trauma_armor, WEAR_JACKET)
+
+//*****************************************************************************************************/
+/datum/equipment_preset/other/freelancer/trauma_team/leader
+	name = "Trauma Team Leader"
+	paygrade = "Freelancer Medic"
+	flags = EQUIPMENT_PRESET_EXTRA
+	assignment = "Trauma Team Leader"
+	skills = /datum/skills/freelancer/SL
+
+/datum/equipment_preset/other/freelancer/trauma_team/leader/load_race(mob/living/carbon/human/new_human, client/mob_client)
+	..()
+	ADD_TRAIT(new_human, TRAIT_EMOTE_CD_EXEMPT, TRAIT_SOURCE_JOB)
+
+/datum/equipment_preset/other/freelancer/trauma_team/leader/load_gear(mob/living/carbon/human/new_human)
+
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/trauma_team(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/specialist/trauma_team(new_human), WEAR_HANDS)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/medhud(new_human), WEAR_EYES)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/pmc(new_human), WEAR_FACE)
+	pick_trauma_helmet(new_human)
+	pick_trauma_armor(new_human)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine/brown/knife(new_human), WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/accessory/storage/surg_vest/drop_green/equipped(new_human), WEAR_ACCESSORY)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack(new_human), WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/noskill(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/noskill(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/explosive/plastic/breaching_charge(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/tool/crowbar/tactical(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/defibrillator/compact_adv(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/belt/medical/lifesaver/full(new_human), WEAR_WAIST)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/first_responder/full(new_human), WEAR_L_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/autoinjector/full(new_human), WEAR_R_STORE)
+//gun
+	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/p90(new_human), WEAR_J_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/p90/ap(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/p90/ap(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/p90(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/p90/ap(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/p90/ap(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/p90/ap(new_human), WEAR_IN_JACKET)
 
 //*****************************************************************************************************/
 /datum/equipment_preset/other/elite_merc

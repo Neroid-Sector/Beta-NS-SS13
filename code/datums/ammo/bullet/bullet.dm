@@ -106,6 +106,16 @@
 		return
 	return ..()
 
+/datum/ammo/bullet/on_hit_obj(obj/O, obj/projectile/P)
+	if(istype(O, /obj/vehicle/multitile/atruck))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Anti-Tank Rocket"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	return ..()
+
+
 /datum/ammo/bullet/on_hit_mob(mob/M, obj/projectile/P, mob/user)
 	shake_camera(M, 3, 1)
 	return ..()

@@ -48,7 +48,7 @@
 
 /datum/map_template/interior/atruck_cmb
 	name = "CMB Atruck"
-	interior_id = "cmb_atruck"
+	interior_id = "atruck_cmb"
 
 /datum/map_template/interior/atruck_med
 	name = "med atruck"
