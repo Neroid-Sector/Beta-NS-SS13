@@ -53,3 +53,15 @@
 	icon_state = "Crane_treads"
 	disp_icon = "truck"
 	disp_icon_state = "cranetreads"
+
+/obj/item/hardpoint/locomotion/atruck
+	icon = 'icons/obj/vehicles/hardpoints/atruck.dmi'
+	name = "Truck Tires"
+	desc = "Integral to the movement of the armored truck."
+	icon_state = "atruckwheels"
+	disp_icon = "atruckwheels"
+	disp_icon_state = "atruckwheels"
+
+	health = 500
+
+
