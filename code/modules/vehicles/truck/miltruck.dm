@@ -149,7 +149,7 @@
 	bound_x = 0
 	bound_y = 0
 
-	interior_map = /datum/map_template/interior/van
+	interior_map = /datum/map_template/interior/atruck
 
 	entrances = list(
 		"left" = list(2, 0),
@@ -158,7 +158,7 @@
 		"back_right" = list(0, 2)
 	)
 
-	vehicle_flags = VEHICLE_CLASS_WEAK
+	vehicle_flags = VEHICLE_CLASS_LIGHT
 
 	passengers_slots = 8
 	xenos_slots = 2
