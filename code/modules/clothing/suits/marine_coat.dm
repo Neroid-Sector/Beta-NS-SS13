@@ -336,6 +336,7 @@
 	has_buttons = FALSE
 	item_state_slots = null
 	contained_sprite = TRUE
+	valid_accessory_slots = list(ACCESSORY_SLOT_RANK, ACCESSORY_SLOT_PONCHO)
 
 /obj/item/clothing/suit/storage/jacket/marine/dress/blues/nco
 	name = "marine NCO dress blues jacket"

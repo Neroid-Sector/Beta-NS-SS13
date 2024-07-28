@@ -353,6 +353,29 @@
 	item_state = "general"
 	worn_state = "general"
 
+/obj/item/clothing/under/marine/dress/blues/skirt
+	name = "marine enlisted dress blues uniform"
+	desc = "The undershirt and trousers of the legendary Marine dress blues, virtually unchanged since the 19th century. This unadorned variant is for enlisted personnel, E-1 thru E-3."
+	icon = 'icons/mob/humans/onmob/contained/marinedressblues.dmi'
+	icon_state = "enlisted"
+	item_state = "enlisted"
+	worn_state = "fem_enlisted"
+
+/obj/item/clothing/under/marine/dress/blues/senior/skirt
+	name = "marine senior dress blues uniform"
+	desc = "The undershirt and skirt of the legendary Marine dress blues, virtually unchanged since the 19th century. This variant features the iconic Blood Stripe, worn by NCOs and officers."
+	icon_state = "senior"
+	item_state = "senior"
+	worn_state = "fem_senior"
+
+/obj/item/clothing/under/marine/dress/blues/general/skirt
+	name = "marine senior dress blues uniform"
+	desc = "The undershirt and skirt of the legendary Marine dress blues, virtually unchanged since the 19th century. This variant features black trousers and a large Blood Stripe, worn by general officers."
+	icon_state = "general"
+	item_state = "general"
+	worn_state = "fem_general"
+
+
 //=========================//PROVOST\\================================\\
 //=======================================================================\\
 

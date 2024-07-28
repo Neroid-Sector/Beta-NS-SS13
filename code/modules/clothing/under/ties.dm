@@ -428,6 +428,12 @@
 /obj/item/clothing/accessory/poncho/purple
 	icon_state = "s_poncho"
 
+/obj/item/clothing/accessory/poncho/dress_cape
+	name = "marine dress blues cape"
+	desc = "The cape of the legendary Marine dress blues, virtually unchanged since the 19th century. You're wearing history, Marine. Don't let your ancestors down."
+	icon_state = "dress_cape"
+	item_state = "dress_cape"
+
 
 //Ties that can store stuff
 
