@@ -194,7 +194,6 @@
 /datum/ammo/rocket/lbt/on_hit_obj(obj/O, obj/projectile/P)
 	if(istype(O, /obj/vehicle/multitile))
 		var/obj/vehicle/multitile/M = O
-		M.next_move = world.time + vehicle_slowdown_time
 		playsound(M, 'sound/effects/meteorimpact.ogg', 35)
 		M.at_munition_interior_explosion_effect(cause_data = create_cause_data("Anti-Tank Rocket"))
 		M.interior_crash_effect()
