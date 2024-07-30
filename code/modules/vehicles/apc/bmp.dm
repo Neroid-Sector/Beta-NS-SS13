@@ -1,5 +1,5 @@
 /obj/vehicle/multitile/bmp
-	name = "UPP Light bmp"
+	name = "UPP Bmp-7"
 	desc = "A giant piece of armor with a big gun, you know what to do. Entrance in the back."
 
 	icon = 'icons/obj/vehicles/bmp.dmi'
@@ -251,16 +251,16 @@
 	V.add_hardpoint(new /obj/item/hardpoint/locomotion/bmp_wheels)
 	V.add_hardpoint(new /obj/item/hardpoint/holder/bmp_turret)
 	for(var/obj/item/hardpoint/holder/bmp_turret/TT in V.hardpoints)
-		TT.add_hardpoint(new /obj/item/hardpoint/primary/cannon)
-		TT.add_hardpoint(new /obj/item/hardpoint/secondary/m56cupola)
+		TT.add_hardpoint(new /obj/item/hardpoint/primary/autocannon)
+		TT.add_hardpoint(new /obj/item/hardpoint/secondary/towlauncher)
 		break
 
-//PRESET: autocannon kit
-/obj/effect/vehicle_spawner/bmp/fixed/autocannon/load_hardpoints(obj/vehicle/multitile/bmp/V)
+//PRESET: lbt kit
+/obj/effect/vehicle_spawner/bmp/fixed/lbt/load_hardpoints(obj/vehicle/multitile/bmp/V)
 	V.add_hardpoint(new /obj/item/hardpoint/support/artillery_module)
 	V.add_hardpoint(new /obj/item/hardpoint/locomotion/bmp_wheels)
 	V.add_hardpoint(new /obj/item/hardpoint/holder/bmp_turret)
 	for(var/obj/item/hardpoint/holder/bmp_turret/TT in V.hardpoints)
-		TT.add_hardpoint(new /obj/item/hardpoint/primary/autocannon)
+		TT.add_hardpoint(new /obj/item/hardpoint/primary/cannon)
 		TT.add_hardpoint(new /obj/item/hardpoint/secondary/towlauncher)
 		break
