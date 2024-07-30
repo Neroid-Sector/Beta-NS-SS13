@@ -54,9 +54,9 @@
 	name = "med atruck"
 	interior_id = "atruck_med"
 
-/datum/map_template/interior/btr
-	name = "btr"
-	interior_id = "btr"
+/datum/map_template/interior/bmp
+	name = "bmp"
+	interior_id = "bmp"
 
 /datum/map_template/interior/truck
 	name = "Truck"
