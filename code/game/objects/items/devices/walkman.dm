@@ -537,9 +537,9 @@
 	addtimer(VARSET_CALLBACK(src, spamcheck, FALSE), 45 SECONDS)
 
 /obj/item/device/banditradio
-	name = "cheap radio"
-	desc = "A small FM/AM radio that sometimes can get a rogue signal even out here."
-	icon_state = "portal_radio"
+	name = "Crazy Ivan's cheap radio"
+	desc = "A small FM/AM radio that sometimes can get a rogue signal even out here. Somehow Crazy Ivan got this one to get a clean signal from some pirate radio station."
+	icon_state = "music_radio"
 	w_class = SIZE_MEDIUM
 	flags_equip_slot = SLOT_WAIST
 	var/spamcheck = 0
