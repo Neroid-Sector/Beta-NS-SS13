@@ -534,6 +534,24 @@
 	playsound(get_turf(src), 'sound/machines/memesong.mp3', 35, 1, vary = 0)
 
 	spamcheck = 1
-	addtimer(VARSET_CALLBACK(src, spamcheck, FALSE), 60 SECONDS)
+	addtimer(VARSET_CALLBACK(src, spamcheck, FALSE), 45 SECONDS)
 
+/obj/item/device/banditradio
+	name = "cheap radio"
+	desc = "A small FM/AM radio that sometimes can get a rogue signal even out here."
+	icon_state = "portal_radio"
+	w_class = SIZE_MEDIUM
+	flags_equip_slot = SLOT_WAIST
+	var/spamcheck = 0
+
+/obj/item/device/banditradio/attack_self(mob/user)
+	..()
+
+	if (spamcheck)
+		return
+
+	playsound(get_turf(src), 'sound/machines/bandit_radio.mp3', 35, 1, vary = 0)
+
+	spamcheck = 1
+	addtimer(VARSET_CALLBACK(src, spamcheck, FALSE), 115 SECONDS)
 
