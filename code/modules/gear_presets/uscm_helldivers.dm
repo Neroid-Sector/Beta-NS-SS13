@@ -687,7 +687,7 @@
 		ACCESS_MARINE_BRIG,
 	)
 	assignment = JOB_HD_RFM
-	rank = JOB_SQUAD_SPECIALIST
+	rank = JOB_HD_RFM
 	paygrade = "ME2"
 	role_comm_title = "Rfm"
 	skills = /datum/skills/ms/rifleman

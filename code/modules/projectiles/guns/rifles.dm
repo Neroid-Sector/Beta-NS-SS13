@@ -1669,6 +1669,26 @@
 		/obj/item/attachable/attached_gun/grenade,
 	)
 
+/obj/item/weapon/gun/rifle/ak4047/scav
+	current_mag = /obj/item/ammo_magazine/rifle/ak4047/ap
+
+	random_spawn_chance = 50
+	random_rail_chance = 70
+	random_spawn_rail = list(
+		/obj/item/attachable/reflex,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/reddot,
+	)
+	random_muzzle_chance = 50
+	random_spawn_muzzle = list(
+		/obj/item/attachable/bayonet/upp,
+	)
+	random_under_chance = 40
+	random_spawn_under = list(
+		/obj/item/attachable/attached_gun/grenade,
+	)
+
+
 
 //M4RA Battle Rifle, standard USCM DMR
 
