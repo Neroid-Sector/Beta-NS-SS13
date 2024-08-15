@@ -287,6 +287,9 @@ GLOBAL_LIST_INIT(cm_vending_clothing_synth_snowflake, list(
 	list("USCM Poncho (Black)", 12, /obj/item/clothing/accessory/poncho/black, null, VENDOR_ITEM_REGULAR),
 	list("USCM Poncho (Blue)", 12, /obj/item/clothing/accessory/poncho/blue, null, VENDOR_ITEM_REGULAR),
 	list("USCM Poncho (Purple)", 12, /obj/item/clothing/accessory/poncho/purple, null, VENDOR_ITEM_REGULAR),
+		list("USCM Trench Coat (green)", 12, /obj/item/clothing/suit/storage/jacket/marine/service/trenchcoat_grn, VENDOR_ITEM_REGULAR),
+		list("USCM Trench Coat (tan)", 12, /obj/item/clothing/suit/storage/jacket/marine/service/trenchcoat_tan, VENDOR_ITEM_REGULAR),
+		list("USCM Trench Coat (gray)", 12, /obj/item/clothing/suit/storage/jacket/marine/service/trenchcoat_blk, VENDOR_ITEM_REGULAR),
 
 
 	list("BACKPACK", 0, null, null, null),

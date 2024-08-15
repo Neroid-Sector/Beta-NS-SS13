@@ -60,6 +60,9 @@
 		list("Heat Absorbent Coif", 10, /obj/item/clothing/mask/rebreather/scarf, VENDOR_ITEM_REGULAR),
 		list("Earplugs", round(scale * 5), /obj/item/clothing/ears/earmuffs/earplugs, VENDOR_ITEM_REGULAR),
 		list("USCM Poncho", round(scale * 10), /obj/item/clothing/accessory/poncho, VENDOR_ITEM_REGULAR),
+		list("USCM Trench Coat (green)", round(scale * 10), /obj/item/clothing/suit/storage/jacket/marine/service/trenchcoat_grn, VENDOR_ITEM_REGULAR),
+		list("USCM Trench Coat (tan)", round(scale * 10), /obj/item/clothing/suit/storage/jacket/marine/service/trenchcoat_tan, VENDOR_ITEM_REGULAR),
+		list("USCM Trench Coat (gray)", round(scale * 10), /obj/item/clothing/suit/storage/jacket/marine/service/trenchcoat_blk, VENDOR_ITEM_REGULAR),
 		)
 
 //------------WEAPON RACKS---------------

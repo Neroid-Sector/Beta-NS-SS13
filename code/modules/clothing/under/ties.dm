@@ -934,6 +934,7 @@
 	icon_state = "flak"
 	item_state = "flak"
 	var/tucked_in = FALSE
+	flags_armor_protection = BODY_FLAG_CHEST
 	armor_melee = CLOTHING_ARMOR_MEDIUM
 	armor_bullet = CLOTHING_ARMOR_LOW
 	armor_bomb = CLOTHING_ARMOR_MEDIUMHIGH
