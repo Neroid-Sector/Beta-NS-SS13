@@ -2437,6 +2437,7 @@
 #include "code\modules\vehicles\tank\interior.dm"
 #include "code\modules\vehicles\tank\tank.dm"
 #include "code\modules\vehicles\truck\civtruck.dm"
+#include "code\modules\vehicles\truck\jeep.dm"
 #include "code\modules\vehicles\truck\civvan.dm"
 #include "code\modules\vehicles\truck\crane.dm"
 #include "code\modules\vehicles\truck\miltruck.dm"

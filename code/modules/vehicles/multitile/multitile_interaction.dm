@@ -476,6 +476,7 @@
 
 	// Transfer them to the interior
 	interior.enter(M, entrance_used)
+	playsound(loc, 'sound/vehicles/car_door.mp3', 100, 1)
 
 	// We try to make the dragged thing enter last so that the mob who actually entered takes precedence
 	if(dragged_atom)

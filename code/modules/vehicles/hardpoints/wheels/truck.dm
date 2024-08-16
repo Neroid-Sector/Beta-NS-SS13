@@ -6,7 +6,7 @@
 	//TRUCK Wheels
 /obj/item/hardpoint/locomotion/truck/wheels
 	name = "military wheels"
-	desc = "Integral to the movement of the military truck."
+	desc = "Integral to the movement of military grade vehicles."
 	icon_state = "Military_wheels"
 	disp_icon = "truck"
 	disp_icon_state = "miltruckwheels"
@@ -14,6 +14,13 @@
 	health = 250
 
 	move_delay = VEHICLE_SPEED_VERYFAST
+
+/obj/item/hardpoint/locomotion/truck/wheels/jeep
+	name = "Jeep wheels"
+	icon = 'icons/obj/vehicles/hardpoints/jeep.dmi'
+	icon_state = "jeepwheels"
+	disp_icon = "jeep"
+	disp_icon_state = "jeepwheels"
 
 /obj/item/hardpoint/locomotion/truck/wheels/civtruck
 	name = "civilian truck wheels"

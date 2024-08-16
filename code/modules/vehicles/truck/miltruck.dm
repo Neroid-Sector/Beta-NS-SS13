@@ -170,7 +170,7 @@
 	)
 
 	movement_sound = 'sound/vehicles/tank_driving.ogg'
-	honk_sound = 'sound/vehicles/honk_2_truck.ogg'
+	honk_sound = 'sound/vehicles/honk_1_truck.ogg'
 
 	vehicle_light_range = 8
 
