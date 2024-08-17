@@ -7,6 +7,8 @@
 
 	icon = 'icons/obj/vehicles/jeep.dmi'
 	icon_state = "jeep"
+	pixel_x = 0
+	pixel_y = 0
 
 	bound_width = 64
 	bound_height = 64
@@ -23,12 +25,18 @@
 
 	movement_sound = 'sound/vehicles/jeep_driving.mp3'
 	honk_sound = 'sound/vehicles/old_car_horn.mp3'
-	passengers_slots = 4
+	passengers_slots = 6
 	xenos_slots = 4
+
+	misc_multipliers = list(
+		"move" = 1, // fucking annoying how this is the only way to modify speed
+		"accuracy" = 1,
+		"cooldown" = 1
+	)
 
 	luminosity = 5
 
-	health = 700
+	health = 500
 
 	move_max_momentum = 3
 	move_turn_momentum_loss_factor = 1
