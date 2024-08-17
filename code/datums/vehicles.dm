@@ -50,6 +50,10 @@
 	name = "jeep_cmd"
 	interior_id = "jeep_cmd"
 
+/datum/map_template/interior/jeep_pass
+	name = "jeep_pass"
+	interior_id = "jeep_pass"
+
 /datum/map_template/interior/atruck
 	name = "Atruck"
 	interior_id = "atruck"

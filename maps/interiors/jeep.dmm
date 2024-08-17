@@ -6,14 +6,14 @@
 "n" = (/obj/structure/interior_wall/van{alpha = 50; icon_state = "exterior_3"; layer = 5.2; pixel_y = 32},/turf/open/void/vehicle,/area/space)
 "q" = (/obj/structure/interior_wall/van{icon_state = "interior_door"},/obj/effect/vehicle_roof/van{icon_state = "front_roof_1"},/turf/open/space/basic,/area/space)
 "t" = (/obj/structure/interior_wall/van{icon_state = "back_3"},/turf/open/void/vehicle,/area/space)
-"w" = (/obj/structure/bed/chair/vehicle{pixel_x = 8},/obj/structure/bed/chair/vehicle{pixel_x = -8},/obj/effect/vehicle_roof/van{icon_state = "roof_3"},/obj/structure/extinguisher_cabinet/lifeboat{icon = 'icons/obj/vehicles/interiors/general.dmi'; layer = 3.5; pixel_y = 28},/obj/structure/machinery/cm_vending/sorted/medical/wall_med/vehicle{layer = 3.98; pixel_x = 12; pixel_y = 28},/turf/open/shuttle/vehicle,/area/vehicle/van)
+"w" = (/obj/structure/extinguisher_cabinet/lifeboat{icon = 'icons/obj/vehicles/interiors/general.dmi'; layer = 3.5; pixel_y = 28},/obj/structure/machinery/cm_vending/sorted/medical/wall_med/vehicle{layer = 3.98; pixel_x = 12; pixel_y = 28},/obj/effect/vehicle_roof/van{icon_state = "roof_3"},/turf/open/shuttle/vehicle,/area/vehicle/van)
 "y" = (/obj/structure/interior_wall/van{icon_state = "back_2"},/turf/open/void/vehicle,/area/space)
 "z" = (/obj/structure/interior_wall/van{icon_state = "back_1"},/turf/open/void/vehicle,/area/space)
 "A" = (/obj/structure/interior_wall/van{icon_state = "front_2"},/turf/open/void/vehicle,/area/space)
 "Q" = (/obj/structure/interior_wall/van{icon_state = "background_3"},/obj/effect/vehicle_roof/van{icon_state = "roof_3"},/turf/open/void/vehicle,/area/space)
 "T" = (/obj/structure/interior_wall/van{alpha = 50; icon_state = "exterior_door"; layer = 5.2; pixel_y = 32},/turf/open/void/vehicle,/area/space)
 "U" = (/obj/structure/interior_wall/van{icon_state = "front_1"},/turf/open/void/vehicle,/area/space)
-"X" = (/obj/structure/bed/chair/vehicle{pixel_x = 8},/obj/structure/bed/chair/vehicle{pixel_x = -8},/obj/effect/vehicle_roof/van{icon_state = "roof_3"},/turf/open/shuttle/vehicle,/area/vehicle/van)
+"X" = (/obj/effect/vehicle_roof/van{icon_state = "roof_3"},/turf/open/shuttle/vehicle,/area/vehicle/van)
 
 (1,1,1) = {"
 aaaaa

@@ -45,10 +45,13 @@
 		/obj/item/hardpoint/locomotion/truck/wheels/jeep
 	)
 
-//=cmd apc
+//=cmd jeep
 /obj/vehicle/multitile/van/miljeep/cmd
+	icon_state = "jeep_cmd"
 	interior_map = /datum/map_template/interior/jeep_cmd
-
+//=transport jeep
+/obj/vehicle/multitile/van/miljeep/pass
+	interior_map = /datum/map_template/interior/jeep_pass
 
 /*
 ** PRESETS SPAWNERS
