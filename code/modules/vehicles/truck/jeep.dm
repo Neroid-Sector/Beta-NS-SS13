@@ -1,6 +1,6 @@
 /obj/vehicle/multitile/van/miljeep
 	name = "military jeep"
-	desc = "A rather cheap hunk of metal with some wheels, you know what to do. Entrance on the sides."
+	desc = "An inexpensive off-road vehicle based on the ancient design of the Willys Jeep. This model of vehicle is made by the Seegson Corporation. If you want reliable, you purchase from Seegson. If you want comfort, you purchase from Weyland-Yutani. Is this an actual Jeep? No."
 
 	layer = ABOVE_XENO_LAYER
 	vehicle_flags = VEHICLE_CLASS_WEAK
