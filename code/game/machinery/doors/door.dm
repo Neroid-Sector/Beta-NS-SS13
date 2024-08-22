@@ -220,8 +220,8 @@
 		return FALSE
 
 	operating = TRUE
+	icon_state = "door_open"
 	do_animate("opening")
-	icon_state = "door0"
 	set_opacity(FALSE)
 	if(filler)
 		filler.set_opacity(opacity)
@@ -249,6 +249,7 @@
 	operating = TRUE
 	src.density = TRUE
 	src.layer = closed_layer
+	icon_state = "door_closing"
 	do_animate("closing")
 	addtimer(CALLBACK(src, PROC_REF(finish_close)), openspeed)
 
