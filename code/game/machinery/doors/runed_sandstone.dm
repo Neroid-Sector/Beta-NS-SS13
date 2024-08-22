@@ -98,8 +98,8 @@
 	playsound(loc, 'sound/effects/runedsanddoor.ogg', 25, 0)
 	visible_message(SPAN_NOTICE("\The [src] makes a loud grating sound as hidden workings pull it open."))
 	operating = TRUE
+	icon_state = "door_open"
 	do_animate("opening")
-	icon_state = "door0"
 	set_opacity(0)
 
 	addtimer(CALLBACK(src, PROC_REF(finish_open)), openspeed)
@@ -132,6 +132,7 @@
 	density = TRUE
 	set_opacity(1)
 	layer = closed_layer
+	icon_state = "door_closed"
 	do_animate("closing")
 
 	addtimer(CALLBACK(src, PROC_REF(finish_close)), openspeed)
