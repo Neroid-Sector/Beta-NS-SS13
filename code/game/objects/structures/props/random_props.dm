@@ -167,7 +167,7 @@
 
 /obj/structure/prop/random_props/stakes
 	name = "Staked MLU Soldiers"
-	desc = "A group of MLU fighters tied to stakes. A properly Gruesome warning."
+	desc = "A group of slain MLU fighters tied to stakes. A properly Gruesome warning."
 	icon = 'icons/obj/structures/props/gallows.dmi'
 	icon_state = "stakes"
 	bound_width = 128
