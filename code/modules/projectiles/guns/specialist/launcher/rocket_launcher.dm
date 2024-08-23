@@ -149,7 +149,7 @@
 			if(reload_sound)
 				playsound(user, reload_sound, 25, 1)
 			else
-				playsound(user,'sound/machines/click.ogg', 25, 1)
+				playsound(user,'sound/weapons/handling/rpg_reload.mp3', 25, 1)
 		else
 			to_chat(user, SPAN_WARNING("Your reload was interrupted!"))
 			return

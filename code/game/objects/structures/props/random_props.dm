@@ -163,6 +163,16 @@
 	bound_width = 128
 	bound_height = 128
 
+//-----Stakes-----\\
+
+/obj/structure/prop/random_props/stakes
+	name = "Staked MLU Soldiers"
+	desc = "A group of MLU fighters tied to stakes. A properly Gruesome warning."
+	icon = 'icons/obj/structures/props/gallows.dmi'
+	icon_state = "stakes"
+	bound_width = 128
+	bound_height = 128
+
 //-----Statues-----\\
 
 /obj/structure/prop/random_props/statue

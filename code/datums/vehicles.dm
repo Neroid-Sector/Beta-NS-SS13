@@ -10,6 +10,8 @@
 	mappath = "[prefix][interior_id].dmm"
 	return ..()
 
+// Military Interiors
+
 /datum/map_template/interior/apc
 	name = "APC"
 	interior_id = "apc"
@@ -26,10 +28,6 @@
 	name = "APC - No FPW"
 	interior_id = "apc_no_fpw"
 
-/datum/map_template/interior/fancy_locker
-	name = "Fancy Locker"
-	interior_id = "fancylocker"
-
 /datum/map_template/interior/tank
 	name = "Tank"
 	interior_id = "tank"
@@ -38,9 +36,9 @@
 	name = "AEV"
 	interior_id = "aev"
 
-/datum/map_template/interior/van
-	name = "Van"
-	interior_id = "van"
+/datum/map_template/interior/bmp
+	name = "bmp"
+	interior_id = "bmp"
 
 /datum/map_template/interior/jeep
 	name = "jeep"
@@ -54,6 +52,8 @@
 	name = "jeep_pass"
 	interior_id = "jeep_pass"
 
+// Civilian Interiors
+
 /datum/map_template/interior/atruck
 	name = "Atruck"
 	interior_id = "atruck"
@@ -66,13 +66,17 @@
 	name = "med atruck"
 	interior_id = "atruck_med"
 
-/datum/map_template/interior/bmp
-	name = "bmp"
-	interior_id = "bmp"
+/datum/map_template/interior/van
+	name = "Van"
+	interior_id = "van"
 
 /datum/map_template/interior/truck
 	name = "Truck"
 	interior_id = "truck"
+
+/datum/map_template/interior/minitruck
+	name = "Mini-Truck"
+	interior_id = "minitruck"
 
 /datum/map_template/interior/crane
 	name = "Crane"
@@ -85,3 +89,9 @@
 /datum/map_template/interior/civtruck
 	name = "Civtruck"
 	interior_id = "civtruck"
+
+// Other
+
+/datum/map_template/interior/fancy_locker
+	name = "Fancy Locker"
+	interior_id = "fancylocker"

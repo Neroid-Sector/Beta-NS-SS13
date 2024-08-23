@@ -15,6 +15,18 @@
 
 	move_delay = VEHICLE_SPEED_VERYFAST
 
+/obj/item/hardpoint/locomotion/truck/wheels/minitruck
+	name = "Heavy offroad wheels"
+	icon = 'icons/obj/vehicles/hardpoints/minitruck.dmi'
+	desc = "Integral to the movement of industrial grade vehicles."
+	icon_state = "minitruckwheels"
+	disp_icon = "minitruck"
+	disp_icon_state = "minitruckwheels"
+
+	health = 250
+
+	move_delay = VEHICLE_SPEED_VERYFAST
+
 /obj/item/hardpoint/locomotion/truck/wheels/jeep
 	name = "Jeep wheels"
 	icon = 'icons/obj/vehicles/hardpoints/jeep.dmi'

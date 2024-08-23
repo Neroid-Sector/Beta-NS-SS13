@@ -29,7 +29,7 @@
 	xenos_slots = 4
 
 	misc_multipliers = list(
-		"move" = 1, // fucking annoying how this is the only way to modify speed
+		"move" = 0.75, // fucking annoying how this is the only way to modify speed
 		"accuracy" = 1,
 		"cooldown" = 1
 	)

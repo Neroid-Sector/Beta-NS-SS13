@@ -19,7 +19,6 @@ GLOBAL_LIST_EMPTY(command_apc_list)
 
 	passengers_slots = 18
 	xenos_slots = 8
-
 	entrances = list(
 		"left" = list(2, 0),
 		"right" = list(-2, 0),

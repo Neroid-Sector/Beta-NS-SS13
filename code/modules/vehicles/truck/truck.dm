@@ -21,7 +21,7 @@
 		"right" = list(-1, 0)
 	)
 
-	movement_sound = 'sound/vehicles/tank_driving.ogg'
+	movement_sound = 'sound/vehicles/heavytruck_driving.mp3'
 
 	luminosity = 6
 

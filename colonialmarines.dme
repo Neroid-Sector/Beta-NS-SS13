@@ -2442,6 +2442,7 @@
 #include "code\modules\vehicles\truck\crane.dm"
 #include "code\modules\vehicles\truck\jeep.dm"
 #include "code\modules\vehicles\truck\miltruck.dm"
+#include "code\modules\vehicles\truck\minitruck.dm"
 #include "code\modules\vehicles\van\interior.dm"
 #include "code\modules\vehicles\van\van.dm"
 #include "code\modules\vox\vox.dm"
