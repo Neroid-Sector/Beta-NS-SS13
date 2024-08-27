@@ -341,14 +341,14 @@
 			if(user.action_busy)
 				return
 			else
-				user.visible_message(SPAN_NOTICE("[user] starts cutting [src]."), \
-				SPAN_NOTICE("You start cutting [src]."))
+				user.visible_message(SPAN_NOTICE("[user] starts pulling [src] out of the ground."), \
+				SPAN_NOTICE("You start cutting pulling [src] out of the ground."))
 			if(!do_after(user, 30, INTERRUPT_NO_NEEDHAND, BUSY_ICON_FRIENDLY))
 				user.visible_message(SPAN_WARNING("[user] stops dismantling [src]."), \
-					SPAN_WARNING("You stop dismantling [src]."))
+					SPAN_WARNING("You stop removing [src]."))
 				return
-			user.visible_message(SPAN_NOTICE("[user] finishes dismantling [src]."), \
-			SPAN_NOTICE("You finish dismantling [src]."))
+			user.visible_message(SPAN_NOTICE("[user] finishes removing [src]."), \
+			SPAN_NOTICE("You finish removing [src]."))
 			var/obj/item/stack/punjisticks/R = new dismantlepunjisticks(usr.loc)
 			src.transfer_fingerprints_to(R)
 			R.add_fingerprint(user)
