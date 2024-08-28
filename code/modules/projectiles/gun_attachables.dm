@@ -839,8 +839,8 @@ Defined in conflicts.dm of the #defines folder.
 	return
 
 /obj/item/attachable/magnetic_harness
-	name = "magnetic harness"
-	desc = "A magnetically attached harness kit that attaches to the rail mount of a weapon. When dropped, the weapon will sling to any set of USCM armor."
+	name = "Springloaded Weapon arm."
+	desc = "An umotorised springloaded version of the Smartgun robotic assist arm designed to be mounted on most USCM firearms and armor. When the arm is not resisted it will retract the weapon back towards the user."
 	icon = 'icons/obj/items/weapons/guns/attachments/rail.dmi'
 	icon_state = "magnetic"
 	attach_icon = "magnetic_a"
