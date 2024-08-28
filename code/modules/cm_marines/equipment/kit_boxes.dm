@@ -397,17 +397,20 @@
 	new /obj/item/ammo_magazine/rifle/ap(src)
 
 /obj/item/storage/box/kit/heavy_support
-	name = "\improper Forward HPR Shield Kit"
+	name = "\improper Forward HPR Fire Support Kit"
 	pro_case_overlay = "shield"
+	desc = "A Squad Rifleman's fire support kit containing an HPR, Spare box magazines, and "
 
 /obj/item/storage/box/kit/heavy_support/fill_preset_inventory()
 	new /obj/item/weapon/gun/rifle/lmg(src)
-	new /obj/item/ammo_magazine/rifle/lmg(src)
+	new /obj/item/ammo_magazine/rifle/lmg/heap(src)
 	new /obj/item/ammo_magazine/rifle/lmg/holo_target(src)
+	new /obj/item/ammo_magazine/rifle/lmg/heap(src)
+	new /obj/item/ammo_magazine/rifle/lmg/holo_target(src)
+	new /obj/item/attachable/magnetic_harness(src)
 	new /obj/item/attachable/bipod(src)
 	new /obj/item/stack/folding_barricade/three(src)
-	new /obj/item/clothing/glasses/welding(src)
-	new /obj/item/tool/weldingtool(src)
+
 
 
 /obj/item/storage/box/kit/pursuit
