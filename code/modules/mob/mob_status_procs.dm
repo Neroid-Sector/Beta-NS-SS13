@@ -281,7 +281,7 @@
 /mob/living/proc/AdjustEarDeafnessGuns(amount)
     var/prev_deaf = ear_deaf
     ear_deaf = max(ear_deaf + amount, 0)
-    if(ear_deaf > 50) ear_deaf = 50
+    if(ear_deaf > 10) ear_deaf = 10
     if(prev_deaf)
         if(ear_deaf == 0)
             on_deafness_loss()

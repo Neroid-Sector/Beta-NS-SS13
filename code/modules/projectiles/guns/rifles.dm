@@ -33,12 +33,12 @@
 
 /obj/item/weapon/gun/rifle/apply_bullet_effects(obj/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
 	. = ..()
-	if(!HAS_TRAIT(user, TRAIT_EAR_PROTECTION) && ishuman(user))
-		var/mob/living/carbon/human/huser = user
-		to_chat(user, SPAN_WARNING("Augh!! \The [src]'s firing resonates extremely loudly in your ears! You probably should have worn some sort of ear protection..."))
-		huser.apply_effect(6, STUTTER)
-		huser.emote("pain")
-		huser.AdjustEarDeafnessGuns(max(user.ear_deaf,2))
+	if(!HAS_TRAIT(src, TRAIT_GUN_SILENCED))
+		if(!HAS_TRAIT(user, TRAIT_EAR_PROTECTION) && ishuman(user))
+			var/mob/living/carbon/human/huser = user
+			to_chat(user, SPAN_WARNING("Augh!! \The [src]'s firing resonates extremely loudly in your ears! You probably should have worn some sort of ear protection..."))
+			huser.apply_effect(6, STUTTER)
+			huser.AdjustEarDeafnessGuns(max(user.ear_deaf,2))
 
 //-------------------------------------------------------
 //M41A PULSE RIFLE
@@ -1932,6 +1932,12 @@
 	map_specific_decoration = FALSE
 	aim_slowdown = SLOWDOWN_ADS_QUICK
 
+/obj/item/weapon/gun/rifle/am35/apply_bullet_effects(obj/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
+	. = ..()
+	if(!HAS_TRAIT(user, TRAIT_EAR_PROTECTION) && ishuman(user))
+		var/mob/living/carbon/human/huser = user
+		huser.AdjustEarDeafnessGuns(max(user.ear_deaf,0))
+
 /obj/item/weapon/gun/rifle/am35/set_gun_attachment_offsets()
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
@@ -1985,6 +1991,12 @@
 	map_specific_decoration = FALSE
 	aim_slowdown = SLOWDOWN_ADS_QUICK
 	start_automatic = TRUE
+
+/obj/item/weapon/gun/rifle/am36/apply_bullet_effects(obj/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
+	. = ..()
+	if(!HAS_TRAIT(user, TRAIT_EAR_PROTECTION) && ishuman(user))
+		var/mob/living/carbon/human/huser = user
+		huser.AdjustEarDeafnessGuns(max(user.ear_deaf,0))
 
 /obj/item/weapon/gun/rifle/am36/set_gun_attachment_offsets()
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
