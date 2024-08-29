@@ -35,14 +35,11 @@
 	. = ..()
 	if(!HAS_TRAIT(user, TRAIT_EAR_PROTECTION) && ishuman(user))
 		var/mob/living/carbon/human/huser = user
-		if(prob(50))
-			to_chat(user, SPAN_WARNING("Augh!! \The [src]'s firing resonates extremely loudly in your ears! You probably should have worn some sort of ear protection..."))
-			huser.apply_effect(6, STUTTER)
-			huser.emote("pain")
-			huser.AdjustEarDeafness(max(user.ear_deaf,2))
-		else
 		to_chat(user, SPAN_WARNING("Augh!! \The [src]'s firing resonates extremely loudly in your ears! You probably should have worn some sort of ear protection..."))
+		huser.apply_effect(6, STUTTER)
 		huser.emote("pain")
+		huser.AdjustEarDeafnessGuns(max(user.ear_deaf,2))
+
 //-------------------------------------------------------
 //M41A PULSE RIFLE
 
