@@ -539,7 +539,7 @@
 	if(target && (world.time-last_fired >= 3)) //Practical firerate is limited mainly by process delay; this is just to make sure it doesn't fire too soon after a manual shot or slip a shot into an ongoing burst.
 		if(world.time-last_fired >= 300 && !warned) //if we haven't fired for a while, beep first
 			playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
-			addtimer(CALLBACK(src, /obj/item/weapon/gun/smartgun/proc/auto_prefire, TRUE), 0.5)
+			addtimer(CALLBACK(src, /obj/item/weapon/gun/smartgun/proc/auto_prefire, TRUE), 3)
 			return
 
 		Fire(target,user)

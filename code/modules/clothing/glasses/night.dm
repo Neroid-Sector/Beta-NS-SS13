@@ -3,7 +3,7 @@
 /obj/item/clothing/glasses/night
 	name = "\improper TV1 night vision goggles"
 	gender = PLURAL
-	desc = "A neat looking pair of civilian grade night vision goggles."
+	desc = "A neat looking pair of civilian grade infared vision goggles."
 	icon_state = "night"
 	item_state = "night"
 	deactive_state = "night_off"
@@ -12,10 +12,9 @@
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
 	darkness_view = 12
-	vision_flags = SEE_TURFS
+	vision_flags = SEE_MOBS
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	fullscreen_vision = null
-	vision_impair = VISION_IMPAIR_HIGH
 	eye_protection = EYE_PROTECTION_NEGATIVE
 
 /obj/item/clothing/glasses/night/helmet //for the integrated NVGs that are in helmetgarb code
