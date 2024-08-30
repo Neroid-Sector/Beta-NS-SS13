@@ -1936,7 +1936,7 @@
 	. = ..()
 	if(!HAS_TRAIT(user, TRAIT_EAR_PROTECTION) && ishuman(user))
 		var/mob/living/carbon/human/huser = user
-		huser.AdjustEarDeafnessGuns(max(user.ear_deaf,0))
+		huser.SetEarDeafness(max(user.ear_deaf,0))
 
 /obj/item/weapon/gun/rifle/am35/set_gun_attachment_offsets()
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
@@ -1996,7 +1996,7 @@
 	. = ..()
 	if(!HAS_TRAIT(user, TRAIT_EAR_PROTECTION) && ishuman(user))
 		var/mob/living/carbon/human/huser = user
-		huser.AdjustEarDeafnessGuns(max(user.ear_deaf,0))
+		huser.SetEarDeafness(max(user.ear_deaf,0))
 
 /obj/item/weapon/gun/rifle/am36/set_gun_attachment_offsets()
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
