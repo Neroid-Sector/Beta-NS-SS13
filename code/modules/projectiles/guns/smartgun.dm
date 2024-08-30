@@ -566,7 +566,6 @@
 
 /obj/item/weapon/gun/smartgun/apply_bullet_effects(obj/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
 	. = ..()
-	if(!HAS_TRAIT(user, TRAIT_EAR_PROTECTION) && ishuman(user))
 	if(!HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 		if(!HAS_TRAIT(user, TRAIT_EAR_PROTECTION) && ishuman(user))
 			var/mob/living/carbon/human/huser = user
