@@ -2862,10 +2862,6 @@
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather/scarf/tacticalmask/green, WEAR_FACE)
 
-	if(prob(10))
-		//sometimes Ivan smiles upon the corps
-		new_human.set_species("Human Hero")
-
 /datum/equipment_preset/upp/conscript/get_antag_clothing_equipment()
 	return list(
 		list("STANDARD EQUIPMENT (TAKE ALL)", 0, null, null, null),
