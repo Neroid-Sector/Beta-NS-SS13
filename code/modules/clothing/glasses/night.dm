@@ -15,6 +15,7 @@
 	vision_flags = SEE_TURFS
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	fullscreen_vision = null
+	vision_impair = VISION_IMPAIR_HIGH
 	eye_protection = EYE_PROTECTION_NEGATIVE
 
 /obj/item/clothing/glasses/night/helmet //for the integrated NVGs that are in helmetgarb code
