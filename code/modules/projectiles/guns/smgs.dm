@@ -8,7 +8,7 @@
 	force = 5
 	w_class = SIZE_LARGE
 	movement_onehanded_acc_penalty_mult = 4
-	aim_slowdown = SLOWDOWN_ADS_QUICK
+	aim_slowdown = SLOWDOWN_ADS_SMG
 	wield_delay = WIELD_DELAY_VERY_FAST
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
