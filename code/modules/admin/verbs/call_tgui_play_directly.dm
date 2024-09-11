@@ -13,6 +13,7 @@
 	var/targets = GLOB.mob_list
 	var/list/music_extra_data = list()
 	var/web_sound_url = tgui_input_text(usr, "Enter link to sound file. Must use https://","LINK to play", timeout = 0)
+	var/show_blurb_indicator = tgui_alert(usr, "Show title blurb?", "Blurb", list("No","Yes"), timeout = 0)
 	music_extra_data["title"] = tgui_input_text(usr, "Enter song Title, leaving this blank/null will use its url instead.","Title input", timeout = 0)
 	music_extra_data["artist"] = tgui_input_text(usr, "Enter song Artist, or leave blank to not display.", "Artist input", timeout = 0)
 	music_extra_data["album"] = tgui_input_text(usr, "Enter song Album, or leave blank to not display.","Album input", timeout = 0)
@@ -24,7 +25,7 @@
 	for(var/mob/mob as anything in targets)
 		var/client/client = mob?.client
 		if((client?.prefs?.toggles_sound & SOUND_MIDI) && (client?.prefs?.toggles_sound & SOUND_ADMIN_ATMOSPHERIC))
-			if(tgui_alert(usr, "Show title blurb?", "Blurb", list("No","Yes"), timeout = 0) == "Yes") show_blurb_song(title = music_extra_data["title"], additional = "[music_extra_data["artist"]] - [music_extra_data["album"]]")
+			if(show_blurb_indicator == "Yes") show_blurb_song(title = music_extra_data["title"], additional = "[music_extra_data["artist"]] - [music_extra_data["album"]]")
 			client?.tgui_panel?.play_music(web_sound_url, music_extra_data)
 		else
 			client?.tgui_panel?.stop_music()
