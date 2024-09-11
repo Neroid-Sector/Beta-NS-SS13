@@ -17,7 +17,7 @@
 	w_class = SIZE_HUGE
 	force = 20
 	wield_delay = WIELD_DELAY_FAST
-	aim_slowdown = SLOWDOWN_ADS_LMG
+	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
 	var/obj/item/smartgun_battery/battery = null
 	/// Whether the smartgun drains the battery (Ignored if requires_battery is false)
 	var/requires_power = TRUE

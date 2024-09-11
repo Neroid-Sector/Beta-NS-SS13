@@ -15,7 +15,6 @@
 	force = 20
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_RECOIL_BUILDUP|GUN_CAN_POINTBLANK
 	gun_category = GUN_CATEGORY_HEAVY
-	aim_slowdown = SLOWDOWN_ADS_LMG
 	start_semiauto = FALSE
 	start_automatic = TRUE
 
@@ -86,7 +85,6 @@
 	force = 25
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_CAN_POINTBLANK
 	gun_category = GUN_CATEGORY_HEAVY
-	aim_slowdown = SLOWDOWN_ADS_LMG
 	attachable_allowed = list(
 		/obj/item/attachable/m60barrel,
 		/obj/item/attachable/bipod/m60,
@@ -194,7 +192,6 @@
 	start_automatic = TRUE
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_CAN_POINTBLANK|GUN_SPECIALIST|GUN_AMMO_COUNTER
 	gun_category = GUN_CATEGORY_HEAVY
-	aim_slowdown = SLOWDOWN_ADS_LMG
 	attachable_allowed = list(
 		/obj/item/attachable/pkpbarrel,
 		/obj/item/attachable/stock/pkpstock,

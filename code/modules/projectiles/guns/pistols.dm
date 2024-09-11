@@ -29,7 +29,6 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED //For easy reference.
 	gun_category = GUN_CATEGORY_HANDGUN
-	aim_slowdown = SLOWDOWN_ADS_VERSATILE
 
 /obj/item/weapon/gun/pistol/Initialize(mapload, spawn_empty)
 	. = ..()
