@@ -1388,6 +1388,7 @@
 #include "code\modules\admin\verbs\adminpanelweapons.dm"
 #include "code\modules\admin\verbs\adminpm.dm"
 #include "code\modules\admin\verbs\autoreplace.dm"
+#include "code\modules\admin\verbs\call_tgui_play_directly.dm"
 #include "code\modules\admin\verbs\custom_event.dm"
 #include "code\modules\admin\verbs\custom_paper.dm"
 #include "code\modules\admin\verbs\deadsay.dm"
