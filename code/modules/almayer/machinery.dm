@@ -165,7 +165,7 @@
 /obj/structure/prop/almayer/computers/hackable_comp
     name = "Secure computer"
     desc = "The IBM series 10 computer retrofitted to work as a sensor computer or some kind of sentry control network. While somewhat dated it still serves its purpose."
-    icon = 'icons/obj/structures/props/almayer_props.dmi'
+    icon = 'icons/obj/structures/machinery/computer.dmi'
     icon_state = "sensor_comp1"
     var/countdown_max = 1200 // Maxiumum value in ticks.
     var/operation_complete = FALSE // If the multitooling was complete
