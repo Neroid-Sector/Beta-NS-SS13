@@ -3,6 +3,7 @@
     set name = "Play Music From Direct Link"
     set desc = "Plays a music file from a https:// link through tguis music player, bypassing the filtering done by the other admin command. This will play as an admin atmospheric and will be muted by clinets who have that setting turned on as expected. A blurb displaying song info can also be displayed as an extra option."
 
+
     if(!check_rights(R_ADMIN))
         return
 
@@ -25,3 +26,7 @@
             client?.tgui_panel?.play_music(web_sound_url, music_extra_data)
         else
             client?.tgui_panel?.stop_music()
+
+/proc/show_blurb_song(title = "Song Name",additional = "Song Artist - Song Album",)//Shows song blurb, a two line blurb. The first line passes
+    var/message_to_display = "<b>[title]</b>\n[additional]"
+    show_blurb(GLOB.player_list, 10 SECONDS, "[message_to_display]", screen_position = "LEFT+0:16,BOTTOM+1:16", text_alignment = "left", text_color = "#FFFFFF", blurb_key = "song[title]", ignore_key = TRUE, speed = 1)
