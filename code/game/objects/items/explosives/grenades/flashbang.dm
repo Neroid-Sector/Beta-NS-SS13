@@ -222,6 +222,7 @@
 
 	icon_state = "flashbang_noskill"
 	item_state = "grenade_flashbang_noskill"
+	underslug_launchable = TRUE
 
 	skill_requirement = SKILL_POLICE_DEFAULT
 

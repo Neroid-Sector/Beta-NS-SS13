@@ -516,3 +516,42 @@
 	desc = "The shell on this cassette is broken, it still looks like it'll work, though!"
 	icon_state = "cassette_worstmap"
 	side1_icon = "cassette_worstmap"
+
+/obj/item/device/portalradio
+	name = "cheap radio"
+	desc = "A small FM/AM radio that sometimes can get a rogue signal even out here."
+	icon_state = "portal_radio"
+	w_class = SIZE_MEDIUM
+	flags_equip_slot = SLOT_WAIST
+	var/spamcheck = 0
+
+/obj/item/device/portalradio/attack_self(mob/user)
+	..()
+
+	if (spamcheck)
+		return
+
+	playsound(get_turf(src), 'sound/machines/memesong.mp3', 35, 1, vary = 0)
+
+	spamcheck = 1
+	addtimer(VARSET_CALLBACK(src, spamcheck, FALSE), 45 SECONDS)
+
+/obj/item/device/banditradio
+	name = "Crazy Ivan's cheap radio"
+	desc = "A small FM/AM radio that sometimes can get a rogue signal even out here. Somehow Crazy Ivan got this one to get a clean signal from some pirate radio station."
+	icon_state = "music_radio"
+	w_class = SIZE_MEDIUM
+	flags_equip_slot = SLOT_WAIST
+	var/spamcheck = 0
+
+/obj/item/device/banditradio/attack_self(mob/user)
+	..()
+
+	if (spamcheck)
+		return
+
+	playsound(get_turf(src), 'sound/machines/bandit_radio.mp3', 35, 1, vary = 0)
+
+	spamcheck = 1
+	addtimer(VARSET_CALLBACK(src, spamcheck, FALSE), 115 SECONDS)
+

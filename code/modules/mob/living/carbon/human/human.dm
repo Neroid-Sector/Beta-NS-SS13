@@ -123,10 +123,12 @@
 	if(marksman_aura)
 		. += "Active Order: FOCUS"
 
-	if(EvacuationAuthority)
-		var/eta_status = EvacuationAuthority.get_status_panel_eta()
+	if(SShijack)
+		var/eta_status = SShijack.get_evac_eta()
 		if(eta_status)
-			. += "Evacuation: [eta_status]"
+			. += "Evacuation Goals: [eta_status]"
+		if(SShijack.sd_unlocked)
+			. += "Self Destruct Status: [SShijack.get_sd_eta()]"
 
 /mob/living/carbon/human/ex_act(severity, direction, datum/cause_data/cause_data)
 	if(lying)
@@ -1736,3 +1738,13 @@
 		return FALSE
 
 	. = ..()
+
+
+
+/mob/living/carbon/human/point_to_atom(atom/A, turf/T)
+	if(isitem(A))
+		var/obj/item/item = A
+		if(item == get_active_hand() || item == get_inactive_hand())
+			item.showoff(src)
+			return TRUE
+	return ..()

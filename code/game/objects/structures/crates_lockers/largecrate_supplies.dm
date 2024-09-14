@@ -196,7 +196,6 @@
 	supplies = list(/obj/item/ammo_magazine/m56d = 6)
 
 
-
 /obj/structure/largecrate/supply/explosives
 	name = "explosives supply crate"
 	desc = "A case containing explosives."
@@ -226,6 +225,46 @@
 	name = "80mm flare mortar shell case (x25)"
 	desc = "A case containing twenty-five 80mm flare mortar shells."
 	supplies = list(/obj/item/mortar_shell/flare = 25)
+
+/obj/structure/largecrate/supply/explosives/mortar_cn20
+	name = "80mm cn20-gas mortar shell case (x25)"
+	desc = "A case containing twenty-five 80mm cn20 nerve gas mortar shells."
+	supplies = list(/obj/item/mortar_shell/cn20 = 25)
+
+/obj/structure/largecrate/supply/explosives/mortar_mustard
+	name = "80mm mustard-gas mortar shell case (x25)"
+	desc = "A case containing twenty-five 80mm mustard gas mortar shells."
+	supplies = list(/obj/item/mortar_shell/mustard = 25)
+
+/obj/structure/largecrate/supply/explosives/mortar_smoke
+	name = "80mm smoke mortar shell case (x25)"
+	desc = "A case containing twenty-five 80mm smoke mortar shells."
+	supplies = list(/obj/item/mortar_shell/smoke = 25)
+
+/obj/structure/largecrate/supply/explosives/mortar_airburst
+	name = "80mm airburst mortar shell case (x25)"
+	desc = "A case containing twenty-five 80mm Airburst HE mortar shells."
+	supplies = list(/obj/item/mortar_shell/airburst = 25)
+
+/obj/structure/largecrate/supply/explosives/mortar_shaped
+	name = "80mm shaped-incendiary mortar shell case (x25)"
+	desc = "A case containing twenty-five 80mm shaped incediary shells."
+	supplies = list(/obj/item/mortar_shell/shaped = 25)
+
+/obj/structure/largecrate/supply/explosives/mortar_wp
+	name = "80mm WP mortar shell case (x25)"
+	desc = "A case containing twenty-five 80mm WP mortar shells."
+	supplies = list(/obj/item/mortar_shell/wp = 25)
+
+/obj/structure/largecrate/supply/explosives/mortar_chlorine
+	name = "80mm WP mortar shell case (x25)"
+	desc = "A case containing twenty-five 80mm chlorine gas mortar shells."
+	supplies = list(/obj/item/mortar_shell/chlorine = 25)
+
+/obj/structure/largecrate/supply/explosives/mortar_flash
+	name = "80mm Starburst mortar shell case (x25)"
+	desc = "A case containing twenty-five 80mm Flashbang mortar shells."
+	supplies = list(/obj/item/mortar_shell/flash = 25)
 
 
 /obj/structure/largecrate/supply/supplies

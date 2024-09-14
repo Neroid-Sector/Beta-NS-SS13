@@ -335,7 +335,7 @@ var/const/MAX_SAVE_SLOTS = 10
 			dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender'><b>[gender == MALE ? "Male" : "Female"]</b></a><br>"
 			dat += "<b>Ethnicity:</b> <a href='?_src_=prefs;preference=ethnicity;task=input'><b>[ethnicity]</b></a><br>"
 			dat += "<b>Body Type:</b> <a href='?_src_=prefs;preference=body_type;task=input'><b>[body_type]</b></a><br>"
-			dat += "<b>Traits:</b> <a href='byond://?src=\ref[user];preference=traits;task=open'><b>Character Traits</b></a>"
+			dat += "<b>Traits:</b> <a href='byond://?src=\ref[user];preference=traits;task=open'><b>Character Traits </b></a>"
 			dat += "<br>"
 
 			dat += "<h2><b><u>Occupation Choices:</u></b></h2>"
@@ -649,7 +649,7 @@ var/const/MAX_SAVE_SLOTS = 10
 //splitJobs - Allows you split the table by job. You can make different tables for each department by including their heads. Defaults to CE to make it look nice.
 //width - Screen' width. Defaults to 550 to make it look nice.
 //height - Screen's height. Defaults to 500 to make it look nice.
-/datum/preferences/proc/SetChoices(mob/user, limit = 19, list/splitJobs = list(JOB_CHIEF_REQUISITION), width = 950, height = 700)
+/datum/preferences/proc/SetChoices(mob/user, limit = 19, list/splitJobs = list(JOB_CHIEF_POLICE, JOB_CHIEF_REQUISITION), width = 950, height = 700)
 	if(!RoleAuthority)
 		return
 

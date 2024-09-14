@@ -110,7 +110,7 @@
 	new /obj/item/clothing/suit/storage/marine/M35(src)
 	new /obj/item/clothing/head/helmet/marine/pyro(src)
 	new /obj/item/storage/large_holster/fuelpack(src)
-	new /obj/item/weapon/gun/flamer/M240T(src)
+	new /obj/item/weapon/gun/flamer/M240T/auto(src)
 	new /obj/item/ammo_magazine/flamer_tank/large(src)
 	new /obj/item/storage/pouch/flamertank(src)
 	new /obj/item/tool/extinguisher(src)
@@ -151,6 +151,24 @@
 	new /obj/item/clothing/head/helmet/marine/specialist(src)
 	new /obj/item/clothing/suit/storage/marine/specialist(src)
 
+
+/obj/item/storage/box/spec/clf/sniper
+	name = "\improper Sniper equipment case"
+	desc = "A large case containing your very own long-range sniper rifle, and equipment.\nDrag this sprite onto yourself to open it up! NOTE: You cannot put items back inside this case."
+	kit_overlay = "sniper"
+
+/obj/item/storage/box/spec/clf/sniper/fill_preset_inventory()
+	// sniper
+	new /obj/item/clothing/suit/storage/marine/ghillie/clf(src)
+	new /obj/item/clothing/glasses/night/m42_night_goggles/upp(src)
+	new /obj/item/ammo_magazine/sniper/svd(src)
+	new /obj/item/ammo_magazine/sniper/svd(src)
+	new /obj/item/ammo_magazine/sniper/svd(src)
+	new /obj/item/ammo_magazine/sniper/svd(src)
+	new /obj/item/device/binoculars/civ(src)
+	new /obj/item/weapon/gun/rifle/sniper/svd(src)
+	new /obj/item/facepaint/sniper(src)
+
 //-----------------SPEC KIT BOX------------------
 //For events/WO, allows the user to choose a specalist kit out of available ones in spec_kit_boxes_left list in gloabl_lists.dm
 
@@ -159,7 +177,7 @@
 	desc = "A paper box. Open it and get a specialist kit."
 	icon = 'icons/obj/items/storage.dmi'
 	icon_state = "spec_kit"
-	var/list/allowed_roles_list = list(JOB_SQUAD_SPECIALIST, JOB_WO_SQUAD_SPECIALIST, JOB_WO_CREWMAN)
+	var/list/allowed_roles_list = list(JOB_SQUAD_SPECIALIST, JOB_WO_SQUAD_SPECIALIST, JOB_WO_CREWMAN, JOB_MS_RFM)
 
 	///Used for cryo specs who already have "foxtrot" appended to their ID assignments
 	var/squad_assignment_update = TRUE
@@ -379,30 +397,39 @@
 	new /obj/item/ammo_magazine/rifle/ap(src)
 
 /obj/item/storage/box/kit/heavy_support
-	name = "\improper Forward HPR Shield Kit"
+	name = "\improper Forward HPR Fire Support Kit"
 	pro_case_overlay = "shield"
+	desc = "A Squad Rifleman's fire support kit containing an HPR, Spare box magazines, and "
 
 /obj/item/storage/box/kit/heavy_support/fill_preset_inventory()
 	new /obj/item/weapon/gun/rifle/lmg(src)
-	new /obj/item/ammo_magazine/rifle/lmg(src)
+	new /obj/item/ammo_magazine/rifle/lmg/heap(src)
 	new /obj/item/ammo_magazine/rifle/lmg/holo_target(src)
+	new /obj/item/ammo_magazine/rifle/lmg/heap(src)
+	new /obj/item/ammo_magazine/rifle/lmg/holo_target(src)
+	new /obj/item/attachable/magnetic_harness(src)
 	new /obj/item/attachable/bipod(src)
 	new /obj/item/stack/folding_barricade/three(src)
-	new /obj/item/clothing/glasses/welding(src)
-	new /obj/item/tool/weldingtool(src)
+
 
 
 /obj/item/storage/box/kit/pursuit
-	name = "\improper M39 Point Man Kit"
+	name = "\improper Point Man Pointman Breacher Kit"
 	pro_case_overlay = "pursuit"
 
 /obj/item/storage/box/kit/pursuit/fill_preset_inventory()
 	new /obj/item/weapon/gun/smg/m39(src)
+	new /obj/item/weapon/shield/riot/ballistic/uscm(src)
+	new /obj/item/storage/large_holster/machete/full(src)
 	new /obj/item/attachable/stock/smg/collapsible/brace(src)
 	new /obj/item/attachable/magnetic_harness(src)
-	new /obj/item/storage/large_holster/machete/full(src)
-	new /obj/item/ammo_magazine/smg/m39/extended(src)
-
+	new /obj/item/ammo_magazine/smg/m39/penetrating(src)
+	new /obj/item/ammo_magazine/smg/m39/penetrating(src)
+	new /obj/item/maintenance_jack(src)
+	new /obj/item/tool/weldingtool/simple(src)
+	new /obj/item/explosive/plastic/breaching_charge(src)
+	new /obj/item/explosive/plastic/breaching_charge(src)
+	new /obj/item/explosive/plastic/breaching_charge(src)
 
 /obj/item/storage/box/kit/mini_engineer
 	name = "\improper Combat Technician Support Kit"
@@ -478,6 +505,13 @@
 	new /obj/item/attachable/reddot(src)
 	new /obj/item/attachable/lasersight(src)
 	new /obj/item/storage/belt/gun/m4a3(src)
+
+/obj/item/storage/box/kit/nvgs
+	name = "\improper UPP Infared Goggles case"
+	pro_case_overlay = "sniper"
+
+/obj/item/storage/box/kit/nvgs/fill_preset_inventory()
+	new /obj/item/clothing/glasses/night/m42_night_goggles/upp(src)
 
 /obj/item/storage/box/kit/cryo_self_defense
 	name = "\improper Cryo Self Defense Kit"

@@ -130,6 +130,23 @@
 	new /obj/item/reagent_container/spray(src)
 	new /obj/item/reagent_container/spray(src)
 
+/obj/item/storage/box/flashbang/pvp
+	name = "box of flashbangs (WARNING)"
+	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.</B>"
+	icon_state = "flashbang"
+	can_hold = list(/obj/item/explosive/grenade/flashbang/noskill)
+	w_class = SIZE_MEDIUM
+
+/obj/item/storage/box/flashbang/pvp/fill_preset_inventory()
+	new /obj/item/explosive/grenade/flashbang/noskill(src)
+	new /obj/item/explosive/grenade/flashbang/noskill(src)
+	new /obj/item/explosive/grenade/flashbang/noskill(src)
+	new /obj/item/explosive/grenade/flashbang/noskill(src)
+	new /obj/item/explosive/grenade/flashbang/noskill(src)
+	new /obj/item/explosive/grenade/flashbang/noskill(src)
+	new /obj/item/explosive/grenade/flashbang/noskill(src)
+	new /obj/item/explosive/grenade/flashbang/noskill(src)
+
 /obj/item/storage/box/flashbangs
 	name = "box of flashbangs (WARNING)"
 	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.</B>"
@@ -544,6 +561,42 @@
 /obj/item/storage/box/explosive_mines/pmc/fill_preset_inventory()
 	for(var/i in 1 to 5)
 		new /obj/item/explosive/mine/pmc(src)
+
+/obj/item/storage/box/explosive_atmines
+	name = "\improper M20 mine box"
+	desc = "A secure box holding five M20 anti-vehicle mines."
+	icon_state = "minebox"
+	w_class = SIZE_LARGE
+	max_storage_space = 20
+	can_hold = list(/obj/item/atmine)
+
+/obj/item/storage/box/explosive_atmines/fill_preset_inventory()
+	for(var/i in 1 to 5)
+		new /obj/item/atmine(src)
+
+/obj/item/storage/box/explosive_atmines/upp
+	name = "\improper M20 mine box"
+	desc = "A secure box holding five M20 anti-vehicle mines."
+	icon_state = "minebox"
+	w_class = SIZE_LARGE
+	max_storage_space = 20
+	can_hold = list(/obj/item/atmine/upp)
+
+/obj/item/storage/box/explosive_atmines/upp/fill_preset_inventory()
+	for(var/i in 1 to 5)
+		new /obj/item/atmine/upp(src)
+
+/obj/item/storage/box/explosive_atmines/clf
+	name = "\improper M20 mine box"
+	desc = "A secure box holding five M20 anti-vehicle mines."
+	icon_state = "minebox"
+	w_class = SIZE_LARGE
+	max_storage_space = 20
+	can_hold = list(/obj/item/atmine/clf)
+
+/obj/item/storage/box/explosive_atmines/clf/fill_preset_inventory()
+	for(var/i in 1 to 5)
+		new /obj/item/atmine/clf(src)
 
 /obj/item/storage/box/m94
 	name = "\improper M94 marking flare pack"

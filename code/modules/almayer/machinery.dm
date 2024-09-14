@@ -162,6 +162,47 @@
 	icon = 'icons/obj/structures/props/almayer_props.dmi'
 	icon_state = "sensor_comp3"
 
+/obj/structure/prop/almayer/computers/hackable_comp
+    name = "Secure computer"
+    desc = "The IBM series 10 computer retrofitted to work as a sensor computer or some kind of sentry control network. While somewhat dated it still serves its purpose."
+    icon = 'icons/obj/structures/machinery/computer.dmi'
+    icon_state = "sensor_comp1"
+    var/countdown_max = 1200 // Maxiumum value in ticks.
+    var/operation_complete = FALSE // If the multitooling was complete
+    var/countdown_step = 150 // How many seconds between percentage annoucements
+    var/terminal_in_use = FALSE
+
+/obj/structure/prop/almayer/computers/hackable_comp/attackby(obj/item/W, mob/user)
+    terminal_in_use = TRUE
+    playsound(loc, 'sound/machines/lockdownalarm.ogg', 25)
+    if((HAS_TRAIT(W, TRAIT_TOOL_MULTITOOL)) && operation_complete == FALSE)
+        if(do_after(user, 80, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+            for(var/obj/structure/prop/almayer/computers/hackable_comp/H in world)
+                if(H.terminal_in_use == TRUE)
+                    INVOKE_ASYNC(H, TYPE_PROC_REF(/obj/structure/prop/almayer/computers/hackable_comp, special_countdown))
+                    return
+    return
+
+/obj/structure/prop/almayer/computers/hackable_comp/proc/special_countdown()
+    var/temp_countdown = 0
+    terminal_in_use = FALSE
+    if(temp_countdown == 0)
+        playsound(loc, 'sound/machines/computer_startup.mp3', 25)
+        talkas("Initiating Download please wait...")
+    if (countdown_max == 0 && countdown_step == 0)
+        to_chat(world, SPAN_WARNING("Admin dummy, tried to divide by zero. Point and laugh."))
+        return
+    while(temp_countdown < countdown_max)
+        sleep(countdown_step)
+        temp_countdown += countdown_step
+        playsound(loc, 'sound/machines/dialup.mp3', 25)
+        talkas("Download in progress. [round(((temp_countdown / countdown_max) * 100),0.5)] percent complete.")
+    if(temp_countdown >= countdown_max)
+        playsound(loc, 'sound/machines/fax.ogg', 25)
+        talkas("Download complete.")
+        operation_complete = TRUE
+        return
+
 /obj/structure/prop/almayer/missile_tube
 	name = "\improper Mk 33 ASAT launcher system"
 	desc = "Cold launch tubes that can fire a few varieties of missiles out of them, the most common being the ASAT-21 Rapier IV missile used against satellites and other spacecraft and the BGM-227 Sledgehammer missile which is used for ground attack."
@@ -275,9 +316,6 @@
 
 /obj/structure/prop/almayer/cannon_cable_connector/bullet_act()
 	return
-
-
-
 
 
 

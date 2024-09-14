@@ -42,7 +42,15 @@
 	prime() //We don't care about how strong the explosion was.
 
 /obj/item/explosive/mine/emp_act()
-	prime() //Same here. Don't care about the effect strength.
+	if(prob(60))
+		triggered = TRUE
+		if(tripwire)
+			var/direction = reverse_dir[src.dir]
+			var/step_direction = get_step(src, direction)
+			tripwire.forceMove(step_direction)
+		prime()
+	if(prob(40))
+		disarm() //Same here. Don't care about the effect strength.
 
 
 //checks for things that would prevent us from placing the mine.
@@ -119,7 +127,7 @@
 					SPAN_WARNING("You stop disarming [src]."))
 				return
 			if(user.faction != iff_signal) //ow!
-				if(prob(75))
+				if(prob(40))
 					triggered = TRUE
 					if(tripwire)
 						var/direction = reverse_dir[src.dir]
@@ -314,3 +322,126 @@
 	customizable = TRUE
 	matter = list("metal" = 3750)
 	has_blast_wave_dampener = TRUE
+
+
+/obj/item/atmine
+	name = "m20 anti-vehicle mine"
+	desc = "An anti vehicle mine."
+	icon = 'icons/obj/items/weapons/grenade.dmi'
+	icon_state = "m20at"
+	w_class = SIZE_MEDIUM
+	var/deploy_atmine = /obj/item/explosive/atmine
+
+/obj/item/atmine/attack_self(mob/user)
+	..()
+	var/turf/open/T = user.loc
+	if(!(istype(T) && T.allow_construction))
+		to_chat(user, SPAN_WARNING("[src] must be deployed on a proper surface!"))
+		return
+	if(locate(/obj/item/explosive/mine) in get_turf(src))
+		to_chat(user, SPAN_WARNING("There already is a mine at this position!"))
+		return
+	if(locate(/obj/item/explosive/atmine) in get_turf(src))
+		to_chat(user, SPAN_WARNING("There already is a mine at this position!"))
+		return
+	if(do_after(user, 0.5 SECONDS, INTERRUPT_ALL, BUSY_ICON_BUILD, src))
+		playsound(loc, 'sound/effects/toolbox.ogg', 25, TRUE)
+		to_chat(user, SPAN_NOTICE(" You deploy [src]."))
+		var/obj/item/explosive/atmine/R = new deploy_atmine(usr.loc)
+		src.transfer_fingerprints_to(R)
+		R.add_fingerprint(user)
+		qdel(src)
+
+/obj/item/explosive/atmine
+	name = "m20 anti-vehicle mine"
+	desc = "An anti vehicle mine."
+	icon = 'icons/obj/items/weapons/grenade.dmi'
+	icon_state = "m20at_active"
+	health = 50
+	anchored = TRUE
+	use_dir = FALSE
+	angle = 360
+	var/iff_signal = FACTION_MARINE
+	var/defuse_atmine = /obj/item/atmine
+
+/obj/item/explosive/atmine/proc/det_atmine(mob/user)
+	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25)
+	create_shrapnel(loc, 10, dir, angle, , cause_data)
+	cell_explosion(loc, 1500, 300, EXPLOSION_FALLOFF_SHAPE_LINEAR, dir, cause_data)
+	qdel(src)
+
+/obj/item/explosive/atmine/Crossed(atom/movable/AM)
+	. = ..()
+	var/obj/vehicle/multitile/V = AM
+	if(!istype(V))
+		return
+	if(V.get_target_lock(iff_signal))
+		return
+	det_atmine()
+
+
+/obj/item/explosive/atmine/attackby(obj/item/W, mob/user)
+	if(HAS_TRAIT(W, TRAIT_TOOL_MULTITOOL))
+		if(user.action_busy)
+			return
+		if(user.faction == iff_signal)
+			user.visible_message(SPAN_NOTICE("[user] starts disarming [src]."), \
+			SPAN_NOTICE("You start disarming [src]."))
+		else
+			user.visible_message(SPAN_NOTICE("[user] starts fiddling with \the [src], trying to disarm it."), \
+			SPAN_NOTICE("You start disarming [src], but you don't know its IFF data. This might end badly..."))
+		if(!do_after(user, 30, INTERRUPT_NO_NEEDHAND, BUSY_ICON_FRIENDLY))
+			user.visible_message(SPAN_WARNING("[user] stops disarming [src]."), \
+				SPAN_WARNING("You stop disarming [src]."))
+			return
+		if(user.faction != iff_signal)
+			if(prob(40))
+				det_atmine()
+				return
+		user.visible_message(SPAN_NOTICE("[user] finishes disarming [src]."), \
+		SPAN_NOTICE("You finish disarming [src]."))
+		var/obj/item/atmine/R = new defuse_atmine(usr.loc)
+		src.transfer_fingerprints_to(R)
+		R.add_fingerprint(user)
+		qdel(src)
+
+
+/obj/item/atmine/upp
+	name = "m20 anti-vehicle mine"
+	desc = "An anti vehicle mine."
+	icon = 'icons/obj/items/weapons/grenade.dmi'
+	icon_state = "m20at"
+	w_class = SIZE_MEDIUM
+	deploy_atmine = /obj/item/explosive/atmine/upp
+
+/obj/item/atmine/clf
+	name = "m20 anti-vehicle mine"
+	desc = "An anti vehicle mine."
+	icon = 'icons/obj/items/weapons/grenade.dmi'
+	icon_state = "m20at"
+	w_class = SIZE_MEDIUM
+	deploy_atmine = /obj/item/explosive/atmine/clf
+
+/obj/item/atmine/twe
+	name = "m20 anti-vehicle mine"
+	desc = "An anti vehicle mine."
+	icon = 'icons/obj/items/weapons/grenade.dmi'
+	icon_state = "m20at"
+	w_class = SIZE_MEDIUM
+	deploy_atmine = /obj/item/explosive/atmine/twe
+
+
+/obj/item/explosive/atmine/upp
+	iff_signal = FACTION_UPP
+	defuse_atmine = /obj/item/atmine/upp
+
+/obj/item/explosive/atmine/clf
+	iff_signal = FACTION_CLF
+	defuse_atmine = /obj/item/atmine/clf
+
+/obj/item/explosive/atmine/twe
+	iff_signal = FACTION_TWE
+	defuse_atmine = /obj/item/atmine/twe
+
+/obj/item/explosive/atmine/no_iff
+	iff_signal = null

@@ -21,11 +21,13 @@
 	revivable_dead_slots = 2
 	xenos_slots = 4
 
+	wall_ram_damage = 1500
+
 	entrances = list(
 		"back" = list(0, 2)
 	)
 
-	movement_sound = 'sound/vehicles/tank_driving.ogg'
+	movement_sound = 'sound/vehicles/tankdriving.mp3'
 	honk_sound = 'sound/vehicles/honk_3_ambulence.ogg'
 
 	required_skill = SKILL_VEHICLE_LARGE

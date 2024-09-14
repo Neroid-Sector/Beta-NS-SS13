@@ -12,7 +12,7 @@
 	to_world("<B>The current game mode is - Extended!</B>")
 
 /datum/game_mode/extended/get_roles_list()
-	return ROLES_USCM
+	return ROLES_NEROID
 
 /datum/game_mode/extended/post_setup()
 	initialize_post_marine_gear_list()

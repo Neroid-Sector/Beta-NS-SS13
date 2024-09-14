@@ -117,7 +117,7 @@
 	icon_state = "rxfm5_eva"
 	item_state = "eva"
 	muzzle_flash = "muzzle_laser"
-	fire_sound = 'sound/weapons/Laser4.ogg'
+	fire_sound = 'sound/weapons/laser3.ogg'
 	w_class = SIZE_MEDIUM
 	gun_category = GUN_CATEGORY_HANDGUN
 	flags_equip_slot = SLOT_WAIST
@@ -178,7 +178,7 @@
 	flags_equip_slot = SLOT_WAIST
 	charge_cost = 200
 	ammo = /datum/ammo/energy/laz_uzi
-	fire_sound = 'sound/weapons/Laser4.ogg'
+	fire_sound = 'sound/weapons/laser3.ogg'
 	has_charge_meter = FALSE
 	charge_icon = "+laz_uzi_empty"
 	start_automatic = TRUE
@@ -197,16 +197,46 @@
 	recoil_unwielded = RECOIL_AMOUNT_TIER_5
 	fa_scatter_peak = SCATTER_AMOUNT_TIER_8
 
+/obj/item/weapon/gun/energy/laz_rifle
+	name = "M7nrgMk2"
+	desc = "A Specialized laser rifle, designed to mimimize damage to the indside hulls of ships. Commonly found in the hands of USCM Boarding parties."
+	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
+	icon_state = "nrg_eva"
+	item_state = "laz_uzi"
+	muzzle_flash = "muzzle_laser"
+	gun_category = GUN_CATEGORY_SMG
+	flags_equip_slot = SLOT_WAIST
+	charge_cost = 20
+	ammo = /datum/ammo/energy/laz_rifle
+	fire_sound = 'sound/weapons/laser3.ogg'
+	has_charge_meter = FALSE
+	charge_icon = "+laz_uzi_empty"
+	start_automatic = TRUE
+
+/obj/item/weapon/gun/energy/laz_rifle/set_gun_config_values()
+	..()
+	set_fire_delay(SCATTER_AMOUNT_TIER_10)
+	set_burst_delay(FIRE_DELAY_TIER_10)
+	set_burst_amount(BURST_AMOUNT_TIER_2)
+	accuracy_mult = BASE_ACCURACY_MULT - HIT_ACCURACY_MULT_TIER_3
+	accuracy_mult_unwielded = BASE_ACCURACY_MULT - HIT_ACCURACY_MULT_TIER_7
+	scatter = SCATTER_AMOUNT_NONE
+	burst_scatter_mult = SCATTER_AMOUNT_NONE
+	scatter_unwielded = SCATTER_AMOUNT_NONE
+	damage_mult = BASE_BULLET_DAMAGE_MULT
+	recoil_unwielded = RECOIL_OFF
+	fa_scatter_peak = SCATTER_AMOUNT_TIER_10
+
 //############################ Taser ##################
 // Lots of bits for it so splitting off an area
 /obj/item/weapon/gun/energy/taser
 	name = "disabler gun"
-	desc = "An advanced stun device capable of firing balls of ionized electricity. Used for nonlethal takedowns. "
+	desc = "An advanced directed scalar energy device. It is adjusted to the human body's average frequency and disrupts nervous impluses temporarily. Used for nonlethal takedowns. "
 	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
 	icon_state = "taser"
 	item_state = "taser"
 	muzzle_flash = null //TO DO.
-	fire_sound = 'sound/weapons/Taser.ogg'
+	fire_sound = 'sound/weapons/electrical_zap.mp3'
 	w_class = SIZE_MEDIUM
 	ammo = /datum/ammo/energy/taser/precise
 	charge_cost = 625 // approx 16 shots.
@@ -220,7 +250,7 @@
 
 /obj/item/weapon/gun/energy/taser/set_gun_config_values()
 	..()
-	set_fire_delay(FIRE_DELAY_TIER_7)
+	set_fire_delay(FIRE_DELAY_TIER_VULTURE)
 	accuracy_mult = BASE_ACCURACY_MULT
 	accuracy_mult_unwielded = BASE_ACCURACY_MULT
 	damage_mult = BASE_BULLET_DAMAGE_MULT

@@ -60,6 +60,39 @@
 /obj/item/ammo_box/magazine/heap/empty
 	empty = TRUE
 
+//-----------------------Kramer Rifle Mag Boxes-----------------------
+
+/obj/item/ammo_box/magazine/kramer
+	name = "\improper magazine box (Kramer x 10)"
+	flags_equip_slot = SLOT_BACK
+	overlay_ammo_type = "_reg"
+	overlay_gun_type = "_kramer"
+	overlay_content = "_reg"
+	magazine_type = /obj/item/ammo_magazine/rifle/kramer
+
+/obj/item/ammo_box/magazine/kramer/empty
+	empty = TRUE
+
+/obj/item/ammo_box/magazine/kramer/ap
+	name = "\improper magazine box (Kramer AP x 10)"
+	flags_equip_slot = SLOT_BACK
+	overlay_ammo_type = "_ap"
+	overlay_content = "_ap"
+	magazine_type = /obj/item/ammo_magazine/rifle/kramer/ap
+
+/obj/item/ammo_box/magazine/kramer/ap/empty
+	empty = TRUE
+
+/obj/item/ammo_box/magazine/kramer/heap
+	name = "\improper magazine box (Kramer HEAP x 10)"
+	flags_equip_slot = SLOT_BACK
+	overlay_ammo_type = "_heap"
+	overlay_content = "_heap"
+	magazine_type = /obj/item/ammo_magazine/rifle/kramer/heap
+
+/obj/item/ammo_box/magazine/kramer/heap/empty
+	empty = TRUE
+
 //-----------------------M39 Rifle Mag Boxes-----------------------
 
 /obj/item/ammo_box/magazine/m39

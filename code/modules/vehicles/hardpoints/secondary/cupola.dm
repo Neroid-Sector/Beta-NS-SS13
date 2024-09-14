@@ -5,7 +5,7 @@
 	icon_state = "m56_cupola"
 	disp_icon = "tank"
 	disp_icon_state = "m56cupola"
-	activation_sounds = list('sound/weapons/gun_smartgun1.ogg', 'sound/weapons/gun_smartgun2.ogg', 'sound/weapons/gun_smartgun3.ogg', 'sound/weapons/gun_smartgun4.ogg')
+	activation_sounds = list('sound/weapons/gun_smartgun1.mp3', 'sound/weapons/gun_smartgun2.mp3', 'sound/weapons/gun_smartgun3.mp3', 'sound/weapons/gun_smartgun4.mp3')
 
 	health = 350
 	cooldown = 15

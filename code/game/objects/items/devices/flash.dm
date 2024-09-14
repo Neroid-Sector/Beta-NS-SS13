@@ -192,3 +192,9 @@
 /obj/item/device/flash/old
 	name = "old-looking flash"
 	icon_state = "flash_old"
+
+
+/obj/item/device/flash/owlf
+	name = "Neuralyzer"
+	icon_state = "flash_old"
+	desc ="A device that emits a bright blinding light. Those exposed the bliding light emitted by this device forget recent events, and become susceptible to suggestions."

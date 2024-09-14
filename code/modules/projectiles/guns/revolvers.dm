@@ -283,6 +283,14 @@
 		to_chat(user, SPAN_WARNING("You fumble with [src] like an idiot... Uncool."))
 		return FALSE
 
+/obj/item/weapon/gun/revolver/apply_bullet_effects(obj/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
+	. = ..()
+	if(!HAS_TRAIT(src, TRAIT_GUN_SILENCED))
+		if(!HAS_TRAIT(user, TRAIT_EAR_PROTECTION) && ishuman(user))
+			var/mob/living/carbon/human/huser = user
+			to_chat(user, SPAN_WARNING("Augh!! \The [src]'s firing resonates extremely loudly in your ears! You probably should have worn some sort of ear protection..."))
+			huser.apply_effect(6, STUTTER)
+			huser.AdjustEarDeafnessGuns(max(user.ear_deaf,2))
 
 //-------------------------------------------------------
 //M44 Revolver
@@ -746,3 +754,6 @@
 
 /obj/item/weapon/gun/revolver/cmb/normalpoint
 	current_mag = /obj/item/ammo_magazine/internal/revolver/cmb
+
+/obj/item/weapon/gun/revolver/cmb/marksman
+	current_mag = /obj/item/ammo_magazine/internal/revolver/cmb/marksman

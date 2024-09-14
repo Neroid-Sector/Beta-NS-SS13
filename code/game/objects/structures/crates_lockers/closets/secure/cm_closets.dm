@@ -32,6 +32,8 @@ GLOBAL_LIST_EMPTY(co_secure_boxes)
 
 /obj/structure/closet/secure_closet/securecom/Initialize()
 	. = ..()
+	new /obj/item/storage/box/kit/honorguard(src)
+	new /obj/item/storage/box/kit/honorguard(src)
 	GLOB.co_secure_boxes += src
 
 /obj/structure/closet/secure_closet/securecom/Destroy()
@@ -366,3 +368,190 @@ GLOBAL_LIST_EMPTY(co_secure_boxes)
 	icon_off = "secure_unlocked_cmdcabinet"
 	wall_mounted = TRUE
 
+
+//MARINE SQUAD CLOSETS
+/obj/structure/closet/secure_closet/squad
+	name = "Squad Locker"
+	req_access = list(ACCESS_MARINE_PREP)
+	var/registered_name = null
+	desc = "It's a secure locker for marine personnel to store their personal gear. The lock is paired to the first ID swiped to ensure privacy."
+	icon = 'icons/obj/structures/marine_closet.dmi'
+	icon_state = "squad_locked"
+	icon_closed = "squad_unlocked"
+	icon_locked = "squad_locked"
+	icon_opened = "squad_open"
+	icon_broken = "squad_broken"
+	icon_off = "squad_off"
+
+/obj/structure/closet/secure_closet/squad/attackby(obj/item/W as obj, mob/user as mob)
+	if (src.opened)
+		return ..()
+	if(istype(W, /obj/item/card/id))
+		if(src.broken)
+			to_chat(user, SPAN_DANGER("It appears to be broken."))
+			return
+		var/obj/item/card/id/I = W
+		if(!I || !I.registered_name) return
+		if(src.allowed(user) || !src.registered_name || (istype(I) && (src.registered_name == I.registered_name)))
+			//they can open all lockers, or nobody owns this, or they own this locker
+			src.locked = !( src.locked )
+			if(src.locked) src.icon_state = src.icon_locked
+			else src.icon_state = src.icon_closed
+
+			if(!src.registered_name)
+				src.registered_name = I.registered_name
+				src.desc = "The Nameplate says: [I.registered_name]."
+		else
+			to_chat(user, SPAN_DANGER("Access Denied"))
+	else
+		to_chat(user, SPAN_DANGER("Access Denied"))
+	return
+
+/obj/structure/closet/secure_closet/squad/verb/reset()
+	set src in oview(1) // One square distance
+	set category = "Object"
+	set name = "Reset Lock"
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained()) // Don't use it if you're not able to! Checks for stuns, ghost and restrain
+		return
+	if(ishuman(usr))
+		src.add_fingerprint(usr)
+		if (src.locked || !src.registered_name)
+			to_chat(usr, SPAN_DANGER("You need to unlock it first."))
+		else if (src.broken)
+			to_chat(usr, SPAN_DANGER("It appears to be broken."))
+		else
+			if (src.opened)
+				if(!src.close())
+					return
+			src.locked = 1
+			src.icon_state = src.icon_locked
+			src.registered_name = null
+			src.desc = "It's a secure locker for marine personnel to store their personal gear. The lock is paired to the first ID swiped to ensure privacy."
+	return
+
+
+//MARINE SQUAD CLOSET ALPHA
+/obj/structure/closet/secure_closet/squad/alpha
+	name = "ALPHA Squad Locker"
+	req_access = list(ACCESS_MARINE_PREP)
+	icon_state = "squad_alpha_locked"
+	icon_closed = "squad_alpha_unlocked"
+	icon_locked = "squad_alpha_locked"
+	icon_opened = "squad_alpha_open"
+	icon_broken = "squad_alpha_broken"
+	icon_off = "squad_alpha_off"
+
+/obj/structure/closet/secure_closet/squad/alpha/full/Initialize()
+	. = ..()
+	new /obj/item/clothing/under/marine(src)
+	new /obj/item/device/radio/headset/almayer/marine/cryo(src)
+	new /obj/item/storage/backpack/marine/satchel(src)
+	new /obj/item/clothing/shoes/marine/knife(src)
+	new /obj/item/clothing/gloves/marine(src)
+	new /obj/item/clothing/head/helmet/marine(src)
+	new /obj/item/clothing/suit/storage/marine/carrier(src)
+
+//MARINE SQUAD CLOSET BRAVO
+/obj/structure/closet/secure_closet/squad/bravo
+	name = "BRAVO Squad Locker"
+	req_access = list(ACCESS_MARINE_PREP)
+	icon_state = "squad_bravo_locked"
+	icon_closed = "squad_bravo_unlocked"
+	icon_locked = "squad_bravo_locked"
+	icon_opened = "squad_bravo_open"
+	icon_broken = "squad_bravo_broken"
+	icon_off = "squad_bravo_off"
+
+/obj/structure/closet/secure_closet/squad/bravo/full/Initialize()
+	. = ..()
+	new /obj/item/clothing/under/marine(src)
+	new /obj/item/device/radio/headset/almayer/marine/cryo(src)
+	new /obj/item/storage/backpack/marine/satchel(src)
+	new /obj/item/clothing/shoes/marine/knife(src)
+	new /obj/item/clothing/gloves/marine(src)
+	new /obj/item/clothing/head/helmet/marine(src)
+	new /obj/item/clothing/suit/storage/marine/carrier(src)
+
+//MARINE SQUAD CLOSET
+/obj/structure/closet/secure_closet/squad/charlie
+	name = "CHARLIE Squad Locker"
+	req_access = list(ACCESS_MARINE_PREP)
+	icon_state = "squad_charlie_locked"
+	icon_closed = "squad_charlie_unlocked"
+	icon_locked = "squad_charlie_locked"
+	icon_opened = "squad_charlie_open"
+	icon_broken = "squad_charlie_broken"
+	icon_off = "squad_charlie_off"
+
+/obj/structure/closet/secure_closet/squad/charlie/full/Initialize()
+	. = ..()
+	new /obj/item/clothing/under/marine(src)
+	new /obj/item/device/radio/headset/almayer/marine/cryo(src)
+	new /obj/item/storage/backpack/marine/satchel(src)
+	new /obj/item/clothing/shoes/marine/knife(src)
+	new /obj/item/clothing/gloves/marine(src)
+	new /obj/item/clothing/head/helmet/marine(src)
+	new /obj/item/clothing/suit/storage/marine/carrier(src)
+
+//MARINE SQUAD CLOSET DELTA
+/obj/structure/closet/secure_closet/squad/delta
+	name = "DELTA Squad Locker"
+	req_access = list(ACCESS_MARINE_PREP)
+	icon_state = "squad_delta_locked"
+	icon_closed = "squad_delta_unlocked"
+	icon_locked = "squad_delta_locked"
+	icon_opened = "squad_delta_open"
+	icon_broken = "squad_delta_broken"
+	icon_off = "squad_delta_off"
+
+/obj/structure/closet/secure_closet/squad/delta/full/Initialize()
+	. = ..()
+	new /obj/item/clothing/under/marine(src)
+	new /obj/item/device/radio/headset/almayer/marine/cryo(src)
+	new /obj/item/storage/backpack/marine/satchel(src)
+	new /obj/item/clothing/shoes/marine/knife(src)
+	new /obj/item/clothing/gloves/marine(src)
+	new /obj/item/clothing/head/helmet/marine(src)
+	new /obj/item/clothing/suit/storage/marine/carrier(src)
+
+//MARINE SQUAD CLOSET ECHO
+/obj/structure/closet/secure_closet/squad/echo
+	name = "ECHO Squad Locker"
+	req_access = list(ACCESS_MARINE_PREP)
+	icon_state = "squad_echo_locked"
+	icon_closed = "squad_echo_unlocked"
+	icon_locked = "squad_echo_locked"
+	icon_opened = "squad_echo_open"
+	icon_broken = "squad_echo_broken"
+	icon_off = "squad_echo_off"
+
+/obj/structure/closet/secure_closet/squad/echo/full/Initialize()
+	. = ..()
+	new /obj/item/clothing/under/marine(src)
+	new /obj/item/device/radio/headset/almayer/marine/cryo(src)
+	new /obj/item/storage/backpack/marine/satchel(src)
+	new /obj/item/clothing/shoes/marine/knife(src)
+	new /obj/item/clothing/gloves/marine(src)
+	new /obj/item/clothing/head/helmet/marine(src)
+	new /obj/item/clothing/suit/storage/marine/carrier(src)
+
+//MARINE SQUAD CLOSET FOXTROT
+/obj/structure/closet/secure_closet/squad/fox
+	name = "FOXTROT Squad Locker"
+	req_access = list(ACCESS_MARINE_PREP)
+	icon_state = "squad_fox_locked"
+	icon_closed = "squad_fox_unlocked"
+	icon_locked = "squad_fox_locked"
+	icon_opened = "squad_fox_open"
+	icon_broken = "squad_fox_broken"
+	icon_off = "squad_fox_off"
+
+/obj/structure/closet/secure_closet/squad/fox/full/Initialize()
+	. = ..()
+	new /obj/item/clothing/under/marine(src)
+	new /obj/item/device/radio/headset/almayer/marine/cryo(src)
+	new /obj/item/storage/backpack/marine/satchel(src)
+	new /obj/item/clothing/shoes/marine/knife(src)
+	new /obj/item/clothing/gloves/marine(src)
+	new /obj/item/clothing/head/helmet/marine(src)
+	new /obj/item/clothing/suit/storage/marine/carrier(src)

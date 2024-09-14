@@ -64,7 +64,37 @@
 	rank_short = "ME9C"
 	icon_state = "ranks_snco"
 
+/obj/item/clothing/accessory/ranks/marine/wo
+	rank_short = "WO"
+	icon_state = "ranks_snco"
+
 //OFFICERS
+
+/obj/item/clothing/accessory/ranks/marine/wo2
+	name = "rank boards"
+	rank_short = "CWO2"
+	icon_state = "ranks_officer"
+
+/obj/item/clothing/accessory/ranks/marine/wo3
+	name = "rank boards"
+	rank_short = "CWO3"
+	icon_state = "ranks_officer"
+
+/obj/item/clothing/accessory/ranks/marine/wo4
+	name = "rank boards"
+	rank_short = "CWO4"
+	icon_state = "ranks_officer"
+
+/obj/item/clothing/accessory/ranks/marine/wo5
+	name = "rank boards"
+	rank_short = "CWO5"
+	icon_state = "ranks_officer"
+
+/obj/item/clothing/accessory/ranks/marine/o1
+	name = "rank boards"
+	rank_short = "MO1"
+	icon_state = "ranks_officer"
+
 /obj/item/clothing/accessory/ranks/marine/o1
 	name = "rank boards"
 	rank_short = "MO1"

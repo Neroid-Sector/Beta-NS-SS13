@@ -141,11 +141,11 @@
 ///////////Faction Specific Corpses//////////////////////
 
 /obj/effect/landmark/corpsespawner/clf
-	name = "Colonial Liberation Front Soldier"
+	name = "Insurgent"
 	equip_path = /datum/equipment_preset/corpse/clf
 
 /obj/effect/landmark/corpsespawner/clf/burst
-	name = "Burst Colonial Liberation Front Soldier"
+	name = "Burst Insurgent"
 	equip_path = /datum/equipment_preset/corpse/clf/burst
 
 /obj/effect/landmark/corpsespawner/upp
