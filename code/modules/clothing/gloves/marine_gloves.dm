@@ -38,15 +38,9 @@
 /obj/item/clothing/gloves/marine/insulated
 	name = "marine insulated gloves"
 	desc = "These gloves will protect the wearer from electric shock."
-	icon_state = "insulated"
-	item_state = "insulated"
+	icon_state = "lightbrown"
+	item_state = "lightbrowngloves"
 	siemens_coefficient = 0
-
-/obj/item/clothing/gloves/marine/insulated/black
-	name = "marine insulated black gloves"
-	desc = "These marine gloves will protect the wearer from electric shocks and shrapnal. Standard issue for properly-equipped Marines."
-	icon_state = "black"
-	item_state = "black"
 
 /obj/item/clothing/gloves/marine/black
 	name = "marine black combat gloves"
@@ -66,6 +60,13 @@
 	item_state = "lgloves"
 	adopts_squad_color = FALSE
 
+/obj/item/clothing/gloves/marine/medical/blue
+	name = "marine medical combat gloves"
+	desc = "Standard issue marine sterile gloves, offers regular protection whilst offering the user a better grip when performing medical work."
+	icon_state = "latex"
+	item_state = "lgloves"
+	adopts_squad_color = FALSE
+	color =  "#00ccff"
 
 /obj/item/clothing/gloves/marine/officer
 	name = "officer gloves"
@@ -105,6 +106,12 @@
 	armor_rad = CLOTHING_ARMOR_ULTRAHIGH
 	armor_internaldamage = CLOTHING_ARMOR_ULTRAHIGH
 	unacidable = TRUE
+
+/obj/item/clothing/gloves/marine/specialist/trauma_team
+	name = "\improper Decadencia Verde Pattern Tactical Armored surgery gloves"
+	desc = "A modification of the standard Nanotrasen Systems Decadencia armor. Designed with high-profile security operators and corporate mercenaries. These are a medical varient."
+	icon_state = "trauma"
+	item_state = "trauma"
 
 /obj/item/clothing/gloves/marine/M3G
 	name = "\improper M3-G4 Grenadier gloves"

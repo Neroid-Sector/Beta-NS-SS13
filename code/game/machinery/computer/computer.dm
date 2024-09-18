@@ -31,9 +31,8 @@
 	return 1
 
 /obj/structure/machinery/computer/emp_act(severity)
-	. = ..()
-	if(prob(20/severity))
-		set_broken()
+	if(prob(20/severity)) set_broken()
+	..()
 
 
 /obj/structure/machinery/computer/ex_act(severity)
@@ -60,7 +59,7 @@
 		visible_message("[Proj] ricochets off [src]!")
 		return 0
 	else
-		if(prob(floor(Proj.ammo.damage /2)))
+		if(prob(round(Proj.ammo.damage /2)))
 			set_broken()
 		..()
 		return 1
@@ -99,7 +98,7 @@
 		if(!deconstructible)
 			to_chat(user, SPAN_WARNING("You can't figure out how to deconstruct [src]..."))
 			return
-		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
+		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_ENGI))
 			to_chat(user, SPAN_WARNING("You don't know how to deconstruct [src]..."))
 			return
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -126,7 +125,7 @@
 			src.attack_alien(user)
 			return
 		src.attack_hand(user)
-	return ..()
+	return
 
 /obj/structure/machinery/computer/attack_hand()
 	. = ..()

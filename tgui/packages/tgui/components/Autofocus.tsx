@@ -1,24 +1,19 @@
-/* eslint-disable func-style */
-import { PropsWithChildren, useEffect, useRef } from 'react';
+import { Component, createRef } from 'inferno';
 
-/** Used to force the window to steal focus on load. Children optional */
-export function Autofocus(props: PropsWithChildren) {
-  const { children } = props;
-  const ref = useRef<HTMLDivElement>(null);
+export class Autofocus extends Component {
+  ref = createRef<HTMLDivElement>();
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      ref.current?.focus();
+  componentDidMount() {
+    setTimeout(() => {
+      this.ref.current?.focus();
     }, 1);
+  }
 
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
-
-  return (
-    <div ref={ref} tabIndex={-1}>
-      {children}
-    </div>
-  );
+  render() {
+    return (
+      <div ref={this.ref} tabIndex={-1}>
+        {this.props.children}
+      </div>
+    );
+  }
 }

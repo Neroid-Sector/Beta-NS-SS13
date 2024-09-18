@@ -1,18 +1,6 @@
 import { classes } from 'common/react';
-import { useState } from 'react';
-
-import { useBackend, useSharedState } from '../backend';
-import {
-  Box,
-  Button,
-  ByondUi,
-  Flex,
-  Icon,
-  Input,
-  ProgressBar,
-  Stack,
-  Tabs,
-} from '../components';
+import { useBackend, useLocalState, useSharedState } from '../backend';
+import { Box, ByondUi, Button, Flex, Icon, Input, ProgressBar, Stack, Tabs } from '../components';
 import { Window } from '../layouts';
 import { TimedCallback } from './common/TimedCallback';
 
@@ -51,15 +39,14 @@ interface SentryData {
   camera_target?: string;
 }
 
-const SelectionGroup = (props: {
-  readonly data: SelectionState;
-  readonly sentry_index: number;
-  readonly selected?: string;
-}) => {
-  const { act } = useBackend<SentryData>();
+const SelectionGroup = (
+  props: { data: SelectionState; sentry_index: number; selected?: string },
+  context
+) => {
+  const { act } = useBackend<SentryData>(context);
   const comparisonstr = props.selected ?? '';
   return (
-    <Flex direction="column" className="SelectionMenu" fill={1}>
+    <Flex direction="column" className="SelectionMenu" fill>
       <Flex.Item className="Title">
         <span>{props.data[0]}</span>
       </Flex.Item>
@@ -71,8 +58,7 @@ const SelectionGroup = (props: {
               onClick={() =>
                 act(props.data[0], { selection: x, index: props.sentry_index })
               }
-              className={classes([isSelected && 'Selected'])}
-            >
+              className={classes([isSelected && 'Selected'])}>
               {x}
             </Button>
           </Flex.Item>
@@ -82,13 +68,13 @@ const SelectionGroup = (props: {
   );
 };
 
-const SelectionMenu = (props: { readonly data: SentrySpec }) => {
+const SelectionMenu = (props: { data: SentrySpec }, context) => {
   const getSelected = (category: string) => {
     const output = props.data.selection_state.find((x) => x[0] === category);
     return output === undefined ? undefined : output[1];
   };
   return (
-    <Flex wrap justify="center" fill={1}>
+    <Flex wrap justify="center" fill>
       {props.data.selection_menu.map((x) => (
         <Flex.Item key={x[0]} className="SelectionFlexItem">
           <SelectionGroup
@@ -103,11 +89,14 @@ const SelectionMenu = (props: { readonly data: SentrySpec }) => {
 };
 
 const getSanitisedName = (name: string) =>
-  name.split(' ').slice(0, 2).join(' ');
+  name
+    .split(' ')
+    .slice(0, 2)
+    .join(' ');
 const sanitiseArea = (name: string) =>
   name.substring(name.includes('the') ? 4 : 0).trim();
 
-const TitleSection = (props: { readonly data: SentrySpec }) => {
+const TitleSection = (props: { data: SentrySpec }, context) => {
   return (
     <Stack vertical className="TitleContainer">
       <Stack.Item className="TitleText">
@@ -129,16 +118,17 @@ const TitleSection = (props: { readonly data: SentrySpec }) => {
   );
 };
 
-const GunMenu = (props: { readonly data: SentrySpec }) => {
-  const { data, act } = useBackend<SentryData>();
+const GunMenu = (props: { data: SentrySpec }, context) => {
+  const { data, act } = useBackend<SentryData>(context);
   const isEngaged = props.data.engaged !== undefined && props.data.engaged > 1;
   const iff_info = props.data.selection_state.find(
-    (x) => x[0].localeCompare('IFF STATUS') === 0,
+    (x) => x[0].localeCompare('IFF STATUS') === 0
   )?.[1];
 
   const [_, setSelectedSentry] = useSharedState<undefined | number>(
+    context,
     'selected',
-    0,
+    0
   );
 
   const isCritical = props.data.health < props.data.health_max * 0.2;
@@ -149,8 +139,7 @@ const GunMenu = (props: { readonly data: SentrySpec }) => {
       direction="column"
       className="GunFlex"
       align="stretch"
-      justify="center"
-    >
+      justify="center">
       <Flex.Item>
         <Box className="EngagedBox">
           <Flex justify="space-between">
@@ -180,47 +169,47 @@ const GunMenu = (props: { readonly data: SentrySpec }) => {
       </Flex.Item>
       <Flex.Item>
         <Box
-          className={classes(['EngagedBox', isCritical && 'EngagedWarningBox'])}
-        >
+          className={classes([
+            'EngagedBox',
+            isCritical && 'EngagedWarningBox',
+          ])}>
           <span>
             Integrity: {props.data.health} / {props.data.health_max}
           </span>
         </Box>
       </Flex.Item>
-      {props.data.rounds !== undefined &&
-        props.data.max_rounds !== undefined && (
-          <Flex.Item>
-            <Box className="EngagedBox">
-              <Flex justify="center">
-                <Flex.Item align="center">
-                  <span>Rounds Remaining</span>
-                </Flex.Item>
-                <Flex.Item>
-                  <Box width={1} />
-                </Flex.Item>
-                <Flex.Item align="center">
-                  <Icon name="play" />
-                </Flex.Item>
-                <Flex.Item
-                  align="center"
-                  className={classes([
-                    'AmmoBoundingBox',
-                    props.data.max_rounds * 0.2 > props.data.rounds &&
-                      'AmmoBoundingBoxWarning',
-                  ])}
-                >
-                  {round_rep && (
-                    <span>
-                      {round_rep.length < 3 && '0'}
-                      {round_rep.length < 2 && '0'}
-                      {round_rep}
-                    </span>
-                  )}
-                </Flex.Item>
-              </Flex>
-            </Box>
-          </Flex.Item>
-        )}
+      {props.data.rounds !== undefined && props.data.max_rounds !== undefined && (
+        <Flex.Item>
+          <Box className="EngagedBox">
+            <Flex justify="center">
+              <Flex.Item align="center">
+                <span>Rounds Remaining</span>
+              </Flex.Item>
+              <Flex.Item>
+                <Box width={1} />
+              </Flex.Item>
+              <Flex.Item align="center">
+                <Icon name="play" />
+              </Flex.Item>
+              <Flex.Item
+                align="center"
+                className={classes([
+                  'AmmoBoundingBox',
+                  props.data.max_rounds * 0.2 > props.data.rounds &&
+                    'AmmoBoundingBoxWarning',
+                ])}>
+                {round_rep && (
+                  <span>
+                    {round_rep.length < 3 && '0'}
+                    {round_rep.length < 2 && '0'}
+                    {round_rep}
+                  </span>
+                )}
+              </Flex.Item>
+            </Flex>
+          </Box>
+        </Flex.Item>
+      )}
       {props.data.engaged !== undefined && (
         <Flex.Item>
           <Box
@@ -228,8 +217,7 @@ const GunMenu = (props: { readonly data: SentrySpec }) => {
             className={classes([
               'EngagedBox',
               isEngaged && 'EngagedWarningBox',
-            ])}
-          >
+            ])}>
             {!isEngaged && <span>Not Engaged</span>}
             {isEngaged && <span>ENGAGED</span>}
           </Box>
@@ -253,7 +241,7 @@ const GunMenu = (props: { readonly data: SentrySpec }) => {
   );
 };
 
-const EmptyDisplay = () => {
+const EmptyDisplay = (_, context) => {
   return (
     <Box className="EmptyDisplay">
       <Stack vertical>
@@ -272,14 +260,21 @@ const EmptyDisplay = () => {
   );
 };
 
-const InputGroup = (props: {
-  readonly index: number;
-  readonly label: string;
-  readonly category: string;
-  readonly startingValue: string;
-}) => {
-  const { act } = useBackend<SentryData>();
-  const [categoryValue, setCategoryValue] = useState(props.startingValue);
+const InputGroup = (
+  props: {
+    index: number;
+    label: string;
+    category: string;
+    startingValue: string;
+  },
+  context
+) => {
+  const { act } = useBackend<SentryData>(context);
+  const [categoryValue, setCategoryValue] = useLocalState(
+    context,
+    `${props.index} ${props.category}`,
+    props.startingValue
+  );
   return (
     <Stack vertical className="SelectionMenu">
       <Stack.Item className="Title">
@@ -299,8 +294,7 @@ const InputGroup = (props: {
               index: props.index,
               selection: categoryValue,
             })
-          }
-        >
+          }>
           Commit
         </Button>
       </Stack.Item>
@@ -308,8 +302,8 @@ const InputGroup = (props: {
   );
 };
 
-const SentryGunConfiguration = (props: { readonly data: SentrySpec }) => {
-  const [_, setShowConfig] = useSharedState('showConf', true);
+const SentryGunConfiguration = (props: { data: SentrySpec }, context) => {
+  const [_, setShowConfig] = useSharedState(context, 'showConf', true);
   return (
     <Stack vertical>
       <Stack.Item className="TitleBox">
@@ -344,8 +338,8 @@ const SentryGunConfiguration = (props: { readonly data: SentrySpec }) => {
   );
 };
 
-const SentryGunStatus = (props: { readonly data: SentrySpec }) => {
-  const [_, setShowConfig] = useSharedState('showConf', true);
+const SentryGunStatus = (props: { data: SentrySpec }, context) => {
+  const [_, setShowConfig] = useSharedState(context, 'showConf', true);
   return (
     <Stack vertical>
       <Stack.Item className="TitleBox">
@@ -368,8 +362,8 @@ const SentryGunStatus = (props: { readonly data: SentrySpec }) => {
   );
 };
 
-const ShowSingleSentry = (props: { readonly data: SentrySpec }) => {
-  const [showConfig] = useSharedState('showConf', true);
+const ShowSingleSentry = (props: { data: SentrySpec }, context) => {
+  const [showConfig] = useSharedState(context, 'showConf', true);
   return (
     <>
       {showConfig && <SentryGunConfiguration data={props.data} />}
@@ -378,7 +372,7 @@ const ShowSingleSentry = (props: { readonly data: SentrySpec }) => {
   );
 };
 
-const ShowSentryCard = (props: { readonly data: SentrySpec }) => {
+const ShowSentryCard = (props: { data: SentrySpec }, context) => {
   const displayName =
     props.data.nickname.length === 0 ? props.data.index : props.data.nickname;
   return (
@@ -395,7 +389,7 @@ const ShowSentryCard = (props: { readonly data: SentrySpec }) => {
   );
 };
 
-const ShowAllSentry = (props: { readonly data: SentrySpec[] }) => {
+const ShowAllSentry = (props: { data: SentrySpec[] }, _) => {
   return (
     <Flex align="space-between" wrap>
       {props.data.map((x) => (
@@ -407,8 +401,13 @@ const ShowAllSentry = (props: { readonly data: SentrySpec[] }) => {
   );
 };
 
-const SentryCamera = (props: { readonly sentry_data: SentrySpec[] }) => {
-  const { data, act } = useBackend<SentryData>();
+const SentryCamera = (
+  props: {
+    sentry_data: SentrySpec[];
+  },
+  context
+) => {
+  const { data, act } = useBackend<SentryData>(context);
   const { sentry_data } = props;
   const sentry = sentry_data.find((x) => {
     const index = x.index?.toString(10) ?? '';
@@ -465,12 +464,15 @@ const SentryCamera = (props: { readonly sentry_data: SentrySpec[] }) => {
   );
 };
 
-const SentryTabMenu = (props: {
-  readonly sentrySpecs: SentrySpec[];
-  readonly selected?: number;
-  readonly setSelected: (d) => void;
-}) => {
-  const { data, act } = useBackend<SentryData>();
+const SentryTabMenu = (
+  props: {
+    sentrySpecs: SentrySpec[];
+    selected?: number;
+    setSelected: (d) => void;
+  },
+  context
+) => {
+  const { data, act } = useBackend<SentryData>(context);
   return (
     <Tabs fill>
       {props.sentrySpecs.map((x, index) => (
@@ -484,8 +486,7 @@ const SentryTabMenu = (props: {
             } else {
               act('ui-interact');
             }
-          }}
-        >
+          }}>
           {x.nickname.length === 0 ? x.index : x.nickname}
         </Tabs.Tab>
       ))}
@@ -494,30 +495,28 @@ const SentryTabMenu = (props: {
         onClick={() => {
           props.setSelected(undefined);
           act('clear-camera');
-        }}
-      >
+        }}>
         All
       </Tabs.Tab>
     </Tabs>
   );
 };
 
-const PowerLevel = () => {
-  const { data } = useBackend<SentryData>();
+const PowerLevel = (_, context) => {
+  const { data } = useBackend<SentryData>(context);
   return (
     <ProgressBar
       minValue={0}
       maxValue={data.electrical.max_charge}
-      value={data.electrical.charge}
-    >
+      value={data.electrical.charge}>
       {((data.electrical.charge / data.electrical.max_charge) * 100).toFixed(2)}{' '}
       %
     </ProgressBar>
   );
 };
 
-export const SentryGunUI = () => {
-  const { data, act } = useBackend<SentryData>();
+export const SentryGunUI = (_, context) => {
+  const { data, act } = useBackend<SentryData>(context);
   const sentrykeys =
     data.sentry.length === 0
       ? []
@@ -528,7 +527,7 @@ export const SentryGunUI = () => {
 
   const [selectedSentry, setSelectedSentry] = useSharedState<
     undefined | number
-  >('selected', sentrySpecs.length > 0 ? 0 : undefined);
+  >(context, 'selected', sentrySpecs.length > 0 ? 0 : undefined);
 
   const validSelection =
     sentrySpecs.length === 0

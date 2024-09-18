@@ -7,6 +7,7 @@
 
 /obj/item/storage
 	name = "storage"
+	icon = 'icons/obj/items/storage.dmi'
 	w_class = SIZE_MEDIUM
 	var/list/can_hold = new/list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = new/list() //List of objects which this item can't store (in effect only if can_hold isn't set)
@@ -21,7 +22,7 @@
 	var/atom/movable/screen/storage/storage_start = null //storage UI
 	var/atom/movable/screen/storage/storage_continue = null
 	var/atom/movable/screen/storage/storage_end = null
-	var/datum/item_storage_box/stored_ISB //! This contains what previously was known as stored_start, stored_continue, and stored_end
+	var/datum/item_storage_box/stored_ISB = null // This contains what previously was known as stored_start, stored_continue, and stored_end
 	var/atom/movable/screen/close/closer = null
 	var/foldable = null
 	var/use_sound = "rustle" //sound played when used. null for no sound.
@@ -211,17 +212,16 @@
 	if (storage_flags & STORAGE_SHOW_FULLNESS)
 		boxes.update_fullness(src)
 
-GLOBAL_LIST_EMPTY_TYPED(item_storage_box_cache, /datum/item_storage_box)
+var/list/global/item_storage_box_cache = list()
 
 /datum/item_storage_box
-	var/atom/movable/screen/storage/start
-	var/atom/movable/screen/storage/continued
-	var/atom/movable/screen/storage/end
-	/// The index that indentifies me inside GLOB.item_storage_box_cache
+	var/atom/movable/screen/storage/start = null
+	var/atom/movable/screen/storage/continued = null
+	var/atom/movable/screen/storage/end = null
+	/// The index that indentifies me inside item_storage_box_cache
 	var/index
 
 /datum/item_storage_box/New()
-	. = ..()
 	start = new()
 	start.icon_state = "stored_start"
 	continued = new()
@@ -233,7 +233,7 @@ GLOBAL_LIST_EMPTY_TYPED(item_storage_box_cache, /datum/item_storage_box)
 	QDEL_NULL(start)
 	QDEL_NULL(continued)
 	QDEL_NULL(end)
-	GLOB.item_storage_box_cache -= index
+	item_storage_box_cache[index] = null // Or would it be better to -= src?
 	return ..()
 
 /obj/item/storage/proc/space_orient_objs(list/obj/item/display_contents)
@@ -258,7 +258,7 @@ GLOBAL_LIST_EMPTY_TYPED(item_storage_box_cache, /datum/item_storage_box)
 
 	if(!opened) //initialize background box
 		storage_start.screen_loc = "4:16,2:16"
-		storage_continue.screen_loc = "4:[floor(storage_cap_width+(storage_width-storage_cap_width*2)/2+2)],2:16"
+		storage_continue.screen_loc = "4:[round(storage_cap_width+(storage_width-storage_cap_width*2)/2+2)],2:16"
 		storage_end.screen_loc = "4:[19+storage_width-storage_cap_width],2:16"
 
 	var/startpoint = 0
@@ -271,7 +271,7 @@ GLOBAL_LIST_EMPTY_TYPED(item_storage_box_cache, /datum/item_storage_box)
 		click_border_start.Add(startpoint)
 		click_border_end.Add(endpoint)
 
-		if(!GLOB.item_storage_box_cache[isb_index])
+		if(!item_storage_box_cache[isb_index])
 			var/datum/item_storage_box/box = new()
 			var/matrix/M_start = matrix()
 			var/matrix/M_continue = matrix()
@@ -284,16 +284,16 @@ GLOBAL_LIST_EMPTY_TYPED(item_storage_box_cache, /datum/item_storage_box)
 			box.continued.apply_transform(M_continue)
 			box.end.apply_transform(M_end)
 			box.index = isb_index
-			GLOB.item_storage_box_cache[isb_index] = box
+			item_storage_box_cache[isb_index] = box
 
-		var/datum/item_storage_box/ISB = GLOB.item_storage_box_cache[isb_index]
+		var/datum/item_storage_box/ISB = item_storage_box_cache[isb_index]
 		stored_ISB = ISB
 
 		storage_start.overlays += ISB.start
 		storage_start.overlays += ISB.continued
 		storage_start.overlays += ISB.end
 
-		O.screen_loc = "4:[floor((startpoint+endpoint)/2)+(2+O.hud_offset)],2:16"
+		O.screen_loc = "4:[round((startpoint+endpoint)/2)+(2+O.hud_offset)],2:16"
 		O.layer = ABOVE_HUD_LAYER
 		O.plane = ABOVE_HUD_PLANE
 
@@ -365,7 +365,7 @@ GLOBAL_LIST_EMPTY_TYPED(item_storage_box_cache, /datum/item_storage_box)
 //This proc determins the size of the inventory to be displayed. Please touch it only if you know what you're doing.
 /obj/item/storage/proc/orient2hud()
 
-	var/adjusted_contents = length(contents)
+	var/adjusted_contents = contents.len
 
 	//Numbered contents display
 	var/list/datum/numbered_display/numbered_contents
@@ -389,13 +389,13 @@ GLOBAL_LIST_EMPTY_TYPED(item_storage_box_cache, /datum/item_storage_box)
 		var/row_num = 0
 		var/col_count = min(7,storage_slots) -1
 		if (adjusted_contents > 7)
-			row_num = floor((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
+			row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
 		slot_orient_objs(row_num, col_count, numbered_contents)
 	return
 
 ///Returns TRUE if there is room for the given item. W_class_override allows checking for just a generic W_class, meant for checking shotgun handfuls without having to spawn and delete one just to check.
 /obj/item/storage/proc/has_room(obj/item/new_item, W_class_override = null)
-	if(storage_slots != null && length(contents) < storage_slots)
+	if(storage_slots != null && contents.len < storage_slots)
 		return TRUE //At least one open slot.
 	//calculate storage space only for containers that don't have slots
 	if (storage_slots == null)
@@ -457,7 +457,7 @@ GLOBAL_LIST_EMPTY_TYPED(item_storage_box_cache, /datum/item_storage_box)
 		return
 
 	var/w_limit_bypassed = 0
-	if(length(bypass_w_limit))
+	if(bypass_w_limit.len)
 		for(var/A in bypass_w_limit)
 			if(istype(W, A))
 				w_limit_bypassed = 1
@@ -558,6 +558,11 @@ W is always an item. stop_warning prevents messaging. user may be null.**/
 //This proc is called when you want to place an item into the storage item.
 /obj/item/storage/attackby(obj/item/W as obj, mob/user as mob)
 	..()
+
+	if(isrobot(user))
+		to_chat(user, SPAN_NOTICE(" You're a robot. No."))
+		return //Robots can't interact with storage items.
+
 	return attempt_item_insertion(W, FALSE, user)
 
 /obj/item/storage/equipped(mob/user, slot, silent)
@@ -584,7 +589,7 @@ W is always an item. stop_warning prevents messaging. user may be null.**/
 			if(storage_flags & STORAGE_USING_FIFO_DRAWING)
 				I = contents[1]
 			else
-				I = contents[length(contents)]
+				I = contents[contents.len]
 			I.attack_hand(user)
 		else
 			open(user)
@@ -706,7 +711,7 @@ W is always an item. stop_warning prevents messaging. user may be null.**/
 	if(storage_flags & STORAGE_USING_FIFO_DRAWING)
 		item_obj = contents[1]
 	else
-		item_obj = contents[length(contents)]
+		item_obj = contents[contents.len]
 	if(!istype(item_obj))
 		return
 	remove_from_storage(item_obj, tile)
@@ -724,11 +729,11 @@ W is always an item. stop_warning prevents messaging. user may be null.**/
 	if(ammo_dumping.flags_magazine & AMMUNITION_HANDFUL_BOX)
 		var/handfuls = round(ammo_dumping.current_rounds / amount_to_dump, 1) //The number of handfuls, we round up because we still want the last one that isn't full
 		if(ammo_dumping.current_rounds != 0)
-			if(length(contents) < storage_slots)
+			if(contents.len < storage_slots)
 				to_chat(user, SPAN_NOTICE("You start refilling [src] with [ammo_dumping]."))
 				if(!do_after(user, 1.5 SECONDS, INTERRUPT_ALL, BUSY_ICON_GENERIC)) return
 				for(var/i = 1 to handfuls)
-					if(length(contents) < storage_slots)
+					if(contents.len < storage_slots)
 						//Hijacked from /obj/item/ammo_magazine/proc/create_handful because it had to be handled differently
 						//All this because shell types are instances and not their own objects :)
 
@@ -753,7 +758,7 @@ W is always an item. stop_warning prevents messaging. user may be null.**/
 	if(user.action_busy)
 		return
 
-	if(!length(origin_storage.contents))
+	if(!origin_storage.contents.len)
 		to_chat(user, SPAN_WARNING("[origin_storage] is empty."))
 		return
 	if(!has_room(origin_storage.contents[1])) //Does it have room for the first item to be inserted?
@@ -846,7 +851,6 @@ W is always an item. stop_warning prevents messaging. user may be null.**/
 	return ..()
 
 /obj/item/storage/emp_act(severity)
-	. = ..()
 	if(!istype(src.loc, /mob/living))
 		for(var/obj/O in contents)
 			O.emp_act(severity)
@@ -856,7 +860,7 @@ W is always an item. stop_warning prevents messaging. user may be null.**/
 	..()
 
 	//Clicking on itself will empty it, if it has contents and the verb to do that. Contents but no verb means nothing happens.
-	if(length(contents))
+	if(contents.len)
 		empty(user)
 		return
 

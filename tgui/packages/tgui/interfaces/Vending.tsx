@@ -1,19 +1,8 @@
 import { classes } from 'common/react';
 import { capitalizeAll } from 'common/string';
-import { useState } from 'react';
-import { useBackend } from 'tgui/backend';
-import {
-  Box,
-  Button,
-  Icon,
-  LabeledList,
-  NoticeBox,
-  Section,
-  Stack,
-  Table,
-} from 'tgui/components';
+import { useBackend, useLocalState } from 'tgui/backend';
+import { Box, Button, Icon, LabeledList, NoticeBox, Section, Stack, Table } from 'tgui/components';
 import { Window } from 'tgui/layouts';
-
 import { ElectricalPanel } from './common/ElectricalPanel';
 
 type VendingData = {
@@ -62,8 +51,8 @@ type StockItem = {
   colorable: boolean;
 };
 
-const getInventory = () => {
-  const { data } = useBackend<VendingData>();
+const getInventory = (context) => {
+  const { data } = useBackend<VendingData>(context);
   const {
     product_records = [],
     coin_records = [],
@@ -78,15 +67,17 @@ const getInventory = () => {
   return [...product_records, ...coin_records];
 };
 
-export const Vending = (props) => {
-  const { data } = useBackend<VendingData>();
+export const Vending = (props, context) => {
+  const { data } = useBackend<VendingData>(context);
   const { categories } = data;
 
-  const [selectedCategory, setSelectedCategory] = useState<string>(
-    Object.keys(categories)[0],
+  const [selectedCategory, setSelectedCategory] = useLocalState<string>(
+    context,
+    'selectedCategory',
+    Object.keys(categories)[0]
   );
 
-  const inventory = getInventory();
+  const inventory = getInventory(context);
 
   const filteredCategories = Object.fromEntries(
     Object.entries(categories).filter(([categoryName]) => {
@@ -97,7 +88,7 @@ export const Vending = (props) => {
           return false;
         }
       });
-    }),
+    })
   );
 
   return (
@@ -130,8 +121,8 @@ export const Vending = (props) => {
 };
 
 /** Displays user details if an ID is present and the user is on the station */
-export const UserDetails = (props) => {
-  const { data } = useBackend<VendingData>();
+export const UserDetails = (props, context) => {
+  const { data } = useBackend<VendingData>(context);
   const { user, checking_id } = data;
 
   if (!user) {
@@ -161,14 +152,17 @@ export const UserDetails = (props) => {
 };
 
 /** Displays  products in a section, with user balance at top */
-const ProductDisplay = (props: {
-  readonly selectedCategory: string | null;
-}) => {
-  const { data } = useBackend<VendingData>();
+const ProductDisplay = (
+  props: {
+    selectedCategory: string | null;
+  },
+  context
+) => {
+  const { data } = useBackend<VendingData>(context);
   const { selectedCategory } = props;
   const { stock, user, checking_id } = data;
 
-  const inventory = getInventory();
+  const inventory = getInventory(context);
 
   const display_value = user && checking_id;
 
@@ -183,8 +177,7 @@ const ProductDisplay = (props: {
             ${(user && user.cash) || 0} <Icon name="coins" color="gold" />
           </Box>
         )
-      }
-    >
+      }>
       <Table>
         {inventory
           .filter((product) => {
@@ -210,8 +203,8 @@ const ProductDisplay = (props: {
  * Uses a table layout. Labeledlist might be better,
  * but you cannot use item icons as labels currently.
  */
-const VendingRow = (props) => {
-  const { data } = useBackend<VendingData>();
+const VendingRow = (props, context) => {
+  const { data } = useBackend<VendingData>(context);
   const { product, productStock } = props;
   const { access, user, checking_id } = data;
   const remaining = productStock.amount;
@@ -256,16 +249,15 @@ const ProductStock = (props) => {
         (remaining <= 0 && 'bad') ||
         (remaining <= product.max_amount / 2 && 'average') ||
         'good'
-      }
-    >
+      }>
       {remaining} left
     </Box>
   );
 };
 
 /** The main button to purchase an item. */
-const ProductButton = (props) => {
-  const { act, data } = useBackend<VendingData>();
+const ProductButton = (props, context) => {
+  const { act, data } = useBackend<VendingData>(context);
   const { denied, disabled, product } = props;
   const { checking_id } = data;
 
@@ -277,30 +269,29 @@ const ProductButton = (props) => {
       tooltip={denied ? 'Access Denied' : ''}
       onClick={() =>
         act('vend', {
-          ref: product.ref,
+          'ref': product.ref,
         })
-      }
-    >
+      }>
       {product.category === 'Premium' ? 'COIN' : price}
     </Button>
   );
 };
 
 const CATEGORY_COLORS = {
-  Contraband: 'red',
-  Premium: 'yellow',
+  'Contraband': 'red',
+  'Premium': 'yellow',
 };
 
 const CategorySelector = (props: {
-  readonly categories: Record<string, Category>;
-  readonly selectedCategory: string;
-  readonly onSelect: (category: string) => void;
+  categories: Record<string, Category>;
+  selectedCategory: string;
+  onSelect: (category: string) => void;
 }) => {
   const { categories, selectedCategory, onSelect } = props;
 
   return (
     <Section>
-      <Stack fill>
+      <Stack grow>
         <Stack.Item>
           {Object.entries(categories).map(([name, category]) => (
             <Button
@@ -308,8 +299,7 @@ const CategorySelector = (props: {
               selected={name === selectedCategory}
               color={CATEGORY_COLORS[name]}
               icon={category.icon}
-              onClick={() => onSelect(name)}
-            >
+              onClick={() => onSelect(name)}>
               {name}
             </Button>
           ))}

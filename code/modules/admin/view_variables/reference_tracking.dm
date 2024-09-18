@@ -28,7 +28,9 @@
 
 	var/starting_time = world.time
 
+#if DM_VERSION >= 515
 	log_reftracker("Refcount for [type]: [refcount(src)]")
+#endif
 
 	//Time to search the whole game for our ref
 	DoSearchVar(GLOB, "GLOB", search_time = starting_time) //globals
@@ -130,7 +132,7 @@
 				#endif
 				log_reftracker("Found [type] [text_ref(src)] in list [container_name].")
 				var/msg
-				for(var/i in 1 to min(10, length(potential_cache)))
+				for(var/i in 1 to min(10, potential_cache.len))
 					msg += "[potential_cache[i]],"
 				if(msg)
 					log_reftracker("List contents: [msg]")
@@ -148,7 +150,7 @@
 				#endif
 				log_reftracker("Found [type] [text_ref(src)] in list [container_name]\[[element_in_list]\]")
 				var/msg
-				for(var/i in 1 to min(10, length(potential_cache)))
+				for(var/i in 1 to min(10, potential_cache.len))
 					msg += "[potential_cache[i]],"
 				if(msg)
 					log_reftracker("List contents: [msg]")

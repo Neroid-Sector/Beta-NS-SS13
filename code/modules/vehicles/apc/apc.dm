@@ -17,9 +17,8 @@ GLOBAL_LIST_EMPTY(command_apc_list)
 
 	interior_map = /datum/map_template/interior/apc
 
-	passengers_slots = 15
+	passengers_slots = 18
 	xenos_slots = 8
-
 	entrances = list(
 		"left" = list(2, 0),
 		"right" = list(-2, 0),
@@ -87,7 +86,7 @@ GLOBAL_LIST_EMPTY(command_apc_list)
 /obj/vehicle/multitile/apc/load_role_reserved_slots()
 	var/datum/role_reserved_slots/RRS = new
 	RRS.category_name = "Crewmen"
-	RRS.roles = list(JOB_TANK_CREW, JOB_WO_CREWMAN, JOB_UPP_CREWMAN, JOB_PMC_CREWMAN)
+	RRS.roles = list(JOB_CREWMAN, JOB_WO_CREWMAN, JOB_UPP_CREWMAN, JOB_PMC_CREWMAN)
 	RRS.total = 2
 	role_reserved_slots += RRS
 
@@ -161,11 +160,22 @@ GLOBAL_LIST_EMPTY(command_apc_list)
 		if(camera_int)
 			camera_int.c_tag = camera.c_tag + " interior"
 
+//----PMC APC----\\
+
+/obj/vehicle/multitile/apc/weyland
+	name = "Weyland Yutani M577 Armored Personnel Carrier"
+	desc = "An M577 Armored Personnel Carrier. An armored transport with four big wheels. Entrances on the sides and back. This One Sports a custom corporate paintjob."
+
+	icon = 'icons/obj/vehicles/apc.dmi'
+	icon_state = "apc_wy"
+	pixel_x = -48
+	pixel_y = -48
+
 /*
 ** PRESETS SPAWNERS
 */
 /obj/effect/vehicle_spawner/apc
-	name = "APC Transport Spawner"
+	name = "Weyland Yutani APC Spawner"
 	icon = 'icons/obj/vehicles/apc.dmi'
 	icon_state = "apc_base"
 	pixel_x = -48
@@ -178,7 +188,7 @@ GLOBAL_LIST_EMPTY(command_apc_list)
 	V.add_hardpoint(FPW)
 	FPW.dir = turn(V.dir, 90)
 	FPW.name = "Left "+ initial(FPW.name)
-	FPW.origins = list(1, 0)
+	FPW.origins = list(2, 0)
 	FPW.muzzle_flash_pos = list(
 		"1" = list(-18, 14),
 		"2" = list(18, -42),
@@ -191,7 +201,7 @@ GLOBAL_LIST_EMPTY(command_apc_list)
 	V.add_hardpoint(FPW)
 	FPW.dir = turn(V.dir, -90)
 	FPW.name = "Right "+ initial(FPW.name)
-	FPW.origins = list(-1, 0)
+	FPW.origins = list(-2, 0)
 	FPW.muzzle_flash_pos = list(
 		"1" = list(16, 14),
 		"2" = list(-18, -42),
@@ -256,15 +266,8 @@ GLOBAL_LIST_EMPTY(command_apc_list)
 	handle_direction(APC)
 	APC.update_icon()
 
-	return APC
-
 /obj/effect/vehicle_spawner/apc/unarmed/load_hardpoints(obj/vehicle/multitile/apc/V)
 	return
-
-/obj/effect/vehicle_spawner/apc/unarmed/broken/spawn_vehicle()
-	var/obj/vehicle/multitile/apc/apc = ..()
-	load_damage(apc)
-	apc.update_icon()
 
 //PRESET: default hardpoints, destroyed
 /obj/effect/vehicle_spawner/apc/unarmed/decrepit/spawn_vehicle()
@@ -288,6 +291,32 @@ GLOBAL_LIST_EMPTY(command_apc_list)
 
 //PRESET: default hardpoints
 /obj/effect/vehicle_spawner/apc/unarmed/fixed/load_hardpoints(obj/vehicle/multitile/apc/unarmed/V)
+	V.add_hardpoint(new /obj/item/hardpoint/primary/dualcannon)
+	V.add_hardpoint(new /obj/item/hardpoint/secondary/frontalcannon)
+	V.add_hardpoint(new /obj/item/hardpoint/support/flare_launcher)
+	V.add_hardpoint(new /obj/item/hardpoint/locomotion/apc_wheels)
+
+
+
+//PRESET: default hardpoints, destroyed
+/obj/effect/vehicle_spawner/apc/weyland/spawn_vehicle()
+	var/obj/vehicle/multitile/apc/weyland/APC = new (loc)
+
+	load_misc(APC)
+	load_fpw(APC)
+	load_hardpoints(APC)
+	handle_direction(APC)
+	APC.update_icon()
+
+
+/obj/effect/vehicle_spawner/apc/weyland
+	name = "WY APC Transport Spawner"
+	icon = 'icons/obj/vehicles/apc.dmi'
+	icon_state = "apc_wy"
+	pixel_x = -48
+	pixel_y = -48
+
+/obj/effect/vehicle_spawner/apc/weyland/load_hardpoints(obj/vehicle/multitile/apc/weyland/V)
 	V.add_hardpoint(new /obj/item/hardpoint/primary/dualcannon)
 	V.add_hardpoint(new /obj/item/hardpoint/secondary/frontalcannon)
 	V.add_hardpoint(new /obj/item/hardpoint/support/flare_launcher)

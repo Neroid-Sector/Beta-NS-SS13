@@ -80,11 +80,11 @@
 		to_chat(user, SPAN_WARNING("Only squad riflemen can use this."))
 		return
 
-	var/obj/item/card/id/ID = user.get_idcard()
-	if(!ID) //not wearing an ID
+	var/obj/item/card/id/ID = user.wear_id
+	if(!istype(ID)) //not wearing an ID
 		to_chat(user, SPAN_WARNING("You should wear your ID before doing this."))
 		return FALSE
-	if(!ID.check_biometrics(user))
+	if(ID.registered_ref != WEAKREF(user))
 		to_chat(user, SPAN_WARNING("You should wear your ID before doing this."))
 		return FALSE
 
@@ -95,7 +95,7 @@
 	user.rank_fallback = "ass"
 	user.hud_set_squad()
 
-	var/obj/item/card/id/ID = user.get_idcard()
+	var/obj/item/card/id/ID = user.wear_id
 	ID.set_assignment((user.assigned_squad ? (user.assigned_squad.name + " ") : "") + "Spotter")
 	GLOB.data_core.manifest_modify(user.real_name, WEAKREF(user), "Spotter")
 
@@ -166,7 +166,65 @@
 	desc = "This pamphlet was designed for Intelligence Officers operating on Earth to interact with the local populaces of the Latin American states, but only for IOs who managed to sleep through Dialects and Mannerisms Class."
 	trait = /datum/character_trait/language/spanish
 
+/obj/item/pamphlet/language/french
+	name = "The Phantom of the Opera"
+	desc = "A pamphlet written primarily in French, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/bantu
 
+/obj/item/pamphlet/language/celtic
+	name = "Outlander"
+	desc = "A pamphlet written primarily in Celtic, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/celtic
+
+/obj/item/pamphlet/language/farsi
+	name = "The Kite Runner"
+	desc = "A pamphlet written primarily in Farsi, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/farsi
+
+/obj/item/pamphlet/language/arabic
+	name = "The Blue Elephant"
+	desc = "A pamphlet written primarily in Arabic, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/arabic
+
+/obj/item/pamphlet/language/korean
+	name = "Pachinko"
+	desc = "A pamphlet written primarily in Korean, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/korean
+
+/obj/item/pamphlet/language/finnish
+	name = "Kalevala"
+	desc = "A pamphlet written primarily in Finnish, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/finnish
+
+/obj/item/pamphlet/language/swedish
+	name = "Den allvarsamma leken"
+	desc = "A pamphlet written primarily in Swedish, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/swedish
+
+/obj/item/pamphlet/language/latin
+	name = "De Rerum Natura"
+	desc = "A pamphlet written primarily in Latin, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/latin
+
+/obj/item/pamphlet/language/berber
+	name = "For Bread Alone"
+	desc = "A pamphlet written primarily in Berber, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/berber
+
+/obj/item/pamphlet/language/bantu
+	name = "Mchanga wa Wakati"
+	desc = "A pamphlet written primarily in Bantu, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/bantu
+
+/obj/item/pamphlet/language/hindi
+	name = "Gunahon Ka Devta"
+	desc = "A pamphlet written primarily in Hindi, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/hindi
+
+/obj/item/pamphlet/language/rusoek
+	name = "Piy yoyyupiyapiop pop kuyyiey"
+	desc = "A pamphlet written primarily in Rusoek, you could probably learn something from reading it."
+	trait = /datum/character_trait/language/rusoek
 
 //Restricted languages, spawnable for events.
 
@@ -200,7 +258,7 @@
 		to_chat(user, SPAN_WARNING("You know this already!"))
 		return FALSE
 
-	if(!(user.job in JOB_SQUAD_ROLES_LIST))
+	if(user.job != JOB_SQUAD_MARINE)
 		to_chat(user, SPAN_WARNING("Only squad riflemen can use this."))
 		return FALSE
 

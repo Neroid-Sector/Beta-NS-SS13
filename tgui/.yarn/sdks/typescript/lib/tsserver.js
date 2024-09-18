@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
 const {existsSync} = require(`fs`);
-const {createRequire} = require(`module`);
+const {createRequire, createRequireFromPath} = require(`module`);
 const {resolve} = require(`path`);
 
 const relPnpApiPath = "../../../../.pnp.cjs";
 
 const absPnpApiPath = resolve(__dirname, relPnpApiPath);
-const absRequire = createRequire(absPnpApiPath);
+const absRequire = (createRequire || createRequireFromPath)(absPnpApiPath);
 
 const moduleWrapper = tsserver => {
   if (!process.versions.pnp) {
@@ -109,8 +109,6 @@ const moduleWrapper = tsserver => {
             str = `zip:${str}`;
           } break;
         }
-      } else {
-        str = str.replace(/^\/?/, process.platform === `win32` ? `` : `/`);
       }
     }
 

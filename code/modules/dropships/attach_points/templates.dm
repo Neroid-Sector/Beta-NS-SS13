@@ -80,10 +80,10 @@
 	transverse  =  3
 	long    =  0
 
-/obj/effect/attach_point/weapon/dropship3
-	ship_tag = DROPSHIP_SAIPAN
+/obj/effect/attach_point/weapon/WACO
+	ship_tag = DROPSHIP_WACO
 
-/obj/effect/attach_point/weapon/dropship3/left_wing
+/obj/effect/attach_point/weapon/waco/left_wing
 	name = "port wing weapon attach point"
 	icon_state = "equip_base_l_wing"
 	attach_id = 1
@@ -93,7 +93,7 @@
 	transverse  = -3
 	long    =  0
 
-/obj/effect/attach_point/weapon/dropship3/left_fore
+/obj/effect/attach_point/weapon/waco/left_fore
 	name = "port fore weapon attach point"
 	attach_id = 2
 	dir = NORTH
@@ -102,7 +102,7 @@
 	transverse  =  0
 	long    =  0
 
-/obj/effect/attach_point/weapon/dropship3/right_fore
+/obj/effect/attach_point/weapon/waco/right_fore
 	name = "starboard fore weapon attach point"
 	attach_id = 3
 	dir = NORTH
@@ -111,7 +111,7 @@
 	transverse  =  0
 	long    =  0
 
-/obj/effect/attach_point/weapon/dropship3/right_wing
+/obj/effect/attach_point/weapon/waco/right_wing
 	name = "starboard wing weapon attach point"
 	icon_state = "equip_base_r_wing";
 	attach_id = 4
@@ -128,20 +128,11 @@
 /obj/effect/attach_point/crew_weapon/dropship1
 	ship_tag = DROPSHIP_ALAMO
 
-/obj/effect/attach_point/crew_weapon/dropship1/floor
-	plane = FLOOR_PLANE
-
 /obj/effect/attach_point/crew_weapon/dropship2
 	ship_tag = DROPSHIP_NORMANDY
 
-/obj/effect/attach_point/crew_weapon/dropship2/floor
-	plane = FLOOR_PLANE
-
-/obj/effect/attach_point/crew_weapon/dropship3
-	ship_tag = DROPSHIP_SAIPAN
-
-/obj/effect/attach_point/crew_weapon/dropship3/floor
-	plane = FLOOR_PLANE
+/obj/effect/attach_point/crew_weapon/waco
+	ship_tag = DROPSHIP_WACO
 
 /obj/effect/attach_point/electronics
 	name = "electronic system attach point"
@@ -155,8 +146,8 @@
 /obj/effect/attach_point/electronics/dropship2
 	ship_tag = DROPSHIP_NORMANDY
 
-/obj/effect/attach_point/electronics/dropship3
-	ship_tag = DROPSHIP_SAIPAN
+/obj/effect/attach_point/electronics/waco
+	ship_tag = DROPSHIP_WACO
 
 /obj/effect/attach_point/fuel
 	name = "engine system attach point"
@@ -170,9 +161,8 @@
 /obj/effect/attach_point/fuel/dropship2
 	ship_tag = DROPSHIP_NORMANDY
 
-/obj/effect/attach_point/fuel/dropship3
-	ship_tag = DROPSHIP_SAIPAN
-
+/obj/effect/attach_point/fuel/waco
+	ship_tag = DROPSHIP_WACO
 
 /obj/effect/attach_point/computer
 	base_category = DROPSHIP_COMPUTER
@@ -183,5 +173,5 @@
 /obj/effect/attach_point/computer/dropship2
 	ship_tag = DROPSHIP_NORMANDY
 
-/obj/effect/attach_point/computer/dropship3
-	ship_tag = DROPSHIP_SAIPAN
+/obj/effect/attach_point/computer/waco
+	ship_tag = DROPSHIP_WACO

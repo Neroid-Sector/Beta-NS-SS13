@@ -33,6 +33,7 @@
 		set_stat(CONSCIOUS)
 		icon_state = "slug_movement"
 		wander = 1
+		canmove = 1
 
 /mob/living/simple_animal/alien_slug/Initialize()
 	. = ..()

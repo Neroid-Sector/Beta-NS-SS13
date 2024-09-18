@@ -28,16 +28,22 @@
 	icon_state = "stun"
 	damage_type = OXY
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_RESIST|AMMO_ALWAYS_FF //Not that ignoring will do much right now.
-	stamina_damage = 45
+
+	stamina_damage = 75
 	accuracy = HIT_ACCURACY_TIER_8
-	shell_speed = AMMO_SPEED_TIER_1 // Slightly faster
+	shell_speed = AMMO_SPEED_TIER_4 // Slightly faster
 	hit_effect_color = "#FFFF00"
 
-/datum/ammo/energy/taser/on_hit_mob(mob/mobs, obj/projectile/P)
-	if(ishuman(mobs))
-		var/mob/living/carbon/human/humanus = mobs
-		humanus.disable_special_items() // Disables scout cloak
-		humanus.make_jittery(40)
+/datum/ammo/energy/taser/on_hit_mob(mob/living/M, obj/projectile/P)
+	..()
+	if(prob(1)) //small chance for one to ignite on hit
+		M.fire_act()
+
+
+/datum/ammo/energy/taser/on_hit_mob(mob/M, obj/projectile/P)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.disable_special_items() // Disables scout cloak
 
 /datum/ammo/energy/taser/precise
 	name = "precise taser bolt"
@@ -71,6 +77,25 @@
 	accuracy = HIT_ACCURACY_TIER_3
 	damage_falloff = DAMAGE_FALLOFF_TIER_8
 
+/datum/ammo/energy/laz_rifle
+	name = "laser bolt"
+	icon_state = "laser_new"
+	flags_ammo_behavior = AMMO_ENERGY
+	damage_type = BURN
+	damage = 75
+	accurate_range = 5
+	effective_range_max = 7
+	max_range = 10
+	shell_speed = AMMO_SPEED_TIER_4
+	scatter = SCATTER_AMOUNT_TIER_6
+	accuracy = HIT_ACCURACY_TIER_3
+	damage_falloff = DAMAGE_FALLOFF_TIER_8
+
+/datum/ammo/energy/laz_rifle/on_hit_mob(mob/living/M, obj/projectile/P)
+	..()
+	if(prob(10)) //small chance for one to ignite on hit
+		M.fire_act()
+
 /datum/ammo/energy/yautja
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 	accurate_range = 12
@@ -103,8 +128,8 @@
 	icon_state = "shrapnel_plasma"
 	damage_type = BURN
 
-/datum/ammo/bullet/shrapnel/plasma/on_hit_mob(mob/living/hit_mob, obj/projectile/hit_projectile)
-	hit_mob.Stun(2)
+/datum/ammo/bullet/shrapnel/plasma/on_hit_mob(mob/hit_mob, obj/projectile/hit_projectile)
+	hit_mob.apply_effect(2, WEAKEN)
 
 /datum/ammo/energy/yautja/caster
 	name = "root caster bolt"
@@ -141,8 +166,12 @@
 		log_attack("[key_name(C)] was stunned by a high power stun bolt from [key_name(P.firer)] at [get_area(P)]")
 
 		if(ishuman(C))
+			var/mob/living/carbon/human/H = C
 			stun_time++
-		C.apply_effect(stun_time, WEAKEN)
+			H.apply_effect(stun_time, WEAKEN)
+		else
+			M.apply_effect(stun_time, WEAKEN)
+
 		C.apply_effect(stun_time, STUN)
 	..()
 
@@ -204,7 +233,7 @@
 
 /datum/ammo/energy/yautja/caster/sphere/stun/proc/do_area_stun(obj/projectile/P)
 	playsound(P, 'sound/weapons/wave.ogg', 75, 1, 25)
-	FOR_DVIEW(var/mob/living/carbon/M, src.stun_range, get_turf(P), HIDE_INVISIBLE_OBSERVER)
+	for (var/mob/living/carbon/M in view(src.stun_range, get_turf(P)))
 		var/stun_time = src.stun_time
 		log_attack("[key_name(M)] was stunned by a plasma immobilizer from [key_name(P.firer)] at [get_area(P)]")
 		if (isyautja(M))
@@ -213,8 +242,12 @@
 			continue
 		to_chat(M, SPAN_DANGER("A powerful electric shock ripples through your body, freezing you in place!"))
 		M.apply_effect(stun_time, STUN)
-		M.apply_effect(stun_time, WEAKEN)
-	FOR_DVIEW_END
+
+		if (ishuman(M))
+			var/mob/living/carbon/human/H = M
+			H.apply_effect(stun_time, WEAKEN)
+		else
+			M.apply_effect(stun_time, WEAKEN)
 
 /datum/ammo/energy/yautja/rifle/bolt
 	name = "plasma rifle bolt"
@@ -230,11 +263,4 @@
 	if(isxeno(hit_mob))
 		var/mob/living/carbon/xenomorph/xeno = hit_mob
 		xeno.apply_damage(damage * 0.75, BURN)
-		xeno.AddComponent(/datum/component/status_effect/interference, 30, 30)
-
-/datum/ammo/energy/yautja/rifle/bolt/set_bullet_traits()
-	. = ..()
-	LAZYADD(traits_to_give, list(
-		BULLET_TRAIT_ENTRY(/datum/element/bullet_trait_incendiary)
-	))
-
+		xeno.interference = 30

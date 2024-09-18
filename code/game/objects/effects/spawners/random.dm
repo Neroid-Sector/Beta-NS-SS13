@@ -342,37 +342,38 @@
 	var/gunpath = pick(guns)
 	var/ammopath
 	if(istype(gunpath, /obj/item/weapon/gun/shotgun))
-		ammopath = pick(GLOB.shotgun_boxes_12g)
+		ammopath = pick(shotgun_boxes_12g)
 	else if(istype(gunpath, /obj/item/weapon/gun/launcher/grenade))
-		ammopath = pick(GLOB.grenade_packets)
+		ammopath = pick(grenade_packets)
 	else
 		ammopath = guns[gunpath]
 	spawn_weapon_on_floor(gunpath, ammopath, rand(mags_min, mags_max))
 
 /obj/effect/spawner/random/gun/proc/spawn_weapon_on_floor(gunpath, ammopath, ammo_amount = 1)
 
-	var/turf/spawnloc = get_turf(src)
+	var/atom/spawnloc = src
+	spawnloc = get_turf(spawnloc)
 	var/obj/gun
 	var/obj/ammo
 
 	if(gunpath)
 		gun = new gunpath(spawnloc)
 		if(scatter)
-			var/direction = pick(GLOB.alldirs)
-			var/turf/turf = get_step(gun, direction)
-			if(!turf || turf.density)
+			var/direction = pick(alldirs)
+			var/turf/T = get_step(gun, direction)
+			if(!T || T.density)
 				return
-			gun.forceMove(turf)
+			gun.loc = T
 	if(ammopath)
 		for(var/i in 0 to ammo_amount-1)
 			ammo = new ammopath(spawnloc)
 			if(scatter)
 				for(i=0, i<rand(1,3), i++)
-					var/direction = pick(GLOB.alldirs)
-					var/turf/turf = get_step(ammo, direction)
-					if(!turf || turf.density)
+					var/direction = pick(alldirs)
+					var/turf/T = get_step(ammo, direction)
+					if(!T || T.density)
 						break
-					ammo.forceMove(turf)
+					ammo.loc = T
 
 /*
 // the actual spawners themselves
@@ -597,3 +598,15 @@ GLOBAL_VAR_INIT(spawn_ob, TRUE)
 		/obj/structure/ob_ammo/warhead/cluster
 	)
 	return pick(spawnables)
+
+/obj/effect/spawner/random/locomotion
+	name = "locomotion spawner"
+	icon = 'icons/obj/vehicles/hardpoints/truck.dmi'
+	icon_state = "truck_treads"
+
+/obj/effect/spawner/random/locomotion/item_to_spawn()
+	return pick(/obj/item/hardpoint/locomotion/truck/treads,\
+				/obj/item/hardpoint/locomotion/truck/treads/crane,\
+				/obj/item/hardpoint/locomotion/truck/wheels,\
+				/obj/item/hardpoint/locomotion/truck/wheels/civtruck,\
+				/obj/item/hardpoint/locomotion/truck/wheels/civvan)

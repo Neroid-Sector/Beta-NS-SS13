@@ -228,7 +228,6 @@ a.popt {
 .looc,
 .adminooc,
 .admin,
-.niche,
 .medal,
 .yell {
   font-weight: bold;
@@ -287,11 +286,6 @@ em {
 }
 
 .admin {
-  color: #5975da;
-  font-weight: bold;
-}
-
-.niche {
   color: #5975da;
   font-weight: bold;
 }
@@ -440,9 +434,9 @@ em {
   font-weight: bold;
 }
 
-.bigannounce {
+.minorannounce {
   font-weight: bold;
-  font-size: 115%;
+  font-size: 185%;
 }
 
 .greenannounce {
@@ -486,11 +480,6 @@ em {
   color: #6685f5;
   font-style: italic;
   font-size: 90%;
-}
-
-.bolditalic {
-  font-style: italic;
-  font-weight: bold;
 }
 
 .boldnotice {
@@ -810,10 +799,6 @@ em {
   font-size: 2.5em;
 }
 
-.hugeicon {
-  font-size: 5em;
-}
-
 .memo {
   color: #638500;
   text-align: center;
@@ -854,15 +839,6 @@ em {
 
 .resonate {
   color: #298f85;
-}
-
-.upside_down {
-  display: inline;
-  -moz-transform: scale(-1, -1);
-  -webkit-transform: scale(-1, -1);
-  -o-transform: scale(-1, -1);
-  -ms-transform: scale(-1, -1);
-  transform: scale(-1, -1);
 }
 
 .monkeyhive {
@@ -980,6 +956,10 @@ em {
   color: #844300;
 }
 
+.sentryradio {
+  color: #844300;
+}
+
 .medradio {
   color: #008160;
 }
@@ -1038,26 +1018,6 @@ em {
 
 .echoradio {
   color: #3eb489;
-}
-
-.opforcmd {
-  color: #68bcec;
-}
-
-.opformed {
-  color: #52c724;
-}
-
-.opforeng {
-  color: #e9812d;
-}
-
-.opforcct {
-  color: #ec3018;
-}
-
-.opforspe {
-  color: #7221cf;
 }
 
 .medium {
@@ -1145,7 +1105,7 @@ em {
 
 .xenoboldnotice {
   color: #51a16c;
-  font-weight: bold;
+  font-style: italic;
 }
 
 .xenowarning {
@@ -1358,37 +1318,21 @@ em {
   font-weight: bold;
 }
 
-.tajaran {
-  color: #803b56;
-}
+//########################################//
 
-.tajaran_signlang {
-  color: #941c1c;
-}
+// Major Languages
 
-.skrell {
-  color: #00ced1;
-}
-
-.soghun {
+.russian {
   color: #228b22;
-}
-
-.changeling {
-  color: #800080;
-}
-
-.vox {
-  color: #aa00aa;
-}
-
-.monkey {
-  color: #966c47;
 }
 
 .german {
   color: #858f1e;
   font-family: 'Times New Roman', Times, serif;
+}
+
+.french {
+  color: #667fdb;
 }
 
 .spanish {
@@ -1403,18 +1347,80 @@ em {
   color: #fe1919;
 }
 
+// Minor Languages
+
+.celtic {
+  color: #88c288;
+}
+
+.farsi {
+  color: #e45f36;
+}
+
+.arabic {
+  color: #b89c43;
+}
+
+.korean {
+  color: #7fb9b6;
+}
+
+.finnish {
+  color: #c3f7f4;
+}
+
+.swedish {
+  color: #e2e18e;
+}
+
+.latin {
+  color: #74495d;
+}
+
+.berber {
+  color: #3c5879;
+}
+
+.bantu {
+  color: #185734;
+}
+
+.hindi {
+  color: #8b9412;
+}
+
+// Special Languages
+
+.yautja {
+  color: #803b56;
+}
+
+.yautja_signlang {
+  color: #941c1c;
+}
+
+.apollo {
+  color: #00ced1;
+}
+
+.monkey {
+  color: #966c47;
+}
+
 .zombie {
   color: #2dacb1;
   font-style: italic;
 }
 
-.rough {
-  font-family: trebuchet-ms, cursive, sans-serif;
-}
-
 .commando {
   color: #fe9b24;
   font-style: bold;
+}
+
+//########################################//
+
+.rough {
+  font-family: trebuchet-ms, cursive, sans-serif;
 }
 
 .say_quote {
@@ -1449,14 +1455,6 @@ em {
   animation: glitch 0.5s infinite;
 }
 
-.psy_talk {
-  color: #c400aa;
-  font-weight: bold;
-
-  /*Animation*/
-  animation: psy_glitch 0.5s infinite;
-}
-
 /*Keyframes*/
 
 @keyframes glitch {
@@ -1477,28 +1475,6 @@ em {
 
   100% {
     color: #830000;
-    transform: translate(1px, 1px);
-  }
-}
-
-@keyframes psy_glitch {
-  25% {
-    color: #c400aa;
-    transform: translate(-2px, -1px);
-  }
-
-  50% {
-    color: #91007d;
-    transform: translate(1px, -2px);
-  }
-
-  75% {
-    color: #750066;
-    transform: translate(-1px, 2px);
-  }
-
-  100% {
-    color: #7c016c;
     transform: translate(1px, 1px);
   }
 }

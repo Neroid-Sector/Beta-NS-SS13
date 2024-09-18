@@ -11,7 +11,7 @@
 /obj/structure/machinery/computer/demo_sim/attackby(obj/item/B, mob/living/user)
 	if(inoperable())
 		return
-	if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
+	if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_ENGI))
 		to_chat(user, SPAN_WARNING("You don't know how to configure [src]."))
 		return
 	if(configuration)
@@ -55,6 +55,7 @@
 	var/list/data = list()
 
 	data["configuration"] = configuration
+	data["looking"] = simulation.looking_at_simulation
 	data["dummy_mode"] = simulation.dummy_mode
 
 	data["worldtime"] = world.time
@@ -103,7 +104,8 @@
 /obj/structure/machinery/computer/demo_sim/ui_close(mob/user)
 
 	. = ..()
-	simulation.stop_watching(user)
+	if(simulation.looking_at_simulation)
+		simulation.stop_watching(user)
 
 // DEMOLITIONS TGUI SHIT END \\
 

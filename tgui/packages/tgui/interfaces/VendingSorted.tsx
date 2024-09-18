@@ -1,23 +1,10 @@
 import { KEY_ESCAPE } from 'common/keycodes';
-import { toFixed } from 'common/math';
+import { useBackend, useLocalState } from '../backend';
+import { Button, Section, Flex, Box, Tooltip, Input, NoticeBox, Icon } from '../components';
+import { Window } from '../layouts';
 import { classes } from 'common/react';
-import { useState } from 'react';
-
-import { useBackend } from '../backend';
-import {
-  Box,
-  Button,
-  Flex,
-  Icon,
-  Input,
-  NoticeBox,
-  ProgressBar,
-  Section,
-  Tooltip,
-} from '../components';
 import { BoxProps } from '../components/Box';
 import { Table, TableCell, TableRow } from '../components/Table';
-import { Window } from '../layouts';
 
 const THEME_COMP = 0;
 const THEME_USCM = 1;
@@ -48,22 +35,19 @@ interface VendingData {
   theme: string;
   displayed_categories: VendingCategory[];
   stock_listing: Array<number>;
-  stock_listing_partials?: Array<number>;
   show_points?: boolean;
   current_m_points?: number;
-  reagents?: number;
-  reagents_max?: number;
 }
 
 interface VenableItem {
-  readonly record: VendingRecord;
+  record: VendingRecord;
 }
 
 interface RecordNameProps extends BoxProps {
-  readonly record: VendingRecord;
+  record: VendingRecord;
 }
 
-const DescriptionTooltip = (props: RecordNameProps) => {
+const DescriptionTooltip = (props: RecordNameProps, context) => {
   const { record } = props;
   const isMandatory = record.prod_color === VENDOR_ITEM_MANDATORY;
   const isRecommended = record.prod_color === VENDOR_ITEM_RECOMMENDED;
@@ -71,7 +55,7 @@ const DescriptionTooltip = (props: RecordNameProps) => {
   return (
     <Tooltip
       position="bottom-start"
-      // className={classes(['Tooltip', props.className])}
+      className={classes(['Tooltip', props.className])}
       content={
         <NoticeBox
           info
@@ -79,8 +63,7 @@ const DescriptionTooltip = (props: RecordNameProps) => {
             'Description',
             isRecommended && 'RecommendedDescription',
             isMandatory && 'MandatoryDescription',
-          ])}
-        >
+          ])}>
           <ItemDescriptionViewer
             desc={record.prod_desc ?? ''}
             name={record.prod_name}
@@ -88,18 +71,17 @@ const DescriptionTooltip = (props: RecordNameProps) => {
             isMandatory={isMandatory}
           />
         </NoticeBox>
-      }
-    >
+      }>
       {props.children}
     </Tooltip>
   );
 };
 
 interface VendButtonProps extends BoxProps {
-  readonly isRecommended: boolean;
-  readonly isMandatory: boolean;
-  readonly available: boolean;
-  readonly onClick: () => any;
+  isRecommended: boolean;
+  isMandatory: boolean;
+  available: boolean;
+  onClick: () => any;
 }
 
 const VendButton = (props: VendButtonProps, _) => {
@@ -111,7 +93,7 @@ const VendButton = (props: VendButtonProps, _) => {
         props.isMandatory && 'MandatoryVendButton',
       ])}
       preserveWhitespace
-      icon={props.available ? 'circle-down' : 'xmark'}
+      icon={props.text ? undefined : props.available ? 'circle-down' : 'xmark'}
       onMouseDown={(e) => {
         e.preventDefault();
         if (props.available) {
@@ -119,37 +101,32 @@ const VendButton = (props: VendButtonProps, _) => {
         }
       }}
       textAlign="center"
-      disabled={!props.available}
-    >
+      disabled={!props.available}>
       {props.children}
     </Button>
   );
 };
 
-const VendableItemRow = (props: VenableItem) => {
-  const { data, act } = useBackend<VendingData>();
+const VendableItemRow = (props: VenableItem, context) => {
+  const { data, act } = useBackend<VendingData>(context);
   const { record } = props;
 
   const quantity = data.stock_listing[record.prod_index - 1];
   const available = quantity > 0;
-  const partial_quantity =
-    data.stock_listing_partials?.[record.prod_index - 1] ?? 0;
-  const partialDesignation = partial_quantity > 0 ? '*' : '';
   const isMandatory = record.prod_color === VENDOR_ITEM_MANDATORY;
   const isRecommended = record.prod_color === VENDOR_ITEM_RECOMMENDED;
 
   return (
     <>
-      <TableCell className="IconCell" verticalAlign="top">
+      <TableCell className="IconCell">
         <span
           className={classes([`Icon`, `vending32x32`, `${props.record.image}`])}
         />
       </TableCell>
 
-      <TableCell minWidth="3rem">
+      <TableCell>
         <span className={classes(['Text', !available && 'Failure'])}>
           {quantity}
-          {partialDesignation}
         </span>
       </TableCell>
 
@@ -158,29 +135,25 @@ const VendableItemRow = (props: VenableItem) => {
           isRecommended={isRecommended}
           isMandatory={isMandatory}
           available={available}
-          onClick={() => act('vend', record)}
-        >
+          onClick={() => act('vend', record)}>
           {record.prod_name}
         </VendButton>
       </TableCell>
 
       <TableCell>
         <DescriptionTooltip record={record}>
-          <Icon
-            name="circle-info"
-            className={classes(['RegularItemText', 'SmallIcon'])}
-          />
+          <Icon name="circle-info" className={classes(['RegularItemText'])} />
         </DescriptionTooltip>
       </TableCell>
     </>
   );
 };
 
-const VendableClothingItemRow = (props: {
-  readonly record: VendingRecord;
-  readonly hasCost: boolean;
-}) => {
-  const { data, act } = useBackend<VendingData>();
+const VendableClothingItemRow = (
+  props: { record: VendingRecord; hasCost: boolean },
+  context
+) => {
+  const { data, act } = useBackend<VendingData>(context);
   const { record, hasCost } = props;
 
   const quantity = data.stock_listing[record.prod_index - 1];
@@ -191,7 +164,7 @@ const VendableClothingItemRow = (props: {
 
   return (
     <>
-      <TableCell className="IconCell" verticalAlign="top">
+      <TableCell className="IconCell">
         <span
           className={classes([`Icon`, `vending32x32`, `${props.record.image}`])}
         />
@@ -210,8 +183,7 @@ const VendableClothingItemRow = (props: {
           isRecommended={isRecommended}
           isMandatory={isMandatory}
           available={available}
-          onClick={() => act('vend', record)}
-        >
+          onClick={() => act('vend', record)}>
           {record.prod_name}
         </VendButton>
       </TableCell>
@@ -220,7 +192,7 @@ const VendableClothingItemRow = (props: {
         <DescriptionTooltip record={record}>
           <Icon
             name="circle-info"
-            className={classes(['ShowDesc', 'RegularItemText', 'SmallIcon'])}
+            className={classes(['ShowDesc', 'RegularItemText'])}
           />
         </DescriptionTooltip>
       </TableCell>
@@ -229,15 +201,14 @@ const VendableClothingItemRow = (props: {
 };
 
 interface VendingCategoryProps {
-  readonly category: VendingCategory;
-  readonly searchTerm: string;
+  category: VendingCategory;
 }
 
 interface DescriptionProps {
-  readonly desc: string;
-  readonly name: string;
-  readonly isMandatory: boolean;
-  readonly isRecommended: boolean;
+  desc: string;
+  name: string;
+  isMandatory: boolean;
+  isRecommended: boolean;
 }
 
 const ItemDescriptionViewer = (props: DescriptionProps, _) => {
@@ -259,10 +230,11 @@ const ItemDescriptionViewer = (props: DescriptionProps, _) => {
   );
 };
 
-export const ViewVendingCategory = (props: VendingCategoryProps) => {
-  const { data } = useBackend<VendingData>();
+export const ViewVendingCategory = (props: VendingCategoryProps, context) => {
+  const { data } = useBackend<VendingData>(context);
   const { vendor_type } = data;
-  const { category, searchTerm } = props;
+  const { category } = props;
+  const [searchTerm, _] = useLocalState(context, 'searchTerm', '');
   const searchFilter = (x: VendingRecord) =>
     x.prod_name.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase());
 
@@ -284,12 +256,10 @@ export const ViewVendingCategory = (props: VendingCategoryProps) => {
           return (
             <TableRow
               key={record.prod_index}
-              height="30px"
               className={classes([
                 'VendingItem',
                 i % 2 ? 'VendingFlexAlt' : undefined,
-              ])}
-            >
+              ])}>
               {vendor_type === 'sorted' && <VendableItemRow record={record} />}
               {(vendor_type === 'clothing' || vendor_type === 'gear') && (
                 <VendableClothingItemRow
@@ -318,24 +288,15 @@ const getTheme = (value: string | number): string => {
   }
 };
 
-export const VendingSorted = () => {
-  const { data, act } = useBackend<VendingData>();
-  if (data === undefined) {
-    return (
-      <Window height={800} width={450}>
-        no data!
-      </Window>
-    );
-  }
+export const VendingSorted = (_, context) => {
+  const { data, act } = useBackend<VendingData>(context);
   const categories = data.displayed_categories ?? [];
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useLocalState(context, 'searchTerm', '');
   const isEmpty = categories.length === 0;
   const show_points = data.show_points ?? false;
   const points = data.current_m_points ?? 0;
-  const reagents = data.reagents ?? 0;
-  const reagents_max = data.reagents_max ?? 0;
   return (
-    <Window height={800} width={450} theme={getTheme(data.theme)}>
+    <Window height={800} width={400} theme={getTheme(data.theme)}>
       <Window.Content
         scrollable
         className="Vendor"
@@ -344,16 +305,14 @@ export const VendingSorted = () => {
           if (keyCode === KEY_ESCAPE) {
             act('cancel');
           }
-        }}
-      >
+        }}>
         {!isEmpty && !show_points && (
           <Box className={classes(['SearchBox'])}>
             <Flex
               align="center"
               justify="space-between"
               align-items="stretch"
-              className="Section__title"
-            >
+              className="Section__title">
               <Flex.Item>
                 <span className="Section__titleText">Search</span>
               </Flex.Item>
@@ -365,22 +324,6 @@ export const VendingSorted = () => {
                 />
               </Flex.Item>
             </Flex>
-            {reagents_max > 0 && (
-              <Flex
-                align="center"
-                justify="space-between"
-                align-items="stretch"
-              >
-                <Flex.Item>
-                  <span className="Section__content">Reagents</span>
-                </Flex.Item>
-                <Flex.Item grow>
-                  <ProgressBar value={reagents} maxValue={reagents_max}>
-                    {toFixed(reagents) + ' units'}
-                  </ProgressBar>
-                </Flex.Item>
-              </Flex>
-            )}
           </Box>
         )}
 
@@ -390,8 +333,7 @@ export const VendingSorted = () => {
               align="center"
               justify="space-between"
               align-items="stretch"
-              className="Section__title"
-            >
+              className="Section__title">
               <Flex.Item>
                 <span className="Section__titleText">Points Remaining</span>
               </Flex.Item>
@@ -411,13 +353,10 @@ export const VendingSorted = () => {
 
         {!isEmpty && (
           <Box className="ItemContainer">
-            <Flex direction="column" fill={1}>
+            <Flex direction="column" fill>
               {categories.map((category, i) => (
                 <Flex.Item key={i} className="Category">
-                  <ViewVendingCategory
-                    searchTerm={searchTerm}
-                    category={category}
-                  />
+                  <ViewVendingCategory category={category} />
                 </Flex.Item>
               ))}
               <Flex.Item height={15}>&nbsp;</Flex.Item>

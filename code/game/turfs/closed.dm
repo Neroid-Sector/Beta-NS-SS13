@@ -15,21 +15,6 @@
 	icon_state = "black"
 	mouse_opacity = FALSE
 
-/// Cordon turf marking z-level boundaries and surrounding reservations
-/turf/closed/cordon
-	name = "world border"
-	icon = 'icons/turf/shuttle.dmi'
-	icon_state = "pclosed"
-	layer = ABOVE_TURF_LAYER
-	baseturfs = /turf/closed/cordon
-
-/// Used as placeholder turf when something went really wrong, as per /tg/ string lists handler
-/turf/closed/cordon/debug
-	name = "debug turf"
-	desc = "This turf shouldn't be here and probably result of incorrect turf replacement. Adminhelp about it or report it in an issue."
-	color = "#660088"
-	baseturfs = /turf/closed/cordon/debug
-
 /turf/closed/mineral //mineral deposits
 	name = "Rock"
 	icon = 'icons/turf/walls/walls.dmi'
@@ -274,6 +259,14 @@
 /turf/closed/shuttle/dropship2/transparent
 	opacity = FALSE
 
+/turf/closed/shuttle/waco
+	name = "\improper Waco"
+	icon = 'icons/turf/waco.dmi'
+	icon_state = "1"
+
+/turf/closed/shuttle/waco/transparent
+	opacity = FALSE
+
 /turf/closed/shuttle/twe_dropship
 	name = "\improper UD4-UK"
 	icon = 'icons/turf/twedropship.dmi'
@@ -282,18 +275,11 @@
 /turf/closed/shuttle/twe_dropship/transparent
 	opacity = FALSE
 
-/turf/closed/shuttle/dropship3
-	name = "\improper Saipan"
-	icon = 'icons/turf/dropship3.dmi'
-	icon_state = "1"
-
-/turf/closed/shuttle/dropship3/transparent
-	opacity = FALSE
-
-/turf/closed/shuttle/dropship3/tornado
+/turf/closed/shuttle/dropship2/tornado
 	name = "\improper Tornado"
+	icon = 'icons/turf/dropship3.dmi'
 
-/turf/closed/shuttle/dropship3/tornado/typhoon
+/turf/closed/shuttle/dropship2/tornado/typhoon
 	name = "\improper Typhoon"
 
 /turf/closed/shuttle/escapepod

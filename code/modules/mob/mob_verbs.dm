@@ -32,7 +32,7 @@
 	return
 
 /mob/verb/view_stats()
-	set category = "OOC.Records"
+	set category = "OOC"
 	set name = "View Playtimes"
 	set desc = "View your playtimes."
 	if(!SSentity_manager.ready)
@@ -50,33 +50,34 @@
 	to_chat(usr, SPAN_DANGER("This mob type cannot throw items."))
 	return
 
-/mob/proc/point_to(atom/target in view())
+/mob/proc/point_to(atom/A in view())
 	//set name = "Point To"
 	//set category = "Object"
 
-	if(!isturf(src.loc) || !(target in view(src)))//target is no longer visible to us
-		return FALSE
+	if(!isturf(src.loc) || !(A in view(src)))//target is no longer visible to us
+		return 0
 
-	if(!target.mouse_opacity)//can't click it? can't point at it.
-		return FALSE
+	if(!A.mouse_opacity)//can't click it? can't point at it.
+		return 0
 
 	if(is_mob_incapacitated() || (status_flags & FAKEDEATH)) //incapacitated, can't point
-		return FALSE
+		return 0
 
-	var/tile = get_turf(target)
-	if(!tile)
-		return FALSE
+	var/tile = get_turf(A)
+	if (!tile)
+		return 0
 
 	if(recently_pointed_to > world.time)
-		return FALSE
-
-	if(SEND_SIGNAL(src, COMSIG_MOB_TRY_POINT, target) & COMPONENT_OVERRIDE_POINT)
-		return FALSE
+		return 0
 
 	next_move = world.time + 2
 
-	point_to_atom(target, tile)
-	return TRUE
+	point_to_atom(A, tile)
+	return 1
+
+
+
+
 
 /mob/verb/memory()
 	set name = "Notes"
@@ -97,8 +98,8 @@
 		if(length(mind.memory) < 4000)
 			mind.store_memory(msg)
 		else
-			message_admins("[key_name(usr)] warned for attempting to exceed mob memory limit.]", loc.x, loc.y, loc.z)
-			to_chat(src, "You have exceeded the maximum memory limit. Sorry!")
+			src.sleeping = 9999999
+			message_admins("[key_name(usr)] auto-slept for attempting to exceed mob memory limit. [ADMIN_JMP(src.loc)]")
 	else
 		to_chat(src, "The game appears to have misplaced your mind datum, so we can't show you your notes.")
 
@@ -121,7 +122,7 @@
 		return
 	else
 		var/deathtime = world.time - src.timeofdeath
-		var/deathtimeminutes = floor(deathtime / 600)
+		var/deathtimeminutes = round(deathtime / 600)
 		var/pluralcheck = "minute"
 		if(deathtimeminutes == 0)
 			pluralcheck = ""
@@ -154,7 +155,7 @@
 		return
 
 	M.key = key
-	if(M.client) M.client.change_view(GLOB.world_view_size)
+	if(M.client) M.client.change_view(world_view_size)
 // M.Login() //wat
 	return
 
@@ -221,7 +222,6 @@
 	set category = "IC"
 
 	if(pulling)
-		REMOVE_TRAIT(pulling, TRAIT_FLOORED, CHOKEHOLD_TRAIT)
 		var/mob/M = pulling
 		pulling.pulledby = null
 		pulling = null
@@ -244,3 +244,4 @@
 				//so we must undo it here so the victim can move right away
 				M.client.next_movement = world.time
 			M.update_transform(TRUE)
+			M.update_canmove()

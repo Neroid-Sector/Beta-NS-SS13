@@ -20,7 +20,6 @@
 	var/total_time_alive
 	var/total_damage_taken
 	var/total_revives_done = 0
-	var/total_ib_fixed = 0
 
 	var/total_brute = 0
 	var/total_burn = 0
@@ -54,7 +53,6 @@
 		"total_time_alive" = DB_FIELDTYPE_BIGINT,
 		"total_damage_taken" = DB_FIELDTYPE_INT,
 		"total_revives_done" = DB_FIELDTYPE_INT,
-		"total_ib_fixed" = DB_FIELDTYPE_INT,
 
 		"total_brute" = DB_FIELDTYPE_INT,
 		"total_burn" = DB_FIELDTYPE_INT,
@@ -115,13 +113,13 @@
 		cause_mob.life_kills_total += life_value
 
 	if(getBruteLoss())
-		new_death.total_brute = floor(getBruteLoss())
+		new_death.total_brute = round(getBruteLoss())
 	if(getFireLoss())
-		new_death.total_burn = floor(getFireLoss())
+		new_death.total_burn = round(getFireLoss())
 	if(getOxyLoss())
-		new_death.total_oxy = floor(getOxyLoss())
+		new_death.total_oxy = round(getOxyLoss())
 	if(getToxLoss())
-		new_death.total_tox = floor(getToxLoss())
+		new_death.total_tox = round(getToxLoss())
 
 	new_death.time_of_death = world.time
 
@@ -134,25 +132,24 @@
 	new_death.total_time_alive = life_time_total
 	new_death.total_damage_taken = life_damage_taken_total
 	new_death.total_revives_done = life_revives_total
-	new_death.total_ib_fixed = life_ib_total
 
-	if(GLOB.round_statistics)
-		GLOB.round_statistics.track_death(new_death)
+	if(round_statistics)
+		round_statistics.track_death(new_death)
 
 	new_death.save()
 	new_death.detach()
 	return new_death
 
-/mob/living/carbon/human/track_mob_death(datum/cause_data/cause_data, turf/death_loc)
-	. = ..()
+/mob/living/carbon/human/track_mob_death(cause, cause_mob)
+	. = ..(cause, cause_mob, job)
 	if(statistic_exempt || !mind)
 		return
 	var/datum/entity/player_stats/human/human_stats = mind.setup_human_stats()
 	if(human_stats && human_stats.death_list)
 		human_stats.death_list.Insert(1, .)
 
-/mob/living/carbon/xenomorph/track_mob_death(datum/cause_data/cause_data, turf/death_loc)
-	var/datum/entity/statistic/death/new_death = ..()
+/mob/living/carbon/xenomorph/track_mob_death(cause, cause_mob)
+	var/datum/entity/statistic/death/new_death = ..(cause, cause_mob, caste_type)
 	if(!new_death)
 		return
 	new_death.is_xeno = TRUE // this was placed beneath the if below, which meant gibbing as a xeno wouldn't track properly in stats

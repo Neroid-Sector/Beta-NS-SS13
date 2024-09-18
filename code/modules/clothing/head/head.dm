@@ -53,8 +53,8 @@
 	icon_state = "beanietan"
 
 /obj/item/clothing/head/beret/cm
-	name = "\improper USCM beret"
-	desc = "A hat typically worn by the field-officers of the USCM. Occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
+	name = "\improper Military beret"
+	desc = "A hat typically worn by field-officers. Occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
 	icon = 'icons/obj/items/clothing/cm_hats.dmi'
 	icon_state = "beret"
 	item_icons = list(
@@ -81,22 +81,9 @@
 /obj/item/clothing/head/beret/cm/black
 	icon_state = "beret_black"
 
-/obj/item/clothing/head/beret/cm/green
-	icon_state = "beret_green"
-
 /obj/item/clothing/head/beret/cm/squadberet
-	name = "USCM Squad Beret"
+	name = "Squad Beret"
 	desc = "For those who want to show pride and have nothing to lose (in their head, at least)."
-
-/obj/item/clothing/head/beret/cm/white/civilian
-	name = "White Beret"
-	desc = "A nice fashionable beret, popular with executives."
-	icon_state = "s_beret"
-
-/obj/item/clothing/head/beret/cm/black/civilian
-	name = "Black Beret"
-	desc = "A nice fashionable beret, popular with executives."
-	icon_state = "beret_black"
 
 /obj/item/clothing/head/beret/cm/squadberet/equipped(mob/user, slot)
 	. = ..()
@@ -260,11 +247,8 @@
 						/obj/item/clothing/glasses/mgoggles = HAT_GARB_RELAY_ICON_STATE,
 						/obj/item/clothing/glasses/mgoggles/prescription = HAT_GARB_RELAY_ICON_STATE,
 						/obj/item/clothing/glasses/mgoggles/black = HAT_GARB_RELAY_ICON_STATE,
-						/obj/item/clothing/glasses/mgoggles/black/prescription = HAT_GARB_RELAY_ICON_STATE,
 						/obj/item/clothing/glasses/mgoggles/orange = HAT_GARB_RELAY_ICON_STATE,
-						/obj/item/clothing/glasses/mgoggles/orange/prescription = HAT_GARB_RELAY_ICON_STATE,
 						/obj/item/clothing/glasses/mgoggles/v2 = HAT_GARB_RELAY_ICON_STATE,
-						/obj/item/clothing/glasses/mgoggles/v2/prescription = HAT_GARB_RELAY_ICON_STATE,
 						/obj/item/prop/helmetgarb/helmet_nvg = HAT_GARB_RELAY_ICON_STATE,
 						/obj/item/prop/helmetgarb/helmet_nvg/cosmetic = HAT_GARB_RELAY_ICON_STATE,
 						/obj/item/prop/helmetgarb/helmet_nvg/marsoc = HAT_GARB_RELAY_ICON_STATE,
@@ -426,8 +410,10 @@
 /obj/item/clothing/head/cmcap/reporter
 	name = "combat correspondent cap"
 	desc = "A faithful cap for any terrain war correspondents may find themselves in."
-	icon_state = "cc_flagcap"
-	item_state = "cc_flagcap"
+	icon = 'icons/mob/humans/onmob/contained/war_correspondent.dmi'
+	icon_state = "wc_flagcap"
+	item_state = "wc_flagcap"
+	contained_sprite = TRUE
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
 	flags_marine_hat = HAT_GARB_OVERLAY
 
@@ -489,14 +475,15 @@
 	icon_state = "coblackberet"
 	desc = "A beret with the USCM Military Police insignia emblazoned on it."
 
-/obj/item/clothing/head/beret/marine/mp/provost/chief
-	name = "\improper USCM provost command beret"
-	icon_state = "pvciberet"
-
 /obj/item/clothing/head/beret/marine/mp/tis
 	name = "\improper UAAC-TIS Special Agent Beret"
 	icon_state = "berettis"
 	desc = "A beret with the UAAC-TIS insignia emblazoned on it. A mark of a TIS Special Agent, these berets are one of the only pieces of equipment that the TIS actually manufactures for itself and earning one is one of the rare signs of achievement the Three Eyes allows."
+
+/obj/item/clothing/head/beret/marine/mp/tis/co
+	name = "\improper UAAC-TIS Coordinator Beret"
+	icon_state = "berettisco"
+	desc = "A beret with a platinum UAAC-TIS insignia emblazoned on it. A mark of a TIS Coordinators, earning one of these berets is a great honor and are given upon promotion."
 
 /obj/item/clothing/head/beret/marine/commander
 	name = "marine commanding officer beret"
@@ -580,15 +567,6 @@
 	name = "logistics officer beret"
 	desc = "A beret with the lieutenant insignia emblazoned on it. It inspires a feeling of respect."
 	icon_state = "beret_badge"
-
-/obj/item/clothing/head/beret/marine/ro
-	name = "\improper USCM quartermaster beret"
-	desc = "A beret with the sergeant insignia emblazoned on it. It symbolizes hard work and shady business."
-	icon = 'icons/obj/items/clothing/cm_hats.dmi'
-	icon_state = "ro_beret"
-	item_icons = list(
-		WEAR_HEAD = 'icons/mob/humans/onmob/head_1.dmi'
-	)
 
 //==========================//PROTECTIVE\\===============================\\
 //=======================================================================\\
@@ -687,6 +665,15 @@
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = NO_FLAGS
 
+/obj/item/clothing/head/CMB/QRF
+	name = "\improper Colonial Response Team Leader Cap"
+	desc = "A dark cap enscribed with the words 'Team Lead' representing justice through force to those who break the law. The laws of the Earth stretch beyond the Sol."
+	icon = 'icons/obj/items/clothing/cm_hats.dmi'
+	item_icons = list(
+		WEAR_HEAD = 'icons/mob/humans/onmob/head_1.dmi'
+	)
+	icon_state = "cap_qrf"
+
 /obj/item/clothing/head/freelancer
 	name = "\improper armored Freelancer cap"
 	desc = "A sturdy freelancer's cap. More protective than it seems."
@@ -741,6 +728,45 @@
 	name = "bucket"
 	desc = "This metal bucket appears to have been modified with padding and chin-straps, plus an eye-slit carved into the \"front\". Presumably, it is intended to be worn on the head, possibly for protection."
 	icon_state = "bucket"
+
+/obj/item/clothing/head/militia/ranger
+	name = "Insurgent Ranger helmet"
+	desc = "A sturdy helmet made from a mining helmet and reinforced with the reclaimed plating of an armored vehicle. The front features a small plate to protect the wearer's face from shrapnel or debris in combat."
+	icon_state = "mlu_ranger"
+	flags_armor_protection = BODY_FLAG_HEAD|BODY_FLAG_FACE
+	armor_bullet = CLOTHING_ARMOR_MEDIUMLOW
+	armor_bomb = CLOTHING_ARMOR_VERYHIGH
+
+/obj/item/clothing/head/militia/ranger/noface
+	name = "Insurgent Ranger helmet"
+	desc = "A sturdy helmet made from a mining helmet and reinforced with the reclaimed plating of an armored vehicle."
+	icon_state = "mlu_ranger2"
+	flags_armor_protection = BODY_FLAG_HEAD
+	armor_bullet = CLOTHING_ARMOR_MEDIUMLOW
+	armor_bomb = CLOTHING_ARMOR_VERYHIGH
+
+/obj/item/clothing/head/militia/ranger/lamp
+	name = "Insurgent Ranger helmet"
+	desc = "A sturdy helmet made from a mining helmet and reinforced with thereclaimed plating of an armored vehicle."
+	icon_state = "mlu_ranger3"
+	flags_armor_protection = BODY_FLAG_HEAD
+	armor_bullet = CLOTHING_ARMOR_MEDIUMLOW
+	armor_bomb = CLOTHING_ARMOR_VERYHIGH
+
+/obj/item/clothing/head/militia/riot
+	name = "Insurgent helmet"
+	desc = "A sturdy UA Riot officer's helmet stolen by an insurgent. Its paint has been stripped and replaced with a dull brown and grey to better blend in."
+	icon_state = "clf_riot"
+	flags_armor_protection = BODY_FLAG_HEAD
+	armor_bullet = CLOTHING_ARMOR_MEDIUMLOW
+
+/obj/item/clothing/head/militia/mining
+	name = "Insurgent Work helmet"
+	desc = "A sturdy worker's helmet repurposed by an insurgent. Its bright safety yellow paint has been stripped and replaced with a dull brown and grey to better blend in."
+	icon_state = "clf_miner"
+	flags_armor_protection = BODY_FLAG_HEAD
+	armor_bullet = CLOTHING_ARMOR_MEDIUMLOW
+
 
 /obj/item/clothing/head/general
 	name = "\improper armored General cap"
@@ -852,3 +878,9 @@
 /obj/item/clothing/head/beret/royal_marine/team_leader
 	icon_state = "rmc_beret_tl"
 	item_state = "rmc_beret_tl"
+
+/obj/item/clothing/head/beret/royal_marine/bw
+	name = "tammie"
+	desc = "A traditional Scottish bonnet, a tam o' shanter, or tammie. Only a Wee Panzy would take this off in favor of a 'protective' helmet. Ye' arent a pazy are ye'?"
+	icon_state = "bw_tammie"
+	item_state = "bw_tammie"

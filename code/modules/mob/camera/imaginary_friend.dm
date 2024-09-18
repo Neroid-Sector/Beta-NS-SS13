@@ -19,7 +19,7 @@
 	var/hidden = FALSE
 	var/mob/living/owner
 
-	var/datum/action/innate/imaginary_orbit/orbit
+	var/datum/action/innate/imaginary_join/join
 	var/datum/action/innate/imaginary_hide/hide
 
 	var/list/outfit_choices = list(/datum/equipment_preset/uscm_ship/sea)
@@ -29,7 +29,7 @@
 /mob/camera/imaginary_friend/Login()
 	. = ..()
 	setup_friend()
-	update_image()
+	show()
 
 /mob/camera/imaginary_friend/Logout()
 	. = ..()
@@ -47,8 +47,8 @@
 
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-	orbit = new
-	orbit.give_to(src)
+	join = new
+	join.give_to(src)
 	hide = new
 	hide.give_to(src)
 
@@ -81,7 +81,7 @@
 	return out_icon
 
 /// makes the friend update their icon and appear to themselves and, if not hidden, the owner
-/mob/camera/imaginary_friend/proc/update_image()
+/mob/camera/imaginary_friend/proc/show()
 	if(!client)
 		return
 
@@ -99,6 +99,7 @@
 		owner.client.images |= current_image
 
 	client.images |= current_image
+
 
 /mob/camera/imaginary_friend/Destroy()
 	if(owner)
@@ -140,7 +141,7 @@
 		return
 	name = client.prefs.real_name
 	friend_image = get_flat_human_icon(null, outfit_choice, client.prefs)
-	update_image()
+	show()
 
 /mob/camera/imaginary_friend/verb/toggle_hud()
 	set category = "Imaginary Friend"
@@ -150,21 +151,21 @@
 	var/datum/mob_hud/hud
 	switch(hud_choice)
 		if("Medical HUD")
-			hud = GLOB.huds[MOB_HUD_MEDICAL_OBSERVER]
+			hud = huds[MOB_HUD_MEDICAL_OBSERVER]
 		if("Security HUD")
-			hud = GLOB.huds[MOB_HUD_SECURITY_ADVANCED]
+			hud = huds[MOB_HUD_SECURITY_ADVANCED]
 		if("Squad HUD")
-			hud = GLOB.huds[MOB_HUD_FACTION_OBSERVER]
+			hud = huds[MOB_HUD_FACTION_OBSERVER]
 		if("Xeno Status HUD")
-			hud = GLOB.huds[MOB_HUD_XENO_STATUS]
+			hud = huds[MOB_HUD_XENO_STATUS]
 		if("Faction UPP HUD")
-			hud = GLOB.huds[MOB_HUD_FACTION_UPP]
+			hud = huds[MOB_HUD_FACTION_UPP]
 		if("Faction Wey-Yu HUD")
-			hud = GLOB.huds[MOB_HUD_FACTION_WY]
+			hud = huds[MOB_HUD_FACTION_WY]
 		if("Faction TWE HUD")
-			hud = GLOB.huds[MOB_HUD_FACTION_TWE]
+			hud = huds[MOB_HUD_FACTION_TWE]
 		if("Faction CLF HUD")
-			hud = GLOB.huds[MOB_HUD_FACTION_CLF]
+			hud = huds[MOB_HUD_FACTION_CLF]
 
 	if(hud_choice in current_huds)
 		hud.remove_hud_from(src, src)
@@ -235,27 +236,16 @@
 /mob/camera/imaginary_friend/forceMove(atom/destination)
 	dir = get_dir(get_turf(src), destination)
 	loc = destination
-	update_image()
-	orbiting?.end_orbit(src)
-
-/mob/camera/imaginary_friend/stop_orbit(datum/component/orbiter/orbits)
-	. = ..()
-	// pixel_y = -2
-	animate(src, pixel_y = 0, time = 10, loop = -1)
+	show()
 
 /// returns the friend to the owner
 /mob/camera/imaginary_friend/proc/recall()
 	if(QDELETED(owner))
 		deactivate()
 		return FALSE
-	if(orbit_target == owner)
-		orbiting?.end_orbit(src)
+	if(loc == owner)
 		return FALSE
-	if(!hidden)
-		hide.action_activate()
-	dir = SOUTH
-	update_image()
-	orbit(owner)
+	forceMove(owner)
 
 /// logs the imaginary friend's removal, ghosts them and cleans up the friend
 /mob/camera/imaginary_friend/proc/deactivate()
@@ -275,35 +265,28 @@
 		ghost.mind.original = aghosted_original_mob
 	return ghost
 
-/datum/action/innate/imaginary_orbit
-	name = "Orbit"
+/datum/action/innate/imaginary_join
+	name = "Join"
 	action_icon_state = "joinmob"
 
-/datum/action/innate/imaginary_orbit/action_activate()
-	. = ..()
+/datum/action/innate/imaginary_join/action_activate()
 	var/mob/camera/imaginary_friend/friend = owner
 	friend.recall()
-
 /datum/action/innate/imaginary_hide
 	name = "Hide"
 	action_icon_state = "hidemob"
 
 /datum/action/innate/imaginary_hide/action_activate()
-	. = ..()
 	var/mob/camera/imaginary_friend/friend = owner
 	if(friend.hidden)
 		friend.hidden = FALSE
-		friend.update_image()
+		friend.show()
 		name = "Hide"
 		action_icon_state = "hidemob"
 		update_button_icon()
 	else
 		friend.hidden = TRUE
-		friend.update_image()
+		friend.show()
 		name = "Show"
 		action_icon_state = "unhidemob"
 		update_button_icon()
-
-/datum/action/innate/imaginary_hide/update_button_icon()
-	button.overlays.Cut()
-	button.overlays += image('icons/mob/hud/actions.dmi', button, action_icon_state)

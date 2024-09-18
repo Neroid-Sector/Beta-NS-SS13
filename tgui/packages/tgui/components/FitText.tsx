@@ -1,19 +1,13 @@
-import {
-  Component,
-  createRef,
-  HTMLAttributes,
-  PropsWithChildren,
-  RefObject,
-} from 'react';
+import { Component, createRef, RefObject } from 'inferno';
 
 const DEFAULT_ACCEPTABLE_DIFFERENCE = 5;
 
 type Props = {
-  readonly acceptableDifference?: number;
-  readonly maxWidth: number;
-  readonly maxFontSize: number;
-  readonly native?: HTMLAttributes<HTMLDivElement>;
-} & PropsWithChildren;
+  acceptableDifference?: number;
+  maxWidth: number;
+  maxFontSize: number;
+  native?: HTMLAttributes<HTMLDivElement>;
+};
 
 type State = {
   fontSize: number;
@@ -25,8 +19,8 @@ export class FitText extends Component<Props, State> {
     fontSize: 0,
   };
 
-  constructor(props: Props) {
-    super(props);
+  constructor() {
+    super();
 
     this.resize = this.resize.bind(this);
 
@@ -86,12 +80,10 @@ export class FitText extends Component<Props, State> {
       <span
         ref={this.ref}
         style={{
-          fontSize: `${this.state.fontSize}px`,
-          ...(typeof this.props.native?.style === 'object'
-            ? this.props.native.style
-            : {}),
-        }}
-      >
+          'font-size': `${this.state.fontSize}px`,
+          ...(typeof this.props.native?.style === 'object' &&
+            this.props.native.style),
+        }}>
         {this.props.children}
       </span>
     );

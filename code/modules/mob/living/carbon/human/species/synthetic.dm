@@ -2,19 +2,18 @@
 	group = SPECIES_SYNTHETIC
 	name = SYNTH_GEN_THREE
 	name_plural = "synthetics"
-	uses_skin_color = TRUE //Uses skin color presets
-	special_body_types = TRUE
+	uses_ethnicity = TRUE //Uses ethnic presets
 
 	unarmed_type = /datum/unarmed_attack/punch/synthetic
 	pain_type = /datum/pain/synthetic
 	stamina_type = /datum/stamina/none
-	mob_inherent_traits = list(TRAIT_SUPER_STRONG, TRAIT_IRON_TEETH)
+	mob_inherent_traits = list(TRAIT_SUPER_STRONG)
 	rarity_value = 2
 	insulated = TRUE
 
 	bloodsplatter_type = /obj/effect/temp_visual/dir_setting/bloodsplatter/synthsplatter
 
-	total_health = 150 //more health than regular humans
+	total_health = 75 //less than regular humans
 
 	brute_mod = 0.5
 	burn_mod = 0.9 //a small bit of resistance
@@ -62,9 +61,8 @@
 
 /datum/species/synthetic/gen_one
 	name = SYNTH_GEN_ONE
-	uses_skin_color = FALSE
-	special_body_types = FALSE
-	mob_inherent_traits = list(TRAIT_SUPER_STRONG, TRAIT_INTENT_EYES, TRAIT_IRON_TEETH)
+	uses_ethnicity = FALSE
+	mob_inherent_traits = list(TRAIT_SUPER_STRONG, TRAIT_INTENT_EYES)
 
 	hair_color = "#000000"
 	icobase = 'icons/mob/humans/species/r_synthetic.dmi'
@@ -72,21 +70,19 @@
 
 /datum/species/synthetic/gen_two
 	name = SYNTH_GEN_TWO
-	uses_skin_color = FALSE //2nd gen uses generic human look
-	special_body_types = FALSE
+	uses_ethnicity = FALSE //2nd gen uses generic human look
 
 /datum/species/synthetic/colonial
 	name = SYNTH_COLONY
 	name_plural = "Colonial Synthetics"
-	uses_skin_color = TRUE
-	special_body_types = TRUE
+	uses_ethnicity = TRUE
 	burn_mod = 0.8
-	mob_inherent_traits = list(TRAIT_SUPER_STRONG, TRAIT_IRON_TEETH)
+	mob_inherent_traits = list(TRAIT_SUPER_STRONG)
 
 	pain_type = /datum/pain/synthetic/colonial
 	rarity_value = 1.5
 	slowdown = 0.2
-	total_health = 200 //But more durable
+	total_health = 100 //But more durable
 
 	default_lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 
@@ -96,14 +92,12 @@
 
 /datum/species/synthetic/colonial/colonial_gen_two
 	name = SYNTH_COLONY_GEN_TWO
-	uses_skin_color = FALSE //2nd gen uses generic human look
-	special_body_types = FALSE
+	uses_ethnicity = FALSE //2nd gen uses generic human look
 
 /datum/species/synthetic/colonial/colonial_gen_one
 	name = SYNTH_COLONY_GEN_ONE
-	uses_skin_color = FALSE
-	special_body_types = FALSE
-	mob_inherent_traits = list(TRAIT_SUPER_STRONG, TRAIT_INTENT_EYES, TRAIT_IRON_TEETH)
+	uses_ethnicity = FALSE
+	mob_inherent_traits = list(TRAIT_SUPER_STRONG, TRAIT_INTENT_EYES)
 	//sets colonial_gen_one synth's hair to black
 	hair_color = "#000000"
 	//sets colonial_gen_one synth's icon to WJ sprite
@@ -114,9 +108,8 @@
 /datum/species/synthetic/colonial/combat
 	name = SYNTH_COMBAT
 	name_plural = "Combat Synthetics"
-	uses_skin_color = FALSE
-	special_body_types = FALSE
-	mob_inherent_traits = list(TRAIT_SUPER_STRONG, TRAIT_INTENT_EYES, TRAIT_IRON_TEETH)
+	uses_ethnicity = FALSE
+	mob_inherent_traits = list(TRAIT_SUPER_STRONG, TRAIT_INTENT_EYES)
 
 	burn_mod = 0.6 //made for combat
 	total_health = 250 //made for combat
@@ -136,8 +129,8 @@
 /datum/species/synthetic/infiltrator
 	name = SYNTH_INFILTRATOR
 	name_plural = "Infiltrator Synthetics"
-	uses_skin_color = TRUE
-	mob_inherent_traits = list(TRAIT_SUPER_STRONG, TRAIT_INFILTRATOR_SYNTH, TRAIT_IRON_TEETH)
+	uses_ethnicity = TRUE
+	mob_inherent_traits = list(TRAIT_SUPER_STRONG, TRAIT_INFILTRATOR_SYNTH)
 
 	bloodsplatter_type = /obj/effect/temp_visual/dir_setting/bloodsplatter/human
 

@@ -1,5 +1,5 @@
-GLOBAL_LIST_EMPTY(gear_datums_by_category)
-GLOBAL_LIST_EMPTY(gear_datums_by_name)
+var/global/list/gear_datums_by_category = list()
+var/global/list/gear_datums_by_name = list()
 
 /proc/populate_gear_list()
 	var/datum/gear/G
@@ -10,11 +10,11 @@ GLOBAL_LIST_EMPTY(gear_datums_by_name)
 		if(!G.category)
 			log_debug("Improper gear datum: [gear_type].")
 			continue
-		if(G.display_name in GLOB.gear_datums_by_name)
+		if(G.display_name in gear_datums_by_name)
 			log_debug("Duplicate gear datum name: [G.display_name].")
 			continue
-		LAZYSET(GLOB.gear_datums_by_category[G.category], "[G.display_name] [G.cost == 1 ? "(1 point)" : "([G.cost] points)"]", G)
-		GLOB.gear_datums_by_name[G.display_name] = G
+		LAZYSET(gear_datums_by_category[G.category], "[G.display_name] [G.cost == 1 ? "(1 point)" : "([G.cost] points)"]", G)
+		gear_datums_by_name[G.display_name] = G
 
 /datum/gear
 	var/display_name  // Name/index.
@@ -58,25 +58,13 @@ GLOBAL_LIST_EMPTY(gear_datums_by_name)
 	display_name = "Ballistic goggles, black"
 	path = /obj/item/clothing/glasses/mgoggles/black
 
-/datum/gear/eyewear/goggles_black/prescription
-	display_name = "Prescription ballistic goggles, black"
-	path = /obj/item/clothing/glasses/mgoggles/black/prescription
-
 /datum/gear/eyewear/goggles_orange
 	display_name = "Ballistic goggles, orange"
 	path = /obj/item/clothing/glasses/mgoggles/orange
 
-/datum/gear/eyewear/goggles_orange/prescription
-	display_name = "Prescription ballistic goggles, orange"
-	path = /obj/item/clothing/glasses/mgoggles/orange/prescription
-
 /datum/gear/eyewear/goggles2
 	display_name = "Ballistic goggles, M1A1"
 	path = /obj/item/clothing/glasses/mgoggles/v2
-
-/datum/gear/eyewear/goggles2/prescription
-	display_name = "Prescription ballistic goggles, M1A1"
-	path = /obj/item/clothing/glasses/mgoggles/v2/prescription
 
 /datum/gear/eyewear/bimex_shades
 	display_name = "BiMex personal shades"
@@ -101,6 +89,14 @@ GLOBAL_LIST_EMPTY(gear_datums_by_name)
 /datum/gear/mask/balaclava_green
 	display_name = "Balaclava, green"
 	path = /obj/item/clothing/mask/balaclava/tactical
+
+/datum/gear/mask/skull_balaclava_black
+	display_name = "Skull Balaclava Black"
+	path = /obj/item/clothing/mask/rebreather/skull/black
+
+/datum/gear/mask/skull_balaclava_normal
+	display_name = "Skull Balaclava"
+	path = /obj/item/clothing/mask/rebreather/skull
 
 /datum/gear/mask/coif
 	display_name = "Coif"
@@ -173,18 +169,6 @@ GLOBAL_LIST_EMPTY(gear_datums_by_name)
 	display_name = "USCM balaclava, tan"
 	path = /obj/item/clothing/mask/rebreather/scarf/tan
 
-/datum/gear/mask/uscm/skull_balaclava_blue
-	display_name = "USCM balaclava, blue skull"
-	path = /obj/item/clothing/mask/rebreather/skull
-	cost = 4 //same as skull facepaint
-	slot = WEAR_FACE
-
-/datum/gear/mask/uscm/skull_balaclava_black
-	display_name = "USCM balaclava, black skull"
-	path = /obj/item/clothing/mask/rebreather/skull/black
-	cost = 4
-	slot = WEAR_FACE
-
 /datum/gear/headwear
 	category = "Headwear"
 	cost = 3
@@ -227,7 +211,7 @@ GLOBAL_LIST_EMPTY(gear_datums_by_name)
 
 /datum/gear/headwear/uscm/beret_green
 	display_name = "USCM beret, green"
-	path = /obj/item/clothing/head/beret/cm/green
+	path = /obj/item/clothing/head/beret/cm
 
 /datum/gear/headwear/uscm/beret_tan
 	display_name = "USCM beret, tan"
@@ -361,10 +345,6 @@ GLOBAL_LIST_EMPTY(gear_datums_by_name)
 	display_name = "Spent slugs"
 	path = /obj/item/prop/helmetgarb/spent_slug
 
-/datum/gear/helmet_garb/cartridge
-	display_name = "Cartridge"
-	path = /obj/item/prop/helmetgarb/cartridge
-
 /datum/gear/helmet_garb/spacejam_tickets
 	display_name = "Tickets to Space Jam"
 	path = /obj/item/prop/helmetgarb/spacejam_tickets
@@ -374,7 +354,7 @@ GLOBAL_LIST_EMPTY(gear_datums_by_name)
 	path = /obj/item/prop/helmetgarb/trimmed_wire
 
 /datum/gear/helmet_garb/bullet_pipe
-	display_name = "10x99mm XM43E1 casing pipe"
+	display_name = "10x99mm XM42B casing pipe"
 	path = /obj/item/prop/helmetgarb/bullet_pipe
 	allowed_origins = USCM_ORIGINS
 
@@ -515,10 +495,6 @@ GLOBAL_LIST_EMPTY(gear_datums_by_name)
 	display_name = "Card, Uno Reverse - yellow"
 	path = /obj/item/toy/handcard/uno_reverse_yellow
 
-/datum/gear/toy/card/trading_card
-	display_name = "Card, random WeyYu Trading"
-	path = /obj/item/toy/trading_card
-
 /datum/gear/toy/deck
 	display_name = "Deck of cards, regular"
 	path = /obj/item/toy/deck
@@ -526,10 +502,6 @@ GLOBAL_LIST_EMPTY(gear_datums_by_name)
 /datum/gear/toy/deck/uno
 	display_name = "Deck of cards, Uno"
 	path = /obj/item/toy/deck/uno
-
-/datum/gear/toy/trading_card
-	display_name = "Trading Card Packet"
-	path = /obj/item/storage/fancy/trading_card
 
 /datum/gear/toy/d6
 	display_name = "Die, 6 sides"
@@ -546,76 +518,6 @@ GLOBAL_LIST_EMPTY(gear_datums_by_name)
 /datum/gear/toy/crayon
 	display_name = "Crayon"
 	path = /obj/item/toy/crayon/rainbow
-
-/datum/gear/toy/pride
-	display_name = "Box of Prideful Crayons"
-	path = /obj/item/storage/box/pride
-
-/datum/gear/plush
-	category = "Plushies"
-	cost = 4
-
-/datum/gear/plush/random
-	display_name = "Random plush"
-	path = /obj/item/toy/plush/random_plushie
-	cost = 2
-
-/datum/gear/plush/farwa
-	display_name = "Farwa plush"
-	path = /obj/item/toy/plush/farwa
-
-/datum/gear/plush/barricade
-	display_name = "Barricade plush"
-	path = /obj/item/toy/plush/barricade
-
-/datum/gear/plush/bee
-	display_name = "Bee plush"
-	path = /obj/item/toy/plush/bee
-
-/datum/gear/plush/shark
-	display_name = "Shark plush"
-	path = /obj/item/toy/plush/shark
-
-/datum/gear/plush/moth
-	display_name = "Moth plush"
-	path = /obj/item/toy/plush/moth
-
-/datum/gear/plush/rock
-	display_name = "Rock plush"
-	path = /obj/item/toy/plush/rock
-
-/datum/gear/plush/therapy
-	display_name = "Therapy plush"
-	path = /obj/item/toy/plush/therapy
-
-/datum/gear/plush/therapy/red
-	display_name = "Therapy plush (Red)"
-	path = /obj/item/toy/plush/therapy/red
-
-/datum/gear/plush/therapy/blue
-	display_name = "Therapy plush (Blue)"
-	path = /obj/item/toy/plush/therapy/blue
-
-/datum/gear/plush/therapy/green
-	display_name = "Therapy plush (Green)"
-	path = /obj/item/toy/plush/therapy/green
-
-/datum/gear/plush/therapy/orange
-	display_name = "Therapy plush (Orange)"
-	path = /obj/item/toy/plush/therapy/orange
-
-/datum/gear/plush/therapy/purple
-	display_name = "Therapy plush (Purple)"
-	path = /obj/item/toy/plush/therapy/purple
-
-/datum/gear/plush/therapy/yellow
-	display_name = "Therapy plush (Yellow)"
-	path = /obj/item/toy/plush/therapy/yellow
-
-/datum/gear/plush/therapy/random
-	display_name = "Therapy plush (???)"
-	path = /obj/item/toy/plush/therapy/random_color
-	cost = 7
 
 /datum/gear/weapon
 	category = "Weapons"
@@ -887,24 +789,6 @@ GLOBAL_LIST_EMPTY(gear_datums_by_name)
 	display_name = "Lighter, zippo"
 	path = /obj/item/tool/lighter/zippo
 
-/datum/gear/smoking/zippo/black
-	display_name = "Black lighter, zippo"
-	path = /obj/item/tool/lighter/zippo/black
-
-/datum/gear/smoking/zippo/blue
-	display_name = "Blue lighter, zippo"
-	path = /obj/item/tool/lighter/zippo/blue
-
-/datum/gear/smoking/electronic_cigarette
-	display_name = "Electronic cigarette"
-	path = /obj/item/clothing/mask/electronic_cigarette
-	cost = 3
-
-/datum/gear/smoking/electronic_cigarette/cigar
-	display_name = "Electronic cigar"
-	path = /obj/item/clothing/mask/electronic_cigarette/cigar
-	cost = 4
-
 /datum/gear/misc
 	category = "Miscellaneous"
 
@@ -919,11 +803,6 @@ GLOBAL_LIST_EMPTY(gear_datums_by_name)
 /datum/gear/misc/facepaint_black
 	display_name = "Facepaint, black"
 	path = /obj/item/facepaint/black
-
-/datum/gear/misc/facepaint_skull
-	display_name = "Facepaint, skull"
-	path = /obj/item/facepaint/skull
-	cost = 3
 
 /datum/gear/misc/facepaint_body
 	display_name = "Fullbody paint"
@@ -956,13 +835,6 @@ GLOBAL_LIST_EMPTY(gear_datums_by_name)
 	cost = 1 //The cadmium poisoning pays for the discounted cost longterm
 	allowed_origins = USCM_ORIGINS
 
-/datum/gear/misc/dogtags
-	display_name = "Attachable Dogtags"
-	path = /obj/item/clothing/accessory/dogtags
-	cost = 1
-	slot = WEAR_IN_ACCESSORY
-	allowed_origins = USCM_ORIGINS
-
 /datum/gear/misc/patch_uscm
 	display_name = "USCM shoulder patch"
 	path = /obj/item/clothing/accessory/patch
@@ -974,20 +846,6 @@ GLOBAL_LIST_EMPTY(gear_datums_by_name)
 	display_name = "Falling Falcons shoulder patch"
 	path = /obj/item/clothing/accessory/patch/falcon
 
-/datum/gear/misc/family_photo
-	display_name = "Family photo"
-	path = /obj/item/prop/helmetgarb/family_photo
-
-/datum/gear/misc/compass
-	display_name = "Compass"
-	path = /obj/item/prop/helmetgarb/compass
-	cost = 1
-
-/datum/gear/misc/bug_spray
-	display_name = "Bug spray"
-	path = /obj/item/prop/helmetgarb/bug_spray
-
-/datum/gear/misc/straight_razor
-	display_name = "Cut-throat razor"
-	path = /obj/item/weapon/straight_razor
-	cost = 3
+/datum/gear/misc/patch_uscm/falcon
+	display_name = "Mudskippers shoulder patch"
+	path = /obj/item/clothing/accessory/patch/mudskippers

@@ -138,6 +138,7 @@
 	opacity = 0
 	assembly_type = /obj/structure/airlock_assembly/airlock_assembly_research
 	glass = 1
+	heat_proof = 1
 	req_one_access = list(ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_COMMAND, ACCESS_WY_COLONIAL)
 
 /obj/structure/machinery/door/airlock/glass_mining/colony
@@ -883,6 +884,10 @@
 	icon = 'icons/obj/structures/doors/dropship2_side.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	id = "sh_dropship2"
 
+/obj/structure/machinery/door/airlock/dropship_hatch/waco
+	icon = 'icons/obj/structures/doors/dropship1_side.dmi'
+	id = "sh_dropship3"
+
 /obj/structure/machinery/door/airlock/dropship_hatch/monorail
 	icon = 'icons/obj/structures/doors/pod_doors.dmi' //TEMPLATE NEED TO REPLACE LATER
 	name = "monorail door"
@@ -901,8 +906,8 @@
 /obj/structure/machinery/door/airlock/hatch/cockpit/two
 	icon = 'icons/obj/structures/doors/dropship2_pilot.dmi'
 
-/obj/structure/machinery/door/airlock/hatch/cockpit/three
-	icon = 'icons/obj/structures/doors/dropship3_pilot.dmi'
+/obj/structure/machinery/door/airlock/hatch/cockpit/waco
+	icon = 'icons/obj/structures/doors/dropship1_pilot.dmi'
 
 //PRISON AIRLOCKS
 /obj/structure/machinery/door/airlock/prison

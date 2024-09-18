@@ -29,8 +29,6 @@
 	var/automated_lz_id
 	var/automated_delay
 	var/automated_timer
-	var/datum/cas_signal/paradrop_signal
-
 
 /obj/docking_port/mobile/marine_dropship/Initialize(mapload)
 	. = ..()
@@ -44,31 +42,15 @@
 					door_control.add_door(air, "port")
 				if("aft_door")
 					door_control.add_door(air, "aft")
-			var/obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/hatch = air
-			if(istype(hatch))
-				hatch.linked_dropship = src
-
-	RegisterSignal(src, COMSIG_DROPSHIP_ADD_EQUIPMENT, PROC_REF(add_equipment))
-	RegisterSignal(src, COMSIG_DROPSHIP_REMOVE_EQUIPMENT, PROC_REF(remove_equipment))
 
 /obj/docking_port/mobile/marine_dropship/Destroy(force)
 	. = ..()
 	qdel(door_control)
-	UnregisterSignal(src, COMSIG_DROPSHIP_ADD_EQUIPMENT)
-	UnregisterSignal(src, COMSIG_DROPSHIP_REMOVE_EQUIPMENT)
 
 /obj/docking_port/mobile/marine_dropship/proc/send_for_flyby()
 	in_flyby = TRUE
 	var/obj/docking_port/stationary/dockedAt = get_docked()
 	SSshuttle.moveShuttle(src.id, dockedAt.id, TRUE)
-
-/obj/docking_port/mobile/marine_dropship/proc/add_equipment(obj/docking_port/mobile/marine_dropship/dropship, obj/structure/dropship_equipment/equipment)
-	SIGNAL_HANDLER
-	equipments += equipment
-
-/obj/docking_port/mobile/marine_dropship/proc/remove_equipment(obj/docking_port/mobile/marine_dropship/dropship, obj/structure/dropship_equipment/equipment)
-	SIGNAL_HANDLER
-	equipments -= equipment
 
 /obj/docking_port/mobile/marine_dropship/proc/get_door_data()
 	return door_control.get_data()
@@ -85,12 +67,10 @@
 					door_control.add_door(air, "port")
 				if("aft_door")
 					door_control.add_door(air, "aft")
-	RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_dir_change))
 
 /obj/docking_port/mobile/marine_dropship/Destroy(force)
 	. = ..()
 	qdel(door_control)
-	UnregisterSignal(src, COMSIG_ATOM_DIR_CHANGE)
 
 /obj/docking_port/mobile/marine_dropship/proc/control_doors(action, direction, force, asynchronous = TRUE)
 	// its been locked down by the queen
@@ -123,36 +103,22 @@
 			shipwide_ai_announcement(input, name, 'sound/AI/unidentified_lifesigns.ogg', ares_logging = ARES_LOG_SECURITY)
 			set_security_level(SEC_LEVEL_RED)
 			return
+/obj/docking_port/mobile/marine_dropship/waco
+	name = "Waco"
+	id = DROPSHIP_WACO
+	width = 9
+	height = 18
 
-/obj/docking_port/mobile/marine_dropship/proc/on_dir_change(datum/source, old_dir, new_dir)
-	SIGNAL_HANDLER
-	for(var/place in shuttle_areas)
-		for(var/obj/structure/machinery/door/air in place)
-			air.handle_multidoor(old_dir, new_dir)
+	dwidth = 4
+	dheight = 8
 
 /obj/docking_port/mobile/marine_dropship/alamo
 	name = "Alamo"
 	id = DROPSHIP_ALAMO
-	preferred_direction = SOUTH // If you are changing this, please update the dir of the path below as well
-
-/obj/docking_port/mobile/marine_dropship/alamo/get_transit_path_type()
-	return /turf/open/space/transit/dropship/alamo
 
 /obj/docking_port/mobile/marine_dropship/normandy
 	name = "Normandy"
 	id = DROPSHIP_NORMANDY
-	preferred_direction = SOUTH // If you are changing this, please update the dir of the path below as well
-
-/obj/docking_port/mobile/marine_dropship/normandy/get_transit_path_type()
-	return /turf/open/space/transit/dropship/normandy
-
-/obj/docking_port/mobile/marine_dropship/saipan
-	name = "Saipan"
-	id = DROPSHIP_SAIPAN
-	preferred_direction = SOUTH // If you are changing this, please update the dir of the path below as well
-
-/obj/docking_port/mobile/marine_dropship/saipan/get_transit_path_type()
-	return /turf/open/space/transit/dropship/saipan
 
 /obj/docking_port/mobile/marine_dropship/check()
 	. = ..()
@@ -276,8 +242,8 @@
 /obj/docking_port/stationary/marine_dropship/on_departure(obj/docking_port/mobile/departing_shuttle)
 	. = ..()
 	turn_off_landing_lights()
-	var/obj/docking_port/mobile/marine_dropship/dropship = departing_shuttle
-	for(var/obj/structure/dropship_equipment/eq as anything in dropship.equipments)
+	var/obj/docking_port/mobile/marine_dropship/shuttle = departing_shuttle
+	for(var/obj/structure/dropship_equipment/eq as anything in shuttle.equipments)
 		eq.on_launch()
 
 /obj/docking_port/stationary/marine_dropship/lz1
@@ -288,6 +254,11 @@
 /obj/docking_port/stationary/marine_dropship/lz2
 	name = "LZ2 Landing Zone"
 	id = DROPSHIP_LZ2
+	auto_open = TRUE
+
+/obj/docking_port/stationary/marine_dropship/lz3
+	name = "LZ3 Landing Zone"
+	id = DROPSHIP_LZ3
 	auto_open = TRUE
 
 /obj/docking_port/stationary/marine_dropship/almayer_hangar_1
@@ -302,6 +273,12 @@
 	auto_open = TRUE
 	roundstart_template = /datum/map_template/shuttle/normandy
 
+/obj/docking_port/stationary/marine_dropship/almayer_hanger_3
+	name = "Hangar Bay 3"
+	id = DROPSHIP_WACO
+	auto_open = TRUE
+	roundstart_template = /datum/map_template/shuttle/waco
+
 /obj/docking_port/stationary/marine_dropship/crash_site
 	auto_open = TRUE
 
@@ -313,7 +290,7 @@
 
 /obj/docking_port/stationary/marine_dropship/crash_site/on_arrival(obj/docking_port/mobile/arriving_shuttle)
 	. = ..()
-	arriving_shuttle.set_mode(SHUTTLE_CRASHED)
+	arriving_shuttle.mode = SHUTTLE_CRASHED
 	for(var/mob/living/carbon/affected_mob in (GLOB.alive_human_list + GLOB.living_xeno_list)) //knock down mobs
 		if(affected_mob.z != z)
 			continue
@@ -326,8 +303,10 @@
 			affected_mob.apply_effect(3, WEAKEN)
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_GROUNDSIDE_FORSAKEN_HANDLING)
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HIJACK_LANDED)
 
+/datum/map_template/shuttle/waco
+	name = "Waco"
+	shuttle_id = DROPSHIP_WACO
 /datum/map_template/shuttle/alamo
 	name = "Alamo"
 	shuttle_id = DROPSHIP_ALAMO
@@ -335,7 +314,3 @@
 /datum/map_template/shuttle/normandy
 	name = "Normandy"
 	shuttle_id = DROPSHIP_NORMANDY
-
-/datum/map_template/shuttle/saipan
-	name = "Saipan"
-	shuttle_id = DROPSHIP_SAIPAN

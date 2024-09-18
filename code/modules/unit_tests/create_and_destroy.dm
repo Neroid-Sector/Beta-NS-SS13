@@ -19,8 +19,6 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 		/obj/item/explosive/grenade/flashbang/cluster_piece,
 		/obj/effect/fake_attacker,
 		/atom/movable/lighting_mask, //leave it alone
-		//This is meant to fail extremely loud every single time it occurs in any environment in any context, and it falsely alarms when this unit test iterates it. Let's not spawn it in.
-		/obj/merge_conflict_marker,
 	)
 	//This turf existing is an error in and of itself
 	ignore += typesof(/turf/baseturf_skipover)
@@ -31,6 +29,7 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 	// fuck interiors
 	ignore += typesof(/obj/vehicle)
 	ignore += typesof(/obj/effect/vehicle_spawner)
+	ignore += typesof(/obj/structure/closet/fancy)
 	// Always ought to have an associated escape menu. Any references it could possibly hold would need one regardless.
 	ignore += subtypesof(/atom/movable/screen/escape_menu)
 

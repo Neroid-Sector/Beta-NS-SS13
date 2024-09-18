@@ -31,7 +31,11 @@
 		to_chat(user, SPAN_WARNING("\The [src] is out of charge."))
 	add_fingerprint(user)
 
-/obj/item/weapon/stunprod/attack(mob/living/M, mob/user)
+/obj/item/weapon/stunprod/attack(mob/M, mob/user)
+	if(isrobot(M))
+		..()
+		return
+
 	if(user.a_intent == INTENT_HARM)
 		return
 	else if(!status)
@@ -39,10 +43,9 @@
 		return
 
 	if(status)
-		M.KnockDown(6)
-		M.Stun(6)
+		M.apply_effect(6, WEAKEN)
 		charges -= 2
-		M.visible_message(SPAN_DANGER("[M] has been prodded with [src] by [user]!"))
+		M.visible_message(SPAN_DANGER("[M] has been prodded with the [src] by [user]!"))
 
 		user.attack_log += "\[[time_stamp()]\]<font color='red'> Stunned [key_name(M)] with [src.name]</font>"
 		M.attack_log += "\[[time_stamp()]\]<font color='orange'> Stunned by [key_name(user)] with [src.name]</font>"
@@ -57,7 +60,6 @@
 
 
 /obj/item/weapon/stunprod/emp_act(severity)
-	. = ..()
 	switch(severity)
 		if(1)
 			charges = 0

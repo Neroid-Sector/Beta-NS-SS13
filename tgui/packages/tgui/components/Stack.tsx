@@ -1,4 +1,3 @@
-/* eslint-disable func-style */
 /**
  * @file
  * @copyright 2021 Aleksej Komarov
@@ -6,62 +5,39 @@
  */
 
 import { classes } from 'common/react';
-import { RefObject } from 'react';
+import { RefObject } from 'inferno';
+import { computeFlexClassName, computeFlexItemClassName, computeFlexItemProps, computeFlexProps, FlexItemProps, FlexProps } from './Flex';
 
-import {
-  computeFlexClassName,
-  computeFlexItemClassName,
-  computeFlexItemProps,
-  computeFlexProps,
-  FlexItemProps,
-  FlexProps,
-} from './Flex';
+type StackProps = FlexProps & {
+  vertical?: boolean;
+  fill?: boolean;
+};
 
-type Props = Partial<{
-  /** Fills available space. */
-  fill: boolean;
-  /** Reverses the stack. */
-  reverse: boolean;
-  /** Flex column */
-  vertical: boolean;
-  /** Adds zebra striping to the stack. */
-  zebra: boolean;
-}> &
-  FlexProps;
-
-export function Stack(props: Props) {
-  const { className, vertical, fill, reverse, zebra, ...rest } = props;
-
-  const directionPrefix = vertical ? 'column' : 'row';
-  const directionSuffix = reverse ? '-reverse' : '';
-
+export const Stack = (props: StackProps) => {
+  const { className, vertical, fill, ...rest } = props;
   return (
     <div
       className={classes([
         'Stack',
         fill && 'Stack--fill',
         vertical ? 'Stack--vertical' : 'Stack--horizontal',
-        zebra && 'Stack--zebra',
-        reverse && `Stack--reverse${vertical ? '--vertical' : ''}`,
         className,
         computeFlexClassName(props),
       ])}
       {...computeFlexProps({
-        direction: `${directionPrefix}${directionSuffix}`,
+        direction: vertical ? 'column' : 'row',
         ...rest,
       })}
     />
   );
-}
+};
 
-type StackItemProps = FlexItemProps &
-  Partial<{
-    innerRef: RefObject<HTMLDivElement>;
-  }>;
+type StackItemProps = FlexProps & {
+  innerRef?: RefObject<HTMLDivElement>;
+};
 
-function StackItem(props: StackItemProps) {
+const StackItem = (props: StackItemProps) => {
   const { className, innerRef, ...rest } = props;
-
   return (
     <div
       className={classes([
@@ -73,18 +49,16 @@ function StackItem(props: StackItemProps) {
       {...computeFlexItemProps(rest)}
     />
   );
-}
+};
 
 Stack.Item = StackItem;
 
-type StackDividerProps = FlexItemProps &
-  Partial<{
-    hidden: boolean;
-  }>;
+type StackDividerProps = FlexItemProps & {
+  hidden?: boolean;
+};
 
-function StackDivider(props: StackDividerProps) {
+const StackDivider = (props: StackDividerProps) => {
   const { className, hidden, ...rest } = props;
-
   return (
     <div
       className={classes([
@@ -97,6 +71,6 @@ function StackDivider(props: StackDividerProps) {
       {...computeFlexItemProps(rest)}
     />
   );
-}
+};
 
 Stack.Divider = StackDivider;

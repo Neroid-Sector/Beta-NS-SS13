@@ -141,18 +141,15 @@
 /obj/vehicle/multitile/proc/can_move(direction)
 	var/can_move = TRUE
 
-	var/bound_x_tiles = bound_x / world.icon_size
-	var/bound_y_tiles = bound_y / world.icon_size
-	var/turf/min_turf = locate(x + bound_x_tiles, y + bound_y_tiles, z)
-
-	var/bound_width_tiles = bound_width / world.icon_size
-	var/bound_height_tiles = bound_height / world.icon_size
-	var/list/old_turfs = CORNER_BLOCK(min_turf, bound_width_tiles, bound_height_tiles)
+	var/turf/min_turf = locate(x + bound_x / world.icon_size, y + bound_y / world.icon_size, z)
+	var/turf/max_turf = locate(min_turf.x + (bound_width / world.icon_size) - 1, min_turf.y + (bound_height / world.icon_size) - 1, z)
+	var/list/old_turfs = block(min_turf, max_turf)
 
 	var/turf/new_loc = get_step(src, direction)
-	min_turf = locate(new_loc.x + bound_x_tiles, new_loc.y + bound_y_tiles, z)
+	min_turf = locate(new_loc.x + bound_x / world.icon_size, new_loc.y + bound_y / world.icon_size, z)
+	max_turf = locate(min_turf.x + (bound_width / world.icon_size) - 1, min_turf.y + (bound_height / world.icon_size) - 1, z)
 
-	for(var/turf/T as anything in CORNER_BLOCK(min_turf, bound_width_tiles, bound_height_tiles))
+	for(var/turf/T in block(min_turf, max_turf))
 		// only check the turfs we're moving to
 		if(T in old_turfs)
 			continue
@@ -162,7 +159,7 @@
 
 	// Crashed with something that stopped us
 	if(!can_move)
-		move_momentum = floor(move_momentum/2)
+		move_momentum = Floor(move_momentum/2)
 		update_next_move()
 		interior_crash_effect()
 
@@ -257,7 +254,7 @@
 	if(abs(move_momentum) <= 1)
 		return
 
-	var/fling_distance = ceil(move_momentum/move_max_momentum) * 2
+	var/fling_distance = Ceiling(move_momentum/move_max_momentum) * 2
 	var/turf/target = interior.get_middle_turf()
 
 	for (var/x in 0 to fling_distance-1)
@@ -267,7 +264,7 @@
 			break
 
 	var/list/bounds = interior.get_bound_turfs()
-	for(var/turf/T as anything in block(bounds[1], bounds[2]))
+	for(var/turf/T in block(bounds[1], bounds[2]))
 		for(var/atom/movable/A in T)
 			if(A.anchored)
 				continue
@@ -275,7 +272,7 @@
 			if(isliving(A))
 				var/mob/living/M = A
 
-				shake_camera(M, 2, ceil(move_momentum/move_max_momentum) * 1)
+				shake_camera(M, 2, Ceiling(move_momentum/move_max_momentum) * 1)
 				if(!M.buckled)
 					M.apply_effect(1, STUN)
 					M.apply_effect(2, WEAKEN)
@@ -284,7 +281,7 @@
 			// IT'S LIKE I'M WATCHIN' YA FLY THROUGH A WINDSHIELD!
 			INVOKE_ASYNC(A, TYPE_PROC_REF(/atom/movable, throw_atom), target, fling_distance, SPEED_VERY_FAST, src, TRUE)
 
-/obj/vehicle/multitile/proc/at_munition_interior_explosion_effect(explosion_strength = 75, explosion_falloff = 50, shrapnel = TRUE, shrapnel_count = 48, datum/cause_data/cause_data)
+/obj/vehicle/multitile/proc/at_munition_interior_explosion_effect(explosion_strength = 300, explosion_falloff = 150, shrapnel = TRUE, shrapnel_count = 48, datum/cause_data/cause_data)
 	if(!interior)
 		return
 
@@ -298,3 +295,14 @@
 		return
 	else
 		cell_explosion(target, explosion_strength, explosion_falloff, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, cause_data)
+
+
+/obj/vehicle/multitile/proc/munition_interior_bullet_effect(shrapnel = TRUE, shrapnel_count = 50, datum/cause_data/cause_data)
+	if(!interior)
+		return
+
+	var/turf/centre = interior.get_middle_turf()
+
+	var/turf/target = get_random_turf_in_range(centre, 2, 0)
+
+	create_shrapnel(target, shrapnel_count, , ,/datum/ammo/bullet/shrapnel, cause_data)

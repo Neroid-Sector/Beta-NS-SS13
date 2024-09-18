@@ -56,13 +56,13 @@
 	..()
 	if(!gripped)
 		user.visible_message(SPAN_NOTICE("[user] grips [src] tightly."), SPAN_NOTICE("You grip [src] tightly."))
-		flags_item |= NODROP|FORCEDROP_CONDITIONAL
+		flags_item |= NODROP
 		ADD_TRAIT(user, TRAIT_HOLDS_CANE, TRAIT_SOURCE_ITEM)
 		user.AddComponent(/datum/component/footstep, 6, 35, 4, 1, "cane_step")
 		gripped = TRUE
 	else
 		user.visible_message(SPAN_NOTICE("[user] loosens \his grip on [src]."), SPAN_NOTICE("You loosen your grip on [src]."))
-		flags_item &= ~(NODROP|FORCEDROP_CONDITIONAL)
+		flags_item &= ~NODROP
 		REMOVE_TRAIT(user, TRAIT_HOLDS_CANE, TRAIT_SOURCE_ITEM)
 		// Ideally, this would be something like a component added onto every mob that prioritizes certain sounds, such as stomping over canes.
 		var/component = user.GetComponent(/datum/component/footstep)
@@ -134,7 +134,7 @@
 					return
 				stored_item = object
 				mobber.drop_inv_item_to_loc(object, src)
-				to_chat(mobber, SPAN_NOTICE("You slide [object] into [src]."))
+				to_chat(mobber, SPAN_NOTICE("You slide the [object] into [src]."))
 				playsound(mobber, 'sound/weapons/gun_shotgun_shell_insert.ogg', 15, TRUE)
 				update_icon()
 				break
@@ -149,6 +149,8 @@
 /obj/item/weapon/pole/fancy_cane/this_is_a_knife/katana
 	stored_item = new /obj/item/weapon/sword/katana
 
+/obj/item/weapon/pole/fancy_cane/this_is_a_knife/katana_sharp
+	stored_item = new /obj/item/weapon/sword/katana/sharp
 // IN SHOTGUNS.DM!!
 
 /*obj/item/weapon/pole/fancy_cane/gun
@@ -164,7 +166,7 @@
 	desc = "A debug item for research."
 
 /obj/item/moneybag
-	icon = 'icons/obj/items/storage/bags.dmi'
+	icon = 'icons/obj/items/storage.dmi'
 	name = "Money bag"
 	icon_state = "moneybag"
 	force = 10
@@ -178,7 +180,7 @@
 /obj/item/evidencebag
 	name = "evidence bag"
 	desc = "An empty evidence bag."
-	icon = 'icons/obj/items/storage/bags.dmi'
+	icon = 'icons/obj/items/storage.dmi'
 	icon_state = "evidenceobj"
 	item_state = ""
 	w_class = SIZE_SMALL
@@ -224,7 +226,7 @@
 		to_chat(user, SPAN_NOTICE("[I] won't fit in [src]."))
 		return
 
-	if(length(contents))
+	if(contents.len)
 		to_chat(user, SPAN_NOTICE("[src] already has something inside it."))
 		return
 
@@ -257,7 +259,7 @@
 /obj/item/evidencebag/attack_self(mob/user)
 	..()
 
-	if(length(contents))
+	if(contents.len)
 		var/obj/item/I = contents[1]
 		user.visible_message("[user] takes [I] out of [src]", "You take [I] out of [src].",\
 		"You hear someone rustle around in a plastic bag, and remove something.")
@@ -292,12 +294,11 @@
 	new /obj/item/evidencebag(src)
 	new /obj/item/evidencebag(src)
 
-/obj/item/parachute
-	name = "parachute"
-	desc = "A surprisingly small yet bulky pack with just enough safety straps to make RnD pass health and safety. The label says the pack comes with two parachutes - main and reserve, but you doubt the pack can fit even one."
-	icon = 'icons/obj/items/clothing/backpacks.dmi'
-	icon_state = "parachute_pack"
-	item_state = "parachute_pack"
+/obj/item/rappel_harness
+	name = "rappel harness"
+	desc = "A simple, uncomfortable rappel harness with just enough safety straps to make RnD pass health and safety. It comes with an in-built descender, but has no pouches for ammunition."
+	icon = 'icons/obj/items/clothing/belts.dmi'
+	icon_state = "rappel_harness"
+	item_state = "rappel_harness"
 	w_class = SIZE_MASSIVE
-	flags_equip_slot = SLOT_BACK
-	flags_item = SMARTGUNNER_BACKPACK_OVERRIDE
+	flags_equip_slot = SLOT_WAIST

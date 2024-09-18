@@ -1,7 +1,7 @@
-name: Labeling and Verification
+name: Labeling
 on:
   pull_request_target:
-    types: [opened, reopened, synchronize, edited]
+    types: [opened]
 jobs:
   label:
     runs-on: ubuntu-latest
@@ -13,15 +13,7 @@ jobs:
         run: |
           unset SECRET_EXISTS
           if [ -n "$ENABLER_SECRET" ]; then SECRET_EXISTS=true ; fi
-          echo "ACTIONS_ENABLED=$SECRET_EXISTS" >> $GITHUB_OUTPUT
-
-      - name: Generate App Token
-        id: app-token-generation
-        uses: actions/create-github-app-token@v1
-        with:
-          app-id: ${{ secrets.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
-
+          echo "::set-output name=ACTIONS_ENABLED::$SECRET_EXISTS"
       - name: Get The Script
         if: steps.value_holder.outputs.ACTIONS_ENABLED
         run: |
@@ -37,11 +29,11 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install pygithub
           sudo apt-get install dos2unix
-      - name: Add and verify labels
+      - name: Add Labels
         if: steps.value_holder.outputs.ACTIONS_ENABLED
         run: |
           python add_labels.py
         env:
           REPO: ${{ github.repository }}
-          TOKEN: ${{ steps.app-token-generation.outputs.token }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.number }}

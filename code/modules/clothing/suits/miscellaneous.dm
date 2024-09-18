@@ -56,6 +56,10 @@
 	item_state = "pirate"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_ARMS
 
+/obj/item/clothing/suit/pirate/clf
+	name = "Improvised commissar coat"
+	desc = "The wearer of this coat demands respect, for he is above suspicion."
+
 
 /obj/item/clothing/suit/hgpirate
 	name = "pirate captain coat"
@@ -128,7 +132,7 @@
 		/obj/item/ammo_magazine,
 		/obj/item/ammo_casing,
 		/obj/item/weapon/baton,
-		/obj/item/restraint/handcuffs,
+		/obj/item/handcuffs,
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/tool/lighter,
 		/obj/item/device/taperecorder,
@@ -143,8 +147,8 @@
 	valid_accessory_slots = list(ACCESSORY_SLOT_MEDAL)
 
 /obj/item/clothing/suit/storage/apron/overalls
-	name = "blue coveralls"
-	desc = "A pair of denim overalls. With a large pocket in the front these overalls are popular with workers of all kinds."
+	name = "coveralls"
+	desc = "A set of denim overalls."
 	icon_state = "overalls"
 	item_state = "overalls"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_LEGS
@@ -153,7 +157,7 @@
 		/obj/item/ammo_magazine,
 		/obj/item/ammo_casing,
 		/obj/item/weapon/baton,
-		/obj/item/restraint/handcuffs,
+		/obj/item/handcuffs,
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/tool/lighter,
 		/obj/item/device/taperecorder,
@@ -166,18 +170,6 @@
 		/obj/item/tool/pen,
 	)
 	valid_accessory_slots = list(ACCESSORY_SLOT_MEDAL)
-
-/obj/item/clothing/suit/storage/apron/overalls/tan
-	name = "tan coveralls"
-	desc = "A pair of tan overalls. With a large pocket in the front these overalls are popular with workers of all kinds."
-	icon_state = "overalls_tan"
-	item_state = "overalls_tan"
-
-/obj/item/clothing/suit/storage/apron/overalls/red
-	name = "red coveralls"
-	desc = "A pair of reddish-brown overalls. With a large pocket in the front these overalls are popular with workers of all kinds."
-	icon_state = "overalls_red"
-	item_state = "overalls_red"
 
 /obj/item/clothing/suit/syndicatefake
 	name = "red space suit replica"
@@ -288,9 +280,10 @@
 	desc = "Designed to be worn over a jumpsuit rather than clipped on."
 	icon_state = "webbing"
 	item_state = "webbing"
+	storage_slots = 6
 	allowed = list(
 		/obj/item/weapon/baton,
-		/obj/item/restraint/handcuffs,
+		/obj/item/handcuffs,
 		/obj/item/device/binoculars,
 		/obj/item/attachable/bayonet,
 
@@ -309,7 +302,15 @@
 		/obj/item/storage/large_holster/machete,
 		/obj/item/storage/large_holster/katana,
 		/obj/item/device/motiondetector,
+		/obj/item/device/trench_whistle,
 	)
+
+/obj/item/clothing/suit/storage/webbing/black
+	name = "black external webbing"
+	desc = "Designed to be worn over a jumpsuit rather than clipped on, this version has expanded storage and is made from robust black synthcotton. Often used by intelligence officers for document storage."
+	icon_state = "webbing_black"
+	item_state = "webbing_black"
+	storage_slots = 8
 
 /obj/item/clothing/suit/storage/utility_vest
 	name = "utility vest"
@@ -318,7 +319,7 @@
 	item_state = "synth_utility_vest"
 	allowed = list(
 		/obj/item/weapon/baton,
-		/obj/item/restraint/handcuffs,
+		/obj/item/handcuffs,
 		/obj/item/device/binoculars,
 		/obj/item/attachable/bayonet,
 
@@ -344,7 +345,7 @@
 	set category = "Object"
 	set src in usr
 
-	if(usr.is_mob_incapacitated())
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
 		return 0
 
 	if(src.icon_state == "suitjacket_blue_open")
@@ -455,7 +456,7 @@
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/tool/lighter,
 		/obj/item/weapon/baton,
-		/obj/item/restraint/handcuffs,
+		/obj/item/handcuffs,
 		/obj/item/device/binoculars,
 		/obj/item/attachable/bayonet,
 
@@ -549,3 +550,21 @@
 	armor_internaldamage = CLOTHING_ARMOR_LOW
 	valid_accessory_slots = list(ACCESSORY_SLOT_ARMBAND, ACCESSORY_SLOT_DECOR, ACCESSORY_SLOT_MEDAL)
 	restricted_accessory_slots = list(ACCESSORY_SLOT_ARMBAND)
+
+/obj/item/clothing/suit/storage/bomber/armored
+	name = "\improper Armored Bomber Jacket"
+	desc = "An extremely discreet and fashionable piece of armor made by stitching expensive ballistic liners into a bomber jacket. Often worn by flag officers on deployment for their warmth and protection while still staying nimble."
+	icon_state = "bomber_2"
+	item_state_slots = list(WEAR_JACKET = "bomber_2")
+	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_ARMS
+	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_ARMS
+	min_cold_protection_temperature = ICE_COLONY_TEMPERATURE
+	armor_melee = CLOTHING_ARMOR_MEDIUM
+	armor_bullet = CLOTHING_ARMOR_HIGHPLUS
+	armor_laser = CLOTHING_ARMOR_LOW
+	armor_energy = CLOTHING_ARMOR_LOW
+	armor_bomb = CLOTHING_ARMOR_VERYLOW
+	armor_internaldamage = CLOTHING_ARMOR_MEDIUMLOW
+	storage_slots = 4
+	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
+	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE

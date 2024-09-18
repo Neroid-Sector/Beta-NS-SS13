@@ -73,26 +73,20 @@
 
 /obj/structure/machinery/prop/almayer/CICmap
 	name = "map table"
-	desc = "A table that displays a map of the current operation location."
+	desc = "A table that displays a map of the current target location"
 	icon = 'icons/obj/structures/machinery/computer.dmi'
 	icon_state = "maptable"
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	density = TRUE
 	idle_power_usage = 2
-	var/datum/tacmap/map
 	///flags that we want to be shown when you interact with this table
+	var/datum/tacmap/map
 	var/minimap_type = MINIMAP_FLAG_USCM
-	///The faction that is intended to use this structure (determines type of tacmap used)
-	var/faction = FACTION_MARINE
 
 /obj/structure/machinery/prop/almayer/CICmap/Initialize()
 	. = ..()
-
-	if (faction == FACTION_MARINE)
-		map = new /datum/tacmap/drawing(src, minimap_type)
-	else
-		map = new(src, minimap_type) // Non-drawing version
+	map = new(src, minimap_type)
 
 /obj/structure/machinery/prop/almayer/CICmap/Destroy()
 	QDEL_NULL(map)
@@ -103,24 +97,14 @@
 
 	map.tgui_interact(user)
 
-/obj/structure/machinery/prop/almayer/CICmap/computer
-	name = "map terminal"
-	desc = "A terminal that displays a map of the current operation location."
-	icon = 'icons/obj/vehicles/interiors/arc.dmi'
-	icon_state = "cicmap_computer"
-	density = FALSE
-
 /obj/structure/machinery/prop/almayer/CICmap/upp
 	minimap_type = MINIMAP_FLAG_UPP
-	faction = FACTION_UPP
 
 /obj/structure/machinery/prop/almayer/CICmap/clf
 	minimap_type = MINIMAP_FLAG_CLF
-	faction = FACTION_CLF
 
 /obj/structure/machinery/prop/almayer/CICmap/pmc
 	minimap_type = MINIMAP_FLAG_PMC
-	faction = FACTION_PMC
 
 //Nonpower using props
 
@@ -178,6 +162,47 @@
 	icon = 'icons/obj/structures/props/almayer_props.dmi'
 	icon_state = "sensor_comp3"
 
+/obj/structure/prop/almayer/computers/hackable_comp
+    name = "Secure computer"
+    desc = "The IBM series 10 computer retrofitted to work as a sensor computer or some kind of sentry control network. While somewhat dated it still serves its purpose."
+    icon = 'icons/obj/structures/machinery/computer.dmi'
+    icon_state = "sensor_comp1"
+    var/countdown_max = 1200 // Maxiumum value in ticks.
+    var/operation_complete = FALSE // If the multitooling was complete
+    var/countdown_step = 150 // How many seconds between percentage annoucements
+    var/terminal_in_use = FALSE
+
+/obj/structure/prop/almayer/computers/hackable_comp/attackby(obj/item/W, mob/user)
+    terminal_in_use = TRUE
+    playsound(loc, 'sound/machines/lockdownalarm.ogg', 25)
+    if((HAS_TRAIT(W, TRAIT_TOOL_MULTITOOL)) && operation_complete == FALSE)
+        if(do_after(user, 80, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+            for(var/obj/structure/prop/almayer/computers/hackable_comp/H in world)
+                if(H.terminal_in_use == TRUE)
+                    INVOKE_ASYNC(H, TYPE_PROC_REF(/obj/structure/prop/almayer/computers/hackable_comp, special_countdown))
+                    return
+    return
+
+/obj/structure/prop/almayer/computers/hackable_comp/proc/special_countdown()
+    var/temp_countdown = 0
+    terminal_in_use = FALSE
+    if(temp_countdown == 0)
+        playsound(loc, 'sound/machines/computer_startup.mp3', 25)
+        talkas("Initiating Download please wait...")
+    if (countdown_max == 0 && countdown_step == 0)
+        to_chat(world, SPAN_WARNING("Admin dummy, tried to divide by zero. Point and laugh."))
+        return
+    while(temp_countdown < countdown_max)
+        sleep(countdown_step)
+        temp_countdown += countdown_step
+        playsound(loc, 'sound/machines/dialup.mp3', 25)
+        talkas("Download in progress. [round(((temp_countdown / countdown_max) * 100),0.5)] percent complete.")
+    if(temp_countdown >= countdown_max)
+        playsound(loc, 'sound/machines/fax.ogg', 25)
+        talkas("Download complete.")
+        operation_complete = TRUE
+        return
+
 /obj/structure/prop/almayer/missile_tube
 	name = "\improper Mk 33 ASAT launcher system"
 	desc = "Cold launch tubes that can fire a few varieties of missiles out of them, the most common being the ASAT-21 Rapier IV missile used against satellites and other spacecraft and the BGM-227 Sledgehammer missile which is used for ground attack."
@@ -212,7 +237,7 @@
 		var/obj/item/dogtag/D = I
 		if(D.fallen_names)
 			to_chat(user, SPAN_NOTICE("You add [D] to [src]."))
-			GLOB.fallen_list += D.fallen_names
+			fallen_list += D.fallen_names
 			qdel(D)
 		return TRUE
 	else
@@ -220,13 +245,13 @@
 
 /obj/structure/prop/almayer/ship_memorial/get_examine_text(mob/user)
 	. = ..()
-	if((isobserver(user) || ishuman(user)) && GLOB.fallen_list)
+	if((isobserver(user) || ishuman(user)) && fallen_list)
 		var/faltext = ""
-		for(var/i = 1 to length(GLOB.fallen_list))
-			if(i != length(GLOB.fallen_list))
-				faltext += "[GLOB.fallen_list[i]], "
+		for(var/i = 1 to fallen_list.len)
+			if(i != fallen_list.len)
+				faltext += "[fallen_list[i]], "
 			else
-				faltext += GLOB.fallen_list[i]
+				faltext += fallen_list[i]
 		. += SPAN_NOTICE("To our fallen soldiers: <b>[faltext]</b>.")
 
 /obj/structure/prop/almayer/particle_cannon
@@ -291,9 +316,6 @@
 
 /obj/structure/prop/almayer/cannon_cable_connector/bullet_act()
 	return
-
-
-
 
 
 

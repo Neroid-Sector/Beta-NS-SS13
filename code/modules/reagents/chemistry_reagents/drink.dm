@@ -163,10 +163,8 @@
 
 /datum/reagent/drink/milk/on_mob_life(mob/living/M)
 	. = ..()
-	if(!.)
-		return
-	if(M.getBruteLoss() && prob(20))
-		M.heal_limb_damage(1,0)
+	if(!.) return
+	if(M.getBruteLoss() && prob(20)) M.heal_limb_damage(1,0)
 	holder.remove_reagent("capsaicin", 10*REAGENTS_METABOLISM)
 	holder.remove_reagent("hotsauce", 10*REAGENTS_METABOLISM)
 
@@ -202,7 +200,7 @@
 		M = holder.my_atom
 	if(prob(1))
 		M.emote("shiver")
-	M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, T0C)
+	M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 0)
 	M.recalculate_move_delay = TRUE
 	holder.remove_reagent("capsaicin", 5)
 	holder.remove_reagent("hotsauce", 5)
@@ -222,7 +220,7 @@
 	name = "Cherry Souto"
 	id = "souto_cherry"
 	description = "A cherry flavored soda that's canned in Havanna"
-	color = COLOR_MAROON
+	color = "#800000"
 
 /datum/reagent/drink/souto/lime
 	name = "Lime Souto"
@@ -494,7 +492,7 @@
 	name = "Lemonade"
 	description = "Oh the nostalgia..."
 	id = "lemonade"
-	color = COLOR_YELLOW
+	color = "#FFFF00" // rgb: 255, 255, 0
 
 //*****************************************************************************************************/
 //***************************************Remove When Safe**********************************************/
@@ -557,7 +555,7 @@
 /datum/reagent/neurotoxin/on_mob_life(mob/living/carbon/M)
 	. = ..()
 	if(!.) return
-	M.KnockDown(5)
+	M.knocked_down = max(M.knocked_down, 3)
 	if(!data) data = 1
 	data++
 	M.dizziness +=6

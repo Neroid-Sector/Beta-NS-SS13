@@ -20,7 +20,7 @@ map bigredv2
 endmap
 
 map prison_station_fop
-	disabled
+	voteweight 0
 endmap
 
 map fiorina_sciannex
@@ -40,10 +40,10 @@ endmap
 map ice_colony_v2
 	minplayers 130
 	voteweight 0
-	disabled
 endmap
 
 map shivas_snowball
+	voteweight 0
 endmap
 
 map kutjevo
@@ -54,6 +54,7 @@ map sorokyne_strata
 endmap
 
 map lv522_chances_claim
+	minplayers 130
 endmap
 
 map new_varadero

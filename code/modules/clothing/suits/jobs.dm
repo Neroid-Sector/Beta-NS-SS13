@@ -81,6 +81,19 @@
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	time_to_equip = 2 SECONDS
 
+//SOM
+/obj/item/clothing/suit/cultist_hoodie/collie
+	name = "Modified Enviromental Poncho."
+	desc = "A battered looking weather proof garment made of treated synthetic fabrics. Some colonists say it makes them look like sort sort of cult."
+	icon_state = "chaplain_hoodie"
+	item_state = "chaplain_hoodie"
+
+/obj/item/clothing/suit/cultist_hoodie/som
+	name = "Modified Enviromental Poncho."
+	desc = "A battered looking weather proof garment made of treated synthetic fabrics, and modified by the owner with pleather and plants to blend in better with the enviroment."
+	icon_state = "som_hoodie"
+	item_state = "som_hoodie"
+
 //Chaplain
 /obj/item/clothing/suit/nun
 	name = "nun robe"
@@ -181,11 +194,11 @@
 		/obj/item/ammo_magazine,
 		/obj/item/ammo_casing,
 		/obj/item/weapon/baton,
-		/obj/item/restraint/handcuffs,
+		/obj/item/handcuffs,
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/tool/lighter,
 		/obj/item/weapon/baton,
-		/obj/item/restraint/handcuffs,
+		/obj/item/handcuffs,
 		/obj/item/device/binoculars,
 		/obj/item/attachable/bayonet,
 		/obj/item/storage/belt/gun/m4a3,
@@ -245,7 +258,7 @@
 		/obj/item/ammo_magazine,
 		/obj/item/ammo_casing,
 		/obj/item/weapon/baton,
-		/obj/item/restraint/handcuffs,
+		/obj/item/handcuffs,
 		/obj/item/device/binoculars,
 		/obj/item/attachable/bayonet,
 		/obj/item/storage/belt/gun/m4a3,
@@ -310,7 +323,7 @@
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/tool/lighter,
 		/obj/item/weapon/baton,
-		/obj/item/restraint/handcuffs,
+		/obj/item/handcuffs,
 		/obj/item/device/binoculars,
 		/obj/item/attachable/bayonet,
 		/obj/item/storage/belt/gun/m4a3,
@@ -385,7 +398,7 @@
 	set category = "Object"
 	set src in usr
 
-	if(usr.is_mob_incapacitated())
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
 		return 0
 
 	switch(icon_state)
@@ -409,7 +422,7 @@
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/tool/lighter,
 		/obj/item/weapon/baton,
-		/obj/item/restraint/handcuffs,
+		/obj/item/handcuffs,
 		/obj/item/device/binoculars,
 		/obj/item/attachable/bayonet,
 

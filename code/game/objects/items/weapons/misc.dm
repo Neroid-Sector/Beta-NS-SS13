@@ -3,13 +3,26 @@
 	desc = "A tool used by great men to placate the frothing masses."
 	icon_state = "chain"
 	item_state = "chain"
-	flags_atom = FPRINT|QUICK_DRAWABLE|CONDUCT
+	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_WAIST
 	force = MELEE_FORCE_WEAK
 	throwforce = MELEE_FORCE_WEAK
 	w_class = SIZE_MEDIUM
 
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
+
+/obj/item/weapon/bikechain
+	name = "bike chain"
+	desc = "A nasty improvised weapon favored by gangsters."
+	icon_state = "chain"
+	item_state = "chain"
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_WAIST
+	force = MELEE_FORCE_STRONG
+	throwforce = MELEE_FORCE_WEAK
+	w_class = SIZE_MEDIUM
+
+	attack_verb = list("clobbered", "whipped", "lashed", "lacerated", "bruised", "brutalized")
 
 /obj/item/weapon/broken_bottle
 	name = "broken bottle"

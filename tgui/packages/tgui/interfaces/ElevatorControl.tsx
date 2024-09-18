@@ -21,10 +21,10 @@ interface ElevatorContext {
   is_call_button: 0 | 1;
 }
 
-const InfoBox = (props: {
-  readonly title?: string;
-  readonly text: string | number;
-}) => {
+const InfoBox = (
+  props: { title?: string; text: string | number },
+  contenxt
+) => {
   return (
     <Box className="InfoBox">
       {props.title && (
@@ -40,8 +40,8 @@ const InfoBox = (props: {
   );
 };
 
-const ElevatorPanel = (props) => {
-  const { data } = useBackend<ElevatorContext>();
+const ElevatorPanel = (props, context) => {
+  const { data } = useBackend<ElevatorContext>(context);
   const is_stationary =
     data.mode === 'idle' ||
     data.mode === 'igniting' ||
@@ -86,13 +86,13 @@ const ElevatorPanel = (props) => {
 };
 
 interface ElevatorButtonProps {
-  readonly id: string;
-  readonly name: string;
-  readonly onClick: () => void;
+  id: string;
+  name: string;
+  onClick: () => void;
 }
 
-const ElevatorButton = (props: ElevatorButtonProps) => {
-  const { data } = useBackend<ElevatorContext>();
+const ElevatorButton = (props: ElevatorButtonProps, context) => {
+  const { data } = useBackend<ElevatorContext>(context);
   return (
     <Flex align="center" className="ButtonContainer">
       <Flex.Item>
@@ -101,8 +101,7 @@ const ElevatorButton = (props: ElevatorButtonProps) => {
           color="yellow"
           className="pushButtonOuter"
           disabled={data.mode !== 'idle' || props.id === data.docked_at.id}
-          onClick={props.onClick}
-        >
+          onClick={props.onClick}>
           <span className="pushButton" />
         </Button>
       </Flex.Item>
@@ -113,8 +112,8 @@ const ElevatorButton = (props: ElevatorButtonProps) => {
   );
 };
 
-export const ElevatorControl = (props) => {
-  const { data, act } = useBackend<ElevatorContext>();
+export const ElevatorControl = (props, context) => {
+  const { data, act } = useBackend<ElevatorContext>(context);
   return (
     <Window width={600} height={170}>
       <Window.Content className="ElevatorPanel">
@@ -132,7 +131,7 @@ export const ElevatorControl = (props) => {
                     onClick={() => {
                       logger.info(x.id);
                       act('button-push');
-                      act('move', { target: x.id });
+                      act('move', { 'target': x.id });
                     }}
                   />
                 </Flex.Item>

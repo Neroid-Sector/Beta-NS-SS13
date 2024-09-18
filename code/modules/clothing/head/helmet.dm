@@ -110,7 +110,7 @@
 	flags_armor_protection = 0
 
 /obj/item/clothing/head/helmet/hop
-	name = "crew resource's hat"
+	name = "human resource's hat"
 	desc = "A stylish hat that both protects you from enraged former-crewmembers and gives you a false sense of authority."
 	icon_state = "hopcap"
 	flags_inventory = NO_FLAGS
@@ -217,8 +217,6 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	/obj/item/storage/fancy/cigarettes/arcturian_ace = "helmet_cig_aapack",
 	/obj/item/storage/fancy/cigarettes/lucky_strikes_4 = "hat_cig_ls_mre",
 	/obj/item/storage/fancy/cigar/matchbook = "helmet_matches_mre",
-	/obj/item/clothing/mask/cigarette/cigar = "helmet_cig_cig",
-	/obj/item/clothing/mask/electronic_cigarette = "helmet_cig_cig",
 
 	// CARDS
 	/obj/item/toy/deck = "helmet_card_deck",
@@ -234,6 +232,7 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	/obj/item/reagent_container/food/drinks/flask = "helmet_flask",
 	/obj/item/reagent_container/food/drinks/flask/marine = "helmet_flask",
 	/obj/item/reagent_container/food/snacks/eat_bar = "helmet_snack_eat",
+	/obj/item/reagent_container/food/snacks/packaged_burrito = "helmet_snack_burrito",
 	/obj/item/reagent_container/food/snacks/mushroompizzaslice = "pizza", // Fuck whoever put these under different paths for some REASON
 	/obj/item/reagent_container/food/snacks/vegetablepizzaslice = "pizza",
 	/obj/item/reagent_container/food/snacks/meatpizzaslice = "pizza",
@@ -248,12 +247,9 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	// EYEWEAR
 	/obj/item/clothing/glasses/mgoggles = HELMET_GARB_RELAY_ICON_STATE,
 	/obj/item/clothing/glasses/mgoggles/v2 = HELMET_GARB_RELAY_ICON_STATE,
-	/obj/item/clothing/glasses/mgoggles/v2/prescription = HELMET_GARB_RELAY_ICON_STATE,
 	/obj/item/clothing/glasses/mgoggles/prescription = HELMET_GARB_RELAY_ICON_STATE,
 	/obj/item/clothing/glasses/mgoggles/black = HELMET_GARB_RELAY_ICON_STATE,
-	/obj/item/clothing/glasses/mgoggles/black/prescription = HELMET_GARB_RELAY_ICON_STATE,
 	/obj/item/clothing/glasses/mgoggles/orange = HELMET_GARB_RELAY_ICON_STATE,
-	/obj/item/clothing/glasses/mgoggles/orange/prescription = HELMET_GARB_RELAY_ICON_STATE,
 	/obj/item/clothing/glasses/sunglasses = "sunglasses",
 	/obj/item/clothing/glasses/sunglasses/prescription = "sunglasses",
 	/obj/item/clothing/glasses/sunglasses/aviator = "aviator",
@@ -326,20 +322,12 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	/obj/item/toy/crayon/blue = "crayonblue",
 	/obj/item/toy/crayon/purple = "crayonpurple",
 	/obj/item/toy/crayon/rainbow = "crayonrainbow",
-	/obj/item/toy/crayon/pride/trans = "crayontrans",
-	/obj/item/toy/crayon/pride/gay = "crayongay",
-	/obj/item/toy/crayon/pride/lesbian = "crayonlesbian",
-	/obj/item/toy/crayon/pride/bi = "crayonbi",
-	/obj/item/toy/crayon/pride/pan = "crayonpan",
-	/obj/item/toy/crayon/pride/ace = "crayonace",
-	/obj/item/toy/crayon/pride/trans = "crayontrans",
-	/obj/item/toy/crayon/pride/enby = "crayonenby",
-	/obj/item/toy/crayon/pride/fluid = "crayonfluid",
 	/obj/item/paper = "paper",
 	/obj/item/device/flashlight/flare = "flare",
 	/obj/item/clothing/head/headset = "headset",
 	/obj/item/clothing/accessory/patch = "uscmpatch",
 	/obj/item/clothing/accessory/patch/falcon = "falconspatch",
+	/obj/item/clothing/accessory/patch/mudskippers = "mudskipperspatch",
 	/obj/item/ammo_magazine/handful = "bullet",
 	/obj/item/prop/helmetgarb/riot_shield = "helmet_riot_shield",
 	/obj/item/attachable/flashlight = HELMET_GARB_RELAY_ICON_STATE,
@@ -363,7 +351,7 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	armor_melee = CLOTHING_ARMOR_MEDIUM
 	armor_bullet = CLOTHING_ARMOR_MEDIUM
 	armor_laser = CLOTHING_ARMOR_MEDIUMLOW
-	armor_energy = CLOTHING_ARMOR_LOW
+	armor_energy = CLOTHING_ARMOR_NONE
 	armor_bomb = CLOTHING_ARMOR_LOW
 	armor_bio = CLOTHING_ARMOR_MEDIUM
 	armor_rad = CLOTHING_ARMOR_LOW
@@ -375,7 +363,7 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	var/obj/structure/machinery/camera/camera
 	var/helmet_overlays[]
 	flags_inventory = BLOCKSHARPOBJ
-	flags_inv_hide = NONE
+	flags_inv_hide = HIDEEARS
 	var/flags_marine_helmet = HELMET_SQUAD_OVERLAY|HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY
 	var/helmet_bash_cooldown = 0
 
@@ -388,8 +376,8 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	)
 
 	var/obj/item/storage/internal/headgear/pockets
-	var/storage_slots = 2 // Small items like injectors, bandages, etc
-	var/storage_slots_reserved_for_garb = 2 // Cosmetic items & now cigarettes and lighters for RP
+	var/storage_slots = 2 // keep in mind, one slot is reserved for garb items
+	var/storage_slots_reserved_for_garb = 1
 	var/storage_max_w_class = SIZE_TINY // can hold tiny items only, EXCEPT for glasses & metal flask.
 	var/storage_max_storage_space = 4
 
@@ -397,7 +385,7 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	var/helmet_overlay_icon = 'icons/mob/humans/onmob/head_1.dmi'
 
 	///Any visors built into the helmet
-	var/list/built_in_visors = list(new /obj/item/device/helmet_visor)
+	var/list/built_in_visors = list(new /obj/item/device/helmet_visor, new /obj/item/device/helmet_visor/night_vision/marine_raider)
 
 	///Any visors that have been added into the helmet
 	var/list/inserted_visors = list()
@@ -485,10 +473,10 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 /obj/item/clothing/head/helmet/marine/attackby(obj/item/attacking_item, mob/user)
 	if(istype(attacking_item, /obj/item/ammo_magazine) && world.time > helmet_bash_cooldown && user)
 		var/obj/item/ammo_magazine/M = attacking_item
-		var/ammo_level = "more than half full."
+		var/ammo_level = "somewhat"
 		playsound(user, 'sound/items/trayhit1.ogg', 15, FALSE)
-		if(M.current_rounds == (M.max_rounds/2))
-			ammo_level = "half full."
+		if(M.current_rounds > (M.max_rounds/2))
+			ammo_level = "more than half full."
 		if(M.current_rounds < (M.max_rounds/2))
 			ammo_level = "less than half full."
 		if(M.current_rounds < (M.max_rounds/6))
@@ -520,17 +508,7 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 			new_action.give_to(user)
 		return
 
-	if(HAS_TRAIT(attacking_item, TRAIT_TOOL_SCREWDRIVER))
-		// If there isn't anything to remove, return.
-		if(!length(inserted_visors))
-			// If the user is trying to remove a built-in visor, give them a more helpful failure message.
-			switch(length(built_in_visors))
-				if(1) // Messy plural handling
-					to_chat(user, SPAN_WARNING("The visor on [src] is built-in!"))
-				if(2 to INFINITY)
-					to_chat(user, SPAN_WARNING("The visors on [src] are built-in!"))
-			return
-
+	if(HAS_TRAIT(attacking_item, TRAIT_TOOL_SCREWDRIVER) && length(inserted_visors))
 		if(active_visor)
 			var/obj/item/device/helmet_visor/temp_visor_holder = active_visor
 			active_visor = null
@@ -566,7 +544,7 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	// the human sprite is the only thing that reliably renders things, so
 	// we have to add overlays to that.
 	helmet_overlays = list() // Rebuild our list every time
-	if(pockets && length(pockets.contents) && (flags_marine_helmet & HELMET_GARB_OVERLAY))
+	if(pockets && pockets.contents.len && (flags_marine_helmet & HELMET_GARB_OVERLAY))
 		var/list/above_band_layer = list()
 		var/list/below_band_layer = list()
 		var/has_helmet_band = FALSE
@@ -689,45 +667,27 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 		return FALSE
 
 	if(active_visor)
-		var/visor_to_deactivate = active_visor
-		var/skipped_hud = FALSE
 		var/iterator = 1
-		for(var/obj/item/device/helmet_visor/current_visor as anything in total_visors)
-			if(current_visor == active_visor || skipped_hud)
+		for(var/hud_type in total_visors)
+			if(hud_type == active_visor)
 				if(length(total_visors) > iterator)
-					var/obj/item/device/helmet_visor/next_visor = total_visors[iterator + 1]
-
-					if(!isnull(GLOB.huds[next_visor.hud_type]?.hudusers[user]))
-						iterator++
-						skipped_hud = TRUE
-						continue
-
-					if(!next_visor.can_toggle(user))
-						iterator++
-						skipped_hud = TRUE
-						continue
-
-					active_visor = next_visor
-					toggle_visor(user, visor_to_deactivate, silent = TRUE) // disables the old visor
+					active_visor = total_visors[(iterator + 1)]
+					toggle_visor(user, total_visors[iterator], TRUE)
 					toggle_visor(user)
 					return active_visor
 				else
 					active_visor = null
-					toggle_visor(user, visor_to_deactivate, FALSE)
+					toggle_visor(user, total_visors[iterator], FALSE)
 					return FALSE
 			iterator++
 
-	for(var/obj/item/device/helmet_visor/new_visor in total_visors)
-		if(!isnull(GLOB.huds[new_visor.hud_type]?.hudusers[user]))
-			continue
-
-		if(!new_visor.can_toggle(user))
-			continue
-
-		active_visor = new_visor
+	if(total_visors[1])
+		active_visor = total_visors[1]
 		toggle_visor(user)
 		return active_visor
 
+	active_visor = null
+	recalculate_visors(user)
 	to_chat(user, SPAN_WARNING("There are no visors to swap to currently."))
 	return FALSE
 
@@ -765,7 +725,7 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	desc = "A modified M10 marine helmet for ComTechs. Features a toggleable welding screen for eye protection."
 	icon_state = "tech_helmet"
 	specialty = "M10 technician"
-	built_in_visors = list(new /obj/item/device/helmet_visor, new /obj/item/device/helmet_visor/welding_visor)
+	built_in_visors = list(new /obj/item/device/helmet_visor, new /obj/item/device/helmet_visor/welding_visor, new /obj/item/device/helmet_visor/night_vision/marine_raider)
 
 /obj/item/clothing/head/helmet/marine/grey
 	desc = "A standard M10 Pattern Helmet. This one has not had a camouflage pattern applied to it yet. There is a built-in camera on the right side."
@@ -799,27 +759,19 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 	specialty = "M50 tanker"
-	built_in_visors = list(new /obj/item/device/helmet_visor, new /obj/item/device/helmet_visor/welding_visor/tanker)
+	built_in_visors = list(new /obj/item/device/helmet_visor, new /obj/item/device/helmet_visor/night_vision/marine_raider, new /obj/item/device/helmet_visor/welding_visor/tanker)
 
 /obj/item/clothing/head/helmet/marine/medic
 	name = "\improper M10 corpsman helmet"
 	desc = "An M10 marine helmet version worn by marine hospital corpsmen. Has red cross painted on its front."
 	icon_state = "med_helmet"
 	specialty = "M10 pattern medic"
-	built_in_visors = list(new /obj/item/device/helmet_visor, new /obj/item/device/helmet_visor/medical/advanced)
+	built_in_visors = list(new /obj/item/device/helmet_visor, new /obj/item/device/helmet_visor/night_vision/marine_raider, new /obj/item/device/helmet_visor/medical/advanced)
 	start_down_visor_type = /obj/item/device/helmet_visor/medical/advanced
-
-/obj/item/clothing/head/helmet/marine/medic/white
-	name = "\improper M10 white corpsman helmet"
-	desc = "An M10 marine helmet version worn by marine hospital corpsmen. Painted in medical white and has white cross in a red square painted on its front."
-	icon_state = "med_helmet_white"
-	specialty = "M10 pattern medic white"
-	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
-	flags_marine_helmet = HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY
 
 /obj/item/clothing/head/helmet/marine/covert
 	name = "\improper M10 covert helmet"
-	desc = "An M10 marine helmet version designed for use in darkened environments. It is coated with a special anti-reflective paint."
+	desc = "An M10 marine helmet version designed for use in darkened enviroments. It is coated with a special anti-reflective paint."
 	icon_state = "marsoc_helmet"
 	armor_melee = CLOTHING_ARMOR_MEDIUM
 	armor_bullet = CLOTHING_ARMOR_MEDIUM
@@ -852,6 +804,20 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	name = "\improper XM12 pattern intelligence helmet"
 	desc = "An experimental brain-bucket. A dust ruffle hangs from back. Moderately better at deflecting blunt objects at the cost of humiliation, can also hold a second visor optic. But who will be laughing at the memorial? Not you, you'll be busy getting medals for your intel work."
 	specialty = "XM12 pattern intel"
+
+/obj/item/clothing/head/helmet/marine/clf
+	icon_state = "clf_m10"
+	item_state = "clf_m10"
+	flags_atom = NO_SNOW_TYPE
+	desc = "An m10 helmet stolen from the corpse of a fallen Marine, now put to use against the UA by an insurgent. It's had most of the electronics and tracking equipment ripped out in favor of some bespoke augmentaions. Damage to the battery has rendered the Infared sight unreliable."
+	built_in_visors = list(new /obj/item/device/helmet_visor/welding_visor, new /obj/item/device/helmet_visor/night_vision)
+
+/obj/item/clothing/head/helmet/marine/clf/heavy
+	icon_state = "clf_m10heavy"
+	item_state = "clf_m10heavy"
+	flags_inv_hide = HIDEMASK|HIDEALLHAIR|HIDEEARS|HIDETOPHAIR
+	flags_atom = NO_SNOW_TYPE
+	desc = "An m10 helmet stolen from the corpse of a fallen Marine, now put to use against the UA by an insurgent. It's had most of the electronics and tracking equipment ripped out in favor of some bespoke augmentaions. Damage to the battery has rendered the Infared sight unreliable."
 
 /obj/item/clothing/head/helmet/marine/specialist
 	name = "\improper B18 helmet"
@@ -957,7 +923,7 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	armor_bio = CLOTHING_ARMOR_MEDIUMHIGH
 	specialty = "M10 pattern captain"
 	flags_atom = NO_SNOW_TYPE
-	built_in_visors = list(new /obj/item/device/helmet_visor, new /obj/item/device/helmet_visor/medical/advanced, new /obj/item/device/helmet_visor/security)
+	built_in_visors = list(new /obj/item/device/helmet_visor, new /obj/item/device/helmet_visor/medical/advanced, new /obj/item/device/helmet_visor/security, new /obj/item/device/helmet_visor/night_vision/marine_raider)
 
 /obj/item/clothing/head/helmet/marine/MP
 	name = "\improper M10 pattern MP helmet"
@@ -985,7 +951,7 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 
 /obj/item/clothing/head/helmet/marine/mp/provost/marshal
 	name = "\improper Provost Marshal Cap"
-	desc = "The expensive headwear of a Provost Marshal. Contains shards of kevlar to keep its valuable contents safe."
+	desc = "The expensive headwear of a Provost Marshal. Contains shards of Venlar to keep its valuable contents safe."
 	icon_state = "pvmarshalhat"
 	item_state = "pvmarshalhat"
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
@@ -1004,6 +970,121 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	built_in_visors = list(new /obj/item/device/helmet_visor/night_vision/marine_raider, new /obj/item/device/helmet_visor/security)
 	start_down_visor_type = /obj/item/device/helmet_visor/night_vision/marine_raider
 
+/obj/item/clothing/head/helmet/marine/odst
+	name = "\improper Mk6 armored compression helmet"
+	desc = "A special variant of the mk5 compression suit, designed for FORECON covert combat drops"
+	icon_state = "compression"
+	item_state = "compression"
+	armor_melee = CLOTHING_ARMOR_HIGH
+	armor_bullet = CLOTHING_ARMOR_MEDIUM
+	armor_energy = CLOTHING_ARMOR_MEDIUMLOW
+	armor_bio = CLOTHING_ARMOR_MEDIUMHIGH
+	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
+	flags_armor_protection = BODY_FLAG_HEAD|BODY_FLAG_FACE|BODY_FLAG_EYES|FULL_DECAP_PROTECTION|BLOCKGASEFFECT|NOPRESSUREDMAGE
+	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ|ALLOWINTERNALS
+	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROT
+	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
+	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
+	built_in_visors = list(new /obj/item/device/helmet_visor, new /obj/item/device/helmet_visor/medical/advanced, new /obj/item/device/helmet_visor/night_vision/marine_raider, new /obj/item/device/helmet_visor/welding_visor/tanker)
+	start_down_visor_type = /obj/item/device/helmet_visor/welding_visor/tanker
+	anti_hug = 10
+	time_to_unequip = 20
+	time_to_equip = 20
+	equip_sounds = list('sound/handling/helmetscrew.mp3')
+
+/obj/item/clothing/head/helmet/marine/odst/trauma_team
+	name = "\improper Decadencia Verde Pattern Tactical Armor"
+	desc = "A modification of the standard Nanotrasen Systems Decadencia armor. Designed with high-profile security operators and corporate mercenaries. This Varient features a large medical insignia."
+	icon_state = "trauma1"
+	start_down_visor_type = null
+	built_in_visors = list(new /obj/item/device/helmet_visor, new /obj/item/device/helmet_visor/medical/advanced, new /obj/item/device/helmet_visor/night_vision/marine_raider, )
+
+/obj/item/clothing/head/helmet/marine/odst/trauma_team/alt
+	name = "\improper Decadencia Verde Pattern Tactical Armor"
+	desc = "A modification of the standard Nanotrasen Systems Decadencia armor. Designed with high-profile security operators and corporate mercenaries. This Varient features a large medical insignia."
+	icon_state = "trauma2"
+
+
+/obj/item/clothing/head/helmet/marine/odst/syndicate
+	name = "\improper Type-32S Balenciaga armored Compression Helmet"
+	icon_state = "syndicate"
+	item_state = "syndicate"
+	desc = "A syndicate agent's space helmet, you'll look just like a real murderous syndicate agent in this!"
+
+/obj/item/clothing/head/helmet/marine/odst/syndicate/elite
+	name = "\improper Type-32S Balenciaga R.I.G. Helmet"
+	icon_state = "syndicate"
+	item_state = "rig0-syndi"
+	desc = "A syndicate agent's space helmet, you'll look just like a real murderous syndicate agent in this!"
+	icon_state = "rig0-syndi"
+	built_in_visors = list()
+	start_down_visor_type = null
+	light_range = 4
+	light_power = 2
+	var/hslvisor_color = "syndi" //Determines used sprites: hardhat[on]_[hardhat_color]
+	var/toggleable = TRUE
+	actions_types = list(/datum/action/item_action/toggle)
+	flags_inventory = BLOCKSHARPOBJ
+
+	/// Can it be be broken by xenomorphs?
+	var/can_be_broken = TRUE
+	/// The sound it makes when broken by a xenomorph.
+	var/breaking_sound = 'sound/handling/click_2.ogg'
+
+/obj/item/clothing/head/helmet/marine/odst/syndicate/elite/Initialize()
+	. = ..()
+	update_icon()
+
+/obj/item/clothing/head/helmet/marine/odst/syndicate/elite/update_icon()
+	. = ..()
+	if(light_on)
+		icon_state = "rig[light_on]_[hslvisor_color]"
+		item_state = "rig[light_on]_[hslvisor_color]"
+	else
+		icon_state = initial(icon_state)
+		item_state = initial(item_state)
+
+/obj/item/clothing/head/helmet/marine/odst/syndicate/elite/attack_self(mob/user)
+	. = ..()
+
+	if(!toggleable)
+		to_chat(user, SPAN_WARNING("You cannot toggle [src] on or off."))
+		return FALSE
+
+	if(!isturf(user.loc))
+		to_chat(user, SPAN_WARNING("You cannot turn the light [light_on ? "off" : "on"] while in [user.loc].")) //To prevent some lighting anomalies.
+		return FALSE
+
+	turn_light(user, !light_on)
+
+/obj/item/clothing/head/helmet/marine/odst/syndicate/elite/turn_light(mob/user, toggle_on)
+
+	. = ..()
+	if(. != CHECKS_PASSED)
+		return
+
+	set_light_on(toggle_on)
+	if(user == loc)
+		user.update_inv_head()
+
+	for(var/datum/action/current_action as anything in actions)
+		current_action.update_button_icon()
+
+	update_icon()
+
+/obj/item/clothing/head/helmet/marine/odst/syndicate/elite/attack_alien(mob/living/carbon/xenomorph/attacking_xeno)
+	if(!can_be_broken)
+		return
+
+	if(turn_light(attacking_xeno, toggle_on = FALSE) != CHECKS_PASSED)
+		return
+
+	if(!breaking_sound)
+		return
+
+	playsound(loc, breaking_sound, 25, 1)
+
+
 //=============================//PMCS\\==================================\\
 //=======================================================================\\
 
@@ -1013,7 +1094,7 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc
 	name = "\improper PMC tactical cap"
-	desc = "A protective cap made from flexible kevlar. Standard issue for most security forms in the place of a helmet."
+	desc = "A protective cap made from flexible Venlar. Standard issue for most security forms in the place of a helmet."
 	icon_state = "pmc_hat"
 	armor_energy = CLOTHING_ARMOR_MEDIUMLOW
 	armor_bomb = CLOTHING_ARMOR_MEDIUM
@@ -1085,7 +1166,7 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	icon_state = "lead_helmet"
 	item_state = "lead_helmet"
 
-//FIORINA / UA RIOT CONTROL HELMET//
+//FIORINA / UAAC HELMETS//
 
 /obj/item/clothing/head/helmet/marine/veteran/ua_riot
 	name = "\improper RC6 helmet"
@@ -1094,6 +1175,21 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	armor_energy = CLOTHING_ARMOR_MEDIUMLOW
 	specialty = "RC6"
 	flags_atom = NO_SNOW_TYPE
+
+/obj/item/clothing/head/helmet/marine/QRF
+	name = "\improper C9 Tactical Response Helmet"
+	desc = "A slightly outdated helmet produced by the Colonial Marshals for their QRF teams, while not as strong as USCM counterparts, this pattern comes with a built in eye shield and is easier to manufacture."
+	icon_state = "cmb_qrf"
+	armor_melee = CLOTHING_ARMOR_LOW
+	armor_bullet = CLOTHING_ARMOR_HIGH
+	armor_laser = CLOTHING_ARMOR_NONE
+	armor_energy = CLOTHING_ARMOR_NONE
+	armor_bomb = CLOTHING_ARMOR_NONE
+	armor_bio = CLOTHING_ARMOR_NONE
+	armor_rad = CLOTHING_ARMOR_NONE
+	armor_internaldamage = CLOTHING_ARMOR_LOW
+	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
+	eye_protection = EYE_PROTECTION_FLASH
 
 // KUTJEVO HELMET
 
@@ -1440,8 +1536,10 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 /obj/item/clothing/head/helmet/marine/reporter
 	name = "press helmet"
 	desc = "A helmet designed to make it clear that the wearer is safety aware and not looking for a fight."
-	icon_state = "cc_helmet"
-	item_state = "cc_helmet"
+	icon = 'icons/mob/humans/onmob/contained/war_correspondent.dmi'
+	icon_state = "wc_helm"
+	item_state = "wc_helm"
+	contained_sprite = TRUE
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
 
 	built_in_visors = list()

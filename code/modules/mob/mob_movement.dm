@@ -56,6 +56,9 @@
 
 	if(istype(mob, /mob/living/carbon))
 		mob.swap_hand()
+	if(istype(mob,/mob/living/silicon/robot))
+		var/mob/living/silicon/robot/R = mob
+		R.cycle_modules()
 	return
 
 
@@ -68,7 +71,8 @@
 
 /client/verb/drop_item()
 	set hidden = TRUE
-	mob.drop_item_v()
+	if(!isrobot(mob))
+		mob.drop_item_v()
 	return
 
 
@@ -91,13 +95,7 @@
 	mob.next_delay_update = world.time + mob.next_delay_delay
 
 /client/Move(n, direct)
-	var/mob/living/living_mob
-	if(isliving(mob))
-		living_mob = mob
-
-	if(world.time < next_movement)
-		return
-	if(living_mob && living_mob.body_position == LYING_DOWN && mob.crawling)
+	if(world.time < next_movement || (mob.lying && mob.crawling))
 		return
 
 	next_move_dir_add = 0
@@ -136,17 +134,7 @@
 	if(!isliving(mob))
 		return mob.Move(n, direct)
 
-	if(mob.is_mob_incapacitated(TRUE))
-		return
-
-	if(mob.buckled)
-		// Handle buckled relay before mobility because buckling inherently immobilizes
-		// This means you can (try to) move with a cargo tug or powerloader while immobilized, which i think makes sense
-		return mob.buckled.relaymove(mob, direct)
-
-	if(!(living_mob.mobility_flags & MOBILITY_MOVE))
-		return
-	if(living_mob.body_position == LYING_DOWN && !living_mob.can_crawl)
+	if(!mob.canmove || mob.is_mob_incapacitated(TRUE) || (mob.lying && !mob.can_crawl))
 		return
 
 	//Check if you are being grabbed and if so attemps to break it
@@ -161,6 +149,9 @@
 	if(SEND_SIGNAL(mob, COMSIG_MOB_MOVE_OR_LOOK, TRUE, direct, direct) & COMPONENT_OVERRIDE_MOB_MOVE_OR_LOOK)
 		next_movement = world.time + MINIMAL_MOVEMENT_INTERVAL
 		return
+
+	if(mob.buckled)
+		return mob.buckled.relaymove(mob, direct)
 
 	if(!mob.z)//Inside an object, tell it we moved
 		var/atom/O = mob.loc
@@ -177,13 +168,11 @@
 		if((mob.flags_atom & DIRLOCK) && mob.dir != direct)
 			move_delay += MOVE_REDUCTION_DIRECTION_LOCKED // by Geeves
 
-		mob.cur_speed = clamp(10/(move_delay + 0.5), MIN_SPEED, MAX_SPEED)
-		next_movement = world.time + MINIMAL_MOVEMENT_INTERVAL // We pre-set this now for the crawling case. If crawling do_after fails, next_movement would be set after the attempt end instead of now.
-
-		//Try to crawl first
-		if(living_mob && living_mob.body_position == LYING_DOWN)
-			if(mob.crawling)
-				return // Already doing it.
+		mob.cur_speed = Clamp(10/(move_delay + 0.5), MIN_SPEED, MAX_SPEED)
+		//We are now going to move
+		moving = TRUE
+		mob.move_intentionally = TRUE
+		if(mob.lying)
 			//check for them not being a limbless blob (only humans have limbs)
 			if(ishuman(mob))
 				var/mob/living/carbon/human/human = mob
@@ -191,20 +180,22 @@
 				for(var/zone in extremities)
 					if(!(human.get_limb(zone)))
 						extremities.Remove(zone)
-				if(length(extremities) < 4)
+				if(extremities.len < 4)
+					next_movement = world.time + MINIMAL_MOVEMENT_INTERVAL
+					mob.move_intentionally = FALSE
+					moving = FALSE
 					return
 			//now crawl
 			mob.crawling = TRUE
 			if(!do_after(mob, 1 SECONDS, INTERRUPT_MOVED|INTERRUPT_UNCONSCIOUS|INTERRUPT_STUNNED|INTERRUPT_RESIST|INTERRUPT_CHANGED_LYING, NO_BUSY_ICON))
 				mob.crawling = FALSE
+				next_movement = world.time + MINIMAL_MOVEMENT_INTERVAL
+				mob.move_intentionally = FALSE
+				moving = FALSE
 				return
-			if(!mob.crawling)
-				return // Crawling interrupted by a "real" move. Do nothing. In theory INTERRUPT_MOVED|INTERRUPT_CHANGED_LYING catches this in do_after.
 		mob.crawling = FALSE
-		mob.move_intentionally = TRUE
-		moving = TRUE
 		if(mob.confused)
-			mob.Move(get_step(mob, pick(GLOB.cardinals)))
+			mob.Move(get_step(mob, pick(cardinal)))
 		else
 			. = ..()
 
@@ -261,12 +252,12 @@
 
 		if(istype(src,/mob/living/carbon/human/))  // Only humans can wear magboots, so we give them a chance to.
 			var/mob/living/carbon/human/H = src
-			if((istype(turf,/turf/open/floor)) && !(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.flags_inventory & NOSLIPPING)))
+			if((istype(turf,/turf/open/floor)) && (src.lastarea.has_gravity == 0) && !(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.flags_inventory & NOSLIPPING)))
 				continue
 
 
 		else
-			if(istype(turf,/turf/open/floor)) // No one else gets a chance.
+			if((istype(turf,/turf/open/floor)) && (src.lastarea && src.lastarea.has_gravity == 0)) // No one else gets a chance.
 				continue
 
 
@@ -301,5 +292,5 @@
 	if(stat)
 		prob_slip = 0  // Changing this to zero to make it line up with the comment.
 
-	prob_slip = floor(prob_slip)
+	prob_slip = round(prob_slip)
 	return(prob_slip)

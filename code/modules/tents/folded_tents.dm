@@ -1,5 +1,5 @@
 /obj/item/folded_tent
-	name = "folded abstract tent"
+	name = "Folded Abstract Tent"
 	icon = 'icons/obj/structures/tents_folded.dmi'
 	icon_state = "tent"
 	w_class = SIZE_LARGE
@@ -35,27 +35,20 @@
 	. = TRUE
 	var/list/turf_block = get_deployment_area(ref_turf)
 	for(var/turf/turf as anything in turf_block)
-		var/area/area = get_area(turf)
-		if(!area.can_build_special && !unrestricted_deployment)
-			if(message_receiver)
-				to_chat(message_receiver, SPAN_WARNING("You cannot deploy tents on restricted areas."))
-			if(display_error)
-				new /obj/effect/overlay/temp/tent_deployment_area/error(turf)
-			return FALSE
 		if(istype(turf, /turf/open/shuttle))
 			if(message_receiver)
 				to_chat(message_receiver, SPAN_BOLDWARNING("What are you doing?!! Don't build that on the shuttle please!"))
 			return FALSE
 		if(turf.density)
 			if(message_receiver)
-				to_chat(message_receiver, SPAN_WARNING("You cannot deploy [src] here, something ([turf]) is in the way."))
+				to_chat(message_receiver, SPAN_WARNING("You cannot deploy the [src] here, something ([turf]) is in the way."))
 			if(display_error)
 				new /obj/effect/overlay/temp/tent_deployment_area/error(turf)
 			return FALSE
 		for(var/atom/movable/atom as anything in turf)
 			if(isliving(atom) || (atom.density && atom.can_block_movement) || istype(atom, /obj/structure/tent))
 				if(message_receiver)
-					to_chat(message_receiver, SPAN_WARNING("You cannot deploy [src] here, something ([atom.name]) is in the way."))
+					to_chat(message_receiver, SPAN_WARNING("You cannot deploy the [src] here, something ([atom.name]) is in the way."))
 				if(display_error)
 					new /obj/effect/overlay/temp/tent_deployment_area/error(turf)
 				return FALSE
@@ -69,7 +62,8 @@
 
 /obj/item/folded_tent/proc/get_deployment_area(turf/ref_turf)
 	RETURN_TYPE(/list/turf)
-	return CORNER_BLOCK(ref_turf, dim_x, dim_y)
+	var/turf/block_end_turf = locate(ref_turf.x + dim_x - 1, ref_turf.y + dim_y - 1, ref_turf.z)
+	return block(ref_turf, block_end_turf)
 
 /obj/item/folded_tent/attack_self(mob/living/user)
 	. = ..()
@@ -92,10 +86,6 @@
 	if(!istype(deploy_turf) || (deploy_turf.x + dim_x > world.maxx) || (deploy_turf.y + dim_y > world.maxy)) // Map border basically
 		return
 
-	if(!is_ground_level(deploy_turf.z) && !unrestricted_deployment)
-		to_chat(user, SPAN_WARNING("USCM Operational Tents are intended for operations, not ship or space recreation."))
-		return
-
 	var/list/obj/effect/overlay/temp/tent_deployment_area/turf_overlay = list()
 	var/list/turf/deployment_area = get_deployment_area(deploy_turf)
 
@@ -107,8 +97,8 @@
 	for(var/turf/turf in deployment_area)
 		turf_overlay += new /obj/effect/overlay/temp/tent_deployment_area/casting(turf)
 
-	user.visible_message(SPAN_INFO("[user] starts deploying [src]..."), \
-		SPAN_WARNING("You start assembling [src]... Stand still, it might take a bit to figure it out..."))
+	user.visible_message(SPAN_INFO("[user] starts deploying the [src]..."), \
+		SPAN_WARNING("You start assembling the [src]... Stand still, it might take a bit to figure it out..."))
 	if(!do_after(user, 6 SECONDS, INTERRUPT_ALL, BUSY_ICON_BUILD))
 		to_chat(user, SPAN_WARNING("You were interrupted!"))
 		for(var/gfx in turf_overlay)
@@ -121,7 +111,7 @@
 		return
 
 	unfold(user, deploy_turf)
-	user.visible_message(SPAN_INFO("[user] finishes deploying [src]!"), SPAN_INFO("You finish deploying [src]!"))
+	user.visible_message(SPAN_INFO("[user] finishes deploying the [src]!"), SPAN_INFO("You finish deploying the [src]!"))
 	for(var/gfx in turf_overlay)
 		qdel(gfx)
 	qdel(src) // Success!

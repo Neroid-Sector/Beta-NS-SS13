@@ -99,8 +99,10 @@
 	var/nvg_maxhealth = 125
 	var/nvg_health = 125
 
-	/// How much charge the cell should have at most. -1 is infinite
-	var/cell_max_charge = 2500
+	var/nvg_maxcharge = 2500
+	var/nvg_charge = 2500
+	var/nvg_drain = 8 // has a 5 minute duration but byond may give it a couple of irl time due to lag
+	var/infinite_charge = FALSE
 
 	var/activated = FALSE
 	var/nightvision = FALSE
@@ -114,13 +116,6 @@
 	var/obj/item/clothing/head/attached_item
 	var/mob/living/attached_mob
 	var/lighting_alpha = 100
-
-/obj/item/prop/helmetgarb/helmet_nvg/Initialize(mapload, ...)
-	. = ..()
-	if(shape != NVG_SHAPE_COSMETIC)
-		AddComponent(/datum/component/cell, cell_max_charge, TRUE, charge_drain = 8)
-		RegisterSignal(src, COMSIG_CELL_TRY_RECHARGING, PROC_REF(cell_try_recharge))
-		RegisterSignal(src, COMSIG_CELL_OUT_OF_CHARGE, PROC_REF(on_power_out))
 
 /obj/item/prop/helmetgarb/helmet_nvg/on_enter_storage(obj/item/storage/internal/S)
 	..()
@@ -144,30 +139,42 @@
 
 
 /obj/item/prop/helmetgarb/helmet_nvg/attackby(obj/item/A as obj, mob/user as mob)
+	if(istype(A,/obj/item/cell))
+		recharge(A, user)
+
 	if(HAS_TRAIT(A, TRAIT_TOOL_SCREWDRIVER))
 		repair(user)
 
 	else
 		..()
 
-/obj/item/prop/helmetgarb/helmet_nvg/proc/cell_try_recharge(datum/source, mob/living/user)
-	SIGNAL_HANDLER
-
+/obj/item/prop/helmetgarb/helmet_nvg/proc/recharge(obj/item/cell/C, mob/user as mob)
 	if(user.action_busy)
-		return COMPONENT_CELL_NO_RECHARGE
-
+		return
 	if(src != user.get_inactive_hand())
-		to_chat(user, SPAN_WARNING("You need to hold [src] in hand in order to recharge them."))
-		return COMPONENT_CELL_NO_RECHARGE
-
+		to_chat(user, SPAN_WARNING("You need to hold \the [src] in hand in order to recharge them."))
+		return
 	if(shape == NVG_SHAPE_COSMETIC)
-		to_chat(user, SPAN_WARNING("There is no connector for the power cell inside [src]."))
-		return COMPONENT_CELL_NO_RECHARGE
-
+		to_chat(user, SPAN_WARNING("There is no connector for the power cell inside \the [src]."))
+		return
 	if(shape == NVG_SHAPE_BROKEN)
-		to_chat(user, SPAN_WARNING("You need to repair [src] first."))
-		return COMPONENT_CELL_NO_RECHARGE
+		to_chat(user, SPAN_WARNING("You need to repair \the [src] first."))
+		return
+	if(nvg_charge == nvg_maxcharge)
+		to_chat(user, SPAN_WARNING("\The [src] are already fully charged."))
+		return
 
+	while(nvg_charge < nvg_maxcharge)
+		if(C.charge <= 0)
+			to_chat(user, SPAN_WARNING("\The [C] is completely dry."))
+			break
+		if(!do_after(user, 1 SECONDS, (INTERRUPT_ALL & (~INTERRUPT_MOVED)), BUSY_ICON_BUILD, C, INTERRUPT_DIFF_LOC))
+			to_chat(user, SPAN_WARNING("You were interrupted."))
+			break
+		var/to_transfer = min(400, C.charge, (nvg_maxcharge - nvg_charge))
+		if(C.use(to_transfer))
+			nvg_charge += to_transfer
+			to_chat(user, "You transfer some power between \the [C] and \the [src]. The gauge now reads: [round(100.0*nvg_charge/nvg_maxcharge) ]%.")
 
 /obj/item/prop/helmetgarb/helmet_nvg/proc/repair(mob/user as mob)
 	if(user.action_busy)
@@ -176,12 +183,12 @@
 	if(src != user.get_inactive_hand())
 		to_chat(user, SPAN_WARNING("You need to hold \the [src] in hand in order to repair them."))
 		return
-	if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_NOVICE)) // level 2 is enough to repair damaged NVG
+	if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED)) // level 2 is enough to repair damaged NVG
 		to_chat(user, SPAN_WARNING("You are not trained to repair electronics..."))
 		return
 
 	if(shape == NVG_SHAPE_BROKEN)
-		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED)) // level 3 is needed to repair broken NVG
+		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_ENGI)) // level 3 is needed to repair broken NVG
 			to_chat(user, SPAN_WARNING("Repair of this complexity is too difficult for you, find someone more trained."))
 			return
 
@@ -195,6 +202,7 @@
 		to_chat(user, "You successfully patch \the [src].")
 		nvg_maxhealth = 65
 		nvg_health = 65
+		nvg_drain = initial(nvg_drain) * 2
 		return
 
 	else if(nvg_health == nvg_maxhealth)
@@ -204,7 +212,7 @@
 			to_chat(user, SPAN_WARNING("Nothing to fix."))
 		else if(shape == NVG_SHAPE_COSMETIC)
 
-			to_chat(user, SPAN_WARNING("It's nothing but a husk of what it used to be."))
+			to_chat(user, SPAN_WARNING("it's nothing but a husk of what it used to be."))
 
 	else
 		to_chat(user, "You begin to repair \the [src].")
@@ -235,6 +243,9 @@
 			. += "It's unlikely they can sustain more damage."
 		else if(nvg_health_procent >= 0)
 			. += "They are falling apart."
+
+	if (get_dist(user, src) <= 1 && (shape == NVG_SHAPE_FINE || shape == NVG_SHAPE_PATCHED))
+		. += "A small gauge in the corner reads: Power: [round(100.0*nvg_charge/nvg_maxcharge) ]%."
 
 /obj/item/prop/helmetgarb/helmet_nvg/on_exit_storage(obj/item/storage/S)
 	remove_attached_item()
@@ -285,7 +296,7 @@
 	if(attached_mob != user && slot == WEAR_HEAD)
 		set_attached_mob(user)
 
-	if(slot == WEAR_HEAD && !nightvision && activated && !SEND_SIGNAL(src, COMSIG_CELL_CHECK_CHARGE) && shape > NVG_SHAPE_BROKEN)
+	if(slot == WEAR_HEAD && !nightvision && activated && nvg_charge > 0 && shape > NVG_SHAPE_BROKEN)
 		enable_nvg(user)
 	else
 		remove_nvg()
@@ -308,7 +319,7 @@
 	attached_item.update_icon()
 	activation.update_button_icon()
 
-	SEND_SIGNAL(src, COMSIG_CELL_START_TICK_DRAIN)
+	START_PROCESSING(SSobj, src)
 
 
 /obj/item/prop/helmetgarb/helmet_nvg/proc/update_sight(mob/M)
@@ -342,15 +353,20 @@
 
 		attached_mob.update_sight()
 
-		SEND_SIGNAL(src, COMSIG_CELL_STOP_TICK_DRAIN)
+		STOP_PROCESSING(SSobj, src)
 
 
 /obj/item/prop/helmetgarb/helmet_nvg/process(delta_time)
+	if(nvg_charge > 0 && !infinite_charge)
+		nvg_charge = max(0, nvg_charge - nvg_drain * delta_time)
+
 	if(!attached_mob)
 		return PROCESS_KILL
 
-	if(!activated || !attached_item || attached_mob.is_dead())
-		on_power_out()
+	if(!activated || !attached_item || nvg_charge <= 0 || attached_mob.is_dead())
+		if(activated && !attached_mob.is_dead())
+			to_chat(attached_mob, SPAN_WARNING("\The [src] emit a low power warning and immediately shut down!"))
+		remove_nvg()
 		return
 
 	if(!attached_item.has_garb_overlay())
@@ -358,13 +374,6 @@
 		remove_nvg()
 		return
 
-
-/obj/item/prop/helmetgarb/helmet_nvg/proc/on_power_out(datum/source)
-	SIGNAL_HANDLER
-
-	if(activated && !attached_mob.is_dead())
-		to_chat(attached_mob, SPAN_WARNING("[src] emit a low power warning and immediately shut down!"))
-	remove_nvg()
 
 /obj/item/prop/helmetgarb/helmet_nvg/ui_action_click(mob/owner, obj/item/holder)
 	toggle_nods(owner)
@@ -401,7 +410,7 @@
 	if(activated)
 		to_chat(user, SPAN_NOTICE("You flip the goggles down."))
 		icon_state = active_icon_state
-		if(!SEND_SIGNAL(src, COMSIG_CELL_CHECK_CHARGE) && user.head == attached_item && shape > NVG_SHAPE_BROKEN)
+		if(nvg_charge > 0 && user.head == attached_item && shape > NVG_SHAPE_BROKEN)
 			enable_nvg(user)
 		else
 			icon_state = active_icon_state
@@ -450,13 +459,15 @@
 	shape = NVG_SHAPE_COSMETIC
 	garbage = TRUE
 
-/obj/item/prop/helmetgarb/helmet_nvg/cosmetic/break_nvg(mob/living/carbon/human/user, list/slashdata, mob/living/carbon/xenomorph/Xeno)
-	return
-
 /obj/item/prop/helmetgarb/helmet_nvg/marsoc //for Marine Raiders
 	name = "\improper Tactical M3 night vision goggles"
 	desc = "With an integrated self-recharging battery, nothing can stop you. Put them on your helmet and press the button and it's go-time."
-	cell_max_charge = -1
+	infinite_charge = TRUE
+
+/obj/item/prop/helmetgarb/helmet_nvg/marsoc/upp //for UPP
+	name = "\improper Type-3 night vision goggles"
+	desc = "With an integrated self-recharging battery, nothing can stop you. Put them on your helmet and press the button and it's go-time."
+	infinite_charge = TRUE
 
 #undef NVG_SHAPE_COSMETIC
 #undef NVG_SHAPE_BROKEN
@@ -496,7 +507,7 @@
 
 /obj/item/prop/helmetgarb/helmet_gasmask
 	name = "\improper M5 integrated gasmask"
-	desc = "The USCM had its funding pulled for these when it became apparent that not every deployed enlisted was wearing a helmet 24/7; much to the bafflement of UA High Command."
+	desc = "The USCM had its funding pulled for these when it became apparent that the built in filters were insufficent for protecting against most chemical or biohazardous threats."
 	icon_state = "helmet_gasmask"
 
 /obj/item/prop/helmetgarb/helmet_gasmask/on_enter_storage(obj/item/storage/internal/helmet_internal_inventory)
@@ -529,8 +540,8 @@
 	icon_state = "trimmed_wire"
 
 /obj/item/prop/helmetgarb/bullet_pipe
-	name = "10x99mm XM43E1 casing pipe"
-	desc = "The XM43E1 was an experimental weapons platform briefly fielded by the USCM and Wey-Yu PMC teams. It was manufactured by ARMAT systems at the Atlas weapons facility. Unfortunately the project had its funding pulled alongside the M5 integrated gasmask program. This spent casing has been converted into a pipe, but there is too much tar in the mouthpiece for it to be useable."
+	name = "10x99mm XM42B casing pipe"
+	desc = "The XM42B was an experimental weapons platform briefly fielded by the USCM and Wey-Yu PMC teams. It was manufactured by ARMAT systems at the Atlas weapons facility. Unfortunately the project had its funding pulled alongside the M5 integrated gasmask program. This spent casing has been converted into a pipe, but there is too much tar in the mouthpiece for it to be useable."
 	icon_state = "bullet_pipe"
 
 /obj/item/prop/helmetgarb/chaplain_patch
@@ -545,38 +556,29 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "photo"
 	///The human who spawns with the photo
-	var/datum/weakref/owner
-	///The belonging human name
-	var/owner_name
-	///The belonging human faction
-	var/owner_faction
+	var/mob/living/carbon/human/owner
 	///Text written on the back
 	var/scribble
 
-/obj/item/prop/helmetgarb/family_photo/pickup(mob/user, silent)
+/obj/item/prop/helmetgarb/family_photo/Initialize(mapload, ...)
 	. = ..()
-	if(!owner)
-		RegisterSignal(user, COMSIG_POST_SPAWN_UPDATE, PROC_REF(set_owner), override = TRUE)
-
+	if(!mapload)
+		RegisterSignal(src, COMSIG_POST_SPAWN_UPDATE, PROC_REF(set_owner))
 
 ///Sets the owner of the family photo to the human it spawns with, needs var/source for signals
-/obj/item/prop/helmetgarb/family_photo/proc/set_owner(datum/source)
-	SIGNAL_HANDLER
-	UnregisterSignal(source, COMSIG_POST_SPAWN_UPDATE)
-	var/mob/living/carbon/human/user = source
-	owner = WEAKREF(user)
-	owner_name = user.name
-	owner_faction = user.faction
+/obj/item/prop/helmetgarb/family_photo/proc/set_owner(source = src, mob/living/carbon/human/user)
+	UnregisterSignal(src, COMSIG_POST_SPAWN_UPDATE)
+	owner = user
 
 /obj/item/prop/helmetgarb/family_photo/get_examine_text(mob/user)
 	. = ..()
 	if(scribble)
 		. += "\"[scribble]\" is written on the back of the photo."
-	if(user.weak_reference == owner)
+	if(user == owner)
 		. += "A photo of you and your family."
 		return
-	if(user.faction == owner_faction)
-		. += "A photo of [owner_name] and their family."
+	if(user.faction == owner?.faction)
+		. += "A photo of [owner] and their family."
 		return
 	. += "A photo of a family you do not know."
 
@@ -604,13 +606,6 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "compass"
 	w_class = SIZE_SMALL
-
-/obj/item/prop/helmetgarb/compass/get_examine_text(mob/user)
-	. = ..()
-	if(is_ground_level(user.z) && !SSmapping.configs[GROUND_MAP].environment_traits[ZTRAIT_IN_SPACE])
-		. += SPAN_NOTICE("It seems you are facing [dir2text(user.dir)].")
-		return
-	. += SPAN_NOTICE("The needle is not moving.")
 
 /obj/item/prop/helmetgarb/bug_spray
 	name = "insect repellent"

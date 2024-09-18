@@ -15,7 +15,7 @@
 	var/list/access = list()
 	var/assignment
 	var/rank
-	var/list/paygrades = list("???")
+	var/paygrade
 	var/role_comm_title
 	var/minimum_age
 	var/faction = FACTION_NEUTRAL
@@ -87,7 +87,7 @@
 	new_human.gender = pick(60;MALE,40;FEMALE)
 	var/datum/preferences/A = new()
 	A.randomize_appearance(new_human)
-	var/random_name = capitalize(pick(new_human.gender == MALE ? GLOB.first_names_male : GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
+	var/random_name = capitalize(pick(new_human.gender == MALE ? first_names_male : first_names_female)) + " " + capitalize(pick(last_names))
 	new_human.change_real_name(new_human, random_name)
 	new_human.age = rand(21,45)
 
@@ -95,33 +95,8 @@
 	if(minimum_age && new_human.age < minimum_age)
 		new_human.age = minimum_age
 
-/datum/equipment_preset/proc/load_rank(mob/living/carbon/human/new_human, client/mob_client)//Beagle-Code
-	if(paygrades.len == 1)
-		return paygrades[1]
-	var/playtime
-	if(!mob_client)
-		playtime = JOB_PLAYTIME_TIER_1
-	else
-		playtime = get_job_playtime(mob_client, rank)
-		if((playtime >= JOB_PLAYTIME_TIER_1) && !mob_client.prefs.playtime_perks)
-			playtime = JOB_PLAYTIME_TIER_1
-	var/final_paygrade
-	for(var/current_paygrade as anything in paygrades)
-		var/required_time = paygrades[current_paygrade]
-		if(required_time - playtime > 0)
-			break
-		final_paygrade = current_paygrade
-	if(rank == JOB_SQUAD_MARINE && final_paygrade == PAY_SHORT_ME3)
-		if(GLOB.data_core.leveled_riflemen > GLOB.data_core.leveled_riflemen_max)
-			return PAY_SHORT_ME2
-		else
-			GLOB.data_core.leveled_riflemen++
-			return final_paygrade
-	if(!final_paygrade)
-		. = "???"
-		CRASH("[key_name(new_human)] spawned with no valid paygrade.")
-
-	return final_paygrade
+/datum/equipment_preset/proc/load_rank(mob/living/carbon/human/new_human, client/mob_client)
+	return paygrade
 
 /datum/equipment_preset/proc/load_gear(mob/living/carbon/human/new_human, client/mob_client)
 	return
@@ -135,24 +110,22 @@
 /datum/equipment_preset/proc/load_id(mob/living/carbon/human/new_human, client/mob_client)
 	if(!idtype)
 		return
-	if(!mob_client)
-		mob_client = new_human.client
-	var/obj/item/card/id/ID = new idtype()
-	ID.name = "[new_human.real_name]'s ID Card"
+	var/obj/item/card/id/W = new idtype()
+	W.name = "[new_human.real_name]'s ID Card"
 	if(assignment)
-		ID.name += " ([assignment])"
-	ID.access = access.Copy(1, 0)
-	ID.faction = faction
-	ID.faction_group = faction_group.Copy()
-	ID.assignment = assignment
-	ID.rank = rank
-	ID.registered_name = new_human.real_name
-	ID.registered_ref = WEAKREF(new_human)
-	ID.registered_gid = new_human.gid
-	ID.blood_type = new_human.blood_type
-	ID.paygrade = load_rank(new_human, mob_client) || ID.paygrade
-	ID.uniform_sets = uniform_sets
-	new_human.equip_to_slot_or_del(ID, WEAR_ID)
+		W.name += " ([assignment])"
+	W.access = access.Copy(1, 0)
+	W.faction = faction
+	W.faction_group = faction_group.Copy()
+	W.assignment = assignment
+	W.rank = rank
+	W.registered_name = new_human.real_name
+	W.registered_ref = WEAKREF(new_human)
+	W.registered_gid = new_human.gid
+	W.blood_type = new_human.blood_type
+	W.paygrade = load_rank(new_human)
+	W.uniform_sets = uniform_sets
+	new_human.equip_to_slot_or_del(W, WEAR_ID)
 	new_human.faction = faction
 	new_human.faction_group = faction_group.Copy()
 	if(new_human.mind)
@@ -165,9 +138,6 @@
 	new_human.set_languages(languages)
 
 /datum/equipment_preset/proc/load_preset(mob/living/carbon/human/new_human, randomise = FALSE, count_participant = FALSE, client/mob_client, show_job_gear = TRUE)
-	if(!new_human.hud_used)
-		new_human.create_hud()
-
 	load_race(new_human, mob_client)
 	if(randomise || uses_special_name)
 		load_name(new_human, randomise, mob_client)
@@ -179,14 +149,14 @@
 	load_skills(new_human, mob_client) //skills are set before equipment because of skill restrictions on certain clothes.
 	load_languages(new_human, mob_client)
 	load_age(new_human, mob_client)
-	load_id(new_human, mob_client)
 	if(show_job_gear)
 		load_gear(new_human, mob_client)
+	load_id(new_human, mob_client)
 	load_status(new_human, mob_client)
 	load_vanity(new_human, mob_client)
 	load_traits(new_human, mob_client)
-	if(GLOB.round_statistics && count_participant)
-		GLOB.round_statistics.track_new_participant(faction)
+	if(round_statistics && count_participant)
+		round_statistics.track_new_participant(faction)
 
 	new_human.assigned_equipment_preset = src
 
@@ -202,7 +172,7 @@
 	if(!new_human.client || !new_human.client.prefs || !new_human.client.prefs.gear)
 		return//We want to equip them with custom stuff second, after they are equipped with everything else.
 	for(var/gear_name in new_human.client.prefs.gear)
-		var/datum/gear/current_gear = GLOB.gear_datums_by_name[gear_name]
+		var/datum/gear/current_gear = gear_datums_by_name[gear_name]
 		if(current_gear)
 			if(current_gear.allowed_roles && !(assignment in current_gear.allowed_roles))
 				to_chat(new_human, SPAN_WARNING("Custom gear [current_gear.display_name] cannot be equipped: Invalid Role"))
@@ -215,7 +185,7 @@
 				new_human.equip_to_slot_or_del(equipping_gear, WEAR_IN_BACK)
 
 	//Gives ranks to the ranked
-	var/current_rank = paygrades[1]
+	var/current_rank = paygrade
 	var/obj/item/card/id/I = new_human.get_idcard()
 	if(I)
 		current_rank = I.paygrade
@@ -231,7 +201,7 @@
 				qdel(R)
 
 	if(flags & EQUIPMENT_PRESET_MARINE)
-		var/playtime = get_job_playtime(new_human.client, rank)
+		var/playtime = get_job_playtime(new_human.client, assignment)
 		var/medal_type
 
 		switch(playtime)
@@ -250,7 +220,7 @@
 		if(medal_type)
 			var/obj/item/clothing/accessory/medal/medal = new medal_type()
 			medal.recipient_name = new_human.real_name
-			medal.recipient_rank = assignment
+			medal.recipient_rank = current_rank
 
 			if(new_human.wear_suit && new_human.wear_suit.can_attach_accessory(medal))
 				new_human.wear_suit.attach_accessory(new_human, medal, TRUE)
@@ -334,6 +304,9 @@
 		/obj/item/clothing/suit/storage/militia/partial,
 		/obj/item/clothing/suit/armor/bulletproof,
 		/obj/item/clothing/suit/armor/vest,
+		/obj/item/clothing/suit/storage/marine/clf/hunter,
+		/obj/item/clothing/suit/storage/marine/clf/riot,
+		/obj/item/clothing/suit/storage/marine/faction/UPP/support,
 		)
 	new_human.equip_to_slot_or_del(new suitpath, WEAR_JACKET)
 
@@ -343,18 +316,38 @@
 	var/helmetpath = pick(
 		/obj/item/clothing/head/militia,
 		/obj/item/clothing/head/militia/bucket,
-		/obj/item/clothing/head/helmet,
 		/obj/item/clothing/head/helmet/skullcap,
-		/obj/item/clothing/head/helmet/swat,
 		/obj/item/clothing/head/hardhat,
 		/obj/item/clothing/head/welding,
 		/obj/item/clothing/head/bandana,
 		/obj/item/clothing/head/headband/red,
 		/obj/item/clothing/head/headband/rebel,
 		/obj/item/clothing/head/headband/rambo,
+		/obj/item/clothing/head/militia/ranger,
+		/obj/item/clothing/head/militia/ranger/noface,
+		/obj/item/clothing/head/militia/ranger/lamp,
+		/obj/item/clothing/head/militia/mining,
+		/obj/item/clothing/head/militia/riot,
 		)
 	new_human.equip_to_slot_or_del(new helmetpath, WEAR_HEAD)
 
+/datum/equipment_preset/proc/spawn_ranger_helmet(mob/living/carbon/human/new_human)
+	if(!istype(new_human)) return
+	var/rangerhelmetpath = pick(
+		/obj/item/clothing/head/militia/bucket,
+		/obj/item/clothing/head/militia/ranger,
+		/obj/item/clothing/head/militia/ranger/noface,
+		)
+	new_human.equip_to_slot_or_del(new rangerhelmetpath, WEAR_HEAD)
+
+/datum/equipment_preset/proc/spawn_ranger_mask(mob/living/carbon/human/new_human)
+	if(!istype(new_human)) return
+	var/rangermaskpath = pick(
+		/obj/item/clothing/mask/gas,
+		/obj/item/clothing/mask/rebreather,
+		/obj/item/clothing/mask/balaclava,
+		)
+	new_human.equip_to_slot_or_del(new rangermaskpath, WEAR_FACE)
 
 /datum/equipment_preset/proc/spawn_rebel_shoes(mob/living/carbon/human/new_human)
 	if(!istype(new_human)) return
@@ -365,6 +358,8 @@
 		/obj/item/clothing/shoes/leather,
 		/obj/item/clothing/shoes/combat,
 		/obj/item/clothing/shoes/swat,
+		/obj/item/clothing/shoes/veteran/pmc/knife,
+		/obj/item/clothing/shoes/red/knife,
 		)
 	new_human.equip_to_slot_or_del(new shoespath, WEAR_FEET)
 
@@ -491,16 +486,16 @@
 	return 1
 
 
-GLOBAL_LIST_INIT(rebel_shotguns, list(
+var/list/rebel_shotguns = list(
 	/obj/item/weapon/gun/shotgun/double = /obj/item/ammo_magazine/handful/shotgun/buckshot,
 	/obj/item/weapon/gun/shotgun/double/with_stock = /obj/item/ammo_magazine/handful/shotgun/flechette,
 	/obj/item/weapon/gun/shotgun/pump/dual_tube/cmb = /obj/item/ammo_magazine/handful/shotgun/incendiary,
 	/obj/item/weapon/gun/shotgun/pump/dual_tube/cmb = /obj/item/ammo_magazine/handful/shotgun/incendiary,
 	/obj/item/weapon/gun/shotgun/double/sawn = /obj/item/ammo_magazine/handful/shotgun/incendiary,
 	/obj/item/weapon/gun/shotgun/double/sawn = /obj/item/ammo_magazine/handful/shotgun/buckshot
-	))
+	)
 
-GLOBAL_LIST_INIT(rebel_smgs, list(
+var/list/rebel_smgs = list(
 	/obj/item/weapon/gun/smg/pps43 = /obj/item/ammo_magazine/smg/pps43,
 	/obj/item/weapon/gun/smg/mp27 = /obj/item/ammo_magazine/smg/mp27,
 	/obj/item/weapon/gun/smg/mp5 = /obj/item/ammo_magazine/smg/mp5,
@@ -508,9 +503,9 @@ GLOBAL_LIST_INIT(rebel_smgs, list(
 	/obj/item/weapon/gun/smg/mac15 = /obj/item/ammo_magazine/smg/mac15,
 	/obj/item/weapon/gun/smg/uzi = /obj/item/ammo_magazine/smg/uzi,
 	/obj/item/weapon/gun/smg/fp9000 = /obj/item/ammo_magazine/smg/fp9000
-	))
+	)
 
-GLOBAL_LIST_INIT(rebel_rifles, list(
+var/list/rebel_rifles = list(
 	/obj/item/weapon/gun/rifle/mar40 = /obj/item/ammo_magazine/rifle/mar40,
 	/obj/item/weapon/gun/rifle/mar40 = /obj/item/ammo_magazine/rifle/mar40,
 	/obj/item/weapon/gun/rifle/mar40/carbine = /obj/item/ammo_magazine/rifle/mar40,
@@ -520,13 +515,13 @@ GLOBAL_LIST_INIT(rebel_rifles, list(
 	/obj/item/weapon/gun/rifle/ar10 = /obj/item/ammo_magazine/rifle/ar10,
 	/obj/item/weapon/gun/rifle/l42a/abr40 = /obj/item/ammo_magazine/rifle/l42a/abr40,
 	/obj/item/weapon/gun/rifle/l42a/abr40 = /obj/item/ammo_magazine/rifle/l42a/abr40,
-	))
+	)
 
 /datum/equipment_preset/proc/spawn_rebel_smg(atom/M, ammo_amount = 12)
 	if(!M) return
 
-	var/gunpath = pick(GLOB.rebel_smgs)
-	var/ammopath = GLOB.rebel_smgs[gunpath]
+	var/gunpath = pick(rebel_smgs)
+	var/ammopath = rebel_smgs[gunpath]
 
 	spawn_weapon(gunpath, ammopath, M, ammo_amount)
 
@@ -535,8 +530,8 @@ GLOBAL_LIST_INIT(rebel_rifles, list(
 /datum/equipment_preset/proc/spawn_rebel_shotgun(atom/M, ammo_amount = 12)
 	if(!M) return
 
-	var/gunpath = pick(GLOB.rebel_shotguns)
-	var/ammopath = GLOB.rebel_shotguns[gunpath]
+	var/gunpath = pick(rebel_shotguns)
+	var/ammopath = rebel_shotguns[gunpath]
 
 	spawn_weapon(gunpath, ammopath, M, ammo_amount)
 
@@ -545,8 +540,8 @@ GLOBAL_LIST_INIT(rebel_rifles, list(
 /datum/equipment_preset/proc/spawn_rebel_rifle(atom/M, ammo_amount = 12)
 	if(!M) return
 
-	var/gunpath = pick(GLOB.rebel_rifles)
-	var/ammopath = GLOB.rebel_rifles[gunpath]
+	var/gunpath = pick(rebel_rifles)
+	var/ammopath = rebel_rifles[gunpath]
 
 	spawn_weapon(gunpath, ammopath, M, ammo_amount)
 
@@ -605,10 +600,10 @@ GLOBAL_LIST_INIT(rebel_rifles, list(
 	if(!M) return
 
 	var/list/merc_shotguns = list(
-		/obj/item/weapon/gun/shotgun/merc = pick(GLOB.shotgun_handfuls_12g),
-		/obj/item/weapon/gun/shotgun/combat = pick(GLOB.shotgun_handfuls_12g),
-		/obj/item/weapon/gun/shotgun/double/with_stock = pick(GLOB.shotgun_handfuls_12g),
-		/obj/item/weapon/gun/shotgun/pump/dual_tube/cmb = pick(GLOB.shotgun_handfuls_12g))
+		/obj/item/weapon/gun/shotgun/merc = pick(shotgun_handfuls_12g),
+		/obj/item/weapon/gun/shotgun/combat = pick(shotgun_handfuls_12g),
+		/obj/item/weapon/gun/shotgun/double/with_stock = pick(shotgun_handfuls_12g),
+		/obj/item/weapon/gun/shotgun/pump/dual_tube/cmb = pick(shotgun_handfuls_12g))
 
 	var/gunpath = pick(merc_shotguns)
 	var/ammopath = merc_shotguns[gunpath]
@@ -640,9 +635,9 @@ GLOBAL_LIST_INIT(rebel_rifles, list(
 	/obj/item/weapon/gun/rifle/m41a/elite = /obj/item/ammo_magazine/rifle/ap)
 
 	var/list/elite_merc_shotguns = list(
-	/obj/item/weapon/gun/shotgun/merc = pick(GLOB.shotgun_handfuls_12g),
-	/obj/item/weapon/gun/shotgun/combat = pick(GLOB.shotgun_handfuls_12g),
-	/obj/item/weapon/gun/shotgun/type23 = pick(GLOB.shotgun_handfuls_8g))
+	/obj/item/weapon/gun/shotgun/merc = pick(shotgun_handfuls_12g),
+	/obj/item/weapon/gun/shotgun/combat = pick(shotgun_handfuls_12g),
+	/obj/item/weapon/gun/shotgun/type23 = pick(shotgun_handfuls_8g))
 
 	if(prob(shotgun_chance))
 		var/gunpath = pick(elite_merc_shotguns)
@@ -1056,3 +1051,13 @@ GLOBAL_LIST_INIT(rebel_rifles, list(
 			new_human.equip_to_slot_or_del(new /obj/item/storage/belt/gun/type47/t73(new_human), WEAR_WAIST)
 		if (4)
 			new_human.equip_to_slot_or_del(new /obj/item/storage/belt/marine/upp(new_human), WEAR_WAIST)
+
+/datum/equipment_preset/proc/spawn_som_helmet(mob/living/carbon/human/new_human)
+	if(!istype(new_human)) return
+	var/helmetpath = pick(
+		/obj/item/clothing/head/helmet/skullcap,
+		/obj/item/clothing/head/welding,
+		/obj/item/clothing/head/bandana,
+		/obj/item/clothing/head/militia/riot,
+		)
+	new_human.equip_to_slot_or_del(new helmetpath, WEAR_HEAD)

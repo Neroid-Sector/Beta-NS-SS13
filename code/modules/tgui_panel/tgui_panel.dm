@@ -85,15 +85,11 @@
 			),
 		))
 		return TRUE
-// Deprecated due to removal of old sound play commands
-//	if(type == "audio/setAdminMusicVolume")
-//		client.admin_music_volume = payload["volume"]
-//		return TRUE
+	if(type == "audio/setAdminMusicVolume")
+		client.admin_music_volume = payload["volume"]
+		return TRUE
 	if(type == "telemetry")
 		analyze_telemetry(payload)
-		return TRUE
-	if(type == "act/ping_relays")
-		ping_relays()
 		return TRUE
 
 /**

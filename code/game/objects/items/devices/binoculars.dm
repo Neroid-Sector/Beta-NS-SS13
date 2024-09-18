@@ -14,6 +14,7 @@
 	throw_speed = SPEED_VERY_FAST
 	/// If FALSE won't change icon_state to a camo marine bino.
 	var/uses_camo = TRUE
+	var/glint_message_range = 30
 
 
 	//matter = list("metal" = 50,"glass" = 50)
@@ -31,6 +32,11 @@
 		return
 
 	zoom(user, 11, 12)
+
+	for(var/mob/current_mob as anything in get_mobs_in_z_level_range(get_turf(user), glint_message_range) - user)
+		var/relative_dir = get_dir(current_mob, user)
+		var/final_dir = dir2text(relative_dir)
+		to_chat(current_mob, SPAN_HIGHDANGER("You see a suspicious glint [final_dir ? "the [final_dir]" : "nearby"]!"))
 
 /obj/item/device/binoculars/dropped(/obj/item/item, mob/user)
 	. = ..()
@@ -119,11 +125,8 @@
 		if(user.z != targeted_atom.z && !coord)
 			to_chat(user, SPAN_WARNING("You cannot get a direct laser from where you are."))
 			return FALSE
-		if(!(is_ground_level(targeted_atom.z)))
-			to_chat(user, SPAN_WARNING("INVALID TARGET: target must be on the surface."))
-			return FALSE
 		if(user.sight & SEE_TURFS)
-			var/list/turf/path = get_line(user, targeted_atom, include_start_atom = FALSE)
+			var/list/turf/path = getline2(user, targeted_atom, include_from_atom = FALSE)
 			for(var/turf/T in path)
 				if(T.opacity)
 					to_chat(user, SPAN_WARNING("There is something in the way of the laser!"))
@@ -215,7 +218,7 @@
 
 /obj/item/device/binoculars/range/designator/Initialize()
 	. = ..()
-	tracking_id = ++GLOB.cas_tracking_id_increment
+	tracking_id = ++cas_tracking_id_increment
 
 /obj/item/device/binoculars/range/designator/Destroy()
 	QDEL_NULL(laser)
@@ -354,16 +357,13 @@
 /obj/item/device/binoculars/range/designator/scout
 	name = "scout laser designator"
 	desc = "An improved laser designator, issued to USCM scouts, with two modes: target marking for CAS with IR laser and rangefinding. Ctrl + Click turf to target something. Ctrl + Click designator to stop lasing. Alt + Click designator to switch modes."
-	unacidable = TRUE
-	indestructible = TRUE
 	cooldown_duration = 80
 	target_acquisition_delay = 30
 
 /obj/item/device/binoculars/range/designator/spotter
 	name = "spotter's laser designator"
 	desc = "A specially-designed laser designator, issued to USCM spotters, with two modes: target marking for CAS with IR laser and rangefinding. Ctrl + Click turf to target something. Ctrl + Click designator to stop lasing. Alt + Click designator to switch modes. Additionally, a trained spotter can laze targets for a USCM marksman, increasing the speed of target acquisition. A targeting beam will connect the binoculars to the target, but it may inherit the user's cloak, if possible."
-	unacidable = TRUE
-	indestructible = TRUE
+
 	var/is_spotting = FALSE
 	var/spotting_time = 10 SECONDS
 	var/spotting_cooldown_delay = 5 SECONDS
@@ -403,28 +403,26 @@
 	COOLDOWN_START(designator, spotting_cooldown, 0)
 
 /datum/action/item_action/specialist/spotter_target/action_activate()
-	. = ..()
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/human = owner
 	if(human.selected_ability == src)
-		to_chat(human, "You will no longer use [name] with [human.get_ability_mouse_name()].")
+		to_chat(human, "You will no longer use [name] with \
+			[human.client && human.client.prefs && human.client.prefs.toggle_prefs & TOGGLE_MIDDLE_MOUSE_CLICK ? "middle-click" : "shift-click"].")
 		button.icon_state = "template"
-		human.set_selected_ability(null)
+		human.selected_ability = null
 	else
-		to_chat(human, "You will now use [name] with [human.get_ability_mouse_name()].")
+		to_chat(human, "You will now use [name] with \
+			[human.client && human.client.prefs && human.client.prefs.toggle_prefs & TOGGLE_MIDDLE_MOUSE_CLICK ? "middle-click" : "shift-click"].")
 		if(human.selected_ability)
 			human.selected_ability.button.icon_state = "template"
-			human.set_selected_ability(null)
+			human.selected_ability = null
 		button.icon_state = "template_on"
-		human.set_selected_ability(src)
+		human.selected_ability = src
 
 /datum/action/item_action/specialist/spotter_target/can_use_action()
 	var/mob/living/carbon/human/human = owner
-	if(!(GLOB.character_traits[/datum/character_trait/skills/spotter] in human.traits))
-		to_chat(human, SPAN_WARNING("You have no idea how to use this!"))
-		return FALSE
-	if(istype(human) && !human.is_mob_incapacitated() && (holder_item == human.r_hand || holder_item || human.l_hand))
+	if(istype(human) && !human.is_mob_incapacitated() && !human.lying && (holder_item == human.r_hand || holder_item || human.l_hand))
 		return TRUE
 
 /datum/action/item_action/specialist/spotter_target/proc/use_ability(atom/targeted_atom)
@@ -447,7 +445,7 @@
 	human.face_atom(target)
 
 	///Add a decisecond to the default 1.5 seconds for each two tiles to hit.
-	var/distance = floor(get_dist(target, human) * 0.5)
+	var/distance = round(get_dist(target, human) * 0.5)
 	var/f_spotting_time = designator.spotting_time + distance
 
 	designator.is_spotting = TRUE

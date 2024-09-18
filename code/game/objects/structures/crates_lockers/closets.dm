@@ -5,7 +5,6 @@
 	icon_state = "closed"
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
-	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
 	var/opened = 0
@@ -80,11 +79,10 @@
 		M.forceMove(loc)
 		if(exit_stun)
 			M.apply_effect(exit_stun, STUN) //Action delay when going out of a closet
-		if(isliving(M))
-			var/mob/living/living_M = M
-			if(living_M.mobility_flags & MOBILITY_MOVE)
-				M.visible_message(SPAN_WARNING("[M] suddenly gets out of [src]!"),
-				SPAN_WARNING("You get out of [src] and get your bearings!"))
+		M.update_canmove() //Force the delay to go in action immediately
+		if(!M.lying)
+			M.visible_message(SPAN_WARNING("[M] suddenly gets out of [src]!"),
+			SPAN_WARNING("You get out of [src] and get your bearings!"))
 
 /obj/structure/closet/proc/open()
 	if(opened)
@@ -128,9 +126,7 @@
 			var/obj/item/explosive/plastic/P = I
 			if(P.active)
 				continue
-		if(istype(I, /obj/item/phone))
-			continue
-		var/item_size = ceil(I.w_class / 2)
+		var/item_size = Ceiling(I.w_class / 2)
 		if(stored_units + item_size > storage_capacity)
 			continue
 		if(!I.anchored)
@@ -161,15 +157,10 @@
 
 
 /obj/structure/closet/proc/take_damage(damage)
-	if(health <= 0)
-		return
-
 	health = max(health - damage, 0)
 	if(health <= 0)
-		for(var/atom/movable/movable as anything in src)
-			if(!loc)
-				break
-			movable.forceMove(loc)
+		for(var/atom/movable/A as anything in src)
+			A.forceMove(src.loc)
 		playsound(loc, 'sound/effects/meteorimpact.ogg', 25, 1)
 		qdel(src)
 
@@ -203,7 +194,7 @@
 
 /obj/structure/closet/attack_animal(mob/living/user)
 	if(user.wall_smash)
-		visible_message(SPAN_DANGER("[user] destroys [src]."))
+		visible_message(SPAN_DANGER("[user] destroys the [src]. "))
 		for(var/atom/movable/A as mob|obj in src)
 			A.forceMove(src.loc)
 		qdel(src)
@@ -247,6 +238,8 @@
 				user.visible_message(SPAN_NOTICE("[user] has pried apart [src] with [W]."), "You pry apart [src].")
 				qdel(src)
 				return
+		if(isrobot(user))
+			return
 		user.drop_inv_item_to_loc(W,loc)
 
 	else if(istype(W, /obj/item/packageWrap) || istype(W, /obj/item/explosive/plastic))
@@ -340,7 +333,7 @@
 	set category = "Object"
 	set name = "Toggle Open"
 
-	if(usr.is_mob_incapacitated())
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
 		return
 
 	if(usr.loc == src)

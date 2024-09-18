@@ -26,8 +26,6 @@ GLOBAL_LIST_EMPTY_TYPED(transmitters, /obj/structure/transmitter)
 	var/enabled = TRUE
 	/// Whether or not the phone is receiving calls or not. Varies between on/off or forcibly on/off.
 	var/do_not_disturb = PHONE_DND_OFF
-	/// The Phone_ID of the last person to call this telephone.
-	var/last_caller
 
 	var/base_icon_state
 
@@ -36,10 +34,6 @@ GLOBAL_LIST_EMPTY_TYPED(transmitters, /obj/structure/transmitter)
 
 	var/list/networks_receive = list(FACTION_MARINE)
 	var/list/networks_transmit = list(FACTION_MARINE)
-
-	var/datum/looping_sound/telephone/busy/busy_loop
-	var/datum/looping_sound/telephone/hangup/hangup_loop
-	var/datum/looping_sound/telephone/ring/outring_loop
 
 /obj/structure/transmitter/hidden
 	do_not_disturb = PHONE_DND_FORCED
@@ -54,10 +48,6 @@ GLOBAL_LIST_EMPTY_TYPED(transmitters, /obj/structure/transmitter)
 
 	if(!get_turf(src))
 		return
-
-	outring_loop = new(attached_to)
-	busy_loop = new(attached_to)
-	hangup_loop = new(attached_to)
 
 	GLOB.transmitters += src
 
@@ -148,7 +138,6 @@ GLOBAL_LIST_EMPTY_TYPED(transmitters, /obj/structure/transmitter)
 	var/list/data = list()
 
 	data["availability"] = do_not_disturb
-	data["last_caller"] = last_caller
 
 	return data
 
@@ -186,13 +175,11 @@ GLOBAL_LIST_EMPTY_TYPED(transmitters, /obj/structure/transmitter)
 
 	calling = T
 	T.caller = src
-	T.last_caller = src.phone_id
 	T.update_icon()
 
 	to_chat(user, SPAN_PURPLE("[icon2html(src, user)] Dialing [calling_phone_id].."))
 	playsound(get_turf(user), "rtb_handset")
 	timeout_timer_id = addtimer(CALLBACK(src, PROC_REF(reset_call), TRUE), timeout_duration, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
-	outring_loop.start()
 
 	START_PROCESSING(SSobj, src)
 	START_PROCESSING(SSobj, T)
@@ -232,7 +219,6 @@ GLOBAL_LIST_EMPTY_TYPED(transmitters, /obj/structure/transmitter)
 	if(T.attached_to && ismob(T.attached_to.loc))
 		var/mob/M = T.attached_to.loc
 		to_chat(M, SPAN_PURPLE("[icon2html(src, M)] [phone_id] has picked up."))
-		playsound(T.attached_to.loc, 'sound/machines/telephone/remote_pickup.ogg', 20)
 		if(T.timeout_timer_id)
 			deltimer(T.timeout_timer_id)
 			T.timeout_timer_id = null
@@ -240,7 +226,6 @@ GLOBAL_LIST_EMPTY_TYPED(transmitters, /obj/structure/transmitter)
 	to_chat(user, SPAN_PURPLE("[icon2html(src, user)] Picked up a call from [T.phone_id]."))
 	playsound(get_turf(user), "rtb_handset")
 
-	T.outring_loop.stop()
 	user.put_in_active_hand(attached_to)
 	update_icon()
 
@@ -265,14 +250,11 @@ GLOBAL_LIST_EMPTY_TYPED(transmitters, /obj/structure/transmitter)
 		if(T.attached_to && ismob(T.attached_to.loc))
 			var/mob/M = T.attached_to.loc
 			to_chat(M, SPAN_PURPLE("[icon2html(src, M)] [phone_id] has hung up on you."))
-			T.hangup_loop.start()
 
 		if(attached_to && ismob(attached_to.loc))
 			var/mob/M = attached_to.loc
 			if(timeout)
-				to_chat(M, SPAN_PURPLE("[icon2html(src, M)] Your call to [T.phone_id] has reached voicemail, nobody picked up the phone."))
-				busy_loop.start()
-				outring_loop.stop()
+				to_chat(M, SPAN_PURPLE("[icon2html(src, M)] Your call to [T.phone_id] has reached voicemail, you immediately disconnect the line."))
 			else
 				to_chat(M, SPAN_PURPLE("[icon2html(src, M)] You have hung up on [T.phone_id]."))
 
@@ -295,8 +277,6 @@ GLOBAL_LIST_EMPTY_TYPED(transmitters, /obj/structure/transmitter)
 
 		T.update_icon()
 		STOP_PROCESSING(SSobj, T)
-
-	outring_loop.stop()
 
 	STOP_PROCESSING(SSobj, src)
 
@@ -335,12 +315,9 @@ GLOBAL_LIST_EMPTY_TYPED(transmitters, /obj/structure/transmitter)
 		var/mob/M = attached_to.loc
 		M.drop_held_item(attached_to)
 		playsound(get_turf(M), "rtb_handset", 100, FALSE, 7)
-		hangup_loop.stop()
 
 	attached_to.forceMove(src)
 	reset_call()
-	busy_loop.stop()
-	outring_loop.stop()
 
 	update_icon()
 
@@ -366,7 +343,6 @@ GLOBAL_LIST_EMPTY_TYPED(transmitters, /obj/structure/transmitter)
 
 	P.handle_hear(message, L, speaking)
 	attached_to.handle_hear(message, L, speaking)
-	playsound(P, "talk_phone", 5)
 	log_say("TELEPHONE: [key_name(speaking)] on Phone '[phone_id]' to '[T.phone_id]' said '[message]'")
 
 /obj/structure/transmitter/attackby(obj/item/W, mob/user)
@@ -382,7 +358,7 @@ GLOBAL_LIST_EMPTY_TYPED(transmitters, /obj/structure/transmitter)
 			qdel(attached_to)
 		else
 			attached_to.attached_to = null
-		attached_to = null
+			attached_to = null
 
 	GLOB.transmitters -= src
 	SStgui.close_uis(src)

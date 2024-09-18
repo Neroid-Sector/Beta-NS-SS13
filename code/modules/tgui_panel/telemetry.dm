@@ -85,8 +85,8 @@
 		var/list/row = telemetry_connections[i]
 
 		// Check for a malformed history object
-		if (LAZYLEN(row) < 3 || (!row["ckey"] || !row["address"] || !row["computer_id"]))
-			continue
+		if (!row || row.len < 3 || (!row["ckey"] || !row["address"] || !row["computer_id"]))
+			return
 
 		/* TODO - Reintroduce this when we get a proper round ID tracking,
 			and we want to log it to database
@@ -103,7 +103,7 @@
 			continue
 		*/
 
-		if (world.IsBanned(row["ckey"], row["address"], row["computer_id"], real_bans_only = TRUE, is_telemetry = TRUE))
+		if (world.IsBanned(row["ckey"], row["address"], row["computer_id"], real_bans_only = TRUE))
 			found = row
 			break
 

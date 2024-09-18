@@ -45,35 +45,33 @@
 	set name = "Adjust welding mask"
 	set src in usr
 
-	if(usr.is_mob_incapacitated())
-		return
+	if(usr.canmove && !usr.stat && !usr.is_mob_restrained())
+		if(up)
+			vision_impair = VISION_IMPAIR_MAX
+			flags_inventory |= COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
+			flags_inv_hide |= HIDEEARS|HIDEEYES|HIDEFACE
+			icon_state = initial(icon_state)
+			eye_protection = initial(eye_protection)
+			to_chat(usr, "You flip the [src] down to protect your eyes.")
+		else
+			vision_impair = VISION_IMPAIR_NONE
+			flags_inventory &= ~(COVEREYES|COVERMOUTH|BLOCKSHARPOBJ)
+			flags_inv_hide &= ~(HIDEEARS|HIDEEYES|HIDEFACE)
+			icon_state = "[initial(icon_state)]up"
+			eye_protection = EYE_PROTECTION_NONE
+			to_chat(usr, "You push the [src] up out of your face.")
+		up = !up
 
-	if(up)
-		vision_impair = VISION_IMPAIR_MAX
-		flags_inventory |= COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
-		flags_inv_hide |= HIDEEARS|HIDEEYES|HIDEFACE
-		icon_state = initial(icon_state)
-		eye_protection = initial(eye_protection)
-		to_chat(usr, SPAN_NOTICE("You flip [src] down to protect your eyes."))
-	else
-		vision_impair = VISION_IMPAIR_NONE
-		flags_inventory &= ~(COVEREYES|COVERMOUTH|BLOCKSHARPOBJ)
-		flags_inv_hide &= ~(HIDEEARS|HIDEEYES|HIDEFACE)
-		icon_state = "[initial(icon_state)]up"
-		eye_protection = EYE_PROTECTION_NONE
-		to_chat(usr, SPAN_NOTICE("You push [src] up out of your face."))
-	up = !up
+		if(ishuman(loc))
+			var/mob/living/carbon/human/H = loc
+			if(H.head == src)
+				H.update_tint()
 
-	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		if(H.head == src)
-			H.update_tint()
+		update_clothing_icon() //so our mob-overlays update
 
-	update_clothing_icon() //so our mob-overlays update
-
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.update_button_icon()
+		for(var/X in actions)
+			var/datum/action/A = X
+			A.update_button_icon()
 
 /*
  * Cakehat

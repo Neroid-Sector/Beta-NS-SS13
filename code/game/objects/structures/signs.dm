@@ -107,24 +107,64 @@
 	desc = "This banner depicts Delta Squad's motto. The Marines of Delta Squad adopted it after picking an old bomber movie for movie night a while back."
 	icon_state = "maximumeffort"
 
-/obj/structure/sign/banners/united_americas_flag
-	name = "\improper United Americas flag"
-	desc = "A flag of the United Americas. Inspires patriotism, fear, or revulsion depending on the viewer's political leanings."
-	icon_state = "uaflag"
-
+/obj/structure/sign/banners/flork
+	name = "\improper Modern Art Painting"
+	desc = "This painting was commissioned by Maj Blackbriar some time after the unit's arrival over LV-254. The meaning is unclear."
+	icon_state = "mylife"
 
 //============//
-//  Flags    //
+//  Flags  //
 //==========//
 
-/obj/structure/sign/flag
-	icon = 'icons/obj/structures/props/flags.dmi'
+/obj/structure/sign/banners/uaflag
+	name = "\improper United Americas Flag"
+	desc = "The Offical Flag of the United Americas."
+	icon_state = "ua_flag"
 
-/obj/structure/sign/flag/upp
+/obj/structure/sign/banners/uaflagworn
+	name = "\improper Battered United Americas Flag"
+	desc = "The Offical Flag of the United Americas. This one has seen some action."
+	icon_state = "ua_flag"
+
+/obj/structure/sign/banners/cmflag
+	name = "\improper United States Colonial Marines Corps Flag"
+	desc = "The Offical Flag of the USCMC."
+	icon_state = "cmflag"
+
+/obj/structure/sign/banners/cmflagworn
+	name = "\improper Battered United States Colonial Marines Corps Flag"
+	desc = "The Offical Flag of the USCMC. This one has seen some action."
+	icon_state = "cmflag_worn"
+
+/obj/structure/sign/banners/tweflag
+	name = "\improper Three World Empire Flag"
+	desc = "The Offical Flag of the TWE."
+	icon_state = "tweflag"
+
+/obj/structure/sign/banners/tweflagworn
+	name = "\improper Battered Three World Empire Flag"
+	desc = "The Offical Flag of the TWE. This one has seen some action."
+	icon_state = "tweflag_worn"
+
+/obj/structure/sign/banners/uppflag
 	name = "\improper Union of Progressive Peoples Flag"
-	desc = "Unity through Strength, Freedom through Unity"
-	icon_state = "upp_flag"
+	desc = "The Offical Flag of the UPP."
+	icon_state = "uppflag"
 
+/obj/structure/sign/banners/uppflagworn
+	name = "\improper Battered Union of Progressive Peoples Flag"
+	desc = "The Offical Flag of the UPP. This one has seen some action."
+	icon_state = "uppflag"
+
+/obj/structure/sign/banners/mluflag
+	name = "\improper Miners Liberation Union Flag"
+	desc = "The Offical Flag of the MLU."
+	icon_state = "mluflag"
+
+/obj/structure/sign/banners/mluflagworn
+	name = "\improper Battered Miners Liberation Union Flag"
+	desc = "The Offical Flag of the MLU. This one has seen some action."
+	icon_state = "mluflag_worn"
 //=====================//
 // SEMIOTIC STANDARD  //
 //===================//
@@ -323,7 +363,7 @@
 	icon_state = "lifesupport"
 
 /obj/structure/sign/safety/maint
-	name = "maintenance semiotic"
+	name = "maintenace semiotic"
 	desc = "Semiotic Standard denoting the nearby presence of maintenance access."
 	icon_state = "maint"
 
@@ -590,58 +630,6 @@
 	name = "\improper USCM Requisitions Office Guidelines"
 	desc = " 1. You are not entitled to service or equipment. Attachments are a privilege, not a right.\n 2. You must be fully dressed to obtain service. Cryosleep underwear is non-permissible.\n 3. The Quartermaster has the final say and the right to decline service. Only the Acting Commanding Officer may override their decisions.\n 4. Please treat your Requsitions staff with respect. They work hard."
 	icon_state = "roplaque"
-
-/obj/structure/sign/ROcreed
-	name = "\improper QMC Creed Plaque"
-	desc = "The short version of the Quartermaster Creed made by the US Quartermaster Corps, this on is purely decorative and ceremonial version which is much shorter and doesn't include more modern edits."
-	desc_lore = {"I am Quartermaster
-		My story is enfolded in the history of this nation.
-		Sustainer of Armies...
-
-		My forges burned at Valley Forge.
-		Down frozen, rutted roads my oxen hauled
-		the meager foods a bankrupt Congress sent me...
-		Scant rations for the cold and starving troops,
-		Gunpowder, salt, and lead.
-
-		In 1812 we sailed to war in ships my boatwrights built.
-		I fought beside you in the deserts of our great Southwest.
-		My pack mules perished seeking water holes,
-		And I went on with camels.
-		I gave flags to serve.
-		The medals and crest you wear are my design.
-
-		Since 1862, I have sought our fallen brothers
-		from Private to President.
-		In war or peace I bring them home
-		And lay them gently down in fields of honor.
-
-		Provisioner, transporter.
-		In 1898 I took you to Havana Harbor and the Philippines.
-		I brought you tents, your khaki cloth for uniforms.
-		When yellow fever struck, I brought the mattresses you lay upon.
-
-		In 1917, we crossed the ocean to fight in the trenches and fields of France,
-		New weapons, training, technologies, and tactics for the Great War.
-		But always the need for food, water, ammunition, and now fuel.
-
-		We shed first blood together at Pearl Harbor and Corregidor.
-		Then begin the long march to Victory - Guadalcanal and North Africa, Sicily and the Solomons.
-		I was there with you at Omaha Beach on D-Day and even the night before from Glider and Parachute.
-		Across Europe and the Pacific, I drove and dug and fought till the job was done.
-
-		When war came to the Peninsula in 1950, it was my 'chutes that filled the grey Korean skies.
-		From the perimeter at Pusan to the cold roads of the Chosin, I was there.
-		In 1965, I established the fire bases and depots across South Vietnam,
-		The Hueys and Chinooks carried my supplies forward.
-
-		I AM QUARTERMASTER.
-		I can shape the course of combat,
-		Change the outcome of battle.
-		Look to me: Sustainer of Armies...Since 1775.
-
-		I AM QUARTERMASTER. I AM PROUD."}
-	icon_state = "rocreed"
 
 /obj/structure/sign/prop1
 	name = "\improper USCM Poster"

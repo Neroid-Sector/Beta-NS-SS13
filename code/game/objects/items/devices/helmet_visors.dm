@@ -6,7 +6,7 @@
 	w_class = SIZE_TINY
 
 	///The type of HUD our visor shows
-	var/hud_type = MOB_HUD_FACTION_MARINE
+	var/hud_type = MOB_HUD_FACTION_USCM
 
 	///The sound when toggling on the visor
 	var/toggle_on_sound = 'sound/handling/hud_on.ogg'
@@ -61,12 +61,12 @@
 
 /// Called by toggle_visor() to activate the visor's effects
 /obj/item/device/helmet_visor/proc/activate_visor(obj/item/clothing/head/helmet/marine/attached_helmet, mob/living/carbon/human/user)
-	var/datum/mob_hud/current_mob_hud = GLOB.huds[hud_type]
+	var/datum/mob_hud/current_mob_hud = huds[hud_type]
 	current_mob_hud.add_hud_to(user, attached_helmet)
 
 /// Called by toggle_visor() to deactivate the visor's effects
 /obj/item/device/helmet_visor/proc/deactivate_visor(obj/item/clothing/head/helmet/marine/attached_helmet, mob/living/carbon/human/user)
-	var/datum/mob_hud/current_mob_hud = GLOB.huds[hud_type]
+	var/datum/mob_hud/current_mob_hud = huds[hud_type]
 	current_mob_hud.remove_hud_from(user, attached_helmet)
 
 /// Called by /obj/item/clothing/head/helmet/marine/get_examine_text(mob/user) to get extra examine text for this visor
@@ -82,7 +82,7 @@
 
 /obj/item/device/helmet_visor/medical/advanced
 	name = "advanced medical optic"
-	helmet_overlay = "med_sight_right"
+	helmet_overlay = "med_sight_left"
 
 /obj/item/device/helmet_visor/medical/advanced/activate_visor(obj/item/clothing/head/helmet/marine/attached_helmet, mob/living/carbon/human/user)
 	. = ..()
@@ -112,7 +112,7 @@
 
 /obj/item/device/helmet_visor/medical/advanced/ui_data(mob/user)
 	var/list/data = list(
-		"published_documents" = GLOB.chemical_data.research_publications,
+		"published_documents" = chemical_data.research_publications,
 		"terminal_view" = FALSE
 	)
 	return data
@@ -140,13 +140,12 @@
 		if ("read_document")
 			var/print_type = params["print_type"]
 			var/print_title = params["print_title"]
-			var/obj/item/paper/research_report/report = GLOB.chemical_data.get_report(print_type, print_title)
+			var/obj/item/paper/research_report/report = chemical_data.get_report(print_type, print_title)
 			if(report)
 				report.read_paper(user)
 			return
 
 /datum/action/item_action/view_publications/helmet_visor/action_activate()
-	. = ..()
 	var/obj/item/device/helmet_visor/medical/advanced/medical_visor = locate() in holder_item
 
 	if(!medical_visor)
@@ -203,8 +202,8 @@
 	/// The internal battery for the visor
 	var/obj/item/cell/high/power_cell
 
-	/// About 5 minutes active use charge (hypothetically)
-	var/power_use = 33
+	/// About 10 minutes active use charge (hypothetically)
+	var/power_use = 15
 
 	/// The alpha of darkness we set to for the mob while the visor is on, not completely fullbright but see-able
 	var/lighting_alpha = 100
@@ -226,7 +225,7 @@
 /obj/item/device/helmet_visor/night_vision/get_examine_text(mob/user)
 	. = ..()
 
-	. += SPAN_NOTICE("It is currently at [floor((power_cell.charge / power_cell.maxcharge) * 100)]% charge.")
+	. += SPAN_NOTICE("It is currently at [round((power_cell.charge / power_cell.maxcharge) * 100)]% charge.")
 
 /obj/item/device/helmet_visor/night_vision/activate_visor(obj/item/clothing/head/helmet/marine/attached_helmet, mob/living/carbon/human/user)
 	RegisterSignal(user, COMSIG_HUMAN_POST_UPDATE_SIGHT, PROC_REF(on_update_sight))
@@ -276,6 +275,7 @@
 
 	if(user.client.view > 7)
 		to_chat(user, SPAN_WARNING("You cannot use [src] while using optics."))
+		change_view()
 		return FALSE
 
 	if(!NVG_VISOR_USAGE(FALSE))
@@ -287,7 +287,7 @@
 /obj/item/device/helmet_visor/night_vision/get_helmet_examine_text()
 	. = ..()
 
-	. += SPAN_NOTICE(" It is currently at [floor((power_cell.charge / power_cell.maxcharge) * 100)]% charge.")
+	. += SPAN_NOTICE(" It is currently at [round((power_cell.charge / power_cell.maxcharge) * 100)]% charge.")
 
 /obj/item/device/helmet_visor/night_vision/proc/on_update_sight(mob/user)
 	SIGNAL_HANDLER
@@ -297,14 +297,15 @@
 	user.lighting_alpha = lighting_alpha
 	user.sync_lighting_plane_alpha()
 
+
 /obj/item/device/helmet_visor/night_vision/proc/change_view(mob/user, new_size)
 	SIGNAL_HANDLER
-	if(new_size > 7) // cannot use binos with NVO
+	if(new_size > 7) // cannot use binos
 		var/obj/item/clothing/head/helmet/marine/attached_helmet = loc
 		if(!istype(attached_helmet))
 			return
 		deactivate_visor(attached_helmet, user)
-		to_chat(user, SPAN_NOTICE("You deactivate [src] on [attached_helmet]."))
+		to_chat(user, SPAN_NOTICE("You deactivate [src] on [attached_helmet] and put your eyes to the lens."))
 		playsound_client(user.client, toggle_off_sound, null, 75)
 		attached_helmet.active_visor = null
 		attached_helmet.update_icon()
@@ -317,30 +318,30 @@
 /atom/movable/nvg_light
 	light_power = 0.5
 	light_range = 1
-	light_color = COLOR_LIGHT_GREEN
+	light_color = COLOUR_BLUE
 	light_system = MOVABLE_LIGHT
 	light_flags = LIGHT_ATTACHED
 
 /obj/item/device/helmet_visor/night_vision/marine_raider
 	name = "advanced night vision optic"
-	desc = "An insertable visor HUD into a standard USCM helmet. This type gives a form of night vision and is standard issue in special forces units."
-	hud_type = list(MOB_HUD_FACTION_MARINE, MOB_HUD_MEDICAL_ADVANCED)
+	desc = "An insertable visor HUD into a standard USCM helmet. This type gives a form of night vision and is standard issue."
+	hud_type = list(MOB_HUD_FACTION_USCM, MOB_HUD_MEDICAL_ADVANCED)
 	helmet_overlay = "nvg_sight_right_raider"
 	power_use = 0
-	visor_glows = FALSE
+	visor_glows = TRUE
 
 /obj/item/device/helmet_visor/night_vision/marine_raider/activate_visor(obj/item/clothing/head/helmet/marine/attached_helmet, mob/living/carbon/human/user)
 	. = ..()
 
 	for(var/type in hud_type)
-		var/datum/mob_hud/current_mob_hud = GLOB.huds[type]
+		var/datum/mob_hud/current_mob_hud = huds[type]
 		current_mob_hud.add_hud_to(user, attached_helmet)
 
 /obj/item/device/helmet_visor/night_vision/marine_raider/deactivate_visor(obj/item/clothing/head/helmet/marine/attached_helmet, mob/living/carbon/human/user)
 	. = ..()
 
 	for(var/type in hud_type)
-		var/datum/mob_hud/current_mob_hud = GLOB.huds[type]
+		var/datum/mob_hud/current_mob_hud = huds[type]
 		current_mob_hud.remove_hud_from(user, attached_helmet)
 
 /obj/item/device/helmet_visor/night_vision/marine_raider/process(delta_time)

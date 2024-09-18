@@ -8,7 +8,7 @@
 	name = "lever-action bullet"
 
 	damage = 80
-	penetration = 0
+	penetration = ARMOR_PENETRATION_TIER_10
 	accuracy = HIT_ACCURACY_TIER_1
 	shell_speed = AMMO_SPEED_TIER_6
 	accurate_range = 14
@@ -52,7 +52,7 @@
 /datum/ammo/bullet/lever_action/xm88
 	name = ".458 SOCOM round"
 
-	damage = 104
+	damage = 80
 	penetration = ARMOR_PENETRATION_TIER_2
 	accuracy = HIT_ACCURACY_TIER_1
 	shell_speed = AMMO_SPEED_TIER_6

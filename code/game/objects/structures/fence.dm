@@ -1,10 +1,39 @@
+/obj/item/stack/deployable_fence
+	name = "deployable fence"
+	desc = "A rolled up segment of chainlink fence"
+	icon = 'icons/obj/items/marine-items.dmi'
+	icon_state = "deployable_fence"
+	w_class = SIZE_SMALL
+	max_amount = 50
+	var/deployfence = /obj/structure/fence
+
+
+/obj/item/stack/deployable_fence/attack_self(mob/user)
+	..()
+	var/turf/open/T = user.loc
+	if(!(istype(T) && T.allow_construction))
+		to_chat(user, SPAN_WARNING("[src] must be placed on a proper surface!"))
+		return
+	if(do_after(user, 0.5 SECONDS, INTERRUPT_ALL, BUSY_ICON_BUILD, src))
+		playsound(loc, 'sound/effects/pry1.ogg', 25, TRUE)
+		to_chat(user, SPAN_NOTICE(" You deploy [src]."))
+		var/obj/structure/fence/R = new deployfence(usr.loc)
+		src.transfer_fingerprints_to(R)
+		R.add_fingerprint(user)
+		if (amount <= 1)
+			qdel(src)
+		else {
+			amount = amount - 1
+			update_icon()
+		}
+
 /obj/structure/fence
 	name = "fence"
 	desc = "A large metal mesh strewn between two poles. Intended as a cheap way to separate areas, while allowing one to see through it."
 	icon = 'icons/obj/structures/props/fence.dmi'
 	icon_state = "fence0"
-	throwpass = TRUE
 	density = TRUE
+	throwpass = TRUE
 	anchored = TRUE
 	layer = WINDOW_LAYER
 	flags_atom = FPRINT
@@ -153,10 +182,6 @@
 					M.apply_damage(20)
 					health -= 50
 
-			M.attack_log += text("\[[time_stamp()]\] <font color='orange'>was slammed against [src] by [key_name(user)]</font>")
-			user.attack_log += text("\[[time_stamp()]\] <font color='red'>slammed [key_name(M)] against [src]</font>")
-			msg_admin_attack("[key_name(user)] slammed [key_name(M)] against [src] at [get_area_name(M)]", M.loc.x, M.loc.y, M.loc.z)
-
 			healthcheck(1, 1, M) //The person thrown into the window literally shattered it
 		return
 
@@ -175,9 +200,9 @@
 	else
 		switch(W.damtype)
 			if("fire")
-				health -= W.force * W.demolition_mod
+				health -= W.force
 			if("brute")
-				health -= W.force * W.demolition_mod * 0.1
+				health -= W.force * 0.1
 		healthcheck(1, 1, user, W)
 		..()
 
@@ -214,7 +239,7 @@
 //This proc is used to update the icons of nearby windows.
 /obj/structure/fence/proc/update_nearby_icons()
 	update_icon()
-	for(var/direction in GLOB.cardinals)
+	for(var/direction in cardinal)
 		for(var/obj/structure/fence/W in get_step(src, direction))
 			W.update_icon()
 
@@ -235,6 +260,28 @@
 
 /obj/structure/fence/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 800)
-		health -= floor(exposed_volume / 100)
+		health -= round(exposed_volume / 100)
 		healthcheck(0) //Don't make hit sounds, it's dumb with fire/heat
 	..()
+
+
+/obj/item/stack/deployable_fence/full_stack
+	amount = STACK_50
+
+/obj/item/storage/briefcase/fence
+	name = "deployable fence box"
+	desc = "Contains segments of a deployable fence."
+	icon_state = "inf_box"
+	item_state = "syringe_kit"
+	max_storage_space = 21
+
+/obj/item/storage/briefcase/fence/Initialize()
+	. = ..()
+	new /obj/item/stack/deployable_fence/full_stack(src)
+	new /obj/item/stack/deployable_fence/full_stack(src)
+	new /obj/item/stack/deployable_fence/full_stack(src)
+	new /obj/item/stack/deployable_fence/full_stack(src)
+	new /obj/item/stack/deployable_fence/full_stack(src)
+	new /obj/item/stack/deployable_fence/full_stack(src)
+	new /obj/item/stack/deployable_fence/full_stack(src)
+

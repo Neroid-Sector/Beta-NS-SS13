@@ -24,7 +24,6 @@
 
 /obj/item/ammo_magazine/revolver/heavy
 	name = "\improper M44 heavy speed loader (.44)"
-	desc = "A revolver speed loader containing heavy bullets. While less damaging overall than the traditional rounds, they are more accurate."
 	default_ammo = /datum/ammo/bullet/revolver/heavy
 	caliber = ".44"
 	ammo_band_color = REVOLVER_TIP_COLOR_HEAVY
@@ -93,6 +92,12 @@
 	desc = "This speedloader is fitted with standard .357 revolver bullets. A surprising rarity, as most CMB revolvers are issued to Marshals on colonies with wildlife, or weakly-hulled space stations."
 	default_ammo = /datum/ammo/bullet/revolver/small
 	icon_state = "cmb"
+
+/obj/item/ammo_magazine/revolver/cmb/marksman
+	name = "\improper Spearhead marksman speed loader (.357)"
+	desc = "This speedloader is fitted with specialized match-grade .357 revolver bullets. An extreme rarity among marshal teams and more commonly found with QRF members for their stopping power and penetration."
+	default_ammo = /datum/ammo/bullet/revolver/small/marksman
+	icon_state = "cmb_mark"
 
 /**
  * MATEBA REVOLVER
@@ -212,6 +217,11 @@
 
 /obj/item/ammo_magazine/internal/revolver/cmb/hollowpoint
 	default_ammo = /datum/ammo/bullet/revolver/small/hollowpoint
+	caliber = ".357"
+	gun_type = /obj/item/weapon/gun/revolver/cmb
+
+/obj/item/ammo_magazine/internal/revolver/cmb/marksman
+	default_ammo = /datum/ammo/bullet/revolver/small/marksman
 	caliber = ".357"
 	gun_type = /obj/item/weapon/gun/revolver/cmb
 

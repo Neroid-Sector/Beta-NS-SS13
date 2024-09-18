@@ -188,8 +188,6 @@
 	for(var/mob/M in mobs)
 		if(!M.ckey)
 			continue
-		if(!CLIENT_HAS_RIGHTS(usr.client, R_STEALTH) && (M.client && (CLIENT_IS_STEALTHED(M.client))))
-			continue
 
 		var/color = i % 2 == 0 ? "#6289b7" : "#48709d"
 
@@ -206,7 +204,12 @@
 				else
 					M_job = "Carbon-based"
 			else if(isSilicon(M)) //silicon
-				M_job = "Silicon-based"
+				if(isAI(M))
+					M_job = "AI"
+				else if(isrobot(M))
+					M_job = "Cyborg"
+				else
+					M_job = "Silicon-based"
 			else if(isanimal(M)) //simple animals
 				if(iscorgi(M))
 					M_job = "Corgi"
@@ -287,8 +290,10 @@
 
 		dat += "<tr><td>[(M.client ? "[M.client]" : "No client")]</td>"
 		dat += "<td><a href='?src=\ref[usr];priv_msg=[M.ckey]'>[M.name]</a></td>"
-		if(isSilicon(M))
+		if(isAI(M))
 			dat += "<td>AI</td>"
+		else if(isrobot(M))
+			dat += "<td>Cyborg</td>"
 		else if(ishuman(M))
 			dat += "<td>[M.real_name]</td>"
 		else if(istype(M, /mob/new_player))
@@ -323,7 +328,7 @@
 
 	var/dat = "<html><body><h1><B>Antagonists</B></h1>"
 	dat += "Current Game Mode: <B>[SSticker.mode.name]</B><BR>"
-	dat += "Round Duration: <B>[floor(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</B><BR>"
+	dat += "Round Duration: <B>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</B><BR>"
 
 	if(length(GLOB.other_factions_human_list))
 		dat += "<br><table cellspacing=5><tr><td><B>Other human factions</B></td><td></td><td></td></tr>"
@@ -338,7 +343,7 @@
 				dat += "<td><a href='?src=\ref[src];[HrefToken()];adminplayeropts=\ref[H]'>PP</a></td>"
 		dat += "</table>"
 
-	if(length(SSticker.mode.survivors))
+	if(SSticker.mode.survivors.len)
 		dat += "<br><table cellspacing=5><tr><td><B>Survivors</B></td><td></td><td></td></tr>"
 		for(var/datum/mind/L in SSticker.mode.survivors)
 			var/mob/M = L.current
@@ -350,7 +355,7 @@
 				dat += "<td><A href='?src=\ref[src];[HrefToken()];adminplayeropts=\ref[M]'>PP</A></td></TR>"
 		dat += "</table>"
 
-	if(length(SSticker.mode.xenomorphs))
+	if(SSticker.mode.xenomorphs.len)
 		dat += "<br><table cellspacing=5><tr><td><B>Aliens</B></td><td></td><td></td></tr>"
 		for(var/datum/mind/L in SSticker.mode.xenomorphs)
 			var/mob/M = L.current
@@ -362,7 +367,7 @@
 				dat += "<td><A href='?src=\ref[src];[HrefToken()];adminplayeropts=\ref[M]'>PP</A></td></TR>"
 		dat += "</table>"
 
-	if(length(SSticker.mode.survivors))
+	if(SSticker.mode.survivors.len)
 		dat += "<br><table cellspacing=5><tr><td><B>Survivors</B></td><td></td><td></td></tr>"
 		for(var/datum/mind/L in SSticker.mode.survivors)
 			var/mob/M = L.current
@@ -381,10 +386,10 @@
 	if (SSticker.current_state >= GAME_STATE_PLAYING)
 		var/dat = "<html><body><h1><B>Round Status</B></h1>"
 		dat += "Current Game Mode: <B>[SSticker.mode.name]</B><BR>"
-		dat += "Round Duration: <B>[floor(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</B><BR>"
+		dat += "Round Duration: <B>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</B><BR>"
 
 		if(check_rights(R_DEBUG, 0))
-			dat += "<A HREF='?_src_=vars;Vars=\ref[SSoldshuttle.shuttle_controller]'>VV Shuttle Controller</A><br><br>"
+			dat += "<A HREF='?_src_=vars;Vars=\ref[shuttle_controller]'>VV Shuttle Controller</A><br><br>"
 
 		if(check_rights(R_MOD, 0))
 			dat += "<b>Evacuation Goals:</b> "
@@ -469,13 +474,8 @@
 	. = list()
 	.["mob_name"] = targetMob.name
 
-	if(istype(targetMob, /mob/living))
-		var/mob/living/livingTarget = targetMob
-		.["mob_sleeping"] = livingTarget.sleeping
-	else
-		.["mob_sleeping"] = 0
-
-	.["mob_frozen"] = HAS_TRAIT_FROM(targetMob, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ADMIN)
+	.["mob_sleeping"] = targetMob.sleeping
+	.["mob_frozen"] = targetMob.frozen
 
 	.["mob_speed"] = targetMob.speed
 	.["mob_status_flags"] = targetMob.status_flags
@@ -493,8 +493,6 @@
 		.["client_ckey"] = targetClient.ckey
 
 		.["client_muted"] = targetClient.prefs.muted
-		.["client_age"] = targetClient.player_data.byond_account_age
-		.["first_join"] = targetClient.player_data.first_join_date
 		.["client_rank"] = targetClient.admin_holder ? targetClient.admin_holder.rank : "Player"
 		.["client_muted"] = targetClient.prefs.muted
 

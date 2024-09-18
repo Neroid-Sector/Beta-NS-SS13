@@ -15,18 +15,17 @@
 	possible_transfer_amounts = list(5,10) //Set to null instead of list, if there is only one.
 	matter = list("plastic" = 500)
 	transparent = TRUE
-	volume = 250
-	has_set_transfer_action = FALSE
-	///How many tiles the spray will move
 	var/spray_size = 3
-	/// The spray_size based on the transfer amount
 	var/list/spray_sizes = list(1,3)
-	/// Whether you can spray the bottle
 	var/safety = FALSE
-	/// The world.time it was last used
+	volume = 250
 	var/last_use = 1
-	/// The delay between uses
 	var/use_delay = 0.5 SECONDS
+
+
+/obj/item/reagent_container/spray/Initialize()
+	. = ..()
+	verbs -= /obj/item/reagent_container/verb/set_APTFT
 
 /obj/item/reagent_container/spray/afterattack(atom/A, mob/user, proximity)
 	//this is what you get for using afterattack() TODO: make is so this is only called if attackby() returns 0 or something
@@ -88,7 +87,7 @@
 
 /obj/item/reagent_container/spray/get_examine_text(mob/user)
 	. = ..()
-	. += "[floor(reagents.total_volume)] units left."
+	. += "[round(reagents.total_volume)] units left."
 
 /obj/item/reagent_container/spray/verb/empty()
 
@@ -143,6 +142,31 @@
 	safety = !safety
 	to_chat(user, SPAN_NOTICE("You switch the safety [safety ? "on" : "off"]."))
 
+
+/obj/item/reagent_container/spray/heavypepper
+	name = "Heavy peppersprayer"
+	desc = "Manufactured by UhangInc, used to blind and down an opponent quickly. This one is a Military grade unit with increased capacity and a faster release."
+	icon_state = "pepperspray"
+	item_state = "pepperspray"
+	possible_transfer_amounts = null
+	volume = 400
+	safety = TRUE
+	use_delay = 0.01 SECONDS
+
+/obj/item/reagent_container/spray/heavypepper/Initialize()
+	. = ..()
+	reagents.add_reagent("condensedcapsaicin", 400)
+
+/obj/item/reagent_container/spray/heavypepper/get_examine_text(mob/user)
+	. = ..()
+	if(get_dist(user,src) <= 1)
+		. += "The safety is [safety ? "on" : "off"]."
+
+/obj/item/reagent_container/spray/heavypepper/attack_self(mob/user)
+	..()
+	safety = !safety
+	to_chat(user, SPAN_NOTICE("You switch the safety [safety ? "on" : "off"]."))
+
 //water flower
 /obj/item/reagent_container/spray/waterflower
 	name = "water flower"
@@ -191,7 +215,7 @@
 	var/turf/T2 = get_step(T,turn(direction, -90))
 	var/list/the_targets = list(T,T1,T2)
 
-	for(var/i=1, i<=length(Sprays), i++)
+	for(var/i=1, i<=Sprays.len, i++)
 		spawn()
 			var/obj/effect/decal/chempuff/D = Sprays[i]
 			if(!D) continue

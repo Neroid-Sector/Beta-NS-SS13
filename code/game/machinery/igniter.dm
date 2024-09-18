@@ -105,10 +105,11 @@
 	return 1
 
 /obj/structure/machinery/sparker/emp_act(severity)
-	. = ..()
 	if(inoperable())
+		..(severity)
 		return
 	ignite()
+	..(severity)
 
 /obj/structure/machinery/ignition_switch/attack_remote(mob/user as mob)
 	return attack_hand(user)
@@ -124,11 +125,11 @@
 	active = 1
 	icon_state = "launcheract"
 
-	for(var/obj/structure/machinery/sparker/M in GLOB.machines)
+	for(var/obj/structure/machinery/sparker/M in machines)
 		if (M.id == src.id)
 			INVOKE_ASYNC(M, TYPE_PROC_REF(/obj/structure/machinery/sparker, ignite))
 
-	for(var/obj/structure/machinery/igniter/M in GLOB.machines)
+	for(var/obj/structure/machinery/igniter/M in machines)
 		if(M.id == src.id)
 			use_power(50)
 			M.on = !( M.on )

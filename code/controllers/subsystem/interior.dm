@@ -15,13 +15,14 @@ SUBSYSTEM_DEF(interior)
 	var/height_to_request = template.height + INTERIOR_BORDER_SIZE
 	var/width_to_request = template.width + INTERIOR_BORDER_SIZE
 
-	var/datum/turf_reservation/reserved_area = SSmapping.request_turf_block_reservation(width_to_request, height_to_request, reservation_type = /datum/turf_reservation/interior)
+	var/datum/turf_reservation/reserved_area = SSmapping.RequestBlockReservation(width_to_request, height_to_request, type = /datum/turf_reservation/interior)
 
-	var/turf/bottom_left = reserved_area.bottom_left_turfs[1]
+	var/list/bottom_left = reserved_area.bottom_left_coords
 
-	var/list/bounds = template.load(locate(bottom_left.x + (INTERIOR_BORDER_SIZE / 2), bottom_left.y + (INTERIOR_BORDER_SIZE / 2), bottom_left.z), centered = FALSE)
+	var/list/bounds = template.load(locate(bottom_left[1] + (INTERIOR_BORDER_SIZE / 2), bottom_left[2] + (INTERIOR_BORDER_SIZE / 2), bottom_left[3]), centered = FALSE)
 
-	var/list/turfs = block(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ], bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ])
+	var/list/turfs = block( locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]),
+							locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ]))
 
 	var/list/areas = list()
 	for(var/turf/current_turf as anything in turfs)
@@ -41,7 +42,7 @@ SUBSYSTEM_DEF(interior)
 			continue
 		if(x >= bounds[1].x && x <= bounds[2].x && y >= bounds[1].y && y <= bounds[2].y)
 			return current_interior
-	return
+	return null
 
 /// Checks if an atom is in an interior
 /datum/controller/subsystem/interior/proc/in_interior(loc)
@@ -50,11 +51,10 @@ SUBSYSTEM_DEF(interior)
 	if(!isturf(loc))
 		loc = get_turf(loc)
 
-	var/datum/turf_reservation/interior/reservation = SSmapping.used_turfs[loc]
+	var/datum/weakref/reservation = SSmapping.used_turfs[loc]
 
 	if(!istype(reservation))
 		return FALSE
-
 	return TRUE
 
 #undef INTERIOR_BORDER_SIZE

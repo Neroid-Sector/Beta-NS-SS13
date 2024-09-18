@@ -144,8 +144,7 @@
 /obj/item/weapon/gun/smartgun/attackby(obj/item/attacking_object, mob/user)
 	if(istype(attacking_object, /obj/item/smartgun_battery))
 		var/obj/item/smartgun_battery/new_cell = attacking_object
-		visible_message(SPAN_NOTICE("[user] swaps out the power cell in [src]."),
-			SPAN_NOTICE("You swap out the power cell in [src] and drop the old one."))
+		visible_message("[user] swaps out the power cell in the [src].","You swap out the power cell in the [src] and drop the old one.")
 		to_chat(user, SPAN_NOTICE("The new cell contains: [new_cell.power_cell.charge] power."))
 		battery.update_icon()
 		battery.forceMove(get_turf(user))
@@ -178,7 +177,6 @@
 //---ability actions--\\
 
 /datum/action/item_action/smartgun/action_activate()
-	. = ..()
 	var/obj/item/weapon/gun/smartgun/G = holder_item
 	if(!ishuman(owner))
 		return
@@ -317,15 +315,14 @@
 			return FALSE
 		var/mob/living/carbon/human/H = user
 		if(!skillcheckexplicit(user, SKILL_SPEC_WEAPONS, SKILL_SPEC_SMARTGUN) && !skillcheckexplicit(user, SKILL_SPEC_WEAPONS, SKILL_SPEC_ALL))
-			balloon_alert(user, "insufficient skills")
+			to_chat(H, SPAN_WARNING("You don't seem to know how to use \the [src]..."))
 			return FALSE
 		if(requires_harness)
 			if(!H.wear_suit || !(H.wear_suit.flags_inventory & SMARTGUN_HARNESS))
-				balloon_alert(user, "harness required")
+				to_chat(H, SPAN_WARNING("You need a harness suit to be able to fire [src]..."))
 				return FALSE
 		if(cover_open)
 			to_chat(H, SPAN_WARNING("You can't fire \the [src] with the feed cover open! (alt-click to close)"))
-			balloon_alert(user, "cannot fire; feed cover open")
 			return FALSE
 
 /obj/item/weapon/gun/smartgun/unique_action(mob/user)
@@ -339,7 +336,6 @@
 		return
 	secondary_toggled = !secondary_toggled
 	to_chat(user, "[icon2html(src, usr)] You changed \the [src]'s ammo preparation procedures. You now fire [secondary_toggled ? "armor shredding rounds" : "highly precise rounds"].")
-	balloon_alert(user, "firing [secondary_toggled ? "armor shredding" : "highly precise"]")
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
 	ammo = secondary_toggled ? ammo_secondary : ammo_primary
 	var/datum/action/item_action/smartgun/toggle_ammo_type/TAT = locate(/datum/action/item_action/smartgun/toggle_ammo_type) in actions
@@ -390,7 +386,7 @@
 			return FALSE
 		return TRUE
 	if(!battery || battery.power_cell.charge == 0)
-		balloon_alert(usr, "low power")
+		to_chat(usr, SPAN_WARNING("[src] emits a low power warning and immediately shuts down!"))
 		return FALSE
 	return FALSE
 
@@ -500,9 +496,9 @@
 			if((angledegree*2) > angle_list[angle])
 				continue
 
-		path = get_line(user, M)
+		path = getline2(user, M)
 
-		if(length(path))
+		if(path.len)
 			var/blocked = FALSE
 			for(T in path)
 				if(T.density || T.opacity)
@@ -525,9 +521,9 @@
 			else
 				conscious_targets += M
 
-	if(length(conscious_targets))
+	if(conscious_targets.len)
 		. = pick(conscious_targets)
-	else if(length(unconscious_targets))
+	else if(unconscious_targets.len)
 		. = pick(unconscious_targets)
 
 /obj/item/weapon/gun/smartgun/proc/process_shot(mob/living/user, warned)
@@ -568,6 +564,15 @@
 		if(!auto_fire)
 			STOP_PROCESSING(SSobj, src)
 
+/obj/item/weapon/gun/smartgun/apply_bullet_effects(obj/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
+	. = ..()
+	if(!HAS_TRAIT(src, TRAIT_GUN_SILENCED))
+		if(!HAS_TRAIT(user, TRAIT_EAR_PROTECTION) && ishuman(user))
+			var/mob/living/carbon/human/huser = user
+			to_chat(user, SPAN_WARNING("Augh!! \The [src]'s firing resonates extremely loudly in your ears! You probably should have worn some sort of ear protection..."))
+			huser.apply_effect(6, STUTTER)
+			huser.AdjustEarDeafnessGuns(max(user.ear_deaf,2))
+
 //CO SMARTGUN
 /obj/item/weapon/gun/smartgun/co
 	name = "\improper M56C 'Cavalier' smartgun"
@@ -596,7 +601,6 @@
 // ID lock action \\
 
 /datum/action/item_action/co_sg/action_activate()
-	. = ..()
 	var/obj/item/weapon/gun/smartgun/co/protag_gun = holder_item
 	if(!ishuman(owner))
 		return
@@ -717,7 +721,7 @@
 	requires_harness = FALSE
 
 /obj/item/smartgun_battery
-	name = "\improper DV9 smartgun battery"
+	name = "smartgun DV9 battery"
 	desc = "A standard-issue 9-volt lithium dry-cell battery, most commonly used within the USCMC to power smartguns. Per the manual, one battery is good for up to 50000 rounds and plugs directly into the smartgun's power receptacle, which is only compatible with this type of battery. Various auxiliary modes usually bring the round count far lower. While this cell is incompatible with most standard electrical system, it can be charged by common rechargers in a pinch. USCMC smartgunners often guard them jealously."
 
 	icon = 'icons/obj/structures/machinery/power.dmi'
@@ -757,3 +761,31 @@
 /obj/item/weapon/gun/smartgun/rmc/Initialize(mapload, ...)
 	. = ..()
 	MD.iff_signal = FACTION_TWE
+
+// Surplus Smartgun - Used by CMB QRF
+/obj/item/weapon/gun/smartgun/surplus
+	name = "\improper Surplus M56 smartgun"
+	desc = "An obsolete model of smartgun that has long since left military service. This model fires slower, is less accurate and has been modified to include a rail light for dark areas."
+	flags_gun_features = GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
+	starting_attachment_types = list(/obj/item/attachable/smartbarrel, /obj/item/attachable/flashlight)
+
+/obj/item/weapon/gun/smartgun/surplus/Initialize(mapload, ...)
+	. = ..()
+	MD.iff_signal = FACTION_MARSHAL
+
+/obj/item/weapon/gun/smartgun/surplus/set_gun_config_values()
+	..()
+	set_fire_delay(FIRE_DELAY_TIER_10)
+	fa_scatter_peak = FULL_AUTO_SCATTER_PEAK_TIER_6
+	fa_max_scatter = SCATTER_AMOUNT_TIER_6
+	if(accuracy_improvement)
+		accuracy_mult += HIT_ACCURACY_MULT_TIER_5
+	else
+		accuracy_mult += HIT_ACCURACY_MULT_TIER_1
+	if(recoil_compensation)
+		scatter = SCATTER_AMOUNT_TIER_10
+		recoil = RECOIL_OFF
+	else
+		scatter = SCATTER_AMOUNT_TIER_5
+		recoil = RECOIL_AMOUNT_TIER_2
+	damage_mult = BASE_BULLET_DAMAGE_MULT

@@ -4,18 +4,9 @@
  * @license MIT
  */
 
-import {
-  addHighlightSetting,
-  changeSettingsTab,
-  loadSettings,
-  openChatSettings,
-  removeHighlightSetting,
-  toggleSettings,
-  updateHighlightSetting,
-  updateSettings,
-} from './actions';
-import { FONTS, MAX_HIGHLIGHT_SETTINGS, SETTINGS_TABS } from './constants';
+import { changeSettingsTab, loadSettings, openChatSettings, toggleSettings, updateSettings, addHighlightSetting, removeHighlightSetting, updateHighlightSetting } from './actions';
 import { createDefaultHighlightSetting } from './model';
+import { SETTINGS_TABS, FONTS, MAX_HIGHLIGHT_SETTINGS } from './constants';
 
 const defaultHighlightSetting = createDefaultHighlightSetting();
 
@@ -25,7 +16,7 @@ const initialState = {
   fontFamily: FONTS[0],
   lineHeight: 1.2,
   theme: 'light',
-  adminMusicVolume: 0.2,
+  adminMusicVolume: 0.5,
   // Keep these two state vars for compatibility with other servers
   highlightText: '',
   highlightColor: '#ffdd44',
@@ -140,7 +131,7 @@ export const settingsReducer = (state = initialState, action) => {
     } else {
       delete nextState.highlightSettingById[id];
       nextState.highlightSettings = nextState.highlightSettings.filter(
-        (sid) => sid !== id,
+        (sid) => sid !== id
       );
       if (!nextState.highlightSettings.length) {
         nextState.highlightSettings.push(defaultHighlightSetting.id);

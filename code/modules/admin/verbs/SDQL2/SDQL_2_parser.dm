@@ -61,7 +61,7 @@
 /datum/sdql_parser/proc/parse_error(error_message)
 	error = 1
 	to_chat(usr, SPAN_WARNING("SDQL2 Parsing Error: [error_message]"), confidential = TRUE)
-	return length(query) + 1
+	return query.len + 1
 
 /datum/sdql_parser/proc/parse()
 	tree = list()
@@ -73,14 +73,14 @@
 		return tree
 
 /datum/sdql_parser/proc/token(i)
-	if(i <= length(query))
+	if(i <= query.len)
 		return query[i]
 
 	else
 		return null
 
 /datum/sdql_parser/proc/tokens(i, num)
-	if(i + num <= length(query))
+	if(i + num <= query.len)
 		return query.Copy(i, i + num)
 
 	else
@@ -135,9 +135,6 @@
 
 		if("call")
 			call_query(i, node)
-
-		if("singlecall")
-			singlecall_query(i, node)
 
 		if("explain")
 			node += "explain"
@@ -196,14 +193,6 @@
 	i = object_selectors(i + 1, select)
 
 	node["on"] = select
-
-	return i
-
-//singlecall_query: 'CALL' object.call_function
-/datum/sdql_parser/proc/singlecall_query(i, list/node)
-	var/list/func = list()
-	i = variable(i + 1, func)
-	node["singlecall"] = func
 
 	return i
 
@@ -473,7 +462,7 @@
 				if (tok == ":")
 					temp_expression_list = list()
 					i = expression(i + 1, temp_expression_list)
-					expression_list[expression_list[length(expression_list)]] = temp_expression_list
+					expression_list[expression_list[expression_list.len]] = temp_expression_list
 					temp_expression_list = null
 					tok = token(i)
 					if (tok != ",")

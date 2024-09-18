@@ -18,7 +18,7 @@
 
 //Radio channels
 #define RADIO_CHANNEL_BLANK "UNSET"
-#define RADIO_CHANNEL_ALMAYER "Almayer"
+#define RADIO_CHANNEL_ALMAYER "UA Open net."
 #define RADIO_CHANNEL_ALAMO "Alamo"
 #define RADIO_CHANNEL_COMMAND "Command"
 #define RADIO_CHANNEL_COLONY "Colony"
@@ -33,17 +33,16 @@
 #define RADIO_CHANNEL_MEDSCI "MedSci"
 #define RADIO_CHANNEL_MP "MP"
 #define RADIO_CHANNEL_NORMANDY "Normandy"
-#define RADIO_CHANNEL_SAIPAN "Saipan"
 #define RADIO_CHANNEL_REQ "Req"
 #define RADIO_CHANNEL_SENTRY "Sentry Network"
 #define RADIO_CHANNEL_SPECIAL "special"
 
 //CLF Comms
-#define RADIO_CHANNEL_CLF_GEN "CLF"
-#define RADIO_CHANNEL_CLF_CMD "CLF Command"
-#define RADIO_CHANNEL_CLF_CCT "CLF CCT"
-#define RADIO_CHANNEL_CLF_MED "CLF Med"
-#define RADIO_CHANNEL_CLF_ENGI "CLF Engi"
+#define RADIO_CHANNEL_CLF_GEN "Insurgent"
+#define RADIO_CHANNEL_CLF_CMD "Insurgent Command"
+#define RADIO_CHANNEL_CLF_CCT "Insurgent CCT"
+#define RADIO_CHANNEL_CLF_MED "Insurgent Med"
+#define RADIO_CHANNEL_CLF_ENGI "Insurgent Engi"
 
 //UPP Comms
 #define RADIO_CHANNEL_UPP_GEN "UPP"
@@ -61,10 +60,6 @@
 #define RADIO_CHANNEL_PMC_ENGI "PMC Engi"
 #define RADIO_CHANNEL_PMC_CCT "PMC CCT"
 #define RADIO_CHANNEL_WY_WO "SpecOps"
-
-//Listening Devices
-#define RADIO_CHANNEL_BUG_A "Listening Device A"
-#define RADIO_CHANNEL_BUG_B "Listening Device B"
 
 //1-Channel ERTs
 #define RADIO_CHANNEL_DUTCH_DOZEN "DD"

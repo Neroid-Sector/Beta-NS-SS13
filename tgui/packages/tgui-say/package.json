@@ -3,12 +3,11 @@
   "name": "tgui-say",
   "version": "1.0.0",
   "dependencies": {
-    "@types/react": "^18.2.74",
-    "@types/react-dom": "^18.2.24",
     "common": "workspace:*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "dompurify": "^2.3.1",
+    "inferno": "^7.4.8",
     "tgui": "workspace:*",
+    "tgui-dev-server": "workspace:*",
     "tgui-polyfill": "workspace:*"
   }
 }

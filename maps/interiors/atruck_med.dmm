@@ -1,0 +1,31 @@
+"a" = (/turf/open/void/vehicle,/area/space)
+"b" = (/obj/effect/landmark/interior/spawn/entrance{dir = 8; exit_type = /obj/structure/interior_exit/vehicle/van/backright; name = "back right entrance marker"; pixel_x = -32; tag = "back_right"},/turf/open/shuttle/vehicle{icon_state = "floor_1_10"},/area/vehicle/van)
+"d" = (/obj/structure/bed/portable_surgery,/obj/structure/machinery/body_scanconsole/wall{pixel_x = -8; pixel_y = 23},/turf/open/shuttle/vehicle{icon_state = "floor_1_2"},/area/vehicle/van)
+"e" = (/obj/structure/interior_wall/tank,/obj/structure/vehicle_locker/med,/turf/open/void/vehicle,/area/space)
+"g" = (/obj/structure/interior_wall/van{icon_state = "front_1"},/turf/open/void/vehicle,/area/space)
+"k" = (/obj/structure/interior_wall/van{icon_state = "back_3"},/turf/open/void/vehicle,/area/space)
+"l" = (/obj/structure/interior_wall/tank{layer = 2},/turf/open/void/vehicle,/area/space)
+"o" = (/obj/structure/interior_wall/van{icon_state = "interior_door"},/obj/effect/vehicle_roof/van{icon_state = "front_roof_1"},/obj/effect/landmark/interior/spawn/interior_viewport/simple/windshield,/turf/open/void/vehicle,/area/space)
+"y" = (/obj/structure/interior_wall/van{alpha = 50; icon_state = "exterior_door"; layer = 5.2; pixel_y = 32},/turf/open/void/vehicle,/area/space)
+"z" = (/obj/structure/interior_wall/van{icon_state = "front_2"},/turf/open/void/vehicle,/area/space)
+"A" = (/obj/structure/bed/chair/vehicle{layer = 3.5; pixel_x = -8; pixel_y = 12},/obj/structure/bed/chair/vehicle{layer = 3.5; pixel_x = 8; pixel_y = 12},/turf/open/shuttle/vehicle{icon_state = "floor_1_8"},/area/vehicle/van)
+"C" = (/obj/structure/interior_wall/tank,/turf/open/void/vehicle,/area/space)
+"D" = (/obj/effect/landmark/interior/spawn/interior_viewport/simple{alpha = 100; pixel_y = -2},/obj/structure/surface/rack{density = 0; pixel_y = -2},/obj/item/bodybag/cryobag,/obj/item/bodybag/cryobag,/obj/item/bodybag/cryobag,/obj/item/reagent_container/blood/OMinus,/obj/item/reagent_container/blood/OMinus,/obj/item/reagent_container/blood/OMinus,/obj/item/reagent_container/blood/OMinus,/turf/open/shuttle/vehicle{icon_state = "floor_1_1"},/area/vehicle/van)
+"G" = (/obj/effect/landmark/interior/spawn/entrance{dir = 8; exit_type = /obj/structure/interior_exit/vehicle/van/backleft; name = "back left entrance marker"; pixel_x = -32; tag = "back_left"},/obj/structure/machinery/medical_pod/bodyscanner,/turf/open/shuttle/vehicle{icon_state = "floor_1_7"},/area/vehicle/van)
+"H" = (/obj/structure/interior_wall/van{icon_state = "front_3"},/turf/open/void/vehicle,/area/space)
+"J" = (/obj/structure/interior_wall/van{icon_state = "back_1"},/turf/open/void/vehicle,/area/space)
+"K" = (/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = -8},/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = 8},/turf/open/shuttle/vehicle{icon_state = "floor_1_9"},/area/vehicle/van)
+"L" = (/obj/effect/landmark/interior/spawn/entrance{alpha = 50; exit_type = /obj/structure/interior_exit/vehicle/van/right; name = "right entrance marker"; tag = "right"},/obj/structure/bed/chair/comfy{dir = 4; icon_state = "comfychair"},/turf/open/shuttle/vehicle{icon_state = "floor_3_12"},/area/vehicle/van)
+"M" = (/obj/effect/landmark/interior/spawn/interior_viewport/simple{layer = 2.4; pixel_y = 30},/obj/structure/machinery/cm_vending/sorted/medical/blood/vehicle{pixel_x = -18; pixel_y = 25; req_access = null; req_one_access = null},/obj/structure/machinery/cm_vending/sorted/medical/vehicle{pixel_x = 5; pixel_y = 25; req_access = null; req_one_access = null},/turf/open/shuttle/vehicle{icon_state = "floor_1_2"},/area/vehicle/van)
+"N" = (/obj/structure/interior_wall/tank,/obj/structure/machinery/newscaster/security_unit,/turf/open/void/vehicle,/area/space)
+"O" = (/obj/structure/interior_wall/van{icon_state = "back_2"},/turf/open/void/vehicle,/area/space)
+"S" = (/obj/structure/interior_wall/tank{alpha = 50; layer = 5.2; pixel_y = 32},/turf/open/void/vehicle,/area/space)
+"X" = (/obj/effect/landmark/interior/spawn/entrance{dir = 1; exit_type = /obj/structure/interior_exit/vehicle/van/left; name = "left entrance marker"; pixel_y = 32; tag = "left"},/obj/effect/landmark/interior/spawn/vehicle_driver_seat{dir = 4},/obj/effect/vehicle_roof/van{icon_state = "front_roof_2"},/obj/effect/landmark/interior/spawn/interior_viewport/simple/windshield{icon_state = "windshield_viewport_bottom"},/turf/open/shuttle/vehicle{icon_state = "floor_3_11"},/area/vehicle/van)
+"Y" = (/obj/structure/machinery/iv_drip,/turf/open/shuttle/vehicle{icon_state = "floor_1_1"},/area/vehicle/van)
+
+(1,1,1) = {"
+kelCNoH
+OGdMAXz
+JbYDKLg
+aSSSSya
+"}

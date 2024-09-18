@@ -19,11 +19,12 @@ SUBSYSTEM_DEF(sound)
 		if(!run_hearers) // Initialize for handling next template
 			run_hearers = run_queue[run_template] // get base hearers
 			if(run_template.range) // ranging
-				run_hearers |= SSquadtree.players_in_range(SQUARE(run_template.x, run_template.y, run_template.range * 2), run_template.z)
+				var/datum/shape/rectangle/zone = RECT(run_template.x, run_template.y, run_template.range * 2, run_template.range * 2)
+				run_hearers |= SSquadtree.players_in_range(zone, run_template.z)
 			if(MC_TICK_CHECK)
 				return
 		while(length(run_hearers)) // Output sound to hearers
-			var/client/C = run_hearers[length(run_hearers)]
+			var/client/C = run_hearers[run_hearers.len]
 			run_hearers.len--
 			if(C && C.soundOutput)
 				C.soundOutput.process_sound(run_template)
@@ -39,6 +40,6 @@ SUBSYSTEM_DEF(sound)
 		for(var/datum/interior/VI in extra_interiors)
 			if(VI?.ready)
 				var/list/bounds = VI.get_middle_coords()
-				if(length(bounds) >= 2)
+				if(bounds.len >= 2)
 					hearers |= SSquadtree.players_in_range(RECT(bounds[1], bounds[2], VI.map_template.width, VI.map_template.height), bounds[3])
 	template_queue[template] = hearers

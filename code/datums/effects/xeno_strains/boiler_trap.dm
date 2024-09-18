@@ -4,17 +4,19 @@
 	effect_name = "boiler trap"
 	duration = null
 	flags = INF_DURATION
+	/// Ghetto flag indicating whether we actually placed the freeze or not, until we have an actual effects system
+	var/freezer = FALSE
 
-/datum/effects/boiler_trap/New(atom/A, mob/living/from, last_dmg_source, zone)
+/datum/effects/boiler_trap/New(atom/A, mob/from, last_dmg_source, zone)
 	. = ..()
 	if(!QDELETED(src))
-		var/mob/living/affected_living = affected_atom
-		ADD_TRAIT(affected_living, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY(effect_name))
+		var/mob/M = affected_atom
+		freezer = M.freeze()
 
 /datum/effects/boiler_trap/Destroy(force)
-	if(ismob(affected_atom))
-		var/mob/living/affected_living = affected_atom
-		REMOVE_TRAIT(affected_living, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY(effect_name))
+	if(ismob(affected_atom) && freezer)
+		var/mob/M = affected_atom
+		M.unfreeze()
 	return ..()
 
 /datum/effects/boiler_trap/validate_atom(atom/A)
@@ -26,6 +28,8 @@
 /datum/effects/boiler_trap/process_mob()
 	. = ..()
 	if(!.) return FALSE
-	var/mob/living/affected_living = affected_atom
-	ADD_TRAIT(affected_living, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY(effect_name))
+	var/mob/M = affected_atom
+	if(M.frozen) return TRUE
+	if(!freezer)
+		freezer = M.freeze()
 	return TRUE

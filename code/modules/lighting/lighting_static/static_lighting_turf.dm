@@ -31,8 +31,7 @@
 
 	return !(luminosity || dynamic_lumcount)
 
-///Transfer the lighting of one area to another
-/turf/proc/transfer_area_lighting(area/old_area, area/new_area)
+/turf/proc/change_area(area/old_area, area/new_area)
 	if(SSlighting.initialized)
 		if (new_area.static_lighting != old_area.static_lighting)
 			if (new_area.static_lighting)
@@ -44,8 +43,6 @@
 		overlays -= old_area.lighting_effect
 	if(new_area.lighting_effect)
 		overlays += new_area.lighting_effect
-
-
 
 /turf/proc/static_generate_missing_corners()
 	if (!lighting_corner_NE)
