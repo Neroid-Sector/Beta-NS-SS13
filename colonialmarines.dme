@@ -1428,6 +1428,7 @@
 #include "code\modules\admin\view_variables\topic_list.dm"
 #include "code\modules\admin\view_variables\view_variables.dm"
 #include "code\modules\almayer\generalquarters.dm"
+#include "code\modules\almayer\hackable_comps.dm"
 #include "code\modules\almayer\machinery.dm"
 #include "code\modules\almayer\shakeship.dm"
 #include "code\modules\almayer\stgweaponhits.dm"

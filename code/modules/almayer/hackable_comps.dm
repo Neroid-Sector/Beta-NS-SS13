@@ -16,8 +16,8 @@
 
 /obj/structure/prop/almayer/computers/hackable_comp/attackby(obj/item/W, mob/user)
 	terminal_in_use = TRUE
-	playsound(loc, tamper_sound, 25)
 	if((HAS_TRAIT(W, TRAIT_TOOL_MULTITOOL)) && operation_complete == FALSE)
+		playsound(loc, tamper_sound, 25)
 		if(do_after(user, 80, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			for(var/obj/structure/prop/almayer/computers/hackable_comp/H in world)
 				if(H.terminal_in_use == TRUE)
@@ -37,14 +37,14 @@
 	while(temp_countdown < countdown_max)
 		sleep(countdown_step)
 		temp_countdown += countdown_step
-		playsound(loc, progress_sound, 25)
-		talkas("Task progress. [round(((temp_countdown / countdown_max) * 100),0.5)] percent complete.")
+		playsound(loc, 'sound/machines/dialup.mp3', 25)
+		talkas("Download in progress. [round(((temp_countdown / countdown_max) * 100),0.5)] percent complete.")
 	if(temp_countdown >= countdown_max)
 		playsound(loc, finish_sound, 25)
 		talkas(end_text)
 		operation_complete = TRUE
-		message_admins(FONT_SIZE_XL("[src] has finished operations"))
-
+		var/turf/current_turf = get_turf(usr.loc)
+		message_admins(FONT_SIZE_XL("[src] has finished operations"),current_turf.x, current_turf.y, current_turf.z)
 		return
 
 /obj/structure/prop/almayer/computers/hackable_comp/short_timer
