@@ -184,7 +184,6 @@
 	name = "internal motion detector"
 	//detector_range = 7 //yeah no offscreen bs with this
 
-	var/obj/structure/machinery/defenses/bell_tower/mt/linked_tower
 
 /obj/item/device/motiontracker/adv/internal/apply_debuff(mob/target)
 	var/mob/living/to_apply = target
@@ -200,7 +199,7 @@
 	name = "R-1NG motion detector tower"
 	desc = "A tactical advanced version of the motion detector. Has an increased range, disrupts the activity of hostiles nearby."
 	handheld_type = /obj/item/defenses/handheld/bell_tower/md
-	var/obj/item/device/motiontracker/adv/internal/md
+	var/obj/item/device/motiontracker/adv/md
 	defense_type = "MD"
 
 /obj/structure/machinery/defenses/bell_tower/mt/setup_tripwires()

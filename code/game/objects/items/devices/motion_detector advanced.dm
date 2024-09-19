@@ -32,6 +32,8 @@
 
 	var/client/last_client
 
+	var/obj/structure/machinery/defenses/bell_tower/mt/linked_tower
+
 /mob/var/current_detector = null
 
 /obj/item/device/motiontracker/adv/Initialize()
@@ -223,7 +225,7 @@
 	desc = "This prototype motion detector sacrifices versatility, having only the long-range mode, for size, being so small it can even fit in pockets. This one has been modified with an after-market IFF sensor to filter out Vanguard's Arrow Incorporated signals instead of USCM ones. Fight fire with fire!"
 	iff_signal = FACTION_CONTRACTOR
 
-/obj/item/device/motiontracker/adv/hacked
+/obj/item/device/motiontracker/adv/hacked/upp
 	name = "hacked motion detector"
 	desc = "A device that usually picks up non-USCM signals, but this one's been hacked to detect all non-UPP movement instead. Fight fire with fire!"
 	iff_signal = FACTION_UPP
@@ -235,17 +237,27 @@
 
 /obj/item/device/motiontracker/adv/hacked/pmc
 	name = "corporate motion detector"
-	desc = "A device that usually picks up non-USCM signals, but this one's been reprogrammed to detect all non-PMC movement instead. Very corporate."
+	desc = "A device that usually picks up non-USCM signals, but this one's been programmed to detect all non-PMC movement instead. Very corporate."
 	iff_signal = FACTION_PMC
 
 /obj/item/device/motiontracker/adv/hacked/dutch
 	name = "hacked motion detector"
-	desc = "A device that usually picks up non-USCM signals, but this one's been hacked to detect all non-Dutch's Dozen movement instead. Fight fire with fire!"
+	desc = "A device that usually picks up non-USCM signals, but this one's been tuned to detect all non-Dutch's Dozen movement instead. Fight fire with fire!"
 	iff_signal = FACTION_DUTCH
 
 /obj/item/device/motiontracker/adv/hacked/contractor
 	name = "modified motion detector"
 	desc = "A device that usually picks up non-USCM signals, but this one's been modified with after-market IFF sensors to detect all non-Vanguard's Arrow Incorporated movement instead. Fight fire with fire!"
 	iff_signal = FACTION_CONTRACTOR
+
+/obj/item/device/motiontracker/adv/hacked/clf
+	name = "hacked motion detector"
+	desc = "A device that usually picks up non-USCM signals, but this one's been hacked to detect all non-insurgent movement instead. Fight fire with fire!"
+	iff_signal = FACTION_CLF
+
+/obj/item/device/motiontracker/adv/hacked/TWE
+	name = "hacked motion detector"
+	desc = "A device that usually picks up non-USCM signals, but this one's been hacked to detect all non-TWE movement instead. Fight fire with fire!"
+	iff_signal = FACTION_TWE
 
 #undef TRACKER_RANGE
