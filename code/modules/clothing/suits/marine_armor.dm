@@ -429,7 +429,7 @@
 		return
 
 	if(!istype(equipping_item, /obj/item/weapon/gun) && equipping_item.flags_equip_slot == SLOT_BACK)
-		to_chat(equipping_human, SPAN_WARNING("You can't equip [equipping_item] on your back while wearing [src]."))
+		to_chat(equipping_human, SPAN_WARNING("The [src]'s smartgun robotic arm mount obstructs your ability to equip the [equipping_item] on your back."))
 		return COMPONENT_HUMAN_CANCEL_ATTEMPT_EQUIP
 
 /obj/item/clothing/suit/storage/marine/smartgunner/unequipped(mob/user, slot)

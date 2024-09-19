@@ -344,7 +344,7 @@
 	if(test_dial_y + test_targ_y > world.maxy || test_dial_y + test_targ_y < 0)
 		to_chat(user, SPAN_WARNING("You cannot [dialing ? "dial to" : "aim at"] this coordinate, it is outside of the area of operations."))
 		return FALSE
-	if(get_dist(src, locate(test_targ_x + test_dial_x, test_targ_y + test_dial_y, z)) < 10)
+	if(get_dist(src, locate(test_targ_x + test_dial_x, test_targ_y + test_dial_y, z)) < 1)
 		to_chat(user, SPAN_WARNING("You cannot [dialing ? "dial to" : "aim at"] this coordinate, it is too close to your mortar."))
 		return FALSE
 	if(busy)
@@ -367,6 +367,7 @@
 	icon = 'icons/obj/structures/mortar.dmi'
 	icon_state = "mortar_m402_carry"
 	unacidable = TRUE
+	throw_speed = SPEED_VERY_SLOW
 	flags_equip_slot = SLOT_BACK
 	w_class = SIZE_HUGE //No dumping this in a backpack. Carry it, fatso
 

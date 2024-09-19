@@ -2,8 +2,8 @@
 	name = "plasteel barricade"
 	desc = "A very sturdy barricade made out of plasteel panels, the pinnacle of strongpoints. Use a blowtorch to repair. Can be flipped down to create a path."
 	icon_state = "plasteel_closed_0"
-	health = 800
-	maxhealth = 800
+	health = 1200
+	maxhealth = 1200
 	burn_multiplier = 1.15
 	brute_multiplier = 1
 	crusher_resistant = TRUE

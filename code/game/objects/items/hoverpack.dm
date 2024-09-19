@@ -15,6 +15,7 @@
 	icon_state = "hoverpack"
 	w_class = SIZE_LARGE
 	flags_equip_slot = SLOT_BACK
+	flags_item = SMARTGUNNER_BACKPACK_OVERRIDE
 	actions_types = list(/datum/action/item_action/hover)
 	var/hover_cooldown = 7.5 SECONDS
 	/// If you can use it, used for cooldowns.
