@@ -208,6 +208,9 @@
 	if(istype(add_to_screen, /obj/effect/detector_blip))
 		return
 
+	if(istype(add_to_screen, /obj/effect/adv/detector_blip))
+		return
+
 	client.add_to_screen(add_to_screen)
 
 /// When the observer target loses a screen, our observer loses it as well

@@ -1,4 +1,4 @@
-/obj/effect/detector_blip
+/obj/effect/adv/detector_blip
 	icon = 'icons/obj/items/tracker_blips.dmi'
 	layer = BELOW_FULLSCREEN_LAYER
 	plane = FULLSCREEN_PLANE
@@ -141,7 +141,7 @@
 	turn_off(user)
 
 /obj/item/device/motiontracker/adv/process(delta_time)
-	playsound(loc, 'sound/items/detector.ogg', 60)
+	playsound(loc, 'sound/items/detector_active.mp3', 60)
 	flick("", detector_image)
 
 	scan(2)
@@ -184,7 +184,7 @@
 		if(distance < min_distance)
 			min_distance = distance
 
-		var/obj/effect/detector_blip/B = new /obj/effect/detector_blip()
+		var/obj/effect/adv/detector_blip/B = new /obj/effect/adv/detector_blip()
 		user.client.screen += B // Add it to the radar
 
 		B.pixel_x = (L.x - user.x) * 4 - 4 // Move blip in the right position on the radar (multiplied by the icon dimensions)
@@ -196,8 +196,8 @@
 	if(disable_sound || min_distance == INFINITY)
 		return
 
-	var/sound = pick('sound/items/detector_ping_1.ogg', 'sound/items/detector_ping_4.ogg')
-	var/pitch = SOUND_FREQ_HIGH - (SOUND_FREQ_HIGH - SOUND_FREQ_LOW) / 1.5 * (min_distance / TRACKER_RANGE)
+	var/sound = 'sound/items/detector_ping.mp3'
+	var/pitch = SOUND_MT_PING_HIGH - (SOUND_MT_PING_HIGH - SOUND_MT_PING_LOW) / 1.5 * (min_distance / TRACKER_RANGE)
 	playsound(loc, sound, 60, pitch, 5)
 
 /obj/item/device/motiontracker/adv/proc/get_user()
