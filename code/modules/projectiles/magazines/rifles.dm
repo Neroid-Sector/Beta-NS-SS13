@@ -547,7 +547,7 @@
 	w_class = SIZE_MEDIUM
 	default_ammo = /datum/ammo/bullet/rifle/am35/plasma
 	max_rounds = 15
-	gun_type = /obj/item/weapon/gun/rifle/am35
+	gun_type = /obj/item/weapon/gun/plasma/am35
 
 /obj/item/ammo_magazine/rifle/am36
 	name = "\improper E-M35 magazine (10x24mm)"
@@ -560,7 +560,7 @@
 	w_class = SIZE_MEDIUM
 	default_ammo = /datum/ammo/bullet/rifle/am36/plasma
 	max_rounds = 100
-	gun_type = /obj/item/weapon/gun/rifle/am36
+	gun_type = /obj/item/weapon/gun/plasma/am36
 
 //=ROYAL MARINES=\\
 
