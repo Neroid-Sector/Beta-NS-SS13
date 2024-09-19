@@ -406,6 +406,37 @@
 		name = "M56 combat harness"
 	//select_gamemode_skin(type)
 
+/obj/item/clothing/suit/storage/marine/smartgunner/mob_can_equip(mob/equipping_mob, slot, disable_warning = FALSE)
+	. = ..()
+
+	if(equipping_mob.back && !istype(equipping_mob.back, /obj/item/weapon/gun) && !(equipping_mob.back.flags_item & SMARTGUNNER_BACKPACK_OVERRIDE))
+		to_chat(equipping_mob, SPAN_WARNING("You can't equip [src] while wearing a backpack."))
+		return FALSE
+
+/obj/item/clothing/suit/storage/marine/smartgunner/equipped(mob/user, slot, silent)
+	. = ..()
+
+	if(slot == WEAR_JACKET)
+		RegisterSignal(user, COMSIG_HUMAN_ATTEMPTING_EQUIP, PROC_REF(check_equipping))
+
+/obj/item/clothing/suit/storage/marine/smartgunner/proc/check_equipping(mob/living/carbon/human/equipping_human, obj/item/equipping_item, slot)
+	SIGNAL_HANDLER
+
+	if(slot != WEAR_BACK)
+		return
+
+	if(equipping_item.flags_item & SMARTGUNNER_BACKPACK_OVERRIDE)
+		return
+
+	if(!istype(equipping_item, /obj/item/weapon/gun) && equipping_item.flags_equip_slot == SLOT_BACK)
+		to_chat(equipping_human, SPAN_WARNING("You can't equip [equipping_item] on your back while wearing [src]."))
+		return COMPONENT_HUMAN_CANCEL_ATTEMPT_EQUIP
+
+/obj/item/clothing/suit/storage/marine/smartgunner/unequipped(mob/user, slot)
+	. = ..()
+
+	UnregisterSignal(user, COMSIG_HUMAN_ATTEMPTING_EQUIP)
+
 /obj/item/clothing/suit/storage/marine/odst
 	name = "\improper Mk6 armored compression suit"
 	desc = "A special variant of the mk5 compression suit, designed for FORECON covert combat drops. Custom-made to fit its owner with special straps to operate a smartgun."

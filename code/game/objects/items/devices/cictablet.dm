@@ -173,3 +173,27 @@
 	announcement_faction = FACTION_PMC
 
 	minimap_type = MINIMAP_FLAG_PMC
+
+/obj/item/device/cotablet/upp
+
+	desc = "A special device used by field UPP commanders."
+
+	tablet_name = "UPP Field Commander's Tablet"
+
+	announcement_title = UPP_COMMAND_ANNOUNCE
+	announcement_faction = FACTION_UPP
+	req_access = list(ACCESS_UPP_LEADERSHIP)
+
+	minimap_type = MINIMAP_FLAG_UPP
+
+/obj/item/device/cotablet/clf
+
+	desc = "A special device used by field Insurgent commanders."
+
+	tablet_name = "Insurgent Field Commander's Tablet"
+
+	announcement_title = CLF_COMMAND_ANNOUNCE
+	announcement_faction = FACTION_CLF
+	req_access = list(ACCESS_CLF_LEADERSHIP)
+
+	minimap_type = MINIMAP_FLAG_CLF

@@ -34,6 +34,7 @@
 	var/burn_flame_multiplier = 1
 	var/repair_materials = list()
 	var/metallic = TRUE
+	projectile_coverage_distance_limit = 2
 
 /obj/structure/barricade/Initialize(mapload, mob/user)
 	. = ..()

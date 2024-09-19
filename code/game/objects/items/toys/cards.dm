@@ -263,6 +263,7 @@
 	icon_state = "empty"
 	w_class = SIZE_TINY
 	flags_item = NOTABLEMERGE
+	flags_obj = parent_type::flags_obj|OBJ_IS_HELMET_GARB
 
 	var/concealed = FALSE
 	var/pile_state = FALSE
