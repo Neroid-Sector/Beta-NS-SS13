@@ -12,7 +12,7 @@
 
 /obj/item/device/motiontracker/adv
 	name = "M717 motion tracker"
-	desc = "A device that detects movement, but will try to filter out friendly IFF signatures. Alt Clicking will toggle the rangefinder."
+	desc = "A device that detects movement using sonar, but will try to filter out the movement of friendly IFF signatures. Alt Clicking will toggle the rangefinder."
 	icon = 'icons/obj/items/marine-items.dmi'
 	icon_state = "detector"
 	item_state = "motion_detector"
@@ -57,7 +57,7 @@
 		overlays += "+[initial(icon_state)]_short_switch"
 
 /obj/item/device/motiontracker/adv/verb/toggle_ping_range()
-	set name = "Toggle Ping Range"
+	set name = "Toggle Range finder"
 	set category = "Object"
 	set src in usr
 
@@ -106,6 +106,7 @@
 
 	playsound(src.loc, 'sound/items/detector_turn_on.ogg', 30)
 	to_chat(user, SPAN_NOTICE("You activate \the [src]."))
+	to_chat(user, SPAN_WARNING("You feel a strange pressure in your head, and feel a little nauseous as the [src] activates."))
 
 	winshow(user, "detectorwindow", TRUE)
 	user.client.screen += detector_image
@@ -127,6 +128,7 @@
 
 	playsound(src.loc, 'sound/items/detector_turn_off.ogg', 30)
 	to_chat(user, SPAN_NOTICE("You deactivate \the [src]."))
+	to_chat(user, SPAN_WARNING("You feel the strange pressure in your head dissipate as the [src] deactivates."))
 
 	var/client/client_to_use = user.client ? user.client : last_client
 	winshow(client_to_use, "detectorwindow", FALSE)
@@ -189,10 +191,10 @@
 		var/obj/effect/adv/detector_blip/B = new /obj/effect/adv/detector_blip()
 		user.client.screen += B // Add it to the radar
 
-		B.pixel_x = (L.x - user.x) * 4 - 4 // Move blip in the right position on the radar (multiplied by the icon dimensions)
+		B.pixel_x = (L.x - user.x) * 4 - 4 // Move ping in the right position on the radar (multiplied by the icon dimensions)
 		B.pixel_y = (L.y - user.y) * 4 - 4 // -4 is a slight offset south and west
 
-		B.screen_loc = "detector:3:[B.pixel_x],3:[B.pixel_y]" // Make it appear on the radar map
+		B.screen_loc = "detector:3:[B.pixel_x],3:[B.pixel_y]"
 		flick("blip", B)
 
 	if(min_distance == INFINITY)
@@ -201,7 +203,9 @@
 	var/sound = 'sound/items/detector_ping.mp3'
 	var/pitch = SOUND_MT_PING_HIGH - (SOUND_MT_PING_HIGH - SOUND_MT_PING_LOW) / 1.5 * (min_distance / TRACKER_RANGE)
 	var/notice_dist = (min_distance * 5) / 3.28084
-	playsound(loc, sound, 60, pitch, 5)
+	playsound(loc, sound, 30, pitch, 5)
+	if(prob(10))
+		to_chat(user, SPAN_WARNING("You hear a strange clicking inside your head, and feel a little nauseouse."))
 	if(disable_range)
 		return
 	else
@@ -218,7 +222,7 @@
 
 /obj/item/device/motiontracker/adv/m717
 	name = "M717 pocket motion tracker"
-	desc = "A device that detects movement, but will try to filter out friendly IFF signatures. Alt Clicking will toggle the rangefinder. This prototype motion tracker is so small it can even fit in pockets."
+	desc = "A device that detects movement using sonar, but will try to filter out the movement of friendly IFF signatures. Alt Clicking will toggle the rangefinder. This prototype motion tracker is so small it can even fit in pockets."
 	icon_state = "pocket"
 	item_state = "motion_detector"
 	flags_atom = FPRINT| CONDUCT
@@ -228,42 +232,42 @@
 
 /obj/item/device/motiontracker/adv/m717/hacked/contractor
 	name = "modified M717 pocket motion tracker"
-	desc = "A device that detects movement, but will try to filter out friendly IFF signatures.This prototype motion tracker is so small it can even fit in pockets. This one has been modified with an after-market IFF sensor to filter out Vanguard's Arrow Incorporated signals instead of USCM ones. Displays an output to linked augmented reality HUDs."
+	desc = "A device that detects movement using sonar, but will try to filter out the movement of friendly IFF signatures.This prototype motion tracker is so small it can even fit in pockets. This one has been modified with an after-market IFF sensor to filter out Vanguard's Arrow Incorporated signals instead of USCM ones. Displays an output to linked augmented reality HUDs."
 	iff_signal = FACTION_CONTRACTOR
 
 /obj/item/device/motiontracker/adv/hacked/upp
 	name = "modified T-17 motion tracker"
-	desc = "A device that usually picks up non-USCM signals, but this one's been hacked to detect all non-UPP movement instead. Fight fire with fire!"
+	desc = "A device that detects movement using sonar, but will try to filter out the movement of friendly IFF signatures. This one's been configured to detect all non-UPP movement."
 	iff_signal = FACTION_UPP
 
 /obj/item/device/motiontracker/adv/hacked/elite_merc
 	name = "modified T-17 motion tracker"
-	desc = "A device that usually picks up non-USCM signals, but this one's been hacked to detect all non-freelancer movement instead. Fight fire with fire!"
+	desc = "A device that detects movement using sonar, but will try to filter out the movement of friendly IFF signatures. This one's been hacked to detect all non-freelancer movement instead. Fight fire with fire!"
 	iff_signal = FACTION_MERCENARY
 
 /obj/item/device/motiontracker/adv/hacked/pmc
 	name = "corporate M717 motion tracker"
-	desc = "A device that usually picks up non-USCM signals, this one's been modified with after-market IFF sensors to detect all non-PMC movement instead. For the company!."
+	desc = "A device that detects movement using sonar, but will try to filter out the movement of friendly IFF signatures. This one's been modified with after-market IFF sensors to detect all non-PMC movement instead. For the company!."
 	iff_signal = FACTION_PMC
 
 /obj/item/device/motiontracker/adv/hacked/dutch
 	name = "modified M717 motion tracker"
-	desc = "A device that usually picks up non-USCM signals, this one's been modified with after-market IFF sensors to detect all non-Dutch's Dozen movement instead. Fight fire with fire!"
+	desc = "A device that detects movement using sonar, but will try to filter out the movement of friendly IFF signatures. This one's been modified with after-market IFF sensors to detect all non-Dutch's Dozen movement instead. Fight fire with fire!"
 	iff_signal = FACTION_DUTCH
 
 /obj/item/device/motiontracker/adv/hacked/contractor
 	name = "modified M717 motion tracker"
-	desc = "A device that usually picks up non-USCM signals, this one's been modified with after-market IFF sensors to detect all non-Vanguard's Arrow Incorporated movement instead."
+	desc = "A device that detects movement using sonar, but will try to filter out the movement of friendly IFF signatures. This one's been modified with after-market IFF sensors to detect all non-Vanguard's Arrow Incorporated movement instead."
 	iff_signal = FACTION_CONTRACTOR
 
 /obj/item/device/motiontracker/adv/hacked/clf
 	name = "hacked T-17 motion tracker"
-	desc = "A device that usually picks up non-USCM signals, but this one's been hacked to detect all non-insurgent movement instead. DOWN WITH THE SYSTEM!"
+	desc = "A device that detects movement using sonar, but will try to filter out the movement of friendly IFF signatures. This one's been hacked to detect all non-insurgent movement instead. DOWN WITH THE SYSTEM!"
 	iff_signal = FACTION_CLF
 
 /obj/item/device/motiontracker/adv/hacked/twe
 	name = "modified M717 motion tracker"
-	desc = "A device that is tuned to pick up moving non-TWE IFF signatures."
+	desc = "A device that detects movement using sonar, but will try to filter out the movement of friendly IFF signatures. This one has been configured to detect all non TWE movement."
 	iff_signal = FACTION_TWE
 
 #undef TRACKER_RANGE

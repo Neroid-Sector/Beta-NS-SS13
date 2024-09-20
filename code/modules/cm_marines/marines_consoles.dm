@@ -716,6 +716,9 @@
 	icon_state = "cmonitor"
 	density = FALSE
 
+/obj/structure/machinery/computer/crew/alt2
+	icon_state = "crew_bulky"
+
 /obj/structure/machinery/computer/crew/alt/yautja
 	name = "\improper Yautja health monitor"
 	desc = "Used to monitor active health sensors of all Yautja in the system. You can see that the console highlights the human's ship areas with BLUE and the hunting locations with RED."
