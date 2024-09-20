@@ -4,7 +4,7 @@
 	plane = FULLSCREEN_PLANE
 
 /obj/detector_hud
-	icon = 'icons/obj/items/detectorscreen.dmi'
+	icon = 'icons/obj/items/motiontracker_ui.dmi'
 	screen_loc = "detector:1,1"
 	mouse_opacity = FALSE
 
