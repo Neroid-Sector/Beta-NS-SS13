@@ -44,7 +44,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_tl, list(
 
 		list("UTILITIES", 0, null, null, null),
 		list("Binoculars", 5, /obj/item/device/binoculars, null, VENDOR_ITEM_REGULAR),
-		list("Motion Detector", 15, /obj/item/device/motiondetector, null, VENDOR_ITEM_RECOMMENDED),
+		list("Motion Detector", 15, /obj/item/device/motiontracker/adv, null, VENDOR_ITEM_RECOMMENDED),
 		list("Plastic Explosive", 10, /obj/item/explosive/plastic, null, VENDOR_ITEM_REGULAR),
 		list("Breaching Charge", 10, /obj/item/explosive/plastic/breaching_charge, null, VENDOR_ITEM_REGULAR),
 		list("Roller Bed", 5, /obj/item/roller, null, VENDOR_ITEM_REGULAR),

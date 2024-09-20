@@ -69,7 +69,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_medic, list(
 		list("Range Finder", 6, /obj/item/device/binoculars/range, null, VENDOR_ITEM_REGULAR),
 		list("Laser Designator", 8, /obj/item/device/binoculars/range/designator, null, VENDOR_ITEM_REGULAR),
 		list("Fire Extinguisher (Portable)", 3, /obj/item/tool/extinguisher/mini, null, VENDOR_ITEM_REGULAR),
-		list("Motion Detector", 8, /obj/item/device/motiondetector, null, VENDOR_ITEM_REGULAR),
+		list("Motion Detector", 8, /obj/item/device/motiontracker/adv, null, VENDOR_ITEM_REGULAR),
 		list("Whistle", 3, /obj/item/device/whistle, null, VENDOR_ITEM_REGULAR),
 
 		list("HELMET OPTICS", 0, null, null, null),

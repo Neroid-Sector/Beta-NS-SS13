@@ -273,7 +273,7 @@
 
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel/intel(new_human), WEAR_BACK)
 
-	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/empgrenade/dutch(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/motiontracker/adv(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/empgrenade/dutch(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/empgrenade/dutch(new_human), WEAR_IN_BACK)
 
@@ -517,7 +517,7 @@
 
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel/intel(new_human), WEAR_BACK)
 
-	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/empgrenade/dutch(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/motiontracker/adv(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/empgrenade/dutch(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/empgrenade/dutch(new_human), WEAR_IN_BACK)
 

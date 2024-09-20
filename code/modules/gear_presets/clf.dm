@@ -266,7 +266,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather/scarf/tacticalmask/black, WEAR_FACE)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/mgoggles/orange, WEAR_EYES)
 	//storage items
-	new_human.equip_to_slot_or_del(new /obj/item/device/motiondetector/hacked/clf, WEAR_WAIST)
+	new_human.equip_to_slot_or_del(new /obj/item/device/motiontracker/adv/hacked/clf, WEAR_WAIST)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/shotgun/large, WEAR_L_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/tactical/full, WEAR_R_STORE)
 	//backpack and stuff in it
@@ -881,7 +881,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/storage/box/packet/phosphorus/upp, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/binoculars/range, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/firstaid/regular/response, WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/device/motiondetector/hacked/clf, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/motiontracker/adv/hacked/clf, WEAR_IN_BACK)
 	//gun
 	new_human.equip_to_slot_or_del(new /obj/item/storage/belt/marine(new_human), WEAR_WAIST)
 	spawn_weapon(/obj/item/weapon/gun/rifle/type71/flamer/leader, /obj/item/ammo_magazine/rifle/type71/heap, new_human) //lower shotgun chance, but not zero

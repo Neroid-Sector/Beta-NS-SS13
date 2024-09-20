@@ -753,7 +753,7 @@ var/list/rebel_rifles = list(
 	var/random_gear = rand(0,3)
 	switch(random_gear)
 		if(0)
-			new_human.equip_to_slot_or_del(new /obj/item/device/motiondetector(new_human), WEAR_IN_BACK)
+			new_human.equip_to_slot_or_del(new /obj/item/device/motiontracker/adv(new_human), WEAR_IN_BACK)
 		if(1)
 			new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/custom/metal_foam(new_human), WEAR_IN_BACK)
 		if(2)

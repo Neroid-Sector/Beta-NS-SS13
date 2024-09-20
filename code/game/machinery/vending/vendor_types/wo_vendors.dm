@@ -311,7 +311,7 @@
 		list("M89-S Signal Flare Pack", round(scale * 2), /obj/item/storage/box/m94/signal, VENDOR_ITEM_REGULAR),
 		list("M94 Marking Flare Pack", round(scale * 10), /obj/item/storage/box/m94, VENDOR_ITEM_REGULAR),
 		list("Machete Scabbard (Full)", round(scale * 6), /obj/item/storage/large_holster/machete/full, VENDOR_ITEM_REGULAR),
-		list("Motion Detector", round(scale * 4), /obj/item/device/motiondetector, VENDOR_ITEM_REGULAR),
+		list("Motion Detector", round(scale * 4), /obj/item/device/motiontracker/adv, VENDOR_ITEM_REGULAR),
 		list("Data Detector", round(scale * 4), /obj/item/device/motiondetector/intel, VENDOR_ITEM_REGULAR),
 		list("Binoculars", round(scale * 2), /obj/item/device/binoculars, VENDOR_ITEM_REGULAR),
 		list("Rangefinder", round(scale * 1), /obj/item/device/binoculars/range, VENDOR_ITEM_REGULAR),
