@@ -6,7 +6,7 @@
 	w_class = SIZE_TINY
 
 	///The type of HUD our visor shows
-	var/hud_type = MOB_HUD_FACTION_USCM
+	var/hud_type = list(MOB_HUD_FACTION_USCM, MOB_HUD_MEDICAL_ADVANCED)
 
 	///The sound when toggling on the visor
 	var/toggle_on_sound = 'sound/handling/hud_on.ogg'
@@ -73,10 +73,25 @@
 /obj/item/device/helmet_visor/proc/get_helmet_examine_text()
 	return SPAN_NOTICE("\A [name] is flipped down.")
 
+/obj/item/device/helmet_visor/proc/change_view(mob/user, new_size)
+	SIGNAL_HANDLER
+	if(new_size > 7) // cannot use binos
+		var/obj/item/clothing/head/helmet/marine/attached_helmet = loc
+		if(!istype(attached_helmet))
+			return
+		deactivate_visor(attached_helmet, user)
+		to_chat(user, SPAN_NOTICE("You deactivate [src] on [attached_helmet] and put your eyes to the lens."))
+		playsound_client(user.client, toggle_off_sound, null, 75)
+		attached_helmet.active_visor = null
+		attached_helmet.update_icon()
+		var/datum/action/item_action/cycle_helmet_huds/cycle_action = locate() in attached_helmet.actions
+		if(cycle_action)
+			cycle_action.set_default_overlay()
+
 /obj/item/device/helmet_visor/medical
 	name = "basic medical optic"
 	icon_state = "med_sight"
-	hud_type = MOB_HUD_MEDICAL_ADVANCED
+	hud_type = list(MOB_HUD_FACTION_USCM, MOB_HUD_MEDICAL_ADVANCED)
 	action_icon_string = "med_sight_down"
 	helmet_overlay = "med_sight_right"
 
@@ -193,7 +208,7 @@
 	name = "night vision optic"
 	desc = "An insertable visor HUD into a standard USCM helmet. This type gives a form of night vision and is standard issue in units with regular funding."
 	icon_state = "nvg_sight"
-	hud_type = null
+	hud_type = list(MOB_HUD_FACTION_USCM, MOB_HUD_MEDICAL_ADVANCED)
 	action_icon_string = "nvg_sight_down"
 	helmet_overlay = "nvg_sight_right"
 	toggle_on_sound = 'sound/handling/toggle_nv1.ogg'
@@ -230,7 +245,7 @@
 /obj/item/device/helmet_visor/night_vision/activate_visor(obj/item/clothing/head/helmet/marine/attached_helmet, mob/living/carbon/human/user)
 	RegisterSignal(user, COMSIG_HUMAN_POST_UPDATE_SIGHT, PROC_REF(on_update_sight))
 
-	user.add_client_color_matrix("nvg_visor", 99, color_matrix_multiply(color_matrix_saturation(0), color_matrix_from_string("#7aff7a")))
+	user.add_client_color_matrix("nvg_visor", 99, color_matrix_multiply(color_matrix_saturation(0), color_matrix_from_string("#9af2f8")))
 	user.overlay_fullscreen("nvg_visor", /atom/movable/screen/fullscreen/flash/noise/nvg)
 	user.overlay_fullscreen("nvg_visor_blur", /atom/movable/screen/fullscreen/brute/nvg, 3)
 	user.update_sight()
@@ -296,22 +311,6 @@
 		user.see_in_dark = 12
 	user.lighting_alpha = lighting_alpha
 	user.sync_lighting_plane_alpha()
-
-
-/obj/item/device/helmet_visor/night_vision/proc/change_view(mob/user, new_size)
-	SIGNAL_HANDLER
-	if(new_size > 7) // cannot use binos
-		var/obj/item/clothing/head/helmet/marine/attached_helmet = loc
-		if(!istype(attached_helmet))
-			return
-		deactivate_visor(attached_helmet, user)
-		to_chat(user, SPAN_NOTICE("You deactivate [src] on [attached_helmet] and put your eyes to the lens."))
-		playsound_client(user.client, toggle_off_sound, null, 75)
-		attached_helmet.active_visor = null
-		attached_helmet.update_icon()
-		var/datum/action/item_action/cycle_helmet_huds/cycle_action = locate() in attached_helmet.actions
-		if(cycle_action)
-			cycle_action.set_default_overlay()
 
 #undef NVG_VISOR_USAGE
 
