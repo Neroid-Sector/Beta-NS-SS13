@@ -122,6 +122,45 @@
 			to_chat(user, SPAN_WARNING("\The [MD] can't pick up any signatures, so the vehicle should be empty. In theory."))
 		return
 
+	if(istype(O, /obj/item/device/motiontracker/adv))
+		if(!interior)
+			to_chat(user, SPAN_WARNING("It appears that [O] cannot establish borders of space inside \the [src]. (PLEASE, TELL A DEV, SOMETHING BROKE)"))
+			return
+		var/obj/item/device/motiontracker/adv/MD = O
+
+		if(!MD.active)
+			to_chat(user, SPAN_WARNING("\The [MD] must be activated in order to scan \the [src]'s interior."))
+			return
+
+		user.visible_message(SPAN_WARNING("[user] fumbles with \the [MD] aimed at \the [src]."), SPAN_NOTICE("You start recalibrating \the [MD] to scan \the [src]'s interior for signatures."))
+		if(!do_after(user, 3 SECONDS, INTERRUPT_ALL, BUSY_ICON_GENERIC))
+			user.visible_message(SPAN_WARNING("[user] stops fumbling with \the [MD]."), SPAN_WARNING("You stop trying to scan \the [src]'s interior."))
+			return
+		if(get_dist(src, user) > 2)
+			to_chat(user, SPAN_WARNING("You are too far from \the [src]."))
+			return
+
+		user.visible_message(SPAN_WARNING("[user] finishes fumbling with \the [MD]."), SPAN_NOTICE("You finish recalibrating \the [MD] and scanning \the [src]'s interior for signatures."))
+
+		interior.update_passenger_count()
+
+		var/humans_inside = 0
+		if(length(interior.role_reserved_slots))
+			for(var/datum/role_reserved_slots/RRS in interior.role_reserved_slots)
+				humans_inside += RRS.taken
+		humans_inside += interior.passengers_taken_slots
+
+		var/msg = ""
+		if(humans_inside || interior.xenos_taken_slots)
+			msg += "\The [MD] shows [humans_inside ? ("approximately [SPAN_HELPFUL(humans_inside)] signatures") : "no signatures"] of unknown affiliation\
+			[interior.xenos_taken_slots ? (" and about [SPAN_HELPFUL(interior.xenos_taken_slots)] abnormal signatures") : ""] inside of \the [src]."
+			playsound(user, 'sound/items/detector_ping.mp3', 60, FALSE, 7, 2)
+			to_chat(user, SPAN_NOTICE(msg))
+		else
+			playsound(user, 'sound/items/detector_active.mp3', 60, FALSE, 7, 2)
+			to_chat(user, SPAN_WARNING("\The [MD] can't pick up any signatures, so the vehicle should be empty. In theory."))
+		return
+
 	if(user.a_intent != INTENT_HARM)
 		handle_player_entrance(user)
 		return

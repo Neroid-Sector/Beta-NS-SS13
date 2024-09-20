@@ -24,7 +24,7 @@
 	var/obj/detector_hud/detector_image = new()
 	var/list/blips = list()
 
-	var/disable_sound = FALSE
+	var/disable_range = FALSE
 	var/active = FALSE
 
 	var/time_to_detect = 2 SECONDS
@@ -51,17 +51,17 @@
 		overlays += blood_overlay
 
 	//add toggle switch overlay
-	if(disable_sound)
+	if(disable_range)
 		overlays += "+[initial(icon_state)]_long_switch"
 	else
 		overlays += "+[initial(icon_state)]_short_switch"
 
-/obj/item/device/motiontracker/adv/verb/toggle_ping_sound()
-	set name = "Toggle Ping Sound"
+/obj/item/device/motiontracker/adv/verb/toggle_ping_range()
+	set name = "Toggle Ping Range"
 	set category = "Object"
 	set src in usr
 
-	toggle_sound(usr)
+	toggle_range(usr)
 
 /obj/item/device/motiontracker/adv/clicked(mob/user, list/mods)
 	if (isobserver(user) || isxeno(user)) return
@@ -69,18 +69,18 @@
 	if (mods["alt"])
 		if(!CAN_PICKUP(user, src))
 			return ..()
-		toggle_sound(usr)
+		toggle_range(usr)
 		return TRUE
 
 	return ..()
 
-/obj/item/device/motiontracker/adv/proc/toggle_sound(mob/user)
+/obj/item/device/motiontracker/adv/proc/toggle_range(mob/user)
 	if(isobserver(user) || isxeno(user) || !Adjacent(user))
 		return
 
-	disable_sound = !disable_sound
+	disable_range = !disable_range
 
-	to_chat(user, SPAN_NOTICE("You [disable_sound ? "disable" : "enable"] [src] ping sound."))
+	to_chat(user, SPAN_NOTICE("You [disable_range ? "disable" : "enable"] [src] range finder."))
 	update_icon()
 
 	playsound(usr,'sound/machines/click.ogg', 15, TRUE)
@@ -195,12 +195,17 @@
 		B.screen_loc = "detector:3:[B.pixel_x],3:[B.pixel_y]" // Make it appear on the radar map
 		flick("blip", B)
 
-	if(disable_sound || min_distance == INFINITY)
+	if(min_distance == INFINITY)
 		return
 
 	var/sound = 'sound/items/detector_ping.mp3'
 	var/pitch = SOUND_MT_PING_HIGH - (SOUND_MT_PING_HIGH - SOUND_MT_PING_LOW) / 1.5 * (min_distance / TRACKER_RANGE)
+	var/notice_dist = (min_distance * 5) / 3.28084
 	playsound(loc, sound, 60, pitch, 5)
+	if(disable_range)
+		return
+	else
+		to_chat(user, SPAN_NOTICE("Range [notice_dist] meters."))
 
 /obj/item/device/motiontracker/adv/proc/get_user()
 	if(isliving(loc))
