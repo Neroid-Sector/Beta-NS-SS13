@@ -1,10 +1,10 @@
 /obj/effect/adv/detector_blip
-	icon = 'icons/obj/items/tracker_blips.dmi'
+	icon = 'icons/effects/tracker_blips.dmi'
 	layer = BELOW_FULLSCREEN_LAYER
 	plane = FULLSCREEN_PLANE
 
 /obj/detector_hud
-	icon = 'icons/obj/items/motiontracker_ui.dmi'
+	icon = 'icons/effects/motiontracker_ui.dmi'
 	screen_loc = "detector:1,1"
 	mouse_opacity = FALSE
 
