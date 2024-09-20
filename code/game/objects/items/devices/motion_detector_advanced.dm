@@ -11,7 +11,7 @@
 #define TRACKER_RANGE 20
 
 /obj/item/device/motiontracker/adv
-	name = "M718 motion tracker"
+	name = "M717 motion tracker"
 	desc = "A device that detects movement, but will try to filter out friendly IFF signatures. Alt Clicking will toggle the rangefinder."
 	icon = 'icons/obj/items/marine-items.dmi'
 	icon_state = "detector"
