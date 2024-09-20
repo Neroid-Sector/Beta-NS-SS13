@@ -157,7 +157,7 @@ menu "menu"
 window "detectorwindow"
 	elem "detectorwindow"
 		type = MAIN
-		pos = 281,0
+		pos = 700,200
 		size = 256x256
 		anchor1 = none
 		anchor2 = none
@@ -176,9 +176,9 @@ window "detectorwindow"
 		saved-params = "pos;is-minimized;is-maximized"
 		on-size = ""
 		title = ""
-		titlebar = true
+		titlebar = false
 		statusbar = false
-		can-close = false
+		can-close = true
 		can-minimize = true
 		can-resize = true
 		is-pane = false
@@ -188,7 +188,7 @@ window "detectorwindow"
 		icon = ""
 		image = ""
 		image-mode = stretch
-		keep-aspect = false
+		keep-aspect = true
 		transparent-color = none
 		alpha = 255
 		macro = ""
