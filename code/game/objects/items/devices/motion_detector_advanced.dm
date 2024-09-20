@@ -224,8 +224,7 @@
 	flags_atom = FPRINT| CONDUCT
 	flags_equip_slot = SLOT_WAIST
 	w_class = SIZE_SMALL
-	blip_type = "tracker"
-	long_range_locked = TRUE
+
 
 /obj/item/device/motiontracker/adv/m717/hacked/contractor
 	name = "modified M717 pocket motion tracker"
