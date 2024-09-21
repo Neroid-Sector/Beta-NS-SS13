@@ -176,7 +176,7 @@ window "detectorwindow"
 		saved-params = "pos;is-minimized;is-maximized"
 		on-size = ""
 		title = ""
-		titlebar = false
+		titlebar = true
 		statusbar = false
 		can-close = true
 		can-minimize = true

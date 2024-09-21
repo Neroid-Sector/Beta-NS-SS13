@@ -205,11 +205,18 @@
 	var/notice_dist = (min_distance * 5) / 3.28084
 	playsound(loc, sound, 30, pitch, 5)
 	if(prob(10))
-		to_chat(user, SPAN_WARNING("You hear a strange clicking inside your head, and feel a little nauseouse."))
+		to_chat(user, SPAN_WARNING("You feel the thump of the sonar in your chest."))
+	if(prob(5))
+		to_chat(user, SPAN_WARNING("You hear a strange clicking inside your head, and feel a little nauseous."))
+	if(prob(2))
+		to_chat(user, SPAN_WARNING("You hear a strange clicking inside your head, and feel an unpleasent pressure in your eyes."))
+	if(prob(1))
+		to_chat(user, SPAN_WARNING("The ping of the sonar getting a hit makes the hairs on the back of your neck stand on end."))
+
 	if(disable_range)
 		return
 	else
-		to_chat(user, SPAN_NOTICE("Range [notice_dist] meters."))
+		to_chat(user, SPAN_NOTICE("Range: [notice_dist] meters."))
 
 /obj/item/device/motiontracker/adv/proc/get_user()
 	if(isliving(loc))

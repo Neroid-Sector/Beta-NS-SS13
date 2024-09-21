@@ -103,9 +103,49 @@
 	var/far_sight = FALSE
 	var/obj/item/weapon/gun/smartgun/linked_smartgun = null
 
-/obj/item/clothing/glasses/night/m56_goggles/Destroy()
+/obj/item/clothing/glasses/night/m56_goggles/equipped(mob/user, slot)
+	if(active && slot == WEAR_EYES)
+		user.add_client_color_matrix("nvg_visor", 99, color_matrix_multiply(color_matrix_saturation(0), color_matrix_from_string("#9af2f8")))
+		user.overlay_fullscreen("nvg_visor", /atom/movable/screen/fullscreen/flash/noise/nvg)
+		user.overlay_fullscreen("nvg_visor_blur", /atom/movable/screen/fullscreen/brute/nvg, 3)
+		user.update_sight()
+	return ..()
+
+/obj/item/clothing/glasses/night/m56_goggles/dropped(mob/living/carbon/human/user)
+	if(active && istype(user))
+		user.remove_client_color_matrix("nvg_visor", 1 SECONDS)
+		user.clear_fullscreen("nvg_visor", 0.5 SECONDS)
+		user.clear_fullscreen("nvg_visor_blur", 0.5 SECONDS)
+	return ..()
+
+/obj/item/clothing/glasses/night/m56_goggles/attack_self(mob/user)
+	..()
+
+	if(!toggleable)
+		return
+	if(!can_use_active_effect(user))
+		to_chat(user, SPAN_WARNING("You have no idea how to use [src]."))
+		return
+
+	if(!active)
+		user.remove_client_color_matrix("nvg_visor", 1 SECONDS)
+		user.clear_fullscreen("nvg_visor", 0.5 SECONDS)
+		user.clear_fullscreen("nvg_visor_blur", 0.5 SECONDS)
+		playsound_client(user.client, toggle_off_sound, null, 75)
+		return
+	if(active)
+		user.add_client_color_matrix("nvg_visor", 99, color_matrix_multiply(color_matrix_saturation(0), color_matrix_from_string("#9af2f8")))
+		user.overlay_fullscreen("nvg_visor", /atom/movable/screen/fullscreen/flash/noise/nvg)
+		user.overlay_fullscreen("nvg_visor_blur", /atom/movable/screen/fullscreen/brute/nvg, 3)
+		playsound_client(user.client, toggle_on_sound, null, 75)
+		return
+
+/obj/item/clothing/glasses/night/m56_goggles/Destroy(mob/user)
 	linked_smartgun = null
 	disable_far_sight()
+	user.remove_client_color_matrix("nvg_visor", 1 SECONDS)
+	user.clear_fullscreen("nvg_visor", 0.5 SECONDS)
+	user.clear_fullscreen("nvg_visor_blur", 0.5 SECONDS)
 	return ..()
 
 /obj/item/clothing/glasses/night/m56_goggles/proc/link_smartgun(mob/user)
