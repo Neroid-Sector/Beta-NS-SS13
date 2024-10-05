@@ -216,3 +216,11 @@
 	rank_pin = /obj/item/clothing/accessory/ranks/marine/o10c
 	ranking = 25
 	pay_multiplier = 7
+
+/datum/paygrade/marine/k9
+	paygrade = "K9"
+	name = "Second Lieutenant Combat Lifesaver"
+	prefix = "2ndLt Combat Lifesaver"
+	rank_pin = /obj/item/clothing/accessory/ranks/marine/o1
+	ranking = 12
+	pay_multiplier = 0

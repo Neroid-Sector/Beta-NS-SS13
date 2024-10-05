@@ -161,6 +161,9 @@
 	/// How much to offset the item randomly either way alongside Y visually
 	var/ground_offset_y = 0
 
+	/// bypass any species specific OnMob overlay blockers
+	var/force_overlays_on = FALSE
+
 /obj/item/Initialize(mapload, ...)
 	. = ..()
 
