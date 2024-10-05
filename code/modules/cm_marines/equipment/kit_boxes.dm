@@ -549,7 +549,7 @@
 	new /obj/item/device/binoculars(src)
 	new /obj/item/pamphlet/skill/k9_handler(src)
 	new /obj/item/storage/box/evidence(src)
-	new /obj/item/restraint/handcuffs(src)
+	new /obj/item/handcuffs(src)
 	new /obj/item/reagent_container/spray/pepper(src)
 
 /obj/item/storage/box/kit/k9_handler/corpsman

@@ -310,7 +310,7 @@
 	if(!client)
 		return
 	UnregisterSignal(src, COMSIG_MOB_MOVE_OR_LOOK)
-	client.change_view(GLOB.world_view_size)
+	client.change_view(world.view)
 	client.pixel_x = 0
 	client.pixel_y = 0
 	is_zoomed = FALSE

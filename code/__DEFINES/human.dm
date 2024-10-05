@@ -215,4 +215,3 @@
 #define RELIGION_AGNOSTICISM "Agnostic"
 
 #define MAXIMUM_DROPPED_OBJECTS_REMEMBERED 2
-#define SYNTH_K9 "Synthetic K9"
