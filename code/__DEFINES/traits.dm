@@ -144,6 +144,7 @@
 #define TRAIT_INFILTRATOR_SYNTH "t_infiltrator_synth"
 /// Makes it impossible to strip the inventory of this mob.
 #define TRAIT_UNSTRIPPABLE "t_unstrippable"
+#define TRAIT_IRON_TEETH "t_iron_teeth"
 
 // HIVE TRAITS
 /// If the Hive is a Xenonid Hive

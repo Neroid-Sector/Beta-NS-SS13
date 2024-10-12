@@ -168,6 +168,9 @@
 	/// static associated list of limb key -> image to avoid unnecessary overlay generation
 	var/static/list/icon_render_image_cache = list()
 
+	// Are we currently using inherent zoom vision?
+	var/is_zoomed = FALSE
+
 /client/var/cached_human_playtime
 
 /client/proc/get_total_human_playtime(skip_cache = FALSE)

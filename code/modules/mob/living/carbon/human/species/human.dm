@@ -7,6 +7,8 @@
 	flags = HAS_SKIN_TONE|HAS_LIPS|HAS_UNDERWEAR|HAS_HARDCRIT
 	mob_flags = KNOWS_TECHNOLOGY
 	uses_ethnicity = TRUE
+	fire_sprite_prefix = "Standing"
+	fire_sprite_sheet = 'icons/mob/humans/onmob/OnFire.dmi'
 
 /datum/species/human/handle_on_fire(humanoidmob)
 	. = ..()

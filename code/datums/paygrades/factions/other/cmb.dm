@@ -78,3 +78,4 @@
 	rank_pin = /obj/item/clothing/accessory/ranks/marine/e6
 	ranking = 5
 	pay_multiplier = 2
+
