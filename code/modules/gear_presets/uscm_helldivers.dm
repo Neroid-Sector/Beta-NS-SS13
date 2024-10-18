@@ -116,7 +116,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/accessory/storage/holster(new_human), WEAR_ACCESSORY)
 	. = ..()
 
-/datum/equipment_preset/uscm_helldivers/gcommander
+/datum/equipment_preset/uscm_helldivers/ccommander
 	name = "Company Commander (helldivers)"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
 
@@ -148,7 +148,7 @@
 	. = ..()
 	access = get_access(ACCESS_LIST_MARINE_MAIN)
 
-/datum/equipment_preset/uscm_helldivers/gcommander/load_gear(mob/living/carbon/human/new_human)
+/datum/equipment_preset/uscm_helldivers/ccommander/load_gear(mob/living/carbon/human/new_human)
 
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/beret/cm(new_human), WEAR_HEAD)
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom/cdrcom(new_human), WEAR_L_EAR)
@@ -169,7 +169,7 @@
 //--Ground Commander---//
 
 /datum/equipment_preset/uscm_helldivers/gcommander
-	name = "Company Commander (helldivers)"
+	name = "Company Commander-F (helldivers)"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
 
 	assignment = JOB_HD_GC

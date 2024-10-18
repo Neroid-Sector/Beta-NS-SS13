@@ -113,7 +113,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/accessory/storage/holster(new_human), WEAR_ACCESSORY)
 	. = ..()
 
-/datum/equipment_preset/uscm_mudskippers/gcommander
+/datum/equipment_preset/uscm_mudskippers/ccommander
 	name = "Company Commander (Mudskippers)"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
 
@@ -141,11 +141,11 @@
 	dress_shoes = list(/obj/item/clothing/shoes/dress/commander)
 	dress_over = list(/obj/item/clothing/suit/storage/jacket/marine/dress/officer/white, /obj/item/clothing/suit/storage/jacket/marine/dress/officer/black, , /obj/item/clothing/suit/storage/jacket/marine/dress)
 
-/datum/equipment_preset/uscm_mudskippers/gcommander/New()
+/datum/equipment_preset/uscm_mudskippers/ccommander/New()
 	. = ..()
 	access = get_access(ACCESS_LIST_MARINE_MAIN)
 
-/datum/equipment_preset/uscm_mudskippers/gcommander/load_gear(mob/living/carbon/human/new_human)
+/datum/equipment_preset/uscm_mudskippers/ccommander/load_gear(mob/living/carbon/human/new_human)
 
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/beret/cm(new_human), WEAR_HEAD)
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom/cdrcom(new_human), WEAR_L_EAR)
@@ -166,7 +166,7 @@
 //--Ground Commander---//
 
 /datum/equipment_preset/uscm_mudskippers/gcommander
-	name = "Company Commander (Mudskippers)"
+	name = "Company Commander-F (Mudskippers)"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
 
 	assignment = JOB_MS_GC
@@ -351,6 +351,9 @@
 
 	minimap_icon = list("cic" = MINIMAP_ICON_COLOR_BRONZE)
 	minimap_background = MINIMAP_ICON_BACKGROUND_CIC
+
+	utility_under = list(/obj/item/clothing/under/marine, /obj/item/clothing/under/marine/officer/command, /obj/item/clothing/under/marine/officer/boiler)
+	utility_hat = list(/obj/item/clothing/head/cmcap,/obj/item/clothing/head/beret/cm/tan)
 
 /datum/equipment_preset/uscm_mudskippers/pc/New()
 	. = ..()
