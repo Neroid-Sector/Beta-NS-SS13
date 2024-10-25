@@ -195,6 +195,60 @@
 	direct_hit_shrapnel = 5
 	dispersion_angle = 360 //beeg circle
 
+/obj/item/explosive/grenade/high_explosive/airburst/canister
+	name = "\improper M108 canister grenade"
+	desc = "A Simple 30mm canister shot round. Fires a narrow pattern grapeshot spread from most USCM grenade launchers. Can also be used for a door breaching round in a pinch"
+	icon_state = "grenade_40mm_buckshot"
+	item_state = "grenade_40mm_buckshot"
+	hand_throwable = FALSE
+	underslug_launchable = TRUE
+	explosion_power = 0
+	explosion_falloff = 25
+	det_time = 0
+	shrapnel_count = 10
+	shrapnel_type = /datum/ammo/bullet/shrapnel/canister_rounds
+	dispersion_angle = 10
+
+/obj/item/explosive/grenade/high_explosive/airburst/canister/prime()
+	canister_fire(src)
+
+/obj/item/explosive/grenade/high_explosive/airburst/canister/proc/canister_fire(user, target)
+	var/direction = Get_Compass_Dir(user, target)
+	var/position = get_step(user, direction)
+	create_shrapnel(position, min(direct_hit_shrapnel, shrapnel_count), direction , dispersion_angle, shrapnel_type, cause_data, FALSE, 100)
+	if(shrapnel_count)
+		create_shrapnel(loc, shrapnel_count, direction, dispersion_angle, shrapnel_type, cause_data, FALSE, 0)
+	qdel(src)
+
+/obj/item/explosive/grenade/high_explosive/airburst/canister/launch_impact(atom/hit_atom)
+	return
+
+
+/obj/item/explosive/grenade/high_explosive/airburst/rubber
+	name = "\improper M108 canister rubber grenade"
+	desc = "A Simple 30mm canister shot round. Fires a narrow pattern grapeshot spread from most USCM grenade launchers. This variant fires less than lethal rubber pellets."
+	icon_state = "grenade_40mm_rubber"
+	item_state = "grenade_40mm_rubber"
+	hand_throwable = FALSE
+	underslug_launchable = TRUE
+	explosion_power = 0
+	explosion_falloff = 25
+	det_time = 0
+	shrapnel_count = 10
+	shrapnel_type = /datum/ammo/bullet/shrapnel/rubber
+	dispersion_angle = 10
+/obj/item/explosive/grenade/high_explosive/airburst/rubber/proc/rubber_fire(mob/living/user, target)
+	var/direction = Get_Compass_Dir(user, target)
+	var/position = get_step(user, direction)
+	create_shrapnel(position, min(direct_hit_shrapnel, shrapnel_count), direction , dispersion_angle, shrapnel_type, cause_data, FALSE, 100)
+	if(shrapnel_count)
+		create_shrapnel(loc, shrapnel_count, direction, dispersion_angle, shrapnel_type, cause_data, FALSE, 0)
+	qdel(src)
+
+/obj/item/explosive/grenade/high_explosive/airburst/canister/launch_impact(atom/hit_atom)
+	return
+
+
 /*
 //================================================
 				M203 Grenades
