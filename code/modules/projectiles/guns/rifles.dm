@@ -1292,25 +1292,17 @@
 	aim_slowdown = SLOWDOWN_ADS_LMG
 	current_mag = /obj/item/ammo_magazine/rifle/lmg
 	attachable_allowed = list(
-		/obj/item/attachable/suppressor,
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/reflex,
-		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/flashlight/grip,
-		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
-		/obj/item/attachable/heavy_barrel,
-		/obj/item/attachable/compensator,
-		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/magnetic_harness,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_SUPPORT_PLATFORM
 	gun_category = GUN_CATEGORY_HEAVY
+	start_automatic = TRUE
 
 /obj/item/weapon/gun/rifle/lmg/set_gun_attachment_offsets()
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 23, "under_x" = 23, "under_y" = 12, "stock_x" = 24, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 23, "under_x" = 30, "under_y" = 15, "stock_x" = 24, "stock_y" = 12)
 
 
 /obj/item/weapon/gun/rifle/lmg/set_gun_config_values()
@@ -1328,7 +1320,18 @@
 	damage_mult = BASE_BULLET_DAMAGE_MULT
 	recoil_unwielded = RECOIL_AMOUNT_TIER_1
 
-
+/obj/item/weapon/gun/rifle/lmg/handle_starting_attachment()
+	..()
+	var/obj/item/attachable/extended_barrel/hpr_lmg_barrel = new(src)
+	var/obj/item/attachable/bipod/hpr_lmg_bipod= new(src)
+	hpr_lmg_barrel.flags_attach_features &= ~ATTACH_REMOVABLE
+	hpr_lmg_bipod.flags_attach_features &= ~ATTACH_REMOVABLE
+	hpr_lmg_barrel.hidden = FALSE
+	hpr_lmg_bipod.hidden = FALSE
+	hpr_lmg_barrel.Attach(src)
+	hpr_lmg_bipod.Attach(src)
+	update_attachable(hpr_lmg_barrel.slot)
+	update_attachable(hpr_lmg_bipod.slot)
 
 //-------------------------------------------------------
 

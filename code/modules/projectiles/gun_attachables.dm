@@ -3345,8 +3345,6 @@ Defined in conflicts.dm of the #defines folder.
 		SEND_SIGNAL(user, COMSIG_MOB_UNDEPLOYED_BIPOD)
 		UnregisterSignal(user, COMSIG_MOB_MOVE_OR_LOOK)
 
-	if(G.flags_gun_features & GUN_SUPPORT_PLATFORM)
-		G.remove_firemode(GUN_FIREMODE_AUTOMATIC)
 
 	if(heavy_bipod)
 		user.anchored = FALSE
@@ -3387,8 +3385,6 @@ Defined in conflicts.dm of the #defines folder.
 				initial_mob_dir = user.dir
 				RegisterSignal(user, COMSIG_MOB_MOVE_OR_LOOK, PROC_REF(handle_mob_move_or_look))
 
-				if(G.flags_gun_features & GUN_SUPPORT_PLATFORM)
-					G.add_firemode(GUN_FIREMODE_AUTOMATIC)
 
 				if(heavy_bipod)
 					user.anchored = TRUE
