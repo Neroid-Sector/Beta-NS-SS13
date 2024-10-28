@@ -408,7 +408,6 @@
 	new /obj/item/ammo_magazine/rifle/lmg/heap(src)
 	new /obj/item/ammo_magazine/rifle/lmg/holo_target(src)
 	new /obj/item/attachable/magnetic_harness(src)
-	new /obj/item/attachable/bipod(src)
 	new /obj/item/stack/folding_barricade/three(src)
 
 
