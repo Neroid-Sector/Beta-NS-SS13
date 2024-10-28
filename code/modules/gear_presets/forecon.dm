@@ -145,7 +145,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/roller/bedroll(new_human), WEAR_IN_JACKET)
 
 	if(prob(50))
-		new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/lmg(new_human), WEAR_J_STORE)
+		new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/lmg(new_human), WEAR_BACK)
 		new_human.equip_to_slot_or_del(new /obj/item/storage/belt/marine(new_human), WEAR_WAIST)
 		new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/lmg/heap(new_human), WEAR_IN_BELT)
 		new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/lmg/heap(new_human), WEAR_IN_BELT)
@@ -153,10 +153,8 @@
 		new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/lmg/holo_target(new_human), WEAR_IN_BELT)
 		new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/lmg/holo_target(new_human), WEAR_IN_BELT)
 
-		new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/flamer/underextinguisher(new_human), WEAR_BACK)
-		new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/flamertank(new_human), WEAR_R_STORE)
-		new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank(new_human), WEAR_IN_R_STORE)
-		new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank(new_human), WEAR_IN_R_STORE)
+		new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/mod88/forecon(new_human), WEAR_J_STORE)
+		new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/pistol/pmc_mod88(new_human), WEAR_R_STORE)
 
 	else
 		new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/smartgun(new_human), WEAR_J_STORE)

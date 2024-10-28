@@ -648,6 +648,9 @@
 	flashlight.Attach(src)
 	update_attachable(flashlight.slot)
 
+/obj/item/weapon/gun/pistol/mod88/forecon
+	starting_attachment_types = list(/obj/item/attachable/flashlight/grip, /obj/item/attachable/magnetic_harness, /obj/item/attachable/stock/mod88, /obj/item/attachable/suppressor)
+
 //-------------------------------------------------------
 // ES-4 - Basically a CL-exclusive reskin of the 88 mod 4 that only uses less-lethal ammo.
 
