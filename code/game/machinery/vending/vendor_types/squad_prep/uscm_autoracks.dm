@@ -30,7 +30,7 @@
 
 /obj/structure/machinery/auto_rack/attack_hand(mob/living/user)
 	if(!contents.len)
-		to_chat(user, SPAN_WARNING("[src] is empty."))
+		to_chat(user, SPAN_WARNING("[src] begins to restock. Stand Clear!"))
 		INVOKE_ASYNC(src,TYPE_PROC_REF(/obj/structure/machinery/auto_rack/,animation_proc))
 		return
 
@@ -41,6 +41,11 @@
 	playsound(src, "gunequip", 25, TRUE)
 	update_icon()
 
+/obj/structure/machinery/auto_rack/proc/restock()
+	while(max_stored > contents.len)
+		contents += new populate_type(src)
+	icon_state = "[initial(icon_state)]"
+
 /obj/structure/machinery/auto_rack/proc/animation_proc()
 	icon_state = "[initial(icon_state)]_0"
 	overlays.Cut()
@@ -50,18 +55,20 @@
 	icon_state = "[initial(icon_state)]_restock"
 	overlays.Cut()
 	overlays += image(icon,icon_state)
-	sleep(10)
-	while(max_stored > contents.len)
-		contents += new populate_type(src)
-	icon_state = "[initial(icon_state)]_[contents.len]"
+	sleep(15)
+	restock()
 	overlays.Cut()
 	overlays += image(icon,icon_state)
 
 /obj/structure/machinery/auto_rack/update_icon()
 	if(contents.len)
 		icon_state = "[initial(icon_state)]_[contents.len]"
+		overlays.Cut()
+		overlays += image(icon,icon_state)
 	else
 		icon_state = "[initial(icon_state)]_0"
+		overlays.Cut()
+		overlays += image(icon,icon_state)
 
 
 /obj/structure/machinery/auto_rack/mk1
