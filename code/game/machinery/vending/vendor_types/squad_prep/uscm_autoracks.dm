@@ -8,6 +8,7 @@
 	var/populate_type
 	var/max_stored = 1
 	var/initial_stored = 0
+	var/restocking = FALSE
 
 /obj/structure/machinery/auto_rack/Initialize()
 	. = ..()
@@ -23,16 +24,18 @@
 	update_icon()
 
 /obj/structure/machinery/auto_rack/attackby(obj/item/O, mob/user)
-	if(istype(O, allowed_type) && contents.len < max_stored)
-		user.drop_inv_item_to_loc(O, src)
-		contents += O
-		update_icon()
+	if(!restocking == TRUE)
+		if(istype(O, allowed_type) && contents.len < max_stored)
+			user.drop_inv_item_to_loc(O, src)
+			contents += O
+			update_icon()
 
 /obj/structure/machinery/auto_rack/attack_hand(mob/living/user)
-	if(!contents.len)
-		to_chat(user, SPAN_WARNING("[src] begins to restock. Stand Clear!"))
-		INVOKE_ASYNC(src,TYPE_PROC_REF(/obj/structure/machinery/auto_rack/,animation_proc))
-		return
+	if(!restocking == TRUE)
+		if(!contents.len)
+			to_chat(user, SPAN_WARNING("[src] begins to restock. Stand Clear!"))
+			INVOKE_ASYNC(src,TYPE_PROC_REF(/obj/structure/machinery/auto_rack/,animation_proc))
+			return
 
 	var/obj/stored_obj = contents[contents.len]
 	contents -= stored_obj
@@ -44,21 +47,23 @@
 /obj/structure/machinery/auto_rack/proc/restock()
 	while(max_stored > contents.len)
 		contents += new populate_type(src)
-	icon_state = "[initial(icon_state)]"
+	update_icon()
 
 /obj/structure/machinery/auto_rack/proc/animation_proc()
+	restocking = TRUE
 	icon_state = "[initial(icon_state)]_0"
 	overlays.Cut()
 	overlays += image(icon,icon_state)
 	playsound(src, "sound/machines/warning-buzzer.ogg", 25)
-	sleep(5)
+	sleep(1)
 	icon_state = "[initial(icon_state)]_restock"
 	overlays.Cut()
 	overlays += image(icon,icon_state)
-	sleep(15)
+	sleep(31)
 	restock()
 	overlays.Cut()
 	overlays += image(icon,icon_state)
+	restocking = FALSE
 
 /obj/structure/machinery/auto_rack/update_icon()
 	if(contents.len)
@@ -71,8 +76,15 @@
 		overlays += image(icon,icon_state)
 
 
-/obj/structure/machinery/auto_rack/mk1
+/obj/structure/machinery/auto_rack/mk1/empty
 	icon_state = "mk1rack"
 	max_stored = 4
+	allowed_type = /obj/item/weapon/gun/rifle/m41aMK1
+	populate_type = /obj/item/weapon/gun/rifle/m41aMK1
+
+/obj/structure/machinery/auto_rack/mk1/full
+	icon_state = "mk1rack"
+	max_stored = 4
+	initial_stored = 4
 	allowed_type = /obj/item/weapon/gun/rifle/m41aMK1
 	populate_type = /obj/item/weapon/gun/rifle/m41aMK1
