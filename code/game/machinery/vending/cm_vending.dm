@@ -1397,7 +1397,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_corresponding_types_list, list(
 	icon_state = "[initial(icon_state)]_0"
 	overlays.Cut()
 	overlays += image(icon,icon_state)
-	playsound(src, "sound/machines/warning-buzzer.ogg", 25)
+	playsound(src, "sound/machines/weapon_rack_restock.mp3", 25)
 	sleep(1)
 	icon_state = "[initial(icon_state)]_restock"
 	overlays.Cut()
