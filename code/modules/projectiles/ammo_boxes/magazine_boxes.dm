@@ -60,6 +60,38 @@
 /obj/item/ammo_box/magazine/heap/empty
 	empty = TRUE
 
+//-----------------------M41aMK1 Rifle Mag Boxes-----------------------
+
+/obj/item/ammo_box/magazine/m41aMK1
+	name = "\improper magazine box (M41aMK1 x 10)"
+	flags_equip_slot = SLOT_BACK
+	overlay_ammo_type = "_ap"
+	overlay_content = "_ap"
+	magazine_type = /obj/item/ammo_magazine/rifle/m41aMK1
+
+/obj/item/ammo_box/magazine/m41aMK1
+	empty = TRUE
+
+/obj/item/ammo_box/magazine/m41aMK1/ap
+	name = "\improper magazine box (AP M41aMK1 x 10)"
+	flags_equip_slot = SLOT_BACK
+	overlay_ammo_type = "_ap"
+	overlay_content = "_ap"
+	magazine_type = /obj/item/ammo_magazine/rifle/m41aMK1/ap
+
+/obj/item/ammo_box/magazine/m41aMK1/ap/empty
+	empty = TRUE
+
+/obj/item/ammo_box/magazine/m41aMK1/heap
+	name = "\improper magazine box (HEAP M41aMK1 x 10)"
+	flags_equip_slot = SLOT_BACK
+	overlay_ammo_type = "_heap"
+	overlay_content = "_heap"
+	magazine_type = /obj/item/ammo_magazine/rifle/m41aMK1/heap
+
+/obj/item/ammo_box/magazine/m41aMK1/heap/empty
+	empty = TRUE
+
 //-----------------------Kramer Rifle Mag Boxes-----------------------
 
 /obj/item/ammo_box/magazine/kramer

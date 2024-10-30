@@ -1,5 +1,7 @@
 //USCM AUTO RACKS
 
+//-----------------WEAPONS-----------------\\
+
 //MK1
 
 /obj/structure/machinery/auto_rack/mk1/empty
@@ -95,6 +97,64 @@
 	initial_stored = 4
 	stocked_weapon = /obj/item/weapon/gun/shotgun/combat/riot
 	restock_type = /obj/item/weapon/gun/shotgun/combat/riot
+
+//-----------------Munitions-----------------\\
+
+//Mk1----
+
+/obj/structure/machinery/auto_rack/mk1_ammo/full
+	name = "ColMarTech Automated Munitions Storage Carousel"
+	desc = "The ARMAT brand munitions rack has deceptively small storage, presenting only a limited single stack of storage clamps, the device automatically cycles to a fully stocked shelf when the current one is depleted. This one is configured to hold M41aMK1 Magazine tins."
+	icon_state = "mk1_magrack"
+	initial_stored = 4
+	stocked_weapon = /obj/item/ammo_box/magazine/m41aMK1/heap
+	restock_type = /obj/item/ammo_box/magazine/m41aMK1/heap
+
+/obj/structure/machinery/auto_rack/mk1_ammo/empty
+	name = "ColMarTech Automated Munitions Storage Carousel"
+	desc = "The ARMAT brand munitions rack has deceptively small storage, presenting only a limited single stack of storage clamps, the device automatically cycles to a fully stocked shelf when the current one is depleted. This one is configured to hold M41aMK1 Magazine tins."
+	icon_state = "mk1_magrack"
+	initial_stored = 0
+	stocked_weapon = /obj/item/ammo_box/magazine/m41aMK1/heap
+	restock_type = /obj/item/ammo_box/magazine/m41aMK1/heap
+
+//M39----
+
+/obj/structure/machinery/auto_rack/m39_ammo/full
+	name = "ColMarTech Automated Munitions Storage Carousel"
+	desc = "The ARMAT brand munitions rack has deceptively small storage, presenting only a limited single stack of storage clamps, the device automatically cycles to a fully stocked shelf when the current one is depleted. This one is configured to hold M39 Magazine tins."
+	icon_state = "m39_magrack"
+	initial_stored = 4
+	stocked_weapon = /obj/item/ammo_box/magazine/m39/heap
+	restock_type = /obj/item/ammo_box/magazine/m39/heap
+
+/obj/structure/machinery/auto_rack/m39_ammo/empty
+	name = "ColMarTech Automated Munitions Storage Carousel"
+	desc = "The ARMAT brand munitions rack has deceptively small storage, presenting only a limited single stack of storage clamps, the device automatically cycles to a fully stocked shelf when the current one is depleted. This one is configured to hold M39 Magazine tins."
+	icon_state = "m39_magrack"
+	initial_stored = 0
+	stocked_weapon = /obj/item/ammo_box/magazine/m39/heap
+	restock_type = /obj/item/ammo_box/magazine/m39/heap
+
+//Shotguns----
+
+/obj/structure/machinery/auto_rack/shotgun_ammo/full
+	name = "ColMarTech Automated Munitions Storage Carousel"
+	desc = "The ARMAT brand munitions rack has deceptively small storage, presenting only a limited single stack of storage clamps, the device automatically cycles to a fully stocked shelf when the current one is depleted. This one is configured to hold Buckshot storage tins."
+	icon_state = "shotgun_magrack"
+	initial_stored = 4
+	stocked_weapon = /obj/item/ammo_box/magazine/shotgun/buckshot
+	restock_type = /obj/item/ammo_box/magazine/shotgun/buckshot
+
+/obj/structure/machinery/auto_rack/shotgun_ammo/empty
+	name = "ColMarTech Automated Munitions Storage Carousel"
+	desc = "The ARMAT brand munitions rack has deceptively small storage, presenting only a limited single stack of storage clamps, the device automatically cycles to a fully stocked shelf when the current one is depleted. This one is configured to hold Buckshot storage tins."
+	icon_state = "shotgun_magrack"
+	initial_stored = 0
+	stocked_weapon = /obj/item/ammo_box/magazine/shotgun/buckshot
+	restock_type = /obj/item/ammo_box/magazine/shotgun/buckshot
+
+//-----------------Kit-Boxes-----------------\\
 
 
 
