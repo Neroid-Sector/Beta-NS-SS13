@@ -1343,7 +1343,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_corresponding_types_list, list(
 
 /obj/structure/machinery/auto_rack
 	name = "ColMarTech Automated Armaments Storage Carousel"
-	desc = "The ARMAT brand weapons rack has deceptively small storage, presenting only a limited single stack of storage clamps, the device automatically cycles to a fully stocked shelf when the current one is depleted. This one is configured to hold []"
+	desc = "The ARMAT brand weapons rack has deceptively small storage, presenting only a limited single stack of storage clamps, the device automatically cycles to a fully stocked shelf when the current one is depleted. This one is configured to hold ."
 	icon = 'icons/obj/structures/machinery/vending.dmi'
 	icon_state = "C-TEST"
 	density = TRUE
