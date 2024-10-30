@@ -1364,6 +1364,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_corresponding_types_list, list(
 
 /obj/structure/machinery/auto_rack/Initialize()
 	. = ..()
+	remaining_restocks = max_restocks
 	if(!stocked_weapon)
 		icon_state = "C-TEST"
 		return

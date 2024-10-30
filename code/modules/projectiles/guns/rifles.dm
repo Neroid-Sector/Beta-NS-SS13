@@ -442,6 +442,9 @@
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade/mk1, /obj/item/attachable/suppressor, /obj/item/attachable/reflex, /obj/item/attachable/stock/rifle/collapsible)
 	current_mag = /obj/item/ammo_magazine/rifle/m41aMK1/heap
 
+/obj/item/weapon/gun/rifle/m41aMK1/training
+	current_mag = /obj/item/ammo_magazine/rifle/rubber
+
 //----------------------------------------------
 //Kramer Assault Rifle
 
