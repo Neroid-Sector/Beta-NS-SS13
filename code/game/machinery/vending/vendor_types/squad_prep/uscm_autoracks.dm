@@ -44,3 +44,13 @@
 	initial_stored = 4
 	stocked_weapon = /obj/item/weapon/gun/rifle/m4ra
 	restock_type = /obj/item/weapon/gun/rifle/m4ra
+
+
+
+/obj/item/reqcard
+	name = "Battalion budget Authorization card"
+	desc = "Used to allocate funding to automated equipment vendors and weapon racks around the ship."
+	icon = 'icons/obj/items/card.dmi'
+	icon_state = "centcom_old"
+	w_class = SIZE_TINY
+

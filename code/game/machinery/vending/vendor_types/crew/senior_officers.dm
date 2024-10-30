@@ -204,6 +204,7 @@ GLOBAL_LIST_INIT(cm_vending_clothing_req_officer, list(
 
 		list("Spare Equipment", 0, null, null, null),
 		list("Rubber Stamp", 10, /obj/item/tool/stamp/ro, null, VENDOR_ITEM_REGULAR),
+		list("Budget Card", 10, /obj/item/reqcard, null, VENDOR_ITEM_REGULAR),
 	))
 
 

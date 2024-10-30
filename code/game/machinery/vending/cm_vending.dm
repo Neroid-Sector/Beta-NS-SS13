@@ -1349,9 +1349,18 @@ GLOBAL_LIST_INIT(cm_vending_gear_corresponding_types_list, list(
 	density = TRUE
 	var/stocked_weapon
 	var/restock_type
+	var/budget_card = /obj/item/reqcard
 	var/max_stored = 4
 	var/initial_stored = 0
+	var/max_restocks = 5
+	var/remaining_restocks = 5
 	var/restocking = FALSE
+	var/damage = 500 //Industrial machine should tear your arm off... its gonna fucking hurt
+	var/penetration = 5000 // heavy machinery does not care about your body armor because fuck you thats why
+	var/target_limbs = list(
+		"l_arm",
+		"r_arm",
+	)
 
 /obj/structure/machinery/auto_rack/Initialize()
 	. = ..()
@@ -1372,13 +1381,39 @@ GLOBAL_LIST_INIT(cm_vending_gear_corresponding_types_list, list(
 			user.drop_inv_item_to_loc(O, src)
 			contents += O
 			update_icon()
+		if(istype(O, budget_card))
+			remaining_restocks = (max_restocks)
+			playsound(loc, 'sound/machines/chime.ogg', 25)
+			to_chat(user, SPAN_NOTICE("Additional supply budget has been authorized for this supply unit."))
 
 /obj/structure/machinery/auto_rack/attack_hand(mob/living/user)
 	if(!restocking == TRUE)
 		if(!contents.len)
-			to_chat(user, SPAN_WARNING("[src] begins to restock. Stand Clear!"))
-			INVOKE_ASYNC(src,TYPE_PROC_REF(/obj/structure/machinery/auto_rack/,animation_proc))
-			return
+			if(!remaining_restocks < 1)
+				to_chat(user, SPAN_WARNING("[src] begins to restock. Stand Clear!"))
+				INVOKE_ASYNC(src,TYPE_PROC_REF(/obj/structure/machinery/auto_rack/,animation_proc))
+				remaining_restocks = (remaining_restocks - 1)
+				return
+			if(remaining_restocks == 0)
+				to_chat(user, SPAN_WARNING("[src] requires supply budget re-allocation. Contact your Supply officer to reset!"))
+				return
+	if(restocking == TRUE)
+		if(prob(60))
+			user.visible_message(SPAN_NOTICE("[user]'s arm becomes entangled in the moving parts of the [src], and pulls them in!"), \
+			SPAN_WARNING("Your arm becomes entangled in the moving parts of the [src]."))
+			user.apply_armoured_damage(damage, penetration = penetration, def_zone = pick(target_limbs))
+			user.apply_effect(1, EYE_BLUR)
+			user.apply_effect(5, STUTTER)
+			user.apply_effect(1, AGONY)
+			user.apply_effect(3, WEAKEN)
+			playsound(loc, 'sound/voice/agony_scream.mp3', 100)
+			playsound(loc, 'sound/effects/pry1.ogg', 25)
+			playsound(loc, 'sound/effects/rip1.ogg', 25)
+			playsound(loc, 'sound/effects/bone_break1.ogg', 100, 1)
+			playsound(loc, 'sound/effects/rip1.ogg', 25)
+			user.visible_message(SPAN_BOLDWARNING("[user]'s arm is torn off mercilessly by the [src] as their body is pulled in!"), \
+			SPAN_BOLDWARNING("Your arm is mercilessly torn off by the [src]. PLEASE GOD MAKE IT STOP!"))
+			msg_admin_attack("[key_name(user)] suffered a traumatic industrial accident in [get_area(user)] ([user.loc.x],[user.loc.y],[user.loc.z]).", user.loc.x, user.loc.y, user.loc.z)
 
 	var/obj/stored_obj = contents[contents.len]
 	contents -= stored_obj
