@@ -69,7 +69,7 @@
 	overlay_content = "_ap"
 	magazine_type = /obj/item/ammo_magazine/rifle/m41aMK1
 
-/obj/item/ammo_box/magazine/m41aMK1
+/obj/item/ammo_box/magazine/m41aMK1/empty
 	empty = TRUE
 
 /obj/item/ammo_box/magazine/m41aMK1/ap
