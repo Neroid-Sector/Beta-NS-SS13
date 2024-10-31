@@ -20,7 +20,7 @@
 #define JOB_SQUAD_MEDIC "Hospital Corpsman"
 #define JOB_SQUAD_SPECIALIST "Weapons Specialist"
 #define JOB_SQUAD_TEAM_LEADER "Fireteam Leader"
-#define JOB_SQUAD_SMARTGUN "Automatic Rifleman"
+#define JOB_SQUAD_SMARTGUN "Support rifleman"
 #define JOB_SQUAD_ROLES /datum/timelock/squad
 #define JOB_SQUAD_ROLES_LIST list(JOB_SQUAD_MARINE, JOB_SQUAD_LEADER, JOB_SQUAD_ENGI, JOB_SQUAD_MEDIC, JOB_SQUAD_SPECIALIST, JOB_SQUAD_SMARTGUN, JOB_SQUAD_TEAM_LEADER)
 
@@ -165,7 +165,7 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_WO_SQUAD_MARINE "Dust Raider Squad Rifleman"
 #define JOB_WO_SQUAD_MEDIC "Dust Raider Squad Hospital Corpsman"
 #define JOB_WO_SQUAD_ENGINEER "Dust Raider Squad Combat Technician"
-#define JOB_WO_SQUAD_SMARTGUNNER "Dust Raider Squad Automatic Rifleman"
+#define JOB_WO_SQUAD_SMARTGUNNER "Dust Raider Squad Support rifleman"
 #define JOB_WO_SQUAD_SPECIALIST "Dust Raider Squad Weapons Specialist"
 #define JOB_WO_SQUAD_LEADER "Dust Raider Squad Leader"
 
@@ -189,7 +189,7 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_MS_RFM "Mudskippers Squad Rifleman"
 #define JOB_MS_MEDIC "Mudskippers Squad Hospital Corpsman"
 #define JOB_MS_ENGINEER "Mudskippers Squad Combat Technician"
-#define JOB_MS_SMARTGUNNER "Mudskippers Squad Automatic Rifleman"
+#define JOB_MS_SMARTGUNNER "Mudskippers Squad Support rifleman"
 #define JOB_MS_SL "Mudskippers Squad Leader"
 
 #define JOB_MUDSKIPPER_SQUAD_LIST list(JOB_MS_RFM, JOB_MS_MEDIC, JOB_MS_ENGINEER, JOB_MS_SMARTGUNNER, JOB_MS_SL)
@@ -236,7 +236,7 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_HD_RFM "Helldivers Squad Rifleman"
 #define JOB_HD_MEDIC "Helldivers Squad Hospital Corpsman"
 #define JOB_HD_ENGINEER "Helldivers Squad Combat Technician"
-#define JOB_HD_SMARTGUNNER "Helldivers Squad Automatic Rifleman"
+#define JOB_HD_SMARTGUNNER "Helldivers Squad Support rifleman"
 #define JOB_HD_SL "Helldivers Squad Leader"
 
 #define JOB_HELLDIVER_SQUAD_LIST list(JOB_HD_RFM, JOB_HD_MEDIC, JOB_HD_ENGINEER, JOB_HD_SMARTGUNNER, JOB_HD_SL)
@@ -263,7 +263,7 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_TR_MEDIC "Tunnel Rats Squad Hospital Corpsman"
 #define JOB_TR_ENGINEER "Tunnel Rats Squad Combat Technician"
 #define JOB_TR_MORTAR "Tunnel Rats Squad CSW Operator"
-#define JOB_TR_SMARTGUNNER "Tunnel Rats Squad Automatic Rifleman"
+#define JOB_TR_SMARTGUNNER "Tunnel Rats Squad Support rifleman"
 #define JOB_TR_SL "Tunnel Rats Squad Leader"
 
 #define JOB_TUNNELRAT_SQUAD_LIST list(JOB_TR_RFM, JOB_TR_MEDIC, JOB_TR_ENGINEER, JOB_TR_SMARTGUNNER, JOB_TR_SL)
@@ -280,7 +280,7 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_PMC_INVESTIGATOR "PMC Medical Investigator"
 #define JOB_PMC_DETAINER "Weyland-Yutani PMC (Detainer)"
 #define JOB_PMC_ELITE "PMC Elite"
-#define JOB_PMC_GUNNER "PMC Support Weapons Specialist" //Renamed from Specialist to Support Specialist as it only has SG skills.
+#define JOB_PMC_GUNNER "PMC Support Weapons Specialist" //Renamed from Specialist to Support rifleman as it only has SG skills.
 #define JOB_PMC_SNIPER "PMC Weapons Specialist" //Renamed from Sharpshooter to specialist as it uses specialist skills.
 #define JOB_PMC_CREWMAN "Weyland-Yutani PMC (Crewman)"
 #define JOB_PMC_NINJA "PMC Ninja"
@@ -318,14 +318,14 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_CONTRACTOR_ST "VAIPO Mercenary"
 #define JOB_CONTRACTOR_MEDIC "VAIMS Medical Specialist"
 #define JOB_CONTRACTOR_ENGI "VAIPO Engineering Specialist"
-#define JOB_CONTRACTOR_MG "VAIPO Automatic Rifleman"
+#define JOB_CONTRACTOR_MG "VAIPO Support rifleman"
 #define JOB_CONTRACTOR_TL "VAIPO Team Leader"
 #define JOB_CONTRACTOR_SYN "VAIPO Support Synthetic"
 #define JOB_CONTRACTOR_COV "VAISO Mercenary"
 #define JOB_CONTRACTOR_COVST "VAISO Mercenary"
 #define JOB_CONTRACTOR_COVMED "VAIMS Medical Specialist"
 #define JOB_CONTRACTOR_COVENG "VAISO Engineering Specialist"
-#define JOB_CONTRACTOR_COVMG "VAISO Automatic Rifleman"
+#define JOB_CONTRACTOR_COVMG "VAISO Support rifleman"
 #define JOB_CONTRACTOR_COVTL "VAISO Team Leader"
 #define JOB_CONTRACTOR_COVSYN "VAISO Support Synthetic"
 
@@ -356,7 +356,7 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 #define JOB_FORECON_MEDIC "Reconnaissance Hospital Corpsman"
 #define JOB_FORECON_ENGINEER "Reconnaissance Combat Technician"
 #define JOB_FORECON_RIFLEMAN "Reconnaissance Rifleman"
-#define JOB_FORECON_SMARTGUNNER "Reconnaissance Automatic Rifleman"
+#define JOB_FORECON_SMARTGUNNER "Reconnaissance Support rifleman"
 
 //-------- UPP --------//
 #define JOB_UPP "UPP Private"
@@ -418,7 +418,7 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 //RMC
 #define JOB_TWE_RMC_RIFLEMAN "RMC Rifleman"
 #define JOB_TWE_RMC_MARKSMAN "RMC Marksman"
-#define JOB_TWE_RMC_SMARTGUNNER "RMC Automatic Rifleman"
+#define JOB_TWE_RMC_SMARTGUNNER "RMC Support rifleman"
 #define JOB_TWE_RMC_BREACHER "RMC Breacher"
 #define JOB_TWE_RMC_TEAMLEADER "RMC Team Leader"
 #define JOB_TWE_RMC_LIEUTENANT "RMC Lieutenant"
@@ -428,7 +428,7 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 
 #define JOB_TWE_BW_RIFLEMAN "RBW Rifleman"
 #define JOB_TWE_BW_GUNNER "RBW Support"
-#define JOB_TWE_BW_SMARTGUNNER "RBW Automatic Rifleman"
+#define JOB_TWE_BW_SMARTGUNNER "RBW Support rifleman"
 #define JOB_TWE_BW_GRENADIER "RBW Grenadier"
 #define JOB_TWE_BW_TEAMLEADER "RBW Team Leader"
 #define JOB_TWE_BW_COMMANDER "RBW Commander"
