@@ -1457,3 +1457,12 @@ GLOBAL_LIST_INIT(cm_vending_gear_corresponding_types_list, list(
 		icon_state = "[initial(icon_state)]_0"
 		overlays.Cut()
 		overlays += image(icon,icon_state)
+
+//----------------Budget_item----------------\\
+
+/obj/item/reqcard
+	name = "Military budget Authorization card"
+	desc = "Used to allocate funding to automated equipment vendors and weapon racks around the ship."
+	icon = 'icons/obj/items/card.dmi'
+	icon_state = "centcom_old"
+	w_class = SIZE_TINY
