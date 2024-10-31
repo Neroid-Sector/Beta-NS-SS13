@@ -1385,6 +1385,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_corresponding_types_list, list(
 		if(istype(O, budget_card))
 			remaining_restocks = (max_restocks)
 			playsound(loc, 'sound/machines/chime.ogg', 25)
+			talkas("Additional supply budget has been authorized for this supply unit.")
 			to_chat(user, SPAN_NOTICE("Additional supply budget has been authorized for this supply unit."))
 
 /obj/structure/machinery/auto_rack/attack_hand(mob/living/user)
@@ -1393,6 +1394,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_corresponding_types_list, list(
 			if(!remaining_restocks < 1)
 				to_chat(user, SPAN_WARNING("[src] begins to restock. Stand Clear!"))
 				INVOKE_ASYNC(src,TYPE_PROC_REF(/obj/structure/machinery/auto_rack/,animation_proc))
+				talkas("Stand Clear!")
 				remaining_restocks = (remaining_restocks - 1)
 				return
 			if(remaining_restocks == 0)
@@ -1400,7 +1402,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_corresponding_types_list, list(
 				return
 	if(restocking == TRUE)
 		if(prob(60))
-			user.visible_message(SPAN_NOTICE("[user]'s arm becomes entangled in the moving parts of the [src], and pulls them in!"), \
+			user.visible_message(SPAN_NOTICE("[user]begins panicking as their arm becomes entangled in the moving parts of the [src], and pulls them in!"), \
 			SPAN_WARNING("Your arm becomes entangled in the moving parts of the [src]."))
 			user.apply_armoured_damage(damage, penetration = penetration, def_zone = pick(target_limbs))
 			user.apply_effect(1, EYE_BLUR)
@@ -1412,6 +1414,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_corresponding_types_list, list(
 			playsound(loc, 'sound/effects/rip1.ogg', 25)
 			playsound(loc, 'sound/effects/bone_break1.ogg', 100, 1)
 			playsound(loc, 'sound/effects/rip1.ogg', 25)
+			playsound(loc, 'sound/effects/splat.ogg', 25)
 			user.visible_message(SPAN_BOLDWARNING("[user]'s arm is torn off mercilessly by the [src] as their body is pulled in!"), \
 			SPAN_BOLDWARNING("Your arm is mercilessly torn off by the [src]. PLEASE GOD MAKE IT STOP!"))
 			msg_admin_attack("[key_name(user)] suffered a traumatic industrial accident in [get_area(user)] ([user.loc.x],[user.loc.y],[user.loc.z]).", user.loc.x, user.loc.y, user.loc.z)
@@ -1443,6 +1446,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_corresponding_types_list, list(
 	overlays.Cut()
 	overlays += image(icon,icon_state)
 	restocking = FALSE
+	talkas("Restock complete.")
 
 /obj/structure/machinery/auto_rack/update_icon()
 	if(contents.len)
