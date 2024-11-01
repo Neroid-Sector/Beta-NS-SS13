@@ -112,6 +112,7 @@
 	desc = "The ARMAT brand munitions rack has deceptively small storage, presenting only a limited single stack of storage clamps, the device automatically cycles to a fully stocked shelf when the current one is depleted. This one is configured to hold M41aMK1 Magazine tins."
 	icon_state = "mk1_magrack"
 	initial_stored = 4
+	max_restocks = 1
 	stocked_weapon = /obj/item/ammo_box/magazine/m41aMK1/heap
 	restock_type = /obj/item/ammo_box/magazine/m41aMK1/heap
 
@@ -120,6 +121,7 @@
 	desc = "The ARMAT brand munitions rack has deceptively small storage, presenting only a limited single stack of storage clamps, the device automatically cycles to a fully stocked shelf when the current one is depleted. This one is configured to hold M41aMK1 Magazine tins."
 	icon_state = "mk1_magrack"
 	initial_stored = 0
+	max_restocks = 1
 	stocked_weapon = /obj/item/ammo_box/magazine/m41aMK1/heap
 	restock_type = /obj/item/ammo_box/magazine/m41aMK1/heap
 
