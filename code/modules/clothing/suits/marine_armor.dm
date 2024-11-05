@@ -32,7 +32,7 @@
 
 /obj/item/clothing/suit/storage/marine
 	name = "\improper M3 pattern marine armor"
-	desc = "A standard Colonial Marines M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
+	desc = "A standard Colonial Marines M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a webbing vest strapped to it for limited storage."
 	icon = 'icons/obj/items/clothing/cm_suits.dmi'
 	icon_state = "1"
 	item_state = "marine_armor" //Make unique states for Officer & Intel armors.
@@ -58,7 +58,7 @@
 	armor_rad = CLOTHING_ARMOR_MEDIUM
 	armor_internaldamage = CLOTHING_ARMOR_LOW
 	movement_compensation = SLOWDOWN_ARMOR_LIGHT
-	storage_slots = 3
+	storage_slots = 6
 	siemens_coefficient = 0.7
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	allowed = list(
@@ -256,7 +256,7 @@
 	desc = "A well tinkered and crafted hybrid of Smart-Gunner mesh and M3 pattern plates. Robust, yet nimble, with room for all your pouches."
 	armor_bio = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_rad = CLOTHING_ARMOR_MEDIUM
-	storage_slots = 4
+	storage_slots = 8
 	light_range = 5 //slightly higher
 	specialty = "M4 pattern marine"
 
@@ -275,7 +275,7 @@
 	armor_bomb = CLOTHING_ARMOR_MEDIUM
 	armor_bio = CLOTHING_ARMOR_MEDIUMLOW
 	armor_internaldamage = CLOTHING_ARMOR_MEDIUMLOW
-	storage_slots = 2
+	storage_slots = 3
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(
 		/obj/item/weapon/gun,
@@ -335,8 +335,9 @@
 	name = "\improper M3 pattern officer armor"
 	desc = "A well-crafted suit of M3 Pattern Armor typically found in the hands of higher-ranking officers. Useful for letting your men know who is in charge when taking to the field."
 	icon_state = "officer"
-	storage_slots = 3
+	storage_slots = 6
 	flags_atom = null
+	uniform_restricted = list(/obj/item/clothing/under/marine/officer/command)
 	specialty = "M2 pattern officer"
 	item_state_slots = list(WEAR_JACKET = "officer")
 
@@ -348,7 +349,7 @@
 	icon_state = "co_officer"
 	item_state = "co_officer"
 	armor_bullet = CLOTHING_ARMOR_HIGH
-	storage_slots = 3
+	storage_slots = 6
 	flags_atom = NO_SNOW_TYPE
 	flags_inventory = BLOCKSHARPOBJ|SMARTGUN_HARNESS
 	uniform_restricted = list(/obj/item/clothing/under/marine, /obj/item/clothing/under/rank/qm_suit)
@@ -383,7 +384,7 @@
 	armor_laser = CLOTHING_ARMOR_LOW
 	armor_bomb = CLOTHING_ARMOR_MEDIUM
 	armor_rad = CLOTHING_ARMOR_MEDIUM
-	storage_slots = 2
+	storage_slots = 4
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	flags_inventory = BLOCKSHARPOBJ|SMARTGUN_HARNESS
 	allowed = list(
@@ -485,7 +486,7 @@
 	desc = "A modified and refashioned suit of M3 Pattern armor designed to be worn by the loader of a USCM vehicle crew. While the suit is a bit more encumbering to wear with the crewman uniform, it offers the loader a degree of protection that would otherwise not be enjoyed."
 	icon_state = "tanker"
 	specialty = "M3 pattern tanker"
-	storage_slots = 2
+	storage_slots = 6
 
 //===========================//PFC ARMOR CLASSES\\================================\\
 //=================================================================================\\
@@ -494,8 +495,8 @@
 	armor_variation = 6
 
 /obj/item/clothing/suit/storage/marine/light
-	name = "\improper M3-L pattern light armor"
-	desc = "A lighter, cut down version of the standard M3 pattern armor. It sacrifices durability for more speed."
+	name = "\improper M3-L pattern light armor breastplate"
+	desc = "A lighter, cut down version of the standard M3 pattern armor set. Favored by Non-combat and Command personel who would like a little more protection the field, it sacrifices coverage for comfort."
 	specialty = "\improper M3-L pattern light"
 	icon_state = "L1"
 	armor_variation = 6
@@ -506,7 +507,7 @@
 	armor_bio = CLOTHING_ARMOR_MEDIUMLOW
 	armor_rad = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_internaldamage = CLOTHING_ARMOR_LOW
-	storage_slots = 2
+	storage_slots = 6
 
 /obj/item/clothing/suit/storage/marine/light/padded
 	icon_state = "L1"
@@ -610,7 +611,7 @@
 	armor_bio = CLOTHING_ARMOR_MEDIUMLOW
 	armor_rad = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_internaldamage = CLOTHING_ARMOR_MEDIUMHIGH
-	storage_slots = 2
+	storage_slots = 6
 	slowdown = SLOWDOWN_ARMOR_LOWHEAVY
 	movement_compensation = SLOWDOWN_ARMOR_MEDIUM
 
@@ -651,7 +652,7 @@
 	armor_bio = CLOTHING_ARMOR_MEDIUMLOW
 	armor_rad = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_internaldamage = CLOTHING_ARMOR_VERYHIGH
-	storage_slots = 2
+	storage_slots = 4
 	flags_inventory = BLOCKSHARPOBJ|BLOCK_KNOCKDOWN
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS|BODY_FLAG_FEET
 	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS|BODY_FLAG_FEET
@@ -1853,7 +1854,7 @@
 	armor_energy = CLOTHING_ARMOR_LOW
 	armor_bomb = CLOTHING_ARMOR_MEDIUM
 	armor_internaldamage = CLOTHING_ARMOR_MEDIUMLOW
-	storage_slots = 2
+	storage_slots = 4
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
 	allowed = list(
