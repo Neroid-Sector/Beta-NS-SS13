@@ -290,3 +290,24 @@
 			to_chat(user, "The experimental meson goggles start probing at your eyes, searching for an attachment point, and you immediately take them off.")
 			return FALSE
 	return ..()
+
+/obj/item/clothing/glasses/night/hack_goggles
+	name = "\improper  M701 AR Headset"
+	gender = NEUTER
+	desc = "The M701 augmented-reality headset is designed to allow USCM combat technitcans to interface with computers, UAVs, security and sentry networks as well as the UA battlespace intranet data feed. Utilizing an AR overlay the system is quite bulky but allows for passthrough video feed with a link to the marine's helmet camera feed allowing the tech to keep fighting both in cyberpsace and the real world. Click it to toggle."
+	icon = 'icons/obj/items/clothing/glasses.dmi'
+	icon_state = "hackgoggles"
+	deactive_state = "hackgoggles_0"
+	vision_flags = SEE_MOBS
+	toggleable = 1
+	actions_types = list(/datum/action/item_action/toggle)
+	eye_protection = EYE_PROTECTION_WELDING
+	req_skill = SKILL_ENGINEER
+	req_skill_level = SKILL_ENGINEER_TRAINED
+	clothing_traits = list(TRAIT_REAGENT_SCANNER)
+
+
+/obj/item/clothing/glasses/night/hack_goggles/get_examine_text(mob/user)
+	. = ..()
+	. += SPAN_INFO("THIS IS ITEM IS WIP AND CURRENTLY DOES NOT DO ITS INTENDED FUNCTION. Can be used as welding and reagent goggles.")
+

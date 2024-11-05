@@ -512,6 +512,83 @@
 /obj/item/storage/box/kit/nvgs/fill_preset_inventory()
 	new /obj/item/clothing/glasses/night/m42_night_goggles/upp(src)
 
+/obj/item/storage/box/kit/sapper
+	name = "\improper Sapper Kit"
+	pro_case_overlay = "defense"
+
+/obj/item/storage/box/kit/sapper/fill_preset_inventory()
+	new /obj/item/storage/backpack/marine/engineerpack/welder_chestrig(src)
+	new /obj/item/storage/pouch/construction/full(src)
+	new /obj/item/storage/pouch/construction/full(src)
+	new /obj/item/storage/toolkit/ms(src)
+	new /obj/item/explosive/mine(src)
+	new /obj/item/explosive/mine(src)
+	new /obj/item/explosive/mine(src)
+	new /obj/item/ammo_magazine/smg/nailgun(src)
+	new /obj/item/ammo_magazine/smg/nailgun(src)
+
+/obj/item/storage/box/kit/sentry
+	name = "\improper Sentry Net Kit"
+	pro_case_overlay = "sentry"
+
+/obj/item/storage/box/kit/sentry/fill_preset_inventory()
+	new /obj/item/storage/backpack/marine/satchel/intel(src)
+	new /obj/item/storage/pouch/construction/full(src)
+	new /obj/item/device/sentry_computer(src)
+	new /obj/item/engi_upgrade_kit(src)
+	new /obj/item/engi_upgrade_kit(src)
+	new /obj/item/defenses/handheld/sentry(src)
+	new /obj/item/defenses/handheld/sentry(src)
+	new /obj/item/defenses/handheld/sentry(src)
+	new /obj/item/defenses/handheld/sentry(src)
+	new /obj/item/storage/toolkit/ms(src)
+	new /obj/item/storage/box/explosive_mines(src)
+	new /obj/item/storage/box/explosive_mines(src)
+	new /obj/item/storage/box/explosive_atmines(src)
+
+/obj/item/storage/box/kit/at
+	name = "\improper Anti tank Kit"
+	pro_case_overlay = "at"
+
+/obj/item/storage/box/kit/fill_preset_inventory()
+	new /obj/item/storage/pouch/construction/full(src)
+	new /obj/item/weapon/gun/launcher/rocket(src)
+	new /obj/item/storage/backpack/marine/rocketpack(src)
+	new /obj/item/ammo_magazine/rocket/ap(src)
+	new /obj/item/ammo_magazine/rocket/ap(src)
+	new /obj/item/ammo_magazine/rocket/ap(src)
+	new /obj/item/ammo_magazine/rocket/ap(src)
+	new /obj/item/storage/box/explosive_atmines(src)
+	new /obj/item/storage/box/explosive_atmines(src)
+
+/obj/item/storage/box/kit/breacher
+	name = "\improper Demolition Kit"
+	pro_case_overlay = "breach"
+
+/obj/item/storage/box/kit/breacher/fill_preset_inventory()
+	new /obj/item/storage/backpack/marine/engineerpack/welder_chestrig(src)
+	new /obj/item/weapon/twohanded/breacher(src)
+	new /obj/item/storage/toolkit/ms(src)
+	new /obj/item/storage/toolkit/ms(src)
+	new /obj/item/stack/folding_barricade/three(src)
+	new /obj/item/storage/pouch/explosive/C4(src)
+	new /obj/item/storage/pouch/explosive/breaching(src)
+
+/obj/item/storage/box/kit/ewar
+	name = "\improper Electronic Warfare Kit"
+	pro_case_overlay = "ewar"
+
+/obj/item/storage/box/kit/ewar/fill_preset_inventory()
+	new /obj/item/storage/backpack/jima(src)
+	new /obj/item/device/sentry_computer(src)
+	new /obj/item/storage/toolkit/ms(src)
+	new /obj/item/clothing/glasses/night/hack_goggles(src)
+	new /obj/item/device/hackingdevice(src)
+	new /obj/item/device/motiondetector/intel(src)
+	new /obj/item/device/assembly/signaller(src)
+	new /obj/item/storage/pouch/explosive/emp(src)
+	new /obj/item/storage/pouch/electronics/full(src)
+
 /obj/item/storage/box/kit/cryo_self_defense
 	name = "\improper Cryo Self Defense Kit"
 	desc = "A basic self-defense kit reserved for emergencies. As you might expect, not much care was put into keeping the stock fresh, who would be insane enough to attack a USCM ship directly?"

@@ -229,14 +229,26 @@
 	flags_equip_slot = SLOT_EYES|SLOT_FACE
 
 /obj/item/clothing/glasses/m42_goggles
-	name = "\improper M42 scout sight"
+	name = "\improper M42 sight"
 	gender = NEUTER
-	desc = "A headset and goggles system for the M42 Scout Rifle. Allows highlighted imaging of surroundings. Click it to toggle."
+	desc = "A headset and goggles system for those marines without a helmet. Allows highlighted imaging of surroundings. Click it to toggle."
 	icon = 'icons/obj/items/clothing/glasses.dmi'
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
 	vision_flags = SEE_TURFS
 	toggleable = 1
+	actions_types = list(/datum/action/item_action/toggle)
+
+/obj/item/clothing/glasses/m42_goggles/medhud
+	name = "\improper M42 sight"
+	gender = NEUTER
+	desc = "A headset heads up and goggles system for those marines without a helmet. Allows highlighted imaging of surroundings. Click it to toggle."
+	icon = 'icons/obj/items/clothing/glasses.dmi'
+	icon_state = "m42_goggles"
+	deactive_state = "m42goggles_0"
+	hud_type = list(MOB_HUD_MEDICAL_ADVANCED)
+	toggleable = TRUE
+	fullscreen_vision = null
 	actions_types = list(/datum/action/item_action/toggle)
 
 /obj/item/clothing/glasses/disco_fever
