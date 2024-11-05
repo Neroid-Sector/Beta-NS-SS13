@@ -399,7 +399,7 @@
 /obj/item/storage/box/kit/heavy_support
 	name = "\improper Forward HPR Fire Support Kit"
 	pro_case_overlay = "shield"
-	desc = "A Squad Rifleman's fire support kit containing an HPR, Spare box magazines, and "
+	desc = "A Squad Rifleman's fire support kit containing an HPR, Spare box magazines, and support gear."
 
 /obj/item/storage/box/kit/heavy_support/fill_preset_inventory()
 	new /obj/item/weapon/gun/rifle/lmg(src)
@@ -413,8 +413,9 @@
 
 
 /obj/item/storage/box/kit/pursuit
-	name = "\improper Point Man Pointman Breacher Kit"
+	name = "\improper Pointman Breacher Kit"
 	pro_case_overlay = "pursuit"
+	desc = "A Pointman's kit containing an m39, Spare magazines penetrating magazines, explosives, shield support gear."
 
 /obj/item/storage/box/kit/pursuit/fill_preset_inventory()
 	new /obj/item/weapon/gun/smg/m39(src)
@@ -515,6 +516,7 @@
 /obj/item/storage/box/kit/sapper
 	name = "\improper Sapper Kit"
 	pro_case_overlay = "defense"
+	desc = "A Sapper's equipment kit containing all the building materials and tools needed to quickly fortify a position in the field. Contains: 2x Stack of (Metal, Plasteel, Sandbags, Mines, Razorwire, Fragwire), 2x Nailgun Magazines, Tools"
 
 /obj/item/storage/box/kit/sapper/fill_preset_inventory()
 	new /obj/item/storage/backpack/marine/engineerpack/welder_chestrig(src)
@@ -530,6 +532,7 @@
 /obj/item/storage/box/kit/sentry
 	name = "\improper Sentry Net Kit"
 	pro_case_overlay = "sentry"
+	desc = "A  kit containing all the tools for a combat technician's to automate the defenses of a FOB or point of interest, including sentry guns, smart mines, and building materials.  Contains: x4 Sentryguns, 2 Upgrade kits, 3 Mine boxes, Tools"
 
 /obj/item/storage/box/kit/sentry/fill_preset_inventory()
 	new /obj/item/storage/backpack/marine/satchel/intel(src)
@@ -549,6 +552,7 @@
 /obj/item/storage/box/kit/at
 	name = "\improper Anti tank Kit"
 	pro_case_overlay = "at"
+	desc = "A Squad Rifleman's Anti-Tank kit containing an M5 RPG, Spare rockets, and mines."
 
 /obj/item/storage/box/kit/fill_preset_inventory()
 	new /obj/item/storage/pouch/construction/full(src)
@@ -564,6 +568,7 @@
 /obj/item/storage/box/kit/breacher
 	name = "\improper Demolition Kit"
 	pro_case_overlay = "breach"
+	desc = "A Combat Technician's demolition kit containing an array of explosives and tools to level any obstacle. Contains: C4, Breaching Charges, Hammer, Tools."
 
 /obj/item/storage/box/kit/breacher/fill_preset_inventory()
 	new /obj/item/storage/backpack/marine/engineerpack/welder_chestrig(src)
@@ -577,6 +582,7 @@
 /obj/item/storage/box/kit/ewar
 	name = "\improper Electronic Warfare Kit"
 	pro_case_overlay = "ewar"
+	desc = "A Combat Technician's Electronic Warfare Kit  filled with tools to access UAVs and sentry nets, or hack anything. Contains: AR Headset, JIMA backpack, Computer, EMP grenades, Tools. (WIP, mostly Fluff)"
 
 /obj/item/storage/box/kit/ewar/fill_preset_inventory()
 	new /obj/item/storage/backpack/jima(src)
