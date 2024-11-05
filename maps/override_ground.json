@@ -7,7 +7,7 @@
         "/datum/equipment_preset/survivor/goon"
     ],
     "map_item_type": "/obj/item/map/big_red_map",
-    "announce_text": "Good morning crew. The ###SHIPNAME### is current maintaining stable orbit over LV-245.",
+    "announce_text": "Good morning crew. The ###SHIPNAME### is currently maintaining stable orbit over LV-245.",
     "monkey_types": [
         "neaera"
     ],

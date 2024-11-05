@@ -405,13 +405,50 @@
 	name = "USCM Poncho"
 	desc = "The standard USCM poncho has variations for every climate. Custom fitted to be attached to standard USCM armor variants it is comfortable, warming or cooling as needed, and well-fit. A marine couldn't ask for more. Affectionately referred to as a \"woobie\"."
 	icon_state = "poncho"
+	var/buttoned = FALSE
+	var/initial_icon_state
 	slot = ACCESSORY_SLOT_PONCHO
+	actions_types = list(/datum/action/item_action)
 
 /obj/item/clothing/accessory/poncho/Initialize()
 	. = ..()
 	select_gamemode_skin(type)
+	initial_icon_state = icon_state
 	inv_overlay = image("icon" = 'icons/obj/items/clothing/ties_overlay.dmi', "icon_state" = "[icon_state]")
 	update_icon()
+	verbs += /obj/item/clothing/accessory/poncho/proc/toggle
+
+/obj/item/clothing/accessory/poncho/proc/toggle()
+	set name = "Toggle Open"
+	set category = "Object"
+	set src in usr
+
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
+		return 0
+
+	if(src.buttoned == FALSE)
+		src.icon_state = "[initial_icon_state]_c"
+		src.buttoned = TRUE
+		to_chat(usr, SPAN_INFO("You close \the [src]."))
+	else
+		src.icon_state = "[initial_icon_state]"
+		src.buttoned = FALSE
+		to_chat(usr, SPAN_INFO("You open \the [src]"))
+	update_clothing_icon()
+
+/obj/item/clothing/accessory/poncho/attack_self(mob/user)
+	..()
+
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
+		return 0
+
+	toggle()
+	update_icon()
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.update_button_icon()
+
+	return TRUE
 
 /obj/item/clothing/accessory/poncho/green
 	icon_state = "poncho"
