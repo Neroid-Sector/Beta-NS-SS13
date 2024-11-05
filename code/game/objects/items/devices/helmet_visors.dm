@@ -6,7 +6,7 @@
 	w_class = SIZE_TINY
 
 	///The type of HUD our visor shows
-	var/hud_type = list(MOB_HUD_FACTION_USCM, MOB_HUD_MEDICAL_ADVANCED)
+	var/hud_type = list(MOB_HUD_SECURITY_BASIC)
 
 	///The sound when toggling on the visor
 	var/toggle_on_sound = 'sound/handling/hud_on.ogg'
@@ -87,6 +87,26 @@
 		var/datum/action/item_action/cycle_helmet_huds/cycle_action = locate() in attached_helmet.actions
 		if(cycle_action)
 			cycle_action.set_default_overlay()
+
+/obj/item/device/helmet_visor/uscm
+	name = "USCM tactical optic"
+	icon_state = "hud_sight"
+	hud_type = list(MOB_HUD_FACTION_USCM, MOB_HUD_MEDICAL_ADVANCED)
+
+/obj/item/device/helmet_visor/upp
+	name = "UPP tactical optic"
+	icon_state = "hud_sight"
+	hud_type = list(MOB_HUD_FACTION_UPP, MOB_HUD_MEDICAL_ADVANCED)
+
+/obj/item/device/helmet_visor/pmc
+	name = "WY tactical optic"
+	icon_state = "hud_sight"
+	hud_type = list(MOB_HUD_FACTION_PMC, MOB_HUD_MEDICAL_ADVANCED)
+
+/obj/item/device/helmet_visor/clf
+	name = "hacked tactical optic"
+	icon_state = "hud_sight"
+	hud_type = list(MOB_HUD_FACTION_CLF, MOB_HUD_MEDICAL_ADVANCED)
 
 /obj/item/device/helmet_visor/medical
 	name = "basic medical optic"
