@@ -66,7 +66,7 @@
 	stocked_weapon = /obj/item/weapon/gun/rifle/m4ra
 	restock_type = /obj/item/weapon/gun/rifle/m4ra
 
-/obj/structure/machinery/auto_rack/uscm/m4ra/full
+/obj/structure/machinery/auto_rack/uscm/m4ra/full/training
 	desc = "The ARMAT brand weapons rack has deceptively small storage, presenting only a limited single stack of storage clamps, the device automatically cycles to a fully stocked shelf when the current one is depleted. This one is configured to hold the M4RA Pulse DMR."
 	icon_state = "m4rarack"
 	initial_stored = 4
