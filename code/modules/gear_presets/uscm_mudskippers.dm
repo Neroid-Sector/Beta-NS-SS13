@@ -716,8 +716,6 @@
 		/obj/item/storage/box/kit/at,
 		/obj/item/storage/box/kit/breacher,
 		/obj/item/storage/box/kit/ewar,
-		/obj/item/storage/box/kit/pursuit,
-		/obj/item/storage/box/kit/heavy_support,
 		)
 	new_human.equip_to_slot_or_del(new engi_kit, WEAR_L_HAND)
 
