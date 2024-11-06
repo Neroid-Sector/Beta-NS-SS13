@@ -8,16 +8,15 @@
 	var/countdown_step = 10 // How many seconds between percentage annoucements
 	var/terminal_in_use = FALSE
 	var/start_text = "Initiating Download please wait..."
-	var/end_text = "Task complete."
-	var/tamper_sound = 'sound/machines/lockdownalarm.ogg'
-	var/start_sound = 'sound/machines/computer_startup.mp3'
-	var/progress_sound = 'sound/machines/dialup.mp3'
-	var/finish_sound = 'sound/machines/fax.ogg'
+	var/hasdisk = FALSE
+
 
 /obj/structure/prop/almayer/computers/hackable_comp/attackby(obj/item/W, mob/user)
 	terminal_in_use = TRUE
 	if((HAS_TRAIT(W, TRAIT_TOOL_MULTITOOL)) && operation_complete == FALSE)
-		playsound(loc, tamper_sound, 25)
+		playsound(loc, 'sound/machines/lockdownalarm.ogg', 25)
+		user.visible_message(SPAN_NOTICE("[user]begins tampering with the [src]."), \
+		SPAN_NOTICE("Your begin tampering with the [src]."))
 		if(do_after(user, 80, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			for(var/obj/structure/prop/almayer/computers/hackable_comp/H in world)
 				if(H.terminal_in_use == TRUE)
@@ -25,11 +24,11 @@
 					return
     return
 
-/obj/structure/prop/almayer/computers/hackable_comp/proc/special_countdown()
+/obj/structure/prop/almayer/computers/hackable_comp/proc/special_countdown(turf/T)
 	var/temp_countdown = 0
 	terminal_in_use = FALSE
 	if(temp_countdown == 0)
-		playsound(loc, start_sound, 25)
+		playsound(loc, 'sound/machines/computer_startup.mp3', 25)
 		talkas("Initiating Download please wait...")
 	if (countdown_max == 0 && countdown_step == 0)
 		to_chat(world, SPAN_WARNING("Admin dummy, tried to divide by zero. Point and laugh."))
@@ -40,11 +39,13 @@
 		playsound(loc, 'sound/machines/dialup.mp3', 25)
 		talkas("Download in progress. [round(((temp_countdown / countdown_max) * 100),0.5)] percent complete.")
 	if(temp_countdown >= countdown_max)
-		playsound(loc, finish_sound, 25)
-		talkas(end_text)
+		playsound(loc, 'sound/machines/fax.ogg', 25)
+		talkas("Task Complete.")
 		operation_complete = TRUE
 		var/turf/current_turf = get_turf(usr.loc)
 		message_admins(FONT_SIZE_XL("[src] has finished operations"),current_turf.x, current_turf.y, current_turf.z)
+		if(hasdisk == TRUE)
+			new /obj/item/disk(T)
 		return
 
 /obj/structure/prop/almayer/computers/hackable_comp/short_timer
