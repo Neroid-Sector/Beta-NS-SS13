@@ -177,7 +177,7 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 //----Command----
 
 #define JOB_MS_CO "Commanding Officer"
-#define JOB_MS_XO "Adjunct"
+#define JOB_MS_XO "Adjutant"
 #define JOB_MS_CPT "Captain"
 #define JOB_MS_LT "Lieutenant"
 #define JOB_MS_GC "Company Commander"
@@ -224,7 +224,7 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 //----Command----
 
 #define JOB_HD_CO "Commanding Officer"
-#define JOB_HD_XO "Adjunct"
+#define JOB_HD_XO "Adjutant"
 #define JOB_HD_CPT "Captain"
 #define JOB_HD_LT "Lieutenant"
 #define JOB_HD_GC "Company Commander"
@@ -249,7 +249,7 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 //----Command----
 
 #define JOB_TR_CO "Commanding Officer"
-#define JOB_TR_XO "Adjunct"
+#define JOB_TR_XO "Adjutant"
 #define JOB_TR_CPT "Captain"
 #define JOB_TR_LT "Lieutenant"
 #define JOB_TR_GC "Company Commander"

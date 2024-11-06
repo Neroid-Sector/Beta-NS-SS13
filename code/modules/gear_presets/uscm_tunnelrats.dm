@@ -213,9 +213,9 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/medhud(new_human), WEAR_IN_L_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/device/trench_whistle,(new_human), WEAR_IN_JACKET)
 
-//---Adjunct---//
+//---Adjutant---//
 /datum/equipment_preset/uscm_tunnelrats/xo
-	name = "Adjunct(Tunnel Rats)"
+	name = "Adjutant(Tunnel Rats)"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
 
 	idtype = /obj/item/card/id/silver
