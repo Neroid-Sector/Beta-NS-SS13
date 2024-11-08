@@ -544,13 +544,60 @@
 
 /*
 //================================================
+			Tear Gas Grenade
+//================================================
+*/
+/obj/item/explosive/grenade/tear_gas
+	name = "\improper M66 teargas grenade"
+	desc = "Tear gas grenade used for nonlethal riot control. Please wear adequate gas protection."
+	icon_state = "gas_grenade"//temp icon
+	det_time = 40
+	item_state = "grenade_phos_clf"//temp icon
+	underslug_launchable = TRUE
+	harmful = TRUE
+	antigrief_protection = FALSE
+	/// The tear gas datum
+	var/datum/effect_system/smoke_spread/teargas/tear_gas
+	/// The typepath of the tear gas
+	var/tear_gas_type = /datum/effect_system/smoke_spread/teargas
+	/// The radius the gas will reach
+	var/tear_gas_radius = 8
+
+/obj/item/explosive/grenade/tear_gas/Initialize(mapload, ...)
+	. = ..()
+	tear_gas = new tear_gas_type
+	tear_gas.attach(src)
+
+/obj/item/explosive/grenade/tear_gas/Destroy()
+	QDEL_NULL(tear_gas)
+	return ..()
+
+/obj/item/explosive/grenade/tear_gas/prime()
+	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+	tear_gas.set_up(tear_gas_radius, 0, get_turf(src), null, 6)
+	tear_gas.start()
+	qdel(src)
+
+/obj/item/explosive/grenade/tear_gas/primed
+	tear_gas_radius = 16
+	det_time = 6
+	item_state = "mortar"
+	icon_state = "mortar"
+	indestructible = TRUE
+	anchored = TRUE
+
+/obj/item/explosive/grenade/tear_gas/primed/Initialize()
+	. = ..()
+	activate()
+/*
+//================================================
 			Nerve Gas Grenades
 //================================================
 */
 /obj/item/explosive/grenade/nerve_gas
 	name = "\improper CN20 canister"
 	desc = "A canister grenade of deadly nerve gas. It is set to detonate in 4 seconds."
-	icon_state = "flashbang2"//temp icon
+	icon_state = "nerve_grenade"//temp icon
 	det_time = 40
 	item_state = "grenade_phos_clf"//temp icon
 	underslug_launchable = FALSE
@@ -602,8 +649,7 @@
 /obj/item/explosive/grenade/mustard_gas
 	name = "\improper HD canister"
 	desc = "A canister grenade of deadly mustard gas. It is set to detonate in 4 seconds."
-	icon_state = "flashbang2"//temp icon
-	color = "#996633"
+	icon_state = "mustard_grenade"//temp icon
 	det_time = 40
 	item_state = "grenade_phos_clf"//temp icon
 	underslug_launchable = FALSE
@@ -648,8 +694,7 @@
 /obj/item/explosive/grenade/chlorine_gas
 	name = "\improper Chlorine Gas canister"
 	desc = "A canister grenade of deadly chlorine gas. It is set to detonate in 4 seconds."
-	icon_state = "flashbang2"//temp icon
-	color = "#649933"
+	icon_state = "chlorine_grenade"//temp icon
 	det_time = 40
 	item_state = "grenade_phos_clf"//temp icon
 	underslug_launchable = FALSE
@@ -694,7 +739,7 @@
 /obj/item/explosive/grenade/toxic_gas
 	name = "\improper MZS Gas canister"
 	desc = "A canister grenade of deadly MZS gas. It is set to detonate in 4 seconds."
-	icon_state = "flashbang2"//temp icon
+	icon_state = "gas_grenade"//temp icon
 	color = "#649933"
 	det_time = 40
 	item_state = "grenade_phos_clf"//temp icon
@@ -742,7 +787,7 @@
 	name = "\improper (!!!DANGER BACTERIA INSIDE!!!) canister"
 	desc = "A canister grenade of aerosolized deadly flesh eating bacteria. It is set to detonate in 4 seconds."
 	desc_lore = "The bacteria inside will die on contact with air after a few seconds, and is designed by lassalle bionational for use in urban areas."
-	icon_state = "flashbang2"//temp icon
+	icon_state = "gas_grenade"//temp icon
 	color = "#339952"
 	det_time = 40
 	item_state = "grenade_phos_clf"//temp icon

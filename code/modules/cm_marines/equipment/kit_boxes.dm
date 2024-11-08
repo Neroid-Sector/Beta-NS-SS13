@@ -578,6 +578,7 @@
 	new /obj/item/stack/folding_barricade/three(src)
 	new /obj/item/storage/pouch/explosive/C4(src)
 	new /obj/item/storage/pouch/explosive/breaching(src)
+	new /obj/item/storage/box/packet/incendiary(src)
 
 /obj/item/storage/box/kit/ewar
 	name = "\improper Electronic Warfare Kit"
@@ -585,7 +586,7 @@
 	desc = "A Combat Technician's Electronic Warfare Kit  filled with tools to access UAVs and sentry nets, or hack anything. Contains: AR Headset, JIMA backpack, Computer, EMP grenades, Tools. (WIP, mostly Fluff)"
 
 /obj/item/storage/box/kit/ewar/fill_preset_inventory()
-	new /obj/item/storage/backpack/jima(src)
+	new /obj/item/storage/backpack/jima/comtech(src)
 	new /obj/item/device/sentry_computer(src)
 	new /obj/item/storage/toolkit/ms(src)
 	new /obj/item/clothing/glasses/night/hack_goggles(src)
