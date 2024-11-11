@@ -286,6 +286,17 @@
 	id = DROPSHIP_LZ3
 	auto_open = TRUE
 
+/obj/docking_port/stationary/marine_dropship/lz1_attu
+	name = "LZ1 Landing Zone"
+	id = DROPSHIP_ATTU
+	auto_open = TRUE
+
+/obj/docking_port/stationary/marine_dropship/lz2_saigon
+	name = "LZ2 Landing Zone"
+	id = DROPSHIP_SAIGON
+	auto_open = TRUE
+
+
 //alamayer
 
 /obj/docking_port/stationary/marine_dropship/almayer_hangar_1

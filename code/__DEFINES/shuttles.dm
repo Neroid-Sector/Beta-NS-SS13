@@ -156,6 +156,9 @@
 #define DROPSHIP_LZ2 "dropship-lz2"
 #define DROPSHIP_LZ3 "dropship-lz3"
 
+#define ATTU_LZ "dropship-lz4"
+#define SAIGON_LZ "dropship-lz5"
+
 #define ESCAPE_SHUTTLE "escape-shuttle"
 #define ESCAPE_SHUTTLE_EAST "escape_shuttle_e"
 #define ESCAPE_SHUTTLE_EAST_CL "escape_shuttle_e_cl"
