@@ -217,7 +217,7 @@
 
 /obj/structure/shuttle/part/attu
 	name = "\improper Attu"
-	icon = 'icons/turf/dropship2.dmi'
+	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
 	opacity = TRUE
 
@@ -322,7 +322,7 @@
 
 /obj/structure/shuttle/part/saigon
 	name = "\improper Saigon"
-	icon = 'icons/turf/dropship2.dmi'
+	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
 	opacity = TRUE
 
@@ -427,7 +427,7 @@
 
 /obj/structure/shuttle/part/argonne
 	name = "\improper Argonne"
-	icon = 'icons/turf/dropship2.dmi'
+	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
 	opacity = TRUE
 
@@ -532,7 +532,7 @@
 
 /obj/structure/shuttle/part/midway
 	name = "\improper Midway"
-	icon = 'icons/turf/dropship2.dmi'
+	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
 	opacity = TRUE
 
@@ -637,7 +637,7 @@
 
 /obj/structure/shuttle/part/tarawa
 	name = "\improper Tarawa"
-	icon = 'icons/turf/dropship2.dmi'
+	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
 	opacity = TRUE
 
@@ -742,7 +742,7 @@
 
 /obj/structure/shuttle/part/concord
 	name = "\improper Concord"
-	icon = 'icons/turf/dropship2.dmi'
+	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
 	opacity = TRUE
 
