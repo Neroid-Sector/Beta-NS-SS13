@@ -123,6 +123,103 @@
 		return FALSE
 	return TRUE
 
+//blackgold dropships
+
+/area/shuttle/drop_blackgold/Enter(atom/movable/O, atom/oldloc)
+	if(istype(O, /obj/structure/barricade))
+		return FALSE
+	return TRUE
+
+/area/shuttle/drop_blackgold
+	soundscape_interval = 30 //seconds
+	is_resin_allowed = FALSE
+	flags_area = AREA_NOTUNNEL
+	is_landing_zone = TRUE
+	ceiling = CEILING_REINFORCED_METAL
+	base_lighting_alpha = 0
+
+/area/shuttle/drop_blackgold/transit
+	ambience_exterior = 'sound/ambience/dropship_ambience_loop.ogg'
+	name = "\improper Dropship Transit"
+	icon_state = "shuttlered"
+
+/area/shuttle/drop_blackgold/attu
+	name = "\improper Dropship Attu"
+	icon_state = "shuttle"
+	base_muffle = MUFFLE_HIGH
+	base_lighting_alpha = 255
+
+/area/shuttle/drop_blackgold/saigon
+	name = "\improper Dropship Saigon"
+	icon_state = "shuttle"
+	base_muffle = MUFFLE_HIGH
+	base_lighting_alpha = 255
+
+
+//solano dropships
+
+/area/shuttle/drop_solano/Enter(atom/movable/O, atom/oldloc)
+	if(istype(O, /obj/structure/barricade))
+		return FALSE
+	return TRUE
+
+/area/shuttle/drop_solano
+	soundscape_interval = 30 //seconds
+	is_resin_allowed = FALSE
+	flags_area = AREA_NOTUNNEL
+	is_landing_zone = TRUE
+	ceiling = CEILING_REINFORCED_METAL
+	base_lighting_alpha = 0
+
+/area/shuttle/drop_solano/transit
+	ambience_exterior = 'sound/ambience/dropship_ambience_loop.ogg'
+	name = "\improper Dropship Transit"
+	icon_state = "shuttlered"
+
+/area/shuttle/drop_solano/argonne
+	name = "\improper Dropship Argonne"
+	icon_state = "shuttle"
+	base_muffle = MUFFLE_HIGH
+	base_lighting_alpha = 255
+
+/area/shuttle/drop_solano/saigon
+	name = "\improper Dropship Midway"
+	icon_state = "shuttle"
+	base_muffle = MUFFLE_HIGH
+	base_lighting_alpha = 255
+
+//Heavensent dropships
+
+/area/shuttle/drop_hvnsent/Enter(atom/movable/O, atom/oldloc)
+	if(istype(O, /obj/structure/barricade))
+		return FALSE
+	return TRUE
+
+/area/shuttle/drop_hvnsent
+	soundscape_interval = 30 //seconds
+	is_resin_allowed = FALSE
+	flags_area = AREA_NOTUNNEL
+	is_landing_zone = TRUE
+	ceiling = CEILING_REINFORCED_METAL
+	base_lighting_alpha = 0
+
+/area/shuttle/drop_hvnsent/transit
+	ambience_exterior = 'sound/ambience/dropship_ambience_loop.ogg'
+	name = "\improper Dropship Transit"
+	icon_state = "shuttlered"
+
+/area/shuttle/drop_hvnsent/tarawa
+	name = "\improper Dropship Tarawa"
+	icon_state = "shuttle"
+	base_muffle = MUFFLE_HIGH
+	base_lighting_alpha = 255
+
+/area/shuttle/drop_hvnsent/concord
+	name = "\improper Dropship Concord"
+	icon_state = "shuttle"
+	base_muffle = MUFFLE_HIGH
+	base_lighting_alpha = 255
+
 //DISTRESS SHUTTLES
 
 /area/shuttle/distress
