@@ -91,7 +91,7 @@
 "Vn" = (/turf/closed/shuttle/attu/transparent{icon_state = "29"},/area/shuttle/drop_blackgold/attu)
 "VK" = (/turf/closed/shuttle/attu/transparent{icon_state = "32"},/area/shuttle/drop_blackgold/attu)
 "Xm" = (/obj/structure/machinery/door_control{id = "dropship_attu"; name = "Dropship Lockdown"; normaldoorcontrol = 3; pixel_y = -10; req_one_access_txt = "3;22"; throw_range = 15},/turf/closed/shuttle/attu{icon_state = "81"},/area/shuttle/drop_blackgold/attu)
-"XD" = (/obj/effect/attach_point/fuel/dropship2{pixel_x = -32},/turf/closed/shuttle/attu/transparent{icon_state = "33"},/area/shuttle/drop_blackgold/attu)
+"XD" = (/obj/effect/attach_point/fuel/attu{pixel_x = -33},/turf/closed/shuttle/attu/transparent{icon_state = "33"},/area/shuttle/drop_blackgold/attu)
 "XN" = (/obj/structure/stairs/perspective{icon_state = "p_stair_full"},/obj/structure/platform{dir = 8},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_blackgold/attu)
 "XY" = (/obj/structure/shuttle/part/attu/transparent/middle_left_wing,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
 "Yr" = (/obj/structure/shuttle/part/attu/transparent/nose_center,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
