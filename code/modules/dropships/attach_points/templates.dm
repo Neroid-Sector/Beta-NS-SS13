@@ -81,7 +81,7 @@
 	transverse  =  3
 	long    =  0
 //attu
-/obj/effect/attach_point/weapon/ATTU
+/obj/effect/attach_point/weapon/attu
 	ship_tag = DROPSHIP_ATTU
 
 /obj/effect/attach_point/weapon/attu/left_wing
@@ -122,7 +122,7 @@
 	transverse  =  3
 	long    =  0
 //Saigon
-/obj/effect/attach_point/weapon/SAIGON
+/obj/effect/attach_point/weapon/saigon
 	ship_tag = DROPSHIP_SAIGON
 /obj/effect/attach_point/weapon/saigon/left_wing
 	name = "port wing weapon attach point"
@@ -203,7 +203,7 @@
 	transverse  =  3
 	long    =  0
 //midway
-/obj/effect/attach_point/weapon/ROLES_MIDWAY
+/obj/effect/attach_point/weapon/midway
 	ship_tag = DROPSHIP_MIDWAY
 
 /obj/effect/attach_point/weapon/midway/left_wing
@@ -244,7 +244,7 @@
 	transverse  =  3
 	long    =  0
 //tarawa
-/obj/effect/attach_point/weapon/TARAWA
+/obj/effect/attach_point/weapon/tarawa
 	ship_tag = DROPSHIP_TARAWA
 
 /obj/effect/attach_point/weapon/tarawa/left_wing
@@ -285,7 +285,7 @@
 	transverse  =  3
 	long    =  0
 //concord
-/obj/effect/attach_point/weapon/CONCORD
+/obj/effect/attach_point/weapon/concord
 	ship_tag = DROPSHIP_CONCORD
 
 /obj/effect/attach_point/weapon/concord/left_wing
@@ -326,7 +326,7 @@
 	transverse  =  3
 	long    =  0
 //waco
-/obj/effect/attach_point/weapon/WACO
+/obj/effect/attach_point/weapon/waco
 	ship_tag = DROPSHIP_WACO
 
 /obj/effect/attach_point/weapon/waco/left_wing
