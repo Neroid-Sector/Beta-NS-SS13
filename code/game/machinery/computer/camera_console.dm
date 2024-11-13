@@ -381,4 +381,13 @@
 	name = "\improper 'Waco' camera controls"
 	network = list(CAMERA_NET_WACO, CAMERA_NET_LASER_TARGETS)
 
+/obj/structure/machinery/computer/cameras/dropship/attu
+	name = "\improper 'Attu' camera controls"
+	network = list(CAMERA_NET_ATTU, CAMERA_NET_LASER_TARGETS)
+
+/obj/structure/machinery/computer/cameras/dropship/saigon
+	name = "\improper 'Saigon' camera controls"
+	network = list(CAMERA_NET_SAIGON, CAMERA_NET_LASER_TARGETS)
+
+
 #undef DEFAULT_MAP_SIZE
