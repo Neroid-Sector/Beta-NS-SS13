@@ -137,6 +137,14 @@
 	desc = "A Plastic Road barrier with the Weyland Yutani logo. Seeing one tends to indicate danger, death or construction."
 	icon_state = "roadbarrier6"
 
+//-----Whiteboard-----\\
+
+/obj/structure/prop/random_props/whiteboard
+	name = "Whiteboard"
+	desc = "A board with some carefully picked information and plans drawn and pinned to it. Used as a visual aid during informational briefings"
+	icon_state = "whiteboard"
+	anchored = FALSE
+
 //-----Urban Fluff-----\\
 
 //trashcans
