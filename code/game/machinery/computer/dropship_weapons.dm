@@ -749,6 +749,8 @@
 	..()
 	shuttle_tag = DROPSHIP_NORMANDY
 
+//blackgold
+
 /obj/structure/machinery/computer/dropship_weapons/attu
 	name = "\improper 'Attu' weapons controls"
 	req_one_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_WY_FLIGHT)
@@ -766,6 +768,47 @@
 /obj/structure/machinery/computer/dropship_weapons/saigon/New()
 	..()
 	shuttle_tag = DROPSHIP_SAIGON
+
+//solano
+
+/obj/structure/machinery/computer/dropship_weapons/argonne
+	name = "\improper 'Argonne' weapons controls"
+	req_one_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_WY_FLIGHT)
+	firemission_envelope = new /datum/cas_fire_envelope/uscm_dropship()
+
+/obj/structure/machinery/computer/dropship_weapons/argonne/New()
+	..()
+	shuttle_tag = DROPSHIP_ARGONNE
+
+/obj/structure/machinery/computer/dropship_weapons/midway
+	name = "\improper 'Midway' weapons controls"
+	req_one_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_WY_FLIGHT)
+	firemission_envelope = new /datum/cas_fire_envelope/uscm_dropship()
+
+/obj/structure/machinery/computer/dropship_weapons/midway/New()
+	..()
+	shuttle_tag = DROPSHIP_MIDWAY
+
+//heaven sent
+
+/obj/structure/machinery/computer/dropship_weapons/tarawa
+	name = "\improper 'Tarawa' weapons controls"
+	req_one_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_WY_FLIGHT)
+	firemission_envelope = new /datum/cas_fire_envelope/uscm_dropship()
+
+/obj/structure/machinery/computer/dropship_weapons/tarawa/New()
+	..()
+	shuttle_tag = DROPSHIP_TARAWA
+
+/obj/structure/machinery/computer/dropship_weapons/concord
+	name = "\improper 'Concord' weapons controls"
+	req_one_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_WY_FLIGHT)
+	firemission_envelope = new /datum/cas_fire_envelope/uscm_dropship()
+
+/obj/structure/machinery/computer/dropship_weapons/concord/New()
+	..()
+	shuttle_tag = DROPSHIP_CONCORD
+
 
 /obj/structure/machinery/computer/dropship_weapons/Destroy()
 	. = ..()

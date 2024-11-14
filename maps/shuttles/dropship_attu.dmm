@@ -1,5 +1,6 @@
 "bk" = (/turf/closed/shuttle/attu/transparent{icon_state = "22"},/area/shuttle/drop_blackgold/attu)
 "co" = (/turf/closed/shuttle/attu{icon_state = "25"},/area/shuttle/drop_blackgold/attu)
+"cs" = (/obj/structure/blocker/forcefield/multitile_vehicles,/turf/open/shuttle/dropship{icon_state = "floor8"},/area/shuttle/drop_blackgold/attu)
 "cF" = (/obj/structure/stairs/perspective{icon_state = "p_stair_full"},/obj/structure/platform{dir = 4},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_blackgold/attu)
 "cM" = (/obj/structure/transmitter/rotary{name = "Attu Telephone"; phone_category = "Dropship"; phone_id = "Attu"; pixel_x = 11; pixel_y = 16},/obj/structure/blocker/invisible_wall,/obj/structure/machinery/computer/dropship_weapons/attu,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
 "dk" = (/turf/closed/shuttle/attu{icon_state = "73"},/area/shuttle/drop_blackgold/attu)
@@ -67,7 +68,7 @@
 "MJ" = (/obj/effect/decal/warning_stripes,/obj/effect/attach_point/crew_weapon/attu,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
 "NZ" = (/obj/structure/bed/chair/dropship/pilot{dir = 1},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
 "Os" = (/obj/structure/shuttle/part/attu/transparent/left_outer_bottom_wing,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
-"OC" = (/obj/effect/decal/warning_stripes{icon_state = "W"},/turf/open/shuttle/dropship{icon_state = "rasputin4"},/area/shuttle/drop_blackgold/attu)
+"OC" = (/obj/effect/decal/warning_stripes{icon_state = "W"},/obj/structure/blocker/forcefield/multitile_vehicles,/turf/open/shuttle/dropship{icon_state = "rasputin4"},/area/shuttle/drop_blackgold/attu)
 "OU" = (/turf/closed/shuttle/attu/transparent{icon_state = "39"},/area/shuttle/drop_blackgold/attu)
 "Pg" = (/obj/structure/shuttle/part/attu/transparent/middle_right_wing,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
 "Qe" = (/obj/structure/shuttle/part/attu/left_inner_wing_connector,/turf/open/space/basic,/area/shuttle/drop_blackgold/attu)
@@ -75,7 +76,7 @@
 "Qt" = (/obj/structure/blocker/invisible_wall,/obj/structure/machinery/computer/cameras/dropship/attu,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
 "QF" = (/obj/structure/shuttle/part/attu/transparent/engine_left_exhaust,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
 "QV" = (/obj/structure/bed/chair/vehicle{pixel_x = 8},/obj/structure/bed/chair/vehicle{pixel_x = -8},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
-"Ra" = (/obj/effect/decal/warning_stripes{icon_state = "E"; pixel_x = 1},/turf/open/shuttle/dropship{icon_state = "rasputin8"},/area/shuttle/drop_blackgold/attu)
+"Ra" = (/obj/effect/decal/warning_stripes{icon_state = "E"; pixel_x = 1},/obj/structure/blocker/forcefield/multitile_vehicles,/turf/open/shuttle/dropship{icon_state = "rasputin8"},/area/shuttle/drop_blackgold/attu)
 "Sh" = (/turf/closed/shuttle/attu/transparent{icon_state = "98"},/area/shuttle/drop_blackgold/attu)
 "Si" = (/turf/closed/shuttle/attu{icon_state = "24"},/area/shuttle/drop_blackgold/attu)
 "SO" = (/turf/closed/shuttle/attu/transparent{icon_state = "27"},/area/shuttle/drop_blackgold/attu)
@@ -112,7 +113,7 @@ xpmAokQVvVJVvVQVoFoJxp
 xpxpUtJVvVMJvVJVINxpxp
 xpxpVmwSxfxXycGlMxxpxp
 xpxpVmGzJCMJwwjMMxxpxp
-xpxpVmujOChHRaEoMxxpxp
+xpxpVmujOCcsRaEoMxxpxp
 xpxpFWmLXNUfcFfLYDxpxp
 xpymVfVmAZJVFFMxwaOUxp
 xpYSVnUkAZJVFFUXVKXDxp

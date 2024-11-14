@@ -182,7 +182,7 @@
 	base_muffle = MUFFLE_HIGH
 	base_lighting_alpha = 255
 
-/area/shuttle/drop_solano/saigon
+/area/shuttle/drop_solano/midway
 	name = "\improper Dropship Midway"
 	icon_state = "shuttle"
 	base_muffle = MUFFLE_HIGH

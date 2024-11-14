@@ -17,7 +17,7 @@
 "js" = (/turf/closed/shuttle/saigon/transparent{icon_state = "35"},/area/shuttle/drop_blackgold/saigon)
 "jB" = (/turf/closed/shuttle/saigon{icon_state = "30"},/area/shuttle/drop_blackgold/saigon)
 "kY" = (/turf/closed/shuttle/saigon/transparent{icon_state = "86"},/area/shuttle/drop_blackgold/saigon)
-"mb" = (/turf/open/shuttle/dropship{icon_state = "rasputin4"},/area/shuttle/drop_blackgold/saigon)
+"mb" = (/obj/structure/blocker/forcefield/multitile_vehicles,/turf/open/shuttle/dropship{icon_state = "rasputin4"},/area/shuttle/drop_blackgold/saigon)
 "mq" = (/obj/structure/shuttle/part/saigon/transparent/engine_right_exhaust,/turf/template_noop,/area/shuttle/drop_blackgold/saigon)
 "mN" = (/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_blackgold/saigon)
 "mS" = (/turf/closed/shuttle/saigon/transparent{icon_state = "34"},/area/shuttle/drop_blackgold/saigon)
@@ -26,7 +26,7 @@
 "pV" = (/obj/structure/shuttle/part/saigon/transparent/middle_right_wing,/turf/template_noop,/area/shuttle/drop_blackgold/saigon)
 "qc" = (/obj/structure/stairs/perspective{icon_state = "p_stair_full"},/obj/structure/platform{dir = 4},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_blackgold/saigon)
 "qp" = (/obj/structure/shuttle/part/saigon/transparent/outer_left_weapons,/obj/effect/attach_point/weapon/saigon/left_fore,/turf/template_noop,/area/shuttle/drop_blackgold/saigon)
-"qP" = (/obj/effect/decal/warning_stripes{icon_state = "E"; pixel_x = 1},/turf/open/shuttle/dropship{icon_state = "rasputin8"},/area/shuttle/drop_blackgold/saigon)
+"qP" = (/obj/effect/decal/warning_stripes{icon_state = "E"; pixel_x = 1},/obj/structure/blocker/forcefield/multitile_vehicles,/turf/open/shuttle/dropship{icon_state = "rasputin8"},/area/shuttle/drop_blackgold/saigon)
 "ru" = (/turf/closed/shuttle/saigon{icon_state = "72"},/area/shuttle/drop_blackgold/saigon)
 "rB" = (/obj/structure/shuttle/part/saigon/transparent/right_outer_bottom_wing,/turf/template_noop,/area/shuttle/drop_blackgold/saigon)
 "se" = (/obj/structure/machinery/door_control{id = "dropship_saigon"; name = "Dropship Lockdown"; normaldoorcontrol = 3; pixel_y = -10; req_one_access_txt = "3;22"; throw_range = 15},/turf/closed/shuttle/saigon{icon_state = "81"},/area/shuttle/drop_blackgold/saigon)
@@ -77,6 +77,7 @@
 "QF" = (/obj/structure/stairs,/obj/structure/platform/ship{dir = 4},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/saigon)
 "QU" = (/obj/structure/transmitter/rotary{name = "Saigon Telephone"; phone_category = "Dropship"; phone_id = "Saigon"; pixel_x = 11; pixel_y = 16},/obj/structure/blocker/invisible_wall,/obj/structure/machinery/computer/dropship_weapons/saigon,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/saigon)
 "RC" = (/obj/structure/machinery/cm_vending/sorted/medical/wall_med/vehicle{pixel_x = 5; pixel_y = -6},/turf/closed/shuttle/saigon{icon_state = "81"},/area/shuttle/drop_blackgold/saigon)
+"SF" = (/obj/structure/blocker/forcefield/multitile_vehicles,/turf/open/shuttle/dropship{icon_state = "floor8"},/area/shuttle/drop_blackgold/saigon)
 "TA" = (/turf/closed/shuttle/saigon/transparent{icon_state = "96"},/area/shuttle/drop_blackgold/saigon)
 "TD" = (/turf/closed/shuttle/saigon/transparent{icon_state = "27"},/area/shuttle/drop_blackgold/saigon)
 "TN" = (/obj/effect/decal/warning_stripes{icon_state = "W"},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/saigon)
@@ -85,7 +86,7 @@
 "Uk" = (/obj/structure/machinery/door/airlock/dropship_hatch/two{id = "port_door"},/obj/structure/stairs{dir = 8; icon_state = "ramptop"},/obj/structure/blocker/forcefield/multitile_vehicles,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/saigon)
 "Vi" = (/turf/closed/shuttle/saigon{icon_state = "31"},/area/shuttle/drop_blackgold/saigon)
 "VO" = (/turf/closed/shuttle/saigon/transparent{icon_state = "89"},/area/shuttle/drop_blackgold/saigon)
-"Wp" = (/obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2{id = "aft_door"; name = "\improper Attu cargo door"},/obj/effect/decal/warning_stripes{icon_state = "E"; pixel_x = 1},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/saigon)
+"Wp" = (/obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2{id = "aft_door"; name = "\improper Saigon cargo door"},/obj/effect/decal/warning_stripes{icon_state = "E"; pixel_x = 1},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/saigon)
 "WD" = (/turf/closed/shuttle/saigon/transparent{icon_state = "26"},/area/shuttle/drop_blackgold/saigon)
 "Xd" = (/obj/effect/attach_point/fuel/saigon{pixel_x = -33},/turf/closed/shuttle/saigon/transparent{icon_state = "33"},/area/shuttle/drop_blackgold/saigon)
 "XA" = (/obj/effect/decal/warning_stripes{icon_state = "SE-out"; pixel_x = 1},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_blackgold/saigon)
@@ -109,7 +110,7 @@ XPBcuwbomNYamNboLIQAXP
 XPXPUkYamNQtmNYawbXPXP
 XPXPZrPTmNtjXAelIcXPXP
 XPXPZrQFmNQtwwwDIcXPXP
-XPXPZrbRmbulqPjjIcXPXP
+XPXPZrbRmbSFqPjjIcXPXP
 XPXPTTXWfwzFqcstKnXPXP
 XPmSjsZrgAYaNxIcvvCwXP
 XPfzAPjBgAYaNxViTVXdXP
