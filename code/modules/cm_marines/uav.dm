@@ -1,9 +1,9 @@
 /obj/item/uav_drone
-	name = "seegson survey drone"
-	desc = "An agile seegson brand drone used by to survey unexplored lands or dagerous combat zones."
-	icon = 'icons/obj/items/hunter/pred_gear.dmi'
-	icon_state = "falcon_drone"
-	item_icons = "falcon_drone"
+	name = "UAV control terminal."
+	desc = "An seegson brand drone control tablet used by to survey unexplored lands or dagerous combat zones."
+	icon = 'icons/obj/items/devices.dmi'
+	icon_state = "uav_tablet"
+	item_icons = "uav_tablet"
 	flags_atom = FPRINT|USES_HEARING
 	w_class = SIZE_SMALL
 
@@ -44,7 +44,7 @@
 	var/mob/living/carbon/human/H = usr
 
 	if(!istype(H.glasses, /obj/item/clothing/glasses/night/hack_goggles))
-		to_chat(usr, SPAN_WARNING("You need your M701 AR Headset to control \the [src]!"))
+		to_chat(usr, SPAN_WARNING("You need your M701 AR Headset to use \the [src]!"))
 		return
 
 	var/mob/hologram/uav/hologram = new /mob/hologram/uav(usr.loc, usr, src, H.glasses)
@@ -53,8 +53,8 @@
 
 /mob/hologram/uav
 	name = "seegson survey drone"
-	icon = 'icons/obj/items/hunter/pred_gear.dmi'
-	icon_state = "falcon_drone_active"
+	icon = 'icons/obj/items/devices.dmi'
+	icon_state = "uav_drone_active"
 	hud_possible = list(MOB_HUD_FACTION_USCM)
 	var/obj/item/uav_drone/parent_drone
 	var/obj/item/clothing/glasses/night/hack_goggles/owned_bracers
@@ -88,7 +88,7 @@
 		return
 
 	var/image/holder = hud_list[MOB_HUD_FACTION_USCM]
-	holder?.icon_state = "falcon_drone_active"
+	holder?.icon_state = "uav_drone_active"
 
 /mob/hologram/uav/Destroy()
 	if(parent_drone)
@@ -107,11 +107,13 @@
 /mob/hologram/uav/ex_act()
 	new /obj/item/trash/uav_drone(loc)
 	QDEL_NULL(parent_drone)
+	linked_mob.put_in_hands(/obj/item/trash/uav_tablet/emp)
 	qdel(src)
 
 /mob/hologram/uav/emp_act()
 	new /obj/item/trash/uav_drone/emp(loc)
 	QDEL_NULL(parent_drone)
+	linked_mob.put_in_hands(/obj/item/trash/uav_tablet/emp)
 	qdel(src)
 
 /mob/hologram/uav/proc/handle_bracer_drop()
@@ -119,14 +121,23 @@
 
 	qdel(src)
 
+/obj/item/uav_drone/emp_act()
+	new /obj/item/trash/uav_tablet/emp(loc)
+	qdel(src)
+
 /obj/item/trash/uav_drone
 	name = "seegson survey drone"
 	desc = "The wreckage of a seegson drone."
-	icon = 'icons/obj/items/hunter/pred_gear.dmi'
-	icon_state = "falcon_drone_destroyed"
-	flags_item = ITEM_PREDATOR
+	icon = 'icons/obj/items/devices.dmi'
+	icon_state = "uav_drone_destroyed"
 
 /obj/item/trash/uav_drone/emp
 	name = "disabled seegson survey drone"
 	desc = "An intact seegson drone. The internal electronics are completely fried."
-	icon_state = "falcon_drone_emped"
+	icon_state = "uav_drone_emped"
+
+/obj/item/trash/uav_tablet/emp
+	icon = 'icons/obj/items/devices.dmi'
+	name = "disabled seegson survey uav terminal"
+	desc = "The screen is flashing some sort of error."
+	icon_state = "uav_tablet_emped"

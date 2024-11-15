@@ -583,7 +583,7 @@
 /obj/item/storage/box/kit/ewar
 	name = "\improper Electronic Warfare Kit"
 	pro_case_overlay = "ewar"
-	desc = "A Combat Technician's Electronic Warfare Kit  filled with tools to access UAVs and sentry nets, or hack anything. Contains: AR Headset, JIMA backpack, Computer, EMP grenades, Tools. (WIP, mostly Fluff)"
+	desc = "A Combat Technician's Electronic Warfare Kit  filled with tools to access UAVs and sentry nets, or hack anything. Contains: AR Headset, UAV, JIMA backpack, Computer, EMP grenades, Tools. (WIP, mostly Fluff)"
 
 /obj/item/storage/box/kit/ewar/fill_preset_inventory()
 	new /obj/item/storage/backpack/jima/comtech(src)
@@ -595,6 +595,7 @@
 	new /obj/item/device/assembly/signaller(src)
 	new /obj/item/storage/pouch/explosive/emp(src)
 	new /obj/item/storage/pouch/electronics/full(src)
+	new /obj/item/uav_drone(src)
 	new /obj/item/uav_drone(src)
 
 /obj/item/storage/box/kit/cryo_self_defense
