@@ -8,8 +8,8 @@
 	icon = 'icons/obj/vehicles/minitruck.dmi'
 	icon_state = "minitruck"
 
-	bound_width = 128
-	bound_height = 128
+	bound_width = 96
+	bound_height = 96
 
 	bound_x = 0
 	bound_y = 0
@@ -18,10 +18,9 @@
 	interior_map = /datum/map_template/interior/minitruck
 	entrances = list(
 		"left" = list(2, 0),
-		"right" = list(-2, 0),
-		"rear left" = list(1, 2),
-		"rear center" = list(0, 2),
-		"rear right" = list(-1, 2)
+		"right" = list(-1, 0),
+		"back_left" = list(1, 2),
+		"back_right" = list(0, 2)
 	)
 
 	movement_sound = 'sound/vehicles/heavytruck_driving.mp3'
