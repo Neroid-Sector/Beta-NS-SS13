@@ -595,6 +595,7 @@
 	new /obj/item/device/assembly/signaller(src)
 	new /obj/item/storage/pouch/explosive/emp(src)
 	new /obj/item/storage/pouch/electronics/full(src)
+	new /obj/item/uav_drone(src)
 
 /obj/item/storage/box/kit/cryo_self_defense
 	name = "\improper Cryo Self Defense Kit"
