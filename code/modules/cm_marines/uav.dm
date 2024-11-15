@@ -34,7 +34,7 @@
 	control_uav_drone()
 
 /obj/item/uav_drone/verb/control_uav_drone()
-	set name = "Control Falcon Drone"
+	set name = "Control Seegson Drone"
 	set desc = "Activates your falcon drone."
 	set src in usr
 
