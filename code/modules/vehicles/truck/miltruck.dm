@@ -128,6 +128,41 @@
 	var/H = random_hardpoint()
 	V.add_hardpoint(new H)
 
+//miltruck 2 fixed
+/obj/effect/vehicle_spawner/miltruck/miltruck_2
+	name = "Military flatbed"
+	icon_state = "miltruck_2"
+
+/obj/effect/vehicle_spawner/miltruck/miltruck_2/fixed/spawn_vehicle()
+	var/obj/vehicle/multitile/miltruck/miltruck_2/miltruck_2 = new (loc)
+
+	load_misc(miltruck_2)
+	load_hardpoints(miltruck_2)
+	handle_direction(miltruck_2)
+	miltruck_2.update_icon()
+
+/obj/effect/vehicle_spawner/miltruck/miltruck_2/fixed/load_hardpoints(obj/vehicle/multitile/miltruck/V)
+	V.add_hardpoint(new /obj/item/hardpoint/locomotion/truck/wheels)
+
+
+//miltruck 3 fixed
+/obj/effect/vehicle_spawner/miltruck/miltruck_3
+	name = "Covered Military truck"
+	icon_state = "miltruck_3"
+
+/obj/effect/vehicle_spawner/miltruck/miltruck_3/fixed/spawn_vehicle()
+	var/obj/vehicle/multitile/miltruck/miltruck_3/miltruck_3 = new (loc)
+
+	load_misc(miltruck_3)
+	load_hardpoints(miltruck_3)
+	handle_direction(miltruck_3)
+	miltruck_3.update_icon()
+
+/obj/effect/vehicle_spawner/miltruck/miltruck_3/fixed/load_hardpoints(obj/vehicle/multitile/miltruck/V)
+	V.add_hardpoint(new /obj/item/hardpoint/locomotion/truck/treads)
+
+
+
 //---------
 
 
@@ -459,7 +494,7 @@
 /obj/effect/vehicle_spawner/atruck/trauma/fixed/load_hardpoints(obj/vehicle/multitile/atruck/trauma/V)
 	V.add_hardpoint(new /obj/item/hardpoint/locomotion/atruck)
 
-//trauma
+//cmb
 /obj/effect/vehicle_spawner/atruck/cmb
 	name = "SWAT truck"
 	icon_state = "cmb_truck"
