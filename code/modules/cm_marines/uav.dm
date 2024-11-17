@@ -23,12 +23,6 @@
 
 	return TRUE
 
-/obj/item/uav_drone/get_examine_location(mob/living/carbon/human/wearer, mob/examiner, slot, t_he = "They", t_his = "their", t_him = "them", t_has = "have", t_is = "are")
-	switch(slot)
-		if(WEAR_L_EAR, WEAR_R_EAR)
-			return "on [t_his] shoulder"
-	return ..()
-
 /obj/item/uav_drone/attack_self(mob/user)
 	..()
 	control_uav_drone()
@@ -59,7 +53,9 @@
 	var/obj/item/uav_drone/parent_drone
 	var/obj/item/clothing/glasses/night/hack_goggles/owned_bracers
 	desc = "An agile seegson brand drone used by to survey unexplored lands or dagerous combat zones."
-	motion_sensed = FALSE
+	motion_sensed = TRUE
+	invisibility = FALSE
+	alpha = 175
 
 /mob/hologram/uav/Initialize(mapload, mob/M, obj/item/uav_drone/drone, obj/item/clothing/glasses/night/hack_goggles/bracers)
 	. = ..()
@@ -106,12 +102,14 @@
 
 /mob/hologram/uav/ex_act()
 	new /obj/item/trash/uav_drone(loc)
+	new /obj/flamer_fire(loc)
 	QDEL_NULL(parent_drone)
 	linked_mob.put_in_hands(/obj/item/trash/uav_tablet/emp)
 	qdel(src)
 
 /mob/hologram/uav/emp_act()
 	new /obj/item/trash/uav_drone/emp(loc)
+	new /obj/flamer_fire(loc)
 	QDEL_NULL(parent_drone)
 	linked_mob.put_in_hands(/obj/item/trash/uav_tablet/emp)
 	qdel(src)
