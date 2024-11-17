@@ -68,7 +68,7 @@
 /mob/hologram/uav/initialize_pass_flags(datum/pass_flags_container/PF)
 	..()
 	if(PF)
-		PF.flags_pass = PASS_MOB_THRU|PASS_MOB_IS|PASS_FLAGS_FLAME
+		PF.flags_pass = PASS_MOB_THRU|PASS_MOB_IS|PASS_FLAGS_FLAME|PASS_OVER
 		PF.flags_can_pass_all = PASS_ALL
 
 /mob/hologram/uav/add_to_all_mob_huds()
