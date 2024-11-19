@@ -3,6 +3,7 @@
 	desc = "A large metal mesh strewn between two poles. Intended as a cheap way to separate areas, while allowing one to see through it."
 	icon = 'icons/obj/structures/props/fence.dmi'
 	icon_state = "fence0"
+	throwpass = TRUE
 	density = TRUE
 	anchored = TRUE
 	layer = WINDOW_LAYER
@@ -170,9 +171,9 @@
 	else
 		switch(W.damtype)
 			if("fire")
-				health -= W.force
+				health -= W.force * W.demolition_mod
 			if("brute")
-				health -= W.force * 0.1
+				health -= W.force * W.demolition_mod * 0.1
 		healthcheck(1, 1, user, W)
 		..()
 
@@ -209,7 +210,7 @@
 //This proc is used to update the icons of nearby windows.
 /obj/structure/fence/proc/update_nearby_icons()
 	update_icon()
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinals)
 		for(var/obj/structure/fence/W in get_step(src, direction))
 			W.update_icon()
 
@@ -230,6 +231,6 @@
 
 /obj/structure/fence/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 800)
-		health -= round(exposed_volume / 100)
+		health -= floor(exposed_volume / 100)
 		healthcheck(0) //Don't make hit sounds, it's dumb with fire/heat
 	..()

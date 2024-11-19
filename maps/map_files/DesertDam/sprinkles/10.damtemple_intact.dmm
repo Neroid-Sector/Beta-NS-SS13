@@ -139,7 +139,7 @@
 /obj/structure/surface/table/reinforced/prison{
 	color = "#6b675e"
 	},
-/obj/item/legcuffs/beartrap{
+/obj/item/restraint/legcuffs/beartrap{
 	pixel_x = -1;
 	pixel_y = 8
 	},
@@ -298,7 +298,7 @@
 	dir = 1;
 	icon_state = "phoronrwindow"
 	},
-/obj/item/weapon/katana{
+/obj/item/weapon/sword/katana{
 	color = "#b2ffff";
 	desc = "A finely made Japanese sword, with a well sharpened blade. It appears to have cobalt infused within the blade. There are Japanese engravings on the blade which say 'He who wields this sword becomes the next Titan.'.";
 	name = "ancient katana";
@@ -312,12 +312,6 @@
 "rI" = (
 /obj/structure/surface/table/reinforced/prison{
 	color = "#6b675e"
-	},
-/obj/item/XenoItem/AntiAcid{
-	pixel_x = -6
-	},
-/obj/item/XenoItem/AntiAcid{
-	pixel_x = 4
 	},
 /turf/open/floor/strata{
 	color = "#5e5d5d";
@@ -548,10 +542,10 @@
 /obj/structure/surface/table/reinforced/prison{
 	color = "#6b675e"
 	},
-/obj/item/weapon/claymore/mercsword{
+/obj/item/weapon/sword{
 	pixel_x = 7
 	},
-/obj/item/weapon/claymore/mercsword{
+/obj/item/weapon/sword{
 	pixel_x = -7
 	},
 /turf/open/floor/sandstone/runed,

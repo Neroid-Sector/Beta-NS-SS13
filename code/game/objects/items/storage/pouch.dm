@@ -425,7 +425,7 @@
 	desc = "It can carry pistol magazines and revolver speedloaders."
 	max_w_class = SIZE_SMALL
 	icon_state = "pistol_mag"
-	storage_slots = 3
+	storage_slots = 4
 
 	can_hold = list(
 		/obj/item/ammo_magazine/pistol,
@@ -683,6 +683,18 @@
 	new /obj/item/reagent_container/hypospray/autoinjector/stimulant/redemption_stimulant(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/stimulant/speed_stimulant(src)
 
+/obj/item/storage/pouch/medical/socmed/not_op/fill_preset_inventory()
+	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/bicaridine(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/kelotane(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/oxycodone(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/emergency(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/emergency(src)
+	new /obj/item/tool/extinguisher/mini(src)
+
 /obj/item/storage/pouch/medical/socmed/dutch
 	name = "\improper Dutch's Medical Pouch"
 	desc = "A pouch bought from a black market trader by Dutch quite a few years ago. Rumoured to be stolen from secret USCM assets. Its contents have been slowly used up and replaced over the years."
@@ -812,6 +824,7 @@
 		/obj/item/roller = list(SKILL_MEDICAL, SKILL_MEDICAL_MEDIC),
 		/obj/item/bodybag = list(SKILL_MEDICAL, SKILL_MEDICAL_MEDIC),
 		/obj/item/reagent_container/blood = list(SKILL_MEDICAL, SKILL_MEDICAL_MEDIC),
+		/obj/item/tool/surgery/FixOVein = list(SKILL_MEDICAL, SKILL_MEDICAL_MEDIC),
 	)
 	can_hold_skill_only = TRUE
 
@@ -833,6 +846,15 @@
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/splint(src)
 
+/obj/item/storage/pouch/medkit/full/toxin/fill_preset_inventory()
+	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/storage/pill_bottle/antitox(src)
+	new /obj/item/storage/pill_bottle/antitox(src)
+	new /obj/item/roller(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+
 /obj/item/storage/pouch/pressurized_reagent_canister
 	name = "Pressurized Reagent Canister Pouch"
 	max_w_class = SIZE_SMALL
@@ -849,13 +871,13 @@
 	inner = new /obj/item/reagent_container/glass/pressurized_canister()
 	//Only add an autoinjector if the canister is empty
 	//Important for the snowflake /obj/item/storage/pouch/pressurized_reagent_canister/oxycodone
-	if(contents.len == 0)
+	if(length(contents) == 0)
 		new /obj/item/reagent_container/hypospray/autoinjector/empty/medic(src)
 	update_icon()
 
 /obj/item/storage/pouch/pressurized_reagent_canister/proc/fill_with(ragent)
 	inner.reagents.add_reagent(ragent, inner.volume)
-	if(contents.len > 0)
+	if(length(contents) > 0)
 		var/obj/item/reagent_container/hypospray/autoinjector/empty/A = contents[1]
 		A.reagents.add_reagent(ragent, A.volume)
 		A.update_uses_left()
@@ -881,7 +903,7 @@
 	inner.reagents.add_reagent("adrenaline", inner.volume/3)
 	inner.reagents.add_reagent("inaprovaline", inner.volume/3)
 	inner.reagents.add_reagent("tricordrazine", inner.volume/3)
-	if(contents.len > 0)
+	if(length(contents) > 0)
 		var/obj/item/reagent_container/hypospray/autoinjector/empty/medic/A = contents[1]
 		A.reagents.add_reagent("adrenaline", A.volume/3)
 		A.reagents.add_reagent("inaprovaline", A.volume/3)
@@ -916,7 +938,7 @@
 
 /obj/item/storage/pouch/pressurized_reagent_canister/proc/fill_autoinjector(obj/item/reagent_container/hypospray/autoinjector/autoinjector)
 	var/max_uses = autoinjector.volume / autoinjector.amount_per_transfer_from_this
-	max_uses = round(max_uses) == max_uses ? max_uses : round(max_uses) + 1
+	max_uses = floor(max_uses) == max_uses ? max_uses : floor(max_uses) + 1
 	if(inner && inner.reagents.total_volume > 0 && (autoinjector.uses_left < max_uses))
 		inner.reagents.trans_to(autoinjector, autoinjector.volume)
 		autoinjector.update_uses_left()
@@ -951,11 +973,11 @@
 
 
 	var/obj/O = target
-	if(!O.reagents || O.reagents.reagent_list.len < 1)
+	if(!O.reagents || length(O.reagents.reagent_list) < 1)
 		to_chat(user, SPAN_WARNING("[O] is empty!"))
 		return
 
-	var/amt_to_remove = Clamp(O.reagents.total_volume, 0, inner.volume)
+	var/amt_to_remove = clamp(O.reagents.total_volume, 0, inner.volume)
 	if(!amt_to_remove)
 		to_chat(user, SPAN_WARNING("[O] is empty!"))
 		return
@@ -964,11 +986,11 @@
 	O.reagents.trans_to(inner, amt_to_remove)
 
 	//Refill our autoinjector
-	if(contents.len > 0)
+	if(length(contents) > 0)
 		fill_autoinjector(contents[1])
 
 	//Top up our inner reagent canister after filling up the injector
-	amt_to_remove = Clamp(O.reagents.total_volume, 0, inner.volume)
+	amt_to_remove = clamp(O.reagents.total_volume, 0, inner.volume)
 	if(amt_to_remove)
 		O.reagents.trans_to(inner, amt_to_remove)
 
@@ -1010,14 +1032,14 @@
 
 //returns a text listing the reagents (and their volume) in the atom. Used by Attack logs for reagents in pills
 /obj/item/storage/pouch/pressurized_reagent_canister/proc/get_reagent_list_text()
-	if(inner && inner.reagents && inner.reagents.reagent_list && inner.reagents.reagent_list.len)
+	if(inner && inner.reagents && LAZYLEN(inner.reagents.reagent_list))
 		var/datum/reagent/R = inner.reagents.reagent_list[1]
 		. = "[R.name]([R.volume]u)"
 
-		if(inner.reagents.reagent_list.len < 2)
+		if(length(inner.reagents.reagent_list) < 2)
 			return
 
-		for(var/i in 2 to inner.reagents.reagent_list.len)
+		for(var/i in 2 to length(inner.reagents.reagent_list))
 			R = inner.reagents.reagent_list[i]
 
 			if(!R)
@@ -1086,8 +1108,8 @@
 	name = "flare pouch"
 	desc = "A pouch designed to hold flares. Refillable with an M94 flare pack."
 	max_w_class = SIZE_SMALL
-	storage_slots = 8
-	max_storage_space = 8
+	storage_slots = 16
+	max_storage_space = 16
 	storage_flags = STORAGE_FLAGS_POUCH|STORAGE_USING_DRAWING_METHOD
 	icon_state = "flare"
 	can_hold = list(/obj/item/device/flashlight/flare,/obj/item/device/flashlight/flare/signal)
@@ -1250,6 +1272,21 @@
 	new /obj/item/explosive/plastic(src)
 	new /obj/item/explosive/plastic(src)
 
+/obj/item/storage/pouch/tools/tactical/upp
+	name = "synthetic tools pouch"
+	desc = "Special issue tools pouch for UPP synthetics. Due to the enhanced strength of the synthetic and its inability to feel discomfort, this pouch is designed to maximize internal space with no concern for its wearer's comfort."
+	icon_state = "tools"
+	storage_slots = 7
+
+/obj/item/storage/pouch/tools/tactical/upp/fill_preset_inventory()
+	new /obj/item/tool/wrench(src)
+	new /obj/item/tool/crowbar(src)
+	new /obj/item/tool/wirecutters(src)
+	new /obj/item/device/multitool(src)
+	new /obj/item/tool/weldingtool(src)
+	new /obj/item/stack/cable_coil(src)
+	new /obj/item/stack/cable_coil(src)
+
 /obj/item/storage/pouch/tools/uppsynth/fill_preset_inventory()
 	new /obj/item/tool/crowbar(src)
 	new /obj/item/tool/wirecutters(src)
@@ -1372,7 +1409,7 @@
 	item_state = "machete_holster"
 	max_w_class = SIZE_LARGE
 	storage_flags = STORAGE_FLAGS_POUCH|STORAGE_USING_DRAWING_METHOD|STORAGE_ALLOW_QUICKDRAW
-	can_hold = list(/obj/item/weapon/claymore/mercsword/machete)
+	can_hold = list(/obj/item/weapon/sword/machete)
 
 	var/sheathe_sound = 'sound/weapons/gun_rifle_draw.ogg'
 	var/draw_sound = 'sound/weapons/gun_rifle_draw.ogg'
@@ -1392,4 +1429,4 @@
 	playsound(src, draw_sound, vol = 15, vary = TRUE)
 
 /obj/item/storage/pouch/machete/full/fill_preset_inventory()
-	new /obj/item/weapon/claymore/mercsword/machete(src)
+	new /obj/item/weapon/sword/machete(src)
