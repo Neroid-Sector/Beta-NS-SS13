@@ -36,7 +36,7 @@
 	desc = "It's hood that covers the head."
 	icon_state = "chaplain_hood"
 	flags_inventory = COVEREYES
-	flags_inv_hide = HIDEEARS|HIDEALLHAIR
+	flags_inv_hide = HIDEEARS|HIDEALLHAIR|HIDEMASK
 	siemens_coefficient = 0.9
 	flags_armor_protection = BODY_FLAG_HEAD|BODY_FLAG_EYES
 
@@ -51,6 +51,13 @@
 	armor_rad = CLOTHING_ARMOR_LOW
 	armor_melee = CLOTHING_ARMOR_MEDIUMLOW
 	armor_laser = CLOTHING_ARMOR_LOW
+
+//som
+/obj/item/clothing/head/cultist_hood/som
+	name = "skull hood"
+	desc = "It's hood that covers the head. An animal skull have been integrated as a sort of mask."
+	icon_state = "wendi_hood"
+	item_state = "wendi_hood"
 
 //Chaplain
 /obj/item/clothing/head/nun_hood

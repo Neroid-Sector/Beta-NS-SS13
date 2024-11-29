@@ -103,6 +103,14 @@
 			shipwide_ai_announcement(input, name, 'sound/AI/unidentified_lifesigns.ogg', ares_logging = ARES_LOG_SECURITY)
 			set_security_level(SEC_LEVEL_RED)
 			return
+/obj/docking_port/mobile/marine_dropship/waco
+	name = "Waco"
+	id = DROPSHIP_WACO
+	width = 9
+	height = 18
+
+	dwidth = 4
+	dheight = 8
 
 /obj/docking_port/mobile/marine_dropship/alamo
 	name = "Alamo"
@@ -111,6 +119,31 @@
 /obj/docking_port/mobile/marine_dropship/normandy
 	name = "Normandy"
 	id = DROPSHIP_NORMANDY
+
+/obj/docking_port/mobile/marine_dropship/attu
+	name = "Attu"
+	id = DROPSHIP_ATTU
+
+/obj/docking_port/mobile/marine_dropship/saigon
+	name = "Saigon"
+	id = DROPSHIP_SAIGON
+
+/obj/docking_port/mobile/marine_dropship/argonne
+	name = "Argonne"
+	id = DROPSHIP_ARGONNE
+
+/obj/docking_port/mobile/marine_dropship/midway
+	name = "Midway"
+	id = DROPSHIP_MIDWAY
+
+/obj/docking_port/mobile/marine_dropship/tarawa
+	name = "Tarawa"
+	id = DROPSHIP_TARAWA
+
+/obj/docking_port/mobile/marine_dropship/concord
+	name = "Concord"
+	id = DROPSHIP_CONCORD
+
 
 /obj/docking_port/mobile/marine_dropship/check()
 	. = ..()
@@ -248,6 +281,24 @@
 	id = DROPSHIP_LZ2
 	auto_open = TRUE
 
+/obj/docking_port/stationary/marine_dropship/lz3
+	name = "LZ3 Landing Zone"
+	id = DROPSHIP_LZ3
+	auto_open = TRUE
+
+/obj/docking_port/stationary/marine_dropship/lz1_attu
+	name = "LZ1 Landing Zone"
+	id = DROPSHIP_ATTU
+	auto_open = TRUE
+
+/obj/docking_port/stationary/marine_dropship/lz2_saigon
+	name = "LZ2 Landing Zone"
+	id = DROPSHIP_SAIGON
+	auto_open = TRUE
+
+
+//alamayer
+
 /obj/docking_port/stationary/marine_dropship/almayer_hangar_1
 	name = "Almayer Hangar bay 1"
 	id = ALMAYER_DROPSHIP_LZ1
@@ -259,6 +310,59 @@
 	id = ALMAYER_DROPSHIP_LZ2
 	auto_open = TRUE
 	roundstart_template = /datum/map_template/shuttle/normandy
+
+/obj/docking_port/stationary/marine_dropship/almayer_hanger_3
+	name = "Hangar Bay 3"
+	id = DROPSHIP_WACO
+	auto_open = TRUE
+	roundstart_template = /datum/map_template/shuttle/waco
+
+//blackgold
+
+/obj/docking_port/stationary/marine_dropship/blackgold_hangar_1
+	name = "Black Gold Hangar Bay 1"
+	id = DROPSHIP_ATTU
+	auto_open = TRUE
+	roundstart_template = /datum/map_template/shuttle/attu
+
+/obj/docking_port/stationary/marine_dropship/blackgold_hangar_2
+	name = "Black Gold Hangar Bay 2"
+	id = DROPSHIP_SAIGON
+	auto_open = TRUE
+	roundstart_template = /datum/map_template/shuttle/saigon
+
+//heavensent
+
+/obj/docking_port/stationary/marine_dropship/hvnsent_hangar_1
+	name = "Heaven Sent Hangar Bay 1"
+	id = DROPSHIP_TARAWA
+	auto_open = TRUE
+	roundstart_template = /datum/map_template/shuttle/tarawa
+
+/obj/docking_port/stationary/marine_dropship/hvnsent_hangar_2
+	name = "Heavensent Hangar Bay 2"
+	id = DROPSHIP_CONCORD
+	auto_open = TRUE
+	roundstart_template = /datum/map_template/shuttle/concord
+
+//solano
+
+/obj/docking_port/stationary/marine_dropship/solano_hangar_1
+	name = "Solano Hangar Bay 1"
+	id = DROPSHIP_ARGONNE
+	auto_open = TRUE
+	roundstart_template = /datum/map_template/shuttle/argonne
+
+/obj/docking_port/stationary/marine_dropship/solano_hangar_2
+	name = "Solano Hangar Bay 2"
+	id = DROPSHIP_MIDWAY
+	auto_open = TRUE
+	roundstart_template = /datum/map_template/shuttle/midway
+
+//hanyut
+
+
+
 
 /obj/docking_port/stationary/marine_dropship/crash_site
 	auto_open = TRUE
@@ -285,6 +389,9 @@
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_GROUNDSIDE_FORSAKEN_HANDLING)
 
+/datum/map_template/shuttle/waco
+	name = "Waco"
+	shuttle_id = DROPSHIP_WACO
 /datum/map_template/shuttle/alamo
 	name = "Alamo"
 	shuttle_id = DROPSHIP_ALAMO
@@ -292,3 +399,27 @@
 /datum/map_template/shuttle/normandy
 	name = "Normandy"
 	shuttle_id = DROPSHIP_NORMANDY
+
+/datum/map_template/shuttle/attu
+	name = "Attu"
+	shuttle_id = DROPSHIP_ATTU
+
+/datum/map_template/shuttle/saigon
+	name = "Saigon"
+	shuttle_id = DROPSHIP_SAIGON
+
+/datum/map_template/shuttle/argonne
+	name = "Argonne"
+	shuttle_id = DROPSHIP_ARGONNE
+
+/datum/map_template/shuttle/midway
+	name = "Midway"
+	shuttle_id = DROPSHIP_MIDWAY
+
+/datum/map_template/shuttle/tarawa
+	name = "Tarawa"
+	shuttle_id = DROPSHIP_TARAWA
+
+/datum/map_template/shuttle/concord
+	name = "Concord"
+	shuttle_id = DROPSHIP_CONCORD

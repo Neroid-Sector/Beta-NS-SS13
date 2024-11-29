@@ -24,3 +24,32 @@
 /obj/structure/machinery/weather_siren/proc/weather_warning()
 	playsound(loc, 'sound/effects/weather_warning.ogg', 50, 0)
 	visible_message(SPAN_DANGER("The [src] blares. ATTENTION. POTENTIALLY HAZARDOUS WEATHER ANOMALY DETECTED. SEEK SHELTER IMMEDIATELY."))
+
+
+
+/obj/structure/machinery/checkpoint_broadcaster
+	name = "Automated Checkpoint PA Speaker"
+	desc = "A siren used to play propaganda and safety warnings"
+	icon = 'icons/obj/structures/machinery/loudspeaker.dmi'
+	icon_state = "loudspeaker"
+	density = FALSE
+	anchored = TRUE
+	unacidable = 1
+	unslashable = 1
+	use_power = USE_POWER_NONE
+	health = 0
+
+/obj/structure/machinery/checkpoint_broadcaster/proc/play/(str)
+	var/pa_pick =  str
+	if (!pa_pick) return
+	switch(pa_pick)
+		if("pa1")
+			playsound(loc, 'sound/PA/checkpoint/Papers.mp3')
+			talkas("placeholder text")
+			return
+		if("pa2")
+			playsound(loc, 'sound/PA/checkpoint/Papers.mp3')
+			talkas("placeholder text")
+			return
+		else
+			return

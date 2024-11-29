@@ -32,7 +32,7 @@
 
 /obj/item/clothing/suit/storage/marine
 	name = "\improper M3 pattern marine armor"
-	desc = "A standard Colonial Marines M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
+	desc = "A standard Colonial Marines M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a webbing vest strapped to it for limited storage."
 	icon = 'icons/obj/items/clothing/cm_suits.dmi'
 	icon_state = "1"
 	item_state = "marine_armor" //Make unique states for Officer & Intel armors.
@@ -50,13 +50,15 @@
 	armor_melee = CLOTHING_ARMOR_MEDIUM
 	armor_bullet = CLOTHING_ARMOR_MEDIUM
 	armor_laser = CLOTHING_ARMOR_MEDIUMLOW
-	armor_energy = CLOTHING_ARMOR_NONE
-	armor_bomb = CLOTHING_ARMOR_MEDIUMLOW
-	armor_bio = CLOTHING_ARMOR_MEDIUM
-	armor_rad = CLOTHING_ARMOR_MEDIUMLOW
-	armor_internaldamage = CLOTHING_ARMOR_MEDIUM
+	armor_energy = CLOTHING_ARMOR_LOW
+	armor_melee = CLOTHING_ARMOR_MEDIUMHIGH
+	armor_bullet = CLOTHING_ARMOR_HIGHPLUS
+	armor_bomb = CLOTHING_ARMOR_VERYLOW
+	armor_bio = CLOTHING_ARMOR_MEDIUMHIGH
+	armor_rad = CLOTHING_ARMOR_MEDIUM
+	armor_internaldamage = CLOTHING_ARMOR_LOW
 	movement_compensation = SLOWDOWN_ARMOR_LIGHT
-	storage_slots = 3
+	storage_slots = 6
 	siemens_coefficient = 0.7
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	allowed = list(
@@ -92,7 +94,6 @@
 	var/flags_marine_armor = ARMOR_SQUAD_OVERLAY|ARMOR_LAMP_OVERLAY
 	var/specialty = "M3 pattern marine" //Same thing here. Give them a specialty so that they show up correctly in vendors. speciality does NOTHING if you have NO_NAME_OVERRIDE
 	w_class = SIZE_HUGE
-	uniform_restricted = list(/obj/item/clothing/under/marine)
 	sprite_sheets = list(SPECIES_MONKEY = 'icons/mob/humans/species/monkeys/onmob/suit_monkey_1.dmi')
 	time_to_unequip = 20
 	time_to_equip = 20
@@ -255,13 +256,12 @@
 	desc = "A well tinkered and crafted hybrid of Smart-Gunner mesh and M3 pattern plates. Robust, yet nimble, with room for all your pouches."
 	armor_bio = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_rad = CLOTHING_ARMOR_MEDIUM
-	storage_slots = 4
+	storage_slots = 8
 	light_range = 5 //slightly higher
 	specialty = "M4 pattern marine"
 
 /obj/item/clothing/suit/storage/marine/rto/intel
 	name = "\improper XM4 pattern intelligence officer armor"
-	uniform_restricted = list(/obj/item/clothing/under/marine/officer, /obj/item/clothing/under/rank/qm_suit, /obj/item/clothing/under/marine/officer/intel)
 	specialty = "XM4 pattern intel"
 
 /obj/item/clothing/suit/storage/marine/MP
@@ -275,7 +275,7 @@
 	armor_bomb = CLOTHING_ARMOR_MEDIUM
 	armor_bio = CLOTHING_ARMOR_MEDIUMLOW
 	armor_internaldamage = CLOTHING_ARMOR_MEDIUMLOW
-	storage_slots = 2
+	storage_slots = 3
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(
 		/obj/item/weapon/gun,
@@ -292,7 +292,7 @@
 		/obj/item/storage/backpack/general_belt,
 		/obj/item/device/hailer,
 		/obj/item/storage/belt/gun,
-		/obj/item/weapon/claymore/mercsword/ceremonial,
+		/obj/item/weapon/sword/ceremonial,
 		/obj/item/device/motiondetector,
 		/obj/item/device/walkman,
 	)
@@ -335,9 +335,9 @@
 	name = "\improper M3 pattern officer armor"
 	desc = "A well-crafted suit of M3 Pattern Armor typically found in the hands of higher-ranking officers. Useful for letting your men know who is in charge when taking to the field."
 	icon_state = "officer"
-	storage_slots = 3
+	storage_slots = 6
 	flags_atom = null
-	uniform_restricted = list(/obj/item/clothing/under/marine/officer, /obj/item/clothing/under/rank/qm_suit, /obj/item/clothing/under/rank/chief_medical_officer, /obj/item/clothing/under/marine/dress)
+	uniform_restricted = list(/obj/item/clothing/under/marine/officer/command)
 	specialty = "M2 pattern officer"
 	item_state_slots = list(WEAR_JACKET = "officer")
 
@@ -349,7 +349,7 @@
 	icon_state = "co_officer"
 	item_state = "co_officer"
 	armor_bullet = CLOTHING_ARMOR_HIGH
-	storage_slots = 3
+	storage_slots = 6
 	flags_atom = NO_SNOW_TYPE
 	flags_inventory = BLOCKSHARPOBJ|SMARTGUN_HARNESS
 	uniform_restricted = list(/obj/item/clothing/under/marine, /obj/item/clothing/under/rank/qm_suit)
@@ -357,26 +357,34 @@
 	item_state_slots = list(WEAR_JACKET = "co_officer")
 	valid_accessory_slots = list(ACCESSORY_SLOT_MEDAL, ACCESSORY_SLOT_RANK, ACCESSORY_SLOT_DECOR, ACCESSORY_SLOT_PONCHO)
 	black_market_value = 35
-
-
 /obj/item/clothing/suit/storage/marine/MP/CO/jacket
 	name = "\improper M3 pattern commanding officer armored coat"
 	desc = "A robust, well-polished suit of armor for the Commanding Officer. Custom-made to fit its owner with special straps to operate a smartgun. Show those Marines who's really in charge. This one has a coat over it for added warmth."
+	w_class = 2
 	icon_state = "bridge_coat_armored"
 	item_state = "bridge_coat_armored"
 	item_state_slots = list(WEAR_JACKET = "bridge_coat_armored")
 	valid_accessory_slots = list(ACCESSORY_SLOT_MEDAL, ACCESSORY_SLOT_RANK)
+	armor_bullet = CLOTHING_ARMOR_HIGHPLUS
+	armor_internaldamage = CLOTHING_ARMOR_HIGHPLUS
 
+/obj/item/clothing/suit/storage/marine/MP/CO/bomber
+	name = "\improper M3 pattern commanding officer armored jacket"
+	desc = "A robust, well-polished suit of armor for the Commanding Officer. Custom-made to fit its owner with special straps to operate a smartgun. Show those Marines who's really in charge. This one has a jacket over it for added warmth."
+	icon_state = "co_bomber_armored"
+	item_state = "co_bomber_armored"
+	item_state_slots = list(WEAR_JACKET = "co_bomber_armored")
+	valid_accessory_slots = list(ACCESSORY_SLOT_MEDAL, ACCESSORY_SLOT_RANK)
 
 /obj/item/clothing/suit/storage/marine/smartgunner
 	name = "\improper M56 combat harness"
-	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories."
+	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories , however provides less protection than standard armor, so is often paired with a flak vest."
 	icon_state = "8"
 	item_state = "armor"
 	armor_laser = CLOTHING_ARMOR_LOW
 	armor_bomb = CLOTHING_ARMOR_MEDIUM
 	armor_rad = CLOTHING_ARMOR_MEDIUM
-	storage_slots = 2
+	storage_slots = 4
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	flags_inventory = BLOCKSHARPOBJ|SMARTGUN_HARNESS
 	allowed = list(
@@ -402,7 +410,7 @@
 /obj/item/clothing/suit/storage/marine/smartgunner/mob_can_equip(mob/equipping_mob, slot, disable_warning = FALSE)
 	. = ..()
 
-	if(equipping_mob.back)
+	if(equipping_mob.back && !istype(equipping_mob.back, /obj/item/weapon/gun) && !(equipping_mob.back.flags_item & SMARTGUNNER_BACKPACK_OVERRIDE))
 		to_chat(equipping_mob, SPAN_WARNING("You can't equip [src] while wearing a backpack."))
 		return FALSE
 
@@ -418,24 +426,58 @@
 	if(slot != WEAR_BACK)
 		return
 
-	. = COMPONENT_HUMAN_CANCEL_ATTEMPT_EQUIP
-
-	if(equipping_item.flags_equip_slot == SLOT_BACK)
-		to_chat(equipping_human, SPAN_WARNING("You can't equip [equipping_item] on your back while wearing [src]."))
+	if(equipping_item.flags_item & SMARTGUNNER_BACKPACK_OVERRIDE)
 		return
+
+	if(!istype(equipping_item, /obj/item/weapon/gun) && equipping_item.flags_equip_slot == SLOT_BACK)
+		to_chat(equipping_human, SPAN_WARNING("The [src]'s smartgun robotic arm mount obstructs your ability to equip the [equipping_item] on your back."))
+		return COMPONENT_HUMAN_CANCEL_ATTEMPT_EQUIP
 
 /obj/item/clothing/suit/storage/marine/smartgunner/unequipped(mob/user, slot)
 	. = ..()
 
 	UnregisterSignal(user, COMSIG_HUMAN_ATTEMPTING_EQUIP)
 
+/obj/item/clothing/suit/storage/marine/odst
+	name = "\improper Mk6 armored compression suit"
+	desc = "A special variant of the mk5 compression suit, designed for FORECON covert combat drops. Custom-made to fit its owner with special straps to operate a smartgun."
+	icon_state = "compression"
+	item_state = "compression"
+	item_state_slots = list(WEAR_JACKET = "compression")
+	armor_bullet = CLOTHING_ARMOR_HIGH
+	storage_slots = 3
+	flags_atom = NO_SNOW_TYPE|NOPRESSUREDMAGE
+	flags_inventory = CANTSTRIP|SMARTGUN_HARNESS|BLOCKSHARPOBJ
+	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROT
+	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS
+	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS|BODY_FLAG_FOOT_LEFT|BODY_FLAG_FOOT_RIGHT
+	flags_heat_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS|BODY_FLAG_FOOT_LEFT|BODY_FLAG_FOOT_RIGHT
+	valid_accessory_slots = list(ACCESSORY_SLOT_DECOR,)
+	black_market_value = 35
+
+/obj/item/clothing/suit/storage/marine/syndi_light
+	name = "\improper Type-32S Balenciaga armored Compression Suit"
+	desc = "A syndicate agent's compression suit, you'll look just like a real murderous syndicate agent in this!"
+	icon_state = "rig-syndi"
+	item_state = "rig-syndi"
+	item_state_slots = list(WEAR_JACKET = "rig-syndi")
+
+/obj/item/clothing/suit/storage/marine/odst/syndi_elite
+	name = "\improper Type-32S Balenciaga R.I.G. Suit"
+	desc = "A syndicate agent's R.I.G. compression suit, you'll look just like a real murderous syndicate agent in this!"
+	icon_state = "rig-syndie"
+	item_state = "rig-syndie"
+	item_state_slots = list(WEAR_JACKET = "rig-syndie")
+
 /obj/item/clothing/suit/storage/marine/leader
 	name = "\improper B12 pattern marine armor"
 	desc = "A lightweight suit of carbon fiber body armor built for quick movement. Designed in a lovely forest green. Use it to toggle the built-in flashlight."
 	icon_state = "7"
-	armor_melee = CLOTHING_ARMOR_MEDIUMHIGH
-	armor_bomb = CLOTHING_ARMOR_MEDIUM
-	armor_bio = CLOTHING_ARMOR_MEDIUMHIGH
+	armor_melee = CLOTHING_ARMOR_HIGH
+	armor_bullet = CLOTHING_ARMOR_HIGH
+	armor_bomb = CLOTHING_ARMOR_LOW
+	armor_bio = CLOTHING_ARMOR_MEDIUMLOW
+	armor_rad = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_internaldamage = CLOTHING_ARMOR_MEDIUMHIGH
 	specialty = "B12 pattern marine"
 
@@ -443,9 +485,8 @@
 	name = "\improper M3 pattern tanker armor"
 	desc = "A modified and refashioned suit of M3 Pattern armor designed to be worn by the loader of a USCM vehicle crew. While the suit is a bit more encumbering to wear with the crewman uniform, it offers the loader a degree of protection that would otherwise not be enjoyed."
 	icon_state = "tanker"
-	uniform_restricted = list(/obj/item/clothing/under/marine/officer/tanker)
 	specialty = "M3 pattern tanker"
-	storage_slots = 2
+	storage_slots = 6
 
 //===========================//PFC ARMOR CLASSES\\================================\\
 //=================================================================================\\
@@ -454,19 +495,19 @@
 	armor_variation = 6
 
 /obj/item/clothing/suit/storage/marine/light
-	name = "\improper M3-L pattern light armor"
-	desc = "A lighter, cut down version of the standard M3 pattern armor. It sacrifices durability for more speed."
+	name = "\improper M3-L pattern light armor breastplate"
+	desc = "A lighter, cut down version of the standard M3 pattern armor set. Favored by Non-combat and Command personel who would like a little more protection the field, it sacrifices coverage for comfort."
 	specialty = "\improper M3-L pattern light"
 	icon_state = "L1"
 	armor_variation = 6
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	armor_melee = CLOTHING_ARMOR_MEDIUMLOW
 	armor_bullet = CLOTHING_ARMOR_MEDIUMLOW
-	armor_bomb = CLOTHING_ARMOR_MEDIUM
+	armor_bomb = CLOTHING_ARMOR_LOW
 	armor_bio = CLOTHING_ARMOR_MEDIUMLOW
 	armor_rad = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_internaldamage = CLOTHING_ARMOR_LOW
-	storage_slots = 2
+	storage_slots = 6
 
 /obj/item/clothing/suit/storage/marine/light/padded
 	icon_state = "L1"
@@ -523,14 +564,14 @@
 	icon_state = "VL_syn_camo"
 	flags_atom = NO_NAME_OVERRIDE
 	flags_marine_armor = ARMOR_LAMP_OVERLAY|SYNTH_ALLOWED //No squad colors + can be worn by synths.
-	armor_melee = CLOTHING_ARMOR_NONE
-	armor_bullet = CLOTHING_ARMOR_NONE
-	armor_laser = CLOTHING_ARMOR_NONE
-	armor_energy = CLOTHING_ARMOR_NONE
-	armor_bomb = CLOTHING_ARMOR_NONE
-	armor_bio = CLOTHING_ARMOR_NONE
+	armor_melee = CLOTHING_ARMOR_MEDIUMLOW
+	armor_bullet = CLOTHING_ARMOR_HIGH
+	armor_energy = CLOTHING_ARMOR_LOW
+	armor_laser = CLOTHING_ARMOR_LOW
+	armor_bomb = CLOTHING_ARMOR_LOW
+	armor_bio = CLOTHING_ARMOR_VERYLOW
 	armor_rad = CLOTHING_ARMOR_NONE
-	armor_internaldamage = CLOTHING_ARMOR_NONE
+	armor_internaldamage = CLOTHING_ARMOR_MEDIUM
 	storage_slots = 3
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
 	time_to_unequip = 0.5 SECONDS
@@ -564,13 +605,13 @@
 	specialty = "\improper M3-EOD pattern"
 	icon_state = "H1"
 	armor_variation = 6
-	armor_melee = CLOTHING_ARMOR_MEDIUMHIGH
-	armor_bullet = CLOTHING_ARMOR_HIGHPLUS
-	armor_bomb = CLOTHING_ARMOR_HIGHPLUS
-	armor_bio = CLOTHING_ARMOR_MEDIUMHIGH
-	armor_rad = CLOTHING_ARMOR_MEDIUM
+	armor_melee = CLOTHING_ARMOR_HIGH
+	armor_bullet = CLOTHING_ARMOR_VERYHIGH
+	armor_bomb = CLOTHING_ARMOR_MEDIUM
+	armor_bio = CLOTHING_ARMOR_MEDIUMLOW
+	armor_rad = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_internaldamage = CLOTHING_ARMOR_MEDIUMHIGH
-	storage_slots = 2
+	storage_slots = 6
 	slowdown = SLOWDOWN_ARMOR_LOWHEAVY
 	movement_compensation = SLOWDOWN_ARMOR_MEDIUM
 
@@ -605,18 +646,18 @@
 	name = "\improper B18 defensive armor"
 	desc = "A heavy, rugged set of armor plates for when you really, really need to not die horribly. Slows you down though.\nComes with two tricord injectors in each arm guard."
 	icon_state = "xarmor"
-	armor_melee = CLOTHING_ARMOR_HIGH
-	armor_bullet = CLOTHING_ARMOR_HIGH
-	armor_bomb = CLOTHING_ARMOR_VERYHIGH
+	armor_melee = CLOTHING_ARMOR_VERYHIGH
+	armor_bullet = CLOTHING_ARMOR_VERYHIGHPLUS
+	armor_bomb = CLOTHING_ARMOR_VERYHIGHPLUS
 	armor_bio = CLOTHING_ARMOR_MEDIUMLOW
 	armor_rad = CLOTHING_ARMOR_MEDIUMHIGH
-	armor_internaldamage = CLOTHING_ARMOR_MEDIUMHIGH
-	storage_slots = 2
+	armor_internaldamage = CLOTHING_ARMOR_VERYHIGH
+	storage_slots = 4
 	flags_inventory = BLOCKSHARPOBJ|BLOCK_KNOCKDOWN
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS|BODY_FLAG_FEET
 	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS|BODY_FLAG_FEET
 	flags_heat_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS|BODY_FLAG_FEET
-	slowdown = SLOWDOWN_ARMOR_HEAVY
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	specialty = "B18 defensive"
 	unacidable = TRUE
 	var/injections = 4
@@ -1052,11 +1093,12 @@
 		/obj/item/tool/crowbar,
 		/obj/item/storage/large_holster/katana,
 		/obj/item/storage/large_holster/machete,
-		/obj/item/weapon/claymore/mercsword/machete,
+		/obj/item/weapon/sword/machete,
 		/obj/item/attachable/bayonet,
 		/obj/item/device/motiondetector,
 		/obj/item/tool/crew_monitor,
 		/obj/item/device/walkman,
+		/obj/item/device/trench_whistle,
 	)
 	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/pmc)
 	item_state_slots = list(WEAR_JACKET = "pmc_armor")
@@ -1267,27 +1309,30 @@
 
 /obj/item/clothing/suit/storage/marine/faction/UPP
 	name = "\improper UM5 personal armor"
-	desc = "Standard body armor of the UPP military, the UM5 (Union Medium MK5) is a medium body armor, roughly on par with the M3 pattern body armor in service with the USCM, specialized towards ballistics protection. Unlike the M3, however, the plate has a heavier neckplate. This has earned many UA members to refer to UPP soldiers as 'tin men'."
+	desc = "Standard body armor of the UPP military, the UM5 (Union Medium MK5) is a medium body armor, slightly tougher than the M3 pattern body armor in service with the USCM, specialized towards ballistics protection. Unlike the M3, however, the plate has a heavier neckplate. This has earned many UA members to refer to UPP soldiers as 'tin men'."
 	icon_state = "upp_armor"
-	armor_bullet = CLOTHING_ARMOR_HIGH
-	armor_energy = CLOTHING_ARMOR_MEDIUM
+	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS|BODY_FLAG_FEET
+	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS|BODY_FLAG_FEET
+	flags_heat_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS|BODY_FLAG_FEET
+	armor_melee = CLOTHING_ARMOR_VERYHIGH
+	armor_bullet = CLOTHING_ARMOR_VERYHIGHPLUS
+	armor_bomb = CLOTHING_ARMOR_VERYHIGHPLUS
 	armor_bio = CLOTHING_ARMOR_MEDIUMLOW
-	armor_rad = CLOTHING_ARMOR_MEDIUMLOW
-	armor_internaldamage = CLOTHING_ARMOR_HIGH
-	storage_slots = 1
-	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/UPP, /obj/item/clothing/under/marine/veteran/UPP/medic, /obj/item/clothing/under/marine/veteran/UPP/engi)
+	armor_rad = CLOTHING_ARMOR_MEDIUMHIGH
+	armor_internaldamage = CLOTHING_ARMOR_VERYHIGH
+	storage_slots = 3
 
 /obj/item/clothing/suit/storage/marine/faction/UPP/support
 	name = "\improper UL6 personal armor"
-	desc = "Standard body armor of the UPP military, the UL6 (Union Light MK6) is a light body armor, slightly weaker than the M3 pattern body armor in service with the USCM, specialized towards ballistics protection. This set of personal armor lacks the iconic neck piece and some of the armor in favor of user mobility."
+	desc = "Standard body armor of the UPP military, the UL6 (Union Light MK6) is a light body armor, slightly strongerer than the M3 pattern body armor in service with the USCM, specialized towards ballistics protection. This set of personal armor lacks the iconic neck piece and some of the armor in favor of user mobility."
 	storage_slots = 3
 	icon_state = "upp_armor_support"
-	slowdown = SLOWDOWN_ARMOR_LIGHT
 	armor_melee = CLOTHING_ARMOR_HIGH
-	armor_energy = CLOTHING_ARMOR_MEDIUM
+	armor_bullet = CLOTHING_ARMOR_HIGHPLUS
+	armor_bomb = CLOTHING_ARMOR_VERYHIGHPLUS
 	armor_bio = CLOTHING_ARMOR_MEDIUMLOW
-	armor_rad = CLOTHING_ARMOR_MEDIUMLOW
-	armor_internaldamage = CLOTHING_ARMOR_HIGH
+	armor_rad = CLOTHING_ARMOR_MEDIUMHIGH
+	armor_internaldamage = CLOTHING_ARMOR_VERYHIGH
 
 /obj/item/clothing/suit/storage/marine/faction/UPP/commando
 	name = "\improper UM5CU personal armor"
@@ -1304,14 +1349,12 @@
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	flags_inventory = BLOCKSHARPOBJ|BLOCK_KNOCKDOWN
 	flags_armor_protection = BODY_FLAG_ALL_BUT_HEAD
-	armor_melee = CLOTHING_ARMOR_MEDIUMHIGH
-	armor_bullet = CLOTHING_ARMOR_HIGHPLUS
-	armor_laser = CLOTHING_ARMOR_MEDIUMLOW
-	armor_energy = CLOTHING_ARMOR_MEDIUM
-	armor_bomb = CLOTHING_ARMOR_HIGH
-	armor_bio = CLOTHING_ARMOR_MEDIUM
-	armor_rad = CLOTHING_ARMOR_MEDIUMLOW
-	armor_internaldamage = CLOTHING_ARMOR_HIGHPLUS
+	armor_melee = CLOTHING_ARMOR_VERYHIGHPLUS
+	armor_bullet = CLOTHING_ARMOR_ULTRAHIGHPLUS
+	armor_bomb = CLOTHING_ARMOR_VERYHIGHPLUS
+	armor_bio = CLOTHING_ARMOR_MEDIUMLOW
+	armor_rad = CLOTHING_ARMOR_MEDIUMHIGH
+	armor_internaldamage = CLOTHING_ARMOR_VERYHIGHPLUS
 
 /obj/item/clothing/suit/storage/marine/faction/UPP/heavy/Initialize()
 	. = ..()
@@ -1334,7 +1377,6 @@
 	armor_rad = CLOTHING_ARMOR_LOW
 	armor_internaldamage = CLOTHING_ARMOR_LOW
 	storage_slots = 3
-	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/UPP/officer)
 
 /obj/item/clothing/suit/storage/marine/faction/UPP/kapitan
 	name = "\improper UL4 senior officer jacket"
@@ -1350,11 +1392,11 @@
 	armor_internaldamage = CLOTHING_ARMOR_LOW
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS
 	storage_slots = 4
-	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/UPP/officer)
+
 
 /obj/item/clothing/suit/storage/marine/faction/UPP/mp
 	name = "\improper UL4 camouflaged jacket"
-	desc = "A lightweight jacket, issued to troops when they're not expected to engage in combat. Still studded to the brim with kevlar shards, though the synthread construction reduces its effectiveness."
+	desc = "A lightweight jacket, issued to troops when they're not expected to engage in combat. Still studded to the brim with Venlar shards, though the synthread construction reduces its effectiveness."
 	icon_state = "upp_coat_mp"
 	slowdown = SLOWDOWN_ARMOR_NONE
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS
@@ -1366,7 +1408,6 @@
 	armor_rad = CLOTHING_ARMOR_LOW
 	armor_internaldamage = CLOTHING_ARMOR_LOW
 	storage_slots = 4
-	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/UPP)
 	valid_accessory_slots = list(ACCESSORY_SLOT_ARMBAND, ACCESSORY_SLOT_DECOR, ACCESSORY_SLOT_MEDAL)
 	restricted_accessory_slots = list(ACCESSORY_SLOT_ARMBAND)
 
@@ -1397,11 +1438,11 @@
 	armor_bullet = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_energy = CLOTHING_ARMOR_MEDIUMLOW
 	storage_slots = 2
-	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/freelancer)
+
 
 //this one is for CLF
 /obj/item/clothing/suit/storage/militia
-	name = "colonial militia hauberk"
+	name = "Insurgent militia hauberk"
 	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops."
 	icon = 'icons/obj/items/clothing/cm_suits.dmi'
 	icon_state = "rebel_armor"
@@ -1421,7 +1462,6 @@
 	armor_rad = CLOTHING_ARMOR_MEDIUM
 	armor_internaldamage = CLOTHING_ARMOR_MEDIUM
 	storage_slots = 2
-	uniform_restricted = list(/obj/item/clothing/under/colonist)
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
@@ -1452,8 +1492,8 @@
 	pockets.max_storage_space = 8
 
 /obj/item/clothing/suit/storage/militia/vest
-	name = "colonial militia vest"
-	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This extremely light variant protects only the chest and abdomen."
+	name = "Insurgent militia vest"
+	desc = "The hauberk of a insurgent militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This extremely light variant protects only the chest and abdomen."
 	icon_state = "clf_2"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN
 	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN
@@ -1461,8 +1501,8 @@
 	movement_compensation = SLOWDOWN_ARMOR_MEDIUM
 
 /obj/item/clothing/suit/storage/militia/brace
-	name = "colonial militia brace"
-	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This extremely light variant has some of the chest pieces removed."
+	name = "Insurgent militia brace"
+	desc = "The hauberk of a insurgent militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This extremely light variant has some of the chest pieces removed."
 	icon_state = "clf_3"
 	flags_armor_protection = BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS
 	flags_cold_protection = BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS
@@ -1470,18 +1510,84 @@
 	movement_compensation = SLOWDOWN_ARMOR_MEDIUM
 
 /obj/item/clothing/suit/storage/militia/partial
-	name = "colonial militia partial hauberk"
-	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This even lighter variant has some of the arm pieces removed."
+	name = "Insurgent militia partial hauberk"
+	desc = "The hauberk of a insurgent militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This even lighter variant has some of the arm pieces removed."
 	icon_state = "clf_4"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_LEGS
 	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS
 	slowdown = 0.2
 
 /obj/item/clothing/suit/storage/militia/smartgun
-	name = "colonial militia harness"
-	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This one has straps interweaved with the plates, that allow the user to fire a captured smartgun, if a bit uncomfortably."
+	name = "Insurgent militia harness"
+	desc = "The hauberk of a insurgent militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This one has straps interweaved with the plates, that allow the user to fire a captured smartgun, if a bit uncomfortably."
 	flags_inventory = BLOCKSHARPOBJ|SMARTGUN_HARNESS
 
+/obj/item/clothing/suit/storage/militia/ranger
+	name = "Insurgent ranger armor"
+	desc = "Constructed from salvaged longstreet tank plating. This armor covers the wearer and provides impressive protection from anything but anti-tank weapons. The primary downside is due to crude construction, and the large size of the plates it is incredibly cumbersome to move in."
+	icon = 'icons/obj/items/clothing/cm_suits.dmi'
+	icon_state = "mlu_ranger"
+	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
+	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS
+	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS
+	movement_compensation = SLOWDOWN_ARMOR_MEDIUM
+	armor_melee = CLOTHING_ARMOR_VERYHIGH
+	armor_bullet = CLOTHING_ARMOR_HIGH
+	armor_laser = CLOTHING_ARMOR_HIGH
+	armor_energy = CLOTHING_ARMOR_LOW
+	armor_bomb = CLOTHING_ARMOR_VERYHIGH
+	armor_bio = CLOTHING_ARMOR_LOW
+	armor_rad = CLOTHING_ARMOR_VERYLOW
+	armor_internaldamage = CLOTHING_ARMOR_HIGH
+	storage_slots = 0
+
+/obj/item/clothing/suit/storage/militia/ranger/leader
+	name = "colonial militia ranger armor"
+	desc = "Constructed from salvaged longstreet tank plating. This armor covers the wearer and provides impressive protection from anything but anti-tank weapons.The primary downside is due to crude construction, and the large size of the plates it is incredibly cumbersome to move in. This one features a nice all weather trenchcoat like is commonly found on the frontier."
+	icon = 'icons/obj/items/clothing/cm_suits.dmi'
+	icon_state = "mlu_ranger_leader"
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	armor_melee = CLOTHING_ARMOR_VERYHIGH
+	armor_bullet = CLOTHING_ARMOR_VERYHIGHPLUS
+	armor_laser = CLOTHING_ARMOR_HIGH
+	armor_energy = CLOTHING_ARMOR_LOW
+	armor_bomb = CLOTHING_ARMOR_VERYHIGH
+	armor_bio = CLOTHING_ARMOR_LOW
+	armor_rad = CLOTHING_ARMOR_VERYLOW
+	armor_internaldamage = CLOTHING_ARMOR_HIGH
+	storage_slots = 2
+
+/obj/item/clothing/suit/storage/marine/clf/riot
+	name = "\improper UA-M1 Repainted body armor"
+	desc = "An Repaired Set of UA-M1 body armor that is employed by UA security, riot control and union-busting teams. This Set of Armor Has Been Repainted in Dark Brown Colours and has Handmade Kneepads and Armpads added to it, Is Used by the insurgents since the previous owners aren't using them for the defense of the UA anymore."
+	icon_state = "clf_ua"
+	storage_slots = 2
+
+/obj/item/clothing/suit/storage/marine/ghillie/clf
+	name = "\improper Camouflaged Hunting Gear Rig"
+	desc = "An Camouflaged Hunter Gear Rig that has an Armor Plate on the Body while it sports handmade kneepads, is the basic gear used by the more elite Insurgent Freedom Fighters. This Armor Features civilian grade thermal dampening."
+	icon_state = "clf_hunter"
+	storage_slots = 3
+
+/obj/item/clothing/suit/storage/marine/clf/hunter
+	name = "\improper Camouflaged Hunting Gear Rig"
+	desc = "A Civilian style Hunting Rig that has an venlar breast plate, and handmade kneepads, is among the basic gear used by most Insurgent Freedom Fighters."
+	icon_state = "clf_hunter"
+	storage_slots = 3
+
+/obj/item/clothing/suit/storage/marine/clf/upplight
+	name = "\improper UA-M1 Repainted body armor"
+	desc = "A set of UPP combat Armor modified by insurgents to be more lightweight and mobile."
+	icon_state = "clf_combat"
+	storage_slots = 3
+
+/obj/item/clothing/suit/storage/marine/clf/uppheavy
+	name = "\improper UA-M1 Repainted body armor"
+	desc = "An extremely heavy-duty set of body armor made out of Handcrafted Armor Plates, Repurposed Surplus Ballistic Vests and Several Armors Combined in one, Heavy and Highly Resistant, Made by the Insurgents For Their Autogunners and to Show that they are Prepared for Something Bigger than a Guerrilla War."
+	icon_state = "clf_heavy"
+	storage_slots = 2
+
+//*************************/
 /obj/item/clothing/suit/storage/CMB
 	name = "\improper CMB jacket"
 	desc = "A black jacket worn by Colonial Marshals. The back is enscribed with the powerful letters of 'MARSHAL' representing justice, authority, and protection in the outer rim. The laws of the Earth stretch beyond the Sol."
@@ -1569,12 +1675,11 @@
 		/obj/item/tool/lighter,
 		/obj/item/explosive/grenade,
 		/obj/item/storage/bible,
-		/obj/item/weapon/claymore/mercsword/machete,
+		/obj/item/weapon/sword/machete,
 		/obj/item/attachable/bayonet,
 		/obj/item/device/motiondetector,
 		/obj/item/device/walkman,
 	)
-	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/mercenary)
 	item_state_slots = list(WEAR_JACKET = "mercenary_heavy_armor")
 
 /obj/item/clothing/suit/storage/marine/veteran/mercenary/heavy
@@ -1604,12 +1709,11 @@
 		/obj/item/tool/lighter,
 		/obj/item/explosive/grenade,
 		/obj/item/storage/bible,
-		/obj/item/weapon/claymore/mercsword/machete,
+		/obj/item/weapon/sword/machete,
 		/obj/item/attachable/bayonet,
 		/obj/item/device/motiondetector,
 		/obj/item/device/walkman,
 	)
-	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/mercenary)
 	item_state_slots = list(WEAR_JACKET = "mercenary_miner_armor")
 
 /obj/item/clothing/suit/storage/marine/veteran/mercenary/support
@@ -1630,59 +1734,118 @@
 	armor_melee = CLOTHING_ARMOR_VERYHIGH
 	armor_bomb = CLOTHING_ARMOR_GIGAHIGH
 
+//===========================//TRAUMA TEAM - MERCENARY\\================================\\
+//=====================================================================\\
+
+/obj/item/clothing/suit/storage/marine/veteran/trauma_team
+	flags_marine_armor = ARMOR_LAMP_OVERLAY
+	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
+
+/obj/item/clothing/suit/storage/marine/veteran/trauma_team
+	name = "\improper Decadencia Verde Pattern Tactical Armor"
+	desc = "A modification of the standard Nanotrasen Systems Decadencia armor. Designed with high-profile security operators and corporate mercenaries. This Varient features a large medical insignia."
+	icon_state = "trauma1"
+	armor_bullet = CLOTHING_ARMOR_MEDIUMHIGH
+	armor_energy = CLOTHING_ARMOR_MEDIUMLOW
+	armor_bomb = CLOTHING_ARMOR_MEDIUM
+	armor_rad = CLOTHING_ARMOR_MEDIUM
+	storage_slots = 6
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
+	armor_bullet = CLOTHING_ARMOR_ULTRAHIGH
+	allowed = list(
+		/obj/item/weapon/gun,
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/device/flashlight,
+		/obj/item/ammo_magazine/,
+		/obj/item/weapon/baton,
+		/obj/item/handcuffs,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/tool/lighter,
+		/obj/item/explosive/grenade,
+		/obj/item/storage/bible,
+		/obj/item/tool/crowbar,
+		/obj/item/storage/large_holster/katana,
+		/obj/item/storage/large_holster/machete,
+		/obj/item/weapon/sword/machete,
+		/obj/item/attachable/bayonet,
+		/obj/item/device/motiondetector,
+		/obj/item/tool/crew_monitor,
+		/obj/item/device/walkman,
+		/obj/item/device/trench_whistle,
+	)
+
+/obj/item/clothing/suit/storage/marine/veteran/trauma_team/alt
+	name = "\improper Decadencia Verde Pattern Tactical Armor"
+	desc = "A modification of the standard Nanotrasen Systems Decadencia armor. Designed with high-profile security operators and corporate mercenaries. This Varient features a large medical insignia."
+	icon_state = "trauma2"
 
 //=========================//PROVOST\\================================\\
 //=======================================================================\\
 
 /obj/item/clothing/suit/storage/marine/MP/provost
 	name = "\improper M3 pattern Provost armor"
+	desc = "A standard Provost M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
+	icon_state = "pvmedium"
+	item_state_slots = list(WEAR_JACKET = "pvmedium")
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	armor_bullet = CLOTHING_ARMOR_MEDIUM
+	armor_laser = CLOTHING_ARMOR_MEDIUMLOW
+	armor_bomb = CLOTHING_ARMOR_MEDIUMHIGH
+	armor_bio = CLOTHING_ARMOR_MEDIUMHIGH
+	armor_internaldamage = CLOTHING_ARMOR_MEDIUM
+	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
+	storage_slots = 3
+
+/obj/item/clothing/suit/storage/marine/MP/provost/tml
+	name = "\improper M3 pattern Senior Provost armor"
+	desc = "A more refined Provost M3 Pattern Chestplate for senior officers. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
+	icon_state = "pvleader"
+	item_state_slots = list(WEAR_JACKET = "pvleader")
+
+/obj/item/clothing/suit/storage/marine/MP/provost/marshal
+	name = "\improper M5 pattern Provost Marshal armor"
+	desc = "A custom fit luxury armor suit for Provost Marshals. Useful for letting your men know who is in charge when taking to the field."
+	icon_state = "pvmarshal"
+	item_state_slots = list(WEAR_JACKET = "pvmarshal")
+	w_class = SIZE_MEDIUM
+	storage_slots = 4
+
+/obj/item/clothing/suit/storage/marine/MP/provost/light
+	name = "\improper M3 pattern Provost light armor"
 	desc = "A lighter Provost M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon_state = "pvlight"
 	item_state_slots = list(WEAR_JACKET = "pvlight")
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
-	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
+
+/obj/item/clothing/suit/storage/marine/MP/provost/light/flexi
+	name = "\improper M3 pattern Provost flexi-armor"
+	desc = "A flexible and easy to store M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	w_class = SIZE_MEDIUM
-
-/obj/item/clothing/suit/storage/marine/MP/provost/enforcer
-	name = "\improper M3 pattern Provost armor"
-	desc = "A standard Provost M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
-	icon_state = "pvmedium"
-	item_state_slots = list(WEAR_JACKET = "pvmedium")
-	slowdown = SLOWDOWN_ARMOR_MEDIUM
-	armor_melee = CLOTHING_ARMOR_MEDIUM
-	armor_bullet = CLOTHING_ARMOR_MEDIUM
-	armor_laser = CLOTHING_ARMOR_MEDIUMLOW
-	armor_bomb = CLOTHING_ARMOR_MEDIUMLOW
-	armor_bio = CLOTHING_ARMOR_MEDIUM
-	armor_internaldamage = CLOTHING_ARMOR_MEDIUM
-
-/obj/item/clothing/suit/storage/marine/MP/provost/tml
-	name = "\improper M3 pattern Senior Provost armor"
-	icon_state = "pvleader"
-	item_state_slots = list(WEAR_JACKET = "pvleader")
-	desc = "A more refined Provost M3 Pattern Chestplate for senior officers. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
-
-	slowdown = SLOWDOWN_ARMOR_MEDIUM
-	armor_bullet = CLOTHING_ARMOR_MEDIUM
-	armor_laser = CLOTHING_ARMOR_MEDIUMLOW
-	armor_bio = CLOTHING_ARMOR_MEDIUMHIGH
-	armor_internaldamage = CLOTHING_ARMOR_MEDIUMHIGH
-
-/obj/item/clothing/suit/storage/marine/MP/provost/marshal
-	icon_state = "pvmarshal"
-	item_state_slots = list(WEAR_JACKET = "pvmarshal")
-	name = "\improper M3 pattern Provost Marshal armor"
-	desc = "A custom fit luxury armor suit for Provost Marshals. Useful for letting your men know who is in charge when taking to the field."
-
-/obj/item/clothing/suit/storage/marine/MP/provost/marshal/chief
-	name = "\improper M3 pattern Provost Chief Marshal armor"
+	icon_state = "pvlight_2"
+	item_state_slots = list(WEAR_JACKET = "pvlight_2")
+	storage_slots = 2
 
 //================//UNITED AMERICAS ALLIED COMMAND\\=====================\\
 //=======================================================================\\
 
+/obj/item/clothing/suit/storage/marine/uaac/tis/es
+	name = "\improper M3 pattern Escort Officer Armor"
+	icon_state = "tisescort"
+	item_state_slots = list(WEAR_JACKET = "tisescort")
+	desc = "A carefully converted set of Provost Team leader to match the UAAC-TIS color scheme. Usually worn by TIS Escort Officers, minor modifications have been made to the armor, increasing protection in some areas while cutting back in others."
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
+	armor_melee = CLOTHING_ARMOR_MEDIUMLOW
+	armor_bullet = CLOTHING_ARMOR_MEDIUM
+	armor_laser = CLOTHING_ARMOR_LOW
+	armor_bio = CLOTHING_ARMOR_MEDIUM
+	armor_internaldamage = CLOTHING_ARMOR_MEDIUMHIGH
+	uniform_restricted = list(/obj/item/clothing/under/uaac/tis)
+
 /obj/item/clothing/suit/storage/marine/uaac/tis/sa
 	name = "\improper M3 pattern UAAC-TIS Special Agent Armor"
-	desc = "A modified luxury armor, originally meant for a USCM Provost Marshall, modified to use the colors and insignia of the TIS. The Three Eyes is technically able to requisition any equipment or personnel to fulfill its mission and often uses this privilege to outfit their agents with high-quality gear from other UA military forces."
+	desc = "A modified luxury armor, originally meant for a USCM Provost Marshal, modified to use the colors and insignia of the TIS. The Three Eyes is technically able to requisition any equipment or personnel to fulfill its mission and often uses this privilege to outfit their agents with high-quality gear from other UA military forces."
 	icon_state = "tis"
 	item_state_slots = list(WEAR_JACKET = "tis")
 	armor_melee = CLOTHING_ARMOR_MEDIUMHIGH
@@ -1691,7 +1854,7 @@
 	armor_energy = CLOTHING_ARMOR_LOW
 	armor_bomb = CLOTHING_ARMOR_MEDIUM
 	armor_internaldamage = CLOTHING_ARMOR_MEDIUMLOW
-	storage_slots = 2
+	storage_slots = 4
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
 	allowed = list(
@@ -1709,7 +1872,7 @@
 		/obj/item/storage/backpack/general_belt,
 		/obj/item/device/hailer,
 		/obj/item/storage/belt/gun,
-		/obj/item/weapon/claymore/mercsword/ceremonial,
+		/obj/item/weapon/sword/ceremonial,
 		/obj/item/device/motiondetector,
 		/obj/item/device/walkman,
 	)
@@ -1765,7 +1928,7 @@
 		/obj/item/tool/lighter,
 		/obj/item/explosive/grenade,
 		/obj/item/storage/bible,
-		/obj/item/weapon/claymore/mercsword/machete,
+		/obj/item/weapon/sword/machete,
 		/obj/item/attachable/bayonet,
 		/obj/item/device/motiondetector,
 		/obj/item/device/walkman,
@@ -1807,5 +1970,50 @@
 	slowdown = SLOWDOWN_ARMOR_LOWHEAVY
 	movement_compensation = SLOWDOWN_ARMOR_MEDIUM
 
+/obj/item/clothing/suit/storage/marine/veteran/royal_marine/bw_webbing
+	name = "kestrel light combat webbing armour"
+	desc = "A heavier version of the armor system used by the Three World Empire's Royal Blackwatch. Designers from a Weyland Yutani subsidary, Lindenthal-Ehrenfeld Militärindustrie, iterated on the USCMC's M3 pattern personal armor in their Tokonigara lab to create an armor systemed to suit the unique needs of the Three World Empire's smaller but better equipped Militaries."
+	icon_state = "rmc_webbing"
+	item_state = "rmc_webbing"
+	armor_melee = CLOTHING_ARMOR_HIGH
+	armor_bullet = CLOTHING_ARMOR_HIGHPLUS
+	armor_bomb = CLOTHING_ARMOR_HIGHPLUS
+	armor_bio = CLOTHING_ARMOR_MEDIUM
+	armor_rad = CLOTHING_ARMOR_MEDIUM
+	armor_internaldamage = CLOTHING_ARMOR_MEDIUMHIGH
+	storage_slots = 7
+	slowdown = SLOWDOWN_ARMOR_LOWHEAVY
+	movement_compensation = SLOWDOWN_ARMOR_MEDIUM
+
 /atom/movable/marine_light
 	light_system = DIRECTIONAL_LIGHT
+
+//CBRN
+/obj/item/clothing/suit/storage/marine/cbrn
+	name = "\improper M3-M armor"
+	desc = "While lacking the appearance of the M3 pattern armor worn in regular service, this armor piece is still a derivative of it. It has been heavily modified to fit over the MOPP suit with additional padding and Venlar composite layers removed, so as not to restrict the wearer’s movement. However, with the reduction of composite layers, the personal protection offered is less than desired with complaints having been lodged since 2165."
+	icon_state = "cbrn"
+	item_state = "cbrn"
+	slowdown = SLOWDOWN_ARMOR_HEAVY
+	armor_melee = CLOTHING_ARMOR_MEDIUM
+	armor_bullet = CLOTHING_ARMOR_MEDIUM
+	armor_bomb = CLOTHING_ARMOR_MEDIUM
+	armor_bio = CLOTHING_ARMOR_LOW
+	armor_rad =CLOTHING_ARMOR_MEDIUMLOW
+	armor_internaldamage = CLOTHING_ARMOR_LOW
+	flags_marine_armor = NO_FLAGS
+	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+	flags_inventory = BLOCKSHARPOBJ
+	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN
+	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN
+	flags_heat_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN
+	uniform_restricted = list(/obj/item/clothing/under/marine/cbrn)
+
+/obj/item/clothing/suit/storage/marine/cbrn/advanced
+	slowdown = SLOWDOWN_ARMOR_LOWHEAVY
+	armor_melee = CLOTHING_ARMOR_HIGH
+	armor_bullet = CLOTHING_ARMOR_MEDIUMHIGH
+	armor_bomb = CLOTHING_ARMOR_ULTRAHIGH
+	armor_bio = CLOTHING_ARMOR_GIGAHIGHPLUS
+	armor_rad = CLOTHING_ARMOR_GIGAHIGHPLUS
+	armor_internaldamage = CLOTHING_ARMOR_HIGHPLUS

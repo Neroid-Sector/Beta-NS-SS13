@@ -1,0 +1,226 @@
+/obj/item/hardpoint/holder/bmp_turret
+	name = "BMP Multipurpose Turret"
+	desc = "The centerpiece of the bmp. Designed to support quick installation and deinstallation of various bmp weapon modules. Has inbuilt smoke screen deployment system."
+
+	icon = 'icons/obj/vehicles/bmp.dmi'
+	icon_state = "bmp_turret_0"
+	disp_icon = "bmp"
+	disp_icon_state = "bmp_turret"
+	activation_sounds = list('sound/weapons/vehicles/smokelauncher_fire.ogg')
+	pixel_x = -48
+	pixel_y = -48
+
+	density = 1 //come on, it's huge
+
+	activatable = TRUE
+	cooldown = 150
+	accuracy = 0.8
+
+	ammo = new /obj/item/ammo_magazine/hardpoint/turret_smoke
+	max_clips = 2
+	use_muzzle_flash = FALSE
+
+	w_class = SIZE_MASSIVE
+	density = TRUE
+	anchored = TRUE
+
+	allowed_seat = VEHICLE_DRIVER
+
+	slot = HDPT_TURRET
+
+	// big beefy chonk of metal
+	health = 750
+	damage_multiplier = 0.05
+
+	accepted_hardpoints = list(
+		// primaries
+		/obj/item/hardpoint/primary/autocannon,
+		/obj/item/hardpoint/primary/cannon,
+		// secondaries
+		/obj/item/hardpoint/secondary/towlauncher,
+		/obj/item/hardpoint/secondary/m56cupola,
+		/obj/item/hardpoint/secondary/grenade_launcher
+	)
+
+	hdpt_layer = HDPT_LAYER_TURRET
+	px_offsets = list(
+		"1" = list(0, 0),
+		"2" = list(0, 0),
+		"4" = list(0, 0),
+		"8" = list(0, 0)
+	)
+
+	var/gyro = FALSE
+
+	// How long the windup is before the turret rotates
+	var/rotation_windup = 5
+	// Used during the windup
+	var/rotating = FALSE
+
+/obj/item/hardpoint/holder/bmp_turret/update_icon()
+	var/broken = (health <= 0)
+	icon_state = "bmp_turret_[broken]"
+
+	if(health <= initial(health))
+		var/image/damage_overlay = image(icon, icon_state = "damaged_turret")
+		damage_overlay.alpha = 255 * (1 - (health / initial(health)))
+		overlays += damage_overlay
+
+	..()
+
+/obj/item/hardpoint/holder/bmp_turret/get_icon_image(x_offset, y_offset, new_dir)
+	var/icon_state_suffix = "0"
+	if(health <= 0)
+		icon_state_suffix = "1"
+
+	var/image/I = image(icon = disp_icon, icon_state = "[disp_icon_state]_[icon_state_suffix]", pixel_x = x_offset, pixel_y = y_offset, dir = new_dir)
+
+	if(health <= initial(health))
+		var/image/damage_overlay = image(icon, icon_state = "damaged_turret")
+		damage_overlay.alpha = 255 * (1 - (health / initial(health)))
+		I.overlays += damage_overlay
+
+	return I
+
+// no picking this big beast up
+/obj/item/hardpoint/holder/bmp_turret/attack_hand(mob/user)
+	return
+
+/obj/item/hardpoint/holder/bmp_turret/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/powerloader_clamp))
+		var/obj/item/powerloader_clamp/PC = I
+		if(!PC.linked_powerloader)
+			qdel(PC)
+			return TRUE
+
+		if(health < 1)
+			visible_message(SPAN_WARNING("\The [src] disintegrates into useless pile of scrap under the damage it suffered!"))
+			qdel(src)
+			return TRUE
+
+		PC.grab_object(user, src, "vehicle_module", 'sound/machines/hydraulics_2.ogg')
+		update_icon()
+		return TRUE
+	..()
+
+
+/obj/item/hardpoint/holder/bmp_turret/get_tgui_info()
+	var/list/data = list()
+
+	data += list(list( // turret smokescreen data
+		"name" = "M34A2-A Turret Smoke Screen",
+		"health" = health <= 0 ? null : round(get_integrity_percent()),
+		"uses_ammo" = TRUE,
+		"current_rounds" = ammo.current_rounds / 2,
+		"max_rounds"= ammo.max_rounds / 2,
+		"mags" = LAZYLEN(backup_clips),
+		"max_mags" = max_clips,
+	))
+
+	for(var/obj/item/hardpoint/H in hardpoints)
+		data += list(H.get_tgui_info())
+
+	return data
+
+//gyro ON locks the turret in one direction, OFF will make turret turning when bmp turns
+/obj/item/hardpoint/holder/bmp_turret/proc/toggle_gyro(mob/user)
+	if(health <= 0)
+		to_chat(user, SPAN_WARNING("\The [src]'s stabilization systems are busted!"))
+		return
+
+	gyro = !gyro
+	to_chat(user, SPAN_NOTICE("You toggle \the [src]'s gyroscopic stabilizer [gyro ? "ON" :"OFF"]."))
+
+/obj/item/hardpoint/holder/bmp_turret/proc/user_rotation(mob/user, deg)
+	// no rotating a broken turret
+	if(health <= 0)
+		return
+
+	if(rotating)
+		return
+
+	rotating = TRUE
+	to_chat(user, SPAN_NOTICE("You begin rotating the turret towards the [dir2text(turn(dir,deg))]."))
+
+	if(!do_after(user, rotation_windup, INTERRUPT_ALL, BUSY_ICON_GENERIC))
+		rotating = FALSE
+		return
+	rotating = FALSE
+
+	rotate(deg, TRUE)
+
+/obj/item/hardpoint/holder/bmp_turret/rotate(deg, override_gyro = FALSE)
+	if(gyro && !override_gyro)
+		return
+
+	..(deg)
+
+	var/obj/vehicle/multitile/bmp/C = owner
+	var/obj/item/hardpoint/support/artillery_module/AM
+	for(var/obj/item/hardpoint/support/artillery_module/A in C.hardpoints)
+		AM = A
+	if(AM && AM.is_active)
+		var/mob/user = C.seats[VEHICLE_GUNNER]
+		if(user && user.client)
+			user = C.seats[VEHICLE_GUNNER]
+			user.client.change_view(AM.view_buff, src)
+
+			switch(dir)
+				if(NORTH)
+					user.client.pixel_x = 0
+					user.client.pixel_y = AM.view_tile_offset * 32
+				if(SOUTH)
+					user.client.pixel_x = 0
+					user.client.pixel_y = -1 * AM.view_tile_offset * 32
+				if(EAST)
+					user.client.pixel_x = AM.view_tile_offset * 32
+					user.client.pixel_y = 0
+				if(WEST)
+					user.client.pixel_x = -1 * AM.view_tile_offset * 32
+					user.client.pixel_y = 0
+
+/obj/item/hardpoint/holder/bmp_turret/fire(mob/user, atom/A)
+	if(ammo.current_rounds <= 0)
+		return
+
+	next_use = world.time + cooldown
+
+	var/turf/L
+	var/turf/R
+	switch(owner.dir)
+		if(NORTH)
+			L = locate(owner.x - 2, owner.y + 4, owner.z)
+			R = locate(owner.x + 2, owner.y + 4, owner.z)
+		if(SOUTH)
+			L = locate(owner.x + 2, owner.y - 4, owner.z)
+			R = locate(owner.x - 2, owner.y - 4, owner.z)
+		if(EAST)
+			L = locate(owner.x + 4, owner.y + 2, owner.z)
+			R = locate(owner.x + 4, owner.y - 2, owner.z)
+		else
+			L = locate(owner.x - 4, owner.y + 2, owner.z)
+			R = locate(owner.x - 4, owner.y - 2, owner.z)
+
+	if(LAZYLEN(activation_sounds))
+		playsound(get_turf(src), pick(activation_sounds), 60, 1)
+	fire_projectile(user, L)
+
+	sleep(10)
+
+	if(LAZYLEN(activation_sounds))
+		playsound(get_turf(src), pick(activation_sounds), 60, 1)
+	fire_projectile(user, R)
+
+	to_chat(user, SPAN_WARNING("Smoke Screen uses left: <b>[SPAN_HELPFUL(ammo ? ammo.current_rounds / 2 : 0)]/[SPAN_HELPFUL(ammo ? ammo.max_rounds / 2 : 0)]</b> | Mags: <b>[SPAN_HELPFUL(LAZYLEN(backup_clips))]/[SPAN_HELPFUL(max_clips)]</b>"))
+
+/obj/item/hardpoint/holder/bmp_turret/fire_projectile(mob/user, atom/A)
+	set waitfor = 0
+
+	var/turf/origin_turf = get_turf(src)
+	origin_turf = locate(origin_turf.x + origins[1], origin_turf.y + origins[2], origin_turf.z)
+	origin_turf = get_step(get_step(origin_turf, owner.dir), owner.dir) //this should get us tile in front of bmp to prevent grenade being stuck under us.
+
+	var/obj/projectile/P = generate_bullet(user, origin_turf)
+	SEND_SIGNAL(P, COMSIG_BULLET_USER_EFFECTS, owner.seats[VEHICLE_GUNNER])
+	P.fire_at(A, owner.seats[VEHICLE_GUNNER], src, get_dist(origin_turf, A) + 1, P.ammo.shell_speed)
+	ammo.current_rounds--

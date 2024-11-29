@@ -5,7 +5,7 @@
 	desc = "An automated weapon rack hooked up to a small storage of standard-issue weapons. Can be accessed only by the dropship crew."
 	icon_state = "guns"
 	req_access = list(ACCESS_MARINE_PILOT)
-	vendor_role = list(JOB_PILOT, JOB_DROPSHIP_CREW_CHIEF)
+	vendor_role = list(JOB_PILOT, JOB_DROPSHIP_CREW_CHIEF, JOB_MS_PILOT)
 	vend_flags = VEND_CLUTTER_PROTECTION | VEND_LIMITED_INVENTORY | VEND_TO_HAND
 
 	listed_products = list(
@@ -145,7 +145,7 @@ GLOBAL_LIST_INIT(cm_vending_clothing_pilot_officer, list(
 		list("Large Magazine Pouch", 15, /obj/item/storage/pouch/magazine/large, null, VENDOR_ITEM_REGULAR),
 		list("Machete Scabbard (Full)", 10, /obj/item/storage/large_holster/machete/full, null, VENDOR_ITEM_REGULAR),
 		list("Machete Pouch (Full)", 15, /obj/item/storage/pouch/machete/full, null, VENDOR_ITEM_REGULAR),
-		list("Motion Detector", 15, /obj/item/device/motiondetector, null, VENDOR_ITEM_RECOMMENDED)
+		list("Motion Detector", 15, /obj/item/device/motiontracker/adv, null, VENDOR_ITEM_RECOMMENDED)
 	))
 
 GLOBAL_LIST_INIT(cm_vending_clothing_dropship_crew_chief, list(
@@ -234,7 +234,7 @@ GLOBAL_LIST_INIT(cm_vending_clothing_dropship_crew_chief, list(
 		list("Large Magazine Pouch", 15, /obj/item/storage/pouch/magazine/large, null, VENDOR_ITEM_REGULAR),
 		list("Machete Scabbard (Full)", 10, /obj/item/storage/large_holster/machete/full, null, VENDOR_ITEM_REGULAR),
 		list("Machete Pouch (Full)", 15, /obj/item/storage/pouch/machete/full, null, VENDOR_ITEM_REGULAR),
-		list("Motion Detector", 15, /obj/item/device/motiondetector, null, VENDOR_ITEM_RECOMMENDED)
+		list("Motion Detector", 15, /obj/item/device/motiontracker/adv, null, VENDOR_ITEM_RECOMMENDED)
 	))
 
 //MARINE_CAN_BUY_SHOES MARINE_CAN_BUY_UNIFORM currently not used
@@ -242,7 +242,7 @@ GLOBAL_LIST_INIT(cm_vending_clothing_dropship_crew_chief, list(
 	name = "\improper ColMarTech Dropship Crew Equipment Rack"
 	desc = "An automated rack hooked up to a colossal storage of Dropship Crew standard-issue equipment."
 	req_access = list(ACCESS_MARINE_PILOT)
-	vendor_role = list(JOB_PILOT, JOB_DROPSHIP_CREW_CHIEF)
+	vendor_role = list(JOB_PILOT, JOB_DROPSHIP_CREW_CHIEF, JOB_MS_PILOT)
 
 /obj/structure/machinery/cm_vending/clothing/pilot_officer/get_listed_products(mob/user)
 	if(!user)
@@ -253,5 +253,7 @@ GLOBAL_LIST_INIT(cm_vending_clothing_dropship_crew_chief, list(
 	if(user.job == JOB_DROPSHIP_CREW_CHIEF)
 		return GLOB.cm_vending_clothing_dropship_crew_chief
 	if(user.job == JOB_PILOT)
+		return GLOB.cm_vending_clothing_pilot_officer
+	if(user.job == JOB_MS_PILOT)
 		return GLOB.cm_vending_clothing_pilot_officer
 	return ..()

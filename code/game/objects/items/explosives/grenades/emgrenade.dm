@@ -3,11 +3,11 @@
 	desc = "Wide area EMP grenade."
 	icon_state = "emp"
 	item_state = "emp"
-	
+
 
 /obj/item/explosive/grenade/empgrenade/prime()
 	..()
-	if(empulse(src, 4, 10))
+	if(empulse(src, 4, 5))
 		qdel(src)
 	return
 
@@ -19,6 +19,6 @@
 
 /obj/item/explosive/grenade/empgrenade/dutch/prime()
 	..()
-	if(empulse(src, 15, 20))
+	if(empulse(src, 15, 10))
 		qdel(src)
 	return

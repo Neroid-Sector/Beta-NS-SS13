@@ -307,6 +307,14 @@ their unique feature is that a direct hit will buff your damage and firerate
 		levered = FALSE
 	return empty_chamber(user)
 
+/obj/item/weapon/gun/lever_action/apply_bullet_effects(obj/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
+	. = ..()
+	if(!HAS_TRAIT(src, TRAIT_GUN_SILENCED))
+		if(!HAS_TRAIT(user, TRAIT_EAR_PROTECTION) && ishuman(user))
+			var/mob/living/carbon/human/huser = user
+			to_chat(user, SPAN_WARNING("Augh!! \The [src]'s firing resonates extremely loudly in your ears! You probably should have worn some sort of ear protection..."))
+			huser.apply_effect(6, STUTTER)
+			huser.AdjustEarDeafnessGuns(max(user.ear_deaf,2))
 
 //===================THE R4T===================\\
 
@@ -405,9 +413,9 @@ their unique feature is that a direct hit will buff your damage and firerate
 
 /obj/item/weapon/gun/lever_action/xm88/wield(mob/user)
 	. = ..()
-
-	RegisterSignal(src, COMSIG_ITEM_ZOOM, PROC_REF(scope_on))
-	RegisterSignal(src, COMSIG_ITEM_UNZOOM, PROC_REF(scope_off))
+	if(.)
+		RegisterSignal(src, COMSIG_ITEM_ZOOM, PROC_REF(scope_on))
+		RegisterSignal(src, COMSIG_ITEM_UNZOOM, PROC_REF(scope_off))
 
 /obj/item/weapon/gun/lever_action/xm88/proc/scope_on(atom/source, mob/current_user)
 	SIGNAL_HANDLER

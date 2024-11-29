@@ -43,3 +43,12 @@
 
 /obj/item/storage/toolkit/empty/fill_preset_inventory()
 	return
+
+/obj/item/storage/toolkit/ms/fill_preset_inventory()
+	new /obj/item/explosive/plastic(src)
+	new /obj/item/explosive/plastic(src)
+	new /obj/item/circuitboard(src)
+	new /obj/item/stack/cable_coil(src)
+	new /obj/item/cell(src)
+	new /obj/item/cell(src)
+	new /obj/item/device/t_scanner(src)

@@ -349,7 +349,28 @@
 	new_human.equip_to_slot_or_del(new back_item(new_human), WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/flash(new_human), WEAR_L_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(new_human), WEAR_R_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/reqcard/uscm(new_human), WEAR_IN_R_STORE)
 
+/datum/equipment_preset/uscm_ship/qm/cw1
+	paygrade = "W-1"
+
+/datum/equipment_preset/uscm_ship/qm/cw2
+	paygrade = "W-2"
+
+/datum/equipment_preset/uscm_ship/qm/cw3
+	paygrade = "W-3"
+
+/datum/equipment_preset/uscm_ship/qm/cw4
+	paygrade = "W-4"
+
+/datum/equipment_preset/uscm_ship/qm/cw5
+	paygrade = "W-5"
+
+/datum/equipment_preset/uscm_ship/qm/o1
+	paygrade = "MO1"
+
+/datum/equipment_preset/uscm_ship/qm/o2
+	paygrade = "MO2"
 //*****************************************************************************************************/
 
 /datum/equipment_preset/uscm_ship/cargo
@@ -359,7 +380,7 @@
 	access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_PREP)
 	assignment = JOB_CARGO_TECH
 	rank = JOB_CARGO_TECH
-	paygrade = "ME2"
+	paygrade = "ME4"
 	role_comm_title = "CT"
 	skills = /datum/skills/CT
 
@@ -380,12 +401,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap/req(new_human), WEAR_HEAD)
 	new_human.equip_to_slot_or_del(new back_item(new_human), WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/general/medium(new_human), WEAR_R_STORE)
-
-/datum/equipment_preset/uscm_ship/cargo/load_rank(mob/living/carbon/human/new_human)
-	if(new_human.client)
-		if(get_job_playtime(new_human.client, rank) < JOB_PLAYTIME_TIER_1)
-			return "ME1"
-	return paygrade
+	new_human.equip_to_slot_or_del(new /obj/item/reqcard/uscm(new_human), WEAR_IN_R_STORE)
 
 //*****************************************************************************************************/
 

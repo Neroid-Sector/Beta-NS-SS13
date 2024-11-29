@@ -1,8 +1,15 @@
 //------------GEAR VENDOR---------------
 
 GLOBAL_LIST_INIT(cm_vending_gear_engi, list(
-		list("ENGINEER SET (MANDATORY)", 0, null, null, null),
-		list("Essential Engineer Set", 0, /obj/effect/essentials_set/engi, MARINE_CAN_BUY_ESSENTIALS, VENDOR_ITEM_MANDATORY),
+		list("ENGINEERING SPECIALIZATION KIT (CHOOSE 1)", 0, null, null, null),
+		list("Sapper Fortification kit", 0, /obj/item/storage/box/kit/sapper, MARINE_CAN_BUY_ESSENTIALS, VENDOR_ITEM_RECOMMENDED),
+		list("Sentry Network kit", 0, /obj/item/storage/box/kit/sentry, MARINE_CAN_BUY_ESSENTIALS, VENDOR_ITEM_RECOMMENDED),
+		list("Pyro kit", 0, /obj/item/storage/box/spec/pyro, MARINE_CAN_BUY_ESSENTIALS, VENDOR_ITEM_REGULAR),
+		list("Anti Tank kit", 0, /obj/item/storage/box/kit/at, MARINE_CAN_BUY_ESSENTIALS, VENDOR_ITEM_REGULAR),
+		list("Demolitionist kit", 0, /obj/item/storage/box/kit/breacher, MARINE_CAN_BUY_ESSENTIALS, VENDOR_ITEM_RECOMMENDED),
+		list("Electronic Warfare kit(WIP)", 0, /obj/item/storage/box/kit/ewar, MARINE_CAN_BUY_ESSENTIALS, VENDOR_ITEM_REGULAR),
+		list("Pointman Breacher kit", 0, /obj/item/storage/box/kit/pursuit, MARINE_CAN_BUY_ESSENTIALS, VENDOR_ITEM_REGULAR),
+		list("Heavy Support Kit", 0, /obj/item/storage/box/kit/heavy_support, MARINE_CAN_BUY_ESSENTIALS, VENDOR_ITEM_REGULAR),
 
 		list("HANDHELD DEFENSE (CHOOSE 1)", 0, null, null, null),
 		list("21S Tesla Coil", 0, /obj/item/defenses/handheld/tesla_coil, MARINE_CAN_BUY_ATTACHMENT, VENDOR_ITEM_MANDATORY),
@@ -18,6 +25,8 @@ GLOBAL_LIST_INIT(cm_vending_gear_engi, list(
 		list("High-Capacity Power Cell", 3, /obj/item/cell/high, null, VENDOR_ITEM_REGULAR),
 		list("Metal x10", 5, /obj/item/stack/sheet/metal/small_stack, null, VENDOR_ITEM_RECOMMENDED),
 		list("Plasteel x10", 7, /obj/item/stack/sheet/plasteel/small_stack, null, VENDOR_ITEM_RECOMMENDED),
+		list("Concertina Wire x50", 10, /obj/item/stack/concertina_wire/full_stack, null, VENDOR_ITEM_RECOMMENDED),
+		list("Fragwire x50", 25, /obj/item/stack/fragwire/full_stack, null, VENDOR_ITEM_RECOMMENDED),
 		list("Plastic Explosive", 3, /obj/item/explosive/plastic, null, VENDOR_ITEM_REGULAR),
 		list("Breaching Charge", 5, /obj/item/explosive/plastic/breaching_charge, null, VENDOR_ITEM_RECOMMENDED),
 		list("Range Finder", 10, /obj/item/device/binoculars/range, null, VENDOR_ITEM_REGULAR),
@@ -38,17 +47,6 @@ GLOBAL_LIST_INIT(cm_vending_gear_engi, list(
 		list("M20 Mine Box (x4 mines)", 18, /obj/item/storage/box/explosive_mines, null, VENDOR_ITEM_REGULAR),
 		list("M40 MFHS Metal Foam Grenade", 5, /obj/item/explosive/grenade/metal_foam, null, VENDOR_ITEM_REGULAR),
 
-		list("AMMUNITION", 0, null, null, null),
-		list("M4RA AP Magazine (10x24mm)", 6, /obj/item/ammo_magazine/rifle/m4ra/ap, null, VENDOR_ITEM_REGULAR),
-		list("M39 AP Magazine (10x20mm)", 6, /obj/item/ammo_magazine/smg/m39/ap , null, VENDOR_ITEM_REGULAR),
-		list("M39 Extended Magazine (10x20mm)", 6, /obj/item/ammo_magazine/smg/m39/extended , null, VENDOR_ITEM_REGULAR),
-		list("M41A AP Magazine (10x24mm)", 6, /obj/item/ammo_magazine/rifle/ap , null, VENDOR_ITEM_REGULAR),
-		list("M41A Extended Magazine (10x24mm)", 6, /obj/item/ammo_magazine/rifle/extended , null, VENDOR_ITEM_REGULAR),
-
-		list("ARMORS", 0, null, null, null),
-		list("M3 B12 Pattern Marine Armor", 24, /obj/item/clothing/suit/storage/marine/leader, null, VENDOR_ITEM_REGULAR),
-		list("M4 Pattern Armor", 30, /obj/item/clothing/suit/storage/marine/rto, null, VENDOR_ITEM_REGULAR),
-
 		list("RESTRICTED FIREARMS", 0, null, null, null),
 		list("VP78 Pistol", 8, /obj/item/storage/box/guncase/vp78, null, VENDOR_ITEM_REGULAR),
 		list("SU-6 Smart Pistol", 12, /obj/item/storage/box/guncase/smartpistol, null, VENDOR_ITEM_REGULAR),
@@ -56,27 +54,14 @@ GLOBAL_LIST_INIT(cm_vending_gear_engi, list(
 		list("M79 Grenade Launcher", 24, /obj/item/storage/box/guncase/m79, null, VENDOR_ITEM_REGULAR),
 		list("M56D Heavy Machine Gun", 24, /obj/item/storage/box/guncase/m56d, null, VENDOR_ITEM_REGULAR),
 
-		list("CLOTHING ITEMS", 0, null, null, null),
-		list("Machete Scabbard (Full)", 6, /obj/item/storage/large_holster/machete/full, null, VENDOR_ITEM_REGULAR),
-		list("Machete Pouch (Full)", 8, /obj/item/storage/pouch/machete/full, null, VENDOR_ITEM_REGULAR),
-		list("USCM Radio Telephone Pack", 15, /obj/item/storage/backpack/marine/satchel/rto, null, VENDOR_ITEM_REGULAR),
-		list("Fuel Tank Strap Pouch", 4, /obj/item/storage/pouch/flamertank, null, VENDOR_ITEM_REGULAR),
-		list("Sling Pouch", 6, /obj/item/storage/pouch/sling, null, VENDOR_ITEM_REGULAR),
-		list("Large General Pouch", 6, /obj/item/storage/pouch/general/large, null, VENDOR_ITEM_REGULAR),
-		list("M276 Pattern Combat Toolbelt Rig", 15, /obj/item/storage/belt/gun/utility, null, VENDOR_ITEM_REGULAR),
-
 		list("UTILITIES", 0, null, null, null),
-		list("Roller Bed", 5, /obj/item/roller, null, VENDOR_ITEM_REGULAR),
 		list("Fulton Device Stack", 5, /obj/item/stack/fulton, null, VENDOR_ITEM_REGULAR),
 		list("Fire Extinguisher (Portable)", 3, /obj/item/tool/extinguisher/mini, null, VENDOR_ITEM_REGULAR),
-		list("Motion Detector", 8, /obj/item/device/motiondetector, null, VENDOR_ITEM_REGULAR),
+		list("Motion Detector", 8, /obj/item/device/motiontracker/adv, null, VENDOR_ITEM_REGULAR),
 		list("Whistle", 3, /obj/item/device/whistle, null, VENDOR_ITEM_REGULAR),
 
 		list("HELMET OPTICS", 0, null, null, null),
 		list("Medical Helmet Optic", 12, /obj/item/device/helmet_visor/medical, null, VENDOR_ITEM_REGULAR),
-
-		list("PAMPHLETS", 0, null, null, null),
-		list("JTAC Pamphlet", 15, /obj/item/pamphlet/skill/jtac, null, VENDOR_ITEM_REGULAR),
 
 		list("RADIO KEYS", 0, null, null, null),
 		list("Intel Radio Encryption Key", 3, /obj/item/device/encryptionkey/intel, null, VENDOR_ITEM_REGULAR),
@@ -88,7 +73,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_engi, list(
 	name = "\improper ColMarTech Squad ComTech Gear Rack"
 	desc = "An automated gear rack for combat technicians."
 	icon_state = "eng_gear"
-	vendor_role = list(JOB_SQUAD_ENGI)
+	vendor_role = list(JOB_SQUAD_ENGI, JOB_MS_ENGINEER, JOB_HD_ENGINEER, JOB_TR_ENGINEER)
 	req_access = list(ACCESS_MARINE_ENGPREP)
 
 /obj/structure/machinery/cm_vending/gear/engi/get_listed_products(mob/user)
@@ -103,8 +88,7 @@ GLOBAL_LIST_INIT(cm_vending_clothing_engi, list(
 		list("Map", 0, /obj/item/map/current_map, MARINE_CAN_BUY_KIT, VENDOR_ITEM_MANDATORY),
 
 		list("ARMOR (CHOOSE 1)", 0, null, null, null),
-		list("Light Armor", 0, /obj/item/clothing/suit/storage/marine/light, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_REGULAR),
-		list("Medium Armor", 0, /obj/item/clothing/suit/storage/marine/medium, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_RECOMMENDED),
+		list("Standard Armor", 0, /obj/item/clothing/suit/storage/marine/medium, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_RECOMMENDED),
 		list("Heavy Armor", 0, /obj/item/clothing/suit/storage/marine/heavy, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_REGULAR),
 
 		list("BACKPACK (CHOOSE 1)", 0, null, null, null),
@@ -158,7 +142,7 @@ GLOBAL_LIST_INIT(cm_vending_clothing_engi, list(
 	name = "\improper ColMarTech Squad ComTech Equipment Rack"
 	desc = "An automated rack hooked up to a colossal storage of combat technician standard-issue equipment."
 	req_access = list(ACCESS_MARINE_ENGPREP)
-	vendor_role = list(JOB_SQUAD_ENGI)
+	vendor_role = list(JOB_SQUAD_ENGI, JOB_MS_ENGINEER, JOB_HD_ENGINEER, JOB_TR_ENGINEER)
 
 /obj/structure/machinery/cm_vending/clothing/engi/get_listed_products(mob/user)
 	return GLOB.cm_vending_clothing_engi

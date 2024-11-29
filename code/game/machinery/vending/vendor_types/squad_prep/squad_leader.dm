@@ -4,19 +4,14 @@ GLOBAL_LIST_INIT(cm_vending_gear_leader, list(
 		list("SQUAD LEADER KIT (CHOOSE 1)", 0, null, null, null),
 		list("Essential SL Kit", 0, /obj/effect/essentials_set/leader, MARINE_CAN_BUY_ESSENTIALS, VENDOR_ITEM_MANDATORY),
 
-		list("SQUAD KIT (CHOOSE 1, for yourself or your squad)", 0, null, null, null),
+		list("SQUAD RESTRICTED WEAPONS KIT (CHOOSE 1, for yourself or your squad)", 0, null, null, null),
 		list("M4RA Sniper Kit", 0, /obj/item/storage/box/kit/mini_sniper, MARINE_CAN_BUY_KIT, VENDOR_ITEM_REGULAR),
-		list("M41A Standard Kit", 0, /obj/item/storage/box/kit/m41a_kit	, MARINE_CAN_BUY_KIT, VENDOR_ITEM_REGULAR),
 		list("M240 Pyrotechnician Support Kit", 0, /obj/item/storage/box/kit/mini_pyro, MARINE_CAN_BUY_KIT, VENDOR_ITEM_REGULAR),
 		list("M2C Heavy Machine Gun", 0, /obj/item/storage/box/guncase/m2c, MARINE_CAN_BUY_KIT, VENDOR_ITEM_REGULAR),
 		list("M56D Heavy Machine Gun", 0, /obj/item/storage/box/guncase/m56d, MARINE_CAN_BUY_KIT, VENDOR_ITEM_REGULAR),
 		list("M79 Grenade Launcher", 0, /obj/item/storage/box/guncase/m79, MARINE_CAN_BUY_KIT, VENDOR_ITEM_REGULAR),
 		list("MOU-53 Shotgun", 0, /obj/item/storage/box/guncase/mou53, MARINE_CAN_BUY_KIT, VENDOR_ITEM_REGULAR),
 		list("XM88 Heavy Rifle", 0, /obj/item/storage/box/guncase/xm88, MARINE_CAN_BUY_KIT, VENDOR_ITEM_REGULAR),
-		list("Basic Engineering Supplies", 0, /obj/item/storage/box/kit/engineering_supply_kit, MARINE_CAN_BUY_KIT, VENDOR_ITEM_REGULAR),
-
-		list("ARMORS", 0, null, null, null),
-		list("M4 Pattern Armor", 30, /obj/item/clothing/suit/storage/marine/rto, null, VENDOR_ITEM_REGULAR),
 
 		list("CLOTHING ITEMS", 0, null, null, null),
 		list("Machete Scabbard (Full)", 4, /obj/item/storage/large_holster/machete/full, null, VENDOR_ITEM_REGULAR),
@@ -26,11 +21,11 @@ GLOBAL_LIST_INIT(cm_vending_gear_leader, list(
 		list("Night Vision Optic", 20, /obj/item/device/helmet_visor/night_vision, null, VENDOR_ITEM_RECOMMENDED),
 
 		list("UTILITIES", 0, null, null, null),
-		list("Whistle", 3, /obj/item/device/whistle, null, VENDOR_ITEM_REGULAR),
+		list("Officer Whistle", 3, /obj/item/device/trench_whistle, null, VENDOR_ITEM_REGULAR),
 		list("Range Finder", 3, /obj/item/device/binoculars/range, null, VENDOR_ITEM_REGULAR),
 		list("Laser Designator", 5, /obj/item/device/binoculars/range/designator, null, VENDOR_ITEM_REGULAR),
 		list("Fire Extinguisher (Portable)", 3, /obj/item/tool/extinguisher/mini, null, VENDOR_ITEM_REGULAR),
-		list("Motion Detector", 5, /obj/item/device/motiondetector, null, VENDOR_ITEM_REGULAR),
+		list("Motion Detector", 5, /obj/item/device/motiontracker/adv, null, VENDOR_ITEM_REGULAR),
 		list("Fulton Device Stack", 5, /obj/item/stack/fulton, null, VENDOR_ITEM_REGULAR),
 
 		list("HELMET OPTICS", 0, null, null, null),
@@ -78,11 +73,6 @@ GLOBAL_LIST_INIT(cm_vending_gear_leader, list(
 		list("Roller Bed", 2, /obj/item/roller, null, VENDOR_ITEM_REGULAR),
 
 		list("SPECIAL AMMUNITION", 0, null, null, null),
-		list("M4RA AP Magazine (10x24mm)", 6, /obj/item/ammo_magazine/rifle/m4ra/ap, null, VENDOR_ITEM_REGULAR),
-		list("M39 AP Magazine (10x20mm)", 6, /obj/item/ammo_magazine/smg/m39/ap , null, VENDOR_ITEM_REGULAR),
-		list("M39 Extended Magazine (10x20mm)", 6, /obj/item/ammo_magazine/smg/m39/extended , null, VENDOR_ITEM_REGULAR),
-		list("M41A AP Magazine (10x24mm)", 6, /obj/item/ammo_magazine/rifle/ap , null, VENDOR_ITEM_REGULAR),
-		list("M41A Extended Magazine (10x24mm)", 6, /obj/item/ammo_magazine/rifle/extended , null, VENDOR_ITEM_REGULAR),
 		list("M240 Incinerator Tank (Napthal)", 3, /obj/item/ammo_magazine/flamer_tank, null, VENDOR_ITEM_REGULAR),
 		list("M240 Incinerator Tank (B-Gel)", 3, /obj/item/ammo_magazine/flamer_tank/gellied, null, VENDOR_ITEM_REGULAR),
 
@@ -104,7 +94,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_leader, list(
 	desc = "An automated gear rack for Squad Leaders."
 	icon_state = "sl_gear"
 	show_points = TRUE
-	vendor_role = list(JOB_SQUAD_LEADER)
+	vendor_role = list(JOB_SQUAD_LEADER, JOB_MS_SL, JOB_HD_SL, JOB_TR_SL)
 	req_access = list(ACCESS_MARINE_LEADER)
 
 /obj/structure/machinery/cm_vending/gear/leader/get_listed_products(mob/user)
@@ -167,7 +157,7 @@ GLOBAL_LIST_INIT(cm_vending_clothing_leader, list(
 	name = "\improper ColMarTech Squad Leader Equipment Rack"
 	desc = "An automated rack hooked up to a colossal storage of Squad Leader standard-issue equipment."
 	req_access = list(ACCESS_MARINE_LEADER)
-	vendor_role = list(JOB_SQUAD_LEADER)
+	vendor_role = list(JOB_SQUAD_LEADER, JOB_MS_SL, JOB_HD_SL, JOB_TR_SL)
 
 /obj/structure/machinery/cm_vending/clothing/leader/get_listed_products(mob/user)
 	return GLOB.cm_vending_clothing_leader
@@ -201,4 +191,5 @@ GLOBAL_LIST_INIT(cm_vending_clothing_leader, list(
 		/obj/item/storage/box/m94/signal,
 		/obj/item/tool/extinguisher/mini,
 		/obj/item/storage/box/zipcuffs,
+		/obj/item/storage/box/kit/engineering_supply_kit,
 	)

@@ -195,6 +195,60 @@
 	direct_hit_shrapnel = 5
 	dispersion_angle = 360 //beeg circle
 
+/obj/item/explosive/grenade/high_explosive/airburst/canister
+	name = "\improper M108 canister grenade"
+	desc = "A Simple 30mm canister shot round. Fires a narrow pattern grapeshot spread from most USCM grenade launchers. Can also be used for a door breaching round in a pinch"
+	icon_state = "grenade_40mm_buckshot"
+	item_state = "grenade_40mm_buckshot"
+	hand_throwable = FALSE
+	underslug_launchable = TRUE
+	explosion_power = 0
+	explosion_falloff = 25
+	det_time = 0
+	shrapnel_count = 10
+	shrapnel_type = /datum/ammo/bullet/shrapnel/canister_rounds
+	dispersion_angle = 10
+
+/obj/item/explosive/grenade/high_explosive/airburst/canister/prime()
+	canister_fire(src)
+
+/obj/item/explosive/grenade/high_explosive/airburst/canister/proc/canister_fire(user, target)
+	var/direction = Get_Compass_Dir(user, target)
+	var/position = get_step(user, direction)
+	create_shrapnel(position, min(direct_hit_shrapnel, shrapnel_count), direction , dispersion_angle, shrapnel_type, cause_data, FALSE, 100)
+	if(shrapnel_count)
+		create_shrapnel(loc, shrapnel_count, direction, dispersion_angle, shrapnel_type, cause_data, FALSE, 0)
+	qdel(src)
+
+/obj/item/explosive/grenade/high_explosive/airburst/canister/launch_impact(atom/hit_atom)
+	return
+
+
+/obj/item/explosive/grenade/high_explosive/airburst/rubber
+	name = "\improper M108 canister rubber grenade"
+	desc = "A Simple 30mm canister shot round. Fires a narrow pattern grapeshot spread from most USCM grenade launchers. This variant fires less than lethal rubber pellets."
+	icon_state = "grenade_40mm_rubber"
+	item_state = "grenade_40mm_rubber"
+	hand_throwable = FALSE
+	underslug_launchable = TRUE
+	explosion_power = 0
+	explosion_falloff = 25
+	det_time = 0
+	shrapnel_count = 10
+	shrapnel_type = /datum/ammo/bullet/shrapnel/rubber
+	dispersion_angle = 10
+/obj/item/explosive/grenade/high_explosive/airburst/rubber/proc/rubber_fire(mob/living/user, target)
+	var/direction = Get_Compass_Dir(user, target)
+	var/position = get_step(user, direction)
+	create_shrapnel(position, min(direct_hit_shrapnel, shrapnel_count), direction , dispersion_angle, shrapnel_type, cause_data, FALSE, 100)
+	if(shrapnel_count)
+		create_shrapnel(loc, shrapnel_count, direction, dispersion_angle, shrapnel_type, cause_data, FALSE, 0)
+	qdel(src)
+
+/obj/item/explosive/grenade/high_explosive/airburst/canister/launch_impact(atom/hit_atom)
+	return
+
+
 /*
 //================================================
 				M203 Grenades
@@ -418,6 +472,18 @@
 	smoke.start()
 	qdel(src)
 
+/obj/item/explosive/grenade/smokebomb/primed
+	smoke_radius = 8
+	det_time = 6
+	item_state = "mortar"
+	icon_state = "mortar"
+	indestructible = TRUE
+	anchored = TRUE
+
+/obj/item/explosive/grenade/smokebomb/primed/Initialize()
+	. = ..()
+	activate()
+
 /obj/item/explosive/grenade/phosphorus
 	name = "\improper M40 HPDP grenade"
 	desc = "The M40 HPDP is a small, but powerful phosphorus grenade. It is set to detonate in 2 seconds."
@@ -453,6 +519,17 @@
 	smoke.start()
 	qdel(src)
 
+/obj/item/explosive/grenade/phosphorus/primed
+	det_time = 6
+	item_state = "mortar"
+	icon_state = "mortar"
+	indestructible = TRUE
+	anchored = TRUE
+
+/obj/item/explosive/grenade/phosphorus/primed/Initialize()
+	. = ..()
+	activate()
+
 /obj/item/explosive/grenade/phosphorus/upp
 	name = "\improper Type 8 WP grenade"
 	desc = "A deadly gas grenade found within the ranks of the UPP. Designed to spill white phosphorus on the target. It explodes 2 seconds after the pin has been pulled."
@@ -467,13 +544,60 @@
 
 /*
 //================================================
+			Tear Gas Grenade
+//================================================
+*/
+/obj/item/explosive/grenade/tear_gas
+	name = "\improper M66 teargas grenade"
+	desc = "Tear gas grenade used for nonlethal riot control. Please wear adequate gas protection."
+	icon_state = "gas_grenade"//temp icon
+	det_time = 40
+	item_state = "grenade_phos_clf"//temp icon
+	underslug_launchable = TRUE
+	harmful = TRUE
+	antigrief_protection = FALSE
+	/// The tear gas datum
+	var/datum/effect_system/smoke_spread/teargas/tear_gas
+	/// The typepath of the tear gas
+	var/tear_gas_type = /datum/effect_system/smoke_spread/teargas
+	/// The radius the gas will reach
+	var/tear_gas_radius = 8
+
+/obj/item/explosive/grenade/tear_gas/Initialize(mapload, ...)
+	. = ..()
+	tear_gas = new tear_gas_type
+	tear_gas.attach(src)
+
+/obj/item/explosive/grenade/tear_gas/Destroy()
+	QDEL_NULL(tear_gas)
+	return ..()
+
+/obj/item/explosive/grenade/tear_gas/prime()
+	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+	tear_gas.set_up(tear_gas_radius, 0, get_turf(src), null, 6)
+	tear_gas.start()
+	qdel(src)
+
+/obj/item/explosive/grenade/tear_gas/primed
+	tear_gas_radius = 16
+	det_time = 6
+	item_state = "mortar"
+	icon_state = "mortar"
+	indestructible = TRUE
+	anchored = TRUE
+
+/obj/item/explosive/grenade/tear_gas/primed/Initialize()
+	. = ..()
+	activate()
+/*
+//================================================
 			Nerve Gas Grenades
 //================================================
 */
 /obj/item/explosive/grenade/nerve_gas
-	name = "\improper CN20 canister grenade"
+	name = "\improper CN20 canister"
 	desc = "A canister grenade of deadly nerve gas. It is set to detonate in 4 seconds."
-	icon_state = "flashbang2"//temp icon
+	icon_state = "nerve_grenade"//temp icon
 	det_time = 40
 	item_state = "grenade_phos_clf"//temp icon
 	underslug_launchable = FALSE
@@ -484,7 +608,7 @@
 	/// The typepath of the nerve gas
 	var/nerve_gas_type = /datum/effect_system/smoke_spread/cn20
 	/// The radius the gas will reach
-	var/nerve_gas_radius = 2
+	var/nerve_gas_radius = 8
 
 /obj/item/explosive/grenade/nerve_gas/Initialize(mapload, ...)
 	. = ..()
@@ -504,6 +628,193 @@
 /obj/item/explosive/grenade/nerve_gas/xeno
 	name = "\improper CN20-X canister grenade"
 	nerve_gas_type = /datum/effect_system/smoke_spread/cn20/xeno
+
+/obj/item/explosive/grenade/nerve_gas/primed
+	nerve_gas_radius = 16
+	det_time = 6
+	item_state = "mortar"
+	icon_state = "mortar"
+	indestructible = TRUE
+	anchored = TRUE
+
+/obj/item/explosive/grenade/nerve_gas/primed/Initialize()
+	. = ..()
+	activate()
+
+/*
+//================================================
+			Poison Gas Grenades
+//================================================
+*/
+/obj/item/explosive/grenade/mustard_gas
+	name = "\improper HD canister"
+	desc = "A canister grenade of deadly mustard gas. It is set to detonate in 4 seconds."
+	icon_state = "mustard_grenade"//temp icon
+	det_time = 40
+	item_state = "grenade_phos_clf"//temp icon
+	underslug_launchable = FALSE
+	harmful = TRUE
+	antigrief_protection = TRUE
+	/// The nerve gas datum
+	var/datum/effect_system/smoke_spread/mustard/mustard_gas
+	/// The typepath of the nerve gas
+	var/mustard_gas_type = /datum/effect_system/smoke_spread/mustard
+	/// The radius the gas will reach
+	var/mustard_gas_radius = 8
+
+/obj/item/explosive/grenade/mustard_gas/Initialize(mapload, ...)
+	. = ..()
+	mustard_gas = new mustard_gas_type
+	mustard_gas.attach(src)
+
+/obj/item/explosive/grenade/mustard_gas/Destroy()
+	QDEL_NULL(mustard_gas)
+	return ..()
+
+/obj/item/explosive/grenade/mustard_gas/prime()
+	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+	mustard_gas.set_up(mustard_gas_radius, 0, get_turf(src), null, 6)
+	mustard_gas.start()
+	qdel(src)
+
+
+/obj/item/explosive/grenade/mustard_gas/primed
+	mustard_gas_radius = 20
+	det_time = 6
+	item_state = "mortar"
+	icon_state = "mortar"
+	indestructible = TRUE
+	anchored = TRUE
+
+/obj/item/explosive/grenade/mustard_gas/primed/Initialize()
+	. = ..()
+	activate()
+
+//================================================
+/obj/item/explosive/grenade/chlorine_gas
+	name = "\improper Chlorine Gas canister"
+	desc = "A canister grenade of deadly chlorine gas. It is set to detonate in 4 seconds."
+	icon_state = "chlorine_grenade"//temp icon
+	det_time = 40
+	item_state = "grenade_phos_clf"//temp icon
+	underslug_launchable = FALSE
+	harmful = TRUE
+	antigrief_protection = TRUE
+	/// The nerve gas datum
+	var/datum/effect_system/smoke_spread/chlorine/chlorine_gas
+	/// The typepath of the nerve gas
+	var/chlorine_gas_type = /datum/effect_system/smoke_spread/chlorine
+	/// The radius the gas will reach
+	var/chlorine_gas_radius = 8
+
+/obj/item/explosive/grenade/chlorine_gas/Initialize(mapload, ...)
+	. = ..()
+	chlorine_gas = new chlorine_gas_type
+	chlorine_gas.attach(src)
+
+/obj/item/explosive/grenade/chlorine_gas/Destroy()
+	QDEL_NULL(chlorine_gas)
+	return ..()
+
+/obj/item/explosive/grenade/chlorine_gas/prime()
+	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+	chlorine_gas.set_up(chlorine_gas_radius, 0, get_turf(src), null, 6)
+	chlorine_gas.start()
+	qdel(src)
+
+
+/obj/item/explosive/grenade/chlorine_gas/primed
+	chlorine_gas_radius = 20
+	det_time = 6
+	item_state = "mortar"
+	icon_state = "mortar"
+	indestructible = TRUE
+	anchored = TRUE
+
+/obj/item/explosive/grenade/chlorine_gas/primed/Initialize()
+	. = ..()
+	activate()
+
+//================================================
+/obj/item/explosive/grenade/toxic_gas
+	name = "\improper MZS Gas canister"
+	desc = "A canister grenade of deadly MZS gas. It is set to detonate in 4 seconds."
+	icon_state = "gas_grenade"//temp icon
+	color = "#649933"
+	det_time = 40
+	item_state = "grenade_phos_clf"//temp icon
+	underslug_launchable = FALSE
+	harmful = TRUE
+	antigrief_protection = TRUE
+	/// The nerve gas datum
+	var/datum/effect_system/smoke_spread/toxic/toxic_gas
+	/// The typepath of the nerve gas
+	var/toxic_gas_type = /datum/effect_system/smoke_spread/toxic
+	/// The radius the gas will reach
+	var/toxic_gas_radius = 8
+
+/obj/item/explosive/grenade/toxic_gas/Initialize(mapload, ...)
+	. = ..()
+	toxic_gas = new toxic_gas_type
+	toxic_gas.attach(src)
+
+/obj/item/explosive/grenade/toxic_gas/Destroy()
+	QDEL_NULL(toxic_gas)
+	return ..()
+
+/obj/item/explosive/grenade/toxic_gas/prime()
+	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+	toxic_gas.set_up(toxic_gas_radius, 0, get_turf(src), null, 6)
+	toxic_gas.start()
+	qdel(src)
+
+
+/obj/item/explosive/grenade/toxic_gas/primed
+	toxic_gas_radius = 20
+	det_time = 6
+	item_state = "mortar"
+	icon_state = "mortar"
+	indestructible = TRUE
+	anchored = TRUE
+
+/obj/item/explosive/grenade/toxic_gas/primed/Initialize()
+	. = ..()
+	activate()
+
+//================================================
+
+/obj/item/explosive/grenade/flesh_gas
+	name = "\improper (!!!DANGER BACTERIA INSIDE!!!) canister"
+	desc = "A canister grenade of aerosolized deadly flesh eating bacteria. It is set to detonate in 4 seconds."
+	desc_lore = "The bacteria inside will die on contact with air after a few seconds, and is designed by lassalle bionational for use in urban areas."
+	icon_state = "gas_grenade"//temp icon
+	color = "#339952"
+	det_time = 40
+	item_state = "grenade_phos_clf"//temp icon
+	underslug_launchable = FALSE
+	harmful = TRUE
+	antigrief_protection = TRUE
+	/// The nerve gas datum
+	var/datum/effect_system/smoke_spread/flesheater/flesh_gas
+	/// The typepath of the nerve gas
+	var/flesh_gas_type = /datum/effect_system/smoke_spread/flesheater
+	/// The radius the gas will reach
+	var/flesh_gas_radius = 10
+
+/obj/item/explosive/grenade/flesh_gas/Initialize(mapload, ...)
+	. = ..()
+	flesh_gas = new flesh_gas_type
+	flesh_gas.attach(src)
+
+/obj/item/explosive/grenade/flesh_gas/Destroy()
+	QDEL_NULL(flesh_gas)
+	return ..()
+
+/obj/item/explosive/grenade/flesh_gas/prime()
+	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+	flesh_gas.set_up(flesh_gas_radius, 0, get_turf(src), null, 6)
+	flesh_gas.start()
+	qdel(src)
 
 /*
 //================================================

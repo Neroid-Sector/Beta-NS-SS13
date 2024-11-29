@@ -1340,37 +1340,21 @@ h2.alert {
   font-weight: bold;
 }
 
-.tajaran {
-  color: #803b56;
-}
+//########################################//
 
-.tajaran_signlang {
-  color: #941c1c;
-}
+// Major Languages
 
-.skrell {
-  color: #00ced1;
-}
-
-.soghun {
+.russian {
   color: #228b22;
-}
-
-.changeling {
-  color: #800080;
-}
-
-.vox {
-  color: #aa00aa;
-}
-
-.monkey {
-  color: #966c47;
 }
 
 .german {
   color: #858f1e;
   font-family: 'Times New Roman', Times, serif;
+}
+
+.french {
+  color: #667fdb;
 }
 
 .spanish {
@@ -1385,8 +1369,68 @@ h2.alert {
   color: #fe1919;
 }
 
+// Minor Languages
+
+.celtic {
+  color: #88c288;
+}
+
+.farsi {
+  color: #e45f36;
+}
+
+.arabic {
+  color: #b89c43;
+}
+
+.korean {
+  color: #7fb9b6;
+}
+
+.finnish {
+  color: #c3f7f4;
+}
+
+.swedish {
+  color: #e2e18e;
+}
+
+.latin {
+  color: #74495d;
+}
+
+.berber {
+  color: #3c5879;
+}
+
+.bantu {
+  color: #185734;
+}
+
+.hindi {
+  color: #8b9412;
+}
+
+// Special Languages
+
+.yautja {
+  color: #803b56;
+}
+
+.yautja_signlang {
+  color: #941c1c;
+}
+
+.apollo {
+  color: #00ced1;
+}
+
+.monkey {
+  color: #966c47;
+}
+
 .zombie {
-  color: #216163;
+  color: #2dacb1;
   font-style: italic;
 }
 
@@ -1394,6 +1438,8 @@ h2.alert {
   color: #fe9b24;
   font-style: bold;
 }
+
+//########################################//
 
 .rough {
   font-family: trebuchet-ms, cursive, sans-serif;

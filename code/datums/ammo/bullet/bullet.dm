@@ -79,3 +79,51 @@
 	if(flags_ammo_behavior & AMMO_EXPLOSIVE)
 		execution_target.gib()
 
+/datum/ammo/bullet/on_hit_obj(obj/O, obj/projectile/P)
+	if(istype(O, /obj/vehicle/multitile/civvan))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	return ..()
+
+/datum/ammo/bullet/on_hit_obj(obj/O, obj/projectile/P)
+	if(istype(O, /obj/vehicle/multitile/civtruck))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	return ..()
+
+/datum/ammo/bullet/on_hit_obj(obj/O, obj/projectile/P)
+	if(istype(O, /obj/vehicle/multitile/van))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	return ..()
+
+/datum/ammo/bullet/on_hit_obj(obj/O, obj/projectile/P)
+	if(istype(O, /obj/vehicle/multitile/atruck))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	return ..()
+
+/datum/ammo/bullet/on_hit_obj(obj/O, obj/projectile/P)
+	if(istype(O, /obj/vehicle/multitile/crane))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	return ..()
+
+/datum/ammo/bullet/on_hit_mob(mob/M, obj/projectile/P, mob/user)
+	shake_camera(M, 3, 1)
+	return ..()

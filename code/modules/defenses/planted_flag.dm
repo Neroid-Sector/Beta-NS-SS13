@@ -119,7 +119,7 @@
 	name = "JIMA frame mount"
 	icon = 'icons/obj/items/clothing/backpacks.dmi'
 	icon_state = "flag_backpack"
-	max_storage_space = 10
+	max_storage_space = 15
 	worn_accessible = TRUE
 	w_class = SIZE_LARGE
 	flags_equip_slot = SLOT_BACK
@@ -158,3 +158,10 @@
 
 #undef PLANTED_FLAG_BUFF
 #undef PLANTED_FLAG_RANGE
+
+/obj/item/storage/backpack/jima/comtech
+
+	name = "M701 Portable computer frame mount"
+	icon = 'icons/obj/items/clothing/backpacks.dmi'
+	icon_state = "flag_backpack"
+	desc = "A bulky framework backpack stuffed full of telecommunication and computing equipment. It relays UAV data directly into the HUDs of near by marines allowing them to perform better. "

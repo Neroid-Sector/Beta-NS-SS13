@@ -116,6 +116,7 @@
 		list("Large Shotgun Shell Pouch", round(scale * 1), /obj/item/storage/pouch/shotgun/large, VENDOR_ITEM_REGULAR),
 
 		list("MISCELLANEOUS", -1, null, null),
+		list("Earplugs", round(scale * 5), /obj/item/clothing/ears/earmuffs/earplugs, VENDOR_ITEM_REGULAR),
 		list("Combat Flashlight", round(scale * 5), /obj/item/device/flashlight/combat, VENDOR_ITEM_REGULAR),
 		list("Entrenching Tool", round(scale * 4), /obj/item/tool/shovel/etool/folded, VENDOR_ITEM_REGULAR),
 		list("Gas Mask", round(scale * 10), /obj/item/clothing/mask/gas, VENDOR_ITEM_REGULAR),
@@ -123,7 +124,7 @@
 		list("M94 Marking Flare Pack", round(scale * 10), /obj/item/storage/box/m94, VENDOR_ITEM_REGULAR),
 		list("Machete Scabbard (Full)", round(scale * 6), /obj/item/storage/large_holster/machete/full, VENDOR_ITEM_REGULAR),
 		list("MB-6 Folding Barricades (x3)", round(scale * 3), /obj/item/stack/folding_barricade/three, VENDOR_ITEM_REGULAR),
-		list("Motion Detector", round(scale * 4), /obj/item/device/motiondetector, VENDOR_ITEM_REGULAR),
+		list("Motion Detector", round(scale * 4), /obj/item/device/motiontracker/adv, VENDOR_ITEM_REGULAR),
 		list("Data Detector", round(scale * 4), /obj/item/device/motiondetector/intel, VENDOR_ITEM_REGULAR),
 		list("Binoculars", round(scale * 2), /obj/item/device/binoculars, VENDOR_ITEM_REGULAR),
 		list("Rangefinder", round(scale * 1), /obj/item/device/binoculars/range, VENDOR_ITEM_REGULAR),
@@ -175,22 +176,8 @@
 //Special cargo-specific vendor with vending offsets
 /obj/structure/machinery/cm_vending/sorted/cargo_guns/cargo
 	vend_flags = VEND_CLUTTER_PROTECTION | VEND_LIMITED_INVENTORY | VEND_LOAD_AMMO_BOXES //We want to vend to turf not hand, since we are in requisitions
-
-/obj/structure/machinery/cm_vending/sorted/cargo_guns/cargo/get_appropriate_vend_turf(mob/living/carbon/human/H)
-	var/turf/turf_to_vent_to
-	if(vend_x_offset != 0 || vend_y_offset != 0) //this will allow to avoid code below that suits only Almayer.
-		turf_to_vent_to = locate(x + vend_x_offset, y + vend_y_offset, z)
-	else
-		turf_to_vent_to = get_turf(get_step(src, NORTH))
-		if(H.loc == turf_to_vent_to)
-			turf_to_vent_to = get_turf(get_step(H.loc, WEST))
-		else
-			turf_to_vent_to = get_turf(get_step(src, SOUTH))
-			if(H.loc == turf_to_vent_to)
-				turf_to_vent_to = get_turf(get_step(H.loc, WEST))
-			else
-				turf_to_vent_to = H.loc
-	return turf_to_vent_to
+	vend_dir = WEST
+	vend_dir_whitelist = list(NORTH, SOUTH)
 
 /obj/structure/machinery/cm_vending/sorted/cargo_guns/cargo/blend
 	icon_state = "req_guns_wall"
@@ -209,6 +196,8 @@
 	req_access = list(ACCESS_MARINE_CARGO)
 	vendor_theme = VENDOR_THEME_USCM
 	vend_flags = VEND_CLUTTER_PROTECTION | VEND_LIMITED_INVENTORY | VEND_TO_HAND | VEND_LOAD_AMMO_BOXES
+	vend_dir = WEST
+	vend_dir_whitelist = list(SOUTHWEST, NORTHWEST)
 
 /obj/structure/machinery/cm_vending/sorted/cargo_ammo/vend_fail()
 	return
@@ -307,22 +296,6 @@
 /obj/structure/machinery/cm_vending/sorted/cargo_ammo/cargo
 	vend_flags = VEND_CLUTTER_PROTECTION | VEND_LIMITED_INVENTORY | VEND_LOAD_AMMO_BOXES //We want to vend to turf not hand, since we are in requisitions
 
-/obj/structure/machinery/cm_vending/sorted/cargo_ammo/cargo/get_appropriate_vend_turf(mob/living/carbon/human/H)
-	var/turf/turf_to_vent_to
-	if(vend_x_offset != 0 || vend_y_offset != 0) //this will allow to avoid code below that suits only Almayer.
-		turf_to_vent_to = locate(x + vend_x_offset, y + vend_y_offset, z)
-	else
-		turf_to_vent_to = get_turf(get_step(src, NORTHWEST))
-		if(H.loc == turf_to_vent_to)
-			turf_to_vent_to = get_turf(get_step(H.loc, WEST))
-		else
-			turf_to_vent_to = get_turf(get_step(src, SOUTHWEST))
-			if(H.loc == turf_to_vent_to)
-				turf_to_vent_to = get_turf(get_step(H.loc, WEST))
-			else
-				turf_to_vent_to = H.loc
-	return turf_to_vent_to
-
 //------------ATTACHMENTS VENDOR---------------
 
 /obj/structure/machinery/cm_vending/sorted/attachments
@@ -331,6 +304,9 @@
 	req_access = list(ACCESS_MARINE_CARGO)
 	vendor_theme = VENDOR_THEME_USCM
 	icon_state = "req_attach"
+	vend_dir = WEST
+	vend_dir_whitelist = list(SOUTHEAST, NORTHEAST)
+	vend_flags = VEND_CLUTTER_PROTECTION | VEND_LIMITED_INVENTORY //We want to vend to turf not hand, since we are in requisitions
 
 /obj/structure/machinery/cm_vending/sorted/attachments/vend_fail()
 	return
@@ -379,22 +355,6 @@
 		list("M44 Magnum Sharpshooter Stock", round(scale * 4.5), /obj/item/attachable/stock/revolver, VENDOR_ITEM_REGULAR)
 		)
 
-/obj/structure/machinery/cm_vending/sorted/attachments/get_appropriate_vend_turf(mob/living/carbon/human/H)
-	var/turf/turf_to_vent_to
-	if(vend_x_offset != 0 || vend_y_offset != 0) //this will allow to avoid code below that suits only Almayer.
-		turf_to_vent_to = locate(x + vend_x_offset, y + vend_y_offset, z)
-	else
-		turf_to_vent_to = get_turf(get_step(src, NORTHEAST))
-		if(H.loc == turf_to_vent_to)
-			turf_to_vent_to = get_turf(get_step(H.loc, WEST))
-		else
-			turf_to_vent_to = get_turf(get_step(src, SOUTHEAST))
-			if(H.loc == turf_to_vent_to)
-				turf_to_vent_to = get_turf(get_step(H.loc, WEST))
-			else
-				turf_to_vent_to = loc
-	return turf_to_vent_to
-
 /obj/structure/machinery/cm_vending/sorted/attachments/blend
 	icon_state = "req_attach_wall"
 	tiles_with = list(
@@ -402,7 +362,6 @@
 		/obj/structure/machinery/door/airlock,
 		/turf/closed/wall/almayer,
 	)
-	vend_flags = VEND_CLUTTER_PROTECTION | VEND_LIMITED_INVENTORY //We want to vend to turf not hand, since we are in requisitions
 
 //------------UNIFORM VENDOR---------------
 
@@ -530,6 +489,7 @@
 		list("M4A3 Rubber Magazine (9mm)", round(scale * 25), /obj/item/ammo_magazine/pistol/rubber, VENDOR_ITEM_REGULAR),
 
 		list("ATTACHMENTS", -1, null, null),
+		list("Earplugs", round(scale * 5), /obj/item/clothing/ears/earmuffs/earplugs, VENDOR_ITEM_REGULAR),
 		list("Rail Flashlight", round(scale * 25), /obj/item/attachable/flashlight, VENDOR_ITEM_RECOMMENDED),
 		list("Underbarrel Flashlight Grip", round(scale * 10), /obj/item/attachable/flashlight/grip, VENDOR_ITEM_RECOMMENDED),
 		list("Underslung Grenade Launcher", round(scale * 25), /obj/item/attachable/attached_gun/grenade, VENDOR_ITEM_REGULAR), //They already get these as on-spawns, might as well formalize some spares.

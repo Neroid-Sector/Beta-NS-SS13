@@ -3,7 +3,7 @@
 	desc = "An automated combat equipment vendor for Staff Officers."
 	req_access = list(ACCESS_MARINE_COMMAND)
 	icon_state = "mar_rack"
-	vendor_role = list(JOB_SO)
+	vendor_role = list(JOB_SO, JOB_MS_LT, JOB_MS_PC, JOB_MS_XO)
 
 /obj/structure/machinery/cm_vending/clothing/staff_officer_armory/get_listed_products(mob/user)
 	return GLOB.cm_vending_clothing_staff_officer_armory
@@ -12,7 +12,8 @@
 
 GLOBAL_LIST_INIT(cm_vending_clothing_staff_officer_armory, list(
 		list("COMBAT EQUIPMENT (TAKE ALL)", 0, null, null, null),
-		list("Officer M3 Armor", 0, /obj/item/clothing/suit/storage/marine/MP/SO, MARINE_CAN_BUY_COMBAT_ARMOR, VENDOR_ITEM_MANDATORY),
+		list("Officer M2 Armor", 0, /obj/item/clothing/suit/storage/marine/MP/SO, MARINE_CAN_BUY_COMBAT_ARMOR, VENDOR_ITEM_MANDATORY),
+		list("M3 Light Armor", 0, /obj/item/clothing/suit/storage/marine/light/carrier, MARINE_CAN_BUY_COMBAT_ARMOR, VENDOR_ITEM_MANDATORY),
 		list("Officer M10 Helmet", 0, /obj/item/clothing/head/helmet/marine/MP/SO, MARINE_CAN_BUY_COMBAT_HELMET, VENDOR_ITEM_MANDATORY),
 		list("Marine Combat Boots", 0, /obj/item/clothing/shoes/marine/knife, MARINE_CAN_BUY_SHOES, VENDOR_ITEM_MANDATORY),
 		list("Marine Combat Gloves", 0, /obj/item/clothing/gloves/marine, MARINE_CAN_BUY_GLOVES, VENDOR_ITEM_MANDATORY),
@@ -76,7 +77,7 @@ GLOBAL_LIST_INIT(cm_vending_clothing_staff_officer_armory, list(
 		list("Data Detector", 5, /obj/item/device/motiondetector/intel, null, VENDOR_ITEM_REGULAR),
 		list("Flashlight", 1, /obj/item/device/flashlight, null, VENDOR_ITEM_RECOMMENDED),
 		list("Fulton Recovery Device", 5, /obj/item/stack/fulton, null, VENDOR_ITEM_REGULAR),
-		list("Motion Detector", 5, /obj/item/device/motiondetector, null, VENDOR_ITEM_REGULAR),
+		list("Motion Tracker", 5, /obj/item/device/motiontracker/adv, null, VENDOR_ITEM_REGULAR),
 		list("Space Cleaner", 2, /obj/item/reagent_container/spray/cleaner, null, VENDOR_ITEM_REGULAR),
 		list("Whistle", 5, /obj/item/device/whistle, null, VENDOR_ITEM_REGULAR),
 		list("Machete Scabbard (Full)", 5, /obj/item/storage/large_holster/machete/full, null, VENDOR_ITEM_REGULAR)

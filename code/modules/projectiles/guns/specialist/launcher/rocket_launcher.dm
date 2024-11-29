@@ -21,6 +21,7 @@
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
 	)
 
 	flags_gun_features = GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY|GUN_INTERNAL_MAG
@@ -148,7 +149,7 @@
 			if(reload_sound)
 				playsound(user, reload_sound, 25, 1)
 			else
-				playsound(user,'sound/machines/click.ogg', 25, 1)
+				playsound(user,'sound/weapons/handling/rpg_reload.mp3', 25, 1)
 		else
 			to_chat(user, SPAN_WARNING("Your reload was interrupted!"))
 			return

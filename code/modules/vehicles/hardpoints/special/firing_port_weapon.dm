@@ -7,7 +7,7 @@
 	icon_state = "m56_FPW"
 	disp_icon = "apc"
 	disp_icon_state = ""
-	activation_sounds = list('sound/weapons/gun_smartgun1.ogg', 'sound/weapons/gun_smartgun2.ogg', 'sound/weapons/gun_smartgun3.ogg', 'sound/weapons/gun_smartgun4.ogg')
+	activation_sounds = list('sound/weapons/gun_smartgun1.mp3', 'sound/weapons/gun_smartgun2.mp3', 'sound/weapons/gun_smartgun3.mp3', 'sound/weapons/gun_smartgun4.mp3')
 
 	health = 100
 	cooldown = 10

@@ -8,9 +8,9 @@
 	name = "rifle bullet"
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 
-	damage = 40
-	penetration = ARMOR_PENETRATION_TIER_1
+	damage = 30
 	accurate_range = 16
+	penetration = 0
 	accuracy = HIT_ACCURACY_TIER_4
 	scatter = SCATTER_AMOUNT_TIER_10
 	shell_speed = AMMO_SPEED_TIER_6
@@ -91,6 +91,15 @@
 		BULLET_TRAIT_ENTRY(/datum/element/bullet_trait_penetrating)
 	))
 
+/datum/ammo/bullet/rifle/ap/penetrating/on_hit_obj(obj/O, obj/projectile/P)
+	if(istype(O, /obj/vehicle/multitile/apc))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 35)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	return ..()
+
 /datum/ammo/bullet/rifle/le
 	name = "armor-shredding rifle bullet"
 
@@ -102,8 +111,9 @@
 	name = "high-explosive armor-piercing rifle bullet"
 
 	headshot_state = HEADSHOT_OVERLAY_HEAVY
-	damage = 55//big damage, doesn't actually blow up because thats stupid.
+	damage = 35//big damage, doesn't actually blow up because thats stupid.
 	penetration = ARMOR_PENETRATION_TIER_8
+	shrapnel_chance = SHRAPNEL_CHANCE_TIER_7
 
 /datum/ammo/bullet/rifle/rubber
 	name = "rubber rifle bullet"
@@ -123,6 +133,7 @@
 	shell_speed = AMMO_SPEED_TIER_4
 	accuracy = -HIT_ACCURACY_TIER_2
 	damage_falloff = DAMAGE_FALLOFF_TIER_10
+	penetration = 0
 
 /datum/ammo/bullet/rifle/incendiary/set_bullet_traits()
 	. = ..()
@@ -137,9 +148,9 @@
 	flags_ammo_behavior = AMMO_BALLISTIC
 	accurate_range_min = 4
 
-	damage = 55
+	damage = 30
 	scatter = -SCATTER_AMOUNT_TIER_8
-	penetration= ARMOR_PENETRATION_TIER_7
+	penetration= ARMOR_PENETRATION_TIER_2
 	shell_speed = AMMO_SPEED_TIER_6
 
 /datum/ammo/bullet/rifle/m4ra/incendiary
@@ -188,23 +199,96 @@
 /datum/ammo/bullet/rifle/mar40
 	name = "heavy rifle bullet"
 
-	damage = 55
+	damage = 35
+	penetration = 0
+
+/datum/ammo/bullet/rifle/mar40/ap
+	name = "armor piercing rifle bullet"
+
+	damage = 35
+	penetration = ARMOR_PENETRATION_TIER_5
 
 /datum/ammo/bullet/rifle/type71
 	name = "heavy rifle bullet"
 
-	damage = 55
-	penetration = ARMOR_PENETRATION_TIER_3
+	damage = 25
+	penetration = ARMOR_PENETRATION_TIER_1
 
 /datum/ammo/bullet/rifle/type71/ap
 	name = "heavy armor-piercing rifle bullet"
 
-	damage = 40
-	penetration = ARMOR_PENETRATION_TIER_10
+	damage = 30
+	penetration = ARMOR_PENETRATION_TIER_8
 
 /datum/ammo/bullet/rifle/type71/heap
 	name = "heavy high-explosive armor-piercing rifle bullet"
 
 	headshot_state = HEADSHOT_OVERLAY_HEAVY
-	damage = 65
+	damage = 45
 	penetration = ARMOR_PENETRATION_TIER_10
+
+/datum/ammo/bullet/rifle/kramer
+	name = "heavy rifle bullet"
+
+	damage = 25
+	penetration = 0
+
+/datum/ammo/bullet/rifle/kramer/ap
+	name = "heavy armor-piercing rifle bullet"
+
+	damage = 30
+	penetration = ARMOR_PENETRATION_TIER_8
+
+/datum/ammo/bullet/rifle/kramer/heap
+	name = "heavy high-explosive armor-piercing rifle bullet"
+
+	headshot_state = HEADSHOT_OVERLAY_HEAVY
+	damage = 70
+	penetration = ARMOR_PENETRATION_TIER_10
+
+
+/datum/ammo/bullet/rifle/am35/plasma
+	name = "plasma bolt"
+	icon_state = "bluespace"
+	flags_ammo_behavior = AMMO_ENERGY
+	damage_type = BURN
+	damage = 75
+	penetration = ARMOR_PENETRATION_TIER_10
+	accurate_range = 21
+	effective_range_max = 21
+	max_range = 30
+	shell_speed = AMMO_SPEED_TIER_6
+	scatter = SCATTER_AMOUNT_TIER_9
+	accuracy = HIT_ACCURACY_TIER_9
+	damage_falloff = 99
+
+/datum/ammo/bullet/rifle/am35/plasma/set_bullet_traits()
+	. = ..()
+	LAZYADD(traits_to_give, list(
+		BULLET_TRAIT_ENTRY(/datum/element/bullet_trait_penetrating)
+	))
+
+/datum/ammo/bullet/rifle/am35/plasma/on_hit_mob(mob/living/M, obj/projectile/P)
+	..()
+	if(prob(50)) //small chance for one to ignite on hit
+		M.fire_act()
+
+/datum/ammo/bullet/rifle/am36/plasma
+	name = "plasma bolt"
+	icon_state = "bluespace"
+	flags_ammo_behavior = AMMO_ENERGY
+	damage_type = BURN
+	damage = 35
+	penetration = ARMOR_PENETRATION_TIER_10
+	accurate_range = 5
+	effective_range_max = 11
+	max_range = 10
+	shell_speed = AMMO_SPEED_TIER_4
+	scatter = SCATTER_AMOUNT_TIER_9
+	accuracy = HIT_ACCURACY_TIER_9
+	damage_falloff = 2
+
+/datum/ammo/bullet/rifle/am36/plasma/on_hit_mob(mob/living/M, obj/projectile/P)
+	..()
+	if(prob(75)) //small chance for one to ignite on hit
+		M.fire_act()

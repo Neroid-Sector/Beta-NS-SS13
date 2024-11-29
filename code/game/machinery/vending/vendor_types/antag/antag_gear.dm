@@ -86,6 +86,13 @@
 		/obj/item/ammo_magazine/m60,
 	)
 
+/obj/effect/essentials_set/kit/pkp
+	spawned_gear_list = list(
+		/obj/item/weapon/gun/pkp,
+		/obj/item/ammo_magazine/pkp,
+		/obj/item/ammo_magazine/pkp,
+	)
+
 /obj/effect/essentials_set/random/clf_bonus_item
 	spawned_gear_list = list(
 		/obj/item/storage/pill_bottle/tramadol/skillless,

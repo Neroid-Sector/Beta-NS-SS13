@@ -21,9 +21,12 @@
 	armor_rad = CLOTHING_ARMOR_NONE
 	armor_internaldamage = CLOTHING_ARMOR_NONE
 	siemens_coefficient = 0.9
-	vision_impair = VISION_IMPAIR_NONE
+	vision_impair = VISION_IMPAIR_WEAK
+	time_to_unequip = 20
+	time_to_equip = 20
+	equip_sounds = list('sound/handling/putting_on_armor1.ogg')
 	var/gas_filter_strength = 1 //For gas mask filters
-	var/list/filtered_gases = list("phoron", "sleeping_agent", "carbon_dioxide")
+	var/list/filtered_gases = list("phoron", "sleeping_agent", "carbon_dioxide", "CN20 Nerve Gas")
 
 /obj/item/clothing/mask/gas/kutjevo
 	name = "kutjevo respirator"
@@ -35,6 +38,24 @@
 	name = "\improper M8 pattern armored balaclava"
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter."
 	item_state = "helmet"
+	icon_state = "pmc_mask"
+	anti_hug = 3
+	vision_impair = VISION_IMPAIR_NONE
+	armor_melee = CLOTHING_ARMOR_LOW
+	armor_bullet = CLOTHING_ARMOR_NONE
+	armor_laser = CLOTHING_ARMOR_NONE
+	armor_energy = CLOTHING_ARMOR_NONE
+	armor_bomb = CLOTHING_ARMOR_LOW
+	armor_bio = CLOTHING_ARMOR_HIGH
+	armor_rad = CLOTHING_ARMOR_LOW
+	armor_internaldamage = CLOTHING_ARMOR_NONE
+	flags_inventory = COVERMOUTH|ALLOWINTERNALS|BLOCKGASEFFECT|ALLOWREBREATH
+	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
+	flags_equip_slot = SLOT_FACE
+
+/obj/item/clothing/mask/gas/odst
+	name = "\improper M30 pattern compression bonnet"
+	desc = "A bonnet with built in padding and deigned to carry FORECON operator's communication gear and cushion the head during high G-Force Re-entry. The front has a small mask to interface with the MK6 compression suit Helmet airsupply."
 	icon_state = "pmc_mask"
 	anti_hug = 3
 	vision_impair = VISION_IMPAIR_NONE
@@ -70,8 +91,13 @@
 	icon_state = "bear_mask"
 	anti_hug = 2
 
-
-
+/obj/item/clothing/mask/gas/owlf_mask
+	name = "\improper OWLF gas mask"
+	desc = "A close-fitting mask that can be connected to an air supply."
+	icon_state = "owlf_mask"
+	item_state = "owlf_mask"
+	flags_armor_protection = 30
+	w_class = SIZE_SMALL
 
 //Plague Dr suit can be found in clothing/suits/bio.dm
 /obj/item/clothing/mask/gas/plaguedoctor

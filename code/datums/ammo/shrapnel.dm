@@ -15,7 +15,7 @@
 	damage = 25
 	damage_var_low = -PROJECTILE_VARIANCE_TIER_6
 	damage_var_high = PROJECTILE_VARIANCE_TIER_6
-	penetration = ARMOR_PENETRATION_TIER_4
+	penetration = ARMOR_PENETRATION_TIER_1
 	shell_speed = AMMO_SPEED_TIER_2
 	shrapnel_chance = 5
 
@@ -48,6 +48,20 @@
 	. = ..()
 	M.AddComponent(/datum/component/bonus_damage_stack, 10, world.time)
 
+/datum/ammo/bullet/shrapnel/canister_rounds
+	name = " M108 canister grapshot"
+	icon_state = "buckshot"
+	flags_ammo_behavior = AMMO_BALLISTIC
+	damage = 20
+	shrapnel_chance = 0
+	shell_speed = AMMO_SPEED_TIER_3//she fast af boi
+	penetration = ARMOR_PENETRATION_TIER_5
+
+/datum/ammo/bullet/shrapnel/hornet_rounds/on_hit_mob(mob/M, obj/projectile/P)
+	. = ..()
+	M.AddComponent(/datum/component/bonus_damage_stack, 10, world.time)
+
+
 /datum/ammo/bullet/shrapnel/incendiary
 	name = "flaming shrapnel"
 	icon_state = "beanbag" // looks suprisingly a lot like flaming shrapnel chunks
@@ -71,7 +85,7 @@
 	damage = 30
 	shrapnel_chance = 15
 	accuracy = HIT_ACCURACY_TIER_8
-	penetration = ARMOR_PENETRATION_TIER_4
+	penetration = ARMOR_PENETRATION_TIER_1
 
 /datum/ammo/bullet/shrapnel/light // weak shrapnel
 	name = "light shrapnel"

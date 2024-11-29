@@ -44,7 +44,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_tl, list(
 
 		list("UTILITIES", 0, null, null, null),
 		list("Binoculars", 5, /obj/item/device/binoculars, null, VENDOR_ITEM_REGULAR),
-		list("Motion Detector", 15, /obj/item/device/motiondetector, null, VENDOR_ITEM_RECOMMENDED),
+		list("Motion Detector", 15, /obj/item/device/motiontracker/adv, null, VENDOR_ITEM_RECOMMENDED),
 		list("Plastic Explosive", 10, /obj/item/explosive/plastic, null, VENDOR_ITEM_REGULAR),
 		list("Breaching Charge", 10, /obj/item/explosive/plastic/breaching_charge, null, VENDOR_ITEM_REGULAR),
 		list("Roller Bed", 5, /obj/item/roller, null, VENDOR_ITEM_REGULAR),
@@ -68,8 +68,8 @@ GLOBAL_LIST_INIT(cm_vending_gear_tl, list(
 	desc = "An automated gear rack for fireteam leaders."
 	icon_state = "intel_gear"
 	show_points = TRUE
-	req_access = list(ACCESS_MARINE_TL_PREP)
-	vendor_role = list(JOB_SQUAD_TEAM_LEADER)
+	req_access = list(JOB_SQUAD_TEAM_LEADER)
+	vendor_role = list(JOB_SQUAD_TEAM_LEADER, JOB_TR_FSO)
 
 /obj/structure/machinery/cm_vending/gear/tl/get_listed_products(mob/user)
 	return GLOB.cm_vending_gear_tl
@@ -126,8 +126,8 @@ GLOBAL_LIST_INIT(cm_vending_clothing_tl, list(
 /obj/structure/machinery/cm_vending/clothing/tl
 	name = "ColMarTech Fireteam Leader Equipment Rack"
 	desc = "An automated rack hooked up to a colossal storage of fireteam leader standard-issue equipment."
-	req_access = list(ACCESS_MARINE_TL_PREP)
-	vendor_role = list(JOB_SQUAD_TEAM_LEADER)
+	req_access = list(JOB_SQUAD_TEAM_LEADER)
+	vendor_role = list(JOB_SQUAD_TEAM_LEADER, JOB_TR_FSO)
 
 /obj/structure/machinery/cm_vending/clothing/tl/get_listed_products(mob/user)
 	return GLOB.cm_vending_clothing_tl

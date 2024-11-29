@@ -354,6 +354,18 @@
 	desc = "A fire-resistant shoulder patch, worn by the men and women of the Falling Falcons, the 2nd battalion of the 4th brigade of the USCM."
 	icon_state = "fallingfalconspatch"
 
+/obj/item/clothing/accessory/patch/mudskippers
+	name = "USCM Mudskippers patch"
+	desc = "A Mudstained and fire-resistant shoulder patch, worn by the men and women of the Mudskippers, the 4th Division 3rd brigade 15th Bat of the USCM."
+	icon_state = "mudskipperspatch"
+/obj/item/clothing/accessory/patch/helldivers
+	name = "USCM Helldivers patch"
+	desc = "A fire-resistant shoulder patch, worn by the men and women of the Helldivers, the 4th Division 3rd brigade 12th Bat of the USCM."
+	icon_state = "helldiverspatch"
+/obj/item/clothing/accessory/patch/tunnelrats
+	name = "USCM Tunnel Rats patch"
+	desc = "A fire-resistant shoulder patch, worn by the men and women of the Tunnel Rats, the 4th Division 3rd brigade 6th Bat of the USCM."
+	icon_state = "tunnelratspatch"
 /obj/item/clothing/accessory/patch/forecon
 	name = "USCM Force Reconnaissance patch"
 	desc = "A fire-resistant shoulder patch, worn by the men and women of the USS Hanyut, USCM FORECON."
@@ -369,17 +381,74 @@
 	desc = "A fire-resistant shoulder patch, worn by the men and women of the 173rd Airborne Reconnaissance Platoon."
 	icon_state = "upppatch"
 
+/obj/item/clothing/accessory/patch/uppvdv
+	name = "UPP Airborne Reconnaissance patch"
+	desc = "A fire-resistant shoulder patch, worn by the men and women of the 173rd Airborne Reconnaissance Platoon."
+	icon_state = "vdvpatch"
+
+/obj/item/clothing/accessory/patch/uppnaval
+	name = "UPP Airborne Reconnaissance patch"
+	desc = "A fire-resistant shoulder patch, worn by the men and women of the 173rd Airborne Reconnaissance Platoon."
+	icon_state = "navalpatch"
+
+/obj/item/clothing/accessory/patch/cmb
+	name = "CMB QRF patch"
+	desc = "A fire-resistant shoulder patch, worn by colonial QRF members."
+	icon_state = "cmb_patch"
+
+/obj/item/clothing/accessory/patch/tis
+	name = "UAAC-TIS patch"
+	desc = "An elusive patch worn by members of the UAAC-TIS, also known as Three Eyes."
+	icon_state = "tis_patch"
+
 /obj/item/clothing/accessory/poncho
 	name = "USCM Poncho"
 	desc = "The standard USCM poncho has variations for every climate. Custom fitted to be attached to standard USCM armor variants it is comfortable, warming or cooling as needed, and well-fit. A marine couldn't ask for more. Affectionately referred to as a \"woobie\"."
 	icon_state = "poncho"
+	var/buttoned = FALSE
+	var/initial_icon_state
 	slot = ACCESSORY_SLOT_PONCHO
+	actions_types = list(/datum/action/item_action)
 
 /obj/item/clothing/accessory/poncho/Initialize()
 	. = ..()
 	select_gamemode_skin(type)
+	initial_icon_state = icon_state
 	inv_overlay = image("icon" = 'icons/obj/items/clothing/ties_overlay.dmi', "icon_state" = "[icon_state]")
 	update_icon()
+	verbs += /obj/item/clothing/accessory/poncho/proc/toggle
+
+/obj/item/clothing/accessory/poncho/proc/toggle()
+	set name = "Toggle Open"
+	set category = "Object"
+	set src in usr
+
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
+		return 0
+
+	if(src.buttoned == FALSE)
+		src.icon_state = "[initial_icon_state]_c"
+		src.buttoned = TRUE
+		to_chat(usr, SPAN_INFO("You close \the [src]."))
+	else
+		src.icon_state = "[initial_icon_state]"
+		src.buttoned = FALSE
+		to_chat(usr, SPAN_INFO("You open \the [src]"))
+	update_clothing_icon()
+
+/obj/item/clothing/accessory/poncho/attack_self(mob/user)
+	..()
+
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
+		return 0
+
+	toggle()
+	update_icon()
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.update_button_icon()
+
+	return TRUE
 
 /obj/item/clothing/accessory/poncho/green
 	icon_state = "poncho"
@@ -395,6 +464,12 @@
 
 /obj/item/clothing/accessory/poncho/purple
 	icon_state = "s_poncho"
+
+/obj/item/clothing/accessory/poncho/dress_cape
+	name = "marine dress blues cape"
+	desc = "The cape of the legendary Marine dress blues, virtually unchanged since the 19th century. You're wearing history, Marine. Don't let your ancestors down."
+	icon_state = "dress_cape"
+	item_state = "dress_cape"
 
 
 //Ties that can store stuff
@@ -539,13 +614,27 @@
 	desc = "A stylish black waistcoat with plenty of discreet pouches, to be both utilitarian and fashionable without compromising looks."
 	icon_state = "waistcoat"
 
-/obj/item/clothing/accessory/storage/black_vest/tool_webbing
-	hold = /obj/item/storage/internal/accessory/black_vest/tool_webbing
+/obj/item/clothing/accessory/storage/tool_webbing
+	name = "Tool Webbing"
+	desc = "A brown synthcotton webbing that is similar in function to civilian tool aprons, but is more durable for field usage."
+	hold = /obj/item/storage/internal/accessory/tool_webbing
 
-/obj/item/storage/internal/accessory/black_vest/tool_webbing
+/obj/item/storage/internal/accessory/tool_webbing
 	storage_slots = 7
+	can_hold = list(
+		/obj/item/tool/screwdriver,
+		/obj/item/tool/wrench,
+		/obj/item/tool/weldingtool,
+		/obj/item/tool/crowbar,
+		/obj/item/tool/wirecutters,
+		/obj/item/stack/cable_coil,
+		/obj/item/device/multitool,
+	)
 
-/obj/item/storage/internal/accessory/black_vest/tool_webbing/fill_preset_inventory()
+/obj/item/clothing/accessory/storage/tool_webbing/equipped
+	hold = /obj/item/storage/internal/accessory/tool_webbing/equipped
+
+/obj/item/storage/internal/accessory/tool_webbing/equipped/fill_preset_inventory()
 	new /obj/item/tool/screwdriver(src)
 	new /obj/item/tool/wrench(src)
 	new /obj/item/tool/weldingtool(src)
@@ -715,12 +804,7 @@
 	w_class = SIZE_LARGE //Allow storage containers that's medium or below
 	storage_slots = null
 	max_w_class = SIZE_MEDIUM
-	max_storage_space = 6 //weight system like backpacks, hold enough for 2 medium (normal) size items, or 3 small items, or 6 tiny items
-	cant_hold = list( //Prevent inventory powergame
-		/obj/item/storage/firstaid,
-		/obj/item/storage/bible,
-		/obj/item/storage/toolkit,
-		)
+	max_storage_space = 12 //weight system like backpacks, hold enough for 2 medium (normal) size items, or 3 small items, or 6 tiny items
 	storage_flags = NONE //no verb, no quick draw, no tile gathering
 
 /obj/item/clothing/accessory/storage/holster
@@ -874,9 +958,36 @@
 	..()
 	return
 
-/obj/item/clothing/accessory/storage/owlf_vest
+/obj/item/clothing/accessory/storage/webbing/owlf_vest
 	name = "\improper OWLF agent vest"
 	desc = "This is a fancy-looking ballistics vest, meant to be attached to a uniform." //No stats for these yet, just placeholder implementation.
 	icon = 'icons/obj/items/clothing/ties.dmi'
 	icon_state = "owlf_vest"
 	item_state = "owlf_vest"
+
+/obj/item/clothing/accessory/flak
+	name = "M67 flak vest"
+	desc = "An older model of flak jacket worn by combat support personnel such as dropship crew, and smartgunners. Much comfier than it's M70 successor, can be worn under most combat armor, however ballistic protection leaves much to be desired..."
+	icon_state = "flak"
+	item_state = "flak"
+	var/tucked_in = FALSE
+	flags_armor_protection = BODY_FLAG_CHEST
+	armor_melee = CLOTHING_ARMOR_MEDIUM
+	armor_bullet = CLOTHING_ARMOR_LOW
+	armor_bomb = CLOTHING_ARMOR_MEDIUMHIGH
+
+/obj/item/clothing/accessory/flak/get_examine_text(mob/user)
+	. = ..()
+	. += SPAN_NOTICE("You can wear it differently by <b>using it in hand</b>.")
+
+/obj/item/clothing/accessory/flak/attack_self(mob/user)
+	..()
+
+	tucked_in = !tucked_in
+	if(tucked_in)
+		icon_state = "flakslim"
+		user.visible_message(SPAN_NOTICE("[user] tucks in [src]'s sleeves."), SPAN_NOTICE("You tuck in [src]'s sleeves."))
+	else
+		icon_state = initial(icon_state)
+		user.visible_message(SPAN_NOTICE("[user] decides to keep [src] nice and puffy."), SPAN_NOTICE("You decide to keep [src] nice and puffy."))
+	item_state = icon_state

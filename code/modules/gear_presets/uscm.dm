@@ -22,13 +22,15 @@
 	dress_gloves = list(/obj/item/clothing/gloves/marine/dress)
 	dress_shoes = list(/obj/item/clothing/shoes/dress)
 	var/auto_squad_name
+	///Allows the squad to be set even if spawned on admin z level
+	var/ert_squad = FALSE
 
 /datum/equipment_preset/uscm/load_status(mob/living/carbon/human/new_human)
 	new_human.nutrition = rand(NUTRITION_VERYLOW, NUTRITION_LOW)
 
 /datum/equipment_preset/uscm/load_preset(mob/living/carbon/human/new_human, randomise, count_participant)
 	. = ..()
-	if(!auto_squad_name || is_admin_level(new_human.z))
+	if(!auto_squad_name || (is_admin_level(new_human.z) && !ert_squad))
 		return
 	if(!GLOB.data_core.manifest_modify(new_human.real_name, WEAKREF(new_human), assignment, rank))
 		GLOB.data_core.manifest_inject(new_human)
@@ -40,7 +42,7 @@
 	var/datum/squad/auto_squad = get_squad_by_name(auto_squad_name)
 	if(auto_squad)
 		transfer_marine_to_squad(new_human, auto_squad, new_human.assigned_squad, new_human.wear_id)
-	if(!auto_squad.active)
+	if(!ert_squad && !auto_squad.active)
 		auto_squad.engage_squad(FALSE)
 
 	new_human.marine_buyable_categories[MARINE_CAN_BUY_EAR] = 0
@@ -610,7 +612,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/construction/full(new_human), WEAR_R_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full(new_human), WEAR_L_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/insulated(new_human), WEAR_HANDS)
-	new_human.equip_to_slot_or_del(new /obj/item/device/motiondetector, WEAR_R_HAND)
+	new_human.equip_to_slot_or_del(new /obj/item/device/motiontracker/adv, WEAR_R_HAND)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/box/attachments(new_human), WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine/knife(new_human), WEAR_FEET)
 	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(new_human), WEAR_J_STORE)
@@ -797,6 +799,7 @@
 	languages = list(LANGUAGE_ENGLISH, LANGUAGE_TSL)
 	skills = /datum/skills/commando/deathsquad
 	auto_squad_name = SQUAD_SOF
+	ert_squad = TRUE
 	paygrade = "ME6"
 
 	minimap_icon = "private"
@@ -817,7 +820,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus, WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/device/motiondetector, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/motiontracker/adv, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/accessory/health/ceramic_plate, WEAR_IN_BACK)
 	//face
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/sof, WEAR_L_EAR)

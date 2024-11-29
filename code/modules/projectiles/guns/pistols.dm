@@ -27,7 +27,7 @@
 		/obj/item/attachable/burstfire_assembly,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED //For easy reference.
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED //For easy reference.
 	gun_category = GUN_CATEGORY_HANDGUN
 
 /obj/item/weapon/gun/pistol/Initialize(mapload, spawn_empty)
@@ -43,6 +43,15 @@
 	..()
 	movement_onehanded_acc_penalty_mult = 3
 
+/obj/item/weapon/gun/pistol/apply_bullet_effects(obj/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
+	. = ..()
+	if(!HAS_TRAIT(src, TRAIT_GUN_SILENCED))
+		if(!HAS_TRAIT(user, TRAIT_EAR_PROTECTION) && ishuman(user))
+			var/mob/living/carbon/human/huser = user
+			to_chat(user, SPAN_WARNING("Augh!! \The [src]'s firing resonates extremely loudly in your ears! You probably should have worn some sort of ear protection..."))
+			huser.apply_effect(6, STUTTER)
+			huser.AdjustEarDeafnessGuns(max(user.ear_deaf,2))
+
 //-------------------------------------------------------
 //M4A3 PISTOL
 
@@ -53,7 +62,7 @@
 	icon_state = "m4a3"
 	item_state = "m4a3"
 	current_mag = /obj/item/ammo_magazine/pistol
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AMMO_COUNTER
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
@@ -136,7 +145,7 @@
 	desc = "A timeless classic since the first World War, the M1911A1 has limited use with the USCM, and is often used as a sidearm by non-governmental bodies due to its reliability. This is a modernized version with an ammo counter and a polymer grip, designated M48A4. Chambered in .45 ACP."
 	icon_state = "m4a345_s"
 	item_state = "m4a3"
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AMMO_COUNTER
 
 /obj/item/weapon/gun/pistol/m1911/socom/set_gun_config_values()
 	..()
@@ -271,7 +280,7 @@
 	item_state = "np92"
 	fire_sound = "88m4"
 	current_mag = /obj/item/ammo_magazine/pistol/np92
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AMMO_COUNTER
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
@@ -301,7 +310,7 @@
 	inherent_traits = list(TRAIT_GUN_SILENCED)
 	fire_sound = "gun_silenced"
 	current_mag = /obj/item/ammo_magazine/pistol/np92/suppressed
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AMMO_COUNTER
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/reflex,
@@ -323,7 +332,7 @@
 	item_state = "tt"
 	fire_sound = 'sound/weapons/gun_tt.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/t73
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AMMO_COUNTER
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/reflex,
@@ -353,7 +362,7 @@
 	icon_state = "ttb"
 	item_state = "ttb"
 	current_mag = /obj/item/ammo_magazine/pistol/t73_impact
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AMMO_COUNTER
 	accepted_ammo = list(
 		/obj/item/ammo_magazine/pistol/t73,
 		/obj/item/ammo_magazine/pistol/t73_impact,
@@ -579,7 +588,7 @@
 	icon_state = "highpower_tac"
 	item_state = "highpower_tac"
 	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/lasersight, /obj/item/attachable/reflex)
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AMMO_COUNTER
 
 //-------------------------------------------------------
 //mod88 based off VP70 - Counterpart to M1911, offers burst and capacity ine exchange of low accuracy and damage.
@@ -596,7 +605,7 @@
 	unload_sound = 'sound/weapons/gun_88m4_unload.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/mod88
 	force = 8
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AMMO_COUNTER
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/extended_barrel,
@@ -639,6 +648,9 @@
 	flashlight.Attach(src)
 	update_attachable(flashlight.slot)
 
+/obj/item/weapon/gun/pistol/mod88/forecon
+	starting_attachment_types = list(/obj/item/attachable/flashlight/grip, /obj/item/attachable/magnetic_harness, /obj/item/attachable/stock/mod88, /obj/item/attachable/suppressor)
+
 //-------------------------------------------------------
 // ES-4 - Basically a CL-exclusive reskin of the 88 mod 4 that only uses less-lethal ammo.
 
@@ -655,7 +667,7 @@
 	current_mag = /obj/item/ammo_magazine/pistol/es4
 	force = 8
 	muzzle_flash = "muzzle_flash_blue"
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AMMO_COUNTER
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/reflex,
@@ -691,7 +703,7 @@
 	unload_sound = 'sound/weapons/gun_vp78_unload.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/vp78
 	force = 8
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AMMO_COUNTER
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
@@ -806,7 +818,7 @@ It is a modified Beretta 93R, and can fire three-round burst or single fire. Whe
 	fire_sound = 'sound/weapons/gun_su6.ogg'
 	reload_sound = 'sound/weapons/handling/gun_su6_reload.ogg'
 	unload_sound = 'sound/weapons/handling/gun_su6_unload.ogg'
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED|GUN_AMMO_COUNTER
 
 /obj/item/weapon/gun/pistol/smart/set_gun_attachment_offsets()
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 22, "under_x" = 24, "under_y" = 17, "stock_x" = 24, "stock_y" = 17)
@@ -842,7 +854,7 @@ It is a modified Beretta 93R, and can fire three-round burst or single fire. Whe
 
 	fire_sound = 'sound/weapons/gun_skorpion.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/skorpion
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED
 	attachable_allowed = list(
 		/obj/item/attachable/reddot, //Rail
 		/obj/item/attachable/reflex,

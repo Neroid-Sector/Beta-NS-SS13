@@ -162,6 +162,31 @@
 	icon = 'icons/obj/structures/props/almayer_props.dmi'
 	icon_state = "sensor_comp3"
 
+/obj/structure/prop/almayer/computers/sensor_computer_bulky
+	icon = 'icons/obj/structures/machinery/computer.dmi'
+	desc = "The IBM series 10 computer retrofitted to work as a combat data feed for the ship."
+	icon_state = "techweb"
+
+/obj/structure/prop/almayer/computers/sensor_computer_bulky2
+	desc = "The IBM series 10 computer retrofitted to work as a combat data feed for the ship."
+	icon_state = "almayer_altitude"
+
+/obj/structure/prop/almayer/computers/sensor_computer_bulky3
+	desc = "The IBM series 10 computer retrofitted to work as a combat data feed for the ship."
+	icon_state = "cameras_bulky"
+
+/obj/structure/prop/almayer/computers/sensor_computer_bulky4
+	desc = "The IBM series 10 computer retrofitted to work as a combat data feed for the ship."
+	icon_state = "medcomp_bulky"
+
+/obj/structure/prop/almayer/computers/sensor_computer_bulky5
+	desc = "The IBM series 10 computer retrofitted to work as a combat data feed for the ship."
+	icon_state = "genericcomp_bulky"
+
+/obj/structure/prop/almayer/computers/sensor_computer_bulky6
+	desc = "The IBM series 10 computer retrofitted to work as a combat data feed for the ship."
+	icon_state = "console_bulky"
+
 /obj/structure/prop/almayer/missile_tube
 	name = "\improper Mk 33 ASAT launcher system"
 	desc = "Cold launch tubes that can fire a few varieties of missiles out of them, the most common being the ASAT-21 Rapier IV missile used against satellites and other spacecraft and the BGM-227 Sledgehammer missile which is used for ground attack."
@@ -275,9 +300,6 @@
 
 /obj/structure/prop/almayer/cannon_cable_connector/bullet_act()
 	return
-
-
-
 
 
 

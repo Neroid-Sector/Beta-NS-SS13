@@ -103,4 +103,3 @@
 /obj/item/clothing/head/hardhat/dblue
 	icon_state = "hardhat0_dblue"
 	hardhat_color = "dblue"
-

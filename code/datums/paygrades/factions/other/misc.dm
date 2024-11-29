@@ -7,3 +7,8 @@
 	name = "Synthetic"
 	paygrade = "SYN"
 	pay_multiplier = 1
+
+/datum/paygrade/misc/candidate
+	name = "Candidate"
+	paygrade = "Can."
+	pay_multiplier = 5

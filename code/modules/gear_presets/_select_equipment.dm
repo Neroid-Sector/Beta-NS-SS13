@@ -171,18 +171,18 @@
 /datum/equipment_preset/proc/load_vanity(mob/living/carbon/human/new_human, client/mob_client)
 	if(!new_human.client || !new_human.client.prefs || !new_human.client.prefs.gear)
 		return//We want to equip them with custom stuff second, after they are equipped with everything else.
-	var/datum/gear/G
 	for(var/gear_name in new_human.client.prefs.gear)
-		G = gear_datums_by_name[gear_name]
-		if(G)
-			if(G.allowed_roles && !(assignment in G.allowed_roles))
-				to_chat(new_human, SPAN_WARNING("Custom gear [G.display_name] cannot be equipped: Invalid Role"))
+		var/datum/gear/current_gear = gear_datums_by_name[gear_name]
+		if(current_gear)
+			if(current_gear.allowed_roles && !(assignment in current_gear.allowed_roles))
+				to_chat(new_human, SPAN_WARNING("Custom gear [current_gear.display_name] cannot be equipped: Invalid Role"))
 				return
-			if(G.allowed_origins && !(new_human.origin in G.allowed_origins))
-				to_chat(new_human, SPAN_WARNING("Custom gear [G.display_name] cannot be equipped: Invalid Origin"))
+			if(current_gear.allowed_origins && !(new_human.origin in current_gear.allowed_origins))
+				to_chat(new_human, SPAN_WARNING("Custom gear [current_gear.display_name] cannot be equipped: Invalid Origin"))
 				return
-			if(!(G.slot && new_human.equip_to_slot_or_del(new G.path, G.slot)))
-				new_human.equip_to_slot_or_del(new G.path, WEAR_IN_BACK)
+			if(!(current_gear.slot && new_human.equip_to_slot_or_del(new current_gear.path, current_gear.slot)))
+				var/obj/equipping_gear = new current_gear.path
+				new_human.equip_to_slot_or_del(equipping_gear, WEAR_IN_BACK)
 
 	//Gives ranks to the ranked
 	var/current_rank = paygrade
@@ -304,6 +304,9 @@
 		/obj/item/clothing/suit/storage/militia/partial,
 		/obj/item/clothing/suit/armor/bulletproof,
 		/obj/item/clothing/suit/armor/vest,
+		/obj/item/clothing/suit/storage/marine/clf/hunter,
+		/obj/item/clothing/suit/storage/marine/clf/riot,
+		/obj/item/clothing/suit/storage/marine/faction/UPP/support,
 		)
 	new_human.equip_to_slot_or_del(new suitpath, WEAR_JACKET)
 
@@ -313,18 +316,38 @@
 	var/helmetpath = pick(
 		/obj/item/clothing/head/militia,
 		/obj/item/clothing/head/militia/bucket,
-		/obj/item/clothing/head/helmet,
 		/obj/item/clothing/head/helmet/skullcap,
-		/obj/item/clothing/head/helmet/swat,
 		/obj/item/clothing/head/hardhat,
 		/obj/item/clothing/head/welding,
 		/obj/item/clothing/head/bandana,
 		/obj/item/clothing/head/headband/red,
 		/obj/item/clothing/head/headband/rebel,
 		/obj/item/clothing/head/headband/rambo,
+		/obj/item/clothing/head/militia/ranger,
+		/obj/item/clothing/head/militia/ranger/noface,
+		/obj/item/clothing/head/militia/ranger/lamp,
+		/obj/item/clothing/head/militia/mining,
+		/obj/item/clothing/head/militia/riot,
 		)
 	new_human.equip_to_slot_or_del(new helmetpath, WEAR_HEAD)
 
+/datum/equipment_preset/proc/spawn_ranger_helmet(mob/living/carbon/human/new_human)
+	if(!istype(new_human)) return
+	var/rangerhelmetpath = pick(
+		/obj/item/clothing/head/militia/bucket,
+		/obj/item/clothing/head/militia/ranger,
+		/obj/item/clothing/head/militia/ranger/noface,
+		)
+	new_human.equip_to_slot_or_del(new rangerhelmetpath, WEAR_HEAD)
+
+/datum/equipment_preset/proc/spawn_ranger_mask(mob/living/carbon/human/new_human)
+	if(!istype(new_human)) return
+	var/rangermaskpath = pick(
+		/obj/item/clothing/mask/gas,
+		/obj/item/clothing/mask/rebreather,
+		/obj/item/clothing/mask/balaclava,
+		)
+	new_human.equip_to_slot_or_del(new rangermaskpath, WEAR_FACE)
 
 /datum/equipment_preset/proc/spawn_rebel_shoes(mob/living/carbon/human/new_human)
 	if(!istype(new_human)) return
@@ -335,6 +358,8 @@
 		/obj/item/clothing/shoes/leather,
 		/obj/item/clothing/shoes/combat,
 		/obj/item/clothing/shoes/swat,
+		/obj/item/clothing/shoes/veteran/pmc/knife,
+		/obj/item/clothing/shoes/red/knife,
 		)
 	new_human.equip_to_slot_or_del(new shoespath, WEAR_FEET)
 
@@ -728,7 +753,7 @@ var/list/rebel_rifles = list(
 	var/random_gear = rand(0,3)
 	switch(random_gear)
 		if(0)
-			new_human.equip_to_slot_or_del(new /obj/item/device/motiondetector(new_human), WEAR_IN_BACK)
+			new_human.equip_to_slot_or_del(new /obj/item/device/motiontracker/adv(new_human), WEAR_IN_BACK)
 		if(1)
 			new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/custom/metal_foam(new_human), WEAR_IN_BACK)
 		if(2)
@@ -1026,3 +1051,13 @@ var/list/rebel_rifles = list(
 			new_human.equip_to_slot_or_del(new /obj/item/storage/belt/gun/type47/t73(new_human), WEAR_WAIST)
 		if (4)
 			new_human.equip_to_slot_or_del(new /obj/item/storage/belt/marine/upp(new_human), WEAR_WAIST)
+
+/datum/equipment_preset/proc/spawn_som_helmet(mob/living/carbon/human/new_human)
+	if(!istype(new_human)) return
+	var/helmetpath = pick(
+		/obj/item/clothing/head/helmet/skullcap,
+		/obj/item/clothing/head/welding,
+		/obj/item/clothing/head/bandana,
+		/obj/item/clothing/head/militia/riot,
+		)
+	new_human.equip_to_slot_or_del(new helmetpath, WEAR_HEAD)

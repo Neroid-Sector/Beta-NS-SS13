@@ -29,10 +29,16 @@
 	damage_type = OXY
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_RESIST|AMMO_ALWAYS_FF //Not that ignoring will do much right now.
 
-	stamina_damage = 45
+	stamina_damage = 75
 	accuracy = HIT_ACCURACY_TIER_8
-	shell_speed = AMMO_SPEED_TIER_1 // Slightly faster
+	shell_speed = AMMO_SPEED_TIER_4 // Slightly faster
 	hit_effect_color = "#FFFF00"
+
+/datum/ammo/energy/taser/on_hit_mob(mob/living/M, obj/projectile/P)
+	..()
+	if(prob(1)) //small chance for one to ignite on hit
+		M.fire_act()
+
 
 /datum/ammo/energy/taser/on_hit_mob(mob/M, obj/projectile/P)
 	if(ishuman(M))
@@ -70,6 +76,25 @@
 	scatter = SCATTER_AMOUNT_TIER_6
 	accuracy = HIT_ACCURACY_TIER_3
 	damage_falloff = DAMAGE_FALLOFF_TIER_8
+
+/datum/ammo/energy/laz_rifle
+	name = "laser bolt"
+	icon_state = "laser_new"
+	flags_ammo_behavior = AMMO_ENERGY
+	damage_type = BURN
+	damage = 75
+	accurate_range = 5
+	effective_range_max = 7
+	max_range = 10
+	shell_speed = AMMO_SPEED_TIER_4
+	scatter = SCATTER_AMOUNT_TIER_6
+	accuracy = HIT_ACCURACY_TIER_3
+	damage_falloff = DAMAGE_FALLOFF_TIER_8
+
+/datum/ammo/energy/laz_rifle/on_hit_mob(mob/living/M, obj/projectile/P)
+	..()
+	if(prob(10)) //small chance for one to ignite on hit
+		M.fire_act()
 
 /datum/ammo/energy/yautja
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM

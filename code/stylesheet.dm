@@ -138,15 +138,25 @@ h1.alert, h2.alert {color: #000000;}
 .centerbold { text-align: center; font-weight: bold;}
 
 .modooc {color: #184880; font-weight: bold;}
-.tajaran {color: #803B56;}
-.tajaran_signlang {color: #941C1C;}
-.skrell {color: #00CED1;}
-.soghun {color: #228B22;}
-.changeling {color: #800080;}
-.vox {color: #AA00AA;}
+.yautja {color: #803B56;}
+.yautja_signlang {color: #941C1C;}
+.apollo {color: #00CED1;}
+.russian {color: #228B22;}
+.celtic {color: #88c288;}
+.farsi {color: #e45f36;}
+.arabic {color: #b89c43;}
+.korean {#7fb9b6;}
+.latin {color: #74495d;}
+.berber {color: #3c5879;}
+.bantu {color: #185734;}
+.hindi {color: #8b9412;}
+.finnish {color: #c3f7f4;}
+.swedish {color: #e2e18e;}
+
 .monkey {color: #966C47;}
 .rough {font-family: trebuchet-ms, cursive, sans-serif;}
 .german {color: #858F1E; font-family: 'Times New Roman', Times, serif}
+.french {color: #667fdb;}
 .spanish {color: #CF982B;}
 .japanese {color: #0047A0}
 .commando {color: #FE9B24; font-style: bold;}

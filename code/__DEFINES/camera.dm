@@ -5,6 +5,13 @@
 #define CAMERA_NET_RESEARCH "Research"
 #define CAMERA_NET_ALAMO "Alamo"
 #define CAMERA_NET_NORMANDY "Normandy"
+#define CAMERA_NET_ATTU "Attu"
+#define CAMERA_NET_SAIGON "Saigon"
+#define CAMERA_NET_ARGONNE "Argonne"
+#define CAMERA_NET_CONCORD "Concord"
+#define CAMERA_NET_TARAWA "Tarawa"
+#define CAMERA_NET_MIDWAY "Midway"
+#define CAMERA_NET_WACO "Waco"
 #define CAMERA_NET_COLONY "Colony"
 #define CAMERA_NET_ARES "ARES"
 

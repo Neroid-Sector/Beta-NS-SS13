@@ -236,6 +236,170 @@
 	spawn_merc_weapon(new_human,1,2)
 
 //*****************************************************************************************************/
+/datum/equipment_preset/other/freelancer/trauma_team/medic
+	name = "Trauma Team Operative"
+	paygrade = "Freelancer Medic"
+	flags = EQUIPMENT_PRESET_EXTRA
+	assignment = "Trauma Team Operative"
+	skills = /datum/skills/freelancer/combat_medic
+
+/datum/equipment_preset/other/freelancer/trauma_team/medic/load_race(mob/living/carbon/human/new_human, client/mob_client)
+	..()
+	ADD_TRAIT(new_human, TRAIT_EMOTE_CD_EXEMPT, TRAIT_SOURCE_JOB)
+
+/datum/equipment_preset/other/freelancer/trauma_team/medic/load_gear(mob/living/carbon/human/new_human)
+
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/trauma_team(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/specialist/trauma_team(new_human), WEAR_HANDS)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/medhud(new_human), WEAR_EYES)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/pmc(new_human), WEAR_FACE)
+	pick_trauma_helmet(new_human)
+	pick_trauma_armor(new_human)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine/brown/knife(new_human), WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/accessory/storage/surg_vest/drop_green/equipped(new_human), WEAR_ACCESSORY)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack(new_human), WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/noskill(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/noskill(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/explosive/plastic/breaching_charge(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/tool/crowbar/tactical(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/defibrillator/compact_adv(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/belt/medical/lifesaver/full(new_human), WEAR_WAIST)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/first_responder/full(new_human), WEAR_L_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/autoinjector/full(new_human), WEAR_R_STORE)
+//gun
+	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/fp9000/pmc(new_human), WEAR_J_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/fp9000(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/fp9000(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/fp9000(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/fp9000(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/fp9000(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/fp9000(new_human), WEAR_IN_JACKET)
+//Randomized armor
+/datum/equipment_preset/proc/pick_trauma_helmet(mob/living/carbon/human/new_human)
+	if(!istype(new_human)) return
+	var/trauma_helmet = pick(
+		/obj/item/clothing/head/helmet/marine/odst/trauma_team,
+		/obj/item/clothing/head/helmet/marine/odst/trauma_team/alt,
+		)
+	new_human.equip_to_slot_or_del(new trauma_helmet, WEAR_HEAD)
+
+/datum/equipment_preset/proc/pick_trauma_armor(mob/living/carbon/human/new_human)
+	if(!istype(new_human)) return
+	var/trauma_armor = pick(
+		/obj/item/clothing/suit/storage/marine/veteran/trauma_team,
+		/obj/item/clothing/suit/storage/marine/veteran/trauma_team/alt,
+		)
+	new_human.equip_to_slot_or_del(new trauma_armor, WEAR_JACKET)
+
+//*****************************************************************************************************/
+/datum/equipment_preset/other/freelancer/trauma_team/leader
+	name = "Trauma Team Leader"
+	paygrade = "Freelancer Medic"
+	flags = EQUIPMENT_PRESET_EXTRA
+	assignment = "Trauma Team Leader"
+	skills = /datum/skills/freelancer/SL
+
+/datum/equipment_preset/other/freelancer/trauma_team/leader/load_race(mob/living/carbon/human/new_human, client/mob_client)
+	..()
+	ADD_TRAIT(new_human, TRAIT_EMOTE_CD_EXEMPT, TRAIT_SOURCE_JOB)
+
+/datum/equipment_preset/other/freelancer/trauma_team/leader/load_gear(mob/living/carbon/human/new_human)
+
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/trauma_team(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/specialist/trauma_team(new_human), WEAR_HANDS)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/medhud(new_human), WEAR_EYES)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/pmc(new_human), WEAR_FACE)
+	pick_trauma_helmet(new_human)
+	pick_trauma_armor(new_human)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine/brown/knife(new_human), WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/accessory/storage/surg_vest/drop_green/equipped(new_human), WEAR_ACCESSORY)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack(new_human), WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/noskill(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/noskill(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/explosive/plastic/breaching_charge(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/tool/crowbar/tactical(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/defibrillator/compact_adv(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/belt/medical/lifesaver/full(new_human), WEAR_WAIST)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/first_responder/full(new_human), WEAR_L_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/autoinjector/full(new_human), WEAR_R_STORE)
+//gun
+	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/p90(new_human), WEAR_J_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/p90/ap(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/p90/ap(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/p90(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/p90/ap(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/p90/ap(new_human), WEAR_IN_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/p90/ap(new_human), WEAR_IN_JACKET)
+
+//*****************************************************************************************************/
+/datum/equipment_preset/other/freelancer/stalker
+	name = "S.T.A.L.K.E.R."
+	paygrade = "S.T.A.L.K.E.R."
+	flags = EQUIPMENT_PRESET_EXTRA
+	assignment = "S.T.A.L.K.E.R."
+	skills = /datum/skills/freelancer/SL
+	languages = list(LANGUAGE_RUSSIAN, LANGUAGE_ENGLISH)
+
+/datum/equipment_preset/other/freelancer/stalker/load_race(mob/living/carbon/human/new_human, client/mob_client)
+	..()
+	ADD_TRAIT(new_human, TRAIT_EMOTE_CD_EXEMPT, TRAIT_SOURCE_JOB)
+
+/datum/equipment_preset/other/freelancer/stalker/load_gear(mob/living/carbon/human/new_human)
+
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/UPP(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/windbreaker/windbreaker_brown(new_human), WEAR_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather/scarf(new_human), WEAR_FACE)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/uppcap/ushanka(new_human), WEAR_HEAD)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine/brown(new_human), WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack(new_human), WEAR_BACK)
+//gun
+	new_human.equip_to_slot_or_del(new /obj/item/storage/belt/gun/type47/np92(new_human), WEAR_WAIST)
+//gear
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(new_human), WEAR_L_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/flare/full(new_human), WEAR_R_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/device/binoculars/civ(new_human), WEAR_IN_BACK)
+
+//*****************************************************************************************************/
+
+/datum/equipment_preset/other/freelancer/stalker/elite
+	name = "S.T.A.L.K.E.R. Elite"
+	paygrade = "S.T.A.L.K.E.R."
+	flags = EQUIPMENT_PRESET_EXTRA
+	assignment = "S.T.A.L.K.E.R."
+	skills = /datum/skills/freelancer
+	languages = list(LANGUAGE_RUSSIAN, LANGUAGE_ENGLISH)
+
+/datum/equipment_preset/other/freelancer/stalker/elite/load_race(mob/living/carbon/human/new_human, client/mob_client)
+	..()
+	ADD_TRAIT(new_human, TRAIT_EMOTE_CD_EXEMPT, TRAIT_SOURCE_JOB)
+
+/datum/equipment_preset/other/freelancer/stalker/elite/load_gear(mob/living/carbon/human/new_human)
+
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/UPP(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/webbing(new_human), WEAR_JACKET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/pmc/royal_marine(new_human), WEAR_FACE)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/UPP(new_human), WEAR_HEAD)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine/brown(new_human), WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack(new_human), WEAR_BACK)
+//gun
+	new_human.equip_to_slot_or_del(new /obj/item/storage/belt/gun/type47/np92(new_human), WEAR_WAIST)
+	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/ak4047/scav(new_human), WEAR_R_HAND)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak4047/ap(new_human), WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak4047/ap(new_human), WEAR_IN_BACK)
+//gear
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(new_human), WEAR_L_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/flare/full(new_human), WEAR_R_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/device/binoculars/civ(new_human), WEAR_IN_BACK)
+
+//*****************************************************************************************************/
 
 /datum/equipment_preset/other/elite_merc
 	name = "Elite Mercenary"
@@ -273,7 +437,7 @@
 	flags = EQUIPMENT_PRESET_EXTRA
 
 	idtype = /obj/item/card/id/centcom
-	assignment = "Mercenary Miner"
+	assignment = "Elite Mercenary Miner"
 	rank = "Mercenary"
 	skills = /datum/skills/mercenary/elite
 	faction = FACTION_MERCENARY
@@ -310,7 +474,7 @@
 	flags = EQUIPMENT_PRESET_EXTRA
 
 	idtype = /obj/item/card/id/centcom
-	assignment = "Mercenary Heavy"
+	assignment = "Elite Mercenary Heavy"
 	rank = "Mercenary"
 	skills = /datum/skills/mercenary/elite/heavy
 	faction = FACTION_MERCENARY
@@ -350,7 +514,7 @@
 	flags = EQUIPMENT_PRESET_EXTRA
 
 	idtype = /obj/item/card/id/data
-	assignment = "Mercenary Engineer"
+	assignment = "Elite Mercenary Engineer"
 	rank = "Mercenary"
 	skills = /datum/skills/mercenary/elite/engineer
 	faction = FACTION_MERCENARY
@@ -404,7 +568,7 @@
 	flags = EQUIPMENT_PRESET_EXTRA
 
 	idtype = /obj/item/card/id/centcom
-	assignment = "Mercenary Medic"
+	assignment = "Elite Mercenary Medic"
 	rank = "Mercenary"
 	skills = /datum/skills/mercenary/elite/medic
 	faction = FACTION_MERCENARY
@@ -450,7 +614,7 @@
 	flags = EQUIPMENT_PRESET_EXTRA
 
 	idtype = /obj/item/card/id/centcom
-	assignment = "Mercenary Warlord"
+	assignment = "Elite Mercenary Warlord"
 	rank = "Mercenary"
 	skills = /datum/skills/mercenary/elite/leader
 	faction = FACTION_MERCENARY
@@ -476,7 +640,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/storage/box/packet/phosphorus/upp, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/binoculars/range, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/firstaid/regular/response, WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/device/motiondetector/hacked/elite_merc, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/motiontracker/adv/hacked/elite_merc, WEAR_IN_BACK)
 	//gun
 	spawn_merc_elite_weapon(new_human, 7, 25, 1) //lower shotgun chance, but not zero
 
@@ -694,7 +858,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/combat, WEAR_HANDS)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat, WEAR_FEET)
 	new_human.equip_to_slot_or_del(new /obj/item/weapon/shield/riot, WEAR_R_HAND)
-	new_human.equip_to_slot_or_del(new /obj/item/weapon/claymore/mercsword, WEAR_L_HAND)
+	new_human.equip_to_slot_or_del(new /obj/item/weapon/sword, WEAR_L_HAND)
 
 	var/obj/item/lantern = new /obj/item/device/flashlight/lantern(new_human)
 	lantern.name = "Beacon of Holy Light"
@@ -720,7 +884,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/tool/crowbar, WEAR_WAIST)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat, WEAR_FEET)
 	new_human.equip_to_slot_or_del(new /obj/item/weapon/shield/riot, WEAR_R_HAND)
-	new_human.equip_to_slot_or_del(new /obj/item/weapon/claymore/mercsword, WEAR_L_HAND)
+	new_human.equip_to_slot_or_del(new /obj/item/weapon/sword, WEAR_L_HAND)
 
 	var/obj/item/lantern = new /obj/item/device/flashlight/lantern(new_human)
 	lantern.name = "Beacon of Holy Light"
@@ -746,7 +910,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat, WEAR_FEET)
 	new_human.equip_to_slot_or_del(new /obj/item/weapon/shield/riot, WEAR_R_HAND)
 	new_human.equip_to_slot_or_del(new /obj/item/tool/crowbar, WEAR_WAIST)
-	new_human.equip_to_slot_or_del(new /obj/item/weapon/claymore/mercsword, WEAR_L_HAND)
+	new_human.equip_to_slot_or_del(new /obj/item/weapon/sword, WEAR_L_HAND)
 
 	var/obj/item/lantern = new /obj/item/device/flashlight/lantern(new_human)
 	lantern.name = "Beacon of Holy Light"

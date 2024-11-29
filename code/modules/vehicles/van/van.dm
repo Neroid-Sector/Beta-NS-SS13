@@ -38,7 +38,7 @@
 		"cooldown" = 1
 	)
 
-	movement_sound = 'sound/vehicles/tank_driving.ogg'
+	movement_sound = 'sound/vehicles/heavytruck_driving.mp3'
 	honk_sound = 'sound/vehicles/honk_2_truck.ogg'
 
 	vehicle_light_range = 8

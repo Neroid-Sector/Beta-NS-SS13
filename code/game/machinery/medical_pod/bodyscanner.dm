@@ -390,3 +390,7 @@
 	dat += "</body></html>"
 	return dat
 
+/obj/structure/machinery/body_scanconsole/wall
+	name = "body scanner"
+	icon = 'icons/obj/structures/machinery/terminals.dmi'
+	icon_state = "req_comp0"

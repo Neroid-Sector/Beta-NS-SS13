@@ -77,7 +77,7 @@
 //Marine service & tanker jacket + MP themed variants
 /obj/item/clothing/suit/storage/jacket/marine/service
 	name = "marine service jacket"
-	desc = "A service jacket typically worn by officers of the USCM. It has shards of light Kevlar to help protect against stabbing weapons and bullets."
+	desc = "A service jacket typically worn by officers of the USCM. It has shards of light Venlar to help protect against stabbing weapons and bullets."
 	has_buttons = TRUE
 	icon_state = "coat_officer"
 
@@ -120,6 +120,81 @@
 	flags_atom = NO_SNOW_TYPE
 	icon_state = "jacket_tanker"
 	initial_icon_state = "jacket_tanker"
+
+/obj/item/clothing/suit/storage/jacket/marine/service/trenchcoat_grn
+	name = "forest green military trenchcoat"
+	desc = "A comfortable trenchcoat frequently issued to USCMC and other UA armed forces expected to operate in cold or wet environments. The decades-old design is made of gabardine, produced from synthetic-worsted-wool fabric & waterproofed using lanolin and wax before weaving. The aesthetic is equally at home on an officer that has never seen combat and the filthiest or most water-logged shell craters."
+	has_buttons = TRUE
+	flags_atom = NO_SNOW_TYPE
+	icon_state = "marine_trenchcoat_grn"
+	initial_icon_state = "marine_trenchcoat_grn"
+	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS
+	valid_accessory_slots = list(ACCESSORY_SLOT_ARMBAND, ACCESSORY_SLOT_RANK, ACCESSORY_SLOT_MEDAL)
+
+/obj/item/clothing/suit/storage/jacket/marine/service/trenchcoat_tan
+	name = "khaki tan military trenchcoat"
+	desc = "A comfortable trenchcoat frequently issued to USCMC and other UA armed forces expected to operate in cold or wet environments. The decades-old design is made of gabardine, produced from synthetic-worsted-wool fabric & waterproofed using lanolin and wax before weaving. The aesthetic is equally at home on an officer that has never seen combat and the filthiest or most water-logged shell craters."
+	has_buttons = TRUE
+	flags_atom = NO_SNOW_TYPE
+	icon_state = "marine_trenchcoat_tan"
+	initial_icon_state = "marine_trenchcoat_tan"
+	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS
+	valid_accessory_slots = list(ACCESSORY_SLOT_ARMBAND, ACCESSORY_SLOT_RANK, ACCESSORY_SLOT_MEDAL)
+
+/obj/item/clothing/suit/storage/jacket/marine/service/trenchcoat_blk
+	name = "urban gray military trenchcoat"
+	desc = "A comfortable trenchcoat frequently issued to USCMC and other UA armed forces expected to operate in cold or wet environments. The decades-old design is made of gabardine, produced from synthetic-worsted-wool fabric & waterproofed using lanolin and wax before weaving. The aesthetic is equally at home on an officer that has never seen combat and the filthiest or most water-logged shell craters."
+	has_buttons = TRUE
+	flags_atom = NO_SNOW_TYPE
+	icon_state = "marine_trenchcoat_blk"
+	initial_icon_state = "marine_trenchcoat_blk"
+	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS
+	valid_accessory_slots = list(ACCESSORY_SLOT_ARMBAND, ACCESSORY_SLOT_RANK, ACCESSORY_SLOT_MEDAL)
+
+/obj/item/clothing/suit/storage/jacket/marine/service/trenchcoat_smuggler
+	name = "bulging trenchcoat"
+	desc = "A battered old trenchcoat filled with lots of hidden pockets. Perfect for a smuggler."
+	has_buttons = TRUE
+	flags_atom = NO_SNOW_TYPE
+	w_class = SIZE_MASSIVE
+	icon_state = "smuggler"
+	initial_icon_state = "smuggler"
+	storage_slots = 30
+	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS
+	valid_accessory_slots = list(ACCESSORY_SLOT_ARMBAND, ACCESSORY_SLOT_RANK, ACCESSORY_SLOT_MEDAL)
+	allowed = list(
+		/obj/item/weapon,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/tool,
+		/obj/item/handcuffs,
+		/obj/item/device,
+		/obj/item/attachable,
+		/obj/item/storage/belt/gun,
+
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/storage,
+	)
+
+
+/obj/item/clothing/suit/storage/jacket/marine/service/trenchcoat_smuggler/Initialize()
+	. = ..()
+	var/list/template_guns = list(/obj/item/weapon/gun/pistol, /obj/item/weapon/gun/revolver, /obj/item/weapon/gun/shotgun, /obj/item/weapon/gun/rifle, /obj/item/weapon/gun/smg, /obj/item/weapon/gun/energy, /obj/item/weapon/gun/launcher, /obj/item/weapon/gun/launcher/grenade, /obj/item/weapon/gun/rifle/sniper)
+	var/list/bad_guns = typesof(/obj/item/weapon/gun/pill) + /obj/item/weapon/gun/souto + /obj/item/weapon/gun/smg/nailgun/compact //guns that don't work for some reason
+	var/list/emplacements = list(/obj/item/device/m2c_gun , /obj/item/device/m56d_gun/mounted)
+	var/list/yautja_guns = typesof(/obj/item/weapon/gun/energy/yautja) + /obj/item/weapon/gun/launcher/spike
+	var/list/smartguns = typesof(/obj/item/weapon/gun/smartgun)
+	var/list/training_guns = list(
+		/obj/item/weapon/gun/rifle/m41a/training,
+		/obj/item/weapon/gun/rifle/m4ra/training,
+		/obj/item/weapon/gun/smg/m39/training,
+		/obj/item/weapon/gun/pistol/m4a3/training,
+		/obj/item/weapon/gun/pistol/mod88/training) //Ivan doesn't carry toys.
+
+	var/list/picklist = subtypesof(/obj/item/weapon/gun) - (template_guns + bad_guns + emplacements + yautja_guns + smartguns + training_guns)
+	var/random_gun = pick(picklist)
+	for(var/total_storage_slots in 1 to storage_slots) //minus templates
+		new random_gun(src)
+		random_gun = pick(picklist)
 
 /obj/item/clothing/suit/storage/jacket/marine/chef
 	name = "mess technician jacket"
@@ -233,33 +308,96 @@
 	has_buttons = FALSE
 
 
+//=========================//Corporate\\================================\\
+//=======================================================================\\
+
+/obj/item/clothing/suit/storage/jacket/marine/corporate
+	name = "Tan vest"
+	has_buttons = FALSE
+	icon_state = "vest_tan"
+	item_state = "vest_tan"
+	flags_atom = NO_SNOW_TYPE
+
+/obj/item/clothing/suit/storage/jacket/marine/corporate/tan_vest
+	name = "Tan vest"
+	has_buttons = FALSE
+	icon_state = "vest_tan"
+	item_state = "vest_tan"
+	flags_atom = NO_SNOW_TYPE
+
+/obj/item/clothing/suit/storage/jacket/marine/corporate/grey_vest
+	name = "Grey Vest"
+	has_buttons = FALSE
+	icon_state = "vest_grey"
+	item_state = "vest_grey"
+	flags_atom = NO_SNOW_TYPE
+
+/obj/item/clothing/suit/storage/jacket/marine/corporate/ivy
+	name = "Ivy Jacket"
+	icon_state = "corporate_ivy"
+	flags_atom = NO_SNOW_TYPE
+
+/obj/item/clothing/suit/storage/jacket/marine/corporate/formal
+	name = "Formal Jacket"
+	icon_state = "corporate_formal"
+	item_state = "corporate_formal"
+	flags_atom = NO_SNOW_TYPE
+
+/obj/item/clothing/suit/storage/jacket/marine/corporate/black
+	name = "Black Jacket"
+	icon_state = "corporate_black"
+	item_state = "corporate_black"
+	flags_atom = NO_SNOW_TYPE
+
+/obj/item/clothing/suit/storage/jacket/marine/corporate/brown
+	name = "Brown Jacket"
+	icon_state = "corporate_brown"
+	item_state = "corporate_brown"
+	flags_atom = NO_SNOW_TYPE
+
+/obj/item/clothing/suit/storage/jacket/marine/corporate/blue
+	name = "Blue Jacket"
+	icon_state = "corporate_blue"
+	item_state = "corporate_blue"
+	flags_atom = NO_SNOW_TYPE
+
+/obj/item/clothing/suit/storage/jacket/marine/corporate/kahki
+	name = "Kahki Jacket"
+	icon_state = "jacket_kahki"
+	item_state = "jacket_kahki"
+	flags_atom = NO_SNOW_TYPE
+
+/obj/item/clothing/suit/storage/jacket/marine/corporate/red
+	name = "Red Jacket"
+	icon_state = "jacket_red"
+	item_state = "jacket_red"
+	flags_atom = NO_SNOW_TYPE
+
+/obj/item/clothing/suit/storage/jacket/marine/corporate/grey
+	name = "Grey Jacket"
+	icon_state = "corporate_grey"
+	item_state = "corporate_grey"
+	flags_atom = NO_SNOW_TYPE
+
 //=========================//PROVOST\\================================\\
 //=======================================================================\\
+
 /obj/item/clothing/suit/storage/jacket/marine/provost
-	name = "\improper Provost Coat"
-	desc = "The crisp coat of a Provost Officer."
+	name = "\improper Provost Jacket"
+	desc = "A crisp jacket with the Provost sigil."
+	icon_state = "provost_jacket"
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
-	icon_state = "provost_coat"
 	valid_accessory_slots = list(ACCESSORY_SLOT_ARMBAND, ACCESSORY_SLOT_RANK, ACCESSORY_SLOT_DECOR)
 
-/obj/item/clothing/suit/storage/jacket/marine/provost/advisor
-	name = "\improper Provost Advisor Jacket"
-	desc = "The crisp jacket of a Provost Advisor."
-	icon_state = "provost_jacket"
+/obj/item/clothing/suit/storage/jacket/marine/provost/coat
+	name = "\improper Provost Coat"
+	desc = "The crisp coat of a Provost Officer."
+	icon_state = "provost_coat"
 
-/obj/item/clothing/suit/storage/jacket/marine/provost/inspector
-	name = "\improper Provost Inspector Jacket"
-	desc = "The crisp jacket of a Provost Inspector."
-	icon_state = "provost_jacket"
+/obj/item/clothing/suit/storage/jacket/marine/provost/coat/marshal
+	name = "\improper Provost Marshal Coat"
+	icon_state = "provost_coat_marshal"
 
-/obj/item/clothing/suit/storage/jacket/marine/provost/marshal
-	name = "\improper Provost Marshal Jacket"
-	desc = "The crisp jacket of a Provost Marshal."
-	icon_state = "provost_jacket"
-
-/obj/item/clothing/suit/storage/jacket/marine/provost/marshal/chief
-	name = "\improper Provost Chief Marshal Jacket"
-	desc = "The crisp jacket of the Provost Chief Marshal."
 
 //=========================//DRESS BLUES\\================================\\
 //=======================================================================\\
@@ -273,6 +411,7 @@
 	has_buttons = FALSE
 	item_state_slots = null
 	contained_sprite = TRUE
+	valid_accessory_slots = list(ACCESSORY_SLOT_RANK, ACCESSORY_SLOT_PONCHO)
 
 /obj/item/clothing/suit/storage/jacket/marine/dress/blues/nco
 	name = "marine NCO dress blues jacket"

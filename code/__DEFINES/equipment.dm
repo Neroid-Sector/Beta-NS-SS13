@@ -44,7 +44,8 @@
 #define USES_HEARING (1<<17)
 /// Should we use the initial icon for display? Mostly used by overlay only objects
 #define HTML_USE_INITAL_ICON (1<<18)
-
+/// Smartgunner inventory override
+#define SMARTGUNNER_BACKPACK_OVERRIDE (1<<19)
 //==========================================================================================
 
 #define HANDLE_BARRIER_CHANCE 1

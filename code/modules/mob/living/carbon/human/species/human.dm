@@ -47,6 +47,7 @@
 	burn_mod = 1.50
 	reagent_tag = IS_HORROR
 	flags = HAS_SKIN_COLOR|NO_BREATHE|NO_POISON|HAS_LIPS|NO_CLONE_LOSS|NO_POISON|NO_BLOOD|NO_SLIP|NO_CHEM_METABOLIZATION
+	mob_flags = KNOWS_TECHNOLOGY
 	unarmed_type = /datum/unarmed_attack/punch/strong
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
 	death_message = "doubles over, unleashes a horrible, ear-shattering scream, then falls motionless and still..."
@@ -55,7 +56,7 @@
 	darksight = 8
 	slowdown = 0.3
 	insulated = 1
-	has_fine_manipulation = 0
+	has_fine_manipulation = 1
 
 	heat_level_1 = 1000
 	heat_level_2 = 1500

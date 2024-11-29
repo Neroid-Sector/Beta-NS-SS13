@@ -81,6 +81,19 @@
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	time_to_equip = 2 SECONDS
 
+//SOM
+/obj/item/clothing/suit/cultist_hoodie/collie
+	name = "Modified Enviromental Poncho."
+	desc = "A battered looking weather proof garment made of treated synthetic fabrics. Some colonists say it makes them look like sort sort of cult."
+	icon_state = "chaplain_hoodie"
+	item_state = "chaplain_hoodie"
+
+/obj/item/clothing/suit/cultist_hoodie/som
+	name = "Modified Enviromental Poncho."
+	desc = "A battered looking weather proof garment made of treated synthetic fabrics, and modified by the owner with pleather and plants to blend in better with the enviroment."
+	icon_state = "som_hoodie"
+	item_state = "som_hoodie"
+
 //Chaplain
 /obj/item/clothing/suit/nun
 	name = "nun robe"

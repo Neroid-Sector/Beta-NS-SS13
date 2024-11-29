@@ -250,7 +250,7 @@
 	if(!SSticker.mode || !check_rights(R_ADMIN))
 		return
 	set_security_level(SEC_LEVEL_RED)
-	EvacuationAuthority.initiate_evacuation()
+	SShijack.initiate_evacuation()
 
 	message_admins("[key_name_admin(usr)] forced an emergency evacuation.")
 
@@ -261,7 +261,7 @@
 
 	if(!SSticker.mode || !check_rights(R_ADMIN))
 		return
-	EvacuationAuthority.cancel_evacuation()
+	SShijack.cancel_evacuation()
 
 	message_admins("[key_name_admin(usr)] canceled an emergency evacuation.")
 
@@ -470,7 +470,7 @@
 	set desc = "Force a dropship to be hijacked"
 	set category = "Admin.Shuttles"
 
-	var/list/shuttles = list(DROPSHIP_ALAMO, DROPSHIP_NORMANDY)
+	var/list/shuttles = list(DROPSHIP_ALAMO, DROPSHIP_NORMANDY, DROPSHIP_WACO, DROPSHIP_ATTU, DROPSHIP_SAIGON)
 	var/tag = tgui_input_list(usr, "Which dropship should be force hijacked?", "Select a dropship:", shuttles)
 	if(!tag) return
 

@@ -377,4 +377,38 @@
 	name = "\improper 'Normandy' camera controls"
 	network = list(CAMERA_NET_NORMANDY, CAMERA_NET_LASER_TARGETS)
 
+/obj/structure/machinery/computer/cameras/dropship/waco
+	name = "\improper 'Waco' camera controls"
+	network = list(CAMERA_NET_WACO, CAMERA_NET_LASER_TARGETS)
+
+//Blackgold
+
+/obj/structure/machinery/computer/cameras/dropship/attu
+	name = "\improper 'Attu' camera controls"
+	network = list(CAMERA_NET_ATTU, CAMERA_NET_LASER_TARGETS)
+
+/obj/structure/machinery/computer/cameras/dropship/saigon
+	name = "\improper 'Saigon' camera controls"
+	network = list(CAMERA_NET_SAIGON, CAMERA_NET_LASER_TARGETS)
+
+//Solano
+
+/obj/structure/machinery/computer/cameras/dropship/argonne
+	name = "\improper 'Argonne' camera controls"
+	network = list(CAMERA_NET_ARGONNE, CAMERA_NET_LASER_TARGETS)
+
+/obj/structure/machinery/computer/cameras/dropship/midway
+	name = "\improper 'Midway' camera controls"
+	network = list(CAMERA_NET_MIDWAY, CAMERA_NET_LASER_TARGETS)
+
+//Heaven Sent
+
+/obj/structure/machinery/computer/cameras/dropship/tarawa
+	name = "\improper 'Tarawa' camera controls"
+	network = list(CAMERA_NET_TARAWA, CAMERA_NET_LASER_TARGETS)
+
+/obj/structure/machinery/computer/cameras/dropship/concord
+	name = "\improper 'Concord' camera controls"
+	network = list(CAMERA_NET_CONCORD, CAMERA_NET_LASER_TARGETS)
+
 #undef DEFAULT_MAP_SIZE
