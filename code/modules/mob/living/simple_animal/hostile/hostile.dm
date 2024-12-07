@@ -21,11 +21,11 @@
 	target_mob = null
 	return ..()
 
-/mob/living/simple_animal/hostile/proc/FindTarget()
+/mob/living/simple_animal/hostile/proc/FindTarget(range = 10)
 
 	var/atom/T = null
 	stop_automated_movement = 0
-	for(var/atom/A in ListTargets(10))
+	for(var/atom/A in ListTargets(range))
 
 		if(A == src)
 			continue
@@ -86,12 +86,20 @@
 /mob/living/simple_animal/hostile/proc/AttackingTarget()
 	if(!Adjacent(target_mob))
 		return
+	face_atom(target_mob)
 	if(isliving(target_mob))
 		var/mob/living/L = target_mob
+		animation_attack_on(L)
+		if(ishuman(L))
+			var/mob/living/carbon/human/human_target = target_mob
+			if(human_target.check_shields(0, name))
+				animation_attack_on(L)
+				playsound(human_target.loc, "bonk", 25, FALSE)
+				return
+
 		L.attack_animal(src)
-		src.animation_attack_on(L)
-		src.flick_attack_overlay(L, "slash")
-		playsound(src.loc, "alien_claw_flesh", 25, 1)
+		flick_attack_overlay(L, "slash")
+		playsound(loc, "alien_claw_flesh", 25, 1)
 		return L
 	if(istype(target_mob,/obj/structure/machinery/bot))
 		var/obj/structure/machinery/bot/B = target_mob
@@ -125,7 +133,7 @@
 	if(client)
 		return 0
 
-	if(!stat && canmove)
+	if(!stat && mobility_flags & MOBILITY_MOVE)
 		switch(stance)
 			if(HOSTILE_STANCE_IDLE)
 				target_mob = FindTarget()
@@ -145,9 +153,9 @@
 
 /mob/living/simple_animal/hostile/proc/DestroySurroundings()
 	if(prob(break_stuff_probability))
-		for(var/dir in cardinal) // North, South, East, West
+		for(var/dir in GLOB.cardinals) // North, South, East, West
 			for(var/obj/structure/window/obstacle in get_step(src, dir))
-				if(obstacle.dir == reverse_dir[dir]) // So that windows get smashed in the right order
+				if(obstacle.dir == GLOB.reverse_dir[dir]) // So that windows get smashed in the right order
 					obstacle.attack_animal(src)
 					return
 			var/obj/structure/obstacle = locate(/obj/structure, get_step(src, dir))

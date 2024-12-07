@@ -20,7 +20,10 @@
 				if(-90 to -80) severity = 8
 				if(-95 to -90) severity = 9
 				if(-INFINITY to -95) severity = 10
-			overlay_fullscreen("crit", /atom/movable/screen/fullscreen/crit, severity)
+			if(client.prefs?.crit_overlay_pref == CRIT_OVERLAY_DARK)
+				overlay_fullscreen("crit", /atom/movable/screen/fullscreen/crit/dark, severity)
+			else
+				overlay_fullscreen("crit", /atom/movable/screen/fullscreen/crit, severity)
 		else
 			clear_fullscreen("crit")
 			if(oxyloss)
@@ -37,9 +40,9 @@
 			else
 				clear_fullscreen("oxy")
 
-
 			//Fire and Brute damage overlay (BSSR)
-			var/hurtdamage = src.getBruteLoss() + src.getFireLoss() + damageoverlaytemp
+			var/max_health_normalisation = (species ? species.total_health : 100) / 100
+			var/hurtdamage = (getBruteLoss() + getFireLoss()) / max_health_normalisation + damageoverlaytemp
 			damageoverlaytemp = 0 // We do this so we can detect if someone hits us or not.
 			if(hurtdamage)
 				var/severity = 0
@@ -60,11 +63,7 @@
 		else
 			clear_fullscreen("blind")
 
-		if(dazed)
-			overlay_fullscreen("eye_blurry", /atom/movable/screen/fullscreen/impaired, 5)
-		else
-			clear_fullscreen("eye_blurry")
-		///Pain should override the SetEyeBlur(0) should the pain be painful enough to cause eyeblur in the first place. Also, peepers is essential to make sure eye damage isn't overriden.
+		///Pain should override the SetEyeBlur(0) should the pain be painful enough to cause eyeblur in the first place. Also, peepers is essential to make sure eye damage isn't overridden.
 		var/datum/internal_organ/eyes/peepers = internal_organs_by_name["eyes"]
 		if((disabilities & NEARSIGHTED) && !HAS_TRAIT(src, TRAIT_NEARSIGHTED_EQUIPMENT) && pain.current_pain < 80 && peepers.organ_status == ORGAN_HEALTHY)
 			EyeBlur(2)
@@ -83,15 +82,33 @@
 					if(1) hud_used.healths.icon_state = "health6"
 					if(2) hud_used.healths.icon_state = "health7"
 					else
-						var/pain_percentage = max(pain.get_pain_percentage(), 100 - (stamina.current_stamina/stamina.max_stamina)*100) // Get the highest value from either
-						switch(pain_percentage)
-							if(80 to 100) hud_used.healths.icon_state = "health6"
-							if(60 to 80) hud_used.healths.icon_state = "health5"
-							if(50 to 60) hud_used.healths.icon_state = "health4"
-							if(40 to 50) hud_used.healths.icon_state = "health3"
-							if(20 to 40) hud_used.healths.icon_state = "health2"
-							if(1 to 20) hud_used.healths.icon_state = "health1"
-							else hud_used.healths.icon_state = "health0"
+						if(pain.feels_pain)
+							var/pain_percentage = max(pain.get_pain_percentage(), 100 - (stamina.current_stamina/stamina.max_stamina)*100) // Get the highest value from either
+							switch(pain_percentage)
+								if(80 to 100) hud_used.healths.icon_state = "health6"
+								if(60 to 80) hud_used.healths.icon_state = "health5"
+								if(50 to 60) hud_used.healths.icon_state = "health4"
+								if(40 to 50) hud_used.healths.icon_state = "health3"
+								if(20 to 40) hud_used.healths.icon_state = "health2"
+								if(1 to 20) hud_used.healths.icon_state = "health1"
+								else hud_used.healths.icon_state = "health0"
+						else
+							///This variable represents the mob's current health (taking into account if their max health is more than 100).
+							var/actual_health = health / species.total_health
+							if(actual_health < 0.2)
+								hud_used.healths.icon_state = "health6"
+							else if(actual_health >= 0.2 && actual_health < 0.4)
+								hud_used.healths.icon_state = "health5"
+							else if(actual_health >= 0.4 && actual_health < 0.5)
+								hud_used.healths.icon_state = "health4"
+							else if(actual_health >= 0.5 && actual_health < 0.6)
+								hud_used.healths.icon_state = "health3"
+							else if(actual_health >= 0.6 && actual_health < 0.8)
+								hud_used.healths.icon_state = "health2"
+							else if(actual_health >= 0.8 && actual_health < 1)
+								hud_used.healths.icon_state = "health1"
+							else
+								hud_used.healths.icon_state = "health0"
 
 			if(hud_used.nutrition_icon)
 				switch(nutrition)
@@ -163,6 +180,12 @@
 			interactee.check_eye(src)
 	return TRUE
 
+/mob/living/carbon/human/on_dazed_trait_gain(datum/source)
+	. = ..()
+	overlay_fullscreen("eye_blurry", /atom/movable/screen/fullscreen/impaired, 5)
+/mob/living/carbon/human/on_dazed_trait_loss(datum/source)
+	. = ..()
+	clear_fullscreen("eye_blurry")
 
 /mob/living/carbon/human/proc/check_status_effects()
 	var/status_effect_placement = 1
@@ -193,7 +216,7 @@
 		hud_used.slowed_icon.name = ""
 		hud_used.slowed_icon.icon_state = "status_0"
 
-	var/is_embedded = embedded_items.len
+	var/is_embedded = length(embedded_items)
 	if(is_embedded)
 		hud_used.shrapnel_icon.name = "shrapnel"
 		hud_used.shrapnel_icon.icon_state = "status_shrapnel"
@@ -223,7 +246,7 @@
 		hud_used.tethered_icon.name = ""
 		hud_used.tethered_icon.icon_state = "status_0"
 
-	if(active_transfusions.len)
+	if(length(active_transfusions))
 		hud_used.tethered_icon.name = "transfusion"
 		hud_used.tethered_icon.icon_state = "status_blood"
 		hud_used.tethered_icon.screen_loc = ui_datum.get_status_loc(status_effect_placement)

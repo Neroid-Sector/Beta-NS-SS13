@@ -75,6 +75,15 @@
 	overlay_gun_type = "_m94"
 	overlay_content = "_flares"
 
+//------------------------M89 Signal Flare Packs Box--------------------------
+
+/obj/item/ammo_box/magazine/misc/flares/signal
+	name = "\improper box of M89 signal flare packs"
+	desc = "A box of M89 signal flare packs, to mark up the way."
+	magazine_type = /obj/item/storage/box/m94/signal
+	overlay_gun_type = "_m89"
+	overlay_content = "_flares_signal"
+
 //---------------------FIRE HANDLING PROCS
 
 //flare box has unique stuff
@@ -87,8 +96,8 @@
 /obj/item/ammo_box/magazine/misc/flares/get_severity()
 	var/flare_amount = 0
 	for(var/obj/item/storage/box/m94/flare_box in contents)
-		flare_amount += flare_box.contents.len
-	flare_amount = round(flare_amount / 8) //10 packs, 8 flares each, maximum total of 10 flares we can throw out
+		flare_amount += length(flare_box.contents)
+	flare_amount = floor(flare_amount / 8) //10 packs, 8 flares each, maximum total of 10 flares we can throw out
 	return flare_amount
 
 /obj/item/ammo_box/magazine/misc/flares/process_burning(datum/cause_data/flame_cause_data)
@@ -137,6 +146,9 @@
 	return
 
 /obj/item/ammo_box/magazine/misc/flares/empty
+	empty = TRUE
+
+/obj/item/ammo_box/magazine/misc/flares/signal/empty
 	empty = TRUE
 
 //------------------------Flashlight Box--------------------------

@@ -1,6 +1,6 @@
 //Refer to life.dm for caller
 
-/mob/living/carbon/human/handle_regular_status_updates(regular_update = TRUE)
+/mob/living/carbon/human/handle_regular_status_updates(regular_update = TRUE) // you're next, evil proc --fira
 
 	if(status_flags & GODMODE)
 		return 0
@@ -45,21 +45,26 @@
 			apply_effect(3, PARALYZE)
 
 		if((src.species.flags & HAS_HARDCRIT) && HEALTH_THRESHOLD_CRIT > health)
-			var/already_in_crit = FALSE
-			for(var/datum/effects/crit/C in effects_list)
-				already_in_crit = TRUE
-				break
-			// Need to only apply if its not already active
-			if(!already_in_crit)
-				new /datum/effects/crit/human(src)
+			if(HAS_TRAIT(src, TRAIT_PERK_REVIVE))
+				rejuvenate()
+				to_chat(src, SPAN_USERDANGER("You feel your heart fading... but then it kicks into overdrive! You've got another chance!"))
+				playsound_client(src.client, 'sound/effects/heart_beat_short_intense.ogg', 80)
+				REMOVE_TRAIT(src, TRAIT_PERK_REVIVE, PERK_TRAIT)
+				return
+			else
+				var/already_in_crit = FALSE
+				for(var/datum/effects/crit/C in effects_list)
+					already_in_crit = TRUE
+					break
+				// Need to only apply if its not already active
+				if(!already_in_crit)
+					new /datum/effects/crit/human(src)
 
-		if(knocked_out)
+		if(IsKnockOut())
 			blinded = TRUE
-			set_stat(UNCONSCIOUS)
 			if(regular_update && halloss > 0)
 				apply_damage(-3, HALLOSS)
 		else if(sleeping)
-			speech_problem_flag = TRUE
 			if(regular_update)
 				handle_dreams()
 				apply_damage(-3, HALLOSS)
@@ -101,12 +106,13 @@
 
 			AdjustEarDeafness(-1)
 
-			if(!ear_deaf && client && client.soundOutput)
-				client.soundOutput.status_flags ^= EAR_DEAF_MUTE
-				client.soundOutput.apply_status()
-
 		else if(ear_damage)
 			ear_damage = max(ear_damage - 0.05, 0)
+
+		// This should be done only on updates abvoe, or even better in the AdjsutEarDeafnes handlers
+		if(!ear_deaf && (client?.soundOutput?.status_flags & EAR_DEAF_MUTE))
+			client.soundOutput.status_flags ^= EAR_DEAF_MUTE
+			client.soundOutput.apply_status()
 
 		//Resting
 		if(resting)
@@ -122,7 +128,6 @@
 		handle_statuses()
 
 		if(paralyzed)
-			speech_problem_flag = TRUE
 			apply_effect(1, WEAKEN)
 			silent = 1
 			blinded = TRUE

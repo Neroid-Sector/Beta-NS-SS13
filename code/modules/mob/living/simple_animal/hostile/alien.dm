@@ -1,3 +1,4 @@
+
 /mob/living/simple_animal/hostile/alien
 	name = "Drone"
 	var/caste_name = null
@@ -40,7 +41,7 @@
 	pixel_x = -12
 	old_x = -12
 
-	var/atom/movable/vis_obj/xeno_wounds/wound_icon_carrier
+	var/atom/movable/vis_obj/xeno_wounds/wound_icon_holder
 
 /mob/living/simple_animal/hostile/alien/Initialize()
 	maxHealth = health
@@ -52,30 +53,30 @@
 		var/datum/hive_status/hive = GLOB.hive_datum[hivenumber]
 		color = hive.color
 
-	wound_icon_carrier = new(null, src)
-	vis_contents += wound_icon_carrier
+	wound_icon_holder = new(null, src)
+	vis_contents += wound_icon_holder
 
 /mob/living/simple_animal/hostile/alien/proc/generate_name()
-	change_real_name(src, "[caste_name] (BD-[rand(1, 999)])")
+	change_real_name(src, "[caste_name] (XX-[rand(1, 999)])")
 
 /mob/living/simple_animal/hostile/alien/proc/handle_icon()
 	icon_state = "Normal [caste_name] Running"
 	icon_living = "Normal [caste_name] Running"
 	icon_dead = "Normal [caste_name] Dead"
 
-/mob/living/simple_animal/hostile/alien/update_transform()
-	if(lying != lying_prev)
-		lying_prev = lying
+/mob/living/simple_animal/hostile/alien/update_transform(instant_update = FALSE)
+	// TODO: Move all this mess outside of update_transform
 	if(stat == DEAD)
 		icon_state = "Normal [caste_name] Dead"
-	else if(lying)
-		if((resting || sleeping) && (!knocked_down && !knocked_out && health > 0))
+	else if(body_position == LYING_DOWN)
+		if(!HAS_TRAIT(src, TRAIT_INCAPACITATED) && !HAS_TRAIT(src, TRAIT_FLOORED))
 			icon_state = "Normal [caste_name] Sleeping"
 		else
 			icon_state = "Normal [caste_name] Knocked Down"
 	else
 		icon_state = "Normal [caste_name] Running"
 	update_wounds()
+	return ..()
 
 /mob/living/simple_animal/hostile/alien/evaluate_target(mob/living/carbon/target)
 	. = ..()
@@ -105,29 +106,29 @@
 	update_wounds()
 
 /mob/living/simple_animal/hostile/alien/proc/update_wounds()
-	if(!wound_icon_carrier)
+	if(!wound_icon_holder)
 		return
 
-	wound_icon_carrier.layer = layer + 0.01
-	wound_icon_carrier.dir = dir
-	var/health_threshold = max(CEILING((health * 4) / (maxHealth), 1), 0) //From 0 to 4, in 25% chunks
+	wound_icon_holder.layer = layer + 0.01
+	wound_icon_holder.dir = dir
+	var/health_threshold = max(ceil((health * 4) / (maxHealth)), 0) //From 0 to 4, in 25% chunks
 	if(health > HEALTH_THRESHOLD_DEAD)
 		if(health_threshold > 3)
-			wound_icon_carrier.icon_state = "none"
-		else if(lying)
-			if((resting || sleeping) && (!knocked_down && !knocked_out && health > 0))
-				wound_icon_carrier.icon_state = "[caste_name]_rest_[health_threshold]"
+			wound_icon_holder.icon_state = "none"
+		else if(body_position == LYING_DOWN)
+			if(!HAS_TRAIT(src, TRAIT_INCAPACITATED) && !HAS_TRAIT(src, TRAIT_FLOORED))
+				wound_icon_holder.icon_state = "[caste_name]_rest_[health_threshold]"
 			else
-				wound_icon_carrier.icon_state = "[caste_name]_downed_[health_threshold]"
+				wound_icon_holder.icon_state = "[caste_name]_downed_[health_threshold]"
 		else
-			wound_icon_carrier.icon_state = "[caste_name]_walk_[health_threshold]"
+			wound_icon_holder.icon_state = "[caste_name]_walk_[health_threshold]"
 
 /mob/living/simple_animal/hostile/alien/bullet_act(obj/projectile/P)
 	. = ..()
 	if(P.damage)
 		var/splatter_dir = get_dir(P.starting, loc)//loc is the xeno getting hit, P.starting is the turf of where the projectile got spawned
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter/xenosplatter(loc, splatter_dir)
-		if(prob(15))
+		if(prob(15) && stat != DEAD)
 			roar_emote()
 
 /mob/living/simple_animal/hostile/alien/AttackingTarget()
@@ -136,7 +137,7 @@
 		roar_emote()
 
 /mob/living/simple_animal/hostile/alien/proc/roar_emote()
-	visible_message("<B>The [name]</B> roars!")
+	visible_message("<B>[name]</B> roars!")
 	playsound(loc, "alien_roar", 40)
 
 /mob/living/simple_animal/hostile/alien/death(cause, gibbed, deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw. The caustic acid starts melting the body away...")
@@ -148,8 +149,8 @@
 	animate(src, 5 SECONDS, alpha = 0, easing = CUBIC_EASING)
 
 /mob/living/simple_animal/hostile/alien/Destroy()
-	vis_contents -= wound_icon_carrier
-	QDEL_NULL(wound_icon_carrier)
+	vis_contents -= wound_icon_holder
+	QDEL_NULL(wound_icon_holder)
 	return ..()
 
 /mob/living/simple_animal/hostile/alien/ravager
@@ -178,7 +179,7 @@
 	old_x = -12
 
 // Still using old projectile code - commenting this out for now
-// /mob/living/simple_animal/hostile/alien/sentinel
+//  s/alien/sentinel
 // name = "alien sentinel"
 // icon_state = "Sentinel Running"
 // icon_living = "Sentinel Running"

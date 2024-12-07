@@ -45,7 +45,10 @@
 	if(orbiting)
 		orbiting.end_orbit(src)
 		orbiting = null
-	vis_contents.Cut()
+
+	vis_locs = null //clears this atom out of all viscontents
+	if(length(vis_contents))
+		vis_contents.Cut()
 	. = ..()
 	moveToNullspace() //so we move into null space. Must be after ..() b/c atom's Dispose handles deleting our lighting stuff
 
@@ -281,7 +284,7 @@
 	C.proj_x = shift_x
 	C.proj_y = shift_y
 
-	clones.Add(C)
+	GLOB.clones.Add(C)
 	C.mstr = src //Link clone and master
 	src.clone = C
 
@@ -313,7 +316,7 @@
 			clone.set_light(0) //Kill clone light
 
 /atom/movable/proc/destroy_clone()
-	clones.Remove(src.clone)
+	GLOB.clones.Remove(src.clone)
 	qdel(src.clone)
 	src.clone = null
 

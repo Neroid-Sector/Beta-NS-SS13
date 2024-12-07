@@ -37,7 +37,7 @@
 
 	neuro_callback = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(apply_neuro))
 
-/proc/apply_neuro(mob/M, power, insta_neuro)
+/proc/apply_neuro(mob/living/M, power, insta_neuro)
 	if(skillcheck(M, SKILL_ENDURANCE, SKILL_ENDURANCE_MAX) && !insta_neuro)
 		M.visible_message(SPAN_DANGER("[M] withstands the neurotoxin!"))
 		return //endurance 5 makes you immune to weak neurotoxin
@@ -49,9 +49,10 @@
 
 	if(!isxeno(M))
 		if(insta_neuro)
-			if(M.knocked_down < 3)
-				M.adjust_effect(1 * power, WEAKEN)
-			return
+			if(M.GetKnockDownDuration() < 3) // Why are you not using KnockDown(3) ? Do you even know 3 is SIX seconds ? So many questions left unanswered.
+				M.KnockDown(power)
+				M.Stun(power)
+				return
 
 		if(ishuman(M))
 			M.apply_effect(2.5, SUPERSLOW)
@@ -65,11 +66,12 @@
 				no_clothes_neuro = TRUE
 
 		if(no_clothes_neuro)
-			if(M.knocked_down < 5)
-				M.adjust_effect(1 * power, WEAKEN) // KD them a bit more
+			if(M.GetKnockDownDuration() < 5) // Nobody actually knows what this means. Supposedly it means less than 10 seconds. Frankly if you get locked into 10s of knockdown to begin with there are bigger issues.
+				M.KnockDown(power)
+				M.Stun(power)
 				M.visible_message(SPAN_DANGER("[M] falls prone."))
 
-/proc/apply_scatter_neuro(mob/M)
+/proc/apply_scatter_neuro(mob/living/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(skillcheck(M, SKILL_ENDURANCE, SKILL_ENDURANCE_MAX))
@@ -79,9 +81,9 @@
 			H.visible_message(SPAN_DANGER("[M] shrugs off the neurotoxin!"))
 			return
 
-		if(M.knocked_down < 0.7) // apply knockdown only if current knockdown is less than 0.7 second
-			M.apply_effect(0.7, WEAKEN)
-			M.visible_message(SPAN_DANGER("[M] falls prone."))
+		M.KnockDown(0.7) // Completely arbitrary values from another time where stun timers incorrectly stacked. Kill as needed.
+		M.Stun(0.7)
+		M.visible_message(SPAN_DANGER("[M] falls prone."))
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/M,obj/projectile/P)
 	if(ishuman(M))
@@ -156,6 +158,19 @@
 			return FALSE
 	..()
 
+///HORDE MODE PROJECTILE DO NOT USE FOR ACTUAL XENOS
+/datum/ammo/xeno/acid/neuro
+	name = "acidic neurotoxin spit"
+	icon_state = "neurotoxin"
+	ping = "ping_x"
+	damage = 10
+
+/datum/ammo/xeno/acid/neuro/on_hit_mob(mob/hit_mob, obj/projectile/P)
+	if(ishuman(hit_mob))
+		hit_mob.visible_message(SPAN_DANGER("[hit_mob]'s movements are slowed."))
+		hit_mob.apply_effect(0.5, SLOW)
+	..()
+
 /datum/ammo/xeno/acid/spatter
 	name = "acid spatter"
 
@@ -184,7 +199,7 @@
 /datum/ammo/xeno/acid/prae_nade // Used by base prae's acid nade
 	name = "acid scatter"
 
-	flags_ammo_behavior = AMMO_STOPPED_BY_COVER
+	flags_ammo_behavior = AMMO_ACIDIC|AMMO_XENO|AMMO_STOPPED_BY_COVER
 	accuracy = HIT_ACCURACY_TIER_5
 	accurate_range = 32
 	max_range = 4
@@ -317,7 +332,7 @@
 	shrapnel_type = /obj/item/shard/shrapnel/bone_chips
 	shrapnel_chance = 60
 
-/datum/ammo/xeno/bone_chips/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/xeno/bone_chips/on_hit_mob(mob/living/M, obj/projectile/P)
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 		if((HAS_FLAG(C.status_flags, XENO_HOST) && HAS_TRAIT(C, TRAIT_NESTED)) || C.stat == DEAD)
@@ -347,7 +362,7 @@
 	damage = 10
 	shrapnel_chance = 0
 
-/datum/ammo/xeno/bone_chips/spread/runner/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/xeno/bone_chips/spread/runner/on_hit_mob(mob/living/M, obj/projectile/P)
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 		if((HAS_FLAG(C.status_flags, XENO_HOST) && HAS_TRAIT(C, TRAIT_NESTED)) || C.stat == DEAD)
@@ -361,7 +376,7 @@
 	name = "tail hook"
 	icon_state = "none"
 	ping = null
-	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_STOPPED_BY_COVER|AMMO_IGNORE_ARMOR
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_STOPPED_BY_COVER
 	damage_type = BRUTE
 
 	damage = XENO_DAMAGE_TIER_5
@@ -384,7 +399,8 @@
 	target.overlays += tail_image
 
 	new /datum/effects/xeno_slow(target, fired_proj.firer, ttl = 0.5 SECONDS)
-	target.apply_effect(0.5, STUN)
+
+	target.apply_effect(0.5, ROOT)
 	INVOKE_ASYNC(target, TYPE_PROC_REF(/atom/movable, throw_atom), fired_proj.firer, get_dist(fired_proj.firer, target)-1, SPEED_VERY_FAST)
 
 	qdel(tail_beam)

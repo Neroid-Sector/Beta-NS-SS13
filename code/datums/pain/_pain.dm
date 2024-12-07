@@ -82,7 +82,7 @@
 	if(current_pain - new_pain_reduction > max_pain)
 		return 100
 
-	var/percentage = round(((current_pain - new_pain_reduction) / max_pain) * 100)
+	var/percentage = floor(((current_pain - new_pain_reduction) / max_pain) * 100)
 	if(percentage < 0)
 		return 0
 	else
@@ -248,6 +248,8 @@
 	current_pain = 0
 	pain_slowdown = 0
 
+	if(isnull(source_mob?.effects_list))
+		return TRUE
 	for(var/datum/effects/pain/P in source_mob.effects_list)
 		qdel(P)
 

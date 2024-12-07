@@ -17,6 +17,7 @@
 	var/mixed_chem = FALSE
 	var/display_maptext = FALSE
 	var/maptext_label
+	var/generate_fill_color = FALSE
 	maptext_height = 16
 	maptext_width = 16
 	maptext_x = 18
@@ -33,7 +34,7 @@
 
 /obj/item/reagent_container/hypospray/autoinjector/proc/update_uses_left()
 	var/UL = reagents.total_volume / amount_per_transfer_from_this
-	UL = round(UL) == UL ? UL : round(UL) + 1
+	UL = floor(UL) == UL ? UL : floor(UL) + 1
 	uses_left = UL
 
 /obj/item/reagent_container/hypospray/autoinjector/attack(mob/M, mob/user)
@@ -48,7 +49,13 @@
 /obj/item/reagent_container/hypospray/autoinjector/update_icon()
 	overlays.Cut()
 	if(uses_left)
-		overlays += "[chemname]_[uses_left]"
+		if(generate_fill_color)
+			var/image/cust_fill = image('icons/obj/items/syringe.dmi', src, "[chemname]_[uses_left]")
+			cust_fill.color = mix_color_from_reagents(reagents.reagent_list)
+			overlays += cust_fill
+		else
+			overlays += "[chemname]_[uses_left]"
+
 	if((isstorage(loc) || ismob(loc)) && display_maptext)
 		maptext = SPAN_LANGCHAT("[maptext_label]")
 	else
@@ -139,6 +146,12 @@
 	item_state = "emptyskill"
 	skilllock = SKILL_MEDICAL_DEFAULT
 
+/obj/item/reagent_container/hypospray/autoinjector/tramadol/skillless/one_use
+	desc = "An EZ autoinjector loaded with 1 use of Tramadol, a weak but effective painkiller for normal wounds. Doesn't require any training to use."
+	volume = 15
+	amount_per_transfer_from_this = 15
+	uses_left = 1
+
 /obj/item/reagent_container/hypospray/autoinjector/oxycodone
 	name = "oxycodone autoinjector (EXTREME PAINKILLER)"
 	chemname = "oxycodone"
@@ -164,6 +177,12 @@
 	item_state = "emptyskill"
 	skilllock = SKILL_MEDICAL_DEFAULT
 
+/obj/item/reagent_container/hypospray/autoinjector/kelotane/skillless/one_use
+	desc = "An EZ autoinjector loaded with 1 use of Kelotane, a common burn medicine. Doesn't require any training to use."
+	volume = 15
+	amount_per_transfer_from_this = 15
+	uses_left = 1
+
 /obj/item/reagent_container/hypospray/autoinjector/bicaridine
 	name = "bicaridine autoinjector"
 	chemname = "bicaridine"
@@ -179,6 +198,12 @@
 	icon_state = "emptyskill"
 	item_state = "emptyskill"
 	skilllock = SKILL_MEDICAL_DEFAULT
+
+/obj/item/reagent_container/hypospray/autoinjector/bicaridine/skillless/one_use
+	desc = "An EZ autoinjector loaded with 1 use of Bicaridine, a common brute and circulatory damage medicine.  Doesn't require any training to use."
+	volume = 15
+	amount_per_transfer_from_this = 15
+	uses_left = 1
 
 /obj/item/reagent_container/hypospray/autoinjector/inaprovaline
 	name = "inaprovaline autoinjector"
@@ -210,6 +235,45 @@
 	reagents.add_reagent("bicaridine", REAGENTS_OVERDOSE-1)
 	reagents.add_reagent("kelotane", REAGENTS_OVERDOSE-1)
 	reagents.add_reagent("oxycodone", MED_REAGENTS_OVERDOSE-1)
+	update_icon()
+
+
+/obj/item/reagent_container/hypospray/autoinjector/merabicard
+	name = "meralyne-bicardine autoinjector"
+	desc = "An one-use auto-injector loaded with a mix of meralyne and bicardine, used for treating high amounts of brute trauma over a short period of time. Doesn't require any training to use."
+	icon_state = "emptyskill"
+	item_state = "emptyskill"
+	chemname = "custom_ez"
+	mixed_chem = TRUE
+	generate_fill_color = TRUE
+	uses_left = 1
+	amount_per_transfer_from_this = 15
+	volume = 15
+	skilllock = SKILL_MEDICAL_DEFAULT
+
+/obj/item/reagent_container/hypospray/autoinjector/merabicard/Initialize()
+	. = ..()
+	reagents.add_reagent("bicaridine", 7.5)
+	reagents.add_reagent("meralyne", 7.5)
+	update_icon()
+
+/obj/item/reagent_container/hypospray/autoinjector/keloderm
+	name = "kelotane-dermaline autoinjector"
+	desc = "An one-use auto-injector loaded with a mix of kelotane and dermaline, used for treating severe burns over a short period of time. Doesn't require any training to use."
+	icon_state = "emptyskill"
+	item_state = "emptyskill"
+	chemname = "custom_ez"
+	mixed_chem = TRUE
+	generate_fill_color = TRUE
+	uses_left = 1
+	amount_per_transfer_from_this = 15
+	volume = 15
+	skilllock = SKILL_MEDICAL_DEFAULT
+
+/obj/item/reagent_container/hypospray/autoinjector/keloderm/Initialize()
+	. = ..()
+	reagents.add_reagent("kelotane", 7.5)
+	reagents.add_reagent("dermaline", 7.5)
 	update_icon()
 
 /obj/item/reagent_container/hypospray/autoinjector/ultrazine
@@ -271,7 +335,7 @@
 
 /obj/item/reagent_container/hypospray/autoinjector/skillless/get_examine_text(mob/user)
 	. = ..()
-	if(reagents && reagents.reagent_list.len)
+	if(reagents && length(reagents.reagent_list))
 		. += SPAN_NOTICE("It is currently loaded.")
 	else if(!uses_left)
 		. += SPAN_NOTICE("It is spent.")

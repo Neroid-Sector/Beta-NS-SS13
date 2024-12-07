@@ -1,484 +1,1905 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
+"ac" = (
 /turf/closed/wall/r_wall/bunker,
-/area/event)
-"b" = (
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/area/horde_mode)
+"ah" = (
+/turf/open/floor/whitebluecorner/west,
+/area/horde_mode)
+"bF" = (
+/obj/structure/flora/jungle/planttop1,
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"bI" = (
+/obj/structure/surface/table,
+/obj/structure/prop/horde_mode/chair/on_ground{
+	pixel_y = 9
 	},
-/area/event)
-"c" = (
-/obj/effect/landmark/start/engineering,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/floor/whiteblue/northwest,
+/area/horde_mode)
+"bS" = (
+/obj/structure/flora/bush/ausbushes/var3/sunnybush{
+	icon_state = "fernybush_2";
+	pixel_y = 10
 	},
-/area/event)
-"d" = (
-/obj/effect/landmark/start/working_joe,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"cN" = (
+/obj/structure/item_purchase/door{
+	door_id = 5
 	},
-/area/event)
-"e" = (
-/obj/effect/landmark/start/requisition,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/gm/grass/grass1,
+/area/horde_mode)
+"dl" = (
+/obj/item/trash/uscm_mre,
+/obj/item/reagent_container/food/drinks/cans/waterbottle{
+	pixel_x = -8;
+	pixel_y = -1
 	},
-/area/event)
-"h" = (
-/obj/effect/landmark/start/police,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"dm" = (
+/obj/structure/prop/horde_mode/light_fixture/small/yellow,
+/turf/open/floor/brown/northwest,
+/area/horde_mode)
+"dS" = (
+/turf/closed/wall/indestructible/other,
+/area/horde_mode)
+"dT" = (
+/obj/effect/decal/warning_stripes{
+	icon_state = "N";
+	pixel_y = 2
 	},
-/area/event)
-"k" = (
-/obj/effect/landmark/start/liaison,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/floor/brown/northwest,
+/area/horde_mode)
+"eM" = (
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"eO" = (
+/obj/effect/spawner/gibspawner/xeno,
+/turf/open/floor/whitebluecorner/east,
+/area/horde_mode)
+"eY" = (
+/obj/structure/item_purchase/door/wide{
+	dir = 4;
+	door_id = 1
 	},
-/area/event)
-"l" = (
-/obj/effect/landmark/start/marine/medic,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/floor/white,
+/area/horde_mode)
+"fA" = (
+/turf/open/gm/coast/beachcorner/north_west,
+/area/horde_mode/outside)
+"fQ" = (
+/obj/structure/item_purchase/door/wide{
+	dir = 4;
+	door_id = 3
 	},
-/area/event)
-"n" = (
-/obj/effect/landmark/start/professor,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/floor/white,
+/area/horde_mode)
+"ga" = (
+/obj/structure/prop/horde_mode/chair,
+/turf/open/floor/whiteblue/north,
+/area/horde_mode)
+"gj" = (
+/turf/open/floor/whiteblue/west,
+/area/horde_mode)
+"gH" = (
+/obj/structure/surface/table,
+/obj/structure/machinery/prop/almayer/computer/PC{
+	pixel_y = 9
 	},
-/area/event)
-"q" = (
-/obj/effect/landmark/start/warden,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/floor/whiteblue/north,
+/area/horde_mode)
+"gX" = (
+/obj/structure/prop/horde_mode/chair,
+/turf/open/floor/white,
+/area/horde_mode)
+"hO" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/whiteblue,
+/area/horde_mode)
+"iq" = (
+/obj/structure/mystery_purchase/goodies,
+/turf/open/floor/whitepurplecorner/east,
+/area/horde_mode)
+"iw" = (
+/obj/effect/landmark/horde_mode/marinespawn,
+/turf/open/floor/whitebluecorner/north,
+/area/horde_mode)
+"iO" = (
+/obj/effect/decal/cleanable/blood/xeno,
+/turf/open/floor/brown/northwest,
+/area/horde_mode)
+"iS" = (
+/obj/structure/bed/bedroll,
+/turf/open/floor/whiteblue/northeast,
+/area/horde_mode)
+"iY" = (
+/obj/structure/item_purchase/m39,
+/turf/open/floor/white,
+/area/horde_mode)
+"ju" = (
+/obj/structure/item_purchase/door/wide{
+	dir = 4;
+	door_id = 7
 	},
-/area/event)
-"r" = (
-/obj/effect/landmark/start/maint,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/floor/green/northwest,
+/area/horde_mode)
+"jK" = (
+/obj/structure/item_purchase/hedp,
+/turf/open/floor/whitepurplecorner/east,
+/area/horde_mode)
+"ku" = (
+/obj/structure/flora/jungle/vines/light_1,
+/turf/open/gm/dirtgrassborder/grassdirt_corner/north_east,
+/area/horde_mode/outside)
+"kw" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/surface/table,
+/obj/structure/sign/poster/safety{
+	pixel_x = -4;
+	pixel_y = 30
 	},
-/area/event)
-"s" = (
+/obj/structure/sign/poster/music{
+	pixel_x = 8;
+	pixel_y = 33
+	},
+/obj/item/trash/tray{
+	pixel_x = -2;
+	pixel_y = 8
+	},
+/turf/open/floor/brown/northwest,
+/area/horde_mode)
+"kC" = (
+/obj/structure/stairs/perspective{
+	icon_state = "p_stair_full"
+	},
+/turf/open/floor/white,
+/area/horde_mode)
+"kI" = (
+/obj/structure/bed/bedroll{
+	pixel_y = -4
+	},
+/turf/open/floor/whiteblue,
+/area/horde_mode)
+"kU" = (
+/obj/structure/flora/jungle/vines/light_3,
+/turf/open/gm/dirtgrassborder/grassdirt_corner/north_west,
+/area/horde_mode/outside)
+"kZ" = (
+/obj/effect/spawner/gibspawner/human,
+/turf/open/floor/whiteblue/north,
+/area/horde_mode)
+"lg" = (
+/turf/open/floor/whitered/east,
+/area/horde_mode)
+"lk" = (
+/obj/structure/bed/bedroll{
+	dir = 5
+	},
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"lY" = (
+/obj/structure/prop/horde_mode/light_fixture/small/blue{
+	dir = 8
+	},
+/obj/structure/surface/table,
+/obj/structure/machinery/recharger,
+/turf/open/floor/whiteblue/west,
+/area/horde_mode)
+"mx" = (
+/obj/structure/blocker/forcefield/human,
+/obj/structure/window_frame/colony/reinforced/horde_mode,
+/turf/open/floor/whitebluefull,
+/area/horde_mode)
+"mD" = (
+/obj/structure/surface/table,
+/obj/item/trash/ceramic_plate{
+	pixel_x = 10;
+	pixel_y = 5
+	},
+/obj/item/reagent_container/food/snacks/packaged_burger{
+	pixel_y = 10;
+	pixel_x = 11
+	},
+/turf/open/floor/whiteblue/southwest,
+/area/horde_mode)
+"mH" = (
+/obj/structure/flora/jungle/vines/light_2,
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"mJ" = (
+/turf/open/gm/coast/beachcorner/south_west,
+/area/horde_mode/outside)
+"mY" = (
+/obj/structure/machinery/vending/cigarette{
+	density = 0;
+	pixel_y = 16
+	},
+/turf/open/floor/white,
+/area/horde_mode)
+"nc" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/white,
+/area/horde_mode)
+"nD" = (
+/obj/item/trash/uscm_mre,
+/obj/item/prop/colony/usedbandage,
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"op" = (
+/obj/structure/blocker/forcefield/human,
+/turf/open/floor/whitepurplecorner/east,
+/area/horde_mode)
+"oE" = (
+/obj/structure/item_purchase/door/wide{
+	door_id = 2
+	},
+/turf/open/floor/white,
+/area/horde_mode)
+"oX" = (
+/obj/structure/prop/horde_mode/smes,
+/turf/open/floor/platebot,
+/area/horde_mode)
+"pr" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/gibspawner/xeno,
+/turf/open/floor/brown/northwest,
+/area/horde_mode)
+"ps" = (
+/turf/open/gm/dirtgrassborder/grassdirt_corner2/north_west,
+/area/horde_mode/outside)
+"pt" = (
+/obj/item/trash/uscm_mre,
+/turf/open/floor/whiteblue,
+/area/horde_mode)
+"py" = (
+/obj/structure/flora/jungle/vines/light_3,
+/turf/open/gm/dirtgrassborder/east,
+/area/horde_mode/outside)
+"pz" = (
+/obj/effect/decal/warning_stripes{
+	icon_state = "NE-out";
+	pixel_y = 1
+	},
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"qp" = (
+/obj/structure/blocker/forcefield/human,
+/obj/structure/window_frame/colony/reinforced/horde_mode,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/whitebluefull,
+/area/horde_mode)
+"qv" = (
+/obj/effect/spawner/gibspawner/human,
+/turf/open/floor/white,
+/area/horde_mode)
+"qE" = (
+/obj/effect/spawner/gibspawner/xeno,
+/turf/open/gm/dirtgrassborder/grassdirt_corner/north_west,
+/area/horde_mode/outside)
+"qI" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/brown/northwest,
+/area/horde_mode)
+"qR" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/whiteblue/west,
+/area/horde_mode)
+"rb" = (
+/obj/effect/spawner/gibspawner/xeno,
+/turf/open/floor/brown/northwest,
+/area/horde_mode)
+"rp" = (
+/obj/structure/prop/horde_mode/chair{
+	dir = 1
+	},
+/turf/open/floor/whiteblue,
+/area/horde_mode)
+"rr" = (
+/obj/structure/prop/horde_mode/comms_relay,
+/turf/open/floor/podhatchfloor,
+/area/horde_mode/outside)
+"sN" = (
+/turf/open/floor/whiteblue/east,
+/area/horde_mode)
+"sV" = (
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/whiteblue,
+/area/horde_mode)
+"td" = (
+/obj/effect/landmark/horde_mode/xenospawn,
+/obj/structure/flora/jungle/vines/light_1,
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"to" = (
+/obj/structure/item_purchase/perk_machine/explosive_resistance,
+/turf/open/floor/brown/northwest,
+/area/horde_mode)
+"tq" = (
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/whiteblue/north,
+/area/horde_mode)
+"tU" = (
+/turf/open/floor/whitebluecorner/east,
+/area/horde_mode)
+"ub" = (
+/obj/structure/prop/horde_mode/light_fixture/yellow{
+	dir = 1
+	},
+/turf/open/floor/white,
+/area/horde_mode)
+"uP" = (
+/obj/structure/prop/horde_mode/reactor,
+/turf/open/floor/brown/northwest,
+/area/horde_mode)
+"vl" = (
+/obj/effect/spawner/gibspawner/xeno,
+/obj/structure/prop/horde_mode/chair/on_ground{
+	pixel_y = 9
+	},
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"vD" = (
+/obj/effect/decal/warning_stripes{
+	icon_state = "N";
+	pixel_y = 1
+	},
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"vU" = (
+/turf/open/floor/whiteyellow/north,
+/area/horde_mode)
+"wb" = (
+/obj/structure/flora/jungle/vines/light_3,
+/obj/effect/decal/warning_stripes{
+	icon_state = "S"
+	},
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"wB" = (
+/obj/structure/item_purchase/perk_machine/revive,
+/turf/open/floor/whiteblue/northwest,
+/area/horde_mode)
+"wO" = (
+/obj/effect/spawner/gibspawner/xeno,
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"wZ" = (
+/turf/open/floor/platebot,
+/area/horde_mode)
+"xv" = (
+/turf/open/gm/dirtgrassborder/grassdirt_corner/north_west,
+/area/horde_mode/outside)
+"xS" = (
+/obj/structure/machinery/vending/walkman{
+	density = 0;
+	pixel_y = 16
+	},
+/turf/open/floor/white,
+/area/horde_mode)
+"yc" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/brown/northwest,
+/area/horde_mode)
+"yu" = (
+/obj/effect/decal/warning_stripes{
+	icon_state = "N";
+	pixel_y = 2
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/brown/northwest,
+/area/horde_mode)
+"zk" = (
+/turf/open/gm/dirtgrassborder/grassdirt_corner2/south_west,
+/area/horde_mode/outside)
+"zr" = (
+/obj/structure/item_purchase/gear,
+/turf/open/floor/brown/northwest,
+/area/horde_mode)
+"zx" = (
+/obj/item/trash/boonie,
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"zW" = (
 /obj/effect/landmark/late_join,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/floor/white,
+/area/horde_mode)
+"Af" = (
+/turf/open/gm/dirtgrassborder/north,
+/area/horde_mode/outside)
+"Av" = (
+/obj/structure/flora/jungle/vines/light_1,
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"Ax" = (
+/turf/closed/wall/mineral/sandstone/runed,
+/area/horde_mode/outside)
+"AW" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/whiteblue/north,
+/area/horde_mode)
+"BZ" = (
+/obj/structure/machinery/vending/cigarette,
+/turf/open/floor/white,
+/area/horde_mode)
+"Ci" = (
+/obj/structure/item_purchase/ammo_refill,
+/turf/open/floor/whiteblue/southeast,
+/area/horde_mode)
+"Ck" = (
+/obj/structure/item_purchase/ammo_refill,
+/turf/open/floor/green/northwest,
+/area/horde_mode)
+"Cq" = (
+/obj/structure/item_purchase/machete,
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"Cv" = (
+/turf/open/gm/dirtgrassborder/grassdirt_corner/south_west,
+/area/horde_mode/outside)
+"Cy" = (
+/obj/item/device/flashlight/lamp/tripod/weak{
+	light_color = "#6496FA"
 	},
-/area/event)
-"t" = (
-/obj/effect/landmark/start/marine/engineer,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"CD" = (
+/obj/structure/item_purchase/abr40,
+/turf/open/floor/whiteblue/northeast,
+/area/horde_mode)
+"CI" = (
+/obj/structure/prop/horde_mode/grave,
+/obj/item/tool/shovel/etool{
+	pixel_x = -17;
+	pixel_y = -1
 	},
-/area/event)
-"u" = (
-/obj/effect/landmark/start/otech,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"CK" = (
+/obj/effect/landmark/horde_mode/marinespawn,
+/obj/structure/prop/horde_mode/light_fixture/small/blue{
+	dir = 4
 	},
-/area/event)
-"v" = (
-/obj/effect/landmark/start/marine,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/floor/whiteblue/east,
+/area/horde_mode)
+"CL" = (
+/turf/open/floor/whitebluefull,
+/area/horde_mode)
+"CZ" = (
+/obj/structure/item_purchase/door/wide{
+	dir = 4;
+	door_id = 6
 	},
-/area/event)
-"x" = (
-/obj/effect/landmark/start/captain,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/floor/green/northwest,
+/area/horde_mode)
+"DB" = (
+/obj/structure/machinery/power/terminal{
+	dir = 1
 	},
-/area/event)
-"z" = (
-/obj/effect/landmark/start/pilot,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/floor/platebot,
+/area/horde_mode)
+"DH" = (
+/obj/structure/flora/jungle/vines/light_3,
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"DX" = (
+/obj/effect/landmark/horde_mode/marinespawn,
+/turf/open/floor/whiteblue/north,
+/area/horde_mode)
+"Eb" = (
+/obj/structure/item_purchase/door/wide,
+/turf/open/floor/whitebluefull,
+/area/horde_mode)
+"Ej" = (
+/turf/open/floor/white,
+/area/horde_mode)
+"Fl" = (
+/turf/open/floor/podhatchfloor,
+/area/horde_mode/outside)
+"Fx" = (
+/turf/closed/wall/strata_ice/jungle,
+/area/horde_mode/outside)
+"Fy" = (
+/turf/open/floor/whiteblue,
+/area/horde_mode)
+"FD" = (
+/obj/structure/flora/bush/ausbushes/var3/fullgrass,
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"GD" = (
+/turf/open/gm/coast/beachcorner2/south_west,
+/area/horde_mode/outside)
+"GO" = (
+/obj/structure/item_purchase/door{
+	door_id = 8;
+	dir = 8
 	},
-/area/event)
-"A" = (
-/obj/effect/landmark/start/cargo,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/floor/brown/northwest,
+/area/horde_mode)
+"Hb" = (
+/obj/item/trash/uscm_mre{
+	pixel_x = 9;
+	pixel_y = -8
 	},
-/area/event)
-"C" = (
-/obj/effect/landmark/start/bridge,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/floor/whiteblue/north,
+/area/horde_mode)
+"Hd" = (
+/obj/effect/decal/warning_stripes{
+	icon_state = "SE-out"
 	},
-/area/event)
-"D" = (
-/obj/effect/landmark/start/warrant,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"Hl" = (
+/turf/open/gm/river,
+/area/horde_mode/outside)
+"Hw" = (
+/obj/structure/blocker/forcefield/human,
+/obj/structure/window_frame/colony/reinforced/horde_mode,
+/turf/open/floor/brown/northwest,
+/area/horde_mode)
+"HL" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/prop/horde_mode/chair{
+	dir = 8
 	},
-/area/event)
-"F" = (
-/obj/effect/landmark/start/marine/tl,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/floor/brown/northwest,
+/area/horde_mode)
+"HZ" = (
+/obj/effect/landmark/horde_mode/xenospawn,
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"IY" = (
+/obj/structure/upgrade_station,
+/turf/open/floor/whitepurplecorner/east,
+/area/horde_mode)
+"JH" = (
+/obj/structure/flora/bush/ausbushes/reedbush,
+/turf/open/gm/river,
+/area/horde_mode/outside)
+"JS" = (
+/turf/open/floor/green/northwest,
+/area/horde_mode)
+"Kd" = (
+/turf/open/floor/whiteblue/north,
+/area/horde_mode)
+"KB" = (
+/obj/structure/item_purchase/injector_refill{
+	pixel_y = 32
 	},
-/area/event)
-"G" = (
-/obj/effect/landmark/start/marine/spec,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/floor/white,
+/area/horde_mode)
+"KF" = (
+/obj/structure/flora/jungle/planttop1,
+/obj/effect/decal/warning_stripes{
+	icon_state = "N";
+	pixel_y = 1
 	},
-/area/event)
-"I" = (
-/obj/effect/landmark/start/synthetic,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"KG" = (
+/obj/structure/item_purchase/door/wide{
+	dir = 4;
+	door_id = 4
 	},
-/area/event)
-"J" = (
-/obj/effect/landmark/start/executive,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/floor/whitepurplecorner/east,
+/area/horde_mode)
+"Lc" = (
+/obj/structure/flora/bush/ausbushes/var3/sunnybush,
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"Lo" = (
+/obj/effect/decal/warning_stripes{
+	icon_state = "E"
 	},
-/area/event)
-"L" = (
-/obj/effect/landmark/start/researcher,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"Ly" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/whitebluecorner,
+/area/horde_mode)
+"LL" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/xeno,
+/turf/open/floor/brown/northwest,
+/area/horde_mode)
+"LS" = (
+/obj/structure/prop/horde_mode/chair/on_ground{
+	pixel_x = -2;
+	pixel_y = -1
 	},
-/area/event)
-"N" = (
-/obj/effect/landmark/start/nurse,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/floor/whiteblue/north,
+/area/horde_mode)
+"Mc" = (
+/obj/structure/item_purchase/m41a,
+/turf/open/floor/brown/northwest,
+/area/horde_mode)
+"Mp" = (
+/obj/structure/item_purchase/firstaid_adv,
+/turf/open/floor/green/northwest,
+/area/horde_mode)
+"Mz" = (
+/obj/structure/bed/bedroll,
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"ME" = (
+/obj/structure/flora/jungle/plantbot1,
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"MR" = (
+/obj/structure/bed/bedroll{
+	pixel_x = -21
 	},
-/area/event)
-"P" = (
-/obj/effect/landmark/start/doctor,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/floor/white,
+/area/horde_mode)
+"MV" = (
+/obj/structure/prop/horde_mode/light_fixture/small/yellow{
+	dir = 4
 	},
-/area/event)
-"Q" = (
-/obj/effect/landmark/start/senior,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/floor/brown/northwest,
+/area/horde_mode)
+"Nj" = (
+/turf/open/floor/brown/northwest,
+/area/horde_mode)
+"NA" = (
+/turf/open/gm/dirtgrassborder/east,
+/area/horde_mode/outside)
+"Oc" = (
+/obj/structure/prop/horde_mode/light_fixture/small/yellow{
+	dir = 8
 	},
-/area/event)
-"R" = (
-/obj/effect/landmark/start/marine/smartgunner,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/obj/structure/machinery/disposal,
+/turf/open/floor/brown/northwest,
+/area/horde_mode)
+"Od" = (
+/turf/open/gm/coast/west,
+/area/horde_mode/outside)
+"Ot" = (
+/obj/structure/surface/table,
+/obj/item/reagent_container/food/drinks/coffeecup{
+	pixel_x = 5;
+	pixel_y = 6
 	},
-/area/event)
-"T" = (
-/obj/effect/landmark/start/marine/leader,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/floor/whiteblue,
+/area/horde_mode)
+"Ou" = (
+/obj/structure/flora/jungle/vines/heavy,
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"OD" = (
+/obj/structure/mystery_purchase/weapons,
+/turf/open/gm/dirt,
+/area/horde_mode/outside)
+"OH" = (
+/obj/structure/item_purchase/perk_machine/speed,
+/turf/open/floor/whitepurplecorner/east,
+/area/horde_mode)
+"OK" = (
+/obj/structure/blocker/forcefield/human,
+/obj/structure/flora/jungle/vines/heavy,
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"Pa" = (
+/obj/structure/prop/horde_mode/light_fixture/small/blue{
+	dir = 8
 	},
-/area/event)
-"U" = (
-/obj/effect/landmark/start/intel,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/floor/whiteblue/west,
+/area/horde_mode)
+"Pf" = (
+/obj/structure/flora/bush/ausbushes/var3/fullgrass,
+/turf/open/gm/dirt,
+/area/horde_mode/outside)
+"Pw" = (
+/obj/structure/prop/horde_mode/light_fixture/yellow{
+	dir = 1
 	},
-/area/event)
-"V" = (
-/obj/effect/landmark/start/crew_chief,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/floor/platebot,
+/area/horde_mode)
+"Qa" = (
+/obj/structure/item_purchase/injector_refill{
+	pixel_x = -32
 	},
-/area/event)
-"W" = (
-/obj/effect/landmark/start/chef,
-/turf/open/floor/almayer{
-	icon_state = "plating"
+/turf/open/floor/green/northwest,
+/area/horde_mode)
+"Qi" = (
+/obj/structure/item_purchase/perk_machine/gunnut,
+/turf/open/floor/white,
+/area/horde_mode)
+"QH" = (
+/obj/structure/blocker/forcefield/human,
+/obj/structure/window_frame/colony/reinforced/horde_mode,
+/turf/open/gm/grass/grass1,
+/area/horde_mode)
+"QZ" = (
+/obj/structure/prop/horde_mode/grave,
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"Ro" = (
+/obj/item/prop/colony/usedbandage,
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"RZ" = (
+/obj/structure/flora/bush/ausbushes/reedbush,
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"Sa" = (
+/obj/structure/item_purchase/door{
+	door_id = 9
 	},
-/area/event)
+/turf/open/floor/whitepurplecorner/east,
+/area/horde_mode)
+"Sj" = (
+/turf/open/floor/whitepurplecorner/east,
+/area/horde_mode)
+"Sz" = (
+/obj/structure/prop/brazier/campfire/unextinguishable,
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
+"Ti" = (
+/turf/open/floor/whitepurple,
+/area/horde_mode)
+"Uv" = (
+/obj/effect/landmark/horde_mode/marinespawn,
+/turf/open/floor/white,
+/area/horde_mode)
+"UM" = (
+/turf/open/floor/whitebluecorner/north,
+/area/horde_mode)
+"UO" = (
+/turf/open/gm/coast/beachcorner2/north_west,
+/area/horde_mode/outside)
+"UX" = (
+/obj/effect/landmark/observer_start,
+/turf/open/floor/white,
+/area/horde_mode)
+"UY" = (
+/obj/structure/item_purchase/sentry,
+/turf/open/floor/whitepurplecorner/east,
+/area/horde_mode)
+"VK" = (
+/obj/structure/item_purchase/perk_machine,
+/turf/open/floor/green/northwest,
+/area/horde_mode)
+"Wb" = (
+/obj/structure/prop/horde_mode/chair{
+	dir = 1
+	},
+/turf/open/floor/white,
+/area/horde_mode)
+"Wq" = (
+/obj/structure/prop/horde_mode/light_fixture/small/blue{
+	dir = 4
+	},
+/turf/open/floor/whiteblue/east,
+/area/horde_mode)
+"Xf" = (
+/turf/open/gm/dirtgrassborder/west,
+/area/horde_mode/outside)
+"Xn" = (
+/obj/structure/flora/jungle/vines/light_3,
+/turf/open/gm/dirtgrassborder/grassdirt_corner2/north_east,
+/area/horde_mode/outside)
+"XB" = (
+/turf/open/gm/dirt,
+/area/horde_mode/outside)
+"Yq" = (
+/obj/structure/item_purchase/firstaid,
+/turf/open/floor/white,
+/area/horde_mode)
+"Yv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/prop/horde_mode/chair{
+	dir = 4
+	},
+/turf/open/floor/brown/northwest,
+/area/horde_mode)
+"Zz" = (
+/turf/open/gm/coast/north,
+/area/horde_mode/outside)
+"ZL" = (
+/obj/item/device/flashlight/lamp/tripod/weak{
+	light_color = "#6496FA"
+	},
+/turf/open/gm/dirt,
+/area/horde_mode/outside)
+"ZN" = (
+/obj/structure/flora/jungle/vines/light_3,
+/turf/open/gm/dirtgrassborder/west,
+/area/horde_mode/outside)
+"ZR" = (
+/turf/closed/wall/mineral/sandstone/runed/decor,
+/area/horde_mode/outside)
+"ZV" = (
+/obj/effect/decal/warning_stripes{
+	icon_state = "S"
+	},
+/turf/open/gm/grass/grass1,
+/area/horde_mode/outside)
 
 (1,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+Fx
+Fx
+Fx
+Fx
+Fx
+Fx
+Fx
+Fx
+Fx
+Fx
+Fx
+Fx
+dS
+dS
+dS
+dS
+dS
+dS
+dS
+dS
+Fx
+Fx
+Fx
+Fx
+Fx
+Fx
+Fx
+Fx
+Fx
+Fx
+Fx
+Fx
 "}
 (2,1,1) = {"
-a
-s
-k
-z
-q
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-a
+Fx
+Av
+Fx
+Fx
+mH
+Av
+Av
+Fx
+mH
+Av
+Av
+eM
+dS
+bI
+lY
+qR
+gj
+Pa
+mD
+dS
+eM
+eM
+eM
+wO
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+Fx
 "}
 (3,1,1) = {"
-a
-x
-v
-h
-D
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-a
+Fx
+mH
+td
+Av
+mH
+eM
+eM
+Fx
+Fx
+mH
+eM
+eM
+dS
+gH
+Ej
+qv
+Uv
+MR
+Ot
+dS
+FD
+eM
+eM
+eM
+eM
+eM
+HZ
+eM
+eM
+eM
+eM
+Fx
 "}
 (4,1,1) = {"
-a
-J
-t
-n
-d
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-a
+Fx
+mH
+mH
+Av
+Av
+eM
+eM
+eM
+vl
+eM
+FD
+eM
+QH
+tq
+Ly
+sN
+sN
+tU
+hO
+qp
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+Fx
 "}
 (5,1,1) = {"
-a
-C
-T
-e
-V
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-a
+Fx
+Fx
+Fx
+mH
+Av
+eM
+eM
+Fx
+eM
+eM
+eM
+eM
+dS
+LS
+rp
+ac
+ac
+ga
+sV
+dS
+eM
+eM
+FD
+eM
+eM
+eM
+eM
+eM
+FD
+eM
+eM
+Fx
 "}
 (6,1,1) = {"
-a
-A
-l
-L
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-a
+Fx
+Av
+mH
+mH
+Fx
+Fx
+eM
+eM
+eM
+eM
+wO
+eM
+dS
+DX
+kI
+ac
+wB
+UM
+Fy
+dS
+wO
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+HZ
+eM
+Fx
 "}
 (7,1,1) = {"
-a
-W
-F
-Q
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-a
+Fx
+eM
+mH
+eM
+Fx
+Av
+mH
+mH
+eM
+xv
+Xf
+Cv
+dS
+Hb
+rp
+ac
+CD
+eO
+pt
+dS
+eM
+eM
+RZ
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+Fx
 "}
 (8,1,1) = {"
-a
-P
-R
-I
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-a
+Fx
+eM
+eM
+eM
+Fx
+Av
+FD
+eM
+qE
+ps
+XB
+zk
+dS
+AW
+rp
+ac
+ac
+Kd
+kI
+dS
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+Fx
 "}
 (9,1,1) = {"
-a
-c
-G
-U
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-a
+Fx
+DH
+DH
+eM
+eM
+eM
+eM
+xv
+ps
+fA
+Od
+mJ
+QH
+Kd
+ah
+gj
+gj
+iw
+Fy
+mx
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+Fx
 "}
 (10,1,1) = {"
-a
-r
-N
-u
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-a
+Fx
+Fx
+eM
+eM
+eM
+eM
+eM
+Af
+fA
+UO
+JH
+GD
+dS
+kZ
+Ej
+Ej
+nc
+Ej
+Fy
+dS
+FD
+eM
+wO
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+Fx
 "}
 (11,1,1) = {"
-a
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-a
+Fx
+eM
+eM
+eM
+eM
+eM
+eM
+Af
+Zz
+Hl
+Hl
+Hl
+dS
+iS
+CK
+sN
+sN
+Wq
+Ci
+dS
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+Fx
 "}
 (12,1,1) = {"
-a
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-a
+dS
+dS
+dS
+Hw
+Hw
+Hw
+dS
+dS
+UO
+JH
+Hl
+Hl
+dS
+dS
+dS
+CL
+Eb
+dS
+dS
+dS
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+FD
+Fx
 "}
 (13,1,1) = {"
-a
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-a
+dS
+to
+pr
+iO
+Nj
+rb
+Oc
+dS
+Hl
+Hl
+Hl
+JH
+Hl
+dS
+BZ
+gj
+gj
+Wb
+dS
+eM
+eM
+eM
+dS
+OK
+OK
+dS
+dS
+op
+dS
+op
+dS
+dS
 "}
 (14,1,1) = {"
-a
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-a
+dS
+iO
+Nj
+rb
+iO
+qI
+Nj
+dS
+dS
+dS
+Hl
+Hl
+dS
+dS
+gX
+Ej
+Ej
+Wb
+dS
+dS
+eM
+eM
+dS
+Ou
+Av
+dS
+jK
+Sj
+Sj
+Sj
+iq
+dS
 "}
 (15,1,1) = {"
-a
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-a
+dS
+uP
+uP
+uP
+Nj
+Nj
+iO
+Nj
+zr
+dS
+Hl
+dS
+dS
+KB
+Ej
+Ej
+Ej
+Ej
+Ej
+dS
+dS
+eM
+dS
+Av
+DH
+dS
+Sj
+Sj
+Sj
+Sj
+Sj
+dS
 "}
 (16,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+dS
+oX
+DB
+dT
+Nj
+rb
+Nj
+Nj
+Nj
+dS
+dS
+dS
+Qi
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Yq
+dS
+dS
+dS
+DH
+eM
+dS
+Sj
+Sj
+Sj
+Sj
+Sj
+dS
+"}
+(17,1,1) = {"
+dS
+Pw
+wZ
+dT
+LL
+dS
+Yv
+qI
+dm
+dS
+ub
+kC
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+dS
+Xf
+ZN
+dS
+Sj
+Sj
+Sj
+Sj
+Sj
+dS
+"}
+(18,1,1) = {"
+dS
+oX
+DB
+yu
+dm
+dS
+kw
+yc
+Nj
+eY
+vU
+kC
+Ej
+Ej
+Ej
+Ej
+zW
+Ej
+Ej
+Ej
+Ej
+Ti
+fQ
+XB
+XB
+KG
+Sj
+Sj
+Sj
+Sj
+Sj
+dS
+"}
+(19,1,1) = {"
+dS
+uP
+uP
+uP
+Nj
+dS
+HL
+Nj
+Nj
+Ej
+vU
+kC
+Ej
+Ej
+Ej
+Ej
+UX
+Ej
+Ej
+Ej
+Ej
+Ti
+Ej
+XB
+XB
+Sj
+Sj
+Sj
+Sj
+Sj
+OH
+dS
+"}
+(20,1,1) = {"
+dS
+Nj
+Nj
+Nj
+Nj
+qI
+Nj
+Nj
+dm
+dS
+ub
+kC
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+dS
+NA
+NA
+dS
+Sj
+Sj
+Sj
+Sj
+Sj
+dS
+"}
+(21,1,1) = {"
+dS
+Mc
+Nj
+qI
+Nj
+Nj
+Nj
+qI
+Nj
+dS
+dS
+dS
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+dS
+dS
+dS
+DH
+eM
+dS
+Sj
+Sj
+dS
+Sj
+Sj
+dS
+"}
+(22,1,1) = {"
+dS
+dS
+Hw
+Hw
+dS
+dS
+yc
+Nj
+Nj
+dS
+Av
+dS
+dS
+iY
+Ej
+Ej
+Ej
+Ej
+Ej
+dS
+dS
+Ou
+mH
+eM
+eM
+dS
+Sa
+dS
+dS
+dS
+Sa
+dS
+"}
+(23,1,1) = {"
+Fx
+eM
+eM
+eM
+eM
+dS
+Nj
+MV
+Nj
+dS
+eM
+mH
+dS
+dS
+xS
+Ej
+Ej
+Ej
+dS
+dS
+Ou
+mH
+DH
+eM
+Cq
+dS
+Sj
+Sj
+dS
+Sj
+Sj
+dS
+"}
+(24,1,1) = {"
+Fx
+DH
+bF
+ME
+Cy
+dS
+GO
+dS
+GO
+dS
+mH
+mH
+Av
+dS
+mY
+lg
+lg
+Ej
+dS
+Ou
+Ou
+Ou
+mH
+eM
+DH
+dS
+Sj
+Sj
+Sj
+Sj
+Sj
+dS
+"}
+(25,1,1) = {"
+Fx
+eM
+Fx
+CI
+eM
+bS
+eM
+eM
+eM
+eM
+eM
+eM
+mH
+dS
+dS
+Ej
+oE
+dS
+dS
+dS
+dS
+dS
+dS
+eM
+eM
+dS
+Sj
+Sj
+Sj
+Sj
+Sj
+dS
+"}
+(26,1,1) = {"
+Fx
+DH
+eM
+eM
+eM
+Ro
+lk
+zx
+eM
+eM
+Fx
+eM
+eM
+dS
+JS
+JS
+JS
+JS
+JS
+JS
+Qa
+Ck
+dS
+kU
+Xf
+dS
+Sj
+Sj
+Sj
+Sj
+IY
+dS
+"}
+(27,1,1) = {"
+Fx
+DH
+DH
+QZ
+eM
+dl
+eM
+Sz
+eM
+eM
+Fx
+eM
+eM
+dS
+JS
+JS
+JS
+JS
+JS
+JS
+JS
+JS
+dS
+ps
+XB
+cN
+Sj
+Sj
+Sj
+Sj
+Sj
+dS
+"}
+(28,1,1) = {"
+Fx
+Fx
+Fx
+Cv
+Lc
+eM
+FD
+nD
+Mz
+Lc
+eM
+eM
+eM
+ju
+JS
+JS
+JS
+JS
+JS
+JS
+JS
+JS
+CZ
+XB
+XB
+dS
+Sj
+Sj
+Sj
+Sj
+Sj
+dS
+"}
+(29,1,1) = {"
+Fx
+Fx
+XB
+zk
+Cv
+eM
+eM
+Hd
+Lo
+Lo
+pz
+eM
+eM
+JS
+JS
+JS
+JS
+JS
+JS
+JS
+JS
+JS
+JS
+XB
+XB
+dS
+Sj
+Sj
+Sj
+Sj
+Sj
+dS
+"}
+(30,1,1) = {"
+ZR
+Pf
+OD
+XB
+zk
+Fx
+Ou
+ZV
+Fl
+rr
+KF
+ME
+eM
+dS
+JS
+JS
+JS
+JS
+JS
+JS
+JS
+JS
+dS
+Xn
+XB
+cN
+Sj
+Sj
+Sj
+Sj
+Sj
+dS
+"}
+(31,1,1) = {"
+Ax
+XB
+ZL
+Pf
+Fx
+Fx
+mH
+wb
+Fl
+Fl
+vD
+eM
+eM
+dS
+JS
+JS
+JS
+VK
+JS
+JS
+JS
+Mp
+dS
+ku
+py
+dS
+UY
+Sj
+Sj
+Sj
+Sj
+dS
+"}
+(32,1,1) = {"
+Ax
+Ax
+Ax
+Ax
+Fx
+Fx
+Fx
+Fx
+Fx
+Fx
+Fx
+Fx
+Fx
+dS
+dS
+dS
+dS
+dS
+dS
+dS
+dS
+dS
+dS
+Fx
+Fx
+dS
+dS
+dS
+dS
+dS
+dS
+dS
 "}

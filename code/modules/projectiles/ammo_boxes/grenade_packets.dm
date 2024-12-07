@@ -25,7 +25,7 @@
 	for(var/i in 1 to storage_slots)
 		new content_type(src)
 
-var/list/grenade_packets = list(
+GLOBAL_LIST_INIT(grenade_packets, list(
 	/obj/item/storage/box/packet/high_explosive,
 	/obj/item/storage/box/packet/baton_slug,
 	/obj/item/storage/box/packet/flare,
@@ -37,7 +37,7 @@ var/list/grenade_packets = list(
 	/obj/item/storage/box/packet/m15,
 	/obj/item/storage/box/packet/airburst_he,
 	/obj/item/storage/box/packet/airburst_incen
-	)
+	))
 
 /obj/item/storage/box/packet/high_explosive
 	name = "\improper HEDP grenade packet"
@@ -108,6 +108,12 @@ var/list/grenade_packets = list(
 	desc = "It contains three M15 rubber pellet grenades, for riot control or combat exercises."
 	icon_state = "general_packet"
 	content_type = /obj/item/explosive/grenade/high_explosive/m15/rubber
+
+/obj/item/storage/box/packet/sebb
+	name = "\improper G2 Electroshock grenade packet"
+	desc = "It contains three G2 Electroshock grenades. Handle with care."
+	icon_state = "sebb_packet"
+	content_type = /obj/item/explosive/grenade/sebb
 
 /obj/item/storage/box/packet/airburst_he
 	name = "\improper M74 airburst grenade packet"
