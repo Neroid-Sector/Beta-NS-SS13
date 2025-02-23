@@ -15,8 +15,8 @@
 	name = "WO Commanding Officer"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND_WO
 
-	assignment = JOB_WO_CO
-	rank = JOB_WO_CO
+	assignment = JOB_MS_CO
+	rank = JOB_MS_CO
 	paygrade = "MO2"
 	role_comm_title = "CDR"
 	skills = /datum/skills/commander
@@ -76,7 +76,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/command(new_human), WEAR_BODY)
 	//jacket
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/MP/SO(new_human), WEAR_JACKET)
-	new_human.equip_to_slot_or_del(new /obj/item/weapon/claymore/mercsword/ceremonial(new_human), WEAR_J_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/weapon/sword/ceremonial(new_human), WEAR_J_STORE)
 	//waist
 	new_human.equip_to_slot_or_del(new sidearmpath(new_human), WEAR_WAIST)
 	//limbs

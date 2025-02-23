@@ -1,0 +1,47 @@
+"a" = (/turf/open/void/vehicle,/area/space)
+"b" = (/obj/structure/interior_wall/tank{alpha = 50; icon_state = "exterior_1"; layer = 5.2; pixel_y = 32},/turf/open/void/vehicle,/area/space)
+"c" = (/obj/effect/landmark/interior/spawn/entrance{dir = 8; exit_type = /obj/structure/interior_exit/vehicle/tank; name = "back entrance marker"; tag = "back"},/obj/structure/bed/chair/vehicle{layer = 3.5; pixel_x = 8; pixel_y = 12},/obj/structure/bed/chair/vehicle{layer = 3.5; pixel_x = -8; pixel_y = 12},/obj/effect/landmark/interior/spawn/interior_viewport{pixel_y = 23},/turf/open/shuttle/vehicle,/area/vehicle/apc)
+"d" = (/obj/structure/bed/chair/vehicle{layer = 3.5; pixel_x = -8; pixel_y = 12},/obj/structure/bed/chair/vehicle{layer = 3.5; pixel_x = 8; pixel_y = 12},/turf/open/shuttle/vehicle,/area/vehicle/apc)
+"e" = (/obj/effect/landmark/interior/spawn/vehicle_gunner_seat/armor{dir = 4},/obj/structure/prop/tank{density = 0; icon_state = "prop4"; layer = 3; pixel_x = 0},/obj/structure/prop/tank{density = 0; icon_state = "prop8_extra"; layer = 4.12; pixel_x = 0},/obj/structure/prop/tank{density = 0; icon_state = "prop6"; pixel_x = 0; pixel_y = 32},/turf/open/shuttle/vehicle{icon_state = "floor_3_13"},/area/vehicle/apc)
+"i" = (/obj/effect/landmark/interior/spawn/interior_camera{dir = 10; layer = 3.2; pixel_x = 12; pixel_y = 58},/obj/structure/prop/tank{density = 0; icon_state = "prop6"; pixel_y = 9},/obj/structure/blocker/invisible_wall,/turf/open/shuttle/vehicle{icon_state = "floor_3_3"},/area/vehicle/apc)
+"k" = (/obj/structure/interior_wall/tank{icon_state = "back_2"},/turf/open/void/vehicle,/area/space)
+"m" = (/obj/effect/landmark/interior/spawn/vehicle_support_gunner_seat/second,/obj/structure/prop/vehicle/firing_port_weapon{layer = 4.1; name = "Right M56 FPW handle"; pixel_y = 2},/turf/open/shuttle/vehicle,/area/vehicle/apc)
+"n" = (/turf/open/shuttle/vehicle{icon_state = "floor_3_4"},/area/vehicle/apc)
+"o" = (/obj/structure/prop/tank{icon_state = "prop7"; pixel_y = 9},/turf/open/void/vehicle,/area/vehicle/apc)
+"p" = (/obj/structure/interior_wall/tank{icon_state = "back_3"},/turf/open/void/vehicle,/area/space)
+"r" = (/turf/open/shuttle/vehicle{icon_state = "floor_3_5"},/area/vehicle/apc)
+"s" = (/obj/structure/prop/tank{icon_state = "prop5"; pixel_x = 0},/obj/structure/prop/tank{icon_state = "prop7"; pixel_x = 0; pixel_y = 32},/obj/structure/blocker/invisible_wall,/turf/open/shuttle/vehicle,/area/vehicle/apc)
+"t" = (/obj/structure/interior_wall/tank{icon_state = "back_2"},/obj/structure/interior_wall/tank{icon_state = "back_1"},/turf/open/void/vehicle,/area/space)
+"u" = (/obj/structure/prop/tank{icon_state = "prop5"; pixel_x = 0},/obj/structure/prop/tank{icon_state = "prop7"; pixel_x = 0; pixel_y = 32},/turf/open/void/vehicle,/area/vehicle/apc)
+"v" = (/obj/structure/interior_wall/tank{icon_state = "back_3"},/obj/structure/interior_wall/tank{layer = 2},/obj/structure/blocker/invisible_wall,/turf/open/void/vehicle,/area/space)
+"w" = (/obj/effect/landmark/interior/spawn/vehicle_driver_seat/armor{dir = 4},/obj/structure/prop/tank{density = 0; icon_state = "prop6"; pixel_x = 0; pixel_y = 32},/obj/structure/prop/tank{density = 0; icon_state = "prop8_extra"; layer = 4.12; pixel_x = 0},/obj/structure/prop/tank{density = 0; icon_state = "prop4"; layer = 3; pixel_x = 0},/turf/open/shuttle/vehicle{icon_state = "floor_3_13"},/area/vehicle/apc)
+"y" = (/obj/structure/interior_wall/tank{icon_state = "front_2"},/turf/open/void/vehicle,/area/space)
+"z" = (/obj/structure/machinery/cm_vending/sorted/medical/wall_med/lifeboat{name = "Vehicle NanoMed"; pixel_x = -5; pixel_y = 31},/obj/structure/extinguisher_cabinet/lifeboat{pixel_x = 9; pixel_y = 31},/turf/open/shuttle/vehicle{icon_state = "floor_3_6"},/area/vehicle/apc)
+"B" = (/turf/open/shuttle/vehicle{icon_state = "floor_3_9"},/area/vehicle/apc)
+"C" = (/obj/structure/bed/chair/vehicle{layer = 3.5; pixel_x = -8; pixel_y = 12},/obj/structure/bed/chair/vehicle{layer = 3.5; pixel_x = 8; pixel_y = 12},/obj/effect/landmark/interior/spawn/interior_viewport{pixel_y = 23},/turf/open/shuttle/vehicle,/area/vehicle/apc)
+"D" = (/obj/structure/interior_wall/tank{layer = 2},/obj/structure/interior_wall/tank{icon_state = "back_3"},/obj/effect/landmark/interior/spawn/weapons_loader{layer = 2; pixel_y = -30},/turf/open/void/vehicle,/area/space)
+"F" = (/obj/structure/prop/tank{density = 0; icon_state = "prop4"; pixel_y = 10},/obj/structure/prop/tank{density = 0; icon_state = "prop8_extra"; layer = 4.12; pixel_y = 9},/obj/effect/landmark/interior/spawn/vehicle_driver_seat/armor{dir = 4},/turf/open/shuttle/vehicle{icon_state = "floor_3_13"},/area/vehicle/apc)
+"G" = (/obj/structure/interior_wall/tank{icon_state = "front_1"},/turf/open/void/vehicle,/area/space)
+"I" = (/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = -8},/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = 8},/obj/effect/landmark/interior/spawn/interior_viewport{dir = 1; pixel_y = -11},/turf/open/shuttle/vehicle,/area/vehicle/apc)
+"K" = (/turf/open/shuttle/vehicle{icon_state = "floor_3_6"},/area/vehicle/apc)
+"L" = (/obj/structure/interior_wall/tank{layer = 2},/turf/open/void/vehicle,/area/space)
+"M" = (/obj/structure/machinery/cm_vending/gear/antag_guns{density = 0; pixel_y = 25},/turf/open/shuttle/vehicle{icon_state = "floor_3_6"},/area/vehicle/apc)
+"O" = (/obj/effect/landmark/interior/spawn/vehicle_support_gunner_seat{dir = 1},/obj/structure/prop/vehicle/firing_port_weapon{dir = 1; name = "Left M56 FPW handle"; pixel_y = 17},/obj/structure/extinguisher_cabinet/lifeboat{pixel_x = 9; pixel_y = 31},/turf/open/shuttle/vehicle,/area/vehicle/apc)
+"P" = (/obj/structure/interior_wall/tank{alpha = 50; icon_state = "exterior_2"; layer = 5.2; pixel_y = 32},/turf/open/void/vehicle,/area/space)
+"Q" = (/obj/structure/interior_wall/tank{icon_state = "front_3"},/turf/open/void/vehicle,/area/space)
+"R" = (/obj/structure/interior_wall/tank{layer = 2},/obj/structure/interior_wall/tank{icon_state = "back_3"},/turf/open/void/vehicle,/area/space)
+"T" = (/obj/structure/prop/tank{icon_state = "prop5"; pixel_y = 9},/turf/open/void/vehicle,/area/vehicle/apc)
+"U" = (/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = -8},/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = 8},/obj/effect/landmark/interior/spawn/entrance{dir = 8; exit_type = /obj/structure/interior_exit/vehicle/tank; name = "back entrance marker"; tag = "back"},/obj/effect/landmark/interior/spawn/interior_viewport{dir = 1; pixel_y = -11},/turf/open/shuttle/vehicle,/area/vehicle/apc)
+"V" = (/obj/structure/interior_wall/tank{layer = 2; pixel_y = 5},/obj/structure/blocker/invisible_wall,/obj/effect/landmark/interior/spawn/telephone,/turf/open/shuttle/vehicle{icon_state = "floor_1_1_3"},/area/vehicle/apc)
+"W" = (/obj/effect/landmark/interior/spawn/entrance{dir = 8; exit_type = /obj/structure/interior_exit/vehicle/tank; name = "back entrance marker"; tag = "back"},/turf/open/shuttle/vehicle{icon_state = "floor_3_5"},/area/vehicle/apc)
+"X" = (/turf/open/shuttle/vehicle{icon_state = "floor_3_3"},/area/vehicle/apc)
+"Y" = (/obj/structure/interior_wall/tank{layer = 2; pixel_y = 5},/obj/structure/blocker/invisible_wall,/obj/structure/vehicle_locker/tank,/turf/open/shuttle/vehicle{icon_state = "floor_1_1_3"},/area/vehicle/apc)
+"Z" = (/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = -8},/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = 8},/turf/open/shuttle/vehicle,/area/vehicle/apc)
+
+(1,1,1) = {"
+apRLRLRDvLLLQ
+akcdCOMeszwuy
+akWrrrnYVKioy
+atUZImXrrBFTG
+aabPPbPPbPPba
+"}

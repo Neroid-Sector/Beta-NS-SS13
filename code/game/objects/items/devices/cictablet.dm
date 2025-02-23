@@ -61,7 +61,7 @@
 	var/list/data = list()
 
 	data["alert_level"] = security_level
-	data["evac_status"] = EvacuationAuthority.evac_status
+	data["evac_status"] = SShijack.evac_status
 	data["endtime"] = announcement_cooldown
 	data["distresstime"] = distress_cooldown
 	data["worldtime"] = world.time
@@ -135,11 +135,11 @@
 				to_chat(usr, SPAN_WARNING("The ship must be under red alert in order to enact evacuation procedures."))
 				return FALSE
 
-			if(EvacuationAuthority.flags_scuttle & FLAGS_EVACUATION_DENY)
+			if(SShijack.evac_admin_denied)
 				to_chat(usr, SPAN_WARNING("The USCM has placed a lock on deploying the evacuation pods."))
 				return FALSE
 
-			if(!EvacuationAuthority.initiate_evacuation())
+			if(!SShijack.initiate_evacuation())
 				to_chat(usr, SPAN_WARNING("You are unable to initiate an evacuation procedure right now!"))
 				return FALSE
 
@@ -173,3 +173,27 @@
 	announcement_faction = FACTION_PMC
 
 	minimap_type = MINIMAP_FLAG_PMC
+
+/obj/item/device/cotablet/upp
+
+	desc = "A special device used by field UPP commanders."
+
+	tablet_name = "UPP Field Commander's Tablet"
+
+	announcement_title = UPP_COMMAND_ANNOUNCE
+	announcement_faction = FACTION_UPP
+	req_access = list(ACCESS_UPP_LEADERSHIP)
+
+	minimap_type = MINIMAP_FLAG_UPP
+
+/obj/item/device/cotablet/clf
+
+	desc = "A special device used by field Insurgent commanders."
+
+	tablet_name = "Insurgent Field Commander's Tablet"
+
+	announcement_title = CLF_COMMAND_ANNOUNCE
+	announcement_faction = FACTION_CLF
+	req_access = list(ACCESS_CLF_LEADERSHIP)
+
+	minimap_type = MINIMAP_FLAG_CLF

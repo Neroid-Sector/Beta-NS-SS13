@@ -220,8 +220,9 @@
 	name = "M40 stun grenade"
 	desc = "A less-lethal explosive device used to temporarily disorient an enemy by producing a flash of light and an intensely loud \"bang\", which cause temporary blindness and deafness. More commonly referred to as a \"flashbang\". Still dangerous if it explodes nearby."
 
-	icon_state = "flashbang_noskill"
-	item_state = "grenade_flashbang_noskill"
+	icon_state = "flashbang"
+	item_state = "grenade_flashbang"
+	underslug_launchable = TRUE
 
 	skill_requirement = SKILL_POLICE_DEFAULT
 

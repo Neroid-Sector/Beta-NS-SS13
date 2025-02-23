@@ -11,15 +11,15 @@
 	else if(ID)
 		_role = ID.rank
 	switch(_role)
-		if(JOB_TWE_RMC_LIEUTENANT)
+		if(JOB_TWE_RMC_LIEUTENANT, JOB_TWE_BW_COMMANDER)
 			hud_icon_state = "lieutenant"
-		if(JOB_TWE_RMC_TEAMLEADER)
+		if(JOB_TWE_RMC_TEAMLEADER, JOB_TWE_BW_TEAMLEADER)
 			hud_icon_state = "teamleader"
 		if(JOB_TWE_RMC_MARKSMAN)
 			hud_icon_state = "marksman"
-		if(JOB_TWE_RMC_RIFLEMAN)
+		if(JOB_TWE_RMC_RIFLEMAN, JOB_TWE_BW_RIFLEMAN, JOB_TWE_BW_GRENADIER)
 			hud_icon_state = "rifleman"
-		if(JOB_TWE_RMC_SMARTGUNNER)
+		if(JOB_TWE_RMC_SMARTGUNNER, JOB_TWE_BW_GUNNER)
 			hud_icon_state = "smartgunner"
 		if(JOB_TWE_RMC_BREACHER)
 			hud_icon_state = "breacher"
@@ -33,10 +33,28 @@
 		list("F903A2 Rifle", 30, /obj/item/weapon/gun/rifle/rmc_f90/a_grip, null, VENDOR_ITEM_REGULAR),
 		list("F903A1 Marksman Rifle", 30, /obj/item/weapon/gun/rifle/rmc_f90/scope, null, VENDOR_ITEM_REGULAR),
 		list("F903A1/B 'Breacher' Rifle", 30, /obj/item/weapon/gun/rifle/rmc_f90/shotgun, null, VENDOR_ITEM_REGULAR),
+		list("FN-P90 Pulse SMG", 30, /obj/item/weapon/gun/smg/p90rmc, null, VENDOR_ITEM_REGULAR),
+		list("SA80 Pulse Rifle", 0, /obj/item/weapon/gun/rifle/sa80, null, VENDOR_ITEM_REGULAR),
+		list("SA80 Pulse Smart Rifle", 0, /obj/item/weapon/gun/rifle/sa80/rifleman, null, VENDOR_ITEM_REGULAR),
+		list("SA80 Pulse Rifle UGL", 5, /obj/item/weapon/gun/rifle/sa80/ugl, null, VENDOR_ITEM_REGULAR),
+		list("SA80 Pulse Rifle LMG", 20, /obj/item/weapon/gun/rifle/sa80/lmg, null, VENDOR_ITEM_REGULAR),
 
 		list("PRIMARY AMMUNITION", 0, null, null, null),
-		list("F903 Magazine (10x24mm)", 5, /obj/item/ammo_magazine/rifle/rmc_f90, null, VENDOR_ITEM_REGULAR),
+		list("F903 HV Magazine (10x24mm)", 0, /obj/item/ammo_magazine/rifle/rmc_f90, null, VENDOR_ITEM_REGULAR),
+		list("F903 HEAP Magazine (10x24mm)", 10, /obj/item/ammo_magazine/rifle/rmc_f90/heap, null, VENDOR_ITEM_REGULAR),
 		list("F903A1 Marksman Magazine (10x24mm)", 15, /obj/item/ammo_magazine/rifle/rmc_f90/marksman, null, VENDOR_ITEM_REGULAR),
+		list("SA80 HV Magazine (10x24mm)", 0, /obj/item/ammo_magazine/rifle/sa80, null, VENDOR_ITEM_REGULAR),
+		list("SA80 AP Magazine (10x24mm)", 5, /obj/item/ammo_magazine/rifle/sa80/ap, null, VENDOR_ITEM_REGULAR),
+		list("SA80 HEAP Magazine (10x24mm)", 10, /obj/item/ammo_magazine/rifle/sa80/heap, null, VENDOR_ITEM_REGULAR),
+		list("FN-P90 Magazine (10x20mm)", 0, /obj/item/ammo_magazine/smg/p90rmc, null, VENDOR_ITEM_REGULAR),
+		list("FN-P90 Magazine (10x20mm)", 5, /obj/item/ammo_magazine/smg/p90rmc/ap, null, VENDOR_ITEM_REGULAR),
+		list("FN-P0 Magazine (10x20mm)", 10, /obj/item/ammo_magazine/smg/p90rmc/heap, null, VENDOR_ITEM_REGULAR),
+		list("SA80 Ext HV Magazine (10x24mm)", 5, /obj/item/ammo_magazine/rifle/sa80/extended, null, VENDOR_ITEM_REGULAR),
+		list("SA80 Ext AP Magazine (10x24mm)", 10, /obj/item/ammo_magazine/rifle/sa80/extended/ap, null, VENDOR_ITEM_REGULAR),
+		list("SA80 Ext HEAP Magazine (10x24mm)", 15, /obj/item/ammo_magazine/rifle/sa80/extended/heap, null, VENDOR_ITEM_REGULAR),
+		list("SA80 Box HV Magazine (10x24mm)", 5, /obj/item/ammo_magazine/rifle/sa80/lmg, null, VENDOR_ITEM_REGULAR),
+		list("SA80 Box AP Magazine (10x24mm)", 10, /obj/item/ammo_magazine/rifle/sa80/lmg/ap, null, VENDOR_ITEM_REGULAR),
+		list("SA80 Box HEAP Magazine (10x24mm)", 15, /obj/item/ammo_magazine/rifle/sa80/lmg/heap, null, VENDOR_ITEM_REGULAR),
 
 		list("SIDEARMS", 0, null, null, null),
 		list("VP78 Pistol", 20, /obj/item/weapon/gun/pistol/vp78, null, VENDOR_ITEM_REGULAR),
@@ -72,10 +90,18 @@
 		list("F903A2 Rifle", 30, /obj/item/weapon/gun/rifle/rmc_f90/a_grip, null, VENDOR_ITEM_REGULAR),
 		list("F903A1 Marksman Rifle", 30, /obj/item/weapon/gun/rifle/rmc_f90/scope, null, VENDOR_ITEM_REGULAR),
 		list("F903A1/B 'Breacher' Rifle", 30, /obj/item/weapon/gun/rifle/rmc_f90/shotgun, null, VENDOR_ITEM_REGULAR),
+		list("FN-P90 Pulse SMG", 30, /obj/item/weapon/gun/smg/p90rmc, null, VENDOR_ITEM_REGULAR),
+		list("SA80 Pulse Rifle", 0, /obj/item/weapon/gun/rifle/sa80, null, VENDOR_ITEM_REGULAR),
+		list("SA80 Pulse Smart Rifle", 0, /obj/item/weapon/gun/rifle/sa80/rifleman, null, VENDOR_ITEM_REGULAR),
+		list("SA80 Pulse Rifle UGL", 5, /obj/item/weapon/gun/rifle/sa80/ugl, null, VENDOR_ITEM_REGULAR),
+		list("SA80 Pulse Rifle LMG", 20, /obj/item/weapon/gun/rifle/sa80/lmg, null, VENDOR_ITEM_REGULAR),
 
 		list("PRIMARY AMMUNITION", -1, null, null),
 		list("F903 Magazine (10x24mm)", 5, /obj/item/ammo_magazine/rifle/rmc_f90, null, VENDOR_ITEM_REGULAR),
 		list("F903A1 Marksman Magazine (10x24mm)", 15, /obj/item/ammo_magazine/rifle/rmc_f90/marksman, null, VENDOR_ITEM_REGULAR),
+		list("SA80 HV Magazine (10x24mm)", 0, /obj/item/ammo_magazine/rifle/sa80, null, VENDOR_ITEM_REGULAR),
+		list("SA80 Box HV Magazine (10x24mm)", 5, /obj/item/ammo_magazine/rifle/sa80/lmg, null, VENDOR_ITEM_REGULAR),
+		list("FN-P90 Magazine (10x20mm)", 0, /obj/item/ammo_magazine/smg/p90rmc, null, VENDOR_ITEM_REGULAR),
 
 		list("SIDEARMS", -1, null, null),
 		list("VP78 Pistol", 20, /obj/item/weapon/gun/pistol/vp78, null, VENDOR_ITEM_REGULAR),

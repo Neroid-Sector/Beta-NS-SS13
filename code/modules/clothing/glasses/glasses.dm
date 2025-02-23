@@ -229,14 +229,26 @@
 	flags_equip_slot = SLOT_EYES|SLOT_FACE
 
 /obj/item/clothing/glasses/m42_goggles
-	name = "\improper M42 scout sight"
+	name = "\improper M42 sight"
 	gender = NEUTER
-	desc = "A headset and goggles system for the M42 Scout Rifle. Allows highlighted imaging of surroundings. Click it to toggle."
+	desc = "A headset and goggles system for those marines without a helmet. Allows highlighted imaging of surroundings. Click it to toggle."
 	icon = 'icons/obj/items/clothing/glasses.dmi'
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
 	vision_flags = SEE_TURFS
 	toggleable = 1
+	actions_types = list(/datum/action/item_action/toggle)
+
+/obj/item/clothing/glasses/m42_goggles/medhud
+	name = "\improper M42 sight"
+	gender = NEUTER
+	desc = "A headset heads up and goggles system for those marines without a helmet. Allows highlighted imaging of surroundings. Click it to toggle."
+	icon = 'icons/obj/items/clothing/glasses.dmi'
+	icon_state = "m42_goggles"
+	deactive_state = "m42goggles_0"
+	hud_type = list(MOB_HUD_MEDICAL_ADVANCED)
+	toggleable = TRUE
+	fullscreen_vision = null
 	actions_types = list(/datum/action/item_action/toggle)
 
 /obj/item/clothing/glasses/disco_fever
@@ -403,6 +415,7 @@
 	icon_state = "mgogglesblk"
 	active_icon_state = "mgogglesblk_down"
 	inactive_icon_state = "mgogglesblk"
+	eye_protection = EYE_PROTECTION_FLASH
 
 /obj/item/clothing/glasses/mgoggles/orange
 	name = "orange marine ballistic goggles"
@@ -410,6 +423,7 @@
 	icon_state = "mgogglesorg"
 	active_icon_state = "mgogglesorg_down"
 	inactive_icon_state = "mgogglesorg"
+	eye_protection = EYE_PROTECTION_FLASH
 
 /obj/item/clothing/glasses/mgoggles/v2
 	name = "M1A1 marine ballistic goggles"
@@ -417,6 +431,7 @@
 	icon_state = "mgoggles2"
 	active_icon_state = "mgoggles2_down"
 	inactive_icon_state = "mgoggles2"
+	eye_protection = EYE_PROTECTION_FLASH
 
 /obj/item/clothing/glasses/mgoggles/on_enter_storage(obj/item/storage/internal/S)
 	..()
@@ -549,6 +564,12 @@
 	vision_impair_on = VISION_IMPAIR_WEAK
 	vision_impair_off = VISION_IMPAIR_NONE
 
+/obj/item/clothing/glasses/welding/superior/alt
+	desc = "Welding goggles made from more expensive materials."
+
+/obj/item/clothing/glasses/welding/superior/prescription
+	desc = "Welding goggles made from more expensive materials. There are barely visible prescription lenses connected to the frame, allowing vision even when the goggles are raised."
+	prescription = TRUE
 //sunglasses
 
 /obj/item/clothing/glasses/sunglasses
@@ -613,7 +634,18 @@
 
 
 /obj/item/clothing/glasses/sunglasses/sechud/tactical
-	name = "tactical SWAT HUD"
+	name = "Tactical response HUD"
 	gender = NEUTER
 	desc = "Flash-resistant goggles with inbuilt combat and security information."
 	icon_state = "swatgoggles"
+
+/obj/item/clothing/glasses/sunglasses/sechud/hidden
+	name = "Sunglasses"
+	desc = "Sunglasses wired up with the best nano-tech the USCM can muster out on the frontier. Displays information about any person you decree worthy of your gaze, these ones have been made to look like normal sunglasses."
+	icon_state = "bigsunglasses"
+
+/obj/item/clothing/glasses/sunglasses/sechud/hidden/prescription
+	name = "Sunglasses"
+	desc = "Sunglasses wired up with the best nano-tech the USCM can muster out on the frontier. Displays information about any person you decree worthy of your gaze, these ones have been made to look like normal prescription sunglasses."
+	icon_state = "bigsunglasses"
+	prescription = TRUE

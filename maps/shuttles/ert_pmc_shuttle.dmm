@@ -92,9 +92,7 @@
 	},
 /area/shuttle/ert)
 "q" = (
-/obj/structure/machinery/door/airlock/almayer/generic{
-	dir = 2
-	},
+/obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/blastdoor,
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin15"
 	},
@@ -245,11 +243,6 @@
 	opacity = 0
 	},
 /area/shuttle/ert)
-"T" = (
-/turf/closed/shuttle/ert{
-	icon_state = "wy2"
-	},
-/area/shuttle/ert)
 "U" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy1"
@@ -329,7 +322,7 @@ G
 s
 s
 s
-T
+s
 "}
 (5,1,1) = {"
 y
@@ -344,7 +337,7 @@ h
 k
 k
 k
-q
+k
 "}
 (6,1,1) = {"
 i

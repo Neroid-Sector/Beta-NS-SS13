@@ -8,7 +8,7 @@
 	name = "lever-action bullet"
 
 	damage = 80
-	penetration = 0
+	penetration = ARMOR_PENETRATION_TIER_10
 	accuracy = HIT_ACCURACY_TIER_1
 	shell_speed = AMMO_SPEED_TIER_6
 	accurate_range = 14

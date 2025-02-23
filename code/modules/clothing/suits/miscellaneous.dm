@@ -56,6 +56,10 @@
 	item_state = "pirate"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_ARMS
 
+/obj/item/clothing/suit/pirate/clf
+	name = "Improvised commissar coat"
+	desc = "The wearer of this coat demands respect, for he is above suspicion."
+
 
 /obj/item/clothing/suit/hgpirate
 	name = "pirate captain coat"
@@ -276,6 +280,7 @@
 	desc = "Designed to be worn over a jumpsuit rather than clipped on."
 	icon_state = "webbing"
 	item_state = "webbing"
+	storage_slots = 6
 	allowed = list(
 		/obj/item/weapon/baton,
 		/obj/item/handcuffs,
@@ -297,7 +302,15 @@
 		/obj/item/storage/large_holster/machete,
 		/obj/item/storage/large_holster/katana,
 		/obj/item/device/motiondetector,
+		/obj/item/device/trench_whistle,
 	)
+
+/obj/item/clothing/suit/storage/webbing/black
+	name = "black external webbing"
+	desc = "Designed to be worn over a jumpsuit rather than clipped on, this version has expanded storage and is made from robust black synthcotton. Often used by intelligence officers for document storage."
+	icon_state = "webbing_black"
+	item_state = "webbing_black"
+	storage_slots = 8
 
 /obj/item/clothing/suit/storage/utility_vest
 	name = "utility vest"
@@ -537,3 +550,21 @@
 	armor_internaldamage = CLOTHING_ARMOR_LOW
 	valid_accessory_slots = list(ACCESSORY_SLOT_ARMBAND, ACCESSORY_SLOT_DECOR, ACCESSORY_SLOT_MEDAL)
 	restricted_accessory_slots = list(ACCESSORY_SLOT_ARMBAND)
+
+/obj/item/clothing/suit/storage/bomber/armored
+	name = "\improper Armored Bomber Jacket"
+	desc = "An extremely discreet and fashionable piece of armor made by stitching expensive ballistic liners into a bomber jacket. Often worn by flag officers on deployment for their warmth and protection while still staying nimble."
+	icon_state = "bomber_2"
+	item_state_slots = list(WEAR_JACKET = "bomber_2")
+	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_ARMS
+	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_ARMS
+	min_cold_protection_temperature = ICE_COLONY_TEMPERATURE
+	armor_melee = CLOTHING_ARMOR_MEDIUM
+	armor_bullet = CLOTHING_ARMOR_HIGHPLUS
+	armor_laser = CLOTHING_ARMOR_LOW
+	armor_energy = CLOTHING_ARMOR_LOW
+	armor_bomb = CLOTHING_ARMOR_VERYLOW
+	armor_internaldamage = CLOTHING_ARMOR_MEDIUMLOW
+	storage_slots = 4
+	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
+	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE

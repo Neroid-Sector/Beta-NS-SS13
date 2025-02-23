@@ -142,6 +142,31 @@
 	safety = !safety
 	to_chat(user, SPAN_NOTICE("You switch the safety [safety ? "on" : "off"]."))
 
+
+/obj/item/reagent_container/spray/heavypepper
+	name = "Heavy peppersprayer"
+	desc = "Manufactured by UhangInc, used to blind and down an opponent quickly. This one is a Military grade unit with increased capacity and a faster release."
+	icon_state = "pepperspray"
+	item_state = "pepperspray"
+	possible_transfer_amounts = null
+	volume = 400
+	safety = TRUE
+	use_delay = 0.01 SECONDS
+
+/obj/item/reagent_container/spray/heavypepper/Initialize()
+	. = ..()
+	reagents.add_reagent("condensedcapsaicin", 400)
+
+/obj/item/reagent_container/spray/heavypepper/get_examine_text(mob/user)
+	. = ..()
+	if(get_dist(user,src) <= 1)
+		. += "The safety is [safety ? "on" : "off"]."
+
+/obj/item/reagent_container/spray/heavypepper/attack_self(mob/user)
+	..()
+	safety = !safety
+	to_chat(user, SPAN_NOTICE("You switch the safety [safety ? "on" : "off"]."))
+
 //water flower
 /obj/item/reagent_container/spray/waterflower
 	name = "water flower"

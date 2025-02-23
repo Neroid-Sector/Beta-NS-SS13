@@ -1,0 +1,125 @@
+"bk" = (/turf/closed/shuttle/attu/transparent{icon_state = "22"},/area/shuttle/drop_blackgold/attu)
+"co" = (/turf/closed/shuttle/attu{icon_state = "25"},/area/shuttle/drop_blackgold/attu)
+"cs" = (/obj/structure/blocker/forcefield/multitile_vehicles,/turf/open/shuttle/dropship{icon_state = "floor8"},/area/shuttle/drop_blackgold/attu)
+"cF" = (/obj/structure/stairs/perspective{icon_state = "p_stair_full"},/obj/structure/platform{dir = 4},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_blackgold/attu)
+"cM" = (/obj/structure/transmitter/rotary{name = "Attu Telephone"; phone_category = "Dropship"; phone_id = "Attu"; pixel_x = 11; pixel_y = 16},/obj/structure/blocker/invisible_wall,/obj/structure/machinery/computer/dropship_weapons/attu,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
+"dk" = (/turf/closed/shuttle/attu{icon_state = "73"},/area/shuttle/drop_blackgold/attu)
+"dU" = (/turf/closed/shuttle/attu{icon_state = "69"},/area/shuttle/drop_blackgold/attu)
+"eM" = (/obj/effect/attach_point/weapon/attu/left_fore,/obj/structure/shuttle/part/attu/transparent/outer_left_weapons,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
+"eV" = (/obj/structure/shuttle/part/attu/transparent/outer_right_weapons,/obj/effect/attach_point/weapon/attu/right_fore,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
+"fi" = (/obj/structure/shuttle/part/attu/transparent/upper_right_wing,/obj/effect/attach_point/electronics/attu,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
+"fj" = (/obj/structure/extinguisher_cabinet/alt{pixel_x = -14; pixel_y = -9},/turf/closed/shuttle/attu{icon_state = "81"},/area/shuttle/drop_blackgold/attu)
+"fL" = (/turf/closed/shuttle/attu{icon_state = "48"},/area/shuttle/drop_blackgold/attu)
+"gJ" = (/obj/structure/closet/fireaxecabinet{pixel_y = -10},/turf/closed/shuttle/attu{icon_state = "76"},/area/shuttle/drop_blackgold/attu)
+"gV" = (/turf/closed/shuttle/attu{icon_state = "83"},/area/shuttle/drop_blackgold/attu)
+"hc" = (/turf/closed/shuttle/attu{icon_state = "72"},/area/shuttle/drop_blackgold/attu)
+"hx" = (/obj/structure/shuttle/part/attu/nose_front_right,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
+"hG" = (/turf/open/shuttle/dropship{icon_state = "rasputin6"},/area/shuttle/drop_blackgold/attu)
+"hH" = (/turf/open/shuttle/dropship{icon_state = "floor8"},/area/shuttle/drop_blackgold/attu)
+"hS" = (/turf/open/shuttle/dropship{icon_state = "rasputin7"},/area/shuttle/drop_blackgold/attu)
+"it" = (/turf/closed/shuttle/attu{icon_state = "67"},/area/shuttle/drop_blackgold/attu)
+"jM" = (/obj/structure/machinery/cm_vending/sorted/cargo_guns/squad{req_access = null; req_one_access = null},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
+"kp" = (/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = -8},/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = 8},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
+"ky" = (/obj/structure/machinery/door/airlock/hatch/cockpit/two,/obj/structure/blocker/forcefield/multitile_vehicles,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
+"mA" = (/obj/structure/shuttle/part/attu/transparent/lower_left_wing,/obj/effect/attach_point/weapon/attu/left_wing,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
+"mL" = (/turf/closed/shuttle/attu{icon_state = "47"},/area/shuttle/drop_blackgold/attu)
+"ok" = (/turf/closed/shuttle/attu{icon_state = "62"},/area/shuttle/drop_blackgold/attu)
+"oF" = (/turf/closed/shuttle/attu{icon_state = "64"},/area/shuttle/drop_blackgold/attu)
+"oJ" = (/obj/structure/shuttle/part/attu/transparent/lower_right_wing,/obj/effect/attach_point/weapon/attu/right_wing,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
+"qh" = (/obj/effect/decal/warning_stripes{icon_state = "W"},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
+"rh" = (/obj/structure/machinery/cm_vending/sorted/medical/wall_med/vehicle{pixel_x = 5; pixel_y = -6},/turf/closed/shuttle/attu{icon_state = "81"},/area/shuttle/drop_blackgold/attu)
+"tr" = (/turf/closed/shuttle/attu/transparent{icon_state = "23"},/area/shuttle/drop_blackgold/attu)
+"tX" = (/turf/closed/shuttle/attu{icon_state = "4"},/area/shuttle/drop_blackgold/attu)
+"uj" = (/obj/structure/machinery/computer/overwatch/almayer{dir = 8; pixel_x = -17; pixel_y = 20},/obj/structure/machinery/computer/groundside_operations{dir = 4; pixel_x = -17; pixel_y = 6},/obj/structure/machinery/computer/overwatch/almayer{dir = 8; pixel_x = -17; pixel_y = -10},/obj/structure/platform/ship{dir = 4},/obj/structure/bed/chair/dropship/passenger{dir = 8},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
+"uu" = (/turf/closed/shuttle/attu{icon_state = "75"},/area/shuttle/drop_blackgold/attu)
+"vh" = (/turf/closed/shuttle/attu{icon_state = "92"},/area/shuttle/drop_blackgold/attu)
+"vB" = (/turf/closed/shuttle/attu{icon_state = "3"},/area/shuttle/drop_blackgold/attu)
+"vV" = (/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_blackgold/attu)
+"wa" = (/turf/closed/shuttle/attu/transparent{icon_state = "38"},/area/shuttle/drop_blackgold/attu)
+"wk" = (/turf/closed/shuttle/attu{icon_state = "94"},/area/shuttle/drop_blackgold/attu)
+"ww" = (/obj/effect/decal/warning_stripes{icon_state = "E"; pixel_x = 1},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_blackgold/attu)
+"wS" = (/obj/effect/decal/warning_stripes{icon_state = "SE-out"; pixel_x = 1},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
+"xf" = (/obj/effect/decal/warning_stripes{icon_state = "SW-out"; pixel_x = -1},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_blackgold/attu)
+"xp" = (/turf/template_noop,/area/template_noop)
+"xX" = (/obj/docking_port/mobile/marine_dropship/attu,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
+"yc" = (/obj/effect/decal/warning_stripes{icon_state = "SE-out"; pixel_x = 1},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_blackgold/attu)
+"ye" = (/obj/structure/shuttle/part/attu/transparent/right_inner_bottom_wing,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
+"ym" = (/turf/closed/shuttle/attu/transparent{icon_state = "34"},/area/shuttle/drop_blackgold/attu)
+"AZ" = (/obj/effect/decal/warning_stripes{icon_state = "E"; pixel_x = 1},/obj/structure/platform{dir = 8},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_blackgold/attu)
+"Bx" = (/obj/structure/shuttle/part/attu/transparent/right_outer_bottom_wing,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
+"CD" = (/obj/structure/shuttle/part/attu/nose_front_left,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
+"CU" = (/obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2{id = "aft_door"; name = "\improper Attu cargo door"},/obj/effect/decal/warning_stripes{icon_state = "E"; pixel_x = 1},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
+"Eo" = (/obj/structure/machinery/cm_vending/sorted/cargo_guns/squad_prep{req_access = null; req_one_access = null},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
+"Ez" = (/obj/structure/shuttle/part/attu/transparent/upper_left_wing,/obj/effect/attach_point/electronics/attu,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
+"FF" = (/obj/effect/decal/warning_stripes{icon_state = "W"},/obj/structure/platform{dir = 4},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_blackgold/attu)
+"FW" = (/obj/structure/shuttle/part/attu/lower_left_wall,/turf/open/space/basic,/area/shuttle/drop_blackgold/attu)
+"Gg" = (/obj/structure/blocker/invisible_wall,/obj/structure/machinery/computer/shuttle/dropship/flight,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
+"Gl" = (/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = -8},/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = 8},/obj/effect/decal/warning_stripes{icon_state = "S"},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
+"Gz" = (/obj/structure/stairs,/obj/structure/platform/ship{dir = 4},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
+"IK" = (/turf/closed/shuttle/attu/transparent{icon_state = "86"},/area/shuttle/drop_blackgold/attu)
+"IN" = (/obj/structure/machinery/door/airlock/dropship_hatch/two{dir = 8; id = "starboard_door"},/obj/structure/stairs{dir = 4},/obj/structure/blocker/forcefield/multitile_vehicles,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
+"IS" = (/obj/structure/shuttle/part/attu/transparent/left_outer_inner_wing,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
+"Jw" = (/obj/structure/shuttle/part/attu/transparent/nose_top_right,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
+"JC" = (/obj/effect/decal/warning_stripes{icon_state = "W"},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_blackgold/attu)
+"JV" = (/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
+"KY" = (/obj/structure/shuttle/part/attu/transparent/nose_top_left,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
+"Mx" = (/turf/closed/shuttle/attu{icon_state = "37"},/area/shuttle/drop_blackgold/attu)
+"MH" = (/turf/closed/shuttle/attu/transparent{icon_state = "89"},/area/shuttle/drop_blackgold/attu)
+"MJ" = (/obj/effect/decal/warning_stripes,/obj/effect/attach_point/crew_weapon/attu,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
+"NZ" = (/obj/structure/bed/chair/dropship/pilot{dir = 1},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
+"Os" = (/obj/structure/shuttle/part/attu/transparent/left_outer_bottom_wing,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
+"OC" = (/obj/effect/decal/warning_stripes{icon_state = "W"},/obj/structure/blocker/forcefield/multitile_vehicles,/turf/open/shuttle/dropship{icon_state = "rasputin4"},/area/shuttle/drop_blackgold/attu)
+"OU" = (/turf/closed/shuttle/attu/transparent{icon_state = "39"},/area/shuttle/drop_blackgold/attu)
+"Pg" = (/obj/structure/shuttle/part/attu/transparent/middle_right_wing,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
+"Qe" = (/obj/structure/shuttle/part/attu/left_inner_wing_connector,/turf/open/space/basic,/area/shuttle/drop_blackgold/attu)
+"Qf" = (/turf/closed/shuttle/attu/transparent{icon_state = "96"},/area/shuttle/drop_blackgold/attu)
+"Qt" = (/obj/structure/blocker/invisible_wall,/obj/structure/machinery/computer/cameras/dropship/attu,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
+"QF" = (/obj/structure/shuttle/part/attu/transparent/engine_left_exhaust,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
+"QV" = (/obj/structure/bed/chair/vehicle{pixel_x = 8},/obj/structure/bed/chair/vehicle{pixel_x = -8},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
+"Ra" = (/obj/effect/decal/warning_stripes{icon_state = "E"; pixel_x = 1},/obj/structure/blocker/forcefield/multitile_vehicles,/turf/open/shuttle/dropship{icon_state = "rasputin8"},/area/shuttle/drop_blackgold/attu)
+"Sh" = (/turf/closed/shuttle/attu/transparent{icon_state = "98"},/area/shuttle/drop_blackgold/attu)
+"Si" = (/turf/closed/shuttle/attu{icon_state = "24"},/area/shuttle/drop_blackgold/attu)
+"SO" = (/turf/closed/shuttle/attu/transparent{icon_state = "27"},/area/shuttle/drop_blackgold/attu)
+"TO" = (/obj/structure/shuttle/part/attu/right_inner_wing_connector,/turf/open/space/basic,/area/shuttle/drop_blackgold/attu)
+"TY" = (/turf/closed/shuttle/attu/transparent{icon_state = "97"},/area/shuttle/drop_blackgold/attu)
+"Uf" = (/obj/structure/platform{dir = 1; layer = 2.8},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
+"Uk" = (/turf/closed/shuttle/attu{icon_state = "30"},/area/shuttle/drop_blackgold/attu)
+"Ut" = (/obj/structure/stairs{dir = 8; icon_state = "ramptop"},/obj/structure/blocker/forcefield/multitile_vehicles,/obj/structure/machinery/door/airlock/dropship_hatch/two{id = "port_door"},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_blackgold/attu)
+"UV" = (/obj/structure/shuttle/part/attu/transparent/engine_right_exhaust,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
+"UX" = (/turf/closed/shuttle/attu{icon_state = "31"},/area/shuttle/drop_blackgold/attu)
+"Vf" = (/turf/closed/shuttle/attu/transparent{icon_state = "35"},/area/shuttle/drop_blackgold/attu)
+"Vm" = (/turf/closed/shuttle/attu{icon_state = "36"},/area/shuttle/drop_blackgold/attu)
+"Vn" = (/turf/closed/shuttle/attu/transparent{icon_state = "29"},/area/shuttle/drop_blackgold/attu)
+"VK" = (/turf/closed/shuttle/attu/transparent{icon_state = "32"},/area/shuttle/drop_blackgold/attu)
+"Xm" = (/obj/structure/machinery/door_control{id = "dropship_attu"; name = "Dropship Lockdown"; normaldoorcontrol = 3; pixel_y = -10; req_one_access_txt = "3;22"; throw_range = 15},/turf/closed/shuttle/attu{icon_state = "81"},/area/shuttle/drop_blackgold/attu)
+"XD" = (/obj/effect/attach_point/fuel/attu{pixel_x = -33},/turf/closed/shuttle/attu/transparent{icon_state = "33"},/area/shuttle/drop_blackgold/attu)
+"XN" = (/obj/structure/stairs/perspective{icon_state = "p_stair_full"},/obj/structure/platform{dir = 8},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_blackgold/attu)
+"XY" = (/obj/structure/shuttle/part/attu/transparent/middle_left_wing,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
+"Yr" = (/obj/structure/shuttle/part/attu/transparent/nose_center,/turf/template_noop,/area/shuttle/drop_blackgold/attu)
+"YD" = (/obj/structure/shuttle/part/attu/lower_right_wall,/turf/open/space/basic,/area/shuttle/drop_blackgold/attu)
+"YS" = (/obj/effect/attach_point/fuel/attu,/turf/closed/shuttle/attu/transparent{icon_state = "28"},/area/shuttle/drop_blackgold/attu)
+"Zj" = (/turf/closed/shuttle/attu/transparent{icon_state = "26"},/area/shuttle/drop_blackgold/attu)
+
+(1,1,1) = {"
+xpxpxpxpxpxpxpxpxpxpxp
+xpxpxpKYYrYrYrJwxpxpxp
+xpxpxpCDQfTYShhxxpxpxp
+xpxpxpvhQtGgcMwkxpxpxp
+xpxpeMIKNZJVNZMHeVxpxp
+xpxpuugJXmkyrhfjgVxpxp
+xpEzhcQVhGhHhSQVdkfixp
+xpXYitkpvVMJvVkpdUPgxp
+xpmAokQVvVJVvVQVoFoJxp
+xpxpUtJVvVMJvVJVINxpxp
+xpxpVmwSxfxXycGlMxxpxp
+xpxpVmGzJCMJwwjMMxxpxp
+xpxpVmujOCcsRaEoMxxpxp
+xpxpFWmLXNUfcFfLYDxpxp
+xpymVfVmAZJVFFMxwaOUxp
+xpYSVnUkAZJVFFUXVKXDxp
+xpbktrSiAZJVFFcoZjSOxp
+xpQFUVVmAZJVFFMxQFUVxp
+xpxpxpuuCUJVqhgVxpxpxp
+xpxpxpQexpxpxpTOxpxpxp
+xpOsISvBxpxpxptXyeBxxp
+"}

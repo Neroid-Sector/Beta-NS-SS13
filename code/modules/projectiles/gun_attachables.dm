@@ -386,6 +386,15 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_mod = HIT_ACCURACY_MULT_TIER_4
 	velocity_mod = AMMO_SPEED_TIER_1
 
+/obj/item/attachable/extended_barrel/sa80
+	icon_state = "sa80"
+	attach_icon = "sa80_a"
+
+/obj/item/attachable/extended_barrel/sa80/New()
+	..()
+	accuracy_mod = HIT_ACCURACY_MULT_TIER_4
+	velocity_mod = AMMO_SPEED_TIER_1
+
 /obj/item/attachable/heavy_barrel
 	name = "barrel charger"
 	desc = "A hyper threaded barrel extender that fits to the muzzle of most firearms. Increases bullet speed and velocity.\nGreatly increases projectile damage at the cost of accuracy and firing speed."
@@ -637,6 +646,13 @@ Defined in conflicts.dm of the #defines folder.
 	movement_onehanded_acc_penalty_mod = MOVEMENT_ACCURACY_PENALTY_MULT_TIER_5
 
 
+/obj/item/attachable/reflex/sa80_irons
+
+	name = "SA80 Carry Handle"
+	desc = "the carry handle and iron sights of an SA80"
+	icon_state = "sa80_iron"
+	attach_icon = "sa80_iron_a"
+
 /obj/item/attachable/flashlight
 	name = "rail flashlight"
 	desc = "A flashlight, for rails, on guns. Can be toggled on and off. A better light source than standard M3 pattern armor lights."
@@ -823,8 +839,8 @@ Defined in conflicts.dm of the #defines folder.
 	return
 
 /obj/item/attachable/magnetic_harness
-	name = "magnetic harness"
-	desc = "A magnetically attached harness kit that attaches to the rail mount of a weapon. When dropped, the weapon will sling to any set of USCM armor."
+	name = "Springloaded Weapon arm."
+	desc = "An umotorised springloaded version of the Smartgun robotic assist arm designed to be mounted on most USCM firearms and armor. When the arm is not resisted it will retract the weapon back towards the user."
 	icon = 'icons/obj/items/weapons/guns/attachments/rail.dmi'
 	icon_state = "magnetic"
 	attach_icon = "magnetic_a"
@@ -907,6 +923,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/damage_falloff_scoped_buff
 	var/ignore_clash_fog = FALSE
 	var/using_scope
+	var/glint_message_range = 25
 
 /obj/item/attachable/scope/New()
 	..()
@@ -948,6 +965,11 @@ Defined in conflicts.dm of the #defines folder.
 		G.damage_falloff_mult += damage_falloff_scoped_buff
 		using_scope = TRUE
 		RegisterSignal(user, COMSIG_LIVING_ZOOM_OUT, PROC_REF(remove_scoped_buff))
+
+	for(var/mob/current_mob as anything in get_mobs_in_z_level_range(get_turf(user), glint_message_range) - user)
+		var/relative_dir = get_dir(current_mob, user)
+		var/final_dir = dir2text(relative_dir)
+		to_chat(current_mob, SPAN_HIGHDANGER("You see a suspicious glint [final_dir ? "the [final_dir]" : "nearby"]!"))
 
 /obj/item/attachable/scope/proc/remove_scoped_buff(mob/living/carbon/user, obj/item/weapon/gun/G)
 	SIGNAL_HANDLER
@@ -2303,6 +2325,22 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/stock/type71/New()
 	..()
 
+/obj/item/attachable/stock/ak
+	name = "ak84s Stock"
+	desc = "This isn't supposed to be seperated from the gun, how'd this happen?"
+	icon = 'icons/obj/items/weapons/guns/attachments/stock.dmi'
+	icon_state = "ak_stock"
+	attach_icon = "ak_stock"
+	slot = "stock"
+	wield_delay_mod = WIELD_DELAY_NONE
+	flags_attach_features = NO_FLAGS
+	melee_mod = 15
+	size_mod = 0
+
+/obj/item/attachable/stock/ak/New()
+	..()
+
+
 /obj/item/attachable/stock/smg
 	name = "submachinegun stock"
 	desc = "A rare ARMAT stock distributed in small numbers to USCM forces. Compatible with the M39, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
@@ -3307,8 +3345,6 @@ Defined in conflicts.dm of the #defines folder.
 		SEND_SIGNAL(user, COMSIG_MOB_UNDEPLOYED_BIPOD)
 		UnregisterSignal(user, COMSIG_MOB_MOVE_OR_LOOK)
 
-	if(G.flags_gun_features & GUN_SUPPORT_PLATFORM)
-		G.remove_firemode(GUN_FIREMODE_AUTOMATIC)
 
 	if(heavy_bipod)
 		user.anchored = FALSE
@@ -3349,8 +3385,6 @@ Defined in conflicts.dm of the #defines folder.
 				initial_mob_dir = user.dir
 				RegisterSignal(user, COMSIG_MOB_MOVE_OR_LOOK, PROC_REF(handle_mob_move_or_look))
 
-				if(G.flags_gun_features & GUN_SUPPORT_PLATFORM)
-					G.add_firemode(GUN_FIREMODE_AUTOMATIC)
 
 				if(heavy_bipod)
 					user.anchored = TRUE
@@ -3404,6 +3438,14 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "bipod_m60"
 	attach_icon = "vulture_bipod"
 	heavy_bipod = TRUE
+
+/obj/item/attachable/bipod/sa80
+	name = "bipod"
+	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. \nGreatly increases accuracy and reduces recoil when properly placed, but also increases weapon size and slows firing speed."
+	icon = 'icons/obj/items/weapons/guns/attachments/barrel.dmi'
+	icon_state = "sa80_bipod"
+	attach_icon = "sa80_bipod_a"
+	slot = "muzzle"
 
 /obj/item/attachable/burstfire_assembly
 	name = "burst fire assembly"

@@ -18,6 +18,7 @@
 							FACTION_CLF = 0,
 							FACTION_UPP = 0,
 							FACTION_FREELANCER = 0,
+							FACTION_TWE = 0,
 							FACTION_SURVIVOR = 0,
 							FACTION_WY_DEATHSQUAD = 0,
 							FACTION_COLONIST = 0,

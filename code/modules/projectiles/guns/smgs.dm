@@ -4,21 +4,21 @@
 	unload_sound = 'sound/weapons/handling/smg_unload.ogg'
 	cocked_sound = 'sound/weapons/gun_cocked2.ogg'
 
-	fire_sound = 'sound/weapons/gun_m39.ogg'
+	fire_sound = "gun_pulse_smg"
 	force = 5
 	w_class = SIZE_LARGE
 	movement_onehanded_acc_penalty_mult = 4
 	aim_slowdown = SLOWDOWN_ADS_QUICK
 	wield_delay = WIELD_DELAY_VERY_FAST
 	attachable_allowed = list(
-		/obj/item/attachable/suppressor,			
+		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/reflex,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
+	flags_gun_features = GUN_CAN_POINTBLANK
 	gun_category = GUN_CATEGORY_SMG
 	start_automatic = TRUE
 
@@ -35,6 +35,15 @@
 	movement_onehanded_acc_penalty_mult = 4
 	fa_max_scatter = SCATTER_AMOUNT_TIER_5
 
+/obj/item/weapon/gun/smg/apply_bullet_effects(obj/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
+	. = ..()
+	if(!HAS_TRAIT(src, TRAIT_GUN_SILENCED))
+		if(!HAS_TRAIT(user, TRAIT_EAR_PROTECTION) && ishuman(user))
+			var/mob/living/carbon/human/huser = user
+			to_chat(user, SPAN_WARNING("Augh!! \The [src]'s firing resonates extremely loudly in your ears! You probably should have worn some sort of ear protection..."))
+			huser.apply_effect(6, STUTTER)
+			huser.AdjustEarDeafnessGuns(max(user.ear_deaf,2))
+
 //-------------------------------------------------------
 //M39 SMG
 
@@ -45,12 +54,12 @@
 	icon_state = "m39"
 	item_state = "m39"
 	flags_equip_slot = SLOT_BACK
-	current_mag = /obj/item/ammo_magazine/smg/m39
+	current_mag = /obj/item/ammo_magazine/smg/m39/heap
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/reflex,
-		/obj/item/attachable/angledgrip,	
+		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/flashlight/grip,
 		/obj/item/attachable/stock/smg,
@@ -69,7 +78,7 @@
 		/obj/item/attachable/stock/smg/collapsible/brace,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	starting_attachment_types = list(/obj/item/attachable/stock/smg/collapsible)
 	map_specific_decoration = TRUE
 
@@ -95,6 +104,62 @@
 	current_mag = /obj/item/ammo_magazine/smg/m39/rubber
 
 //-------------------------------------------------------
+//M39-R SMG
+
+/obj/item/weapon/gun/smg/m39recon
+	name = "\improper M39-R submachinegun"
+	desc = "The Armat Battlefield Systems M39-R submachinegun. This is a specialized variant made for use by FORECON units, and features an integrated supressor and lighter construction. A lightweight, lower caliber alternative to the various Pulse weapons used the USCM. Fires 10x20mm rounds out of 48 round magazines."
+	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
+	icon_state = "m39-r"
+	item_state = "m39-r"
+	fire_sound = "gun_silenced"
+	inherent_traits = list(TRAIT_GUN_SILENCED)
+	flags_equip_slot = SLOT_BACK
+	current_mag = /obj/item/ammo_magazine/smg/m39/heap
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/reflex,
+		/obj/item/attachable/flashlight/grip,
+		/obj/item/attachable/stock/smg,
+		/obj/item/attachable/stock/smg/collapsible,
+		/obj/item/attachable/stock/smg/collapsible/brace,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/upp,
+		/obj/item/attachable/bayonet/co2,
+		/obj/item/attachable/magnetic_harness,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	starting_attachment_types = list(/obj/item/attachable/stock/smg, /obj/item/attachable/reflex)
+	map_specific_decoration = FALSE
+
+/obj/item/weapon/gun/smg/m39recon/set_gun_attachment_offsets()
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 14, "rail_y" = 22, "under_x" = 21, "under_y" = 13, "stock_x" = 24, "stock_y" = 15)
+
+
+/obj/item/weapon/gun/smg/m39recon/handle_starting_attachment()
+	..()
+	var/obj/item/attachable/flashlight/grip/m39r_grip= new(src)
+	m39r_grip.flags_attach_features &= ~ATTACH_REMOVABLE
+	m39r_grip.hidden = FALSE
+	m39r_grip.Attach(src)
+	update_attachable(m39r_grip.slot)
+
+/obj/item/weapon/gun/smg/m39recon/set_gun_config_values()
+	..()
+	set_fire_delay(FIRE_DELAY_TIER_SMG)
+	set_burst_delay(FIRE_DELAY_TIER_SMG)
+	set_burst_amount(BURST_AMOUNT_TIER_3)
+	accuracy_mult = BASE_ACCURACY_MULT
+	accuracy_mult_unwielded = BASE_ACCURACY_MULT - HIT_ACCURACY_MULT_TIER_8
+	scatter = SCATTER_AMOUNT_TIER_7
+	burst_scatter_mult = SCATTER_AMOUNT_TIER_6
+	scatter_unwielded = SCATTER_AMOUNT_TIER_5
+	damage_mult = BASE_BULLET_DAMAGE_MULT
+	recoil_unwielded = RECOIL_AMOUNT_TIER_5
+	fa_max_scatter = SCATTER_AMOUNT_TIER_10 + 0.5
+
+//-------------------------------------------------------
 
 /obj/item/weapon/gun/smg/m39/elite
 	name = "\improper M39B/2 submachinegun"
@@ -102,7 +167,7 @@
 	icon_state = "m39b2"
 	item_state = "m39b2"
 	current_mag = /obj/item/ammo_magazine/smg/m39/ap
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WY_RESTRICTED
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WY_RESTRICTED
 	map_specific_decoration = FALSE
 	starting_attachment_types = list(/obj/item/attachable/stock/smg/collapsible)
 
@@ -222,7 +287,7 @@
 		/obj/item/attachable/burstfire_assembly,
 		)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
+	flags_gun_features = GUN_CAN_POINTBLANK
 	aim_slowdown = SLOWDOWN_ADS_NONE
 
 
@@ -351,7 +416,7 @@
 
 	fire_sound = 'sound/weapons/smg_heavy.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/pps43
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
@@ -395,7 +460,7 @@
 
 	fire_sound = 'sound/weapons/smg_heavy.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/bizon
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	wield_delay = WIELD_DELAY_MIN
 	aim_slowdown = SLOWDOWN_ADS_QUICK_MINUS
 
@@ -580,7 +645,7 @@
 		/obj/item/attachable/extended_barrel,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
+	flags_gun_features = GUN_CAN_POINTBLANK
 
 /obj/item/weapon/gun/smg/fp9000/handle_starting_attachment()
 	..()
@@ -651,7 +716,7 @@
 	wield_delay = WIELD_DELAY_VERY_FAST
 	attachable_allowed = list()
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
+	flags_gun_features = GUN_CAN_POINTBLANK
 	gun_category = GUN_CATEGORY_SMG
 	civilian_usable_override = TRUE
 	start_automatic = FALSE
@@ -687,3 +752,108 @@
 	if(.)
 		click_empty(user)
 	return FALSE
+
+/obj/item/weapon/gun/smg/p90
+	name = "\improper FN-P90 pulse submachinegun"
+	desc = "The FN Herstal FN-P90 submachinegun. Occasionally carried by light-infantry, scouts, engineers and medics. A lightweight, lower caliber alternative to the various Pulse weapons used the RMC. Fires 10x20mm rounds out of 50 round magazines."
+	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi'
+	icon_state = "p90"
+	item_state = "p90"
+	flags_equip_slot = SLOT_BACK
+	current_mag = /obj/item/ammo_magazine/smg/p90
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/reflex,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/upp,
+		/obj/item/attachable/bayonet/rmc,
+		/obj/item/attachable/bayonet/co2,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/magnetic_harness,
+	)
+	accepted_ammo = list(
+		/obj/item/ammo_magazine/smg/p90,
+		/obj/item/ammo_magazine/smg/p90/ap,
+		/obj/item/ammo_magazine/smg/p90/heap,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	starting_attachment_types = list()
+	map_specific_decoration = FALSE
+
+/obj/item/weapon/gun/smg/p90rmc/set_gun_attachment_offsets()
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 18,"rail_x" = 20, "rail_y" = 23, "under_x" = 21, "under_y" = 16, "stock_x" = 24, "stock_y" = 15)
+
+/obj/item/weapon/gun/smg/p90/set_gun_config_values()
+	..()
+	set_fire_delay(FIRE_DELAY_TIER_SMG)
+	set_burst_delay(FIRE_DELAY_TIER_SMG)
+	set_burst_amount(BURST_AMOUNT_TIER_3)
+	accuracy_mult = BASE_ACCURACY_MULT
+	accuracy_mult_unwielded = BASE_ACCURACY_MULT - HIT_ACCURACY_MULT_TIER_5
+	scatter = SCATTER_AMOUNT_TIER_4
+	burst_scatter_mult = SCATTER_AMOUNT_TIER_3
+	scatter_unwielded = SCATTER_AMOUNT_TIER_2
+	damage_mult = BASE_BULLET_DAMAGE_MULT
+	recoil_unwielded = RECOIL_AMOUNT_TIER_5
+	fa_max_scatter = SCATTER_AMOUNT_TIER_10 + 0.5
+
+//-------ROYAL MARINES---------\\
+
+/obj/item/weapon/gun/smg/p90rmc
+	name = "\improper FN-P90 pulse submachinegun"
+	desc = "The FN Herstal FN-P90 submachinegun. Occasionally carried by light-infantry, scouts, engineers and medics. A lightweight, lower caliber alternative to the various Pulse weapons used the RMC. Fires 10x20mm rounds out of 50 round magazines."
+	icon = 'icons/obj/items/weapons/guns/guns_by_faction/twe_guns.dmi'
+	icon_state = "p90rmc"
+	item_state = "p90rmc"
+	flags_equip_slot = SLOT_BACK
+	current_mag = /obj/item/ammo_magazine/smg/p90rmc/heap
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/reflex,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/upp,
+		/obj/item/attachable/bayonet/rmc,
+		/obj/item/attachable/bayonet/co2,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope/mini_iff,
+		/obj/item/attachable/magnetic_harness,
+	)
+	accepted_ammo = list(
+		/obj/item/ammo_magazine/smg/p90rmc,
+		/obj/item/ammo_magazine/smg/p90rmc/ap,
+		/obj/item/ammo_magazine/smg/p90rmc/heap,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	starting_attachment_types = list(/obj/item/attachable/scope/mini_iff,)
+	map_specific_decoration = FALSE
+
+/obj/item/weapon/gun/smg/p90rmc/set_gun_attachment_offsets()
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 18,"rail_x" = 20, "rail_y" = 23, "under_x" = 21, "under_y" = 16, "stock_x" = 24, "stock_y" = 15)
+
+/obj/item/weapon/gun/smg/p90rmc/set_gun_config_values()
+	..()
+	set_fire_delay(FIRE_DELAY_TIER_SMG)
+	set_burst_delay(FIRE_DELAY_TIER_SMG)
+	set_burst_amount(BURST_AMOUNT_TIER_3)
+	accuracy_mult = BASE_ACCURACY_MULT
+	accuracy_mult_unwielded = BASE_ACCURACY_MULT - HIT_ACCURACY_MULT_TIER_5
+	scatter = SCATTER_AMOUNT_TIER_4
+	burst_scatter_mult = SCATTER_AMOUNT_TIER_4
+	scatter_unwielded = SCATTER_AMOUNT_TIER_4
+	damage_mult = BASE_BULLET_DAMAGE_MULT + 0.2
+	recoil_unwielded = RECOIL_AMOUNT_TIER_5
+	fa_max_scatter = SCATTER_AMOUNT_TIER_10 + 0.5

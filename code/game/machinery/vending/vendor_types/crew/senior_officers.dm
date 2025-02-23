@@ -204,6 +204,7 @@ GLOBAL_LIST_INIT(cm_vending_clothing_req_officer, list(
 
 		list("Spare Equipment", 0, null, null, null),
 		list("Rubber Stamp", 10, /obj/item/tool/stamp/ro, null, VENDOR_ITEM_REGULAR),
+		list("Budget Card", 10, /obj/item/reqcard/uscm, null, VENDOR_ITEM_REGULAR),
 	))
 
 
@@ -298,7 +299,7 @@ GLOBAL_LIST_INIT(cm_vending_clothing_xo, list(
 		list("Aviator Shades", 0, /obj/item/clothing/glasses/sunglasses/aviator, MARINE_CAN_BUY_GLASSES, VENDOR_ITEM_REGULAR),
 
 		list("PATCHES", 0, null, null, null),
-		list("Falling Falcons Shoulder Patch", 0, /obj/item/clothing/accessory/patch/falcon, MARINE_CAN_BUY_ATTACHMENT, VENDOR_ITEM_MANDATORY),
+		list("Mudskippers Shoulder Patch", 0, /obj/item/clothing/accessory/patch/mudskippers, MARINE_CAN_BUY_ATTACHMENT, VENDOR_ITEM_MANDATORY),
 		list("USCM Shoulder Patch", 0, /obj/item/clothing/accessory/patch, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
 
 		list("POUCHES (CHOOSE 2)", 0, null, null, null),

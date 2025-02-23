@@ -121,6 +121,26 @@
 		// 180% damage to all targets (225), 240% (300) against non-Runner xenos, and 300% against Big xenos (375). -Kaga
 		to_chat(P.firer, SPAN_WARNING("Bullseye!"))
 
+/datum/ammo/bullet/sniper/anti_materiel/on_hit_obj(obj/O, obj/projectile/P)
+	if(istype(O, /obj/vehicle/multitile/apc))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/bang.ogg', 100)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		to_chat(P.firer, SPAN_WARNING("Bullseye!"))
+		return
+	return ..()
+
+/datum/ammo/bullet/sniper/anti_materiel/on_hit_obj(obj/O, obj/projectile/P)
+	if(istype(O, /obj/vehicle/multitile/tank))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/bang.ogg', 100)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Anti-Tank Rocket"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		to_chat(P.firer, SPAN_WARNING("Bullseye!"))
+		return
+	return ..()
+
 /datum/ammo/bullet/sniper/anti_materiel/vulture
 	damage = 400 // Fully intended to vaporize anything smaller than a mini cooper
 	accurate_range_min = 10

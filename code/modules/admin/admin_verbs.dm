@@ -103,7 +103,8 @@ var/list/admin_verbs_sounds = list(
 	/client/proc/play_sound,
 	/client/proc/stop_web_sound,
 	/client/proc/stop_sound,
-	/client/proc/cmd_admin_vox_panel
+	/client/proc/cmd_admin_vox_panel,
+	/client/proc/call_tgui_play_directly,
 )
 
 var/list/admin_verbs_minor_event = list(
@@ -132,6 +133,7 @@ var/list/admin_verbs_minor_event = list(
 	/client/proc/toggle_events,
 	/client/proc/toggle_shipside_sd,
 	/client/proc/shakeshipverb,
+	/client/proc/adminpanelstgweapons,
 	/client/proc/adminpanelweapons,
 	/client/proc/admin_general_quarters,
 	/client/proc/admin_biohazard_alert,

@@ -90,6 +90,14 @@ var/global/list/gear_datums_by_name = list()
 	display_name = "Balaclava, green"
 	path = /obj/item/clothing/mask/balaclava/tactical
 
+/datum/gear/mask/skull_balaclava_black
+	display_name = "Skull Balaclava Black"
+	path = /obj/item/clothing/mask/rebreather/skull/black
+
+/datum/gear/mask/skull_balaclava_normal
+	display_name = "Skull Balaclava"
+	path = /obj/item/clothing/mask/rebreather/skull
+
 /datum/gear/mask/coif
 	display_name = "Coif"
 	path = /obj/item/clothing/mask/rebreather/scarf
@@ -837,3 +845,7 @@ var/global/list/gear_datums_by_name = list()
 /datum/gear/misc/patch_uscm/falcon
 	display_name = "Falling Falcons shoulder patch"
 	path = /obj/item/clothing/accessory/patch/falcon
+
+/datum/gear/misc/patch_uscm/falcon
+	display_name = "Mudskippers shoulder patch"
+	path = /obj/item/clothing/accessory/patch/mudskippers

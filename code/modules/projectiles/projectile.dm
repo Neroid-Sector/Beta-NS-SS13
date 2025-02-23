@@ -455,12 +455,31 @@
 	if(hit_chance) // Calculated from combination of both ammo accuracy and gun accuracy
 
 		var/hit_roll = rand(1,100)
+		var/direct_hit = FALSE
 
-		if(original != L || hit_roll > hit_chance-base_miss_chance[def_zone]-20) // If hit roll is high or the firer wasn't aiming at this mob, we still hit but now we might hit the wrong body part
+		// Wasn't the clicked target
+		if(original != L)
 			def_zone = rand_zone()
+
+		// Xenos get a RNG limb miss chance regardless of being clicked target or not, see below
+		else if(isxeno(L) && hit_roll > hit_chance - 20)
+			def_zone = rand_zone()
+
+		// Other targets do the same roll with penalty - a near hit will hit but redirected to another limb
+		else if(!isxeno(L) && hit_roll > hit_chance - 20 - base_miss_chance[def_zone])
+			def_zone = rand_zone()
+
 		else
+			direct_hit = TRUE
 			SEND_SIGNAL(firer, COMSIG_BULLET_DIRECT_HIT, L)
-		hit_chance -= base_miss_chance[def_zone] // Reduce accuracy based on spot.
+
+		// At present, Xenos have no inherent effects or localized damage stemming from limb targeting
+		// Therefore we exempt the shooter from direct hit accuracy penalties as well,
+		// simply to avoid them from resetting target to chest every time they want to shoot a xeno
+
+		if(!direct_hit || !isxeno(L)) // For normal people or direct hits we apply the limb accuracy penalty
+			hit_chance -= base_miss_chance[def_zone]
+		// else for direct hits on xenos, we skip it, pretending it's a chest shot with zero penalty
 
 		#if DEBUG_HIT_CHANCE
 		to_world(SPAN_DEBUG("([L]) Hit chance: [hit_chance] | Roll: [hit_roll]"))
@@ -566,7 +585,7 @@
 
 //Used by machines and structures to calculate shooting past cover
 /obj/proc/calculate_cover_hit_boolean(obj/projectile/P, distance = 0, cade_direction_correct = FALSE)
-	if(istype(P.shot_from, /obj/item/hardpoint)) //anything shot from a tank gets a bonus to bypassing cover
+	if(istype(P.shot_from, /obj/item/hardpoint) || istype(P.ammo, /datum/ammo/xeno)) //anything shot from a tank or a xeno gets a bonus to bypassing cover
 		distance -= 3
 
 	if(distance < 1 || (distance > 3 && cade_direction_correct))
@@ -574,10 +593,9 @@
 
 	//an object's "projectile_coverage" var indicates the maximum probability of blocking a projectile
 	var/effective_accuracy = P.get_effective_accuracy()
-	var/distance_limit = 6 //number of tiles needed to max out block probability
 	var/accuracy_factor = 50 //degree to which accuracy affects probability   (if accuracy is 100, probability is unaffected. Lower accuracies will increase block chance)
 
-	var/hitchance = min(projectile_coverage, (projectile_coverage * distance/distance_limit) + accuracy_factor * (1 - effective_accuracy/100))
+	var/hitchance = min(projectile_coverage, (projectile_coverage * distance / (projectile_coverage_distance_limit * (cade_direction_correct ? 3 : 1))) + accuracy_factor * (1 - effective_accuracy/100))
 
 	#if DEBUG_HIT_CHANCE
 	to_world(SPAN_DEBUG("([name] as cover) Distance travelled: [P.distance_travelled]  |  Effective accuracy: [effective_accuracy]  |  Hit chance: [hitchance]"))

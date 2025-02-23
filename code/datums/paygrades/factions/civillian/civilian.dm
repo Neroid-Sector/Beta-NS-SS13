@@ -28,3 +28,9 @@
 	name = "Representative"
 	prefix = "Rep."
 	pay_multiplier = 1
+
+/datum/paygrade/civillian/stalker
+	paygrade = "S.T.A.L.K.E.R."
+	name = "S.T.A.L.K.E.R."
+	prefix = "S.T.A.L.K.E.R."
+	pay_multiplier = 1

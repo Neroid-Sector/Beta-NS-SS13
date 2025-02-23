@@ -208,6 +208,9 @@
 	if(istype(add_to_screen, /obj/effect/detector_blip))
 		return
 
+	if(istype(add_to_screen, /obj/effect/adv/detector_blip))
+		return
+
 	client.add_to_screen(add_to_screen)
 
 /// When the observer target loses a screen, our observer loses it as well
@@ -1200,10 +1203,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		else
 			. += "Hijack Over"
 
-	if(EvacuationAuthority)
-		var/eta_status = EvacuationAuthority.get_status_panel_eta()
+	if(SShijack)
+		var/eta_status = SShijack.get_evac_eta()
 		if(eta_status)
-			. += "Evacuation: [eta_status]"
+			. += "Evacuation Goal: [eta_status]"
+
+		if(SShijack.sd_unlocked)
+			. += "Self Destruct Goal: [SShijack.get_sd_eta()]"
 
 	if(client.prefs?.be_special & BE_ALIEN_AFTER_DEATH)
 		if(larva_queue_cached_message)

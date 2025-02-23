@@ -1205,7 +1205,7 @@
 
 /obj/item/clothing/under/marine/fluff/sanctum_uniform //NO USER
 	name = "Sanctum Fatigues"
-	desc = "Fatigues with Kevlar fibers for a bit more protection than most clothing.  UNIQUE DONOR ITEM"
+	desc = "Fatigues with Venlar fibers for a bit more protection than most clothing.  UNIQUE DONOR ITEM"
 	icon_state = "Sanctum_u"
 	worn_state = "Sanctum_u"
 	flags_jumpsuit = FALSE
@@ -1366,7 +1366,8 @@
 	name = "tactical radiopack"
 	desc = "A Radio backpack for use with the Juggernaut armor. DONOR ITEM"
 	icon_state = "skinnerpack"
-	item_state = "skinnerpack"
+	item_state = "securitypack"
+	has_gamemode_skin = FALSE //same sprite for all gamemodes.
 
 /obj/item/clothing/glasses/fluff/alexwarhammer
 	name = "Black Jack's Dank Shades"

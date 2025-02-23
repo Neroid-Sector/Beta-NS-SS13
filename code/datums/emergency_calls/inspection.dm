@@ -78,9 +78,11 @@
 		to_chat(H, SPAN_WARNING("Remember, you may not interrupt regular operation and are expected to follow orders of the Inspector at all times. Ahelp if you have any questions of you wish to offer the role to someone else."))
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), H, SPAN_BOLD("Objectives: [objectives]")), 1 SECONDS)
 
-//UAAC-TIS
+/*****************************************************************************************************/
+//UAAC-TIS Inspection
+/*****************************************************************************************************/
 /datum/emergency_call/inspection_tis
-	name = "Inspection - UA Allied Command TIS - ML Knowledge Required"
+	name = "Inspection - UA Allied Command TIS"
 	mob_max = 2
 	mob_min = 1
 	probability = 0
@@ -98,19 +100,19 @@
 	var/mob/living/carbon/human/H = new(T)
 	M.transfer_to(H, TRUE)
 
-	if(!leader && HAS_FLAG(H.client.prefs.toggles_ert, PLAY_LEADER) && check_timelock(H.client, list(JOB_INTEL,JOB_WARDEN), time_required_for_job))
+	if(!leader && HAS_FLAG(H.client.prefs.toggles_ert, PLAY_LEADER))
 		leader = H
 		arm_equipment(H, /datum/equipment_preset/uscm_event/uaac/tis/io, TRUE, TRUE)
 		to_chat(H, SPAN_ROLE_HEADER("You are an Intelligence Officer working for the UAAC-TIS!"))
 		to_chat(H, SPAN_ROLE_BODY("The UAAC-TIS, also known as the Three Eyes, is responsible for the collection, collation and delivery of Intelligence across UA assets. Your Handler will contact you about the exact nature of your mission on board the [MAIN_SHIP_NAME]."))
-		to_chat(H, SPAN_ROLE_BODY("While you do not have any direct authority over the USCM, the TIS mandate also allows you to investigate any perceived abuse of the Law, be it written or implied. Remember, you have the authority to make calls on ML should the crew of the Almayer request it or your Handler order you to resolve ML issues."))
+		to_chat(H, SPAN_ROLE_BODY("While you do not have any direct authority over the USCM, the TIS mandate also allows you to investigate any perceived abuse of the Law, be it written or implied. Remember, you have the authority to make calls on ML should the crew of the [MAIN_SHIP_NAME] request it or your Handler order you to resolve ML issues."))
 		to_chat(H, SPAN_WARNING("Remember that you cannot take antagonistic action unless specifically allowed by your Handler. You are also expected to know ML and SOP. Ahelp if you have any questions or wish to release this mob for other players."))
 	else
-		arm_equipment(H, /datum/equipment_preset/uscm_event/provost/enforcer, TRUE, TRUE)
-		to_chat(H, SPAN_ROLE_HEADER("You are an Enforcer of the USCM Provost Office!"))
-		to_chat(H, SPAN_ROLE_BODY("You have been assigned as an escort for an UAAC-TIS Officer being dispatched to the [MAIN_SHIP_NAME]. Technically, the TIS has no direct authority over you, however you have been ordered to follow the instructions of the TIS Officer."))
-		to_chat(H, SPAN_ROLE_BODY("You are not expected to enforce ML on the ship and are generally expected to follow the instruction of the Officer you are protecting. Remember that should they start acting in a way that you believe puts the USCM in danger, you are not obligated to follow their orders and should report this to the Provost at once."))
-		to_chat(H, SPAN_WARNING("This role requires familiarity with Marine Law and Standard Operating Procedure. Ahelp if you have any questions or wish to surrender the character to someone else."))
+		arm_equipment(H, /datum/equipment_preset/uscm_event/uaac/tis/es, TRUE, TRUE)
+		to_chat(H, SPAN_ROLE_HEADER("You are an Escort Officer working for the UAAC-TIS!"))
+		to_chat(H, SPAN_ROLE_BODY("You have been assigned as an escort for an UAAC-TIS Officer being dispatched to the [MAIN_SHIP_NAME]. The TIS Officer has direct authority over you and you must follow their instructions."))
+		to_chat(H, SPAN_ROLE_BODY("You are not expected to enforce ML on the ship and are generally expected to follow the instruction of the Officer you are protecting. Remember that should they start acting in a way that endangers the objective, report it to TIS command at once."))
+		to_chat(H, SPAN_WARNING("This role encourages familiarity with Maritime Law and Standard Operating Procedure. Ahelp if you have any questions or wish to surrender the character to someone else."))
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), H, SPAN_BOLD("Objectives: [objectives]")), 1 SECONDS)
 
 /datum/emergency_call/inspection_tis/spawn_items()
@@ -120,6 +122,87 @@
 	new /obj/item/storage/box/handcuffs(drop_spawn)
 	new /obj/item/storage/box/handcuffs(drop_spawn)
 
+/*****************************************************************************************************/
+//UAAC-TIS Senior Inspection
+/*****************************************************************************************************/
+/datum/emergency_call/inspection_tis_senior
+	name = "Inspection - Senior UA Allied Command TIS"
+	mob_max = 3
+	mob_min = 1
+	probability = 0
+
+/datum/emergency_call/inspection_tis_senior/New()
+	..()
+	objectives = "Await detailed directives from your Handler. Remember that you may, but do not have to, investigate any ML or SOP related issues during your time on the [MAIN_SHIP_NAME]."
+
+/datum/emergency_call/inspection_tis_senior/create_member(datum/mind/M, turf/override_spawn_loc)
+	var/turf/T = override_spawn_loc ? override_spawn_loc : get_spawn_point()
+
+	if(!istype(T))
+		return FALSE
+
+	var/mob/living/carbon/human/H = new(T)
+	M.transfer_to(H, TRUE)
+
+	if(!leader && HAS_FLAG(H.client.prefs.toggles_ert, PLAY_LEADER))
+		leader = H
+		arm_equipment(H, /datum/equipment_preset/uscm_event/uaac/tis/sio, TRUE, TRUE)
+		to_chat(H, SPAN_ROLE_HEADER("You are a Senior Intelligence Officer working for the UAAC-TIS!"))
+		to_chat(H, SPAN_ROLE_BODY("The UAAC-TIS, also known as the Three Eyes, is responsible for the collection, collation and delivery of Intelligence across UA assets. Your Handler will contact you about the exact nature of your mission on board the [MAIN_SHIP_NAME]."))
+		to_chat(H, SPAN_ROLE_BODY("While you do not have any direct authority over the USCM, the TIS mandate also allows you to investigate any perceived abuse of the Law, be it written or implied. Remember, you have the authority to make calls on ML should the crew of the [MAIN_SHIP_NAME] request it or your Handler order you to resolve ML issues."))
+		to_chat(H, SPAN_WARNING("Remember that you cannot take antagonistic action unless specifically allowed by your Handler. You are also expected to know ML and SOP. Ahelp if you have any questions or wish to release this mob for other players."))
+	else
+		arm_equipment(H, /datum/equipment_preset/uscm_event/uaac/tis/es, TRUE, TRUE)
+		to_chat(H, SPAN_ROLE_HEADER("You are an Escort Officer working for the UAAC-TIS!"))
+		to_chat(H, SPAN_ROLE_BODY("You have been assigned as an escort for an UAAC-TIS Officer being dispatched to the [MAIN_SHIP_NAME]. The TIS Officer has direct authority over you and you must follow their instructions."))
+		to_chat(H, SPAN_ROLE_BODY("You are not expected to enforce ML on the ship and are generally expected to follow the instruction of the Officer you are protecting. Remember that should they start acting in a way that endangers the objective, report it to TIS command at once."))
+		to_chat(H, SPAN_WARNING("This role encourages familiarity with Maritime Law and Standard Operating Procedure. Ahelp if you have any questions or wish to surrender the character to someone else."))
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), H, SPAN_BOLD("Objectives: [objectives]")), 1 SECONDS)
+
+/datum/emergency_call/inspection_tis/spawn_items()
+	var/turf/drop_spawn
+
+	drop_spawn = get_spawn_point(TRUE)
+	new /obj/item/storage/box/handcuffs(drop_spawn)
+	new /obj/item/storage/box/handcuffs(drop_spawn)
+
+/*****************************************************************************************************/
+//UAAC-TIS Coordinator Inspection/Intervention
+/*****************************************************************************************************/
+/datum/emergency_call/inspection_tis_coordinator
+	name = "Full Deployment - UA Allied Command TIS"
+	mob_max = 3
+	mob_min = 1
+	probability = 0
+
+/datum/emergency_call/inspection_tis_coordinator/New()
+	..()
+	objectives = "Await detailed directives from your Coordinator. Remember that you may, but do not have to, investigate any ML or SOP related issues during your time on the [MAIN_SHIP_NAME]."
+
+/datum/emergency_call/inspection_tis_coordinator/create_member(datum/mind/M, turf/override_spawn_loc)
+	var/turf/T = override_spawn_loc ? override_spawn_loc : get_spawn_point()
+
+	if(!istype(T))
+		return FALSE
+
+	var/mob/living/carbon/human/H = new(T)
+	M.transfer_to(H, TRUE)
+
+	arm_equipment(H, /datum/equipment_preset/uscm_event/uaac/tis/es, TRUE, TRUE)
+	to_chat(H, SPAN_ROLE_HEADER("You are an Escort Officer working for the UAAC-TIS!"))
+	to_chat(H, SPAN_ROLE_BODY("You have been assigned as an escort for a UAAC-TIS Coordinator being dispatched to the [MAIN_SHIP_NAME]. The Coordinator has FULL authority over you and you must follow their instructions."))
+	to_chat(H, SPAN_ROLE_BODY("You are not expected to enforce ML on the ship and are generally expected to follow the instruction of the Coordinator you are protecting."))
+	to_chat(H, SPAN_WARNING("This role encourages familiarity with Maritime Law and Standard Operating Procedure. Ahelp if you have any questions or wish to surrender the character to someone else."))
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), H, SPAN_BOLD("Objectives: [objectives]")), 1 SECONDS)
+
+/datum/emergency_call/inspection_tis/spawn_items()
+	var/turf/drop_spawn
+
+	drop_spawn = get_spawn_point(TRUE)
+	new /obj/item/storage/box/handcuffs(drop_spawn)
+	new /obj/item/storage/box/handcuffs(drop_spawn)
+
+/*****************************************************************************************************/
 //Weyland-Yutani
 /datum/emergency_call/inspection_wy
 	name = "Inspection - Corporate"

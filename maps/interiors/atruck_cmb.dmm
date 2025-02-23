@@ -1,0 +1,29 @@
+"a" = (/turf/open/void/vehicle,/area/space)
+"c" = (/obj/structure/interior_wall/van{icon_state = "interior_door"},/obj/effect/vehicle_roof/van{icon_state = "front_roof_1"},/obj/effect/landmark/interior/spawn/interior_viewport/simple/windshield,/turf/open/void/vehicle,/area/space)
+"d" = (/obj/structure/interior_wall/tank,/obj/structure/vehicle_locker,/turf/open/void/vehicle,/area/space)
+"i" = (/obj/structure/bed/chair/vehicle{layer = 3.5; pixel_x = 8; pixel_y = 12},/obj/effect/landmark/interior/spawn/interior_viewport/simple{pixel_y = 30},/obj/structure/bed/chair/vehicle{layer = 3.5; pixel_x = -8; pixel_y = 12},/turf/open/shuttle/vehicle{icon_state = "floor_1_2"},/area/vehicle/van)
+"j" = (/obj/structure/interior_wall/van{icon_state = "front_3"},/turf/open/void/vehicle,/area/space)
+"k" = (/obj/structure/interior_wall/van{icon_state = "front_2"},/turf/open/void/vehicle,/area/space)
+"m" = (/obj/structure/machinery/cm_vending/sorted/medical/wall_med/vehicle{layer = 2.5; pixel_x = -14; pixel_y = 29},/obj/structure/bed/chair/vehicle{layer = 3.5; pixel_x = 8; pixel_y = 12},/turf/open/shuttle/vehicle{icon_state = "floor_1_2"},/area/vehicle/van)
+"r" = (/obj/effect/landmark/interior/spawn/entrance{alpha = 50; exit_type = /obj/structure/interior_exit/vehicle/van/right; name = "right entrance marker"; tag = "right"},/obj/structure/bed/chair/comfy{dir = 4; icon_state = "comfychair"},/turf/open/shuttle/vehicle{icon_state = "floor_3_12"},/area/vehicle/van)
+"s" = (/obj/effect/landmark/interior/spawn/entrance{dir = 8; exit_type = /obj/structure/interior_exit/vehicle/van/backleft; name = "back left entrance marker"; pixel_x = -32; tag = "back_left"},/turf/open/shuttle/vehicle{icon_state = "floor_1_7"},/area/vehicle/van)
+"t" = (/obj/structure/interior_wall/van{alpha = 50; icon_state = "exterior_door"; layer = 5.2; pixel_y = 32},/turf/open/void/vehicle,/area/space)
+"y" = (/obj/structure/surface/rack{density = 0; pixel_y = -2},/turf/open/shuttle/vehicle{icon_state = "floor_1_1"},/area/vehicle/van)
+"z" = (/obj/effect/landmark/interior/spawn/interior_viewport/simple{alpha = 100; pixel_y = -2},/obj/structure/closet/secure_closet/guncabinet{name = "Prisoner Transport Cell"},/turf/open/shuttle/vehicle{icon_state = "floor_1_1"},/area/vehicle/van)
+"D" = (/obj/structure/interior_wall/van{icon_state = "front_1"},/turf/open/void/vehicle,/area/space)
+"G" = (/obj/structure/interior_wall/van{icon_state = "back_1"},/turf/open/void/vehicle,/area/space)
+"J" = (/obj/structure/bed/chair/vehicle{layer = 3.5; pixel_x = -8; pixel_y = 12},/obj/structure/bed/chair/vehicle{layer = 3.5; pixel_x = 8; pixel_y = 12},/turf/open/shuttle/vehicle{icon_state = "floor_1_8"},/area/vehicle/van)
+"L" = (/obj/structure/interior_wall/van{icon_state = "back_3"},/turf/open/void/vehicle,/area/space)
+"M" = (/obj/effect/landmark/interior/spawn/entrance{dir = 8; exit_type = /obj/structure/interior_exit/vehicle/van/backright; name = "back right entrance marker"; pixel_x = -32; tag = "back_right"},/obj/structure/surface/rack{density = 0; pixel_y = -2},/turf/open/shuttle/vehicle{icon_state = "floor_1_10"},/area/vehicle/van)
+"P" = (/obj/structure/interior_wall/tank,/turf/open/void/vehicle,/area/space)
+"Q" = (/obj/structure/closet/secure_closet/guncabinet{name = "Prisoner Transport Cell"},/turf/open/shuttle/vehicle{icon_state = "floor_1_9"},/area/vehicle/van)
+"R" = (/obj/structure/interior_wall/van{icon_state = "back_2"},/turf/open/void/vehicle,/area/space)
+"Y" = (/obj/effect/landmark/interior/spawn/entrance{dir = 1; exit_type = /obj/structure/interior_exit/vehicle/van/left; name = "left entrance marker"; pixel_y = 32; tag = "left"},/obj/effect/landmark/interior/spawn/vehicle_driver_seat{dir = 4},/obj/effect/vehicle_roof/van{icon_state = "front_roof_2"},/obj/effect/landmark/interior/spawn/interior_viewport/simple/windshield{icon_state = "windshield_viewport_bottom"},/turf/open/shuttle/vehicle{icon_state = "floor_3_11"},/area/vehicle/van)
+"Z" = (/obj/structure/interior_wall/tank{alpha = 50; layer = 5.2; pixel_y = 32},/turf/open/void/vehicle,/area/space)
+
+(1,1,1) = {"
+LdPPPcj
+RsmiJYk
+GMyzQrD
+aZZZZta
+"}

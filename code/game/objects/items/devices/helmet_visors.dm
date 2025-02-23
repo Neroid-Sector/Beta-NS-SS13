@@ -6,7 +6,7 @@
 	w_class = SIZE_TINY
 
 	///The type of HUD our visor shows
-	var/hud_type = MOB_HUD_FACTION_USCM
+	var/hud_type = list(MOB_HUD_SECURITY_BASIC)
 
 	///The sound when toggling on the visor
 	var/toggle_on_sound = 'sound/handling/hud_on.ogg'
@@ -73,10 +73,45 @@
 /obj/item/device/helmet_visor/proc/get_helmet_examine_text()
 	return SPAN_NOTICE("\A [name] is flipped down.")
 
+/obj/item/device/helmet_visor/proc/change_view(mob/user, new_size)
+	SIGNAL_HANDLER
+	if(new_size > 7) // cannot use binos
+		var/obj/item/clothing/head/helmet/marine/attached_helmet = loc
+		if(!istype(attached_helmet))
+			return
+		deactivate_visor(attached_helmet, user)
+		to_chat(user, SPAN_NOTICE("You deactivate [src] on [attached_helmet] and put your eyes to the lens."))
+		playsound_client(user.client, toggle_off_sound, null, 75)
+		attached_helmet.active_visor = null
+		attached_helmet.update_icon()
+		var/datum/action/item_action/cycle_helmet_huds/cycle_action = locate() in attached_helmet.actions
+		if(cycle_action)
+			cycle_action.set_default_overlay()
+
+/obj/item/device/helmet_visor/uscm
+	name = "USCM tactical optic"
+	icon_state = "hud_sight"
+	hud_type = list(MOB_HUD_FACTION_USCM, MOB_HUD_MEDICAL_ADVANCED)
+
+/obj/item/device/helmet_visor/upp
+	name = "UPP tactical optic"
+	icon_state = "hud_sight"
+	hud_type = list(MOB_HUD_FACTION_UPP, MOB_HUD_MEDICAL_ADVANCED)
+
+/obj/item/device/helmet_visor/pmc
+	name = "WY tactical optic"
+	icon_state = "hud_sight"
+	hud_type = list(MOB_HUD_FACTION_PMC, MOB_HUD_MEDICAL_ADVANCED)
+
+/obj/item/device/helmet_visor/clf
+	name = "hacked tactical optic"
+	icon_state = "hud_sight"
+	hud_type = list(MOB_HUD_FACTION_CLF, MOB_HUD_MEDICAL_ADVANCED)
+
 /obj/item/device/helmet_visor/medical
 	name = "basic medical optic"
 	icon_state = "med_sight"
-	hud_type = MOB_HUD_MEDICAL_ADVANCED
+	hud_type = list(MOB_HUD_FACTION_USCM, MOB_HUD_MEDICAL_ADVANCED)
 	action_icon_string = "med_sight_down"
 	helmet_overlay = "med_sight_right"
 
@@ -193,7 +228,7 @@
 	name = "night vision optic"
 	desc = "An insertable visor HUD into a standard USCM helmet. This type gives a form of night vision and is standard issue in units with regular funding."
 	icon_state = "nvg_sight"
-	hud_type = null
+	hud_type = list(MOB_HUD_FACTION_USCM, MOB_HUD_MEDICAL_ADVANCED)
 	action_icon_string = "nvg_sight_down"
 	helmet_overlay = "nvg_sight_right"
 	toggle_on_sound = 'sound/handling/toggle_nv1.ogg'
@@ -202,8 +237,8 @@
 	/// The internal battery for the visor
 	var/obj/item/cell/high/power_cell
 
-	/// About 5 minutes active use charge (hypothetically)
-	var/power_use = 33
+	/// About 10 minutes active use charge (hypothetically)
+	var/power_use = 15
 
 	/// The alpha of darkness we set to for the mob while the visor is on, not completely fullbright but see-able
 	var/lighting_alpha = 100
@@ -230,7 +265,7 @@
 /obj/item/device/helmet_visor/night_vision/activate_visor(obj/item/clothing/head/helmet/marine/attached_helmet, mob/living/carbon/human/user)
 	RegisterSignal(user, COMSIG_HUMAN_POST_UPDATE_SIGHT, PROC_REF(on_update_sight))
 
-	user.add_client_color_matrix("nvg_visor", 99, color_matrix_multiply(color_matrix_saturation(0), color_matrix_from_string("#7aff7a")))
+	user.add_client_color_matrix("nvg_visor", 99, color_matrix_multiply(color_matrix_saturation(0), color_matrix_from_string("#9af2f8")))
 	user.overlay_fullscreen("nvg_visor", /atom/movable/screen/fullscreen/flash/noise/nvg)
 	user.overlay_fullscreen("nvg_visor_blur", /atom/movable/screen/fullscreen/brute/nvg, 3)
 	user.update_sight()
@@ -238,6 +273,7 @@
 		on_light = new(attached_helmet)
 		on_light.set_light_on(TRUE)
 	START_PROCESSING(SSobj, src)
+	RegisterSignal(user, COMSIG_MOB_CHANGE_VIEW, PROC_REF(change_view))
 
 /obj/item/device/helmet_visor/night_vision/deactivate_visor(obj/item/clothing/head/helmet/marine/attached_helmet, mob/living/carbon/human/user)
 	user.remove_client_color_matrix("nvg_visor", 1 SECONDS)
@@ -247,6 +283,7 @@
 	if(visor_glows)
 		qdel(on_light)
 	UnregisterSignal(user, COMSIG_HUMAN_POST_UPDATE_SIGHT)
+	UnregisterSignal(user, COMSIG_MOB_CHANGE_VIEW)
 
 	user.update_sight()
 	STOP_PROCESSING(SSobj, src)
@@ -270,6 +307,11 @@
 	. = ..()
 	if(!.)
 		return
+
+	if(user.client.view > 7)
+		to_chat(user, SPAN_WARNING("You cannot use [src] while using optics."))
+		change_view()
+		return FALSE
 
 	if(!NVG_VISOR_USAGE(FALSE))
 		to_chat(user, SPAN_NOTICE("Your [src] is out of power! You'll need to recharge it."))
@@ -295,17 +337,17 @@
 /atom/movable/nvg_light
 	light_power = 0.5
 	light_range = 1
-	light_color = COLOUR_GREEN
+	light_color = COLOUR_BLUE
 	light_system = MOVABLE_LIGHT
 	light_flags = LIGHT_ATTACHED
 
 /obj/item/device/helmet_visor/night_vision/marine_raider
 	name = "advanced night vision optic"
-	desc = "An insertable visor HUD into a standard USCM helmet. This type gives a form of night vision and is standard issue in special forces units."
+	desc = "An insertable visor HUD into a standard USCM helmet. This type gives a form of night vision and is standard issue."
 	hud_type = list(MOB_HUD_FACTION_USCM, MOB_HUD_MEDICAL_ADVANCED)
 	helmet_overlay = "nvg_sight_right_raider"
 	power_use = 0
-	visor_glows = FALSE
+	visor_glows = TRUE
 
 /obj/item/device/helmet_visor/night_vision/marine_raider/activate_visor(obj/item/clothing/head/helmet/marine/attached_helmet, mob/living/carbon/human/user)
 	. = ..()

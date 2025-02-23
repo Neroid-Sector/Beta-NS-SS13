@@ -89,7 +89,7 @@
 
 /obj/item/weapon/shield/riot/attackby(obj/item/W as obj, mob/user as mob)
 	if(cooldown < world.time - 25)
-		if(istype(W, /obj/item/weapon/baton) || istype(W, /obj/item/weapon/claymore) || istype(W, /obj/item/weapon/baseballbat) || istype(W, /obj/item/weapon/katana) || istype(W, /obj/item/weapon/twohanded/fireaxe) || istype(W, /obj/item/weapon/chainofcommand))
+		if(istype(W, /obj/item/weapon/baton) || istype(W, /obj/item/weapon/sword) || istype(W, /obj/item/weapon/baseballbat) || istype(W, /obj/item/weapon/twohanded/fireaxe) || istype(W, /obj/item/weapon/chainofcommand))
 			user.visible_message(SPAN_WARNING("[user] bashes [src] with [W]!"))
 			playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1)
 			cooldown = world.time
@@ -130,4 +130,15 @@
 	item_state = "ballisticshield"
 	base_icon_state = "ballisticshield"
 	passive_block = 60
-	readied_block = 90
+	readied_block = 99
+
+/obj/item/weapon/shield/riot/ballistic/uscm
+	flags_atom = FPRINT|CONDUCT
+	throw_speed = SPEED_SLOW
+	name = "M-10 Ballistic shield"
+	desc = "The M-10 Ballistic shield is a heavy steel panel covered in thin venlar cover to prevent spalling. The Shield is faily protective against small arms and rocks, but is rather cumbersome and thuss not very popular among marines."
+	icon_state = "ballisticshield"
+	item_state = "ballisticshield"
+	base_icon_state = "ballisticshield"
+	passive_block = 60
+	readied_block = 99

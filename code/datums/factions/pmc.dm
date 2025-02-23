@@ -11,9 +11,9 @@
 	else if(ID)
 		_role = ID.rank
 	switch(_role)
-		if(JOB_PMC_DIRECTOR)
+		if(JOB_PMC_DIRECTOR, JOB_WYREP_BG)
 			hud_icon_state = "sd"
-		if(JOB_PMC_LEADER, JOB_PMC_LEAD_INVEST)
+		if(JOB_PMC_LEADER, JOB_PMC_LEAD_INVEST, JOB_PMC_LEADER_BG)
 			hud_icon_state = "ld"
 		if(JOB_PMC_DOCTOR)
 			hud_icon_state = "td"

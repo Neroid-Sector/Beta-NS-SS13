@@ -58,7 +58,7 @@
 
 /obj/item/weapon/gun/flamer/gun_safety_handle(mob/user)
 	to_chat(user, SPAN_NOTICE("You [SPAN_BOLD(flags_gun_features & GUN_TRIGGER_SAFETY ? "extinguish" : "ignite")] the pilot light."))
-	playsound(user,'sound/weapons/handling/flamer_ignition.ogg', 25, 1)
+	playsound(user,'sound/weapons/handling/flamer_ignition.mp3', 25, 1)
 	update_icon()
 
 /obj/item/weapon/gun/flamer/get_examine_text(mob/user)
@@ -739,7 +739,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		switch(angle) //this reduces power when the explosion is going around corners
 			if (45)
 				spread_power *= 0.75
-			else //turns out angles greater than 90 degrees almost never happen. This bit also prevents trying to spread backwards
+			if (90 to 180) //turns out angles greater than 90 degrees almost never happen. This bit also prevents trying to spread backwards
 				continue
 
 		switch(spread_direction)

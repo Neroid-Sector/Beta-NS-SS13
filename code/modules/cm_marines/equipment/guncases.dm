@@ -81,6 +81,18 @@
 	new /obj/item/ammo_magazine/rifle/m41aMK1(src)
 	new /obj/item/ammo_magazine/rifle/m41aMK1(src)
 
+
+/obj/item/storage/box/guncase/m41aMK1AP
+	name = "\improper M41A pulse rifle MK1 AP case"
+	desc = "A gun case containing the M41A pulse rifle MK1 loaded with AP rounds. It can only use proprietary MK1 magazines."
+	storage_slots = 3
+	can_hold = list(/obj/item/weapon/gun/rifle/m41aMK1, /obj/item/ammo_magazine/rifle/m41aMK1)
+
+/obj/item/storage/box/guncase/m41aMK1AP/fill_preset_inventory()
+	new /obj/item/weapon/gun/rifle/m41aMK1/ap(src)
+	new /obj/item/ammo_magazine/rifle/m41aMK1/ap(src)
+	new /obj/item/ammo_magazine/rifle/m41aMK1/ap(src)
+
 //------------
 //M79 grenade launcher
 /obj/item/storage/box/guncase/m79
@@ -112,6 +124,27 @@
 	new /obj/item/storage/belt/shotgun/lever_action(src)
 	new /obj/item/storage/belt/gun/m44/lever_action/attach_holster(src)
 
+/obj/item/storage/box/guncase/r4t_ranger
+	name = "\improper R4T lever action rifle case"
+	desc = "A gun case containing the R4T lever action rifle, intended for scouting. Comes with an ammunition belt, the optional revolver attachment for it, two boxes of ammunition, a sling, and a stock for the rifle."
+	storage_slots = 14
+	can_hold = list(/obj/item/weapon/gun/lever_action/r4t, /obj/item/attachable/stock/r4t, /obj/item/attachable/magnetic_harness/lever_sling, /obj/item/ammo_magazine/lever_action, /obj/item/ammo_magazine/lever_action/training, /obj/item/storage/belt/shotgun/lever_action, /obj/item/storage/belt/gun/m44/lever_action/attach_holster, /obj/item/device/motiondetector/m717)
+
+/obj/item/storage/box/guncase/r4t_ranger/fill_preset_inventory()
+	new /obj/item/weapon/gun/lever_action/r4t(src)
+	new /obj/item/attachable/stock/r4t(src)
+	new /obj/item/attachable/magnetic_harness/lever_sling(src)
+	new /obj/item/ammo_magazine/lever_action(src)
+	new /obj/item/ammo_magazine/lever_action(src)
+	new /obj/item/storage/belt/shotgun/lever_action(src)
+	new /obj/item/storage/belt/gun/m44/lever_action/attach_holster(src)
+	new /obj/item/attachable/scope/mini(src)
+	new /obj/item/ammo_magazine/smg/pps43(src)
+	new /obj/item/ammo_magazine/smg/pps43(src)
+	new /obj/item/ammo_magazine/smg/pps43(src)
+	new /obj/item/ammo_magazine/smg/pps43(src)
+	new /obj/item/ammo_magazine/smg/pps43(src)
+	new /obj/item/weapon/gun/smg/pps43/extended_mag(src)
 /obj/item/storage/box/guncase/xm88
 	name = "\improper XM88 heavy rifle case"
 	desc = "A gun case containing the XM88 Heavy Rifle, a prototype weapon designed for use against heavily armored infantry targets and light vehicles. Contains an ammunition belt, two boxes of ammunition, the XS-9 Targeting Relay attachment, and the stock for the rifle."
@@ -204,6 +237,20 @@
 			if(3)
 				new /obj/item/ammo_magazine/shotgun/slugs(src)
 
+/obj/item/storage/box/guncase/type23
+	name = "\improper Type 23 Shotgun case"
+	desc = "A gun case containing the type 23 Shotgun."
+	storage_slots = 7
+	can_hold = list(/obj/item/storage/belt/shotgun/upp/heavybuck, /obj/item/weapon/gun/shotgun/type23, /obj/item/ammo_magazine/handful/shotgun/heavy/buckshot)
+
+/obj/item/storage/box/guncase/type23/fill_preset_inventory()
+	new /obj/item/weapon/gun/shotgun/type23(src)
+	new /obj/item/storage/belt/shotgun/upp/heavybuck(src)
+	new /obj/item/ammo_magazine/handful/shotgun/heavy/buckshot(src)
+	new /obj/item/ammo_magazine/handful/shotgun/heavy/buckshot(src)
+	new /obj/item/ammo_magazine/handful/shotgun/heavy/buckshot(src)
+	new /obj/item/ammo_magazine/handful/shotgun/heavy/buckshot(src)
+	new /obj/item/ammo_magazine/handful/shotgun/heavy/buckshot(src)
 /obj/item/storage/box/guncase/mk45_automag
 	name = "\improper MK-45 Automagnum case"
 	desc = "A gun case containing the MK-45 'High-Power' Automagnum sidearm. While this weapon was rejected as a replacement for the M44 Combat Revolver, it is often back-issued to troops who prefer its powerful bullets over more common sidearms."

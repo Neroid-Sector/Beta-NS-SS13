@@ -18,9 +18,7 @@
 	},
 /area/shuttle/ert)
 "d" = (
-/obj/structure/machinery/door/airlock/almayer/generic{
-	dir = 2
-	},
+/obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/blastdoor,
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin15"
 	},
@@ -145,11 +143,6 @@
 "J" = (
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin6"
-	},
-/area/shuttle/ert)
-"K" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan2"
 	},
 /area/shuttle/ert)
 "L" = (
@@ -284,7 +277,7 @@ r
 b
 b
 b
-K
+b
 "}
 (5,1,1) = {"
 W
@@ -299,7 +292,7 @@ f
 v
 v
 v
-d
+v
 "}
 (6,1,1) = {"
 Y

@@ -13,7 +13,7 @@
 
 	bloodsplatter_type = /obj/effect/temp_visual/dir_setting/bloodsplatter/synthsplatter
 
-	total_health = 150 //more health than regular humans
+	total_health = 75 //less than regular humans
 
 	brute_mod = 0.5
 	burn_mod = 0.9 //a small bit of resistance
@@ -82,7 +82,7 @@
 	pain_type = /datum/pain/synthetic/colonial
 	rarity_value = 1.5
 	slowdown = 0.2
-	total_health = 200 //But more durable
+	total_health = 100 //But more durable
 
 	default_lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 

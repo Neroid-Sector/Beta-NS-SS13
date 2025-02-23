@@ -751,7 +751,7 @@
 	/// time between sounds
 	var/time_to_sound = 20
 	/// Time for it to burn through fuel
-	var/fuel_stage_time = 1 MINUTES
+	var/fuel_stage_time = 10 MINUTES
 	/// How much fuel it has
 	var/remaining_fuel = 5 //Maxes at 5, but burns one when made
 	/// If the fire can be manually put out

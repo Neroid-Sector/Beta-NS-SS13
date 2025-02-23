@@ -10,9 +10,9 @@ GLOBAL_VAR_INIT(ship_alt_list, list("Low Altitude" = SHIP_ALT_LOW, "Optimal Alti
 GLOBAL_VAR_INIT(alt_ctrl_disabled, FALSE)
 
 //Defines how much to heat the engines or cool them by, and when to overheat
-#define COOLING -10
+#define COOLING -1
 #define OVERHEAT_COOLING -5
-#define HEATING 10
+#define HEATING 1
 #define OVERHEAT 100
 
 //Has the ships temperature set to 0 on startup, sets the global default var to med
@@ -30,7 +30,7 @@ GLOBAL_VAR_INIT(ship_alt, SHIP_ALT_MED)
 		to_chat(usr, SPAN_WARNING("A window of complex orbital math opens up. You have no idea what you are doing and quickly close it."))
 		return
 	if(GLOB.alt_ctrl_disabled)
-		to_chat(usr, SPAN_WARNING("The Altitude Control Console has been locked by ARES due to Delta Alert."))
+		to_chat(usr, SPAN_WARNING("The Altitude Control Console has been locked by MU/TH/UR/. due to Delta Alert."))
 		return
 	tgui_interact(usr)
 
@@ -54,7 +54,7 @@ GLOBAL_VAR_INIT(ship_alt, SHIP_ALT_MED)
 				continue
 			current_mob.apply_effect(3, WEAKEN)
 			shake_camera(current_mob, 10, 2)
-		ai_silent_announcement("Attention performing high-G maneuverer", ";", TRUE)
+		marine_announcement("Attention performing high-G maneuverer", "MU/TH/UR/ 9000", 'sound/effects/missile_warning.ogg', FACTION_MARINE)
 	if(!temperature_change)
 		switch(GLOB.ship_alt)
 			if(SHIP_ALT_LOW)
@@ -71,7 +71,7 @@ GLOBAL_VAR_INIT(ship_alt, SHIP_ALT_MED)
 			if(!is_mainship_level(current_mob.z))
 				continue
 			shake_camera(current_mob, 10, 1)
-		ai_silent_announcement("Performing Attitude Control", ";", TRUE)
+		marine_announcement("Attention performing high-G maneuverer", "MU/TH/UR/ 9000", 'sound/effects/missile_warning.ogg', FACTION_MARINE)
 
 //TGUI.... fun... years have gone by, I am dying of old age
 /obj/structure/machinery/computer/altitude_control_console/tgui_interact(mob/user, datum/tgui/ui)
@@ -128,7 +128,7 @@ GLOBAL_VAR_INIT(ship_alt, SHIP_ALT_MED)
 			continue
 		current_mob.apply_effect(3, WEAKEN)
 		shake_camera(current_mob, 10, 2)
-	ai_silent_announcement("Attention: Performing high-G manoeuvre", ";", TRUE)
+	marine_announcement("Attention performing high-G maneuverer", "MU/TH/UR/ 9000", 'sound/effects/missile_warning.ogg', FACTION_MARINE)
 
 #undef COOLING
 #undef OVERHEAT_COOLING

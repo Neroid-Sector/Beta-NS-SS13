@@ -37,8 +37,14 @@
 	var/vend_delay = 0 //delaying vending of an item (for drinks machines animation, for example). Make sure to synchronize this with animation duration
 	var/vend_sound //use with caution. Potential spam
 
+	/// X Offset to vend to
 	var/vend_x_offset = 0
+	/// Y Offset to vend to
 	var/vend_y_offset = 0
+	/// Vending direction from adjacent users, if not using vend_x_offset or vend_y_offset
+	var/vend_dir
+	/// Direction to adjacent user from which we're allowed to do offset vending
+	var/list/vend_dir_whitelist
 
 	var/list/listed_products = list()
 
@@ -125,11 +131,20 @@ GLOBAL_LIST_EMPTY(vending_products)
 			GLOB.vending_products[typepath] = 1
 
 //get which turf the vendor will dispense its products on.
-/obj/structure/machinery/cm_vending/proc/get_appropriate_vend_turf()
-	var/turf/T = loc
+/obj/structure/machinery/cm_vending/proc/get_appropriate_vend_turf(mob/living/carbon/human/user)
+	var/turf/turf = loc
 	if(vend_x_offset != 0 || vend_y_offset != 0) //this check should be more less expensive than using locate to locate your own tile every vending.
-		T = locate(x + vend_x_offset, y + vend_y_offset, z)
-	return T
+		turf = locate(x + vend_x_offset, y + vend_y_offset, z)
+		return turf
+	if(vend_dir)
+		if(vend_dir_whitelist)
+			var/user_dir = get_dir(loc, user)
+			if(!(user_dir in vend_dir_whitelist))
+				return turf
+		var/turf/relative_turf = get_step(user, vend_dir)
+		if(relative_turf.Adjacent(src))
+			return relative_turf
+	return turf
 
 /obj/structure/machinery/cm_vending/get_examine_text(mob/living/carbon/human/user)
 	. = ..()
@@ -245,7 +260,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 				return
 	//Machete holsters handling
 	else if(istype(item_to_stock, /obj/item/storage/large_holster/machete))
-		var/obj/item/weapon/claymore/mercsword/machete/mac = locate(/obj/item/weapon/claymore/mercsword/machete) in item_to_stock
+		var/obj/item/weapon/sword/machete/mac = locate(/obj/item/weapon/sword/machete) in item_to_stock
 		if(!mac)
 			if(user)
 				to_chat(user, SPAN_WARNING("\The [item_to_stock] is empty."))
@@ -1325,3 +1340,129 @@ GLOBAL_LIST_INIT(cm_vending_gear_corresponding_types_list, list(
 			else
 				visible_message(SPAN_NOTICE("\The [src] stops whirring."))
 */
+
+/obj/structure/machinery/auto_rack
+	name = "ColMarTech Automated Armaments Storage Carousel"
+	desc = "The ARMAT brand weapons rack has deceptively small storage, presenting only a limited single stack of storage clamps, the device automatically cycles to a fully stocked shelf when the current one is depleted. This one is configured to hold ."
+	icon = 'icons/obj/structures/machinery/vending.dmi'
+	icon_state = "C-TEST"
+	density = TRUE
+	var/stocked_weapon
+	var/restock_type
+	var/budget_card = /obj/item/reqcard
+	var/max_stored = 4
+	var/initial_stored = 0
+	var/max_restocks = 5
+	var/remaining_restocks = 5
+	var/restocking = FALSE
+	var/damage = 500 //Industrial machine should tear your arm off... its gonna fucking hurt
+	var/penetration = 5000 // heavy machinery does not care about your body armor because fuck you thats why
+	var/target_limbs = list(
+		"l_arm",
+		"r_arm",
+	)
+
+/obj/structure/machinery/auto_rack/Initialize()
+	. = ..()
+	remaining_restocks = max_restocks
+	if(!stocked_weapon)
+		icon_state = "C-TEST"
+		return
+
+	if(initial_stored)
+		var/i = 0
+		while(i < initial_stored)
+			contents += new restock_type(src)
+			i++
+	update_icon()
+
+/obj/structure/machinery/auto_rack/attackby(obj/item/O, mob/user)
+	if(!restocking == TRUE)
+		if(istype(O, stocked_weapon) && contents.len < max_stored)
+			user.drop_inv_item_to_loc(O, src)
+			contents += O
+			update_icon()
+		if(istype(O, budget_card))
+			remaining_restocks = (max_restocks)
+			playsound(loc, 'sound/machines/chime.ogg', 25)
+			talkas("Additional supply budget has been authorized for this supply unit.")
+			to_chat(user, SPAN_NOTICE("Additional supply budget has been authorized for this supply unit."))
+
+/obj/structure/machinery/auto_rack/attack_hand(mob/living/user)
+	if(!restocking == TRUE)
+		if(!contents.len)
+			if(!remaining_restocks < 1)
+				to_chat(user, SPAN_WARNING("[src] begins to restock. Stand Clear!"))
+				INVOKE_ASYNC(src,TYPE_PROC_REF(/obj/structure/machinery/auto_rack/,animation_proc))
+				talkas("Stand Clear!")
+				remaining_restocks = (remaining_restocks - 1)
+				return
+			if(remaining_restocks == 0)
+				to_chat(user, SPAN_WARNING("[src] requires supply budget re-allocation. Contact your Supply officer to reset!"))
+				return
+	if(restocking == TRUE)
+		if(prob(60))
+			user.visible_message(SPAN_NOTICE("[user]begins panicking as their arm becomes entangled in the moving parts of the [src], and pulls them in!"), \
+			SPAN_WARNING("Your arm becomes entangled in the moving parts of the [src]."))
+			user.apply_armoured_damage(damage, penetration = penetration, def_zone = pick(target_limbs))
+			user.apply_effect(1, EYE_BLUR)
+			user.apply_effect(5, STUTTER)
+			user.apply_effect(1, AGONY)
+			user.apply_effect(3, WEAKEN)
+			playsound(loc, 'sound/voice/agony_scream.mp3', 100)
+			playsound(loc, 'sound/effects/pry1.ogg', 25)
+			playsound(loc, 'sound/effects/rip1.ogg', 25)
+			playsound(loc, 'sound/effects/bone_break1.ogg', 100, 1)
+			playsound(loc, 'sound/effects/rip1.ogg', 25)
+			playsound(loc, 'sound/effects/splat.ogg', 25)
+			user.visible_message(SPAN_BOLDWARNING("[user]'s arm is torn off mercilessly by the [src] as their body is pulled in!"), \
+			SPAN_BOLDWARNING("Your arm is mercilessly torn off by the [src]. PLEASE GOD MAKE IT STOP!"))
+			msg_admin_attack("[key_name(user)] suffered a traumatic industrial accident in [get_area(user)] ([user.loc.x],[user.loc.y],[user.loc.z]).", user.loc.x, user.loc.y, user.loc.z)
+
+	var/obj/stored_obj = contents[contents.len]
+	contents -= stored_obj
+	user.put_in_hands(stored_obj)
+	to_chat(user, SPAN_NOTICE("You grab [stored_obj] from [src]."))
+	playsound(src, "gunequip", 25, TRUE)
+	update_icon()
+
+/obj/structure/machinery/auto_rack/proc/restock()
+	while(max_stored > contents.len)
+		contents += new restock_type(src)
+	update_icon()
+
+/obj/structure/machinery/auto_rack/proc/animation_proc()
+	restocking = TRUE
+	icon_state = "[initial(icon_state)]_0"
+	overlays.Cut()
+	overlays += image(icon,icon_state)
+	playsound(src, "sound/machines/weapon_rack_restock.mp3", 25)
+	sleep(1)
+	icon_state = "[initial(icon_state)]_restock"
+	overlays.Cut()
+	overlays += image(icon,icon_state)
+	sleep(31)
+	restock()
+	overlays.Cut()
+	overlays += image(icon,icon_state)
+	restocking = FALSE
+	talkas("Restock complete.")
+
+/obj/structure/machinery/auto_rack/update_icon()
+	if(contents.len)
+		icon_state = "[initial(icon_state)]_[contents.len]"
+		overlays.Cut()
+		overlays += image(icon,icon_state)
+	else
+		icon_state = "[initial(icon_state)]_0"
+		overlays.Cut()
+		overlays += image(icon,icon_state)
+
+//----------------Budget_item----------------\\
+
+/obj/item/reqcard
+	name = "Military budget Authorization card"
+	desc = "Used to allocate funding to automated equipment vendors and weapon racks around the ship."
+	icon = 'icons/obj/items/card.dmi'
+	icon_state = "centcom_old"
+	w_class = SIZE_TINY

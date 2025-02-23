@@ -15,7 +15,7 @@
 	icon_state = "tracker_blip"
 
 /obj/item/device/motiondetector
-	name = "motion detector"
+	name = "M718 motion detector"
 	desc = "A device that detects movement, but ignores marines. Can also be used to scan a vehicle interior from outside, but accuracy of such scanning is low and there is no way to differentiate friends from foes."
 	icon = 'icons/obj/items/marine-items.dmi'
 	icon_state = "detector"
@@ -40,7 +40,7 @@
 	var/ping_overlay
 
 /obj/item/device/motiondetector/proc/get_help_text()
-	. = "Blue bubble-like indicators on your HUD will show pings locations or direction to them. The device screen will show the amount of unidentified movements detected (up to 9). Has two modes: slow long-range [SPAN_HELPFUL("([MOTION_DETECTOR_RANGE_LONG] tiles)")] and fast short-range [SPAN_HELPFUL("([MOTION_DETECTOR_RANGE_SHORT] tiles)")]. Use [SPAN_HELPFUL("Alt + Click")] on the device to switch between modes. Using the device on the adjacent multitile vehicle will start the process of recalibrating and scanning vehicle interior for unidentified movements inside."
+	. = "This device displays an output to linked augmented reality HUDs. Blue bubble-like indicators on your HUD will show pings locations or direction to them. The device screen will show the amount of unidentified movements detected (up to 9). Has two modes: slow long-range [SPAN_HELPFUL("([MOTION_DETECTOR_RANGE_LONG] tiles)")] and fast short-range [SPAN_HELPFUL("([MOTION_DETECTOR_RANGE_SHORT] tiles)")]. Use [SPAN_HELPFUL("Alt + Click")] on the device to switch between modes. Using the device on the adjacent multitile vehicle will start the process of recalibrating and scanning vehicle interior for unidentified movements inside."
 
 /obj/item/device/motiondetector/get_examine_text(mob/user)
 	. = ..()
@@ -290,7 +290,7 @@
 
 /obj/item/device/motiondetector/m717
 	name = "M717 pocket motion detector"
-	desc = "This prototype motion detector sacrifices versatility, having only the long-range mode, for size, being so small it can even fit in pockets."
+	desc = "This prototype motion detector sacrifices versatility, having only the long-range mode, for size, being so small it can even fit in pockets. This device displays an output to linked augmented reality HUDs."
 	icon_state = "pocket"
 	item_state = "motion_detector"
 	flags_atom = FPRINT| CONDUCT
@@ -300,34 +300,44 @@
 	long_range_locked = TRUE
 
 /obj/item/device/motiondetector/m717/hacked/contractor
-	name = "modified M717 pocket motion detector"
-	desc = "This prototype motion detector sacrifices versatility, having only the long-range mode, for size, being so small it can even fit in pockets. This one has been modified with an after-market IFF sensor to filter out Vanguard's Arrow Incorporated signals instead of USCM ones. Fight fire with fire!"
+	name = "modified M718 pocket motion detector"
+	desc = "This prototype motion detector sacrifices versatility, having only the long-range mode, for size, being so small it can even fit in pockets. This one has been modified with an after-market IFF sensor to filter out Vanguard's Arrow Incorporated signals instead of USCM ones. Displays an output to linked augmented reality HUDs."
 	iff_signal = FACTION_CONTRACTOR
 
-/obj/item/device/motiondetector/hacked
-	name = "hacked motion detector"
-	desc = "A device that usually picks up non-USCM signals, but this one's been hacked to detect all non-UPP movement instead. Fight fire with fire!"
+/obj/item/device/motiondetector/hacked/upp
+	name = "modified T-18 motion detector"
+	desc = "A device that usually picks up non-USCM signals, but this one's been hacked to detect all non-UPP movement instead. Fight fire with fire! This device displays an output to linked augmented reality HUDs."
 	iff_signal = FACTION_UPP
 
 /obj/item/device/motiondetector/hacked/elite_merc
-	name = "hacked motion detector"
-	desc = "A device that usually picks up non-USCM signals, but this one's been hacked to detect all non-freelancer movement instead. Fight fire with fire!"
+	name = "modified T-18 motion detector"
+	desc = "A device that usually picks up non-USCM signals, but this one's been hacked to detect all non-freelancer movement instead. Fight fire with fire! This device displays an output to linked augmented reality HUDs."
 	iff_signal = FACTION_MERCENARY
 
 /obj/item/device/motiondetector/hacked/pmc
 	name = "corporate motion detector"
-	desc = "A device that usually picks up non-USCM signals, but this one's been reprogrammed to detect all non-PMC movement instead. Very corporate."
+	desc = "A device that usually picks up non-USCM signals, this one's been modified with after-market IFF sensors to detect all non-PMC movement instead. For the company!. This device displays an output to linked augmented reality HUDs."
 	iff_signal = FACTION_PMC
 
 /obj/item/device/motiondetector/hacked/dutch
-	name = "hacked motion detector"
-	desc = "A device that usually picks up non-USCM signals, but this one's been hacked to detect all non-Dutch's Dozen movement instead. Fight fire with fire!"
+	name = "modified M718 motion tracker"
+	desc = "A device that usually picks up non-USCM signals, this one's been modified with after-market IFF sensors to detect all non-Dutch's Dozen movement instead. Fight fire with fire! This device displays an output to linked augmented reality HUDs."
 	iff_signal = FACTION_DUTCH
 
 /obj/item/device/motiondetector/hacked/contractor
-	name = "modified motion detector"
-	desc = "A device that usually picks up non-USCM signals, but this one's been modified with after-market IFF sensors to detect all non-Vanguard's Arrow Incorporated movement instead. Fight fire with fire!"
+	name = "modified M718 motion tracker"
+	desc = "A device that usually picks up non-USCM signals, this one's been modified with after-market IFF sensors to detect all non-Vanguard's Arrow Incorporated movement instead. This device displays an output to linked augmented reality HUDs."
 	iff_signal = FACTION_CONTRACTOR
+
+/obj/item/device/motiondetector/hacked/clf
+	name = "hacked T-18 motion detector"
+	desc = "A device that usually picks up non-USCM signals, but this one's been hacked to detect all non-insurgent movement instead. DOWN WITH THE SYSTEM! This device displays an output to linked augmented reality HUDs."
+	iff_signal = FACTION_CLF
+
+/obj/item/device/motiondetector/hacked/twe
+	name = "modified M718 motion tracker"
+	desc = "A device that is tuned to pick up moving non-TWE IFF signatures. This device displays an output to linked augmented reality HUDs."
+	iff_signal = FACTION_TWE
 
 #undef MOTION_DETECTOR_RANGE_LONG
 #undef MOTION_DETECTOR_RANGE_SHORT

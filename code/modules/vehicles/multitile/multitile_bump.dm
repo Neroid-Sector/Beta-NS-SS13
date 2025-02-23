@@ -592,12 +592,17 @@
 	else if(V.vehicle_flags & VEHICLE_CLASS_LIGHT)
 		dmg = TRUE
 		if(get_target_lock(driver.faction))
-			apply_effect(0.5, WEAKEN)
-			apply_damage(5 + rand(0, 5), BRUTE, no_limb_loss = TRUE)
+			apply_effect(5, AGONY)
+			apply_effect(2, WEAKEN)
+			apply_effect(2, SUPERSLOW)
+			apply_damage(25 + rand(0, 5), BRUTE, no_limb_loss = TRUE)
 			to_chat(V.seats[VEHICLE_DRIVER], SPAN_WARNING(SPAN_BOLD("*YOU RAMMED AN ALLY AND HURT THEM!*")))
 		else
+			apply_effect(5, AGONY)
+			apply_effect(2, SUPERSLOW)
+			apply_damage(50 + rand(0, 80), BRUTE)
 			apply_effect(2, WEAKEN)
-			apply_damage(10 + rand(0, 10), BRUTE)
+			to_chat(V.seats[VEHICLE_DRIVER], SPAN_WARNING(SPAN_BOLD("*YOU RAMMED SOMEONE AND HURT THEM!*")))
 
 	else if(V.vehicle_flags & VEHICLE_CLASS_MEDIUM)
 		apply_effect(3, WEAKEN)

@@ -341,8 +341,14 @@
 
 /obj/item/storage/backpack/satchel/lockable
 	name = "secure leather satchel"
-	desc = "A very fancy satchel made of fine leather. It's got a lock on it."
+	desc = "A nice satchel made of fine leather. It's got a lock on it."
 	is_id_lockable = TRUE
+
+/obj/item/storage/backpack/satchel/lockable/fancy
+	name = "fancy secure leather satchel"
+	desc = "An extremely fancy satchel made of blackened leather and etched with gold, probably belongs to someone important. It's got a strong-looking lock on it."
+	icon_state = "satchel_fancy"
+	lock_overridable = FALSE
 
 /obj/item/storage/backpack/satchel/lockable/liaison
 	lock_overridable = FALSE
@@ -391,6 +397,12 @@
 	name = "hydroponics satchel"
 	desc = "A green satchel for plant-related work."
 	icon_state = "satchel_hyd"
+
+/obj/item/storage/backpack/satchel/QRF
+	name = "Tactical Response Pack"
+	desc = "A light and spacious backpack used by the Colonial QRF teams. The design of the pack allows it to be quickly slung to side for quick access."
+	icon_state = "qrf_pack"
+	max_storage_space = 22
 
 //==========================// MARINE BACKPACKS\\================================\\
 //=======================================================================\\
@@ -696,11 +708,12 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 /obj/item/storage/backpack/marine/satchel/scout_cloak
 	name = "\improper M68 Thermal Cloak"
 	desc = "The lightweight thermal dampeners and optical camouflage provided by this cloak are weaker than those found in standard USCM ghillie suits. In exchange, the cloak can be worn over combat armor and offers the wearer high maneuverability and adaptability to many environments."
+	max_storage_space = 0
+	w_class = SIZE_LARGE
 	icon_state = "scout_cloak"
-	uniform_restricted = list(/obj/item/clothing/suit/storage/marine/M3S) //Need to wear Scout armor and helmet to equip this.
 	has_gamemode_skin = FALSE //same sprite for all gamemode.
 	var/camo_active = FALSE
-	var/camo_alpha = 10
+	var/camo_alpha = 25
 	var/allow_gun_usage = FALSE
 	var/cloak_cooldown
 
@@ -923,7 +936,7 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 	desc = "A specialized satchel worn by USCM technicians and engineers. It carries two small fuel tanks for quick welder refueling and use."
 	icon_state = "satchel_marine_welder"
 	item_state = "satchel_marine_welder"
-	max_storage_space = 12
+	max_storage_space = 15
 	has_gamemode_skin = FALSE
 	max_fuel = 100
 	worn_accessible = TRUE
@@ -933,7 +946,7 @@ GLOBAL_LIST_EMPTY_TYPED(radio_packs, /obj/item/storage/backpack/marine/satchel/r
 	desc = "A specialized Chestrig worn by technicians and engineers. It carries one medium fuel tank for quick welder refueling and use."
 	icon_state = "welder_chestrig"
 	item_state = "welder_chestrig"
-	max_storage_space = 12
+	max_storage_space = 15
 	has_gamemode_skin = FALSE
 	max_fuel = 100
 	worn_accessible = TRUE

@@ -1,0 +1,32 @@
+"a" = (/turf/open/void/vehicle,/area/space)
+"c" = (/obj/structure/interior_wall/apc{icon_state = "front_6"; pixel_y = -15},/turf/open/void/vehicle,/area/space)
+"e" = (/obj/structure/surface/rack,/turf/open/shuttle/vehicle{icon_state = "floor_3_5"},/area/vehicle/van)
+"f" = (/obj/structure/stairs/perspective{dir = 1},/obj/structure/platform/strata/metal{dir = 8},/obj/structure/platform/strata/metal{dir = 4},/obj/effect/landmark/interior/spawn/interior_viewport/simple/windshield,/turf/open/shuttle/vehicle,/area/vehicle/van)
+"i" = (/obj/structure/interior_wall/apc{icon_state = "rear_3"},/turf/open/void/vehicle,/area/space)
+"l" = (/obj/structure/bed/chair/vehicle{pixel_x = 8},/obj/structure/bed/chair/vehicle{pixel_x = -8},/turf/open/shuttle/vehicle{icon_state = "floor_3_5"},/area/vehicle/van)
+"o" = (/obj/structure/interior_wall/apc{icon_state = "front_4"; pixel_y = -15},/turf/open/void/vehicle,/area/space)
+"t" = (/obj/effect/landmark/interior/spawn/entrance{alpha = 50; exit_type = /obj/structure/interior_exit/vehicle/van/right; name = "right entrance marker"; tag = "right"},/obj/structure/bed/chair/comfy{dir = 4; icon_state = "comfychair"},/obj/structure/stairs/perspective,/obj/structure/platform/strata/metal{dir = 8},/obj/structure/platform/strata/metal{dir = 4},/turf/open/shuttle/vehicle{icon_state = "floor_3_12"},/area/vehicle/van)
+"v" = (/obj/structure/interior_wall/apc{icon_state = "front_1"},/turf/open/void/vehicle,/area/space)
+"x" = (/obj/structure/interior_wall/apc{icon_state = "front_2"},/turf/open/void/vehicle,/area/space)
+"z" = (/obj/structure/interior_wall/apc{icon_state = "rear_5"},/turf/open/void/vehicle,/area/space)
+"A" = (/obj/structure/bed/chair/vehicle{pixel_x = 8},/obj/structure/bed/chair/vehicle{pixel_x = -8},/obj/structure/machinery/cm_vending/sorted/medical/wall_med/vehicle{layer = 3.98; pixel_x = 12; pixel_y = 28},/obj/structure/extinguisher_cabinet/lifeboat{icon = 'icons/obj/vehicles/interiors/general.dmi'; pixel_y = 28},/turf/open/shuttle/vehicle{icon_state = "floor_3_5"},/area/vehicle/van)
+"C" = (/obj/structure/interior_wall/tank{alpha = 50; layer = 5.2; pixel_y = 32},/turf/open/void/vehicle,/area/space)
+"F" = (/obj/structure/interior_wall/van{alpha = 50; icon_state = "exterior_door"; layer = 5.2; pixel_y = 32},/turf/open/void/vehicle,/area/space)
+"K" = (/obj/structure/interior_wall/van{icon_state = "interior_door"},/obj/effect/landmark/interior/spawn/interior_viewport/simple/windshield,/turf/open/void/vehicle,/area/space)
+"N" = (/turf/open/shuttle/vehicle,/area/vehicle/van)
+"P" = (/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = 8},/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = -8},/obj/structure/interior_viewport/simple,/turf/open/shuttle/vehicle{icon_state = "floor_3_5"},/area/vehicle/van)
+"Q" = (/obj/structure/interior_wall/apc{icon_state = "front_3"},/turf/open/void/vehicle,/area/space)
+"R" = (/obj/structure/interior_wall/tank,/turf/open/void/vehicle,/area/space)
+"S" = (/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = 8},/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = -8},/turf/open/shuttle/vehicle{icon_state = "floor_3_5"},/area/vehicle/van)
+"X" = (/obj/effect/landmark/interior/spawn/vehicle_driver_seat{dir = 4},/obj/effect/landmark/interior/spawn/interior_viewport/simple/windshield,/turf/open/shuttle/vehicle,/area/vehicle/van)
+"Y" = (/obj/structure/interior_wall/tank,/obj/structure/interior_viewport/simple,/turf/open/void/vehicle,/area/space)
+
+(1,1,1) = {"
+aaaaaaa
+iYRYRKc
+zlAlefo
+zNNNNXQ
+zPSPetx
+aCCCCFv
+aaaaaaa
+"}

@@ -332,7 +332,7 @@
 	max_storage_space = 21
 	can_hold = list(
 		/obj/item/explosive/grenade/flashbang,
-		/obj/item/explosive/grenade/custom/teargas,
+		/obj/item/explosive/grenade/tear_gas,
 		/obj/item/reagent_container/spray/pepper,
 		/obj/item/handcuffs,
 		/obj/item/device/flash,
@@ -459,6 +459,10 @@
 	for(var/i = 1 to storage_slots)
 		new /obj/item/ammo_magazine/rifle/m41aMK1 (src)
 
+/obj/item/storage/belt/marine/m41amk1heap/fill_preset_inventory()
+	for(var/i = 1 to storage_slots)
+		new /obj/item/ammo_magazine/rifle/m41aMK1/heap (src)
+
 /obj/item/storage/belt/marine/m39/fill_preset_inventory()
 	for(var/i = 1 to storage_slots)
 		new /obj/item/ammo_magazine/smg/m39 (src)
@@ -569,6 +573,17 @@
 	new /obj/item/ammo_magazine/smartgun(src)
 	new /obj/item/ammo_magazine/smartgun(src)
 
+/obj/item/storage/belt/marine/smartgunner/surplus
+	name = "\improper Surplus smartgunner drum belt"
+	desc = "A civilian manufactured drum belt meant to hold M56 drums. While not nearly as capacious as the M280 pattern, this one is certainly more comfortable to wear."
+	icon_state = "sgbelt_surplus"
+	item_state = "sgbelt_surplus"
+	storage_slots = 2
+
+/obj/item/storage/belt/marine/smartgunner/surplus/fill_preset_inventory()
+	new /obj/item/ammo_magazine/smartgun(src)
+	new /obj/item/ammo_magazine/smartgun(src)
+
 /obj/item/storage/belt/marine/quackers
 	name = "Mr. Quackers"
 	desc = "What are we going to do today, Mr. Quackers?"
@@ -589,32 +604,32 @@
 //version full of type 71 mags
 /obj/item/storage/belt/marine/upp/full/fill_preset_inventory()
 	for(var/i = 1 to storage_slots)
-		new /obj/item/ammo_magazine/rifle/type71(src)
+		new /obj/item/ammo_magazine/rifle/ak4047/ap(src)
 
 /obj/item/storage/belt/marine/upp/scarce/fill_preset_inventory()
-	new /obj/item/ammo_magazine/rifle/type71(src)
-	new /obj/item/ammo_magazine/rifle/type71(src)
-	new /obj/item/ammo_magazine/rifle/type71(src)
+	new /obj/item/ammo_magazine/rifle/type71/heap(src)
+	new /obj/item/ammo_magazine/rifle/type71/heap(src)
+	new /obj/item/ammo_magazine/rifle/type71/heap(src)
 
 /obj/item/storage/belt/marine/upp/sapper/fill_preset_inventory()
-	new /obj/item/ammo_magazine/rifle/type71(src)
-	new /obj/item/ammo_magazine/rifle/type71(src)
 	new /obj/item/ammo_magazine/rifle/type71/ap(src)
 	new /obj/item/ammo_magazine/rifle/type71/ap(src)
-	new /obj/item/ammo_magazine/rifle/type71/ap(src)
+	new /obj/item/ammo_magazine/rifle/type71/heap(src)
+	new /obj/item/ammo_magazine/rifle/type71/heap(src)
+	new /obj/item/ammo_magazine/rifle/type71/heap(src)
 
 // M56E HMG gunner belt
 /obj/item/storage/belt/marine/m2c
-	name = "\improper M804 heavygunner storage rig"
-	desc = "The M804 heavygunner storage rig is an M276 pattern toolbelt rig modified to carry ammunition for heavy machinegun systems, and engineering tools for the gunner."
+	name = "\improper M804 Support weapon storage rig"
+	desc = "The M804 CSW Operator storage rig is an M276 pattern toolbelt rig modified to carry ammunition for crew served weapon systems, and engineering tools for the gunner."
 	icon_state = "m2c_ammo_rig"
 	item_state = "m2c_ammo_rig"
 	item_state_slots = list(
 		WEAR_L_HAND = "s_marinebelt",
 		WEAR_R_HAND = "s_marinebelt")
-	storage_slots = 7
+	storage_slots = 9
 	max_w_class = SIZE_LARGE
-	max_storage_space = 30
+	max_storage_space = 50
 	can_hold = list(
 		/obj/item/tool/weldingtool,
 		/obj/item/tool/wrench,
@@ -622,11 +637,19 @@
 		/obj/item/tool/crowbar,
 		/obj/item/tool/extinguisher/mini,
 		/obj/item/explosive/plastic,
+		/obj/item/explosive/atmine,
 		/obj/item/explosive/mine,
 		/obj/item/ammo_magazine/m2c,
 		/obj/item/tool/wirecutters,
 		/obj/item/ammo_magazine/m56d,
+		/obj/item/mortar_shell,
+
 	)
+
+	bypass_w_limit = list(
+		/obj/item/mortar_shell,
+		)
+
 	has_gamemode_skin = FALSE
 
 /obj/item/storage/belt/shotgun
@@ -1675,6 +1698,7 @@
 	desc="An M276 load-bearing rig configured to carry ammunition for the M402 mortar, along with a sidearm."
 	icon_state="mortarbelt"
 	holster_slots = list("1" = list("icon_x" = 11))
+	storage_slots = 15
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/weapon/gun/revolver/m44,
@@ -1683,6 +1707,19 @@
 	)
 	bypass_w_limit = list(/obj/item/mortar_shell)
 	has_gamemode_skin = TRUE
+
+/obj/item/storage/belt/gun/mortarbelt/full/fill_preset_inventory()
+	handle_item_insertion(new /obj/item/weapon/gun/flare())
+	new /obj/item/mortar_shell/flare(src)
+	new /obj/item/mortar_shell/flare(src)
+	new /obj/item/mortar_shell/smoke(src)
+	new /obj/item/mortar_shell/smoke(src)
+	new /obj/item/mortar_shell/frag(src)
+	new /obj/item/mortar_shell/frag(src)
+	new /obj/item/mortar_shell/he(src)
+	new /obj/item/mortar_shell/he(src)
+	new /obj/item/mortar_shell/he(src)
+	new /obj/item/mortar_shell/he(src)
 
 /obj/item/storage/belt/gun/utility
 	name = "\improper M276 pattern combat toolbelt rig"
@@ -1730,7 +1767,17 @@
 	new /obj/item/tool/weldingtool(src)
 	new /obj/item/tool/wirecutters(src)
 	new /obj/item/device/multitool(src)
+	new	/obj/item/tool/crowbar(src)
 
+/obj/item/storage/belt/gun/utility/full/ms/fill_preset_inventory()
+	handle_item_insertion(new /obj/item/weapon/gun/smg/nailgun/compact())
+	new /obj/item/tool/screwdriver(src)
+	new /obj/item/tool/wrench(src)
+	new /obj/item/tool/weldingtool(src)
+	new /obj/item/tool/wirecutters(src)
+	new /obj/item/device/multitool(src)
+	new	/obj/item/tool/crowbar(src)
+	new /obj/item/tool/shovel/etool/folded(src)
 ////////////OTHER BELTS//////////////
 
 /obj/item/storage/belt/tank
@@ -1827,6 +1874,17 @@
 			"icon_y" = -3))
 
 /obj/item/storage/belt/gun/l905/full/fill_preset_inventory()
+	handle_item_insertion(new /obj/item/weapon/gun/pistol/vp78())
+	for(var/i in 1 to storage_slots - 1)
+		new /obj/item/ammo_magazine/pistol/vp78(src)
+
+/obj/item/storage/belt/gun/l905/blackwatch
+	name = "\improper L905 gunbelt"
+	desc = "Finely-tooled leather, a L905, and six magazines. More than enough for the standard RMC commando."
+	icon_state = "blackwatch"
+	item_state = "blackwatch"
+
+/obj/item/storage/belt/gun/l905/blackwatch/full/fill_preset_inventory()
 	handle_item_insertion(new /obj/item/weapon/gun/pistol/vp78())
 	for(var/i in 1 to storage_slots - 1)
 		new /obj/item/ammo_magazine/pistol/vp78(src)

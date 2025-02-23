@@ -595,6 +595,11 @@ GLOBAL_LIST_EMPTY_TYPED(transmitters, /obj/structure/transmitter)
 	icon_state = "rotary_phone"
 	desc = "The finger plate is a little stiff."
 
+/obj/structure/transmitter/colony_net/pay_phone
+	name = "pay telephone"
+	icon_state = "pay_phone"
+	desc = "This Weyland Centurion video payphone accepts Wey-Yu and Hypderdyne company money, or prepaid business card dialing. Can be used for cheaper audio only, or video telephone calls to planetside or orbital fascilities. The coin slot appears to have been vandalised."
+
 /obj/structure/transmitter/upp_net
 	networks_receive = list(FACTION_UPP)
 	networks_transmit = list(FACTION_UPP)

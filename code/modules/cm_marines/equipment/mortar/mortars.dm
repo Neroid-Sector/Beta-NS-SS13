@@ -215,9 +215,6 @@
 		if(busy)
 			to_chat(user, SPAN_WARNING("Someone else is currently using [src]."))
 			return
-		if(!is_ground_level(z))
-			to_chat(user, SPAN_WARNING("You cannot fire [src] here."))
-			return
 		if(targ_x == 0 && targ_y == 0) //Mortar wasn't set
 			to_chat(user, SPAN_WARNING("[src] needs to be aimed first."))
 			return
@@ -347,7 +344,7 @@
 	if(test_dial_y + test_targ_y > world.maxy || test_dial_y + test_targ_y < 0)
 		to_chat(user, SPAN_WARNING("You cannot [dialing ? "dial to" : "aim at"] this coordinate, it is outside of the area of operations."))
 		return FALSE
-	if(get_dist(src, locate(test_targ_x + test_dial_x, test_targ_y + test_dial_y, z)) < 10)
+	if(get_dist(src, locate(test_targ_x + test_dial_x, test_targ_y + test_dial_y, z)) < 1)
 		to_chat(user, SPAN_WARNING("You cannot [dialing ? "dial to" : "aim at"] this coordinate, it is too close to your mortar."))
 		return FALSE
 	if(busy)
@@ -370,6 +367,8 @@
 	icon = 'icons/obj/structures/mortar.dmi'
 	icon_state = "mortar_m402_carry"
 	unacidable = TRUE
+	throw_speed = SPEED_VERY_SLOW
+	flags_equip_slot = SLOT_BACK
 	w_class = SIZE_HUGE //No dumping this in a backpack. Carry it, fatso
 
 /obj/item/mortar_kit/ex_act(severity)
@@ -384,9 +383,6 @@
 		return
 	if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
 		to_chat(user, SPAN_WARNING("You don't have the training to deploy [src]."))
-		return
-	if(!is_ground_level(deploy_turf.z))
-		to_chat(user, SPAN_WARNING("You cannot deploy [src] here."))
 		return
 	var/area/A = get_area(deploy_turf)
 	if(CEILING_IS_PROTECTED(A.ceiling, CEILING_PROTECTION_TIER_1))

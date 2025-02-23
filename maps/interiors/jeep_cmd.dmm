@@ -1,0 +1,25 @@
+"a" = (/turf/open/void/vehicle,/area/space)
+"j" = (/obj/structure/interior_wall/van{alpha = 50; icon_state = "exterior_door"; layer = 5.2; pixel_y = 32},/turf/open/void/vehicle,/area/space)
+"k" = (/obj/structure/machinery/computer/overwatch/almayer{dir = 1; indestructible = 1; layer = 2.81; pixel_x = -4; pixel_y = -15},/obj/structure/surface/table/reinforced/black,/obj/item/paper_bin/uscm{pixel_x = -10; pixel_y = 10},/obj/item/tool/pen/clicky,/obj/item/tool/pen/clicky,/obj/item/tool/pen/clicky,/turf/open/shuttle/vehicle,/area/vehicle/van)
+"m" = (/obj/structure/interior_wall/van{icon_state = "background_3"},/obj/effect/vehicle_roof/van{icon_state = "roof_3"},/turf/open/void/vehicle,/area/space)
+"n" = (/obj/structure/interior_wall/van{icon_state = "front_1"},/turf/open/void/vehicle,/area/space)
+"o" = (/obj/structure/interior_wall/van{alpha = 50; icon_state = "exterior_3"; layer = 5.2; pixel_y = 32},/turf/open/void/vehicle,/area/space)
+"p" = (/obj/structure/bed/chair/comfy{dir = 4; icon_state = "comfychair"},/obj/effect/landmark/interior/spawn/entrance{alpha = 50; exit_type = /obj/structure/interior_exit/vehicle/van/right; name = "right entrance marker"; tag = "right"},/obj/effect/landmark/interior/spawn/interior_viewport{alpha = 100; pixel_y = -2},/turf/open/shuttle/vehicle{icon_state = "floor_3_12"},/area/vehicle/van)
+"q" = (/obj/structure/extinguisher_cabinet/lifeboat{icon = 'icons/obj/vehicles/interiors/general.dmi'; layer = 3.5; pixel_y = 28},/obj/structure/machinery/cm_vending/sorted/medical/wall_med/vehicle{layer = 3.98; pixel_x = 12; pixel_y = 28},/obj/effect/vehicle_roof/van{icon_state = "roof_3"},/turf/open/shuttle/vehicle,/area/vehicle/van)
+"r" = (/obj/effect/landmark/interior/spawn/vehicle_driver_seat{dir = 4},/obj/effect/vehicle_roof/van{icon_state = "front_roof_2"},/obj/effect/landmark/interior/spawn/entrance{dir = 1; exit_type = /obj/structure/interior_exit/vehicle/van/left; name = "left entrance marker"; pixel_y = 32; tag = "left"},/turf/open/shuttle/vehicle{icon_state = "floor_3_11"},/area/vehicle/van)
+"s" = (/obj/structure/interior_wall/van{icon_state = "front_3"},/turf/open/void/vehicle,/area/space)
+"A" = (/obj/structure/interior_wall/van{icon_state = "back_2"},/turf/open/void/vehicle,/area/space)
+"C" = (/obj/structure/interior_wall/van{icon_state = "back_1"},/turf/open/void/vehicle,/area/space)
+"H" = (/obj/structure/bed/chair/vehicle{pixel_x = 8},/obj/effect/landmark/interior/spawn/telephone{pixel_x = -9; pixel_y = 30},/obj/structure/machinery/computer/squad_changer{dir = 4; pixel_x = -10; pixel_y = 4},/obj/structure/machinery/computer/groundside_operations{dir = 4; indestructible = 1; layer = 3.82; pixel_x = -10; pixel_y = -10},/obj/effect/vehicle_roof/van{icon_state = "roof_3"},/turf/open/shuttle/vehicle,/area/vehicle/van)
+"Q" = (/obj/structure/interior_wall/van{icon_state = "interior_door"},/obj/effect/vehicle_roof/van{icon_state = "front_roof_1"},/turf/open/space/basic,/area/space)
+"S" = (/obj/structure/interior_wall/van{icon_state = "back_3"},/turf/open/void/vehicle,/area/space)
+"U" = (/obj/structure/interior_wall/van{icon_state = "front_2"},/turf/open/void/vehicle,/area/space)
+"W" = (/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = -8},/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = 8},/turf/open/shuttle/vehicle,/area/vehicle/van)
+
+(1,1,1) = {"
+aaaaa
+SmmQs
+AHqrU
+CkWpn
+aooja
+"}

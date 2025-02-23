@@ -2,7 +2,7 @@
 	name = "\improper ColMarTech Staff Officer Equipment Rack"
 	desc = "An automated equipment vendor for Staff Officers."
 	req_access = list(ACCESS_MARINE_COMMAND)
-	vendor_role = list(JOB_SO)
+	vendor_role = list(JOB_SO, JOB_MS_LT, JOB_MS_PC, JOB_MS_XO, JOB_HD_PC, JOB_TR_PC)
 
 /obj/structure/machinery/cm_vending/clothing/staff_officer/get_listed_products(mob/user)
 	return GLOB.cm_vending_clothing_staff_officer
@@ -14,22 +14,26 @@ GLOBAL_LIST_INIT(cm_vending_clothing_staff_officer, list(
 		list("Boots", 0, /obj/item/clothing/shoes/marine/knife, MARINE_CAN_BUY_SHOES, VENDOR_ITEM_MANDATORY),
 		list("Headset", 0, /obj/item/device/radio/headset/almayer/mcom, MARINE_CAN_BUY_EAR, VENDOR_ITEM_MANDATORY),
 		list("MRE", 0, /obj/item/storage/box/MRE, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
-
-
-		list("STANDARD EQUIPMENT (TAKE ALL)", 0, null, null, null),
-		list("Service Uniform", 0, /obj/item/clothing/under/marine/officer/bridge, MARINE_CAN_BUY_UNIFORM, VENDOR_ITEM_REGULAR),
-		list("Operations Uniform", 0, /obj/item/clothing/under/marine/officer/boiler, MARINE_CAN_BUY_UNIFORM, VENDOR_ITEM_RECOMMENDED),
 		list("Gloves", 0, /obj/item/clothing/gloves/marine, MARINE_CAN_BUY_GLOVES, VENDOR_ITEM_REGULAR),
+
+		list("UNIFORM (CHOOSE 1)", 0, null, null, null),
+		list("Service Uniform", 0, /obj/item/clothing/under/marine/officer/bridge, MARINE_CAN_BUY_UNIFORM, VENDOR_ITEM_REGULAR),
+		list("Standard BDUs", 0, /obj/item/clothing/under/marine, MARINE_CAN_BUY_UNIFORM, VENDOR_ITEM_MANDATORY),
+		list("Officer BDUs", 0, /obj/item/clothing/under/marine/officer/command, MARINE_CAN_BUY_UNIFORM, VENDOR_ITEM_MANDATORY),
+		list("Officer Field Operations Suit", 0, /obj/item/clothing/under/marine/officer/boiler, MARINE_CAN_BUY_UNIFORM, VENDOR_ITEM_MANDATORY),
 
 		list("JACKET (CHOOSE 1)", 0, null, null, null),
 		list("Service Jacket", 0, /obj/item/clothing/suit/storage/jacket/marine/service, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_RECOMMENDED),
+		list("M10 Webbing Carrier", 0, /obj/item/clothing/suit/storage/webbing, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_RECOMMENDED),
+		list("USCM Trench Coat (tan)", 0, /obj/item/clothing/suit/storage/jacket/marine/service/trenchcoat_tan, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_RECOMMENDED),
+		list("USCM Trench Coat (green)", 0, /obj/item/clothing/suit/storage/jacket/marine/service/trenchcoat_grn, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_RECOMMENDED),
+		list("USCM Trench Coat (gray)", 0, /obj/item/clothing/suit/storage/jacket/marine/service/trenchcoat_blk, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_RECOMMENDED),
 
 		list("HAT (CHOOSE 1)", 0, null, null, null),
 		list("Beret, Green", 0, /obj/item/clothing/head/beret/cm, MARINE_CAN_BUY_HELMET, VENDOR_ITEM_RECOMMENDED),
 		list("Beret, Tan", 0, /obj/item/clothing/head/beret/cm/tan, MARINE_CAN_BUY_HELMET, VENDOR_ITEM_RECOMMENDED),
 		list("Patrol Cap", 0, /obj/item/clothing/head/cmcap, MARINE_CAN_BUY_HELMET, VENDOR_ITEM_RECOMMENDED),
 		list("Officer Cap", 0, /obj/item/clothing/head/cmcap/bridge, MARINE_CAN_BUY_HELMET, VENDOR_ITEM_RECOMMENDED),
-		list("Service Peaked Cap", 0, /obj/item/clothing/head/marine/peaked/service, MARINE_CAN_BUY_HELMET, VENDOR_ITEM_RECOMMENDED),
 
 
 		list("PERSONAL SIDEARM (CHOOSE 1)", 0, null, null, null),
@@ -47,7 +51,7 @@ GLOBAL_LIST_INIT(cm_vending_clothing_staff_officer, list(
 		list("Rangefinder", 8, /obj/item/device/binoculars/range, null,  VENDOR_ITEM_REGULAR),
 		list("Laser Designator", 12, /obj/item/device/binoculars/range/designator, null, VENDOR_ITEM_RECOMMENDED),
 		list("Flashlight", 1, /obj/item/device/flashlight, null, VENDOR_ITEM_RECOMMENDED),
-		list("Motion Detector", 5, /obj/item/device/motiondetector, null, VENDOR_ITEM_RECOMMENDED),
+		list("Motion Tracker", 5, /obj/item/device/motiontracker/adv, null, VENDOR_ITEM_RECOMMENDED),
 		list("Space Cleaner", 2, /obj/item/reagent_container/spray/cleaner, null, VENDOR_ITEM_REGULAR),
 		list("Whistle", 5, /obj/item/device/whistle, null, VENDOR_ITEM_REGULAR),
 	))

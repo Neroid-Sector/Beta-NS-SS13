@@ -404,7 +404,17 @@ var/global/list/activated_medevac_stretchers = list()
 
 //bedroll
 /obj/structure/bed/bedroll
-	name = "bedroll"
-	desc = "bedroll"
-	icon_state = "bedroll_o"
-	icon = 'icons/monkey_icos.dmi'
+    name = "unfolded bedroll"
+    desc = "A somewhat uncomfortable but functional bedroll"
+    icon = 'icons/monkey_icos.dmi'
+    icon_state = "bedroll_o"
+    buckling_y = 0
+    foldabletype = /obj/item/roller/bedroll
+    accepts_bodybag = FALSE
+
+/obj/item/roller/bedroll
+    name = "folded bedroll"
+    desc = "A somewhat uncomfortable but functional bedroll"
+    icon = 'icons/monkey_icos.dmi'
+    icon_state = "bedroll"
+    rollertype = /obj/structure/bed/bedroll
