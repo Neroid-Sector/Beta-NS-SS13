@@ -49,6 +49,12 @@
 	if(istype(mymob) && mymob?.client?.prefs?.toggle_prefs & TOGGLE_AMBIENT_OCCLUSION)
 		add_filter("AO", 1, drop_shadow_filter(x = 0, y = -2, size = 4, color = "#04080FAA"))
 
+/atom/movable/screen/plane_master/game_world_above
+	name = "above game world plane master"
+	plane = ABOVE_GAME_PLANE
+	appearance_flags = PLANE_MASTER //should use client color
+	blend_mode = BLEND_OVERLAY
+
 /atom/movable/screen/plane_master/ghost
 	name = "ghost plane master"
 	plane = GHOST_PLANE
@@ -149,6 +155,14 @@
 	remove_filter("AO")
 	add_filter("AO", 1, drop_shadow_filter(x = 0, y = -2, size = 4, color = "#04080FAA"))
 
+/atom/movable/screen/plane_master/nvg_plane
+	name = "NVG plane"
+	plane = NVG_PLANE
+	render_relay_plane = RENDER_PLANE_GAME
+	blend_mode_override = BLEND_MULTIPLY
+	//icon = 'icons/mob/hud/screen1.dmi'
+	//icon_state = "noise"
+
 /atom/movable/screen/plane_master/fullscreen
 	name = "fullscreen alert plane"
 	plane = FULLSCREEN_PLANE
@@ -175,3 +189,32 @@
 	plane = ESCAPE_MENU_PLANE
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	render_relay_plane = RENDER_PLANE_MASTER
+
+/atom/movable/screen/plane_master/displacement
+	name = "displacement plane"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	plane = DISPLACEMENT_PLATE_RENDER_LAYER
+	render_target = DISPLACEMENT_PLATE_RENDER_TARGET
+	render_relay_plane = null
+
+/atom/movable/screen/plane_master/open_space
+	name = "open space plane"
+	plane = OPEN_SPACE_PLANE
+
+/atom/movable/screen/plane_master/open_space/Initialize()
+	. = ..()
+	add_filter("multizblur", 1, gauss_blur_filter(0.5))
+
+/atom/movable/screen/plane_master/openspace_backdrop
+	name = "open space plane master"
+	plane = OPENSPACE_BACKDROP_PLANE
+	appearance_flags = PLANE_MASTER
+	blend_mode = BLEND_MULTIPLY
+	alpha = 255
+
+/atom/movable/screen/plane_master/openspace_backdrop/Initialize()
+	. = ..()
+	filters = list()
+	filters += filter(type = "drop_shadow", color = "#04080FAA", size = -10)
+	filters += filter(type = "drop_shadow", color = "#04080FAA", size = -15)
+	filters += filter(type = "drop_shadow", color = "#04080FAA", size = -20)

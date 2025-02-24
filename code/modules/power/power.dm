@@ -81,15 +81,16 @@
 	if(has_power || !src.needs_power)
 		if(machine_processing)
 			if(stat & NOPOWER)
-				addToListNoDupe(processing_machines, src) // power interupted us, start processing again
+				addToListNoDupe(GLOB.processing_machines, src) // power interrupted us, start processing again
 		stat &= ~NOPOWER
-		src.update_use_power(USE_POWER_IDLE)
-
+		update_use_power(USE_POWER_IDLE)
 	else
 		if(machine_processing)
-			processing_machines -= src // no power, can't process.
+			GLOB.processing_machines -= src // no power, can't process.
 		stat |= NOPOWER
-		src.update_use_power(USE_POWER_NONE)
+		update_use_power(USE_POWER_NONE)
+
+	update_icon()
 
 // the powernet datum
 // each contiguous network of cables & nodes
@@ -97,19 +98,19 @@
 
 // rebuild all power networks from scratch
 /proc/makepowernets()
-	for(var/datum/powernet/PN in powernets)
+	for(var/datum/powernet/PN in GLOB.powernets)
 		del(PN) //not qdel on purpose, powernet is still using del.
-	powernets.Cut()
+	GLOB.powernets.Cut()
 
-	for(var/area/A in all_areas)
-		if(powernets_by_name[A.powernet_name])
+	for(var/area/A in GLOB.all_areas)
+		if(GLOB.powernets_by_name[A.powernet_name])
 			continue
 		var/datum/powernet/PN = new()
 		PN.powernet_name = A.powernet_name
-		powernets += PN
-		powernets_by_name[A.powernet_name] = PN
+		GLOB.powernets += PN
+		GLOB.powernets_by_name[A.powernet_name] = PN
 
-	for(var/obj/structure/machinery/power/M in machines)
+	for(var/obj/structure/machinery/power/M in GLOB.machines)
 		M.connect_to_network()
 
 	return 1
@@ -133,11 +134,13 @@
 ///// Z-Level Stuff
 // world.log << "d=[d] fdir=[fdir]"
 	for(var/AM in T)
-		if(AM == source) continue //we don't want to return source
+		if(AM == source)
+			continue //we don't want to return source
 
 		if(istype(AM,/obj/structure/machinery/power))
 			var/obj/structure/machinery/power/P = AM
-			if(P.powernet == 0) continue // exclude APCs which have powernet=0
+			if(P.powernet == 0)
+				continue // exclude APCs which have powernet=0
 
 			if(!unmarked || !P.powernet) //if unmarked=1 we only return things with no powernet
 				if(P.directwired || (d == 0))
@@ -222,12 +225,13 @@
 
 	var/cdir
 
-	for(var/card in cardinal)
+	for(var/card in GLOB.cardinals)
 		var/turf/T = get_step(loc,card)
 		cdir = get_dir(T,loc)
 
 		for(var/obj/structure/cable/C in T)
-			if(C.powernet) continue
+			if(C.powernet)
+				continue
 			if(C.d1 == cdir || C.d2 == cdir)
 				. += C
 	return .
@@ -235,7 +239,8 @@
 /obj/structure/machinery/power/proc/get_indirect_connections()
 	. = list()
 	for(var/obj/structure/cable/C in loc)
-		if(C.powernet) continue
+		if(C.powernet)
+			continue
 		if(C.d1 == 0)
 			. += C
 	return .
@@ -250,7 +255,7 @@
 	var/area/A = get_area(src)
 	if(!A)
 		return 0
-	var/datum/powernet/PN = powernets_by_name[A.powernet_name]
+	var/datum/powernet/PN = GLOB.powernets_by_name[A.powernet_name]
 	if(!PN)
 		return 0
 	powernet = PN

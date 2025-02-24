@@ -16,6 +16,16 @@
 			return
 		programmer.visible_message(SPAN_NOTICE("[programmer] reprograms \the [src]'s IFF tag."), SPAN_NOTICE("You reprogram \the [src]'s IFF tag."), max_distance = 3)
 		return
+	if(stat == DEAD)
+		if(!istype(item, /obj/item/reagent_container/syringe))
+			var/datum/surgery/current_surgery = active_surgeries[user.zone_selected]
+			if(current_surgery)
+				if(current_surgery.attempt_next_step(user, item))
+					return
+			else
+				if(initiate_surgery_moment(item, src, "head" , user))
+					return
+		return
 	if(item.type in SURGERY_TOOLS_PINCH)
 		if(!iff_tag)
 			to_chat(user, SPAN_WARNING("\The [src] doesn't have an IFF tag to remove."))
@@ -36,7 +46,7 @@
 
 /mob/living/carbon/xenomorph/ex_act(severity, direction, datum/cause_data/cause_data, pierce=0)
 
-	if(lying)
+	if(body_position == LYING_DOWN && direction)
 		severity *= EXPLOSION_PRONE_MULTIPLIER
 
 	if(severity >= 30)
@@ -44,7 +54,7 @@
 
 	last_damage_data = istype(cause_data) ? cause_data : create_cause_data(cause_data)
 
-	if(severity > EXPLOSION_THRESHOLD_LOW && stomach_contents.len)
+	if(severity > EXPLOSION_THRESHOLD_LOW && length(stomach_contents))
 		for(var/mob/M in stomach_contents)
 			M.ex_act(severity - EXPLOSION_THRESHOLD_LOW, last_damage_data, pierce)
 
@@ -81,6 +91,7 @@
 		powerfactor_value = min(powerfactor_value,20)
 		if(powerfactor_value > 0 && small_explosives_stun)
 			KnockDown(powerfactor_value/5)
+			Stun(powerfactor_value/5) // Due to legacy knockdown being considered an impairement
 			if(mob_size < MOB_SIZE_BIG)
 				Slow(powerfactor_value)
 				Superslow(powerfactor_value/2)
@@ -110,7 +121,8 @@
 		"penetration" = penetration,
 		"armour_break_pr_pen" = armour_break_pr_pen,
 		"armour_break_flat" = armour_break_flat,
-		"armor_integrity" = armor_integrity
+		"armor_integrity" = armor_integrity,
+		"armour_type" = armour_type,
 	)
 	SEND_SIGNAL(src, COMSIG_XENO_PRE_APPLY_ARMOURED_DAMAGE, damagedata)
 	var/modified_damage = armor_damage_reduction(armour_config, damage,
@@ -133,7 +145,8 @@
 
 
 	var/list/damagedata = list("damage" = damage)
-	if(SEND_SIGNAL(src, COMSIG_XENO_TAKE_DAMAGE, damagedata, damagetype) & COMPONENT_BLOCK_DAMAGE) return
+	if(SEND_SIGNAL(src, COMSIG_XENO_TAKE_DAMAGE, damagedata, damagetype) & COMPONENT_BLOCK_DAMAGE)
+		return
 	damage = damagedata["damage"]
 
 	//We still want to check for blood splash before we get to the damage application.
@@ -159,7 +172,7 @@
 		return
 
 	var/shielded = FALSE
-	if(xeno_shields.len != 0 && damage > 0)
+	if(length(xeno_shields) != 0 && damage > 0)
 		shielded = TRUE
 		for(var/datum/xeno_shield/XS in xeno_shields)
 			damage = XS.on_hit(damage)
@@ -198,7 +211,8 @@
 	if(GLOB.xeno_general.armor_ignore_integrity)
 		return FALSE
 
-	if(stat == DEAD) return
+	if(stat == DEAD)
+		return
 
 	if(armor_deflection<=0)
 		return
@@ -224,10 +238,11 @@
 
 /mob/living/carbon/xenomorph/proc/post_apply_armorbreak()
 	set waitfor = 0
-	if(!caste) return
+	if(!caste)
+		return
 	sleep(XENO_ARMOR_BREAK_PASS_TIME)
 	if(warding_aura && armor_break_to_apply > 0) //Damage to armor reduction
-		armor_break_to_apply = round(armor_break_to_apply * ((100 - (warding_aura * 15)) / 100))
+		armor_break_to_apply = floor(armor_break_to_apply * ((100 - (warding_aura * 15)) / 100))
 	if(caste)
 		armor_integrity -= armor_break_to_apply
 	if(armor_integrity < 0)
@@ -239,7 +254,8 @@
 	if(!damage || !acid_blood_damage || world.time < acid_splash_last + acid_splash_cooldown || SSticker?.mode?.hardcore)
 		return FALSE
 	var/chance = 20 //base chance
-	if(damtype == BRUTE) chance += 5
+	if(damtype == BRUTE)
+		chance += 5
 	chance += chancemod + (damage * 0.33)
 	var/turf/T = loc
 	if(!T || !istype(T))
@@ -270,7 +286,7 @@
 				if(SEND_SIGNAL(src, COMSIG_XENO_DEAL_ACID_DAMAGE, victim, dmg) & COMPONENT_BLOCK_DAMAGE)
 					continue
 				i++
-				victim.visible_message(SPAN_DANGER("\The [victim] is scalded with hissing green blood!"), \
+				victim.visible_message(SPAN_DANGER("\The [victim] is scalded with hissing green blood!"),
 				SPAN_DANGER("You are splattered with sizzling blood! IT BURNS!"))
 				if(prob(60) && !victim.stat && victim.pain.feels_pain)
 					INVOKE_ASYNC(victim, TYPE_PROC_REF(/mob, emote), "scream") //Topkek
@@ -298,7 +314,7 @@
 	. = ..()
 	switch(fire.fire_variant)
 		if(FIRE_VARIANT_TYPE_B)
-			if(!armor_deflection_debuff) //Only adds another reset timer if the debuff is currently on 0, so at the start or after a reset has recently occured.
+			if(!armor_deflection_debuff) //Only adds another reset timer if the debuff is currently on 0, so at the start or after a reset has recently occurred.
 				reset_xeno_armor_debuff_after_time(src, delta_time*10)
 			fire.type_b_debuff_xeno_armor(src) //Always reapplies debuff each time to minimize gap.
 
@@ -312,4 +328,4 @@
 			fire.set_on_fire(src) //Deals an extra proc of fire when you're crossing it. 30 damage per tile crossed, plus 15 per Process().
 			next_move_slowdown = next_move_slowdown + (SLOWDOWN_AMT_GREENFIRE * resist_modifier)
 			if(resist_modifier > 0)
-				to_chat(src, SPAN_DANGER("You feel pieces of your exoskeleton fusing with the viscous fluid below and tearing off as you struggle to move through the flames!"))
+				to_chat(src, SPAN_DANGER("We feel pieces of our exoskeleton fusing with the viscous fluid below and tearing off as we struggle to move through the flames!"))

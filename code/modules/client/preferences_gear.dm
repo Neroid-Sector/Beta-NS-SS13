@@ -1,5 +1,5 @@
-var/global/list/gear_datums_by_category = list()
-var/global/list/gear_datums_by_name = list()
+GLOBAL_LIST_EMPTY(gear_datums_by_category)
+GLOBAL_LIST_EMPTY_TYPED(gear_datums_by_name, /datum/gear)
 
 /proc/populate_gear_list()
 	var/datum/gear/G
@@ -10,16 +10,16 @@ var/global/list/gear_datums_by_name = list()
 		if(!G.category)
 			log_debug("Improper gear datum: [gear_type].")
 			continue
-		if(G.display_name in gear_datums_by_name)
+		if(G.display_name in GLOB.gear_datums_by_name)
 			log_debug("Duplicate gear datum name: [G.display_name].")
 			continue
-		LAZYSET(gear_datums_by_category[G.category], "[G.display_name] [G.cost == 1 ? "(1 point)" : "([G.cost] points)"]", G)
-		gear_datums_by_name[G.display_name] = G
+		LAZYSET(GLOB.gear_datums_by_category[G.category], "[G.display_name] [G.cost == 1 ? "(1 point)" : "([G.cost] points)"]", G)
+		GLOB.gear_datums_by_name[G.display_name] = G
 
 /datum/gear
 	var/display_name  // Name/index.
 	var/category //Used for sorting in the loadout selection.
-	var/path  // Path to item.
+	var/obj/item/path  // Path to item.
 	var/cost = 2 // Number of points used.
 	var/slot // Slot to equip to, if any.
 	var/list/allowed_roles   // Roles that can spawn with this item.
@@ -28,23 +28,6 @@ var/global/list/gear_datums_by_name = list()
 /datum/gear/eyewear
 	category = "Eyewear"
 	slot = WEAR_EYES
-
-/datum/gear/eyewear/aviators
-	display_name = "Aviator shades"
-	path = /obj/item/clothing/glasses/sunglasses/aviator
-
-/datum/gear/eyewear/eyepatch
-	display_name = "Eyepatch"
-	path = /obj/item/clothing/glasses/eyepatch
-
-/datum/gear/eyewear/rpg_glasses
-	display_name = "Marine RPG Glasses"
-	path = /obj/item/clothing/glasses/regular
-	allowed_origins = USCM_ORIGINS
-
-/datum/gear/eyewear/prescription_glasses
-	display_name = "Prescription Glasses"
-	path = /obj/item/clothing/glasses/regular/hipster
 
 /datum/gear/eyewear/goggles
 	display_name = "Ballistic goggles"
@@ -62,21 +45,89 @@ var/global/list/gear_datums_by_name = list()
 	display_name = "Ballistic goggles, orange"
 	path = /obj/item/clothing/glasses/mgoggles/orange
 
+/datum/gear/eyewear/goggles_red
+	display_name = "Ballistic goggles, red"
+	path = /obj/item/clothing/glasses/mgoggles/red
+
+/datum/gear/eyewear/goggles_blue
+	display_name = "Ballistic goggles, blue"
+	path = /obj/item/clothing/glasses/mgoggles/blue
+
+/datum/gear/eyewear/goggles_purple
+	display_name = "Ballistic goggles, purple"
+	path = /obj/item/clothing/glasses/mgoggles/purple
+
+/datum/gear/eyewear/goggles_yellow
+	display_name = "Ballistic goggles, yellow"
+	path = /obj/item/clothing/glasses/mgoggles/yellow
+
 /datum/gear/eyewear/goggles2
 	display_name = "Ballistic goggles, M1A1"
 	path = /obj/item/clothing/glasses/mgoggles/v2
 
-/datum/gear/eyewear/bimex_shades
-	display_name = "BiMex personal shades"
-	path = /obj/item/clothing/glasses/sunglasses/big
+/datum/gear/eyewear/goggles2/blue
+	display_name = "Ballistic goggles, M1A1 blue"
+	path = /obj/item/clothing/glasses/mgoggles/v2/blue
 
-/datum/gear/eyewear/sunglasses
-	display_name = "Sunglasses"
-	path = /obj/item/clothing/glasses/sunglasses
+/datum/gear/eyewear/goggles2/polarized_blue
+	display_name = "Polarized Ballistic goggles, M1A1 blue"
+	path = /obj/item/clothing/glasses/mgoggles/v2/polarized_blue
+
+/datum/gear/eyewear/goggles2/polarized_orange
+	display_name = "Polarized Ballistic goggles, M1A1 orange"
+	path = /obj/item/clothing/glasses/mgoggles/v2/polarized_orange
+
+/datum/gear/eyewear/eyepatch
+	display_name = "Eyepatch, black"
+	path = /obj/item/clothing/glasses/eyepatch
+
+/datum/gear/eyewear/eyepatch/white
+	display_name = "Eyepatch, white"
+	path = /obj/item/clothing/glasses/eyepatch/white
+
+/datum/gear/eyewear/eyepatch/green
+	display_name = "Eyepatch, green"
+	path = /obj/item/clothing/glasses/eyepatch/green
+
+/datum/gear/eyewear/rpg_glasses
+	display_name = "Marine RPG Glasses"
+	path = /obj/item/clothing/glasses/regular
+	allowed_origins = USCM_ORIGINS
+
+/datum/gear/eyewear/prescription_glasses
+	display_name = "Prescription Glasses"
+	path = /obj/item/clothing/glasses/regular/hipster
+
+/datum/gear/eyewear/hippie_glasses
+	display_name = "Rounded Prescription Glasses"
+	path = /obj/item/clothing/glasses/regular/hippie
+
+/datum/gear/eyewear/aviators
+	display_name = "Aviator shades"
+	path = /obj/item/clothing/glasses/sunglasses/aviator
+
+/datum/gear/eyewear/new_bimex/black
+	display_name = "BiMex tactical shades, black"
+	path = /obj/item/clothing/glasses/sunglasses/big/new_bimex/black
+	cost = 4
+
+/datum/gear/eyewear/new_bimex
+	display_name = "BiMex polarized shades, yellow"
+	path = /obj/item/clothing/glasses/sunglasses/big/new_bimex
+	cost = 4
+
+/datum/gear/eyewear/new_bimex/bronze
+	display_name = "BiMex polarized shades, bronze"
+	path = /obj/item/clothing/glasses/sunglasses/big/new_bimex/bronze
+	cost = 4
 
 /datum/gear/eyewear/prescription_sunglasses
 	display_name = "Prescription sunglasses"
 	path = /obj/item/clothing/glasses/sunglasses/prescription
+
+/datum/gear/eyewear/sunglasses
+	display_name = "Sunglasses"
+	path = /obj/item/clothing/glasses/sunglasses
 
 /datum/gear/mask
 	category = "Masks and scarves"
@@ -146,6 +197,50 @@ var/global/list/gear_datums_by_name = list()
 	display_name = "Scarf, white"
 	path = /obj/item/clothing/mask/tornscarf/snow
 
+/datum/gear/mask/neckerchief
+	display_name = "Neckerchief, tan"
+	path = /obj/item/clothing/mask/neckerchief
+
+/datum/gear/mask/neckerchief/gray
+	display_name = "Neckerchief, gray"
+	path = /obj/item/clothing/mask/neckerchief/gray
+
+/datum/gear/mask/neckerchief/green
+	display_name = "Neckerchief, green"
+	path = /obj/item/clothing/mask/neckerchief/green
+
+/datum/gear/mask/neckerchief/black
+	display_name = "Neckerchief, black"
+	path = /obj/item/clothing/mask/neckerchief/black
+
+/datum/gear/mask/neckerchief/squad
+	display_name = "Neckerchief, squad specific"
+	path = /obj/item/clothing/mask/neckerchief/squad
+
+/datum/gear/mask/keffiyeh
+	display_name = "Keffiyeh" // Traditional middle-eastern headdress, works like a balaclava/scarf.
+	path = /obj/item/clothing/mask/rebreather/scarf/keffiyeh
+
+/datum/gear/mask/keffiyeh_white
+	display_name = "Keffiyeh, white"
+	path = /obj/item/clothing/mask/rebreather/scarf/keffiyeh/white
+
+/datum/gear/mask/keffiyeh_red
+	display_name = "Keffiyeh, red"
+	path = /obj/item/clothing/mask/rebreather/scarf/keffiyeh/red
+
+/datum/gear/mask/keffiyeh_green
+	display_name = "Keffiyeh, green"
+	path = /obj/item/clothing/mask/rebreather/scarf/keffiyeh/green
+
+/datum/gear/mask/keffiyeh_black
+	display_name = "Keffiyeh, black"
+	path = /obj/item/clothing/mask/rebreather/scarf/keffiyeh/black
+
+/datum/gear/mask/keffiyeh_blue
+	display_name = "Keffiyeh, blue"
+	path = /obj/item/clothing/mask/rebreather/scarf/keffiyeh/blue
+
 /datum/gear/mask/uscm
 	allowed_origins = USCM_ORIGINS
 
@@ -161,9 +256,21 @@ var/global/list/gear_datums_by_name = list()
 	display_name = "USCM balaclava, tan"
 	path = /obj/item/clothing/mask/rebreather/scarf/tan
 
+/datum/gear/mask/uscm/skull_balaclava_blue
+	display_name = "USCM balaclava, blue skull"
+	path = /obj/item/clothing/mask/rebreather/skull
+	cost = 4 //same as skull facepaint
+	slot = WEAR_FACE
+
+/datum/gear/mask/uscm/skull_balaclava_black
+	display_name = "USCM balaclava, black skull"
+	path = /obj/item/clothing/mask/rebreather/skull/black
+	cost = 4
+	slot = WEAR_FACE
+
 /datum/gear/headwear
 	category = "Headwear"
-	cost = 3
+	cost = 2
 	slot = WEAR_HEAD
 
 /datum/gear/headwear/durag_black
@@ -203,7 +310,7 @@ var/global/list/gear_datums_by_name = list()
 
 /datum/gear/headwear/uscm/beret_green
 	display_name = "USCM beret, green"
-	path = /obj/item/clothing/head/beret/cm
+	path = /obj/item/clothing/head/beret/cm/green
 
 /datum/gear/headwear/uscm/beret_tan
 	display_name = "USCM beret, tan"
@@ -289,6 +396,18 @@ var/global/list/gear_datums_by_name = list()
 	display_name = "Helmet netting"
 	path = /obj/item/prop/helmetgarb/netting
 
+/datum/gear/helmet_garb/netting/desert
+	display_name = "Desert Helmet netting"
+	path = /obj/item/prop/helmetgarb/netting/desert
+
+/datum/gear/helmet_garb/netting/jungle
+	display_name = "Jungle Helmet netting"
+	path = /obj/item/prop/helmetgarb/netting/jungle
+
+/datum/gear/helmet_garb/netting/urban
+	display_name = "Urban Helmet netting"
+	path = /obj/item/prop/helmetgarb/netting/urban
+
 /datum/gear/helmet_garb/lucky_feather
 	display_name = "Lucky feather, red"
 	path = /obj/item/prop/helmetgarb/lucky_feather
@@ -317,6 +436,18 @@ var/global/list/gear_datums_by_name = list()
 	display_name = "Rain cover"
 	path = /obj/item/prop/helmetgarb/raincover
 
+/datum/gear/helmet_garb/raincover/jungle
+	display_name = "Jungle Rain cover"
+	path = /obj/item/prop/helmetgarb/raincover/jungle
+
+/datum/gear/helmet_garb/raincover/desert
+	display_name = "Desert Rain cover"
+	path = /obj/item/prop/helmetgarb/raincover/desert
+
+/datum/gear/helmet_garb/raincover/urban
+	display_name = "Urban Rain cover"
+	path = /obj/item/prop/helmetgarb/raincover/urban
+
 /datum/gear/helmet_garb/rabbits_foot
 	display_name = "Rabbit's foot"
 	path = /obj/item/prop/helmetgarb/rabbitsfoot
@@ -337,6 +468,10 @@ var/global/list/gear_datums_by_name = list()
 	display_name = "Spent slugs"
 	path = /obj/item/prop/helmetgarb/spent_slug
 
+/datum/gear/helmet_garb/cartridge
+	display_name = "Cartridge"
+	path = /obj/item/prop/helmetgarb/cartridge
+
 /datum/gear/helmet_garb/spacejam_tickets
 	display_name = "Tickets to Space Jam"
 	path = /obj/item/prop/helmetgarb/spacejam_tickets
@@ -346,7 +481,7 @@ var/global/list/gear_datums_by_name = list()
 	path = /obj/item/prop/helmetgarb/trimmed_wire
 
 /datum/gear/helmet_garb/bullet_pipe
-	display_name = "10x99mm XM42B casing pipe"
+	display_name = "10x99mm XM43E1 casing pipe"
 	path = /obj/item/prop/helmetgarb/bullet_pipe
 	allowed_origins = USCM_ORIGINS
 
@@ -357,11 +492,11 @@ var/global/list/gear_datums_by_name = list()
 
 /datum/gear/paperwork
 	category = "Paperwork"
+	cost = 1
 
 /datum/gear/paperwork/pen
 	display_name = "Pen, black"
 	path = /obj/item/tool/pen
-	cost = 1
 
 /datum/gear/paperwork/pen_blue
 	display_name = "Pen, blue"
@@ -377,8 +512,8 @@ var/global/list/gear_datums_by_name = list()
 
 /datum/gear/paperwork/pen_fountain
 	display_name = "Pen, fountain"
-	path = /obj/item/tool/pen/fountain
-	cost = 3
+	path = /obj/item/tool/pen/multicolor/fountain
+	cost = 2
 
 /datum/gear/paperwork/paper
 	display_name = "Sheet of paper"
@@ -427,10 +562,12 @@ var/global/list/gear_datums_by_name = list()
 
 /datum/gear/toy
 	category = "Recreational"
+	cost = 1
 
 /datum/gear/toy/camera
 	display_name = "Camera"
 	path = /obj/item/device/camera
+	cost = 2
 
 /datum/gear/toy/mags
 	cost = 1
@@ -487,6 +624,10 @@ var/global/list/gear_datums_by_name = list()
 	display_name = "Card, Uno Reverse - yellow"
 	path = /obj/item/toy/handcard/uno_reverse_yellow
 
+/datum/gear/toy/card/trading_card
+	display_name = "Card, random WeyYu Trading"
+	path = /obj/item/toy/trading_card
+
 /datum/gear/toy/deck
 	display_name = "Deck of cards, regular"
 	path = /obj/item/toy/deck
@@ -494,6 +635,10 @@ var/global/list/gear_datums_by_name = list()
 /datum/gear/toy/deck/uno
 	display_name = "Deck of cards, Uno"
 	path = /obj/item/toy/deck/uno
+
+/datum/gear/toy/trading_card
+	display_name = "Trading Card Packet"
+	path = /obj/item/storage/fancy/trading_card
 
 /datum/gear/toy/d6
 	display_name = "Die, 6 sides"
@@ -506,18 +651,55 @@ var/global/list/gear_datums_by_name = list()
 /datum/gear/toy/walkman
 	display_name = "Walkman"
 	path = /obj/item/device/walkman
+	cost = 2
 
 /datum/gear/toy/crayon
 	display_name = "Crayon"
 	path = /obj/item/toy/crayon/rainbow
 
+/datum/gear/toy/pride
+	display_name = "Box of Prideful Crayons"
+	path = /obj/item/storage/box/pride
+
 /datum/gear/weapon
 	category = "Weapons"
 	cost = 4
 
-/datum/gear/weapon/type_80_Bayonet
+/datum/gear/weapon/type_80_bayonet
 	display_name = "Type 80 Bayonet"
 	path = /obj/item/attachable/bayonet/upp_replica
+
+/datum/gear/weapon/antique_Bayonet
+	display_name = "antique bayonet" // ancient bayonet - family heirloom perhaps
+	path = /obj/item/attachable/bayonet/antique
+
+/datum/gear/weapon/L5_Bayonet
+	display_name = "L5 Bayonet"
+	path = /obj/item/attachable/bayonet/rmc_replica
+
+/datum/gear/weapon/custom_Bayonet
+	display_name = "M5 'Raven's Claw' tactical bayonet" // custom style bayonet with variants, exclusive to loadout and unique. Name might need changing.
+	path = /obj/item/attachable/bayonet/custom
+
+/datum/gear/weapon/custom_Bayonet/red
+	display_name = "M5 'Raven's Claw' tactical bayonet, red"
+	path = /obj/item/attachable/bayonet/custom/red
+
+/datum/gear/weapon/custom_Bayonet/blue
+	display_name = "M5 'Raven's Claw' tactical bayonet, blue"
+	path = /obj/item/attachable/bayonet/custom/blue
+
+/datum/gear/weapon/custom_Bayonet/black
+	display_name = "M5 'Raven's Claw' tactical bayonet, black"
+	path = /obj/item/attachable/bayonet/custom/black
+
+/datum/gear/weapon/tanto_Bayonet
+	display_name = "T9 tactical bayonet" // TWE/CLF bayonet
+	path = /obj/item/attachable/bayonet/tanto
+
+/datum/gear/weapon/tanto_Bayonet/blue
+	display_name = "T9 tactical bayonet, blue"
+	path = /obj/item/attachable/bayonet/tanto/blue
 
 /datum/gear/weapon/m8_cartridge_bayonet
 	display_name = "M8 Cartridge Bayonet"
@@ -545,6 +727,7 @@ var/global/list/gear_datums_by_name = list()
 
 /datum/gear/drink
 	category = "Canned drinks"
+	cost = 1
 
 /datum/gear/drink/water
 	display_name = "Bottled water"
@@ -586,14 +769,14 @@ var/global/list/gear_datums_by_name = list()
 /datum/gear/drink/boda
 	display_name = "Boda Soda"
 	path = /obj/item/reagent_container/food/drinks/cans/boda
-	cost = 3 //Legally imported from UPP.
+	cost = 2 //Legally imported from UPP.
 
 /datum/gear/drink/boda/plus
 	display_name = "Boda Cola"
 	path = /obj/item/reagent_container/food/drinks/cans/bodaplus
 
 /datum/gear/drink/alcohol
-	cost = 3 //Illegal in military.
+	cost = 2 //Illegal in military.
 
 /datum/gear/drink/alcohol/ale
 	display_name = "Weyland-Yutani IPA Ale"
@@ -613,6 +796,7 @@ var/global/list/gear_datums_by_name = list()
 
 /datum/gear/flask
 	category = "Flasks"
+	cost = 1
 
 /datum/gear/flask/canteen
 	display_name = "Canteen"
@@ -644,6 +828,7 @@ var/global/list/gear_datums_by_name = list()
 
 /datum/gear/snack_sweet
 	category = "Food (sweets)"
+	cost = 1
 
 /datum/gear/snack_sweet/candy
 	display_name = "Bar of candy"
@@ -664,7 +849,6 @@ var/global/list/gear_datums_by_name = list()
 /datum/gear/snack_sweet/fortune_cookie
 	display_name = "Fortune cookie"
 	path = /obj/item/reagent_container/food/snacks/fortunecookie/prefilled
-	cost = 3
 
 /datum/gear/snack_sweet/donut_normal
 	display_name = "Donut"
@@ -680,6 +864,7 @@ var/global/list/gear_datums_by_name = list()
 
 /datum/gear/snack_packaged
 	category = "Food (packaged)"
+	cost = 1
 
 /datum/gear/snack_packaged/beef_jerky
 	display_name = "Beef jerky"
@@ -711,6 +896,7 @@ var/global/list/gear_datums_by_name = list()
 
 /datum/gear/snack_grown
 	category = "Food (healthy)"
+	cost = 1
 
 /datum/gear/snack_grown/apple
 	display_name = "Apple"
@@ -742,6 +928,7 @@ var/global/list/gear_datums_by_name = list()
 
 /datum/gear/smoking
 	category = "Smoking"
+	cost = 1
 
 /datum/gear/smoking/cigarette
 	display_name = "Cigarette"
@@ -759,6 +946,16 @@ var/global/list/gear_datums_by_name = list()
 	path = /obj/item/clothing/mask/cigarette/cigar
 	cost = 2
 
+/datum/gear/smoking/cigarette/tarbacks
+	display_name = "Tarbacks case"
+	path = /obj/item/storage/fancy/cigar/tarbacks
+	cost = 6
+
+/datum/gear/smoking/cigarette/tarbacktube
+	display_name = "Tarback tube"
+	path = /obj/item/storage/fancy/cigar/tarbacktube
+	cost = 2
+
 /datum/gear/smoking/pack_emerald_green
 	display_name = "Pack Of Emerald Greens"
 	path = /obj/item/storage/fancy/cigarettes/emeraldgreen
@@ -767,10 +964,40 @@ var/global/list/gear_datums_by_name = list()
 	display_name = "Pack Of Lucky Strikes"
 	path = /obj/item/storage/fancy/cigarettes/lucky_strikes
 
+/datum/gear/smoking/arcturian_ace
+	display_name = "Pack Of Arcturian Ace"
+	path = /obj/item/storage/fancy/cigarettes/arcturian_ace
+
+/datum/gear/smoking/lady_finger
+	display_name = "Pack Of Lady Fingers"
+	path = /obj/item/storage/fancy/cigarettes/lady_finger
+
+/datum/gear/smoking/lucky_strikes_4
+	display_name = "Pack Of Lucky Strikes Mini"
+	path = /obj/item/storage/fancy/cigarettes/lucky_strikes_4
+
+/datum/gear/smoking/wypacket
+	display_name = "Pack Of Weyland-Yutani Gold"
+	path = /obj/item/storage/fancy/cigarettes/wypacket
+	cost = 2
+
+/datum/gear/smoking/spirit
+	display_name = "Pack Of Turquoise American Spirit"
+	path = /obj/item/storage/fancy/cigarettes/spirit
+
+/datum/gear/smoking/yellow
+	display_name = "Pack Of Yellow American Spirit"
+	path = /obj/item/storage/fancy/cigarettes/spirit/yellow
+
+/datum/gear/smoking/kpack
+	display_name = "Pack Of Koorlander Gold"
+	path = /obj/item/storage/fancy/cigarettes/kpack
+	cost = 2
+
 /datum/gear/smoking/weed_joint
 	display_name = "Joint of space weed"
 	path = /obj/item/clothing/mask/cigarette/weed
-	cost = 4
+	cost = 2
 
 /datum/gear/smoking/lighter
 	display_name = "Lighter, cheap"
@@ -780,6 +1007,32 @@ var/global/list/gear_datums_by_name = list()
 /datum/gear/smoking/zippo
 	display_name = "Lighter, zippo"
 	path = /obj/item/tool/lighter/zippo
+
+/datum/gear/smoking/zippo/black
+	display_name = "Black lighter, zippo"
+	path = /obj/item/tool/lighter/zippo/black
+
+/datum/gear/smoking/zippo/gold
+	display_name = "Golden lighter, zippo"
+	path = /obj/item/tool/lighter/zippo/gold
+	cost = 3
+
+/datum/gear/smoking/zippo/executive
+	display_name = "Weyland-Yutani executive Zippo lighter"
+	path = /obj/item/tool/lighter/zippo/executive
+	cost = 3
+
+/datum/gear/smoking/zippo/blue
+	display_name = "Blue lighter, zippo"
+	path = /obj/item/tool/lighter/zippo/blue
+
+/datum/gear/smoking/electronic_cigarette
+	display_name = "Electronic cigarette"
+	path = /obj/item/clothing/mask/electronic_cigarette
+
+/datum/gear/smoking/electronic_cigarette/cigar
+	display_name = "Electronic cigar"
+	path = /obj/item/clothing/mask/electronic_cigarette/cigar
 
 /datum/gear/misc
 	category = "Miscellaneous"
@@ -795,6 +1048,11 @@ var/global/list/gear_datums_by_name = list()
 /datum/gear/misc/facepaint_black
 	display_name = "Facepaint, black"
 	path = /obj/item/facepaint/black
+
+/datum/gear/misc/facepaint_skull
+	display_name = "Facepaint, skull"
+	path = /obj/item/facepaint/skull
+	cost = 3
 
 /datum/gear/misc/facepaint_body
 	display_name = "Fullbody paint"
@@ -816,6 +1074,21 @@ var/global/list/gear_datums_by_name = list()
 	path = /obj/item/clothing/gloves/marine/brown
 	cost = 2
 
+/datum/gear/misc/grey_boots
+	display_name = "grey combat boots"
+	path = /obj/item/clothing/shoes/marine/grey
+	cost = 2
+
+/datum/gear/misc/urban_boots
+	display_name = "Urban pattern combat boots"
+	path = /obj/item/clothing/shoes/marine/urban
+	cost = 2
+
+/datum/gear/misc/grey_gloves
+	display_name = "grey combat gloves"
+	path = /obj/item/clothing/gloves/marine/grey
+	cost = 2
+
 /datum/gear/misc/pdt_kit
 	display_name = "PDT/L kit"
 	path = /obj/item/storage/box/pdt_kit
@@ -827,13 +1100,230 @@ var/global/list/gear_datums_by_name = list()
 	cost = 1 //The cadmium poisoning pays for the discounted cost longterm
 	allowed_origins = USCM_ORIGINS
 
-/datum/gear/misc/patch_uscm
-	display_name = "USCM shoulder patch"
-	path = /obj/item/clothing/accessory/patch
+/datum/gear/misc/dogtags
+	display_name = "Attachable Dogtags"
+	path = /obj/item/clothing/accessory/dogtags
 	cost = 1
 	slot = WEAR_IN_ACCESSORY
 	allowed_origins = USCM_ORIGINS
 
-/datum/gear/misc/patch_uscm/falcon
-	display_name = "Falling Falcons shoulder patch"
-	path = /obj/item/clothing/accessory/patch/falcon
+/datum/gear/misc/patch_uscm
+	display_name = "Falling Falcons shoulder patch, squad specific"
+	path = /obj/item/clothing/accessory/patch/falcon/squad_main
+	cost = 1
+	slot = WEAR_IN_ACCESSORY
+	allowed_origins = USCM_ORIGINS
+
+/datum/gear/misc/patch_uscm/medic_patch
+	display_name = "Field Medic shoulder patch"
+	path = /obj/item/clothing/accessory/patch/medic_patch
+
+/datum/gear/misc/family_photo
+	display_name = "Family photo"
+	path = /obj/item/prop/helmetgarb/family_photo
+	cost = 1
+
+/datum/gear/misc/compass
+	display_name = "Compass"
+	path = /obj/item/prop/helmetgarb/compass
+	cost = 1
+
+/datum/gear/misc/bug_spray
+	display_name = "Bug spray"
+	path = /obj/item/prop/helmetgarb/bug_spray
+	cost = 1
+
+/datum/gear/misc/straight_razor
+	display_name = "Cut-throat razor"
+	path = /obj/item/weapon/straight_razor
+	cost = 2
+
+/datum/gear/misc/watch
+	display_name = "Cheap wrist watch"
+	path = /obj/item/clothing/accessory/wrist/watch
+	cost = 1 // Cheap and crappy
+
+// Civilian only
+
+/datum/gear/civilian
+	category = "Civilian only (restricted)"
+	allowed_origins = list(ORIGIN_CIVILIAN)
+
+/datum/gear/civilian/patch
+	display_name = "Weyland-Yutani shoulder patch, black"
+	path = /obj/item/clothing/accessory/patch/wy
+	cost = 1
+	slot = WEAR_IN_ACCESSORY
+
+/datum/gear/civilian/patch/wysquare
+	display_name = "Weyland-Yutani shoulder patch"
+	path = /obj/item/clothing/accessory/patch/wysquare
+
+/datum/gear/civilian/patch/wy_white
+	display_name = "Weyland-Yutani shoulder patch, white"
+	path = /obj/item/clothing/accessory/patch/wy_white
+
+/datum/gear/civilian/patch/wy_fury
+	display_name = "Weyland-Yutani Fury '161' patch"
+	path = /obj/item/clothing/accessory/patch/wyfury
+
+/datum/gear/civilian/patch/twepatch
+	display_name = "Three World Empire shoulder patch"
+	path = /obj/item/clothing/accessory/patch/twe
+
+/datum/gear/civilian/patch/cec
+	display_name = "Cosmos Exploration Corps shoulder patch"
+	path = /obj/item/clothing/accessory/patch/cec_patch
+
+/datum/gear/civilian/patch/clf
+	display_name = "Colonial Liberation Front shoulder patch"
+	path = /obj/item/clothing/accessory/patch/clf_patch
+
+// Cheap Civilian shades - colorful!
+
+/datum/gear/civilian/eyewear/bimax_shades
+	display_name = "BiMax personal shades"
+	path = /obj/item/clothing/glasses/sunglasses/big/fake
+
+/datum/gear/civilian/eyewear/bimax_shades/red
+	display_name = "BiMax personal shades, red"
+	path = /obj/item/clothing/glasses/sunglasses/big/fake/red
+
+/datum/gear/civilian/eyewear/bimax_shades/orange
+	display_name = "BiMax personal shades, orange"
+	path = /obj/item/clothing/glasses/sunglasses/big/fake/orange
+
+/datum/gear/civilian/eyewear/bimax_shades/yellow
+	display_name = "BiMax personal shades, yellow"
+	path = /obj/item/clothing/glasses/sunglasses/big/fake/yellow
+
+/datum/gear/civilian/eyewear/bimax_shades/green
+	display_name = "BiMax personal shades, green"
+	path = /obj/item/clothing/glasses/sunglasses/big/fake/green
+
+/datum/gear/civilian/eyewear/bimax_shades/blue
+	display_name = "BiMax personal shades, blue"
+	path = /obj/item/clothing/glasses/sunglasses/big/fake/blue
+
+// Hippie Shades
+
+/datum/gear/eyewear/sunglasses/hippie_shades/pink
+	display_name = "Suntex-Sightware rounded shades, pink"
+	path = /obj/item/clothing/glasses/sunglasses/hippie
+
+/datum/gear/eyewear/sunglasses/hippie_shades/green
+	display_name = "Suntex-Sightware rounded shades, green"
+	path = /obj/item/clothing/glasses/sunglasses/hippie/green
+
+/datum/gear/eyewear/sunglasses/hippie_shades/sunrise
+	display_name = "Suntex-Sightware rounded shades, sunrise"
+	path = /obj/item/clothing/glasses/sunglasses/hippie/sunrise
+
+/datum/gear/eyewear/sunglasses/hippie_shades/sunset
+	display_name = "Suntex-Sightware rounded shades, sunset"
+	path = /obj/item/clothing/glasses/sunglasses/hippie/sunset
+
+/datum/gear/eyewear/sunglasses/hippie_shades/nightblue
+	display_name = "Suntex-Sightware rounded shades, nightblue"
+	path = /obj/item/clothing/glasses/sunglasses/hippie/nightblue
+
+/datum/gear/eyewear/sunglasses/hippie_shades/midnight
+	display_name = "Suntex-Sightware rounded shades, midnight"
+	path = /obj/item/clothing/glasses/sunglasses/hippie/midnight
+
+/datum/gear/eyewear/sunglasses/hippie_shades/bloodred
+	display_name = "Suntex-Sightware rounded shades, bloodred"
+	path = /obj/item/clothing/glasses/sunglasses/hippie/bloodred
+
+// Civilian shoes
+
+/datum/gear/civilian/shoes
+	display_name = "black shoes"
+	path = /obj/item/clothing/shoes/black
+	cost = 1
+
+/datum/gear/civilian/shoes/brown
+	display_name = "brown shoes"
+	path = /obj/item/clothing/shoes/brown
+
+/datum/gear/civilian/shoes/blue
+	display_name = "blue shoes"
+	path = /obj/item/clothing/shoes/blue
+
+/datum/gear/civilian/shoes/green
+	display_name = "green shoes"
+	path = /obj/item/clothing/shoes/green
+
+/datum/gear/civilian/shoes/yellow
+	display_name = "yellow shoes"
+	path = /obj/item/clothing/shoes/yellow
+
+/datum/gear/civilian/shoes/purple
+	display_name = "purple shoes"
+	path = /obj/item/clothing/shoes/purple
+
+/datum/gear/civilian/shoes/red
+	display_name = "red shoes"
+	path = /obj/item/clothing/shoes/red
+
+/datum/gear/civilian/shoes/rainbow
+	display_name = "rainbow shoes"
+	path = /obj/item/clothing/shoes/rainbow
+
+// Plushies - either civilian only or removed completely perhaps...
+
+/datum/gear/civilian/plush/farwa
+	display_name = "Farwa plush"
+	path = /obj/item/toy/plush/farwa
+
+/datum/gear/civilian/plush/barricade
+	display_name = "Barricade plush"
+	path = /obj/item/toy/plush/barricade
+
+/datum/gear/civilian/plush/bee
+	display_name = "Bee plush"
+	path = /obj/item/toy/plush/bee
+
+/datum/gear/civilian/plush/shark
+	display_name = "Shark plush"
+	path = /obj/item/toy/plush/shark
+
+/datum/gear/civilian/plush/gnarp
+	display_name = "Gnarp plush"
+	path = /obj/item/toy/plush/gnarp
+
+/datum/gear/civilian/plush/gnarp/alt
+	display_name = "Gnarp plush, alt"
+	path = /obj/item/toy/plush/gnarp/alt
+
+/datum/gear/civilian/plush/rock
+	display_name = "Rock plush"
+	path = /obj/item/toy/plush/rock
+
+/datum/gear/civilian/plush/therapy
+	display_name = "Therapy plush"
+	path = /obj/item/toy/plush/therapy
+
+/datum/gear/civilian/plush/therapy/red
+	display_name = "Therapy plush (Red)"
+	path = /obj/item/toy/plush/therapy/red
+
+/datum/gear/civilian/plush/therapy/blue
+	display_name = "Therapy plush (Blue)"
+	path = /obj/item/toy/plush/therapy/blue
+
+/datum/gear/civilian/plush/therapy/green
+	display_name = "Therapy plush (Green)"
+	path = /obj/item/toy/plush/therapy/green
+
+/datum/gear/civilian/plush/therapy/orange
+	display_name = "Therapy plush (Orange)"
+	path = /obj/item/toy/plush/therapy/orange
+
+/datum/gear/civilian/plush/therapy/purple
+	display_name = "Therapy plush (Purple)"
+	path = /obj/item/toy/plush/therapy/purple
+
+/datum/gear/civilian/plush/therapy/yellow
+	display_name = "Therapy plush (Yellow)"
+	path = /obj/item/toy/plush/therapy/yellow

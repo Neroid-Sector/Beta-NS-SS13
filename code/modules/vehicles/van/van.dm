@@ -83,7 +83,7 @@
 
 	icon_state = null
 
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_LOGIN, PROC_REF(add_default_image))
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_LOGGED_IN, PROC_REF(add_default_image))
 
 	for(var/I in GLOB.player_list)
 		add_default_image(SSdcs, I)
@@ -92,13 +92,13 @@
 	if(mover in mobs_under) //can't collide with the thing you're buckled to
 		return NO_BLOCKED_MOVEMENT
 
-	if(ismob(mover))
-		var/mob/M = mover
+	if(isliving(mover))
+		var/mob/living/M = mover
 		if(M.mob_flags & SQUEEZE_UNDER_VEHICLES)
 			add_under_van(M)
 			return NO_BLOCKED_MOVEMENT
 
-		if(M.lying)
+		if(M.body_position == LYING_DOWN)
 			return NO_BLOCKED_MOVEMENT
 
 		if(M.mob_size >= MOB_SIZE_IMMOBILE && next_push < world.time)
@@ -112,6 +112,9 @@
 ** PRESETS
 */
 /obj/vehicle/multitile/van/pre_movement()
+	if(locate(/obj/effect/alien/weeds) in loc)
+		move_momentum *= momentum_loss_on_weeds_factor
+
 	. = ..()
 
 	for(var/I in mobs_under)
@@ -125,7 +128,7 @@
 
 	mobs_under += L
 	RegisterSignal(L, COMSIG_PARENT_QDELETING, PROC_REF(remove_under_van))
-	RegisterSignal(L, COMSIG_MOB_LOGIN, PROC_REF(add_client))
+	RegisterSignal(L, COMSIG_MOB_LOGGED_IN, PROC_REF(add_client))
 	RegisterSignal(L, COMSIG_MOVABLE_MOVED, PROC_REF(check_under_van))
 
 	if(L.client)
@@ -141,7 +144,7 @@
 
 	UnregisterSignal(L, list(
 		COMSIG_PARENT_QDELETING,
-		COMSIG_MOB_LOGIN,
+		COMSIG_MOB_LOGGED_IN,
 		COMSIG_MOVABLE_MOVED,
 	))
 
@@ -167,15 +170,9 @@
 		var/mob/M = I
 		M.client.images -= normal_image
 
+	QDEL_NULL(lighting_holder)
+
 	return ..()
-
-
-/obj/vehicle/multitile/van/pre_movement()
-	if(locate(/obj/effect/alien/weeds) in loc)
-		move_momentum *= momentum_loss_on_weeds_factor
-
-	. = ..()
-
 
 /obj/vehicle/multitile/van/attackby(obj/item/O, mob/user)
 	if(user.z != z)

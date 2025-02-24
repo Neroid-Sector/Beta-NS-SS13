@@ -13,9 +13,11 @@
 	evasion = XENO_EVASION_NONE
 	speed = XENO_SPEED_RUNNER
 	attack_delay = -4
+
+	available_strains = list(/datum/xeno_strain/acider)
 	behavior_delegate_type = /datum/behavior_delegate/runner_base
 	evolves_to = list(XENO_CASTE_LURKER)
-	deevolves_to = list("Larva")
+	deevolves_to = list(XENO_CASTE_LARVA)
 
 	tackle_min = 4
 	tackle_max = 5
@@ -33,7 +35,7 @@
 	caste_type = XENO_CASTE_RUNNER
 	name = XENO_CASTE_RUNNER
 	desc = "A small red alien that looks like it could run fairly quickly..."
-	icon = 'icons/mob/xenos/runner.dmi'
+	icon = 'icons/mob/xenos/castes/tier_1/runner.dmi'
 	icon_state = "Runner Walking"
 	icon_size = 64
 	layer = MOB_LAYER
@@ -45,6 +47,7 @@
 	base_pixel_y = -20
 	pull_speed = -0.5
 	viewsize = 9
+	organ_value = 500 //worthless
 
 	mob_size = MOB_SIZE_XENO_SMALL
 
@@ -62,16 +65,25 @@
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
-	mutation_type = RUNNER_NORMAL
 
-	icon_xeno = 'icons/mob/xenos/runner.dmi'
-	icon_xenonid = 'icons/mob/xenonids/runner.dmi'
+	icon_xeno = 'icons/mob/xenos/castes/tier_1/runner.dmi'
+	icon_xenonid = 'icons/mob/xenonids/castes/tier_1/runner.dmi'
+
+	weed_food_icon = 'icons/mob/xenos/weeds_64x64.dmi'
+	weed_food_states = list("Runner_1","Runner_2","Runner_3")
+	weed_food_states_flipped = list("Runner_1","Runner_2","Runner_3")
 
 
-/mob/living/carbon/xenomorph/runner/initialize_pass_flags(datum/pass_flags_container/PF)
+/mob/living/carbon/xenomorph/runner/initialize_pass_flags(datum/pass_flags_container/pass_flags_container)
 	..()
-	if (PF)
-		PF.flags_pass |= PASS_FLAGS_CRAWLER
+	if (pass_flags_container)
+		pass_flags_container.flags_pass |= PASS_FLAGS_CRAWLER
+
+/mob/living/carbon/xenomorph/runner/recalculate_actions()
+	. = ..()
+	pull_multiplier *= 0.85
+	if(is_zoomed)
+		zoom_out()
 
 /datum/behavior_delegate/runner_base
 	name = "Base Runner Behavior Delegate"
@@ -79,6 +91,6 @@
 /datum/behavior_delegate/runner_base/melee_attack_additional_effects_self()
 	..()
 
-	var/datum/action/xeno_action/onclick/xenohide/hide = get_xeno_action_by_type(bound_xeno, /datum/action/xeno_action/onclick/xenohide)
+	var/datum/action/xeno_action/onclick/xenohide/hide = get_action(bound_xeno, /datum/action/xeno_action/onclick/xenohide)
 	if(hide)
 		hide.post_attack()

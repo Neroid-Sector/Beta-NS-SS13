@@ -27,7 +27,6 @@
 
 	var/unique = TRUE
 
-	var/has_gravity = 1
 // var/list/lights // list of all lights on this area
 	var/list/all_doors = list() //Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
 	var/air_doors_activated = 0
@@ -66,7 +65,7 @@
 	var/powernet_name = "default" //Default powernet name. Change to something else to make completely separate powernets
 	var/requires_power = 1
 	var/unlimited_power = 0
-	var/always_unpowered = 0 //this gets overriden to 1 for space in area/New()
+	var/always_unpowered = 0 //this gets overridden to 1 for space in area/New()
 
 	//which channels are powered
 	var/power_equip = TRUE
@@ -79,6 +78,21 @@
 	var/used_environ = 0
 	var/used_oneoff = 0 //one-off power usage
 
+	/// If this area is outside the game's normal interactivity and should be excluded from things like EOR reports and crew monitors.
+	/// Doesn't need to be set for areas/Z levels that are marked as admin-only
+	var/block_game_interaction = FALSE
+
+	/// Which, if any, LZ this area belongs to. If an area belongs to an LZ, if that LZ is designated as the primary
+	/// LZ, all weeds will be destroyed and further weed placement disabled
+	var/linked_lz = FALSE
+
+	/// How long this area should be un-oviable
+	var/unoviable_timer = 25 MINUTES
+
+	/// How many potentially open turfs can exist in this area
+	var/openable_turf_count = 0
+	/// How much destroyable resin currently exists in this area
+	var/current_resin_count = 0
 
 /area/New()
 	// This interacts with the map loader, so it needs to be set immediately
@@ -94,19 +108,31 @@
 	layer = AREAS_LAYER
 	uid = ++global_uid
 	. = ..()
-	active_areas += src
-	all_areas += src
+	GLOB.active_areas += src
+	GLOB.all_areas += src
 	reg_in_areas_in_z()
 	if(is_mainship_level(z))
 		GLOB.ship_areas += src
 
-	if(base_lighting_alpha)
-		return INITIALIZE_HINT_ROUNDSTART
-
-/area/LateInitialize()
-	. = ..()
-
 	update_base_lighting()
+
+	if(unoviable_timer)
+		SSticker.OnRoundstart(CALLBACK(src, PROC_REF(handle_ovi_timer)))
+
+	if((flags_area & AREA_UNWEEDABLE) && is_resin_allowed)
+		is_resin_allowed = FALSE
+		log_mapping("[src] has AREA_UNWEEDABLE flag but has is_resin_allowed as true! Forcing is_resin_allowed false...")
+
+	if(!(flags_area & AREA_UNWEEDABLE))
+		for(var/turf/current in src)
+			if(!current.density)
+				openable_turf_count++
+				continue
+			if(istype(current, /turf/closed/wall))
+				var/turf/closed/wall/current_wall = current
+				if(!(current_wall.turf_flags & TURF_HULL))
+					openable_turf_count++
+					continue
 
 /area/proc/initialize_power(override_power)
 	if(requires_power)
@@ -123,7 +149,7 @@
 
 /// Returns the correct ambience sound track for a client in this area
 /area/proc/get_sound_ambience(client/target)
-	if(SSweather.is_weather_event && SSweather.map_holder.should_affect_area(src))
+	if(SSweather.is_weather_event && SSweather.map_holder.should_affect_area(src) && weather_enabled)
 		return SSweather.weather_event_instance.ambience
 	return ambience_exterior
 
@@ -138,13 +164,7 @@
 					C.network.Remove(CAMERA_NET_POWER_ALARMS)
 				else
 					C.network.Add(CAMERA_NET_POWER_ALARMS)
-			for (var/mob/living/silicon/aiPlayer in ai_mob_list)
-				if(aiPlayer.z == source.z)
-					if (state == 1)
-						aiPlayer.cancelAlarm("Power", src, source)
-					else
-						aiPlayer.triggerAlarm("Power", src, cameras, source)
-			for(var/obj/structure/machinery/computer/station_alert/a in machines)
+			for(var/obj/structure/machinery/computer/station_alert/a in GLOB.machines)
 				if(a.z == source.z)
 					if(state == 1)
 						a.cancelAlarm("Power", src, source)
@@ -169,9 +189,7 @@
 		if (danger_level < 2 && atmosalm >= 2)
 			for(var/obj/structure/machinery/camera/C in src)
 				C.network.Remove(CAMERA_NET_ATMOSPHERE_ALARMS)
-			for(var/mob/living/silicon/aiPlayer in ai_mob_list)
-				aiPlayer.cancelAlarm("Atmosphere", src, src)
-			for(var/obj/structure/machinery/computer/station_alert/a in machines)
+			for(var/obj/structure/machinery/computer/station_alert/a in GLOB.machines)
 				a.cancelAlarm("Atmosphere", src, src)
 
 		if (danger_level >= 2 && atmosalm < 2)
@@ -180,9 +198,7 @@
 			for(var/obj/structure/machinery/camera/C in src)
 				cameras += C
 				C.network.Add(CAMERA_NET_ATMOSPHERE_ALARMS)
-			for(var/mob/living/silicon/aiPlayer in ai_mob_list)
-				aiPlayer.triggerAlarm("Atmosphere", src, cameras, src)
-			for(var/obj/structure/machinery/computer/station_alert/a in machines)
+			for(var/obj/structure/machinery/computer/station_alert/a in GLOB.machines)
 				a.triggerAlarm("Atmosphere", src, cameras, src)
 			air_doors_close()
 
@@ -231,9 +247,7 @@
 		for (var/obj/structure/machinery/camera/C in src)
 			cameras.Add(C)
 			C.network.Add(CAMERA_NET_FIRE_ALARMS)
-		for (var/mob/living/silicon/ai/aiPlayer in ai_mob_list)
-			aiPlayer.triggerAlarm("Fire", src, cameras, src)
-		for (var/obj/structure/machinery/computer/station_alert/a in machines)
+		for (var/obj/structure/machinery/computer/station_alert/a in GLOB.machines)
 			a.triggerAlarm("Fire", src, cameras, src)
 
 /area/proc/firereset()
@@ -249,9 +263,7 @@
 					INVOKE_ASYNC(D, TYPE_PROC_REF(/obj/structure/machinery/door, open))
 		for (var/obj/structure/machinery/camera/C in src)
 			C.network.Remove(CAMERA_NET_FIRE_ALARMS)
-		for (var/mob/living/silicon/ai/aiPlayer in ai_mob_list)
-			aiPlayer.cancelAlarm("Fire", src, src)
-		for (var/obj/structure/machinery/computer/station_alert/a in machines)
+		for (var/obj/structure/machinery/computer/station_alert/a in GLOB.machines)
 			a.cancelAlarm("Fire", src, src)
 
 /area/proc/readyalert()
@@ -291,13 +303,19 @@
 /area/proc/updateicon()
 	var/I //More important == bottom. Fire normally takes priority over everything.
 	if(flags_alarm_state && (!requires_power || power_environ)) //It either doesn't require power or the environment is powered. And there is an alarm.
-		if(flags_alarm_state & ALARM_WARNING_READY) I = "alarm_ready" //Area is ready for something.
-		if(flags_alarm_state & ALARM_WARNING_EVAC) I = "alarm_evac" //Evacuation happening.
-		if(flags_alarm_state & ALARM_WARNING_ATMOS) I = "alarm_atmos" //Atmos breach.
-		if(flags_alarm_state & ALARM_WARNING_FIRE) I = "alarm_fire" //Fire happening.
-		if(flags_alarm_state & ALARM_WARNING_DOWN) I = "alarm_down" //Area is shut down.
+		if(flags_alarm_state & ALARM_WARNING_READY)
+			I = "alarm_ready" //Area is ready for something.
+		if(flags_alarm_state & ALARM_WARNING_EVAC)
+			I = "alarm_evac" //Evacuation happening.
+		if(flags_alarm_state & ALARM_WARNING_ATMOS)
+			I = "alarm_atmos" //Atmos breach.
+		if(flags_alarm_state & ALARM_WARNING_FIRE)
+			I = "alarm_fire" //Fire happening.
+		if(flags_alarm_state & ALARM_WARNING_DOWN)
+			I = "alarm_down" //Area is shut down.
 
-	if(icon_state != I) icon_state = I //If the icon state changed, change it. Otherwise do nothing.
+	if(icon_state != I)
+		icon_state = I //If the icon state changed, change it. Otherwise do nothing.
 
 /area/proc/powered(chan) // return true if the area has power to given channel
 	if(!requires_power)
@@ -397,42 +415,6 @@
 	if(istype(M))
 		use_power(-M.calculate_current_power_usage(), M.power_channel)
 
-/area/proc/gravitychange(gravitystate = 0, area/A)
-
-	A.has_gravity = gravitystate
-
-	if(gravitystate)
-		for(var/mob/living/carbon/human/M in A)
-			thunk(M)
-		for(var/mob/M1 in A)
-			M1.make_floating(0)
-	else
-		for(var/mob/M in A)
-			if(M.Check_Dense_Object() && istype(src,/mob/living/carbon/human/))
-				var/mob/living/carbon/human/H = src
-				if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.flags_inventory & NOSLIPPING))  //magboots + dense_object = no floaty effect
-					H.make_floating(0)
-				else
-					H.make_floating(1)
-			else
-				M.make_floating(1)
-
-/area/proc/thunk(M)
-	if(istype(get_turf(M), /turf/open/space)) // Can't fall onto nothing.
-		return
-
-	if(istype(M,/mob/living/carbon/human/))  // Only humans can wear magboots, so we give them a chance to.
-		var/mob/living/carbon/human/H = M
-		if((istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.flags_inventory & NOSLIPPING)))
-			return
-		H.adjust_effect(5, STUN)
-		H.adjust_effect(5, WEAKEN)
-
-	to_chat(M, "Gravity!")
-
-
-
-
 //atmos related procs
 
 /area/return_air()
@@ -471,3 +453,19 @@
 		areas_in_z["[z]"] = list()
 	areas_in_z["[z]"] += src
 
+/**
+ * Purges existing weeds, and prevents future weeds from being placed.
+ */
+/area/proc/purge_weeds()
+	SEND_SIGNAL(src, COMSIG_AREA_RESIN_DISALLOWED)
+
+	is_resin_allowed = FALSE
+
+/// From roundstart, sets a timer to make an area oviable.
+/area/proc/handle_ovi_timer()
+	addtimer(VARSET_CALLBACK(src, unoviable_timer, FALSE), unoviable_timer)
+
+/area/sky
+	name = "Sky"
+	icon_state = "lv-626"
+	flags_area = AREA_UNWEEDABLE

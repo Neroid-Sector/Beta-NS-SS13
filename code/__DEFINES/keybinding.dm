@@ -14,6 +14,7 @@
 #define COMSIG_KB_ADMIN_INVISIMINTOGGLE_DOWN "keybinding_admin_invisimintoggle_down"
 #define COMSIG_KB_ADMIN_DEADMIN_DOWN "keybinding_admin_deadmin_down"
 #define COMSIG_KB_ADMIN_READMIN_DOWN "keybinding_admin_readmin_down"
+#define COMSIG_KB_ADMIN_MENTORSAY_DOWN "keybinding_admin_mentorsay_down"
 
 //Carbon
 #define COMSIG_KB_CARBON_HOLDRUNMOVEINTENT_DOWN "keybinding_carbon_holdrunmoveintent_down"
@@ -32,6 +33,7 @@
 //Client
 #define COMSIG_KB_CLIENT_GETHELP_DOWN "keybinding_client_gethelp_down"
 #define COMSIG_KB_CLIENT_SCREENSHOT_DOWN "keybinding_client_screenshot_down"
+#define COMSIG_KB_CLIENT_TOGGLEFULLSCREEN_DOWN "keybinding_client_togglefullscreen_down"
 #define COMSIG_KB_CLIENT_MINIMALHUD_DOWN "keybinding_client_minimalhud_down"
 
 //Communication
@@ -47,14 +49,10 @@
 #define COMSIG_KB_HUMAN_ISSUE_ORDER_MOVE "keybinding_human_issue_order_move"
 #define COMSIG_KB_HUMAN_ISSUE_ORDER_HOLD "keybinding_human_issue_order_hold"
 #define COMSIG_KB_HUMAN_ISSUE_ORDER_FOCUS "keybinding_human_issue_order_focus"
-
 #define COMSIG_KB_HUMAN_SPECIALIST_ACTIVATION_ONE "keybinding_human_specialist_activation_one"
 #define COMSIG_KB_HUMAN_SPECIALIST_ACTIVATION_TWO "keybinding_human_specialist_activation_two"
-
 #define COMSIG_KB_HUMAN_ROTATE_CHAIR "keybinding_human_rotate_chair"
-
 #define COMSIG_KB_HUMAN_SHOW_HELD_ITEM "keybinding_human_show_held_item"
-
 #define COMSIG_KB_HUMAN_CYCLE_HELMET_HUD "keybinding_human_cycle_helmet_hud"
 
 // Human Inventory Navigation
@@ -87,7 +85,8 @@
 #define COMSIG_KB_HUMAN_WEAPON_UNLOAD "keybinding_human_weapon_unload"
 #define COMSIG_KB_HUMAN_WEAPON_ATTACHMENT "keybinding_human_weapon_attachment"
 #define COMSIG_KB_HUMAN_WEAPON_ATTACHMENT_RAIL "keybinding_human_weapon_attachment_rail"
-
+#define COMSIG_KB_HUMAN_WEAPON_SHOTGUN_TUBE "keybinding_human_weapon_shotgun_tube"
+#define COMSIG_KB_HUMAN_WEAPON_TOGGLE_FRONTLINE_MODE "keybinding_human_weapon_toggle_frontline_mode"
 #define COMSIG_KB_HUMAN_WEAPON_TOGGLE_IFF "keybinding_human_weapon_toggle_iff"
 
 //Living
@@ -124,6 +123,7 @@
 #define COMSIG_KB_MOB_TARGETNEXT_DOWN "keybinding_mob_targetnext_down"
 #define COMSIG_KB_MOB_TARGETPREV_DOWN "keybinding_mob_targetprev_down"
 #define COMSIG_KB_MOB_BLOCKMOVEMENT_DOWN "keybinding_mob_blockmovement_down"
+#define COMSIG_KB_MOB_LOOK_UP "keybinding_mob_look_up"
 
 //Robot
 #define COMSIG_KB_SILICON_TOGGLEMODULEONE_DOWN "keybinding_silicon_togglemoduleone_down"
@@ -163,18 +163,20 @@
 #define COMSIG_KB_XENO_HIVE_STATUS "keybinding_hive_status"
 #define COMSIG_KB_XENO_HIDE "keybinding_hide"
 #define COMSIG_KB_XENO_EVOLVE "keybinding_evolve"
+#define COMSIG_KB_XENO_PURCHASE_STRAIN "keybinding_purchase_strain"
+#define COMSIG_KB_XENO_RESET_STRAIN "keybinding_reset_strain"
+
 // Yautja
 
 #define COMSIG_KB_YAUTJA_BUTCHER "keybinding_yautja_butcher"
 #define COMSIG_KB_YAUTJA_PRED_BUY "keybinding_yautja_pred_buy"
 #define COMSIG_KB_YAUTJA_MARK_PANEL "keybinding_yautja_mark_panel"
-#define COMSIG_KB_YAUTJA_MARK_FOR_HUNT "keybinding_yautja_mark_for_hunt"
-#define COMSIG_KB_YAUTJA_REMOVE_FROM_HUNT "keybinding_yautja_remove_from_hunt"
+#define COMSIG_KB_YAUTJA_TOGGLE_MARK_FOR_HUNT "keybinding_yautja_toggle_mark_for_hunt"
 
 // Yautja Bracer
 #define COMSIG_KB_YAUTJA_TOGGLE_NOTIFICATION_SOUND "keybinding_yautja_toggle_notification_sound"
 #define COMSIG_KB_YAUTJA_BRACER_MESSAGE "keybinding_yautja_bracer_message"
-#define COMSIG_KB_YAUTJA_WRISTBLADES "keybinding_yautja_wristblades"
+#define COMSIG_KB_YAUTJA_BRACER_ATTACHMENT "keybinding_yautja_bracer_attachement"
 #define COMSIG_KB_YAUTJA_TRACK_GEAR "keybinding_yautja_track_gear"
 #define COMSIG_KB_YAUTJA_CLOAKER "keybinding_yautja_cloaker"
 #define COMSIG_KB_YAUTJA_CASTER "keybinding_yautja_caster"
@@ -190,6 +192,7 @@
 #define COMSIG_KB_YAUTJA_BRACERNAME "keybinding_yautja_bracername"
 #define COMSIG_KB_YAUTJA_IDCHIP "keybinding_yautja_idchip"
 #define COMSIG_KB_YAUTJA_LINK_BRACER "keybinding_yautja_link_bracer"
+#define COMSIG_KB_YAUTJA_CONTROL_FALCON "keybinding_yautja_control_falcon"
 
 //mask
 #define COMSIG_KB_YAUTJA_MASK_TOGGLE_ZOOM "keybinding_yautja_mask_toggle_zoom"

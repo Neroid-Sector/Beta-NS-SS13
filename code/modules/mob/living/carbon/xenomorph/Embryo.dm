@@ -3,7 +3,7 @@
 /obj/item/alien_embryo
 	name = "alien embryo"
 	desc = "All slimy and yucky."
-	icon = 'icons/mob/xenos/larva.dmi'
+	icon = 'icons/mob/xenos/castes/tier_0/larva.dmi'
 	icon_state = "Embryo"
 	var/mob/living/affected_mob
 	var/stage = 0
@@ -78,10 +78,13 @@
 	process_growth(delta_time)
 
 /obj/item/alien_embryo/proc/process_growth(delta_time)
+	//Tutorial embryos do not progress.
+	if(hivenumber == XENO_HIVE_TUTORIAL)
+		return
 	var/datum/hive_status/hive = GLOB.hive_datum[hivenumber]
 	//Low temperature seriously hampers larva growth (as in, way below livable), so does stasis
 	if(!hive.hardcore) // Cannot progress if the hive has entered hardcore mode.
-		if(affected_mob.in_stasis || affected_mob.bodytemperature < 170)
+		if(affected_mob.in_stasis || affected_mob.bodytemperature < BODYTEMP_CRYO_LIQUID_THRESHOLD)
 			if(stage < 5)
 				counter += 0.33 * hive.larva_gestation_multiplier * delta_time
 			if(stage == 4) // Stasis affects late-stage less
@@ -102,9 +105,9 @@
 	switch(stage)
 		if(2)
 			if(prob(4))
-				if(affected_mob.knocked_out < 1)
+				if(!HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
 					affected_mob.pain.apply_pain(PAIN_CHESTBURST_WEAK)
-					affected_mob.visible_message(SPAN_DANGER("[affected_mob] starts shaking uncontrollably!"), \
+					affected_mob.visible_message(SPAN_DANGER("[affected_mob] starts shaking uncontrollably!"),
 												SPAN_DANGER("You feel something moving inside you! You start shaking uncontrollably!"))
 					affected_mob.apply_effect(1, PARALYZE)
 					affected_mob.make_jittery(105)
@@ -123,9 +126,9 @@
 			else if(prob(2))
 				affected_mob.emote("[pick("sneeze", "cough")]")
 			if(prob(5))
-				if(affected_mob.knocked_out < 1)
+				if(!HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
 					affected_mob.pain.apply_pain(PAIN_CHESTBURST_WEAK)
-					affected_mob.visible_message(SPAN_DANGER("\The [affected_mob] starts shaking uncontrollably!"), \
+					affected_mob.visible_message(SPAN_DANGER("\The [affected_mob] starts shaking uncontrollably!"),
 												SPAN_DANGER("You feel something moving inside you! You start shaking uncontrollably!"))
 					affected_mob.apply_effect(2, PARALYZE)
 					affected_mob.make_jittery(105)
@@ -139,9 +142,9 @@
 				if(prob(50))
 					affected_mob.emote("scream")
 			if(prob(6))
-				if(affected_mob.knocked_out < 1)
+				if(!HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
 					affected_mob.pain.apply_pain(PAIN_CHESTBURST_WEAK)
-					affected_mob.visible_message(SPAN_DANGER("[affected_mob] starts shaking uncontrollably!"), \
+					affected_mob.visible_message(SPAN_DANGER("[affected_mob] starts shaking uncontrollably!"),
 												SPAN_DANGER("You feel something moving inside you! You start shaking uncontrollably!"))
 					affected_mob.apply_effect(3, PARALYZE)
 					affected_mob.make_jittery(105)
@@ -160,7 +163,7 @@
 /obj/item/alien_embryo/proc/become_larva()
 	// We do not allow chest bursts on the Centcomm Z-level, to prevent
 	// stranded players from admin experiments and other issues
-	if(!affected_mob || is_admin_level(affected_mob.z))
+	if(!affected_mob || should_block_game_interaction(affected_mob))
 		return
 
 	stage = 6 // Increase the stage value to prevent this proc getting repeated
@@ -188,7 +191,7 @@
 
 	if(!picked)
 		// Get a candidate from observers
-		var/list/candidates = get_alien_candidates(hive)
+		var/list/candidates = get_alien_candidates(hive, abomination = (isyautja(affected_mob) || (flags_embryo & FLAG_EMBRYO_PREDATOR)))
 		if(candidates && length(candidates))
 			// If they were facehugged by a player thats still in queue, they get second dibs on the new larva.
 			if(hugger_ckey)
@@ -240,8 +243,6 @@
 
 	if(isyautja(affected_mob) || (flags_embryo & FLAG_EMBRYO_PREDATOR))
 		new_xeno = new /mob/living/carbon/xenomorph/larva/predalien(affected_mob)
-		yautja_announcement(SPAN_YAUTJABOLDBIG("WARNING!\n\nAn abomination has been detected at [get_area_name(new_xeno)]. It is a stain upon our purity and is unfit for life. Exterminate it immediately.\n\nHeavy Armory unlocked."))
-		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_YAUTJA_ARMORY_OPENED)
 	else
 		new_xeno = new(affected_mob)
 
@@ -260,11 +261,13 @@
 		new_xeno.key = picked.key
 
 		if(new_xeno.client)
-			new_xeno.client.change_view(world_view_size)
+			new_xeno.client.change_view(GLOB.world_view_size)
 			if(new_xeno.client.prefs?.toggles_flashing & FLASH_POOLSPAWN)
 				window_flash(new_xeno.client)
 
 		SSround_recording.recorder.track_player(new_xeno)
+		if(HAS_TRAIT(affected_mob, TRAIT_LISPING))
+			ADD_TRAIT(new_xeno, TRAIT_LISPING, affected_mob)
 
 		to_chat(new_xeno, SPAN_XENOANNOUNCE("You are a xenomorph larva inside a host! Move to burst out of it!"))
 		to_chat(new_xeno, "<B>Your job is to spread the hive and protect the Queen. If there's no Queen, you can become the Queen yourself by evolving into a drone.</B>")
@@ -287,17 +290,17 @@
 		victim.pain.apply_pain(PAIN_CHESTBURST_STRONG)  //ow that really hurts larvie!
 	var/message = SPAN_HIGHDANGER( pick("IT'S IN YOUR INSIDES!", "IT'S GNAWING YOU!", "MAKE IT STOP!", "YOU ARE GOING TO DIE!", "IT'S TEARING YOU APART!"))
 	to_chat(victim, message)
-	addtimer(CALLBACK(src, PROC_REF(cause_unbearable_pain), victim), rand(1, 3) SECONDS, TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(cause_unbearable_pain), victim), rand(1, 3) SECONDS, TIMER_UNIQUE|TIMER_NO_HASH_WAIT)
 
 /mob/living/carbon/xenomorph/larva/proc/chest_burst(mob/living/carbon/victim)
 	set waitfor = 0
 	if(victim.chestburst || loc != victim)
 		return
 	victim.chestburst = TRUE
-	to_chat(src, SPAN_DANGER("You start bursting out of [victim]'s chest!"))
-	if(victim.knocked_out < 1)
+	to_chat(src, SPAN_DANGER("We start bursting out of [victim]'s chest!"))
+	if(!HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
 		victim.apply_effect(20, DAZE)
-	victim.visible_message(SPAN_DANGER("\The [victim] starts shaking uncontrollably!"), \
+	victim.visible_message(SPAN_DANGER("\The [victim] starts shaking uncontrollably!"),
 						SPAN_DANGER("You feel something ripping up your insides!"))
 	victim.make_jittery(300)
 	sleep(30)
@@ -306,19 +309,17 @@
 	if(loc != victim)
 		victim.chestburst = 0
 		return
+	if(ishuman(victim) || isyautja(victim))
+		victim.emote("burstscream")
+	sleep(25) //Sound delay
 	victim.update_burst()
-	sleep(6) //Sprite delay
+	sleep(10) //Sprite delay
 	if(!victim || !victim.loc)
 		return
 	if(loc != victim)
-		victim.chestburst = 0 //if a doc removes the larva during the sleep(6), we must remove the 'bursting' overlay on the human
+		victim.chestburst = 0 //if a doc removes the larva during the sleep(10), we must remove the 'bursting' overlay on the human
 		victim.update_burst()
 		return
-
-	if(isyautja(victim))
-		victim.emote("roar")
-	else
-		victim.emote("scream")
 
 	var/burstcount = 0
 
@@ -327,6 +328,7 @@
 	for(var/mob/living/carbon/xenomorph/larva/larva_embryo in victim)
 		var/datum/hive_status/hive = GLOB.hive_datum[larva_embryo.hivenumber]
 		larva_embryo.forceMove(get_turf(victim)) //moved to the turf directly so we don't get stuck inside a cryopod or another mob container.
+		larva_embryo.grant_spawn_protection(1 SECONDS)
 		playsound(larva_embryo, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 25)
 
 		if(larva_embryo.client)
@@ -336,24 +338,25 @@
 		victim.attack_log += "\[[time_stamp()]\]<font color='orange'> Was chestbursted in [get_area_name(larva_embryo)] at X[victim.x], Y[victim.y], Z[victim.z]. The larva was [key_name(larva_embryo)].</font>"
 
 		if(burstcount)
-			step(larva_embryo, pick(cardinal))
+			step(larva_embryo, pick(GLOB.cardinals))
 
-		if(round_statistics)
-			round_statistics.total_larva_burst++
+		if(GLOB.round_statistics && (ishuman(victim)) && (SSticker.current_state == GAME_STATE_PLAYING) && (ROUND_TIME > 1 MINUTES))
+			GLOB.round_statistics.total_larva_burst++
 		GLOB.larva_burst_by_hive[hive] = (GLOB.larva_burst_by_hive[hive] || 0) + 1
 		burstcount++
 
 		if(!larva_embryo.ckey && larva_embryo.burrowable && loc && is_ground_level(loc.z) && (locate(/obj/structure/bed/nest) in loc) && hive.living_xeno_queen && hive.living_xeno_queen.z == loc.z)
 			larva_embryo.visible_message(SPAN_XENODANGER("[larva_embryo] quickly burrows into the ground."))
-			if(round_statistics && !larva_embryo.statistic_exempt)
-				round_statistics.track_new_participant(faction, -1) // keep stats sane
+			if(GLOB.round_statistics && !larva_embryo.statistic_exempt)
+				GLOB.round_statistics.track_new_participant(faction, 0) // keep stats sane
 			hive.stored_larva++
 			hive.hive_ui.update_burrowed_larva()
 			qdel(larva_embryo)
 
 		if(!victim.first_xeno)
-			to_chat(larva_embryo, SPAN_XENOHIGHDANGER("The Queen's will overwhelms your instincts..."))
-			to_chat(larva_embryo, SPAN_XENOHIGHDANGER("\"[hive.hive_orders]\""))
+			if(hive.hive_orders)
+				to_chat(larva_embryo, SPAN_XENOHIGHDANGER("The Queen's will overwhelms our instincts..."))
+				to_chat(larva_embryo, SPAN_XENOHIGHDANGER("\"[hive.hive_orders]\""))
 			log_attack("[key_name(victim)] chestbursted in [get_area_name(larva_embryo)] at X[victim.x], Y[victim.y], Z[victim.z]. The larva was [key_name(larva_embryo)].") //this is so that admins are not spammed with los logs
 
 	for(var/obj/item/alien_embryo/AE in victim)

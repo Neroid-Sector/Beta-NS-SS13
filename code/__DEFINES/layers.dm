@@ -11,6 +11,9 @@
 
 //#define AREA_LAYER 1
 
+#define DISPLACEMENT_PLATE_RENDER_LAYER 1
+#define DISPLACEMENT_PLATE_RENDER_TARGET "*DISPLACEMENT_PLATE_RENDER_TARGET"
+
 #define UNDER_TURF_LAYER 1.99
 
 #define TURF_LAYER 2
@@ -127,6 +130,8 @@
 #define ABOVE_XENO_LAYER 4.12
 /// For facehuggers
 #define FACEHUGGER_LAYER 4.13
+/// For Signs above everything but below weather
+#define BILLBOARD_LAYER 4.13
 /// For WEATHER
 #define WEATHER_LAYER 4.14
 
@@ -215,10 +220,16 @@
 /// NEVER HAVE ANYTHING BELOW THIS PLANE ADJUST IF YOU NEED MORE SPACE
 #define LOWEST_EVER_PLANE -200
 
+#define OPEN_SPACE_PLANE -9
+
+#define OPENSPACE_BACKDROP_PLANE -8
+
 /// Floor plane, self explanatory. Used for Ambient Occlusion filter
 #define FLOOR_PLANE -7
 /// Game Plane, where most of the game objects reside
 #define GAME_PLANE -6
+/// Above Game Plane. For things which are above game objects, but below screen effects.
+#define ABOVE_GAME_PLANE -5
 /// Roof plane, disappearing when entering buildings
 #define ROOF_PLANE -4
 
@@ -230,6 +241,7 @@
 ///--------------- FULLSCREEN RUNECHAT BUBBLES ------------
 #define LIGHTING_PLANE 100
 #define EXTERIOR_LIGHTING_PLANE 101
+#define NVG_PLANE 110
 
 ///Popup Chat Messages
 #define RUNECHAT_PLANE 501

@@ -1,4 +1,4 @@
-var/list/weather_notify_objects = list()
+GLOBAL_LIST_EMPTY(weather_notify_objects)
 
 SUBSYSTEM_DEF(weather)
 	name   = "Weather"
@@ -46,7 +46,7 @@ SUBSYSTEM_DEF(weather)
 
 /datum/controller/subsystem/weather/proc/setup_weather_areas()
 	weather_areas = list()
-	for(var/area/A in all_areas)
+	for(var/area/A in GLOB.all_areas)
 		if(A.weather_enabled && map_holder.should_affect_area(A))
 			weather_areas += A
 
@@ -58,7 +58,8 @@ SUBSYSTEM_DEF(weather)
 
 /datum/controller/subsystem/weather/proc/force_weather_holder(weather_holder)
 	if(weather_holder)
-		if(istext(weather_holder)) weather_holder = text2path(weather_holder)
+		if(istext(weather_holder))
+			weather_holder = text2path(weather_holder)
 		if(ispath(weather_holder))
 			map_holder = new weather_holder
 			setup_weather_areas()
@@ -201,4 +202,7 @@ SUBSYSTEM_DEF(weather)
 
 /obj/effect/weather_vfx_holder/rain
 	icon_state = "strata_storm"
+	alpha = 50
+/obj/effect/weather_vfx_holder/hybrisa_rain
+	icon_state = "hybrisa_rain"
 	alpha = 50

@@ -1,9 +1,3 @@
-#define RANGE_TURFS(RADIUS, CENTER) \
-block( \
-	locate(max(CENTER.x-(RADIUS),1),   max(CENTER.y-(RADIUS),1),   CENTER.z), \
-	locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
-)
-
 //Admin perms are in global.dm.
 
 /// To make it even more clear that something is a bitfield.
@@ -37,7 +31,8 @@ block( \
 #define MAP_KUTJEVO "Kutjevo Refinery"
 #define MAP_ICE_COLONY_V3 "Shivas Snowball" //Ice Rework, low pop enabled.
 #define MAP_RUNTIME "USS Runtime"
-#define MAP_LV522_CHANCES_CLAIM "LV-522 Chance's Claim" // Highpop Only
+#define MAP_LV522_CHANCES_CLAIM "LV-522 Chance's Claim"
+#define MAP_LV759_HYBRISA_PROSPERA "LV-759 Hybrisa Prospera" // Highpop Only
 #define MAP_NEW_VARADERO "New Varadero"//ice colony underground but as its own map
 #define MAP_CHINOOK "Chinook 91 GSO" //admin level
 
@@ -84,6 +79,8 @@ block( \
 #define SEE_INVISIBLE_LEVEL_TWO 45 //Used by some other stuff in code. It's really poorly organized.
 #define INVISIBILITY_LEVEL_TWO 45 //Used by some other stuff in code. It's really poorly organized.
 
+#define HIDE_INVISIBLE_OBSERVER 59 // define for when we want to hide all observer mobs.
+
 #define INVISIBILITY_OBSERVER 60
 #define SEE_INVISIBLE_OBSERVER 60
 
@@ -103,11 +100,13 @@ block( \
 #define SOUND_MIDI (1<<1)
 #define SOUND_AMBIENCE (1<<2)
 #define SOUND_LOBBY (1<<3)
-#define SOUND_INTERNET (1<<4)
+#define SOUND_INTERNET (1<<4) // Unused currently. Kept for default prefs compat only
 #define SOUND_REBOOT (1<<5)
 #define SOUND_ADMIN_MEME (1<<6)
 #define SOUND_ADMIN_ATMOSPHERIC (1<<7)
 #define SOUND_ARES_MESSAGE (1<<8)
+#define SOUND_OBSERVER_ANNOUNCEMENTS (1<<9)
+#define SOUND_FAX_MACHINE (1<<10)
 
 //toggles_chat
 #define CHAT_OOC (1<<0)
@@ -124,6 +123,7 @@ block( \
 #define CHAT_FFATTACKLOGS (1<<11)
 #define CHAT_GHOSTHIVEMIND (1<<12)
 #define CHAT_NICHELOGS (1<<13)
+#define CHAT_LISTENINGBUG (1<<14)
 
 //toggles_ghost
 #define GHOST_HEALTH_SCAN  (1<<0)
@@ -148,25 +148,37 @@ block( \
 #define PLAY_SYNTH (1<<5)
 #define PLAY_MISC (1<<6)
 
+//toggles_ert_pred
+#define PLAY_MERC (1<<0)
+#define PLAY_TWE (1<<1)
+#define PLAY_UPP (1<<2)
+#define PLAY_CLF (1<<3)
+#define PLAY_XENO_T2 (1<<4)
+#define PLAY_XENO_T3 (1<<5)
+
 //toggles_admin
 /// Splits admin tabs in Statpanel
 #define SPLIT_ADMIN_TABS (1<<0)
+#define ADMIN_STEALTHMODE (1<<1)
+#define ADMIN_AFK_SAFE (1<<2)
 
 //=================================================
 
-#define TOGGLES_CHAT_DEFAULT (CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_LOOC|CHAT_GHOSTHIVEMIND)
+#define TOGGLES_CHAT_DEFAULT (CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_LOOC|CHAT_GHOSTHIVEMIND|CHAT_FFATTACKLOGS)
 
 #define TOGGLES_GHOST_DEFAULT (GHOST_HEALTH_SCAN)
 
 #define TOGGLES_LANGCHAT_DEFAULT (LANGCHAT_SEE_EMOTES)
 
-#define TOGGLES_SOUND_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY|SOUND_INTERNET|SOUND_ADMIN_MEME|SOUND_ADMIN_ATMOSPHERIC)
+#define TOGGLES_SOUND_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY|SOUND_INTERNET|SOUND_ADMIN_MEME|SOUND_ADMIN_ATMOSPHERIC|SOUND_OBSERVER_ANNOUNCEMENTS|SOUND_FAX_MACHINE)
 
 #define TOGGLES_FLASHING_DEFAULT (FLASH_ROUNDSTART|FLASH_ROUNDEND|FLASH_CORPSEREVIVE|FLASH_ADMINPM|FLASH_UNNEST)
 
 #define TOGGLES_ERT_DEFAULT (PLAY_LEADER|PLAY_MEDIC|PLAY_ENGINEER|PLAY_HEAVY|PLAY_SMARTGUNNER|PLAY_SYNTH|PLAY_MISC)
 
-#define TOGGLES_ADMIN_DEFAULT (NONE)
+#define TOGGLES_ERT_GROUNDS (PLAY_MERC|PLAY_TWE|PLAY_UPP|PLAY_CLF|PLAY_XENO_T2|PLAY_XENO_T3)
+
+#define TOGGLES_ADMIN_DEFAULT (ADMIN_AFK_SAFE)
 
 // Game Intents
 #define INTENT_HELP 1
@@ -186,6 +198,7 @@ block( \
 #define DOCK_ATTEMPT_TIMEOUT 20 SECONDS
 #define DROPSHIP_WARMUP_TIME 10 SECONDS
 #define DROPSHIP_DROP_MSG_DELAY 30 SECONDS
+#define DROPSHIP_DROP_FIRE_DELAY 20 SECONDS
 #define DROPSHIP_TRANSIT_DURATION 100 SECONDS
 #define DROPSHIP_CORSAT_DURATION 30 SECONDS
 #define ELEVATOR_TRANSIT_DURATION 5 SECONDS
@@ -245,7 +258,7 @@ block( \
 
 /// Frequency stuff only works with 45kbps oggs.
 #define GET_RANDOM_FREQ rand(32000, 55000)
-
+#define GET_RANDOM_FREQ_MINOR rand(42000, 48000)
 
 // Ceilings
 // Ceiling types
@@ -281,7 +294,7 @@ block( \
 
 // Helpers
 /// Only use the CEILING_PROTECTION_TIER_X defines for `protection_level`
-#define CEILING_IS_PROTECTED(ceiling, protection_level) (ceiling >= protection_level)
+#define CEILING_IS_PROTECTED(ceiling, protection_level) ((ceiling) >= (protection_level))
 
 // Default font settings
 #define FONT_SIZE "5pt"
@@ -377,6 +390,7 @@ block( \
 #define WALL_DEVWALL "devwall"
 #define WALL_DEVWALL_R "devwall_r"
 #define WALL_HUNTERSHIP "metal"//DMI specific name
+#define WALL_AICORE "aiwall"
 
 //Defines for dropship weapon gimbals
 #define GIMBAL_LEFT -1
@@ -391,6 +405,7 @@ block( \
 #define FIRE_MISSION_WEAPON_REMOVED 8
 #define FIRE_MISSION_WEAPON_UNUSABLE 16
 #define FIRE_MISSION_WEAPON_OUT_OF_AMMO 32
+#define FIRE_MISSION_BAD_DIRECTION 64
 #define FIRE_MISSION_NOT_EXECUTABLE -1
 
 //Defines for firemission state
@@ -520,8 +535,10 @@ block( \
 	else
 		var/dx = abs(A.x - B.x)
 		var/dy = abs(A.y - B.y)
-		if(dx>=dy) dist = (0.934*dx) + (0.427*dy)
-		else dist = (0.427*dx) + (0.934*dy)
+		if(dx>=dy)
+			dist = (0.934*dx) + (0.427*dy)
+		else
+			dist = (0.427*dx) + (0.934*dy)
 
 	return dist
 
@@ -533,7 +550,7 @@ block( \
 /// `amount` - The number to get per time
 /// `time` - The time period in which to gain this amount
 /// To be used with delta_time. Multiplied by 10 to convert from deciseconds to seconds
-#define AMOUNT_PER_TIME(amount, time) ((amount / (time))*10)
+#define AMOUNT_PER_TIME(amount, time) (((amount) / (time))*10)
 
 // Local message mode. Used to decide wheter message should be dispatched on the radio.
 #define MESSAGE_MODE_LOCAL 1
@@ -552,3 +569,6 @@ block( \
 #define PERF_TOGGLE_SHUTTLES (1<<3)
 /// Disables loading Techwebs and additional Z-Levels
 #define PERF_TOGGLE_TECHWEBS (1<<4)
+
+/// Maptext styles
+#define MAP_STYLESHEET ".maptext { font-family: 'Small Fonts'; font-size: 7px; -dm-text-outline: 1px black; color: white; line-height: 1.1; } .center { text-align: center; } .langchat { font-family: 'Small Fonts'; font-size: 7px; -dm-text-outline: 1px black; } .langchat_small { font-size: 6px; } .langchat_yell { font-weight: bold; font-size: 10px; } .langchat_bolded { font-weight: bold; font-size: 8px; } .langchat_announce { font-weight: bold; font-size: 12px; } .langchat_bolditalicbig {font-weight: bold; font-size: 24px; font-style: italic; } .langchat_italic {font-style: italic; }"

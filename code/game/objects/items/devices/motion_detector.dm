@@ -18,6 +18,10 @@
 	name = "motion detector"
 	desc = "A device that detects movement, but ignores marines. Can also be used to scan a vehicle interior from outside, but accuracy of such scanning is low and there is no way to differentiate friends from foes."
 	icon = 'icons/obj/items/marine-items.dmi'
+	item_icons = list(
+		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/equipment/tools_lefthand.dmi',
+		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/equipment/tools_righthand.dmi',
+	)
 	icon_state = "detector"
 	item_state = "motion_detector"
 	flags_atom = FPRINT| CONDUCT
@@ -33,9 +37,9 @@
 	var/long_range_cooldown = 2
 	var/blip_type = "detector"
 	var/iff_signal = FACTION_MARINE
-	actions_types = list(/datum/action/item_action)
+	actions_types = list(/datum/action/item_action/toggle)
 	var/scanning = FALSE // controls if MD is in process of scan
-	var/datum/shape/rectangle/range_bounds
+	var/datum/shape/rectangle/square/range_bounds
 	var/long_range_locked = FALSE //only long-range MD
 	var/ping_overlay
 
@@ -48,12 +52,17 @@
 
 /obj/item/device/motiondetector/Initialize()
 	. = ..()
-	range_bounds = new //Just creating a rectangle datum
+	range_bounds = new //Just creating a square datum
 	update_icon()
 
 /obj/item/device/motiondetector/Destroy()
-	. = ..()
+	STOP_PROCESSING(SSobj, src)
+	for(var/to_delete in blip_pool)
+		qdel(blip_pool[to_delete])
+		blip_pool.Remove(to_delete)
+	blip_pool = null
 	range_bounds = null
+	return ..()
 
 /obj/item/device/motiondetector/update_icon()
 	//clear overlays
@@ -148,14 +157,6 @@
 	playsound(loc, 'sound/items/detector_turn_off.ogg', 30, FALSE, 5, 2)
 	STOP_PROCESSING(SSobj, src)
 
-/obj/item/device/motiondetector/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	for(var/to_delete in blip_pool)
-		qdel(blip_pool[to_delete])
-		blip_pool.Remove(to_delete)
-	blip_pool = null
-	return ..()
-
 /obj/item/device/motiondetector/process()
 	if(isturf(loc))
 		toggle_active(null, TRUE)
@@ -169,8 +170,10 @@
 
 	if(!detector_mode)
 		long_range_cooldown--
-		if(long_range_cooldown) return
-		else long_range_cooldown = initial(long_range_cooldown)
+		if(long_range_cooldown)
+			return
+		else
+			long_range_cooldown = initial(long_range_cooldown)
 
 	scan()
 
@@ -191,6 +194,14 @@
 	if(ishuman(A.loc))
 		return A.loc
 
+/obj/item/device/motiondetector/xm4
+
+///Forces the blue blip to appear around the detected mob
+/obj/item/device/motiondetector/xm4/get_user()
+	var/atom/holder = loc
+	if(ishuman(holder.loc))
+		return holder.loc
+
 /obj/item/device/motiondetector/proc/apply_debuff(mob/M)
 	return
 
@@ -207,20 +218,16 @@
 	if(!istype(cur_turf))
 		return
 
-	if(!range_bounds)
-		range_bounds = new/datum/shape/rectangle
-	range_bounds.center_x = cur_turf.x
-	range_bounds.center_y = cur_turf.y
-	range_bounds.width = detector_range * 2
-	range_bounds.height = detector_range * 2
+	range_bounds.set_shape(cur_turf.x, cur_turf.y, detector_range * 2)
 
 	var/list/ping_candidates = SSquadtree.players_in_range(range_bounds, cur_turf.z, QTREE_EXCLUDE_OBSERVER | QTREE_SCAN_MOBS)
 
 	for(var/A in ping_candidates)
 		var/mob/living/M = A //do this to skip the unnecessary istype() check; everything in ping_candidate is a mob already
-		if(M == loc) continue //device user isn't detected
-		if(world.time > M.l_move_time + 20) continue //hasn't moved recently
-		if(isrobot(M)) continue
+		if(M == loc)
+			continue //device user isn't detected
+		if(world.time > M.l_move_time + 20)
+			continue //hasn't moved recently
 		if(M.get_target_lock(iff_signal))
 			continue
 
@@ -262,16 +269,22 @@
 		var/view_x_offset = 0
 		var/view_y_offset = 0
 		if(c_view > 7)
-			if(user.client.pixel_x >= 0) view_x_offset = round(user.client.pixel_x/32)
-			else view_x_offset = Ceiling(user.client.pixel_x/32)
-			if(user.client.pixel_y >= 0) view_y_offset = round(user.client.pixel_y/32)
-			else view_y_offset = Ceiling(user.client.pixel_y/32)
+			if(user.client.pixel_x >= 0)
+				view_x_offset = floor(user.client.pixel_x/32)
+			else
+				view_x_offset = ceil(user.client.pixel_x/32)
+			if(user.client.pixel_y >= 0)
+				view_y_offset = floor(user.client.pixel_y/32)
+			else
+				view_y_offset = ceil(user.client.pixel_y/32)
 
 		var/diff_dir_x = 0
 		var/diff_dir_y = 0
-		if(target.x - user.x > c_view + view_x_offset) diff_dir_x = 4
+		if(target.x - user.x > c_view + view_x_offset)
+			diff_dir_x = 4
 		else if(target.x - user.x < -c_view + view_x_offset) diff_dir_x = 8
-		if(target.y - user.y > c_view + view_y_offset) diff_dir_y = 1
+		if(target.y - user.y > c_view + view_y_offset)
+			diff_dir_y = 1
 		else if(target.y - user.y < -c_view + view_y_offset) diff_dir_y = 2
 		if(diff_dir_x || diff_dir_y)
 			DB.icon_state = "[blip_icon]_blip_dir"
@@ -280,7 +293,7 @@
 			DB.icon_state = "[blip_icon]_blip"
 			DB.setDir(initial(DB.dir))
 
-		DB.screen_loc = "[Clamp(c_view + 1 - view_x_offset + (target.x - user.x), 1, 2*c_view+1)],[Clamp(c_view + 1 - view_y_offset + (target.y - user.y), 1, 2*c_view+1)]"
+		DB.screen_loc = "[clamp(c_view + 1 - view_x_offset + (target.x - user.x), 1, 2*c_view+1)],[clamp(c_view + 1 - view_y_offset + (target.y - user.y), 1, 2*c_view+1)]"
 		user.client.add_to_screen(DB)
 		addtimer(CALLBACK(src, PROC_REF(clear_pings), user, DB), 1 SECONDS)
 

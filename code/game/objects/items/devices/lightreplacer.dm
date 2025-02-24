@@ -25,7 +25,7 @@
 // I'm not sure everyone will react the emag's features so please say what your opinions are of it.
 //
 // When emagged it will rig every light it replaces, which will explode when the light is on.
-// This is VERY noticable, even the device's name changes when you emag it so if anyone
+// This is VERY noticeable, even the device's name changes when you emag it so if anyone
 // examines you when you're holding it in your hand, you will be discovered.
 // It will also be very obvious who is setting all these lights off, since only Janitor Borgs and Janitors have easy
 // access to them, and only one of them can emag their device.
@@ -45,7 +45,11 @@
 
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "lightreplacer0"
-	item_state = "electronic"
+	item_state = "light_replacer"
+	item_icons = list(
+		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/equipment/tools_lefthand.dmi',
+		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/equipment/tools_righthand.dmi',
+	)
 
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_WAIST
@@ -120,8 +124,9 @@
 
 	if(target.status != LIGHT_OK)
 		if(CanUse(U))
-			if(!Use(U)) return
-			to_chat(U, SPAN_NOTICE("You replace the [target.fitting] with the [src]."))
+			if(!Use(U))
+				return
+			to_chat(U, SPAN_NOTICE("You replace the [target.fitting] with [src]."))
 
 			if(target.status != LIGHT_EMPTY)
 

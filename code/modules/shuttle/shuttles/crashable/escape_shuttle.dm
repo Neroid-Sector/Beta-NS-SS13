@@ -11,7 +11,7 @@
 	/// The % chance of the escape pod crashing into the groundmap before lifeboats leaving
 	var/early_crash_land_chance = 75
 	/// The % chance of the escape pod crashing into the groundmap
-	var/crash_land_chance = 25
+	var/crash_land_chance = 0
 	/// How many people can be in the escape pod before it crashes
 	var/max_capacity = 3
 
@@ -25,7 +25,7 @@
 		for(var/obj/structure/machinery/door/airlock/evacuation/air in place)
 			door_handler.doors += list(air)
 			air.breakable = FALSE
-			air.indestructible = TRUE
+			air.explo_proof = TRUE
 			air.unacidable = TRUE
 			air.linked_shuttle = src
 
@@ -49,7 +49,7 @@
 			cryotube.dock_state = STATE_READY
 	for(var/obj/structure/machinery/door/air in door_handler.doors)
 		air.breakable = TRUE
-		air.indestructible = FALSE
+		air.explo_proof = FALSE
 		air.unslashable = FALSE
 		air.unacidable = FALSE
 
@@ -73,14 +73,16 @@
 		for(var/mob/living/occupant in interior_area)
 			occupant_count++
 		for(var/obj/structure/machinery/cryopod/evacuation/cryotube in interior_area)
+			if(cryotube.occupant)
+				occupant_count++
 			cryos += list(cryotube)
 	if (occupant_count > max_capacity)
 		playsound(src,'sound/effects/escape_pod_warmup.ogg', 50, 1)
+		mode = SHUTTLE_CRASHED
 		sleep(31)
 		var/turf/sploded = return_center_turf()
 		cell_explosion(sploded, 100, 20, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, create_cause_data("escape pod malfunction")) //Clears out walls
 		sleep(25)
-		mode = SHUTTLE_CRASHED
 		for(var/obj/structure/machinery/cryopod/evacuation/cryotube in cryos)
 			cryotube.go_out()
 		door_handler.control_doors("force-unlock")
@@ -97,13 +99,13 @@
 				if(acid.acid_t == air)
 					qdel(acid)
 			air.breakable = FALSE
-			air.indestructible = TRUE
+			air.explo_proof = TRUE
 			air.unacidable = TRUE
 
 /obj/docking_port/mobile/crashable/escape_shuttle/crash_check()
 	. = ..()
 
-	if(prob((EvacuationAuthority.evac_status >= EVACUATION_STATUS_IN_PROGRESS ? crash_land_chance : early_crash_land_chance)))
+	if(prob((SShijack.hijack_status >= HIJACK_OBJECTIVES_COMPLETE ? crash_land_chance : early_crash_land_chance)))
 		return TRUE
 
 /obj/docking_port/mobile/crashable/escape_shuttle/open_doors()
@@ -124,8 +126,8 @@
 	id = ESCAPE_SHUTTLE_EAST_CL
 	width = 4
 	height = 5
-	early_crash_land_chance = 25
-	crash_land_chance = 5
+	early_crash_land_chance = 0
+	crash_land_chance = 0
 
 /obj/docking_port/mobile/crashable/escape_shuttle/w
 	id = ESCAPE_SHUTTLE_WEST

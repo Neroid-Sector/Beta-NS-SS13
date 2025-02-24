@@ -14,8 +14,7 @@ CHANGING ICONS
 
 Several new procs have been added to the /icon datum to simplify working with icons. To use them,
 remember you first need to setup an /icon var like so:
-
-var/icon/my_icon = new('iconfile.dmi')
+	var/icon/my_icon = new('iconfile.dmi')
 
 icon/ChangeOpacity(amount = 1)
 	A very common operation in DM is to try to make an icon more or less transparent. Making an icon more
@@ -239,7 +238,8 @@ world
 	if(gray)
 		MapColors(255/gray,0,0, 0,255/gray,0, 0,0,255/gray, 0,0,0)
 		Blend(tone, ICON_MULTIPLY)
-	else SetIntensity(0)
+	else
+		SetIntensity(0)
 	if(255-gray)
 		upper.Blend(rgb(gray,gray,gray), ICON_SUBTRACT)
 		upper.MapColors((255-TONE[1])/(255-gray),0,0,0, 0,(255-TONE[2])/(255-gray),0,0, 0,0,(255-TONE[3])/(255-gray),0, 0,0,0,0, 0,0,0,1)
@@ -274,7 +274,8 @@ world
  */
 
 /proc/ReadRGB(rgb)
-	if(!rgb) return
+	if(!rgb)
+		return
 
 	// interpret the HSV or HSVA value
 	var/i=1,start=1
@@ -283,19 +284,25 @@ world
 	var/digits=0
 	for(i=start, i<=length(rgb), ++i)
 		ch = text2ascii(rgb, i)
-		if(ch < 48 || (ch > 57 && ch < 65) || (ch > 70 && ch < 97) || ch > 102) break
+		if(ch < 48 || (ch > 57 && ch < 65) || (ch > 70 && ch < 97) || ch > 102)
+			break
 		++digits
-		if(digits == 8) break
+		if(digits == 8)
+			break
 
 	var/single = digits < 6
-	if(digits != 3 && digits != 4 && digits != 6 && digits != 8) return
-	if(digits == 4 || digits == 8) usealpha = 1
+	if(digits != 3 && digits != 4 && digits != 6 && digits != 8)
+		return
+	if(digits == 4 || digits == 8)
+		usealpha = 1
 	for(i=start, digits>0, ++i)
 		ch = text2ascii(rgb, i)
-		if(ch >= 48 && ch <= 57) ch -= 48
+		if(ch >= 48 && ch <= 57)
+			ch -= 48
 		else if(ch >= 65 && ch <= 70) ch -= 55
 		else if(ch >= 97 && ch <= 102) ch -= 87
-		else break
+		else
+			break
 		--digits
 		switch(which)
 			if(0)
@@ -318,7 +325,8 @@ world
 				else if(!(digits & 1)) ++which
 			if(3)
 				alpha = (alpha << 4)|ch
-				if(single) alpha |= alpha << 4
+				if(single)
+					alpha |= alpha << 4
 
 	. = list(r, g, b)
 	if(usealpha) . += alpha
@@ -333,7 +341,7 @@ world
 /proc/getFlatIcon(image/appearance, defdir, deficon, defstate, defblend, start = TRUE, no_anim = FALSE, appearance_flags = FALSE)
 	// Loop through the underlays, then overlays, sorting them into the layers list
 	#define PROCESS_OVERLAYS_OR_UNDERLAYS(flat, process, base_layer) \
-		for (var/i in 1 to process.len) { \
+		for (var/i in 1 to length(process)) { \
 			var/image/current = process[i]; \
 			if (!current) { \
 				continue; \
@@ -348,7 +356,7 @@ world
 				} \
 				current_layer = base_layer + appearance.layer + current_layer / 1000; \
 			} \
-			for (var/index_to_compare_to in 1 to layers.len) { \
+			for (var/index_to_compare_to in 1 to length(layers)) { \
 				var/compare_to = layers[index_to_compare_to]; \
 				if (current_layer < layers[compare_to]) { \
 					layers.Insert(index_to_compare_to, current); \
@@ -404,7 +412,7 @@ world
 
 	var/curblend = appearance.blend_mode || defblend
 
-	if(appearance.overlays.len || appearance.underlays.len)
+	if(length(appearance.overlays) || length(appearance.underlays))
 		var/icon/flat = icon(flat_template)
 		// Layers will be a sorted list of icons/overlays, based on the order in which they are displayed
 		var/list/layers = list()
@@ -530,7 +538,8 @@ world
 /proc/getIconMask(atom/A)//By yours truly. Creates a dynamic mask for a mob/whatever. /N
 	var/icon/alpha_mask = new(A.icon,A.icon_state)//So we want the default icon and icon state of A.
 	for(var/I in A.overlays)//For every image in overlays. var/image/I will not work, don't try it.
-		if(I:layer>A.layer) continue//If layer is greater than what we need, skip it.
+		if(I:layer>A.layer)
+			continue//If layer is greater than what we need, skip it.
 		var/icon/image_overlay = new(I:icon,I:icon_state)//Blend only works with icon objects.
 		//Also, icons cannot directly set icon_state. Slower than changing variables but whatever.
 		alpha_mask.Blend(image_overlay,ICON_OR)//OR so they are lumped together in a nice overlay.
@@ -549,30 +558,29 @@ world
 	if (!value) return color
 
 	var/list/RGB = ReadRGB(color)
-	RGB[1] = Clamp(RGB[1]+value,0,255)
-	RGB[2] = Clamp(RGB[2]+value,0,255)
-	RGB[3] = Clamp(RGB[3]+value,0,255)
+	RGB[1] = clamp(RGB[1]+value,0,255)
+	RGB[2] = clamp(RGB[2]+value,0,255)
+	RGB[3] = clamp(RGB[3]+value,0,255)
 	return rgb(RGB[1],RGB[2],RGB[3])
 
 /proc/sort_atoms_by_layer(list/atoms)
 	// Comb sort icons based on levels
 	var/list/result = atoms.Copy()
-	var/gap = result.len
+	var/gap = length(result)
 	var/swapped = 1
 	while (gap > 1 || swapped)
 		swapped = 0
 		if(gap > 1)
-			gap = round(gap / 1.3) // 1.3 is the emperic comb sort coefficient
+			gap = floor(gap / 1.3) // 1.3 is the emperic comb sort coefficient
 		if(gap < 1)
 			gap = 1
-		for(var/i = 1; gap + i <= result.len; i++)
+		for(var/i = 1; gap + i <= length(result); i++)
 			var/atom/l = result[i] //Fucking hate
 			var/atom/r = result[gap+i] //how lists work here
 			if(l.layer > r.layer) //no "result[i].layer" for me
 				result.Swap(i, gap + i)
 				swapped = 1
 	return result
-
 
 /image/proc/flick_overlay(atom/A, duration) //originally code related to goonPS. This isn't the original code, but has the same effect
 	A.overlays.Add(src)
@@ -583,7 +591,7 @@ world
 		A.overlays.Remove(src)
 
 /mob/proc/flick_heal_overlay(time, color = "#00FF00") //used for warden and queen healing
-	var/image/I = image('icons/mob/mob.dmi', src, "heal_overlay")
+	var/image/I = image('icons/mob/do_afters.dmi', src, "heal_overlay")
 	switch(icon_size)
 		if(48)
 			I.pixel_x = 8
@@ -682,8 +690,9 @@ world
  * * moving - whether or not to use a moving state for the given icon
  * * sourceonly - if TRUE, only generate the asset and send back the asset url, instead of tags that display the icon to players
  * * extra_clases - string of extra css classes to use when returning the icon string
+ * * keyonly - if TRUE, only returns the asset key to use get_asset_url manually. Overrides sourceonly.
  */
-/proc/icon2html(atom/thing, client/target, icon_state, dir = SOUTH, frame = 1, moving = FALSE, sourceonly = FALSE, extra_classes = null)
+/proc/icon2html(atom/thing, client/target, icon_state, dir = SOUTH, frame = 1, moving = FALSE, sourceonly = FALSE, extra_classes = null, keyonly = FALSE)
 	if (!thing)
 		return
 
@@ -714,6 +723,8 @@ world
 				SSassets.transport.register_asset(name, thing)
 			for (var/thing2 in targets)
 				SSassets.transport.send_assets(thing2, name)
+			if(keyonly)
+				return name
 			if(sourceonly)
 				return SSassets.transport.get_asset_url(name)
 			return "<img class='[extra_classes] icon icon-misc' src='[SSassets.transport.get_asset_url(name)]'>"
@@ -756,6 +767,8 @@ world
 		SSassets.transport.register_asset(key, rsc_ref, file_hash, icon_path)
 	for (var/client_target in targets)
 		SSassets.transport.send_assets(client_target, key)
+	if(keyonly)
+		return key
 	if(sourceonly)
 		return SSassets.transport.get_asset_url(key)
 	return "<img class='[extra_classes] icon icon-[icon_state]' src='[SSassets.transport.get_asset_url(key)]'>"
@@ -915,8 +928,9 @@ world
 		// From /datum/preferences/proc/copy_appearance_to
 		body.age = original.age
 		body.gender = original.gender
-		body.ethnicity = original.ethnicity
+		body.skin_color = original.skin_color
 		body.body_type = original.body_type
+		body.body_size = original.body_size
 
 		body.r_eyes = original.r_eyes
 		body.g_eyes = original.g_eyes

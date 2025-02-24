@@ -13,9 +13,10 @@
 	var/j //second iterator
 	var/k //third iterator (I know, that's a lot, but I'm trying to make this modular, so bear with me)
 
-	for(i in cardinal) //For all cardinal dir turfs
+	for(i in GLOB.cardinals) //For all cardinal dir turfs
 		T = get_step(src, i)
-		if(!istype(T)) continue
+		if(!istype(T))
+			continue
 		for(j in tiles_with) //And for all types that we tile with
 			if(istype(T, j))
 				junction |= i
@@ -34,9 +35,10 @@
 	var/j //second iterator
 	var/atom/k //third iterator (I know, that's a lot, but I'm trying to make this modular, so bear with me)
 
-	for(i in cardinal) //For all cardinal dir turfs
+	for(i in GLOB.cardinals) //For all cardinal dir turfs
 		T = get_step(src, i)
-		if(!istype(T)) continue
+		if(!istype(T))
+			continue
 		for(j in tiles_with) //And for all types that we tile with
 			if(istype(T, j))
 				T.relativewall() //If we tile this type, junction it
@@ -61,9 +63,10 @@
 	var/j
 	var/k
 
-	for(i in cardinal)
+	for(i in GLOB.cardinals)
 		T = get_step(src, i)
-		if(!istype(T)) continue
+		if(!istype(T))
+			continue
 		for(j in tiles_with)
 			if(istype(T, j))
 				jun_1 |= i
@@ -93,9 +96,10 @@
 	var/j
 	var/k
 
-	for(i in cardinal)
+	for(i in GLOB.cardinals)
 		T = get_step(src, i)
-		if(!istype(T)) continue
+		if(!istype(T))
+			continue
 		for(j in tiles_with)
 			if(istype(T, j))
 				jun_1 |= i
@@ -227,9 +231,10 @@
 	var/j //second iterator
 	var/k //third iterator (I know, that's a lot, but I'm trying to make this modular, so bear with me)
 
-	for(i in alldirs) //For all cardinal dir turfs
+	for(i in GLOB.alldirs) //For all cardinal dir turfs
 		T = get_step(src, i)
-		if(!istype(T)) continue
+		if(!istype(T))
+			continue
 		for(j in tiles_with) //And for all types that we tile with
 			if(istype(T, j))
 				junction |= i
@@ -249,9 +254,10 @@
 	var/j //second iterator
 	var/k //third iterator (I know, that's a lot, but I'm trying to make this modular, so bear with me)
 
-	for(i in alldirs) //For all cardinal dir turfs
+	for(i in GLOB.alldirs) //For all cardinal dir turfs
 		T = get_step(src, i)
-		if(!istype(T)) continue
+		if(!istype(T))
+			continue
 		for(j in tiles_with) //And for all types that we tile with
 			if(istype(T, j))
 				junction |= i
