@@ -240,26 +240,15 @@
 
 	var/amt_hardpoints = LAZYLEN(hardpoints)
 	if(amt_hardpoints)
-		var/list/hardpoint_images[amt_hardpoints]
-		var/list/C[HDPT_LAYER_MAX]
-
-		// Counting sort the images into a list so we get the hardpoint images sorted by layer
-		for(var/obj/item/hardpoint/H in hardpoints)
-			C[H.hdpt_layer] += 1
-
-		for(var/i = 2 to HDPT_LAYER_MAX)
-			C[i] += C[i-1]
-
-		for(var/obj/item/hardpoint/H in hardpoints)
-			hardpoint_images[C[H.hdpt_layer]] = H.get_hardpoint_image()
-			C[H.hdpt_layer] -= 1
-
-		for(var/i = 1 to amt_hardpoints)
-			var/image/I = hardpoint_images[i]
-			// get_hardpoint_image() can return a list of images
-			if(istype(I))
-				I.layer = layer + (i*0.1)
-			overlays += I
+		for(var/obj/item/hardpoint/hardpoint in hardpoints)
+			var/image/hardpoint_image = hardpoint.get_hardpoint_image()
+			if(istype(hardpoint_image))
+				hardpoint_image.layer = layer + hardpoint.hdpt_layer * 0.1
+			else if(islist(hardpoint_image))
+				var/list/image/hardpoint_image_list = hardpoint_image // Linter will complain about iterating on "an image" otherwise
+				for(var/image/subimage in hardpoint_image_list)
+					subimage.layer = layer + hardpoint.hdpt_layer * 0.1
+			overlays += hardpoint_image
 
 	if(clamped)
 		var/image/J = image(icon, icon_state = "vehicle_clamp", layer = layer+0.1)
@@ -269,7 +258,7 @@
 /obj/vehicle/multitile/get_examine_text(mob/user)
 	. = ..()
 	for(var/obj/item/hardpoint/H in hardpoints)
-		. += "There is \a [H] module installed."
+		. += "There [H.p_are()] \a [H] module[H.p_s()] installed."
 		H.examine(user, TRUE)
 	if(clamped)
 		. += "There is a vehicle clamp attached."
@@ -278,7 +267,7 @@
 		for(var/datum/role_reserved_slots/RRS in interior.role_reserved_slots)
 			passengers_amount += RRS.taken
 		if(passengers_amount > 0)
-			. += "You can sense approximately [passengers_amount] hosts inside."
+			. += "You can sense approximately [passengers_amount] host\s inside."
 
 /obj/vehicle/multitile/proc/load_hardpoints()
 	return
@@ -304,14 +293,14 @@
 		// Health check is done before the hardpoint takes damage
 		// This way, the frame won't take damage at the same time hardpoints break
 		if(H.can_take_damage())
-			H.take_damage(round(damage * get_dmg_multi(type)))
+			H.take_damage(floor(damage * get_dmg_multi(type)))
 			all_broken = FALSE
 
 	// If all hardpoints are broken, the vehicle frame begins taking full damage
 	if(all_broken)
 		health = max(0, health - damage * get_dmg_multi(type))
 	else //otherwise, 1/10th of damage lands on the hull
-		health = max(0, health - round(damage * get_dmg_multi(type) / 10))
+		health = max(0, health - floor(damage * get_dmg_multi(type) / 10))
 
 	if(ismob(attacker))
 		var/mob/M = attacker
@@ -345,19 +334,29 @@
 
 	// Checked here because we want to be able to null the mob in a seat
 	if(!istype(M))
-		return
+		return FALSE
 
 	M.set_interaction(src)
 	M.reset_view(src)
 	give_action(M, /datum/action/human_action/vehicle_unbuckle)
+	return TRUE
 
+/// Get crewmember of seat.
 /obj/vehicle/multitile/proc/get_seat_mob(seat)
 	return seats[seat]
 
+/// Get seat of crewmember.
 /obj/vehicle/multitile/proc/get_mob_seat(mob/M)
 	for(var/seat in seats)
 		if(seats[seat] == M)
 			return seat
+	return null
+
+/// Get active hardpoint of crewmember.
+/obj/vehicle/multitile/proc/get_mob_hp(mob/crew)
+	var/seat = get_mob_seat(crew)
+	if(seat)
+		return active_hp[seat]
 	return null
 
 /obj/vehicle/multitile/proc/get_passengers()

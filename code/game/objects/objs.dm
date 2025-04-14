@@ -14,7 +14,8 @@
 	/// If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 	var/in_use = FALSE
 	var/mob/living/buckled_mob
-	var/buckle_lying = FALSE //Is the mob buckled in a lying position
+	/// Bed-like behaviour, forces mob.lying = buckle_lying if not set to [NO_BUCKLE_LYING].
+	var/buckle_lying = NO_BUCKLE_LYING
 	var/can_buckle = FALSE
 	/**Applied to surgery times for mobs buckled prone to it or lying on the same tile, if the surgery
 	cares about surface conditions. The lowest multiplier of objects on the tile is used.**/
@@ -141,34 +142,39 @@
 			return "on [t_his] feet"
 	return "...somewhere?"
 
-/obj/proc/updateUsrDialog()
-	if(in_use)
-		var/is_in_use = 0
-		var/list/nearby = viewers(1, src)
-		for(var/mob/M in nearby)
-			if ((M.client && M.interactee == src))
-				is_in_use = 1
-				attack_hand(M)
-		if (ishighersilicon(usr))
-			if (!(usr in nearby))
-				if (usr.client && usr.interactee==src) // && M.interactee == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
-					is_in_use = 1
-					attack_remote(usr)
-		in_use = is_in_use
+/obj/proc/updateUsrDialog(mob/user)
+	if(!user)
+		user = usr
+	if(!in_use || !user)
+		return
+
+	var/is_in_use = FALSE
+	var/list/nearby = viewers(1, src)
+	for(var/mob/cur_mob in nearby)
+		if(cur_mob.client && cur_mob.interactee == src)
+			is_in_use = TRUE
+			attack_hand(cur_mob)
+	if(isSilicon(user))
+		if(!(user in nearby))
+			if(user.client && user.interactee == src) // && M.interactee == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
+				is_in_use = TRUE
+				attack_remote(user)
+
+	in_use = is_in_use
 
 /obj/proc/updateDialog()
 	// Check that people are actually using the machine. If not, don't update anymore.
-	if(in_use)
-		var/list/nearby = viewers(1, src)
-		var/is_in_use = 0
-		for(var/mob/M in nearby)
-			if ((M.client && M.interactee == src))
-				is_in_use = 1
-				src.interact(M)
-		var/ai_in_use = AutoUpdateAI(src)
+	if(!in_use)
+		return
 
-		if(!ai_in_use && !is_in_use)
-			in_use = 0
+	var/is_in_use = FALSE
+	var/list/nearby = viewers(1, src)
+	for(var/mob/cur_mob in nearby)
+		if(cur_mob.client && cur_mob.interactee == src)
+			is_in_use = TRUE
+			interact(cur_mob)
+
+	in_use = is_in_use
 
 /obj/proc/interact(mob/user)
 	return
@@ -202,6 +208,9 @@
 /obj/proc/hear_talk(mob/living/M as mob, msg, verb="says", datum/language/speaking, italics = 0)
 	return
 
+/obj/proc/see_emote(mob/living/M as mob, emote, audible = FALSE)
+	return
+
 /obj/attack_hand(mob/user)
 	if(can_buckle) manual_unbuckle(user)
 	else . = ..()
@@ -224,8 +233,8 @@
 	else . = ..()
 
 /obj/proc/afterbuckle(mob/M as mob) // Called after somebody buckled / unbuckled
-	handle_rotation()
-	SEND_SIGNAL(src, COSMIG_OBJ_AFTER_BUCKLE, buckled_mob)
+	handle_rotation() // To be removed when we have full dir support in set_buckled
+	SEND_SIGNAL(src, COMSIG_OBJ_AFTER_BUCKLE, buckled_mob)
 	if(!buckled_mob)
 		UnregisterSignal(M, COMSIG_PARENT_QDELETING)
 	else
@@ -235,9 +244,9 @@
 /obj/proc/unbuckle()
 	SIGNAL_HANDLER
 	if(buckled_mob && buckled_mob.buckled == src)
-		buckled_mob.buckled = null
+		buckled_mob.clear_alert(ALERT_BUCKLED)
+		buckled_mob.set_buckled(null)
 		buckled_mob.anchored = initial(buckled_mob.anchored)
-		buckled_mob.update_canmove()
 
 		var/M = buckled_mob
 		REMOVE_TRAITS_IN(buckled_mob, TRAIT_SOURCE_BUCKLE)
@@ -268,13 +277,18 @@
 
 //trying to buckle a mob
 /obj/proc/buckle_mob(mob/M, mob/user)
-	if (!ismob(M) || (get_dist(src, user) > 1) || user.is_mob_restrained() || user.lying || user.stat || buckled_mob || M.buckled || !isturf(user.loc))
+	if (!ismob(M) || (get_dist(src, user) > 1) || user.is_mob_restrained() || user.stat || buckled_mob || M.buckled || !isturf(user.loc))
 		return
 
-	if (isxeno(user))
+	if (isxeno(user) && !HAS_TRAIT(user, TRAIT_OPPOSABLE_THUMBS))
 		to_chat(user, SPAN_WARNING("You don't have the dexterity to do that, try a nest."))
 		return
 	if (iszombie(user))
+		return
+
+	// mobs that become immobilized should not be able to buckle themselves.
+	if(M == user && HAS_TRAIT(user, TRAIT_IMMOBILIZED))
+		to_chat(user, SPAN_WARNING("You are unable to do this in your current state."))
 		return
 
 	if(density)
@@ -289,30 +303,27 @@
 			if(M.loc != src.loc)
 				return
 			. = buckle_mob(M)
-	if (M.mob_size <= MOB_SIZE_XENO && M.stat == DEAD && istype(src, /obj/structure/bed/roller))
-		do_buckle(M, user)
-		return
-	if (M.mob_size > MOB_SIZE_HUMAN)
+	if (M.mob_size <= MOB_SIZE_XENO)
+		if ((M.stat == DEAD && istype(src, /obj/structure/bed/roller) || HAS_TRAIT(M, TRAIT_OPPOSABLE_THUMBS)))
+			do_buckle(M, user)
+			return
+	if ((M.mob_size > MOB_SIZE_HUMAN))
 		to_chat(user, SPAN_WARNING("[M] is too big to buckle in."))
 		return
 	do_buckle(M, user)
 
 // the actual buckling proc
 // Yes I know this is not style but its unreadable otherwise
-/obj/proc/do_buckle(mob/target, mob/user)
+/obj/proc/do_buckle(mob/living/target, mob/user)
 	send_buckling_message(target, user)
 	if (src && src.loc)
-		target.buckled = src
+		target.throw_alert(ALERT_BUCKLED, /atom/movable/screen/alert/buckled)
+		target.set_buckled(src)
 		target.forceMove(src.loc)
 		target.setDir(dir)
-		target.update_canmove()
 		src.buckled_mob = target
 		src.add_fingerprint(user)
 		afterbuckle(target)
-		if(buckle_lying) // Make sure buckling to beds/nests etc only turns, and doesn't give a random offset
-			var/matrix/new_matrix = matrix()
-			new_matrix.Turn(90)
-			target.apply_transform(new_matrix)
 		return TRUE
 
 /obj/proc/send_buckling_message(mob/M, mob/user)
@@ -364,7 +375,7 @@
 		return 0
 	bullet_ping(P)
 	if(P.ammo.damage)
-		update_health(round(P.ammo.damage / 2))
+		update_health(floor(P.ammo.damage / 2))
 	return 1
 
 /obj/item/proc/get_mob_overlay(mob/user_mob, slot)
@@ -392,7 +403,7 @@
 	else if(LAZYISIN(item_icons, slot))
 		mob_icon = item_icons[slot]
 	else
-		mob_icon = default_onmob_icons[slot]
+		mob_icon = GLOB.default_onmob_icons[slot]
 
 	var/image/overlay_img
 

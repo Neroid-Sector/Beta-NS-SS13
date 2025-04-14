@@ -22,10 +22,11 @@
 			if(JOB_XO) marine_rk = "xo"
 			if(JOB_CO) marine_rk = "co"
 			if(JOB_GENERAL) marine_rk = "general"
-			if(JOB_PILOT) marine_rk = "po"
+			if(JOB_CAS_PILOT) marine_rk = "gp"
+			if(JOB_DROPSHIP_PILOT) marine_rk = "dp"
+			if(JOB_TANK_CREW) marine_rk = "tc"
 			if(JOB_INTEL) marine_rk = "io"
 			if(JOB_DROPSHIP_CREW_CHIEF) marine_rk = "dcc"
-			if(JOB_CREWMAN) marine_rk = "tc"
 			if(JOB_MARINE_RAIDER) marine_rk = "soc"
 			if(JOB_MARINE_RAIDER_SL) marine_rk = "soctl"
 			if(JOB_MARINE_RAIDER_CMD) marine_rk = "soccmd"
@@ -74,6 +75,9 @@
 			if(JOB_CO)
 				marine_rk = "co"
 				border_rk = "command"
+			if(JOB_USCM_OBSV)
+				marine_rk = "vo"
+				border_rk = "command"
 			if(JOB_SO)
 				marine_rk = "so"
 				border_rk = "command"
@@ -85,8 +89,10 @@
 				border_rk = "command"
 			if(JOB_INTEL)
 				marine_rk = "io"
-			if(JOB_PILOT)
-				marine_rk = "po"
+			if(JOB_CAS_PILOT)
+				marine_rk = "gp"
+			if(JOB_DROPSHIP_PILOT)
+				marine_rk = "dp"
 			if(JOB_DROPSHIP_CREW_CHIEF)
 				marine_rk = "dcc"
 			if(JOB_CHIEF_POLICE)
@@ -94,6 +100,8 @@
 				border_rk = "command"
 			if(JOB_POLICE)
 				marine_rk = "mp"
+			if(JOB_TANK_CREW)
+				marine_rk = "tc"
 			if(JOB_WARDEN)
 				marine_rk = "warden"
 				border_rk = "command"
@@ -189,6 +197,19 @@
 			if(JOB_CMB_OBS)
 				marine_rk = "obs"
 				icon_prefix = "cmb_"
+			// Check squad marines here too, for the unique ones
+			if(JOB_SQUAD_ENGI)
+				marine_rk = "engi"
+			if(JOB_SQUAD_MEDIC)
+				marine_rk = "med"
+			if(JOB_SQUAD_SPECIALIST)
+				marine_rk = "spec"
+			if(JOB_SQUAD_SMARTGUN)
+				marine_rk = "gun"
+			if(JOB_SQUAD_TEAM_LEADER)
+				marine_rk = "tl"
+			if(JOB_SQUAD_LEADER)
+				marine_rk = "leader"
 
 		if(marine_rk)
 			var/image/I = image('icons/mob/hud/marine_hud.dmi', current_human, "hudsquad")

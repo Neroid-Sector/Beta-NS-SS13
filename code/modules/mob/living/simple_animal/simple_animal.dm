@@ -56,6 +56,8 @@
 	black_market_value = 25
 	dead_black_market_value = 0
 
+	mobility_flags = MOBILITY_FLAGS_LYING_CAPABLE_DEFAULT
+
 /mob/living/simple_animal/Initialize()
 	. = ..()
 	SSmob.living_misc_mobs += src
@@ -81,8 +83,8 @@
 			GLOB.dead_mob_list -= src
 			GLOB.alive_mob_list += src
 			set_stat(CONSCIOUS)
-			lying = 0
-			density = TRUE
+//			lying = 0
+//			density = TRUE
 			reload_fullscreens()
 		return 0
 
@@ -93,18 +95,13 @@
 	if(health > maxHealth)
 		health = maxHealth
 
-	handle_stunned()
-	handle_knocked_down(TRUE)
-	handle_knocked_out(TRUE)
-	update_canmove()
-
 	//Movement
 	if(!client && !stop_automated_movement && wander && !anchored)
-		if(isturf(src.loc) && !resting && !buckled && canmove) //This is so it only moves if it's not inside a closet, gentics machine, etc.
+		if(isturf(src.loc) && !resting && !buckled && (mobility_flags & MOBILITY_MOVE)) //This is so it only moves if it's not inside a closet, gentics machine, etc.
 			turns_since_move++
 			if(turns_since_move >= turns_per_move)
 				if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
-					var/move_dir = pick(cardinal)
+					var/move_dir = pick(GLOB.cardinals)
 					Move(get_step(src, move_dir ))
 					setDir(move_dir)
 					turns_since_move = 0
@@ -112,33 +109,33 @@
 	//Speaking
 	if(!client && speak_chance)
 		if(rand(0,200) < speak_chance)
-			if(speak && speak.len)
-				if((emote_hear && emote_hear.len) || (emote_see && emote_see.len))
-					var/length = speak.len
-					if(emote_hear && emote_hear.len)
-						length += emote_hear.len
-					if(emote_see && emote_see.len)
-						length += emote_see.len
+			if(LAZYLEN(speak))
+				if(LAZYLEN(emote_hear) || LAZYLEN(emote_see))
+					var/length = length(speak)
+					if(LAZYLEN(emote_hear))
+						length += length(emote_hear)
+					if(LAZYLEN(emote_see))
+						length += length(emote_see)
 					var/randomValue = rand(1,length)
-					if(randomValue <= speak.len)
+					if(randomValue <= length(speak))
 						INVOKE_ASYNC(src, PROC_REF(say), pick(speak))
 					else
-						randomValue -= speak.len
-						if(emote_see && randomValue <= emote_see.len)
+						randomValue -= length(speak)
+						if(emote_see && randomValue <= length(emote_see))
 							INVOKE_ASYNC(src, PROC_REF(manual_emote), pick(emote_see),1)
 						else
 							INVOKE_ASYNC(src, PROC_REF(manual_emote), pick(emote_hear),2)
 				else
 					INVOKE_ASYNC(src, PROC_REF(say), pick(speak))
 			else
-				if(!(emote_hear && emote_hear.len) && (emote_see && emote_see.len))
+				if(!LAZYLEN(emote_hear) && LAZYLEN(emote_see))
 					INVOKE_ASYNC(src, PROC_REF(manual_emote), pick(emote_see),1)
-				if((emote_hear && emote_hear.len) && !(emote_see && emote_see.len))
+				if(LAZYLEN(emote_hear) && !LAZYLEN(emote_see))
 					INVOKE_ASYNC(src, PROC_REF(manual_emote), pick(emote_hear),2)
-				if((emote_hear && emote_hear.len) && (emote_see && emote_see.len))
-					var/length = emote_hear.len + emote_see.len
+				if(LAZYLEN(emote_hear) && LAZYLEN(emote_see))
+					var/length = length(emote_hear) + length(emote_see)
 					var/pick = rand(1,length)
-					if(pick <= emote_see.len)
+					if(pick <= length(emote_see))
 						INVOKE_ASYNC(src, PROC_REF(manual_emote), pick(emote_see),1)
 					else
 						INVOKE_ASYNC(src, PROC_REF(manual_emote), pick(emote_hear),2)
@@ -215,6 +212,7 @@
 	SSmob.living_misc_mobs -= src
 	icon_state = icon_dead
 	black_market_value = dead_black_market_value
+	set_body_position(LYING_DOWN)
 
 
 /mob/living/simple_animal/gib(datum/cause_data/cause = create_cause_data("gibbing", src))
@@ -286,7 +284,7 @@
 					MED.use(1)
 					for(var/mob/M as anything in viewers(src, null))
 						if ((M.client && !( M.blinded )))
-							M.show_message(SPAN_NOTICE("[user] applies the [MED] on [src]"), SHOW_MESSAGE_VISIBLE)
+							M.show_message(SPAN_NOTICE("[user] applies [MED] on [src]"), SHOW_MESSAGE_VISIBLE)
 					return
 		else
 			to_chat(user, SPAN_NOTICE(" this [src] is dead, medical items won't bring it back to life."))
@@ -328,7 +326,7 @@
 		explosion_throw(severity, direction)
 
 /mob/living/simple_animal/adjustBruteLoss(damage)
-	health = Clamp(health - damage, 0, maxHealth)
+	health = clamp(health - damage, 0, maxHealth)
 
 /mob/living/simple_animal/proc/SA_attackable(target_mob)
 	if (isliving(target_mob))
@@ -354,17 +352,24 @@
 
 	var/verb = "says"
 
-	if(speak_emote.len)
+	if(length(speak_emote))
 		verb = pick(speak_emote)
 
 	message = capitalize(trim_left(message))
 
 	..(message, null, verb, nolog = !ckey) //if the animal has a ckey then it will log the message
 
-/mob/living/simple_animal/update_canmove()
+/mob/living/simple_animal/on_immobilized_trait_gain(datum/source)
 	. = ..()
-	if(!canmove)
-		stop_moving()
+	stop_moving()
+
+/mob/living/simple_animal/on_knockedout_trait_gain(datum/source)
+	. = ..()
+	stop_moving()
+
+/mob/living/simple_animal/on_incapacitated_trait_gain(datum/source)
+	. = ..()
+	stop_moving()
 
 /mob/living/simple_animal/proc/stop_moving()
 	walk_to(src, 0) // stops us dead in our tracks

@@ -84,9 +84,9 @@
 		if(hasvar(W,"force") && hasvar(W,"damtype"))
 			switch(W.damtype)
 				if("fire")
-					src.health -= W.force * fire_dam_coeff
+					health -= W.force * W.demolition_mod * fire_dam_coeff
 				if("brute")
-					src.health -= W.force * brute_dam_coeff
+					health -= W.force * W.demolition_mod * brute_dam_coeff
 			..()
 			healthcheck()
 		else
@@ -114,6 +114,7 @@
 
 
 /obj/structure/machinery/bot/emp_act(severity)
+	. = ..()
 	var/was_on = on
 	stat |= EMPED
 	new /obj/effect/overlay/temp/emp_sparks (loc)
@@ -150,7 +151,7 @@
 /turf/proc/CardinalTurfsWithAccess(obj/item/card/id/ID)
 	var/L[] = new()
 
-	for(var/d in cardinal)
+	for(var/d in GLOB.cardinals)
 		var/turf/T = get_step(src, d)
 		if(istype(T) && !T.density)
 			if(!LinkBlockedWithAccess(src, T, ID))
