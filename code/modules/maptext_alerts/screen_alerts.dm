@@ -64,6 +64,26 @@
 	style_open = "<span class='langchat' style=font-size:16pt;text-align:center valign='top'>"
 	style_close = "</span>"
 
+/atom/movable/screen/text/screen_text/command_order/tutorial
+	letters_per_update = 4 // overall, pretty fast while not immediately popping in
+	play_delay = 0.1
+	fade_out_delay = 2.5 SECONDS
+	fade_out_time = 0.5 SECONDS
+
+/atom/movable/screen/text/screen_text/command_order/tutorial/end_play()
+	if(!player)
+		qdel(src)
+		return
+
+	if(player.mob || HAS_TRAIT(player.mob, TRAIT_IN_TUTORIAL))
+		return ..()
+
+	for(var/atom/movable/screen/text/screen_text/command_order/tutorial/tutorial_message in player.screen_texts)
+		LAZYREMOVE(player.screen_texts, tutorial_message)
+		qdel(tutorial_message)
+
+	return ..()
+
 ///proc for actually playing this screen_text on a mob.
 /atom/movable/screen/text/screen_text/proc/play_to_client()
 	player?.add_to_screen(src)
@@ -179,6 +199,7 @@
 	if(thealert.timeout)
 		addtimer(CALLBACK(src, PROC_REF(alert_timeout), thealert, category), thealert.timeout)
 		thealert.timeout = world.time + thealert.timeout - world.tick_lag
+	thealert.alert_post_setup(src)
 	return thealert
 
 /mob/proc/alert_timeout(atom/movable/screen/alert/alert, category)
@@ -214,10 +235,17 @@
 	/// Alert owner
 	var/mob/owner
 
+	/// Boolean. If TRUE, the Click() proc will attempt to Click() on the master first if there is a master.
+	var/click_master = TRUE
+
 /atom/movable/screen/alert/MouseEntered(location,control,params)
 	. = ..()
 	if(!QDELETED(src))
 		openToolTip(usr, src, params, title = name, content = desc, theme = alerttooltipstyle)
+
+/atom/movable/screen/alert/MouseExited(location, control, params)
+	. = ..()
+	closeToolTip(usr)
 
 /atom/movable/screen/alert/notify_action
 	name = "Notification"
@@ -226,6 +254,11 @@
 	timeout = 15 SECONDS
 	var/atom/target = null
 	var/action = NOTIFY_JUMP
+
+/// Called by throw_alert(), passes the mob throw_alert() is being called on as an arg. Parent proc, does nothing.
+/atom/movable/screen/alert/proc/alert_post_setup(mob/user)
+	SIGNAL_HANDLER
+	return
 
 /atom/movable/screen/alert/notify_action/Click()
 	var/mob/dead/observer/ghost_user = usr
@@ -246,3 +279,113 @@
 			ghost_user.do_observe(target)
 		if(NOTIFY_JOIN_XENO)
 			ghost_user.join_as_alien()
+		if(NOTIFY_USCM_TACMAP)
+			GLOB.uscm_tacmap_status.tgui_interact(ghost_user)
+		if(NOTIFY_XENO_TACMAP)
+			GLOB.xeno_tacmap_status.tgui_interact(ghost_user)
+
+/atom/movable/screen/alert/buckled
+	name = "Buckled"
+	desc = "You've been buckled to something. Click the alert to unbuckle unless you're handcuffed."
+	icon_state = ALERT_BUCKLED
+
+/atom/movable/screen/alert/multi_z
+	name = "Look Up"
+	desc = "There's an open space above you, Click the alert to look up."
+	icon_state = "uphint1"
+	click_master = FALSE
+
+
+/atom/movable/screen/alert/multi_z/clicked()
+	. = ..()
+	if(!.)
+		return
+
+	var/mob/living/living_owner = owner
+	living_owner.look_up()
+
+
+/atom/movable/screen/alert/multi_z/alert_post_setup(mob/user)
+	. = ..()
+
+	if(istype(user, /mob/living/))
+		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(update_alert))
+	update_alert(user)
+
+
+/atom/movable/screen/alert/multi_z/proc/update_alert(mob/user)
+	var/turf/above = locate(user.x, user.y, (user.z + 1))
+
+	if(istype(user, /mob/living/carbon/xenomorph))
+		if(istransparentturf(above))
+			icon_state = "uphint1_xeno"
+			desc = "There's an open space above you, Click the alert to look up."
+		else
+			icon_state = "uphint0_xeno"
+			desc = "There's nothing to look up at right now."
+
+	else
+		if(istransparentturf(above))
+			icon_state = "uphint1"
+			desc = "There's an open space above you, Click the alert to look up."
+		else
+			icon_state = "uphint0"
+			desc = "There's nothing to look up at right now."
+
+/atom/movable/screen/alert/restrained/handcuffed
+	name = "Handcuffed"
+	desc = "You're handcuffed and can't act. If anyone drags you, you won't be able to move. Click the alert to free yourself."
+	click_master = FALSE
+
+/atom/movable/screen/alert/restrained/legcuffed
+	name = "Legcuffed"
+	desc = "You're legcuffed, which slows you down considerably. Click the alert to free yourself."
+	click_master = FALSE
+
+/atom/movable/screen/alert/restrained/clicked()
+	. = ..()
+	if(!.)
+		return
+
+	var/mob/living/living_owner = owner
+
+	if(!living_owner.can_resist())
+		return
+
+//	living_owner.changeNext_move(CLICK_CD_RESIST) // handled in resist proc
+	if((living_owner.mobility_flags & MOBILITY_MOVE) && (living_owner.last_special <= world.time))
+		return living_owner.resist_restraints()
+
+/atom/movable/screen/alert/buckled/clicked()
+	. = ..()
+	if(!.)
+		return
+
+	var/mob/living/living_owner = owner
+
+	if(!living_owner.can_resist())
+		return
+//	living_owner.changeNext_move(CLICK_CD_RESIST) // handled in resist proc
+	if(living_owner.last_special <= world.time)
+		return living_owner.resist_buckle()
+
+/atom/movable/screen/alert/clicked(location, control, params)
+	if(!usr || !usr.client)
+		return FALSE
+	if(usr != owner)
+		return FALSE
+	var/list/modifiers = params2list(params)
+	if(LAZYACCESS(modifiers, SHIFT_CLICK)) // screen objects don't do the normal Click() stuff so we'll cheat
+		to_chat(usr, SPAN_BOLDNOTICE("[name]</span> - <span class='info'>[desc]"))
+		return FALSE
+	if(master && click_master)
+		return usr.client.Click(master, location, control, params)
+
+	return TRUE
+
+/atom/movable/screen/alert/Destroy()
+	. = ..()
+	severity = 0
+	master = null
+	owner = null
+	screen_loc = ""

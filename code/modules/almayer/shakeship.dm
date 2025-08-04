@@ -35,10 +35,38 @@
 				playsound_client(current_mob.client, 'sound/effects/bigboom3.ogg', 100)
 
 			if(drop)
-				INVOKE_ASYNC(current_mob,  TYPE_PROC_REF(/atom/movable, throw_atom), get_ranged_target_turf(current_mob, pick(cardinal), sstrength-5), pick(cardinal), sstrength)
+				INVOKE_ASYNC(current_mob,  TYPE_PROC_REF(/atom/movable, throw_atom), get_ranged_target_turf(current_mob, pick(GLOB.cardinals), sstrength-5), pick(GLOB.cardinals), sstrength)
 
 			to_chat(current_mob, SPAN_HIGHDANGER("YOU ARE THROWN AROUND VIOLENTLY AND HIT THE DECK WITH FULL FORCE!!"))
 			if(current_mob.client && osound)
 				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound_client), current_mob.client, 'sound/effects/pry2.ogg', 20), 1 SECONDS)
 				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound_client), current_mob.client, 'sound/effects/double_klaxon.ogg'), 2 SECONDS)
 
+
+/proc/shakeground(sstrength, stime, drop, osound = TRUE)
+	for(var/mob/living/carbon/current_mob in GLOB.living_mob_list)
+		if(!is_ground_level(current_mob.z))
+			continue
+		shake_camera(current_mob, stime, sstrength)
+		if(drop)
+			current_mob.apply_effect(3, WEAKEN)
+		if(sstrength <= 2)
+			to_chat(current_mob, SPAN_DANGER("The ground trembles under your feet!"))
+			if(current_mob.client && osound)
+				playsound_client(current_mob.client, 'sound/soundscape/rocksfalling2.ogg', 100 )
+		if(sstrength > 2 && sstrength <= 7)
+			to_chat(current_mob, SPAN_BOLDANNOUNCE("The ground violently shakes and vibrates!"))
+			if(current_mob.client && osound)
+				playsound_client(current_mob.client, 'sound/soundscape/rocksfalling2.ogg', 100 )
+				playsound_client(current_mob.client, 'sound/soundscape/thunderclap1.ogg', 100 )
+				playsound_client(current_mob.client, 'sound/effects/stonedoor_openclose.ogg', 100 )
+		if(sstrength > 7)
+			if(current_mob.client && osound)
+				playsound_client(current_mob.client, 'sound/soundscape/rocksfalling2.ogg', 100 )
+				playsound_client(current_mob.client, 'sound/soundscape/thunderclap1.ogg', 100 )
+				playsound_client(current_mob.client, 'sound/effects/stonedoor_openclose.ogg', 100)
+
+			if(drop)
+				INVOKE_ASYNC(current_mob,  TYPE_PROC_REF(/atom/movable, throw_atom), get_ranged_target_turf(current_mob, pick(GLOB.cardinals), sstrength-5), pick(GLOB.cardinals), sstrength)
+
+			to_chat(current_mob, SPAN_HIGHDANGER("YOU ARE THROWN AROUND VIOLENTLY AS THE GROUND SHAKES AND FALL TO THE GROUND WITH FULL FORCE!!"))

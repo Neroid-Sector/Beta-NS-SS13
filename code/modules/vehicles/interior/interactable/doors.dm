@@ -7,7 +7,7 @@
 
 	unacidable = TRUE
 	unslashable = TRUE
-	indestructible = TRUE
+	explo_proof = TRUE
 
 	// The interior interior this exit is tied to
 	var/datum/interior/interior = null
@@ -125,6 +125,7 @@
 			interior.exit(G.grabbed_thing, exit_turf)
 
 	interior.exit(M, exit_turf)
+	playsound(loc, 'sound/vehicles/car_door.mp3', 100, 1)
 
 /obj/structure/interior_exit/vehicle/attack_alien(mob/living/carbon/xenomorph/M, dam_bonus)
 	to_chat(M, SPAN_NOTICE("You start climbing out of \the [interior.exterior]."))

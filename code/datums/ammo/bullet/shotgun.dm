@@ -7,14 +7,20 @@
 /datum/ammo/bullet/shotgun
 	headshot_state = HEADSHOT_OVERLAY_HEAVY
 
+/datum/ammo/bullet/shotgun/setup_faction_clash_values()
+	. = ..()
+	accuracy = accuracy * 2 + 85 //we revert accuracy reduction that is applied on other bullets shotguns are accurate but already have short range only
+
+
 /datum/ammo/bullet/shotgun/slug
 	name = "shotgun slug"
 	handful_state = "slug_shell"
 
-	accurate_range = 6
+	accurate_range = 8
 	max_range = 8
 	damage = 70
 	penetration = ARMOR_PENETRATION_TIER_4
+	accuracy = HIT_ACCURACY_TIER_3
 	damage_armor_punch = 2
 	handful_state = "slug_shell"
 
@@ -25,7 +31,8 @@
 	if(iscarbonsizexeno(living_mob))
 		var/mob/living/carbon/xenomorph/target = living_mob
 		to_chat(target, SPAN_XENODANGER("You are shaken and slowed by the sudden impact!"))
-		target.apply_effect(0.5, WEAKEN)
+		target.KnockDown(0.5) // If you ask me the KD should be left out, but players like their visual cues
+		target.Stun(0.5)
 		target.apply_effect(1, SUPERSLOW)
 		target.apply_effect(3, SLOW)
 	else
@@ -52,7 +59,8 @@
 	handful_state = "beanbag_slug"
 
 /datum/ammo/bullet/shotgun/beanbag/on_hit_mob(mob/M, obj/projectile/P)
-	if(!M || M == P.firer) return
+	if(!M || M == P.firer)
+		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		shake_camera(H, 2, 1)
@@ -64,7 +72,7 @@
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_BALLISTIC
 
-	accuracy = -HIT_ACCURACY_TIER_2
+	accuracy = HIT_ACCURACY_TIER_2
 	max_range = 12
 	damage = 55
 	penetration= ARMOR_PENETRATION_TIER_1
@@ -99,10 +107,14 @@
 	damage = 30
 	damage_var_low = PROJECTILE_VARIANCE_TIER_8
 	damage_var_high = PROJECTILE_VARIANCE_TIER_8
-	penetration = ARMOR_PENETRATION_TIER_7
+	penetration = ARMOR_PENETRATION_TIER_5
 	bonus_projectiles_amount = EXTRA_PROJECTILES_TIER_3
 	handful_state = "flechette_shell"
 	multiple_handful_name = TRUE
+
+/datum/ammo/bullet/shotgun/flechette/setup_faction_clash_values()
+	. = ..()
+	damage *= 0.7
 
 /datum/ammo/bullet/shotgun/flechette_spread
 	name = "additional flechette"
@@ -114,8 +126,12 @@
 	damage = 30
 	damage_var_low = PROJECTILE_VARIANCE_TIER_8
 	damage_var_high = PROJECTILE_VARIANCE_TIER_8
-	penetration = ARMOR_PENETRATION_TIER_7
+	penetration = ARMOR_PENETRATION_TIER_5
 	scatter = SCATTER_AMOUNT_TIER_5
+
+/datum/ammo/bullet/shotgun/flechette_spread/setup_faction_clash_values()
+	. = ..()
+	damage *= 0.7
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "buckshot shell"
@@ -128,7 +144,7 @@
 	accuracy_var_high = PROJECTILE_VARIANCE_TIER_5
 	accurate_range = 4
 	max_range = 4
-	damage = 65
+	damage = 25
 	damage_var_low = PROJECTILE_VARIANCE_TIER_8
 	damage_var_high = PROJECTILE_VARIANCE_TIER_8
 	penetration = ARMOR_PENETRATION_TIER_1
@@ -157,7 +173,12 @@
 /datum/ammo/bullet/shotgun/buckshot/masterkey
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread/masterkey
 
+	penetration = ARMOR_PENETRATION_TIER_1
+
 	damage = 55
+
+/datum/ammo/bullet/shotgun/buckshot/masterkey/on_hit_mob(mob/M,obj/projectile/P)
+	knockback(M,P,1)
 
 /datum/ammo/bullet/shotgun/spread
 	name = "additional buckshot"
@@ -192,7 +213,7 @@
 	bonus_projectiles_amount = EXTRA_PROJECTILES_TIER_3
 	accurate_range = 3
 	max_range = 3
-	damage = 75
+	damage = 65
 	penetration = 0
 	shell_speed = AMMO_SPEED_TIER_2
 	damage_armor_punch = 0
@@ -213,7 +234,7 @@
 	handful_state = "heavy_dragonsbreath"
 	multiple_handful_name = TRUE
 	damage_type = BURN
-	damage = 60
+	damage = 30
 	accurate_range = 3
 	max_range = 4
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/heavy/buckshot/dragonsbreath/spread
@@ -238,7 +259,7 @@
 
 	accurate_range = 7
 	max_range = 8
-	damage = 90 //ouch.
+	damage = 70 //ouch.
 	penetration = ARMOR_PENETRATION_TIER_6
 	damage_armor_punch = 2
 
@@ -249,7 +270,8 @@
 	if(iscarbonsizexeno(living_mob))
 		var/mob/living/carbon/xenomorph/target = living_mob
 		to_chat(target, SPAN_XENODANGER("You are shaken and slowed by the sudden impact!"))
-		target.apply_effect(0.5, WEAKEN)
+		target.KnockDown(0.5) // If you ask me the KD should be left out, but players like their visual cues
+		target.Stun(0.5)
 		target.apply_effect(2, SUPERSLOW)
 		target.apply_effect(5, SLOW)
 	else
@@ -303,11 +325,65 @@
 	accuracy_var_low = PROJECTILE_VARIANCE_TIER_6
 	accuracy_var_high = PROJECTILE_VARIANCE_TIER_6
 	max_range = 12
-	damage = 45
+	damage = 35
 	damage_var_low = PROJECTILE_VARIANCE_TIER_8
 	damage_var_high = PROJECTILE_VARIANCE_TIER_8
-	penetration = ARMOR_PENETRATION_TIER_10
+	penetration = ARMOR_PENETRATION_TIER_7
 	scatter = SCATTER_AMOUNT_TIER_4
+
+/datum/ammo/bullet/shotgun/heavy/flechette_spread/setup_faction_clash_values()
+	. = ..()
+	damage *= 0.7
+
+/*
+					16 GAUGE SHOTGUN AMMO
+*/
+
+/datum/ammo/bullet/shotgun/light/breaching
+	name = "light breaching shell"
+	icon_state = "flechette"
+	handful_state = "breaching_shell"
+	multiple_handful_name = TRUE
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/light/breaching/spread
+
+	accuracy_var_low = PROJECTILE_VARIANCE_TIER_6
+	accuracy_var_high = PROJECTILE_VARIANCE_TIER_6
+	damage = 35
+	max_range = 5
+	bonus_projectiles_amount = EXTRA_PROJECTILES_TIER_3
+	penetration = ARMOR_PENETRATION_TIER_1
+
+/datum/ammo/bullet/shotgun/light/breaching/spread
+	name = "additional light breaching fragments"
+	bonus_projectiles_amount = 0
+	accuracy_var_low = PROJECTILE_VARIANCE_TIER_6
+	accuracy_var_high = PROJECTILE_VARIANCE_TIER_6
+	scatter = SCATTER_AMOUNT_TIER_3
+	damage = 10
+
+/datum/ammo/bullet/shotgun/light/rubber
+	name = "rubber buckshot shell"
+	icon_state = "buckshot"
+	handful_state = "rubbershot_shell"
+	multiple_handful_name = TRUE
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/light/rubber/spread
+	sound_override = 'sound/weapons/gun_shotgun_riot.ogg'
+	headshot_state = HEADSHOT_OVERLAY_LIGHT  //It's not meant to kill people... but if you put it in your mouth, it will.
+	accuracy = HIT_ACCURACY_TIER_3
+	shell_speed = AMMO_SPEED_TIER_2
+	max_range = 5
+	shrapnel_chance = 0
+	damage = 0
+	stamina_damage = 35
+	bonus_projectiles_amount = EXTRA_PROJECTILES_TIER_3
+	penetration = ARMOR_PENETRATION_TIER_1
+
+/datum/ammo/bullet/shotgun/light/rubber/spread
+	name = "additional rubber buckshot"
+	bonus_projectiles_amount = 0
+	scatter = SCATTER_AMOUNT_TIER_3
+	stamina_damage = 10
+
 
 //Enormous shell for Van Bandolier's superheavy double-barreled hunting gun.
 /datum/ammo/bullet/shotgun/twobore
@@ -334,11 +410,12 @@
 	if(P.distance_travelled > 8)
 		knockback(M, P, 12)
 
-	else if(!M || M == P.firer || M.lying) //These checks are included in knockback and would be redundant above.
+	else if(!M || M == P.firer || M.body_position == LYING_DOWN) //These checks are included in knockback and would be redundant above.
 		return
 
 	shake_camera(M, 3, 4)
-	M.apply_effect(2, WEAKEN)
+	M.KnockDown(2) // If you ask me the KD should be left out, but players like their visual cues
+	M.Stun(2)
 	M.apply_effect(4, SLOW)
 	if(iscarbonsizexeno(M))
 		to_chat(M, SPAN_XENODANGER("The impact knocks you off your feet!"))
@@ -351,7 +428,8 @@
 	if(iscarbonsizexeno(living_mob))
 		var/mob/living/carbon/xenomorph/target = living_mob
 		to_chat(target, SPAN_XENODANGER("You are shaken and slowed by the sudden impact!"))
-		target.apply_effect(0.5, WEAKEN)
+		target.KnockDown(0.5) // If you ask me the KD should be left out, but players like their visual cues
+		target.Stun(0.5)
 		target.apply_effect(2, SUPERSLOW)
 		target.apply_effect(5, SLOW)
 	else

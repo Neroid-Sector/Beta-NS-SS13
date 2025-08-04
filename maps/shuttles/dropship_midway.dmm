@@ -1,0 +1,125 @@
+"ah" = (/obj/structure/shuttle/part/argonne/left_outer_wing_connector,/turf/open/space/basic,/area/shuttle/drop_solano/midway)
+"aq" = (/obj/effect/attach_point/weapon/midway/left_fore,/obj/structure/shuttle/part/midway/transparent/outer_right_weapons,/turf/template_noop,/area/shuttle/drop_solano/midway)
+"aK" = (/obj/structure/shuttle/part/argonne/nose_front_left,/turf/template_noop,/area/shuttle/drop_solano/midway)
+"bR" = (/obj/structure/machinery/computer/overwatch/almayer{dir = 8; pixel_x = -17; pixel_y = 20},/obj/structure/machinery/computer/groundside_operations{dir = 4; pixel_x = -17; pixel_y = 6},/obj/structure/machinery/computer/overwatch/almayer{dir = 8; pixel_x = -17; pixel_y = -10},/obj/structure/platform/ship{dir = 4},/obj/structure/bed/chair/dropship/passenger{dir = 8},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/midway)
+"ct" = (/obj/structure/shuttle/part/argonne/transparent/middle_left_wing,/turf/template_noop,/area/shuttle/drop_solano/midway)
+"db" = (/turf/closed/shuttle/midway{icon_state = "62"},/area/shuttle/drop_solano/midway)
+"ee" = (/obj/structure/shuttle/part/argonne/transparent/engine_left_exhaust,/turf/template_noop,/area/shuttle/drop_solano/midway)
+"el" = (/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = -8},/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = 8},/obj/effect/decal/warning_stripes{icon_state = "S"},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/midway)
+"eV" = (/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_solano/midway)
+"fd" = (/turf/closed/shuttle/midway{icon_state = "94"},/area/shuttle/drop_solano/midway)
+"fw" = (/obj/structure/stairs/perspective{icon_state = "p_stair_full"},/obj/structure/platform{dir = 8},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_solano/midway)
+"fz" = (/obj/effect/attach_point/fuel/midway,/turf/closed/shuttle/midway/transparent{icon_state = "28"},/area/shuttle/drop_solano/midway)
+"fD" = (/turf/closed/shuttle/midway/transparent{icon_state = "22"},/area/shuttle/drop_solano/midway)
+"hM" = (/obj/effect/decal/warning_stripes{icon_state = "SW-out"; pixel_x = -1},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_solano/midway)
+"is" = (/obj/structure/shuttle/part/argonne/transparent/nose_center,/turf/template_noop,/area/shuttle/drop_solano/midway)
+"iL" = (/turf/closed/shuttle/midway/transparent{icon_state = "38"},/area/shuttle/drop_solano/midway)
+"jj" = (/obj/structure/machinery/cm_vending/sorted/cargo_guns/squad_prep{req_access = null; req_one_access = null},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/midway)
+"ju" = (/turf/closed/shuttle/midway/transparent{icon_state = "35"},/area/shuttle/drop_solano/midway)
+"kY" = (/turf/closed/shuttle/midway/transparent{icon_state = "86"},/area/shuttle/drop_solano/midway)
+"mb" = (/obj/effect/decal/warning_stripes{icon_state = "W"},/obj/structure/blocker/forcefield/multitile_vehicles,/turf/open/shuttle/dropship{icon_state = "rasputin4"},/area/shuttle/drop_solano/midway)
+"mn" = (/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = -8},/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = 8},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/midway)
+"mN" = (/obj/effect/decal/warning_stripes{icon_state = "W"},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_solano/midway)
+"mS" = (/turf/closed/shuttle/midway/transparent{icon_state = "34"},/area/shuttle/drop_solano/midway)
+"ob" = (/turf/closed/shuttle/midway{icon_state = "83"},/area/shuttle/drop_solano/midway)
+"oI" = (/obj/structure/shuttle/part/argonne/transparent/left_outer_inner_wing,/turf/template_noop,/area/shuttle/drop_solano/midway)
+"pV" = (/obj/structure/shuttle/part/argonne/transparent/middle_right_wing,/turf/template_noop,/area/shuttle/drop_solano/midway)
+"qc" = (/obj/structure/stairs/perspective{icon_state = "p_stair_full"},/obj/structure/platform{dir = 4},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_solano/midway)
+"qi" = (/obj/structure/stairs{dir = 8; icon_state = "ramptop"},/obj/structure/blocker/forcefield/multitile_vehicles,/obj/structure/machinery/door/airlock/dropship_hatch/two{id = "port_door"},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/midway)
+"qp" = (/obj/effect/attach_point/weapon/midway/right_fore,/obj/structure/shuttle/part/midway/transparent/outer_left_weapons,/turf/template_noop,/area/shuttle/drop_solano/midway)
+"qP" = (/obj/effect/decal/warning_stripes{icon_state = "E"; pixel_x = 1},/obj/structure/blocker/forcefield/multitile_vehicles,/turf/open/shuttle/dropship{icon_state = "rasputin8"},/area/shuttle/drop_solano/midway)
+"ru" = (/turf/closed/shuttle/midway{icon_state = "72"},/area/shuttle/drop_solano/midway)
+"rB" = (/obj/structure/shuttle/part/argonne/transparent/right_outer_bottom_wing,/turf/template_noop,/area/shuttle/drop_solano/midway)
+"rI" = (/obj/structure/blocker/forcefield/multitile_vehicles,/turf/open/shuttle/dropship{icon_state = "floor8"},/area/shuttle/drop_solano/midway)
+"se" = (/obj/structure/machinery/door_control{id = "dropship_midway"; name = "Dropship Lockdown"; normaldoorcontrol = 3; pixel_y = -10; req_one_access_txt = "3;22"; throw_range = 15},/turf/closed/shuttle/midway{icon_state = "81"},/area/shuttle/drop_solano/midway)
+"st" = (/turf/closed/shuttle/midway{icon_state = "48"},/area/shuttle/drop_solano/midway)
+"sI" = (/turf/closed/shuttle/midway{icon_state = "92"},/area/shuttle/drop_solano/midway)
+"ti" = (/obj/structure/shuttle/part/argonne/right_inner_wing_connector,/turf/open/space/basic,/area/shuttle/drop_solano/midway)
+"tj" = (/obj/docking_port/mobile/marine_dropship/midway,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/midway)
+"ul" = (/turf/open/shuttle/dropship{icon_state = "floor8"},/area/shuttle/drop_solano/midway)
+"uo" = (/turf/closed/shuttle/midway/transparent{icon_state = "98"},/area/shuttle/drop_solano/midway)
+"uF" = (/obj/structure/shuttle/part/argonne/nose_front_right,/turf/template_noop,/area/shuttle/drop_solano/midway)
+"wb" = (/obj/structure/machinery/door/airlock/dropship_hatch/two{dir = 8; id = "starboard_door"},/obj/structure/stairs{dir = 4},/obj/structure/blocker/forcefield/multitile_vehicles,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/midway)
+"ww" = (/obj/effect/decal/warning_stripes{icon_state = "E"; pixel_x = 1},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_solano/midway)
+"wD" = (/obj/structure/machinery/cm_vending/sorted/cargo_guns/squad{req_access = null; req_one_access = null},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/midway)
+"xq" = (/obj/structure/bed/chair/vehicle{pixel_x = 8},/obj/structure/bed/chair/vehicle{pixel_x = -8},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/midway)
+"xx" = (/turf/open/shuttle/dropship{icon_state = "rasputin6"},/area/shuttle/drop_solano/midway)
+"yX" = (/turf/open/shuttle/dropship{icon_state = "rasputin7"},/area/shuttle/drop_solano/midway)
+"za" = (/turf/closed/shuttle/midway{icon_state = "31"},/area/shuttle/drop_solano/midway)
+"zF" = (/obj/structure/platform{dir = 1; layer = 2.8},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/midway)
+"Af" = (/obj/structure/blocker/invisible_wall,/obj/structure/machinery/computer/shuttle/dropship/flight,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/midway)
+"AP" = (/turf/closed/shuttle/midway/transparent{icon_state = "29"},/area/shuttle/drop_solano/midway)
+"Bc" = (/obj/structure/shuttle/part/argonne/transparent/lower_left_wing,/turf/template_noop,/area/shuttle/drop_solano/midway)
+"Bs" = (/obj/structure/shuttle/part/argonne/transparent/engine_right_exhaust,/turf/template_noop,/area/shuttle/drop_solano/midway)
+"BN" = (/obj/structure/blocker/invisible_wall,/obj/structure/machinery/computer/cameras/dropship/midway,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/midway)
+"Cw" = (/turf/closed/shuttle/midway/transparent{icon_state = "39"},/area/shuttle/drop_solano/midway)
+"CT" = (/turf/closed/shuttle/midway{icon_state = "30"},/area/shuttle/drop_solano/midway)
+"Dz" = (/obj/structure/bed/chair/dropship/pilot{dir = 1},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/midway)
+"Ed" = (/obj/structure/shuttle/part/argonne/left_inner_wing_connector,/turf/open/space/basic,/area/shuttle/drop_solano/midway)
+"ED" = (/obj/structure/shuttle/part/argonne/transparent/left_outer_bottom_wing,/turf/template_noop,/area/shuttle/drop_solano/midway)
+"EK" = (/turf/closed/shuttle/midway{icon_state = "69"},/area/shuttle/drop_solano/midway)
+"Ha" = (/turf/closed/shuttle/midway/transparent{icon_state = "97"},/area/shuttle/drop_solano/midway)
+"HM" = (/turf/closed/shuttle/midway{icon_state = "25"},/area/shuttle/drop_solano/midway)
+"HZ" = (/obj/structure/shuttle/part/argonne/transparent/nose_top_left,/turf/template_noop,/area/shuttle/drop_solano/midway)
+"Ic" = (/turf/closed/shuttle/midway{icon_state = "37"},/area/shuttle/drop_solano/midway)
+"Ix" = (/obj/effect/decal/warning_stripes{icon_state = "W"},/obj/structure/platform{dir = 4},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_solano/midway)
+"IE" = (/turf/closed/shuttle/midway{icon_state = "64"},/area/shuttle/drop_solano/midway)
+"IT" = (/turf/closed/shuttle/midway{icon_state = "73"},/area/shuttle/drop_solano/midway)
+"Kn" = (/obj/structure/shuttle/part/argonne/lower_right_wall,/turf/open/space/basic,/area/shuttle/drop_solano/midway)
+"KE" = (/obj/structure/shuttle/part/argonne/transparent/right_inner_bottom_wing,/turf/template_noop,/area/shuttle/drop_solano/midway)
+"LL" = (/turf/closed/shuttle/midway{icon_state = "75"},/area/shuttle/drop_solano/midway)
+"LP" = (/obj/structure/machinery/door/airlock/hatch/cockpit/two,/obj/structure/blocker/forcefield/multitile_vehicles,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/midway)
+"LW" = (/turf/closed/shuttle/midway/transparent{icon_state = "23"},/area/shuttle/drop_solano/midway)
+"LX" = (/obj/structure/extinguisher_cabinet/alt{pixel_x = -14; pixel_y = -9},/turf/closed/shuttle/midway{icon_state = "81"},/area/shuttle/drop_solano/midway)
+"Mh" = (/obj/effect/decal/warning_stripes{icon_state = "E"; pixel_x = 1},/obj/structure/platform{dir = 8},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_solano/midway)
+"Nd" = (/obj/structure/shuttle/part/argonne/transparent/upper_right_wing,/obj/effect/attach_point/electronics/midway,/turf/template_noop,/area/shuttle/drop_solano/midway)
+"Ne" = (/obj/structure/shuttle/part/argonne/right_outer_wing_connector,/turf/open/space/basic,/area/shuttle/drop_solano/midway)
+"Qo" = (/obj/structure/shuttle/part/argonne/transparent/nose_top_right,/turf/template_noop,/area/shuttle/drop_solano/midway)
+"Qt" = (/obj/effect/decal/warning_stripes,/obj/effect/attach_point/crew_weapon/midway,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/midway)
+"QA" = (/obj/structure/shuttle/part/argonne/transparent/lower_right_wing,/turf/template_noop,/area/shuttle/drop_solano/midway)
+"QE" = (/obj/structure/shuttle/part/argonne/transparent/upper_left_wing,/obj/effect/attach_point/electronics/midway,/turf/template_noop,/area/shuttle/drop_solano/midway)
+"QF" = (/obj/structure/stairs,/obj/structure/platform/ship{dir = 4},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/midway)
+"QU" = (/obj/structure/transmitter/rotary{name = "Attu Telephone"; phone_category = "Dropship"; phone_id = "Attu"; pixel_x = 11; pixel_y = 16},/obj/structure/blocker/invisible_wall,/obj/structure/machinery/computer/dropship_weapons/midway,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/midway)
+"RC" = (/obj/structure/machinery/cm_vending/sorted/medical/wall_med/vehicle{pixel_x = 5; pixel_y = -6},/turf/closed/shuttle/midway{icon_state = "81"},/area/shuttle/drop_solano/midway)
+"Ss" = (/turf/closed/shuttle/midway{icon_state = "24"},/area/shuttle/drop_solano/midway)
+"Sz" = (/obj/effect/decal/warning_stripes{icon_state = "SE-out"; pixel_x = 1},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_solano/midway)
+"TA" = (/turf/closed/shuttle/midway/transparent{icon_state = "96"},/area/shuttle/drop_solano/midway)
+"TD" = (/turf/closed/shuttle/midway/transparent{icon_state = "27"},/area/shuttle/drop_solano/midway)
+"TN" = (/obj/effect/decal/warning_stripes{icon_state = "W"},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/midway)
+"TQ" = (/turf/closed/shuttle/midway{icon_state = "67"},/area/shuttle/drop_solano/midway)
+"TT" = (/obj/structure/shuttle/part/argonne/lower_left_wall,/turf/open/space/basic,/area/shuttle/drop_solano/midway)
+"TV" = (/turf/closed/shuttle/midway/transparent{icon_state = "32"},/area/shuttle/drop_solano/midway)
+"VO" = (/turf/closed/shuttle/midway/transparent{icon_state = "89"},/area/shuttle/drop_solano/midway)
+"Wp" = (/obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2{id = "aft_door"; name = "\improper Attu cargo door"},/obj/effect/decal/warning_stripes{icon_state = "E"; pixel_x = 1},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/midway)
+"WD" = (/turf/closed/shuttle/midway/transparent{icon_state = "26"},/area/shuttle/drop_solano/midway)
+"Xd" = (/obj/effect/attach_point/fuel/midway{pixel_x = -33},/turf/closed/shuttle/midway/transparent{icon_state = "33"},/area/shuttle/drop_solano/midway)
+"XP" = (/turf/template_noop,/area/template_noop)
+"XW" = (/turf/closed/shuttle/midway{icon_state = "47"},/area/shuttle/drop_solano/midway)
+"XZ" = (/obj/structure/closet/fireaxecabinet{pixel_y = -10},/turf/closed/shuttle/midway{icon_state = "81"},/area/shuttle/drop_solano/midway)
+"Ya" = (/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/midway)
+"Zr" = (/turf/closed/shuttle/midway{icon_state = "36"},/area/shuttle/drop_solano/midway)
+"ZJ" = (/obj/effect/decal/warning_stripes{icon_state = "SE-out"; pixel_x = 1},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/midway)
+
+(1,1,1) = {"
+XPXPXPXPXPXPXPXPXPXPXP
+XPXPXPHZisisisQoXPXPXP
+XPXPXPaKTAHauouFXPXPXP
+XPXPXPsIBNAfQUfdXPXPXP
+XPXPqpkYDzYaDzVOaqXPXP
+XPXPLLXZseLPRCLXobXPXP
+XPQEruxqxxulyXxqITNdXP
+XPctTQmneVQteVmnEKpVXP
+XPBcdbxqeVYaeVxqIEQAXP
+XPXPqiYaeVQteVYawbXPXP
+XPXPZrZJhMtjSzelIcXPXP
+XPXPZrQFmNQtwwwDIcXPXP
+XPXPZrbRmbrIqPjjIcXPXP
+XPXPTTXWfwzFqcstKnXPXP
+XPmSjuZrMhYaIxIciLCwXP
+XPfzAPCTMhYaIxzaTVXdXP
+XPfDLWSsMhYaIxHMWDTDXP
+XPeeBsZrMhYaIxIceeBsXP
+XPXPXPLLWpYaTNobXPXPXP
+XPXPXPEdXPXPXPtiXPXPXP
+XPEDoIahXPXPXPNeKErBXP
+"}

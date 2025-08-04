@@ -18,6 +18,9 @@
 	var/effect_message = "tell a coder to fix this | WEATHER EVENT EFFECT MESSAGE"
 	var/damage_per_tick = 200 // more likely to report the bug if it instantly kills them
 	var/damage_type = BURN
+	var/ignite_target = FALSE
+	var/status_effect = IRRADIATE
+	var/status_strength = 0
 
 	var/ambience = 'sound/ambience/strata/strata_snow.ogg'
 
@@ -46,4 +49,9 @@
 	if(damage_per_tick)
 		var/calculated_damage = (isxeno(affected_mob) ? damage_per_tick * 3 : damage_per_tick) * delta_time
 		affected_mob.apply_damage(calculated_damage, damage_type)
+	if(status_strength)
+		var/calculated_effect = (isxeno(affected_mob) ? status_strength * 3 : status_strength) * delta_time
+		affected_mob.apply_effect(calculated_effect, status_effect)
+	if(ignite_target)
+		affected_mob.fire_act()
 		affected_mob.last_damage_data = create_cause_data("Exposure")

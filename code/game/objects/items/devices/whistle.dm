@@ -2,13 +2,17 @@
 	name = "\improper whistle"
 	desc = "A metal pea-whistle. Can be blown while held, or worn in the mouth"
 	icon_state = "whistle"
+	icon = 'icons/obj/items/tools.dmi'
 	w_class = SIZE_TINY
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_FACE
-	actions_types = list(/datum/action/item_action)
-
+	actions_types = list(/datum/action/item_action/toggle/use)
+	item_icons = list(
+		WEAR_FACE = 'icons/mob/humans/onmob/clothing/masks/objects.dmi'
+	)
 	var/volume = 60
-	var/spamcheck = 0
+	var/spam_cooldown_time = 10 SECONDS
+	COOLDOWN_DECLARE(spam_cooldown)
 
 /obj/item/device/whistle/attack_self(mob/user)
 	..()
@@ -28,17 +32,17 @@
 		..()
 
 /obj/item/device/whistle/proc/whistle_playsound(mob/user)
-	if (spamcheck)
+	if(!COOLDOWN_FINISHED(src, spam_cooldown))
+		to_chat(user, SPAN_DANGER("You are out of breath after using [src]! Wait [COOLDOWN_SECONDSLEFT(src, spam_cooldown)] second\s."))
 		return
 
 	user.visible_message(SPAN_WARNING("[user] blows into [src]!"))
 	playsound(get_turf(src), 'sound/items/whistle.ogg', volume, 1, vary = 0)
 
-	spamcheck = 1
-	addtimer(VARSET_CALLBACK(src, spamcheck, FALSE), 3 SECONDS)
+	COOLDOWN_START(src, spam_cooldown, spam_cooldown_time)
 
 /obj/item/device/whistle/MouseDrop(obj/over_object)
-	if(ishuman(usr) || isrobot(usr))
+	if(ishuman(usr))
 
 		if(!usr.is_mob_restrained() && !usr.stat && usr.wear_mask == src)
 			switch(over_object.name)
@@ -49,7 +53,6 @@
 					if(usr.drop_inv_item_on_ground(src))
 						usr.put_in_l_hand(src)
 			add_fingerprint(usr)
-
 
 /obj/item/device/hailer
 	name = "hailer"
@@ -73,3 +76,55 @@
 
 	spamcheck = 1
 	addtimer(VARSET_CALLBACK(src, spamcheck, FALSE), 2 SECONDS)
+
+/obj/item/device/trench_whistle
+	name = "\improper trench whistle"
+	desc = "An old metal whistle. Favored by officers who frequently find themselves in loud enviroments. Can be blown while held, or worn in the mouth"
+	icon_state = "twhistle"
+	w_class = SIZE_TINY
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_FACE
+	actions_types = list(/datum/action/item_action)
+
+	var/volume = 60
+	var/spamcheck = 0
+
+/obj/item/device/trench_whistle/attack_self(mob/user)
+	..()
+	whistle_playsound(user)
+	add_fingerprint(user)
+
+/obj/item/device/trench_whistle/attackby(obj/item/W, mob/user)
+	if(user.wear_mask == src)
+		whistle_playsound(user)
+	else
+		..()
+
+/obj/item/device/trench_whistle/attack_hand(mob/user)
+	if(user.wear_mask == src)
+		whistle_playsound(user)
+	else
+		..()
+
+/obj/item/device/trench_whistle/proc/whistle_playsound(mob/user)
+	if (spamcheck)
+		return
+
+	user.visible_message(SPAN_WARNING("[user] blows into [src]!"))
+	playsound(get_turf(src), 'sound/items/trenchwhistle.ogg', volume, 1, vary = 0)
+
+	spamcheck = 1
+	addtimer(VARSET_CALLBACK(src, spamcheck, FALSE), 3 SECONDS)
+
+/obj/item/device/trench_whistle/MouseDrop(obj/over_object)
+	if(ishuman(usr))
+
+		if(!usr.is_mob_restrained() && !usr.stat && usr.wear_mask == src)
+			switch(over_object.name)
+				if("r_hand")
+					if(usr.drop_inv_item_on_ground(src))
+						usr.put_in_r_hand(src)
+				if("l_hand")
+					if(usr.drop_inv_item_on_ground(src))
+						usr.put_in_l_hand(src)
+			add_fingerprint(usr)

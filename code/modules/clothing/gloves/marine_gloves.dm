@@ -7,7 +7,7 @@
 	icon_state = "black"
 	item_state = "black"
 	siemens_coefficient = 0.6
-	permeability_coefficient = 0.05
+
 	flags_cold_protection = BODY_FLAG_HANDS
 	flags_heat_protection = BODY_FLAG_HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROT
@@ -23,11 +23,11 @@
 	armor_internaldamage = CLOTHING_ARMOR_LOW
 	var/adopts_squad_color = TRUE
 	/// The dmi where the grayscale squad overlays are contained
-	var/squad_overlay_icon = 'icons/mob/humans/onmob/hands_garb.dmi'
+	var/squad_overlay_icon = 'icons/mob/humans/onmob/clothing/hands_garb.dmi'
 
-/obj/item/clothing/gloves/marine/get_mob_overlay(mob/living/carbon/human/current_human, slot)
+/obj/item/clothing/gloves/marine/get_mob_overlay(mob/living/carbon/human/current_human, slot, default_bodytype = "Default")
 	var/image/ret = ..()
-	if(!adopts_squad_color || !(current_human.assigned_squad && current_human.assigned_squad.equipment_color))
+	if(!adopts_squad_color || !(current_human?.assigned_squad?.equipment_color))
 		return ret
 	var/image/glove_overlay = image(squad_overlay_icon, icon_state = "std-gloves")
 	glove_overlay.alpha = current_human.assigned_squad.armor_alpha
@@ -38,9 +38,15 @@
 /obj/item/clothing/gloves/marine/insulated
 	name = "marine insulated gloves"
 	desc = "These gloves will protect the wearer from electric shock."
-	icon_state = "lightbrown"
-	item_state = "lightbrowngloves"
+	icon_state = "insulated"
+	item_state = "insulated"
 	siemens_coefficient = 0
+
+/obj/item/clothing/gloves/marine/insulated/black
+	name = "marine insulated black gloves"
+	desc = "These marine gloves will protect the wearer from electric shocks and shrapnal. Standard issue for properly-equipped Marines."
+	icon_state = "black"
+	item_state = "black"
 
 /obj/item/clothing/gloves/marine/black
 	name = "marine black combat gloves"
@@ -52,6 +58,21 @@
 	icon_state = "brown"
 	item_state = "brown"
 	adopts_squad_color = FALSE
+
+/obj/item/clothing/gloves/marine/grey
+	name = "marine grey combat gloves"
+	desc = "Standard issue marine tactical gloves. It reads: 'knit by Marine Widows Association'. These are a shade of grey instead of the classic black."
+	icon_state = "marine_grey"
+	item_state = "marine_grey"
+	adopts_squad_color = FALSE
+
+/obj/item/clothing/gloves/marine/medical
+	name = "marine medical combat gloves"
+	desc = "Standard issue marine sterile gloves, offers regular protection whilst offering the user a better grip when performing medical work."
+	icon_state = "latex"
+	item_state = "latex"
+	adopts_squad_color = FALSE
+
 
 /obj/item/clothing/gloves/marine/officer
 	name = "officer gloves"
@@ -70,14 +91,14 @@
 	icon_state = "yellow"
 	item_state = "ygloves"
 	siemens_coefficient = 0
-	permeability_coefficient = 0.01
+
 	adopts_squad_color = FALSE
 
-/obj/item/clothing/gloves/marine/techofficer/commander
-	name = "commanding officer's gloves"
-	desc = "You may like these gloves, but THEY think you are unworthy of them."
+/obj/item/clothing/gloves/marine/techofficer/fancy
+	name = "deluxe combat gloves"
+	desc = "Combat gloves finished in an almost golden-looking fabric. Insulated, fashionable, and capable of protecting the soft hands it's likely wrapped around."
 	icon_state = "captain"
-	item_state = "egloves"
+	item_state = "captain"
 
 /obj/item/clothing/gloves/marine/specialist
 	name = "\improper B18 defensive gauntlets"
@@ -156,7 +177,7 @@
 /obj/item/clothing/gloves/marine/dress
 	name = "dress gloves"
 	desc = "A pair of fashionable white gloves, worn by marines in dress."
-	icon_state = "white"
+	icon_state = "marine_white"
 	item_state = "marine_white"
 	adopts_squad_color = FALSE
 
@@ -202,4 +223,20 @@
 	name = "\improper L6 pattern combat gloves"
 	desc = "Standard issue tactical gloves used by the royal marines."
 	icon_state = "rmc_gloves"
-	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+	flags_atom = NO_NAME_OVERRIDE|NO_GAMEMODE_SKIN
+
+/obj/item/clothing/gloves/marine/veteran/royal_marine/medical
+	name = "\improper L6 pattern combat medic gloves"
+	desc = "Standard issue tactical gloves used by the royal marines combat medics. Sterile and still efficient for combat use."
+	icon_state = "latex"
+	item_state = "latex"
+	adopts_squad_color = FALSE
+	armor_bio = CLOTHING_ARMOR_MEDIUM
+
+/obj/item/clothing/gloves/marine/veteran/cbrn
+	name = "\improper M3 MOPP gloves"
+	desc = "M3 MOPP gloves are made of treated venlar designed to protect the user’s hands against contamination whilst working in CBRN environments. Special care has been taken to give the user’s hands enough dexterity to fully service a rifle or utilize most handheld tools, while circular adhesive patterns on the fingers provide the user with enhanced grips. Standard CBRN protocol dictates that the gloves are expected to have a lifespan of maximum effectiveness of around twenty-four hours once exposed to moderate levels of contamination and that users are recommended to discard and replace them afterwards."
+	icon_state = "cbrn"
+	item_state = "cbrn"
+	armor_bio = CLOTHING_ARMOR_GIGAHIGHPLUS
+	armor_rad = CLOTHING_ARMOR_GIGAHIGHPLUS

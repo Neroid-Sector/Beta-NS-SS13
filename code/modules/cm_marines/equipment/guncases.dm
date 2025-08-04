@@ -1,7 +1,9 @@
 /obj/item/storage/box/guncase
 	name = "\improper gun case"
 	desc = "It has space for firearm(s). Sometimes magazines or other munitions as well."
+	icon = 'icons/obj/items/storage/kits.dmi'
 	icon_state = "guncase"
+	item_state = "guncase"
 	w_class = SIZE_HUGE
 	max_w_class = SIZE_HUGE //shouldn't be a problem since we can only store the guns and ammo.
 	storage_slots = 1
@@ -55,6 +57,21 @@
 	new /obj/item/weapon/gun/shotgun/double/mou53(src)
 	new /obj/item/attachable/stock/mou53(src)
 
+/obj/item/storage/box/guncase/type23
+	name = "\improper Type 23 Shotgun case"
+	desc = "A gun case containing the type 23 Shotgun."
+	storage_slots = 7
+	can_hold = list(/obj/item/storage/belt/shotgun/upp/heavybuck, /obj/item/weapon/gun/shotgun/type23, /obj/item/ammo_magazine/handful/shotgun/heavy/buckshot)
+
+/obj/item/storage/box/guncase/type23/fill_preset_inventory()
+	new /obj/item/weapon/gun/shotgun/type23(src)
+	new /obj/item/storage/belt/shotgun/upp/heavybuck(src)
+	new /obj/item/ammo_magazine/handful/shotgun/heavy/buckshot(src)
+	new /obj/item/ammo_magazine/handful/shotgun/heavy/buckshot(src)
+	new /obj/item/ammo_magazine/handful/shotgun/heavy/buckshot(src)
+	new /obj/item/ammo_magazine/handful/shotgun/heavy/buckshot(src)
+	new /obj/item/ammo_magazine/handful/shotgun/heavy/buckshot(src)
+
 //------------
 /obj/item/storage/box/guncase/lmg
 	name = "\improper M41AE2 heavy pulse rifle case"
@@ -67,7 +84,6 @@
 	new /obj/item/ammo_magazine/rifle/lmg(src)
 	new /obj/item/ammo_magazine/rifle/lmg/holo_target(src)
 	new /obj/item/attachable/flashlight
-	new /obj/item/attachable/bipod
 
 //------------
 /obj/item/storage/box/guncase/m41aMK1
@@ -80,6 +96,18 @@
 	new /obj/item/weapon/gun/rifle/m41aMK1(src)
 	new /obj/item/ammo_magazine/rifle/m41aMK1(src)
 	new /obj/item/ammo_magazine/rifle/m41aMK1(src)
+
+
+/obj/item/storage/box/guncase/m41aMK1AP
+	name = "\improper M41A pulse rifle MK1 AP case"
+	desc = "A gun case containing the M41A pulse rifle MK1 loaded with AP rounds. It can only use proprietary MK1 magazines."
+	storage_slots = 3
+	can_hold = list(/obj/item/weapon/gun/rifle/m41aMK1, /obj/item/ammo_magazine/rifle/m41aMK1)
+
+/obj/item/storage/box/guncase/m41aMK1AP/fill_preset_inventory()
+	new /obj/item/weapon/gun/rifle/m41aMK1/ap(src)
+	new /obj/item/ammo_magazine/rifle/m41aMK1/ap(src)
+	new /obj/item/ammo_magazine/rifle/m41aMK1/ap(src)
 
 //------------
 //M79 grenade launcher
@@ -111,6 +139,28 @@
 	new /obj/item/ammo_magazine/lever_action(src)
 	new /obj/item/storage/belt/shotgun/lever_action(src)
 	new /obj/item/storage/belt/gun/m44/lever_action/attach_holster(src)
+
+/obj/item/storage/box/guncase/r4t_ranger
+	name = "\improper R4T lever action rifle case"
+	desc = "A gun case containing the R4T lever action rifle, intended for scouting. Comes with an ammunition belt, the optional revolver attachment for it, two boxes of ammunition, a sling, and a stock for the rifle."
+	storage_slots = 14
+	can_hold = list(/obj/item/weapon/gun/lever_action/r4t, /obj/item/attachable/stock/r4t, /obj/item/attachable/magnetic_harness/lever_sling, /obj/item/ammo_magazine/lever_action, /obj/item/ammo_magazine/lever_action/training, /obj/item/storage/belt/shotgun/lever_action, /obj/item/storage/belt/gun/m44/lever_action/attach_holster, /obj/item/device/motiondetector/m717)
+
+/obj/item/storage/box/guncase/r4t_ranger/fill_preset_inventory()
+	new /obj/item/weapon/gun/lever_action/r4t(src)
+	new /obj/item/attachable/stock/r4t(src)
+	new /obj/item/attachable/magnetic_harness/lever_sling(src)
+	new /obj/item/ammo_magazine/lever_action(src)
+	new /obj/item/ammo_magazine/lever_action(src)
+	new /obj/item/storage/belt/shotgun/lever_action(src)
+	new /obj/item/storage/belt/gun/m44/lever_action/attach_holster(src)
+	new /obj/item/attachable/scope/mini(src)
+	new /obj/item/ammo_magazine/smg/pps43(src)
+	new /obj/item/ammo_magazine/smg/pps43(src)
+	new /obj/item/ammo_magazine/smg/pps43(src)
+	new /obj/item/ammo_magazine/smg/pps43(src)
+	new /obj/item/ammo_magazine/smg/pps43(src)
+	new /obj/item/weapon/gun/smg/pps43/extended_mag(src)
 
 /obj/item/storage/box/guncase/xm88
 	name = "\improper XM88 heavy rifle case"
@@ -301,6 +351,7 @@
 	name = "\improper M707 anti-materiel rifle case"
 	desc = "A gun case containing the M707 \"Vulture\" anti-materiel rifle and its requisite spotting tools."
 	icon_state = "guncase_blue"
+	item_state = "guncase_blue"
 	storage_slots = 7
 	can_hold = list(
 		/obj/item/weapon/gun/boltaction/vulture,
@@ -336,13 +387,52 @@
 	new /obj/item/device/vulture_spotter_scope/skillless(src, WEAKREF(rifle))
 	new /obj/item/tool/screwdriver(src) // Spotter scope needs a screwdriver to disassemble
 
+/obj/item/storage/box/guncase/vulture/holo_target
+	name = "\improper M707 holo-targetting anti-materiel rifle case"
+	desc = "A gun case containing the M707 \"Vulture\" anti-materiel rifle and its requisite spotting tools. This variant is pre-loaded with <b>IFF-CAPABLE</b> holo-targeting rounds."
+
+/obj/item/storage/box/guncase/vulture/holo_target/fill_preset_inventory()
+	var/obj/item/weapon/gun/boltaction/vulture/holo_target/rifle = new(src)
+	new /obj/item/ammo_magazine/rifle/boltaction/vulture/holo_target(src)
+	new /obj/item/device/vulture_spotter_tripod(src)
+	new /obj/item/device/vulture_spotter_scope(src, WEAKREF(rifle))
+	new /obj/item/tool/screwdriver(src)
+	new /obj/item/pamphlet/trait/vulture(src)
+	new /obj/item/pamphlet/trait/vulture(src)
+
+/obj/item/storage/box/guncase/vulture/holo_target/skillless
+	storage_slots = 5
+
+/obj/item/storage/box/guncase/vulture/holo_target/skillless/fill_preset_inventory()
+	var/obj/item/weapon/gun/boltaction/vulture/holo_target/skillless/rifle = new(src)
+	new /obj/item/ammo_magazine/rifle/boltaction/vulture/holo_target(src)
+	new /obj/item/device/vulture_spotter_tripod(src)
+	new /obj/item/device/vulture_spotter_scope/skillless(src, WEAKREF(rifle))
+	new /obj/item/tool/screwdriver(src)
+
+
+/obj/item/storage/box/guncase/xm51
+	name = "\improper XM51 breaching scattergun case"
+	desc = "A gun case containing the XM51 Breaching Scattergun. Comes with two spare magazines, two spare shell boxes, an optional stock and a belt to holster the weapon."
+	storage_slots = 7
+	can_hold = list(/obj/item/weapon/gun/rifle/xm51, /obj/item/ammo_magazine/rifle/xm51, /obj/item/storage/belt/gun/xm51, /obj/item/attachable/stock/xm51)
+
+/obj/item/storage/box/guncase/xm51/fill_preset_inventory()
+	new /obj/item/attachable/stock/xm51(src)
+	new /obj/item/weapon/gun/rifle/xm51(src)
+	new /obj/item/ammo_magazine/rifle/xm51(src)
+	new /obj/item/ammo_magazine/rifle/xm51(src)
+	new /obj/item/ammo_magazine/shotgun/light/breaching(src)
+	new /obj/item/ammo_magazine/shotgun/light/breaching(src)
+	new /obj/item/storage/belt/gun/xm51(src)
+
 //Handgun case for Military police vendor three mag , a railflashligh and the handgun.
 
 //88 Mod 4 Combat Pistol
 /obj/item/storage/box/guncase/mod88
 	name = "\improper 88 Mod 4 Combat Pistol case"
 	desc = "A gun case containing an 88 Mod 4 Combat Pistol."
-	storage_slots = 5
+	storage_slots = 8
 	can_hold = list(/obj/item/attachable/flashlight, /obj/item/weapon/gun/pistol/mod88, /obj/item/ammo_magazine/pistol/mod88)
 
 /obj/item/storage/box/guncase/mod88/fill_preset_inventory()
@@ -351,12 +441,15 @@
 	new /obj/item/ammo_magazine/pistol/mod88(src)
 	new /obj/item/ammo_magazine/pistol/mod88(src)
 	new /obj/item/ammo_magazine/pistol/mod88(src)
+	new /obj/item/ammo_magazine/pistol/mod88(src)
+	new /obj/item/ammo_magazine/pistol/mod88(src)
+	new /obj/item/ammo_magazine/pistol/mod88(src)
 
 //M44 Combat Revolver
 /obj/item/storage/box/guncase/m44
 	name = "\improper M44 Combat Revolver case"
 	desc = "A gun case containing an M44 Combat Revolver loaded with marksman ammo."
-	storage_slots = 5
+	storage_slots = 8
 	can_hold = list(/obj/item/attachable/flashlight, /obj/item/weapon/gun/revolver/m44, /obj/item/ammo_magazine/revolver)
 
 /obj/item/storage/box/guncase/m44/fill_preset_inventory()
@@ -365,12 +458,15 @@
 	new /obj/item/ammo_magazine/revolver/marksman(src)
 	new /obj/item/ammo_magazine/revolver/marksman(src)
 	new /obj/item/ammo_magazine/revolver/marksman(src)
+	new /obj/item/ammo_magazine/revolver/marksman(src)
+	new /obj/item/ammo_magazine/revolver/marksman(src)
+	new /obj/item/ammo_magazine/revolver/marksman(src)
 
 //M4A3 Service Pistol
 /obj/item/storage/box/guncase/m4a3
 	name = "\improper M4A3 Service Pistol case"
 	desc = "A gun case containing an M4A3 Service Pistol."
-	storage_slots = 5
+	storage_slots = 8
 	can_hold = list(/obj/item/attachable/flashlight, /obj/item/weapon/gun/pistol/m4a3, /obj/item/ammo_magazine/pistol)
 
 /obj/item/storage/box/guncase/m4a3/fill_preset_inventory()
@@ -379,3 +475,36 @@
 	new /obj/item/ammo_magazine/pistol(src)
 	new /obj/item/ammo_magazine/pistol(src)
 	new /obj/item/ammo_magazine/pistol(src)
+	new /obj/item/ammo_magazine/pistol(src)
+	new /obj/item/ammo_magazine/pistol(src)
+	new /obj/item/ammo_magazine/pistol(src)
+
+// -------- UPP Gun Kits --------
+
+/obj/item/storage/box/guncase/type19
+	name = "\improper Type-19 submachinegun case"
+	desc = "A gun case containing the Type-19 submachine gun, an outdated firearm of the UPP, but still found in limited service with more outlying union forces."
+	storage_slots = 6
+	can_hold = list(/obj/item/weapon/gun/smg/pps43, /obj/item/ammo_magazine/smg/pps43, /obj/item/ammo_magazine/smg/pps43/extended)
+
+/obj/item/storage/box/guncase/type19/fill_preset_inventory()
+	new /obj/item/weapon/gun/smg/pps43(src)
+	new /obj/item/ammo_magazine/smg/pps43(src)
+	new /obj/item/ammo_magazine/smg/pps43(src)
+	new /obj/item/ammo_magazine/smg/pps43(src)
+	new /obj/item/ammo_magazine/smg/pps43(src)
+	new /obj/item/ammo_magazine/smg/pps43(src)
+
+/obj/item/storage/box/guncase/ppsh
+	name = "\improper PPSh-17b submachinegun case"
+	desc = "A gun case containing the PPSh-17b submachine gun, copy of an ancient firearm, woefully inadequate for modern warfare, but highly sought after by collectors."
+	storage_slots = 6
+	can_hold = list(/obj/item/weapon/gun/smg/ppsh, /obj/item/ammo_magazine/smg/ppsh, /obj/item/ammo_magazine/smg/ppsh/extended)
+
+/obj/item/storage/box/guncase/ppsh/fill_preset_inventory()
+	new /obj/item/weapon/gun/smg/ppsh(src)
+	new /obj/item/ammo_magazine/smg/ppsh/extended(src)
+	new /obj/item/ammo_magazine/smg/ppsh/extended(src)
+	new /obj/item/ammo_magazine/smg/ppsh(src)
+	new /obj/item/ammo_magazine/smg/ppsh(src)
+	new /obj/item/ammo_magazine/smg/ppsh(src)

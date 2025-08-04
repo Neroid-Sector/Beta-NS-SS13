@@ -2,62 +2,39 @@
 //SMARTGUN
 
 //Come get some.
+#define DRAIN_ACCURACY_IMP "acc"
+#define DRAIN_IFF "iff"
+#define DRAIN_ALWAYS "default"
+#define DRAIN_AUTO_AIM "autoaim"
+#define DRAIN_RECOIL_COMP "recoil"
+#define DRAIN_MD "md"
 /obj/item/weapon/gun/smartgun
 	name = "\improper M56B smartgun"
 	desc = "The actual firearm in the 4-piece M56B Smartgun System. Essentially a heavy, mobile machinegun.\nYou may toggle firing restrictions by using a special action.\nAlt-click it to open the feed cover and allow for reloading."
-	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
+	icon = 'icons/obj/items/weapons/guns/guns_by_faction/USCM/machineguns.dmi'
 	icon_state = "m56"
 	item_state = "m56"
+	item_icons = list(
+		WEAR_BACK = 'icons/mob/humans/onmob/clothing/back/guns_by_type/machineguns.dmi',
+		WEAR_J_STORE = 'icons/mob/humans/onmob/clothing/suit_storage/guns_by_type/machineguns.dmi',
+		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/weapons/guns/machineguns_lefthand.dmi',
+		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/weapons/guns/machineguns_righthand.dmi'
+	)
+	mouse_pointer = 'icons/effects/mouse_pointer/smartgun_mouse.dmi'
+
 	fire_sound = "gun_smartgun"
 	fire_rattle = "gun_smartgun_rattle"
 	reload_sound = 'sound/weapons/handling/gun_sg_reload.ogg'
 	unload_sound = 'sound/weapons/handling/gun_sg_unload.ogg'
+
 	current_mag = /obj/item/ammo_magazine/smartgun
 	flags_equip_slot = NO_FLAGS
 	w_class = SIZE_HUGE
 	force = 20
 	wield_delay = WIELD_DELAY_FAST
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
-	var/obj/item/smartgun_battery/battery = null
-	/// Whether the smartgun drains the battery (Ignored if requires_battery is false)
-	var/requires_power = TRUE
-	/// Whether the smartgun requires a battery
-	var/requires_battery = TRUE
-	/// Whether the smartgun requires a harness to use
-	var/requires_harness = TRUE
-	ammo = /datum/ammo/bullet/smartgun
-	actions_types = list(
-		/datum/action/item_action/smartgun/toggle_accuracy_improvement,
-		/datum/action/item_action/smartgun/toggle_ammo_type,
-		/datum/action/item_action/smartgun/toggle_auto_fire,
-		/datum/action/item_action/smartgun/toggle_lethal_mode,
-		/datum/action/item_action/smartgun/toggle_motion_detector,
-		/datum/action/item_action/smartgun/toggle_recoil_compensation,
-	)
-	var/datum/ammo/ammo_primary = /datum/ammo/bullet/smartgun //Toggled ammo type
-	var/datum/ammo/ammo_secondary = /datum/ammo/bullet/smartgun/armor_piercing //Toggled ammo type
-	var/iff_enabled = TRUE //Begin with the safety on.
-	var/secondary_toggled = 0 //which ammo we use
-	var/recoil_compensation = 0
-	var/accuracy_improvement = 0
-	var/auto_fire = 0
-	var/motion_detector = 0
-	var/drain = 11
-	var/range = 7
-	var/angle = 2
-	var/list/angle_list = list(180,135,90,60,30)
-	var/obj/item/device/motiondetector/sg/MD
-	var/long_range_cooldown = 2
-	var/recycletime = 120
-	var/cover_open = FALSE
-
-	unacidable = 1
-	indestructible = 1
-
-	attachable_allowed = list(
-		/obj/item/attachable/smartbarrel,
-		/obj/item/attachable/flashlight,
-	)
+	unacidable = TRUE
+	explo_proof = TRUE
 
 	flags_gun_features = GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 	gun_category = GUN_CATEGORY_HEAVY
@@ -66,13 +43,90 @@
 	start_semiauto = FALSE
 	start_automatic = TRUE
 
+	ammo = /datum/ammo/bullet/smartgun
+	actions_types = list(
+		/datum/action/item_action/smartgun/toggle_ammo_type,
+		/datum/action/item_action/smartgun/toggle_auto_aim,
+		/datum/action/item_action/smartgun/toggle_lethal_mode,
+		/datum/action/item_action/smartgun/toggle_motion_detector,
+		/datum/action/item_action/smartgun/toggle_recoil_compensation,
+	)
+	attachable_allowed = list(
+		/obj/item/attachable/smartbarrel,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/grip,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/lasersight,
+
+	)
+
+	var/obj/item/smartgun_battery/battery = null
+	/// Whether the smartgun drains the battery (Ignored if requires_battery is false)
+	var/requires_power = TRUE
+	/// Whether the smartgun requires a battery
+	var/requires_battery = TRUE
+	/// Whether the smartgun requires a harness to use
+	var/requires_harness = TRUE
+
+	/// The current normal ammo datum
+	var/datum/ammo/ammo_primary //Toggled ammo type
+	/// The current AP ammo datum
+	var/datum/ammo/ammo_secondary //Toggled ammo type
+	/// Non-Frontline mode normal ammo datum
+	var/datum/ammo/ammo_primary_def = /datum/ammo/bullet/smartgun
+	/// Non-Frontline mode AP ammo datum
+	var/datum/ammo/ammo_secondary_def = /datum/ammo/bullet/smartgun/armor_piercing
+	/// Frontline mode normal ammo datum
+	var/datum/ammo/ammo_primary_alt = /datum/ammo/bullet/smartgun/alt
+	/// Frontline mode AP ammo datum
+	var/datum/ammo/ammo_secondary_alt = /datum/ammo/bullet/smartgun/armor_piercing/alt
+	/// Whether IFF mode is toggled on
+	var/iff_enabled = TRUE //Begin with the safety on.
+	/// Whether Frontline mode is toggled on
+	var/frontline_enabled = FALSE //Begin with Frontline mode off.
+	/// Whether we are using AP ammo currently
+	var/secondary_toggled = FALSE
+	var/recoil_compensation = 0
+	var/accuracy_improvement = 0
+	var/auto_aim = 0
+	var/motion_detector = 0
+	var/list/drain = list(DRAIN_ALWAYS = 11)
+	var/range = 2
+	var/obj/item/device/motiondetector/sg/MD
+	var/long_range_cooldown = 2
+	var/recycletime = 120
+	var/cover_open = FALSE
+	var/image/autoshot_image
+	var/datum/weakref/last_autoshooter
+
+/obj/item/weapon/gun/smartgun/apply_bullet_effects(obj/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
+	. = ..()
+	if(!HAS_TRAIT(src, TRAIT_GUN_SILENCED))
+		if(!HAS_TRAIT(user, TRAIT_EAR_PROTECTION) && ishuman(user))
+			var/mob/living/carbon/human/huser = user
+			to_chat(user, SPAN_WARNING("Augh!! \The [src]'s firing resonates extremely loudly in your ears! You probably should have worn some sort of ear protection..."))
+			huser.apply_effect(6, STUTTER)
+			huser.AdjustEarDeafnessGuns(max(user.ear_deaf,2))
 
 /obj/item/weapon/gun/smartgun/Initialize(mapload, ...)
-	ammo_primary = GLOB.ammo_list[ammo_primary] //Gun initialize calls replace_ammo() so we need to set these first.
-	ammo_secondary = GLOB.ammo_list[ammo_secondary]
+	ammo_primary_def = GLOB.ammo_list[ammo_primary_def] //Gun initialize calls replace_ammo() so we need to set these first.
+	ammo_secondary_def = GLOB.ammo_list[ammo_secondary_def]
+	ammo_primary_alt = GLOB.ammo_list[ammo_primary_alt]
+	ammo_secondary_alt = GLOB.ammo_list[ammo_secondary_alt]
+	ammo_primary = ammo_primary_def
+	ammo_secondary = ammo_secondary_def
 	MD = new(src)
 	battery = new /obj/item/smartgun_battery(src)
+	muzzle_flash = "muzzle_flash_blue"
+	muzzle_flash_color = COLOR_MUZZLE_BLUE
+	autoshot_image = image('icons/effects/effects.dmi', null, "lock")
+	autoshot_image.layer = ABOVE_XENO_LAYER
+	autoshot_image.plane = GAME_PLANE
+	autoshot_image.appearance_flags = RESET_COLOR|RESET_ALPHA|RESET_TRANSFORM|KEEP_APART
+	autoshot_image.alpha = 190
 	. = ..()
+	AddComponent(/datum/component/iff_fire_prevention)
 	update_icon()
 
 /obj/item/weapon/gun/smartgun/Destroy()
@@ -81,6 +135,10 @@
 	QDEL_NULL(MD)
 	QDEL_NULL(battery)
 	. = ..()
+
+/obj/item/weapon/gun/smartgun/cock(mob/user)
+	to_chat(user, SPAN_WARNING("You can't manually unload a smartgun's chamber!"))
+	return
 
 /obj/item/weapon/gun/smartgun/set_gun_attachment_offsets()
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 17, "rail_y" = 18, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
@@ -100,7 +158,18 @@
 	else
 		scatter = SCATTER_AMOUNT_TIER_6
 		recoil = RECOIL_AMOUNT_TIER_3
-	damage_mult = BASE_BULLET_DAMAGE_MULT
+		damage_mult = BASE_BULLET_DAMAGE_MULT
+	if(auto_aim)
+		aim_slowdown = SLOWDOWN_ADS_SUPERWEAPON * 2
+	else
+		aim_slowdown = SLOWDOWN_ADS_SPECIALIST
+	if(!iff_enabled || frontline_enabled)
+		ammo_primary = ammo_primary_alt
+		ammo_secondary = ammo_secondary_alt
+	else
+		ammo_primary = ammo_primary_def
+		ammo_secondary = ammo_secondary_def
+	ammo = secondary_toggled ? ammo_secondary : ammo_primary
 
 /obj/item/weapon/gun/smartgun/set_bullet_traits()
 	LAZYADD(traits_to_give, list(
@@ -114,13 +183,14 @@
 		rounds = current_mag.current_rounds
 	var/message = "[rounds ? "Ammo counter shows [rounds] round\s remaining." : "It's dry."]"
 	. += message
+	. += "Frontline mode is [frontline_enabled ?  "<B>on</b>" : "<B>off</b>"]."
 	. += "The restriction system is [iff_enabled ? "<B>on</b>" : "<B>off</b>"]."
 
 	if(battery && get_dist(user, src) <= 1)
 		. += "A small gauge on [battery] reads: Power: [battery.power_cell.charge] / [battery.power_cell.maxcharge]."
 
 /obj/item/weapon/gun/smartgun/clicked(mob/user, list/mods)
-	if(mods["alt"])
+	if(mods[ALT_CLICK])
 		if(!CAN_PICKUP(user, src))
 			return ..()
 		if(!locate(src) in list(user.get_active_hand(), user.get_inactive_hand()))
@@ -144,7 +214,8 @@
 /obj/item/weapon/gun/smartgun/attackby(obj/item/attacking_object, mob/user)
 	if(istype(attacking_object, /obj/item/smartgun_battery))
 		var/obj/item/smartgun_battery/new_cell = attacking_object
-		visible_message("[user] swaps out the power cell in the [src].","You swap out the power cell in the [src] and drop the old one.")
+		visible_message(SPAN_NOTICE("[user] swaps out the power cell in [src]."),
+			SPAN_NOTICE("You swap out the power cell in [src] and drop the old one."))
 		to_chat(user, SPAN_NOTICE("The new cell contains: [new_cell.power_cell.charge] power."))
 		battery.update_icon()
 		battery.forceMove(get_turf(user))
@@ -167,6 +238,9 @@
 		return
 	. = ..()
 
+/obj/item/weapon/gun/smartgun/get_ammo_type_chambered(mob/user)
+	return ammo_primary
+
 /obj/item/weapon/gun/smartgun/update_icon()
 	. = ..()
 	if(cover_open)
@@ -177,6 +251,7 @@
 //---ability actions--\\
 
 /datum/action/item_action/smartgun/action_activate()
+	. = ..()
 	var/obj/item/weapon/gun/smartgun/G = holder_item
 	if(!ishuman(owner))
 		return
@@ -209,24 +284,25 @@
 	else
 		button.icon_state = "template"
 
-/datum/action/item_action/smartgun/toggle_auto_fire/New(Target, obj/item/holder)
+/datum/action/item_action/smartgun/toggle_auto_aim/New(Target, obj/item/holder)
 	. = ..()
-	name = "Toggle Auto Fire"
+	name = "Toggle Aim Assist"
 	action_icon_state = "autofire"
+	listen_signal = COMSIG_KB_HUMAN_WEAPON_TOGGLE_AIM_ASSIST
 	button.name = name
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/hud/actions.dmi', button, action_icon_state)
 
-/datum/action/item_action/smartgun/toggle_auto_fire/action_activate()
+/datum/action/item_action/smartgun/toggle_auto_aim/action_activate()
 	. = ..()
-	var/obj/item/weapon/gun/smartgun/G = holder_item
-	G.toggle_auto_fire(usr)
+	var/obj/item/weapon/gun/smartgun/toggledgun= holder_item
+	toggledgun.toggle_auto_aim(usr)
 
-/datum/action/item_action/smartgun/toggle_auto_fire/proc/update_icon()
+/datum/action/item_action/smartgun/toggle_auto_aim/proc/update_icon()
 	if(!holder_item)
 		return
-	var/obj/item/weapon/gun/smartgun/G = holder_item
-	if(G.auto_fire)
+	var/obj/item/weapon/gun/smartgun/toggledgun = holder_item
+	if(toggledgun.auto_aim)
 		button.icon_state = "template_on"
 	else
 		button.icon_state = "template"
@@ -264,6 +340,26 @@
 		button.icon_state = "template_on"
 	else
 		button.icon_state = "template"
+
+/datum/action/item_action/smartgun/toggle_frontline_mode/New(Target, obj/item/holder)
+	. = ..()
+	name = "Toggle Frontline Mode"
+	action_icon_state = "frontline_toggle_off"
+	listen_signal = COMSIG_KB_HUMAN_WEAPON_TOGGLE_FRONTLINE_MODE
+	button.name = name
+	button.overlays.Cut()
+	button.overlays += image ('icons/mob/hud/actions.dmi', button, action_icon_state)
+
+/datum/action/item_action/smartgun/toggle_frontline_mode/action_activate()
+	. = ..()
+	var/obj/item/weapon/gun/smartgun/gun = holder_item
+	gun.toggle_frontline_mode(owner)
+	if(gun.frontline_enabled)
+		action_icon_state = "frontline_toggle_on"
+	else
+		action_icon_state = "frontline_toggle_off"
+	button.overlays.Cut()
+	button.overlays += image('icons/mob/hud/actions.dmi', button, action_icon_state)
 
 /datum/action/item_action/smartgun/toggle_lethal_mode/New(Target, obj/item/holder)
 	. = ..()
@@ -308,6 +404,26 @@
 
 //more general procs
 
+/obj/item/weapon/gun/smartgun/proc/toggle_frontline_mode(mob/user, silent)
+	to_chat(user, "[icon2html(src, user)] You [frontline_enabled? "<B>disable</b>" : "<B>enable</b>"] [src]'s frontline mode. You will now [frontline_enabled ? "be able to shoot through friendlies" : "deal increased damage but be unable to shoot through friendlies"].")
+	if(!silent)
+		balloon_alert(user, "frontline mode [frontline_enabled ? "disabled" : "enabled"]")
+		playsound(loc,'sound/machines/click.ogg', 25, 1)
+	frontline_enabled = !frontline_enabled
+///Determines the color of the muzzle flash, depending on whether frontline mode is enabled or not.
+	if (!frontline_enabled)
+		muzzle_flash = "muzzle_flash_blue"
+		muzzle_flash_color = COLOR_MUZZLE_BLUE
+	else
+		muzzle_flash = "muzzle_flash"
+		muzzle_flash_color = COLOR_VERY_SOFT_YELLOW
+
+	SEND_SIGNAL(src, COMSIG_GUN_ALT_IFF_TOGGLED, frontline_enabled)
+	recalculate_attachment_bonuses()
+///Having the SG check it's config after toggling frontline mode & IFF is essential, or it won't update properly.
+///e.g. turning IFF off, firing once, turning IFF on will let the user fire frontline bullets over friendlies if the gun doesn't check.
+	set_gun_config_values()
+
 /obj/item/weapon/gun/smartgun/able_to_fire(mob/living/user)
 	. = ..()
 	if(.)
@@ -315,14 +431,15 @@
 			return FALSE
 		var/mob/living/carbon/human/H = user
 		if(!skillcheckexplicit(user, SKILL_SPEC_WEAPONS, SKILL_SPEC_SMARTGUN) && !skillcheckexplicit(user, SKILL_SPEC_WEAPONS, SKILL_SPEC_ALL))
-			to_chat(H, SPAN_WARNING("You don't seem to know how to use \the [src]..."))
+			balloon_alert(user, "insufficient skills")
 			return FALSE
 		if(requires_harness)
 			if(!H.wear_suit || !(H.wear_suit.flags_inventory & SMARTGUN_HARNESS))
-				to_chat(H, SPAN_WARNING("You need a harness suit to be able to fire [src]..."))
+				balloon_alert(user, "harness required")
 				return FALSE
 		if(cover_open)
 			to_chat(H, SPAN_WARNING("You can't fire \the [src] with the feed cover open! (alt-click to close)"))
+			balloon_alert(user, "cannot fire; feed cover open")
 			return FALSE
 
 /obj/item/weapon/gun/smartgun/unique_action(mob/user)
@@ -331,11 +448,9 @@
 	toggle_ammo_type(usr)
 
 /obj/item/weapon/gun/smartgun/proc/toggle_ammo_type(mob/user)
-	if(!iff_enabled)
-		to_chat(user, "[icon2html(src, usr)] Can't switch ammunition type when \the [src]'s fire restriction is disabled.")
-		return
 	secondary_toggled = !secondary_toggled
-	to_chat(user, "[icon2html(src, usr)] You changed \the [src]'s ammo preparation procedures. You now fire [secondary_toggled ? "armor shredding rounds" : "highly precise rounds"].")
+	to_chat(user, "[icon2html(src, user)] You changed [src]'s ammo preparation procedures. You now fire [secondary_toggled ? "armor piercing rounds" : "highly precise rounds"].")
+	balloon_alert(user, "firing [secondary_toggled ? "armor piercing" : "highly precise"]")
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
 	ammo = secondary_toggled ? ammo_secondary : ammo_primary
 	var/datum/action/item_action/smartgun/toggle_ammo_type/TAT = locate(/datum/action/item_action/smartgun/toggle_ammo_type) in actions
@@ -347,20 +462,29 @@
 
 /obj/item/weapon/gun/smartgun/proc/toggle_lethal_mode(mob/user)
 	to_chat(user, "[icon2html(src, usr)] You [iff_enabled? "<B>disable</b>" : "<B>enable</b>"] \the [src]'s fire restriction. You will [iff_enabled ? "harm anyone in your way" : "target through IFF"].")
+	balloon_alert(user, "[iff_enabled ? "disabled" : "enabled"] IFF")
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
 	iff_enabled = !iff_enabled
 	ammo = ammo_primary
 	secondary_toggled = FALSE
 	if(iff_enabled)
 		add_bullet_trait(BULLET_TRAIT_ENTRY_ID("iff", /datum/element/bullet_trait_iff))
-		drain += 10
+		drain[DRAIN_IFF] = 10
 		MD.iff_signal = initial(MD.iff_signal)
+		SEND_SIGNAL(src, COMSIG_GUN_ALT_IFF_TOGGLED, frontline_enabled)
 	if(!iff_enabled)
 		remove_bullet_trait("iff")
-		drain -= 10
+		drain.Remove(DRAIN_IFF)
 		MD.iff_signal = null
+		SEND_SIGNAL(src, COMSIG_GUN_ALT_IFF_TOGGLED, FALSE)
+		recalculate_attachment_bonuses()
+///Having the SG check it's config after toggling frontline mode & IFF is essential, or it won't update properly.
+///e.g. turning IFF off, firing once, turning IFF on will let the user fire frontline bullets over friendlies if the gun doesn't check.
+	set_gun_config_values()
 
-/obj/item/weapon/gun/smartgun/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
+/obj/item/weapon/gun/smartgun/Fire(atom/target, mob/living/user, params, reflex = FALSE, dual_wield)
+	target = get_target(user, target)
+
 	if(!requires_battery)
 		return ..()
 
@@ -372,7 +496,12 @@
 
 /obj/item/weapon/gun/smartgun/proc/drain_battery(override_drain)
 
-	var/actual_drain = (rand(drain / 2, drain) / 25)
+	var/calculated_drain = 0
+	for(var/drain_item in drain)
+		calculated_drain += drain[drain_item]
+
+	var/actual_drain = (rand(calculated_drain / 2, calculated_drain) / 25)
+
 
 	if(override_drain)
 		actual_drain = (rand(override_drain / 2, override_drain) / 25)
@@ -386,56 +515,92 @@
 			return FALSE
 		return TRUE
 	if(!battery || battery.power_cell.charge == 0)
-		to_chat(usr, SPAN_WARNING("[src] emits a low power warning and immediately shuts down!"))
+		balloon_alert(usr, "low power")
 		return FALSE
 	return FALSE
 
 /obj/item/weapon/gun/smartgun/proc/toggle_recoil_compensation(mob/user)
 	to_chat(user, "[icon2html(src, usr)] You [recoil_compensation? "<B>disable</b>" : "<B>enable</b>"] \the [src]'s recoil compensation.")
+	balloon_alert(user, "recoil compensation [recoil_compensation ? "disabled" : "enabled"]")
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
 	recoil_compensation = !recoil_compensation
 	if(recoil_compensation)
-		drain += 50
+		drain[DRAIN_RECOIL_COMP] = 50
 	else
-		drain -= 50
+		drain.Remove(DRAIN_RECOIL_COMP)
 	recalculate_attachment_bonuses() //Includes set_gun_config_values() as well as attachments.
 
 /obj/item/weapon/gun/smartgun/proc/toggle_accuracy_improvement(mob/user)
 	to_chat(user, "[icon2html(src, usr)] You [accuracy_improvement? "<B>disable</b>" : "<B>enable</b>"] \the [src]'s accuracy improvement.")
+	balloon_alert(user, "accuracy improvement [accuracy_improvement ? "disabled" : "enabled"]")
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
 	accuracy_improvement = !accuracy_improvement
 	if(accuracy_improvement)
-		drain += 50
+		drain[DRAIN_ACCURACY_IMP] = 50
 	else
-		drain -= 50
+		drain.Remove(DRAIN_ACCURACY_IMP)
 	recalculate_attachment_bonuses()
 
-/obj/item/weapon/gun/smartgun/proc/toggle_auto_fire(mob/user)
-	if(!(flags_item & WIELDED))
-		to_chat(user, "[icon2html(src, usr)] You need to wield \the [src] to enable autofire.")
-		return //Have to be actually be wielded.
-	to_chat(user, "[icon2html(src, usr)] You [auto_fire? "<B>disable</b>" : "<B>enable</b>"] \the [src]'s auto fire mode.")
+/obj/item/weapon/gun/smartgun/proc/toggle_auto_aim(mob/user)
+	to_chat(user, "[icon2html(src, user)] You [auto_aim ? "<B>disable</b>" : "<B>enable</b>"] \the [src]'s aim assist.")
+	balloon_alert(user, "aim assist [auto_aim ? "disabled" : "enabled"]")
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
-	auto_fire = !auto_fire
-	var/datum/action/item_action/smartgun/toggle_auto_fire/TAF = locate(/datum/action/item_action/smartgun/toggle_auto_fire) in actions
-	TAF.update_icon()
-	auto_fire()
+	auto_aim = !auto_aim
 
-/obj/item/weapon/gun/smartgun/proc/auto_fire()
-	if(auto_fire)
-		drain += 150
-		if(!motion_detector)
-			START_PROCESSING(SSobj, src)
-	if(!auto_fire)
-		drain -= 150
-		if(!motion_detector)
-			STOP_PROCESSING(SSobj, src)
+	if(auto_aim)
+		enable_auto_aim(user)
+	else
+		disable_auto_aim(user)
+
+/obj/item/weapon/gun/smartgun/proc/enable_auto_aim(mob/user)
+	drain[DRAIN_AUTO_AIM] = 200
+	START_PROCESSING(SSobj, src)
+	var/datum/action/item_action/smartgun/toggle_auto_aim/auto_aim_action = locate(/datum/action/item_action/smartgun/toggle_auto_aim) in actions
+	auto_aim_action.update_icon()
+	unwield(user)
+	recalculate_attachment_bonuses()
+
+/obj/item/weapon/gun/smartgun/proc/disable_auto_aim(mob/user)
+	drain.Remove(DRAIN_AUTO_AIM)
+	auto_aim = FALSE
+	var/datum/action/item_action/smartgun/toggle_auto_aim/auto_aim_action = locate(/datum/action/item_action/smartgun/toggle_auto_aim) in actions
+	auto_aim_action.update_icon()
+	unwield(user)
+	recalculate_attachment_bonuses()
+
+/obj/item/weapon/gun/smartgun/wield(mob/living/user)
+	if(auto_aim)
+		to_chat(user, SPAN_NOTICE("You start adjusting your stance to allow [src] to guide your aim."))
+		if(!do_after(user, 15, INTERRUPT_ALL, BUSY_ICON_HOSTILE, src, INTERRUPT_DIFF_LOC))
+			return
+		playsound(user,'sound/items/m56dauto_rotate.ogg', 55, 1)
+
+	. = ..()
+	user.client.images |= autoshot_image
+
+/obj/item/weapon/gun/smartgun/unwield(mob/user)
+	. = ..()
+	user.client?.images -= autoshot_image
+	reset_autoshot_image()
+
+/obj/item/weapon/gun/smartgun/proc/reset_autoshot_image()
+	autoshot_image.loc = null
+	autoshot_image.pixel_x = 0
+	autoshot_image.pixel_y = 0
+
+/obj/item/weapon/gun/smartgun/proc/set_autoshot_image(mob/living/target)
+	autoshot_image.loc = target
+	autoshot_image.pixel_x = -target.pixel_x // -16 is counted by -(-16)
+	autoshot_image.pixel_y = -target.pixel_y
 
 /obj/item/weapon/gun/smartgun/process()
-	if(!auto_fire && !motion_detector)
+	if(!auto_aim && !motion_detector)
 		STOP_PROCESSING(SSobj, src)
-	if(auto_fire)
-		auto_prefire()
+		return
+
+	if(auto_aim && last_fired + 1 SECONDS <= world.time)
+		reset_autoshot_image()
+
 	if(motion_detector)
 		recycletime--
 		if(!recycletime)
@@ -448,106 +613,54 @@
 		long_range_cooldown = initial(long_range_cooldown)
 		MD.scan()
 
-/obj/item/weapon/gun/smartgun/proc/auto_prefire(warned) //To allow the autofire delay to properly check targets after waiting.
-	if(ishuman(loc) && (flags_item & WIELDED))
-		var/human_user = loc
-		target = get_target(human_user)
-		process_shot(human_user, warned)
+/obj/item/weapon/gun/smartgun/proc/get_target(mob/living/user, target)
+	if(!auto_aim)
+		return target
+
+	var/dist_unconscious = 9999
+	var/dist_conscious = 9999
+
+	var/mob/living/unconscious_target = null
+	var/mob/living/conscious_target = null
+
+	for(var/mob/living/targetted_mob in range(range, target) & oviewers(user.get_maximum_view_range(), user))
+		if(targetted_mob.invisibility)
+			continue
+
+		if(HAS_TRAIT(targetted_mob, TRAIT_ABILITY_BURROWED))
+			continue
+
+		if(targetted_mob.is_ventcrawling)
+			continue
+
+		if(targetted_mob.stat == DEAD)
+			continue // No dead or non living.
+
+		if(iff_enabled && targetted_mob.get_target_lock(user.faction_group))
+			continue
+
+		var/dist = get_dist_sqrd(user, targetted_mob)
+
+		if(targetted_mob.stat == UNCONSCIOUS && dist_unconscious > dist)
+			dist_unconscious = dist
+			unconscious_target = targetted_mob
+		else if(dist_conscious > dist)
+			dist_conscious = dist
+			conscious_target = targetted_mob
+
+	if(conscious_target)
+		set_autoshot_image(conscious_target)
+		. = conscious_target
+	else if(unconscious_target)
+		set_autoshot_image(unconscious_target)
+		. = unconscious_target
 	else
-		auto_fire = FALSE
-		var/datum/action/item_action/smartgun/toggle_auto_fire/TAF = locate(/datum/action/item_action/smartgun/toggle_auto_fire) in actions
-		TAF.update_icon()
-		auto_fire()
-
-/obj/item/weapon/gun/smartgun/proc/get_target(mob/living/user)
-	var/list/conscious_targets = list()
-	var/list/unconscious_targets = list()
-	var/list/turf/path = list()
-	var/turf/T
-
-	for(var/mob/living/M in orange(range, user)) // orange allows sentry to fire through gas and darkness
-		if((M.stat & DEAD)) continue // No dead or non living.
-
-		if(M.get_target_lock(user.faction_group)) continue
-		if(angle > 0)
-			var/opp
-			var/adj
-
-			switch(user.dir)
-				if(NORTH)
-					opp = user.x-M.x
-					adj = M.y-user.y
-				if(SOUTH)
-					opp = user.x-M.x
-					adj = user.y-M.y
-				if(EAST)
-					opp = user.y-M.y
-					adj = M.x-user.x
-				if(WEST)
-					opp = user.y-M.y
-					adj = user.x-M.x
-
-			var/r = 9999
-			if(adj != 0) r = abs(opp/adj)
-			var/angledegree = arcsin(r/sqrt(1+(r*r)))
-			if(adj < 0)
-				continue
-
-			if((angledegree*2) > angle_list[angle])
-				continue
-
-		path = getline2(user, M)
-
-		if(path.len)
-			var/blocked = FALSE
-			for(T in path)
-				if(T.density || T.opacity)
-					blocked = TRUE
-					break
-				for(var/obj/structure/S in T)
-					if(S.opacity)
-						blocked = TRUE
-						break
-				for(var/obj/structure/machinery/MA in T)
-					if(MA.opacity)
-						blocked = TRUE
-						break
-				if(blocked)
-					break
-			if(blocked)
-				continue
-			if(M.stat & UNCONSCIOUS)
-				unconscious_targets += M
-			else
-				conscious_targets += M
-
-	if(conscious_targets.len)
-		. = pick(conscious_targets)
-	else if(unconscious_targets.len)
-		. = pick(unconscious_targets)
-
-/obj/item/weapon/gun/smartgun/proc/process_shot(mob/living/user, warned)
-	set waitfor = 0
-
-
-	if(!target)
-		return //Acquire our victim.
-
-	if(!ammo)
-		return
-
-	if(target && (world.time-last_fired >= 3)) //Practical firerate is limited mainly by process delay; this is just to make sure it doesn't fire too soon after a manual shot or slip a shot into an ongoing burst.
-		if(world.time-last_fired >= 300 && !warned) //if we haven't fired for a while, beep first
-			playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
-			addtimer(CALLBACK(src, /obj/item/weapon/gun/smartgun/proc/auto_prefire, TRUE), 3)
-			return
-
-		Fire(target,user)
-
-	target = null
+		. = target
+		reset_autoshot_image()
 
 /obj/item/weapon/gun/smartgun/proc/toggle_motion_detector(mob/user)
 	to_chat(user, "[icon2html(src, usr)] You [motion_detector? "<B>disable</b>" : "<B>enable</b>"] \the [src]'s motion detector.")
+	balloon_alert(user, "motion detector [motion_detector ? "disabled" : "enabled"]")
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
 	motion_detector = !motion_detector
 	var/datum/action/item_action/smartgun/toggle_motion_detector/TMD = locate(/datum/action/item_action/smartgun/toggle_motion_detector) in actions
@@ -556,13 +669,10 @@
 
 /obj/item/weapon/gun/smartgun/proc/motion_detector()
 	if(motion_detector)
-		drain += 15
-		if(!auto_fire)
-			START_PROCESSING(SSobj, src)
+		drain[DRAIN_MD] = 15
+		START_PROCESSING(SSobj, src)
 	if(!motion_detector)
-		drain -= 15
-		if(!auto_fire)
-			STOP_PROCESSING(SSobj, src)
+		drain.Remove(DRAIN_MD)
 
 //CO SMARTGUN
 /obj/item/weapon/gun/smartgun/co
@@ -585,13 +695,14 @@
 			playsound(loc,'sound/weapons/gun_empty.ogg', 25, 1)
 			return FALSE
 
+		UnregisterSignal(linked_human, COMSIG_PARENT_QDELETING)
 		linked_human = null
 		is_locked = FALSE
-		UnregisterSignal(linked_human, COMSIG_PARENT_QDELETING)
 
 // ID lock action \\
 
 /datum/action/item_action/co_sg/action_activate()
+	. = ..()
 	var/obj/item/weapon/gun/smartgun/co/protag_gun = holder_item
 	if(!ishuman(owner))
 		return
@@ -666,19 +777,31 @@
 	desc = "The actual firearm in the 4-piece M56D Smartgun System. If you have this, you're about to bring some serious pain to anyone in your way.\nYou may toggle firing restrictions by using a special action.\nAlt-click it to open the feed cover and allow for reloading."
 	current_mag = /obj/item/ammo_magazine/smartgun/dirty
 	ammo = /obj/item/ammo_magazine/smartgun/dirty
-	ammo_primary = /datum/ammo/bullet/smartgun/dirty//Toggled ammo type
-	ammo_secondary = /datum/ammo/bullet/smartgun/dirty/armor_piercing///Toggled ammo type
+	ammo_primary //Toggled ammo type
+	ammo_secondary //Toggled ammo type
+	ammo_primary_def = /datum/ammo/bullet/smartgun/dirty
+	ammo_secondary_def = /datum/ammo/bullet/smartgun/dirty/armor_piercing
+	ammo_primary_alt = /datum/ammo/bullet/smartgun/dirty/alt
+	ammo_secondary_alt = /datum/ammo/bullet/smartgun/dirty/armor_piercing/alt
 	flags_gun_features = GUN_WY_RESTRICTED|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 
 /obj/item/weapon/gun/smartgun/dirty/Initialize(mapload, ...)
 	. = ..()
 	MD.iff_signal = FACTION_PMC
 
-
 //TERMINATOR SMARTGUN
 /obj/item/weapon/gun/smartgun/dirty/elite
 	name = "\improper M56T 'Terminator' smartgun"
 	desc = "The actual firearm in the 4-piece M56T Smartgun System. If you have this, you're about to bring some serious pain to anyone in your way.\nYou may toggle firing restrictions by using a special action.\nAlt-click it to open the feed cover and allow for reloading."
+
+	actions_types = list(
+		/datum/action/item_action/smartgun/toggle_accuracy_improvement,
+		/datum/action/item_action/smartgun/toggle_ammo_type,
+		/datum/action/item_action/smartgun/toggle_auto_aim,
+		/datum/action/item_action/smartgun/toggle_lethal_mode,
+		/datum/action/item_action/smartgun/toggle_motion_detector,
+		/datum/action/item_action/smartgun/toggle_recoil_compensation,
+	)
 
 /obj/item/weapon/gun/smartgun/dirty/elite/Initialize(mapload, ...)
 	. = ..()
@@ -712,7 +835,7 @@
 	requires_harness = FALSE
 
 /obj/item/smartgun_battery
-	name = "smartgun DV9 battery"
+	name = "\improper DV9 smartgun battery"
 	desc = "A standard-issue 9-volt lithium dry-cell battery, most commonly used within the USCMC to power smartguns. Per the manual, one battery is good for up to 50000 rounds and plugs directly into the smartgun's power receptacle, which is only compatible with this type of battery. Various auxiliary modes usually bring the round count far lower. While this cell is incompatible with most standard electrical system, it can be charged by common rechargers in a pinch. USCMC smartgunners often guard them jealously."
 
 	icon = 'icons/obj/structures/machinery/power.dmi'
@@ -731,6 +854,10 @@
 
 	power_cell = new(src)
 
+/obj/item/smartgun_battery/Destroy()
+	QDEL_NULL(power_cell)
+	return ..()
+
 /obj/item/smartgun_battery/get_examine_text(mob/user)
 	. = ..()
 
@@ -741,10 +868,12 @@
 	desc = "The actual firearm in the 2-piece L56A2 Smartgun System. This Variant is used by the Three World Empires Royal Marines Commando units.\nYou may toggle firing restrictions by using a special action.\nAlt-click it to open the feed cover and allow for reloading."
 	current_mag = /obj/item/ammo_magazine/smartgun/holo_targetting
 	ammo = /obj/item/ammo_magazine/smartgun/holo_targetting
-	ammo_primary = /datum/ammo/bullet/smartgun/holo_target //Toggled ammo type
-	ammo_secondary = /datum/ammo/bullet/smartgun/holo_target/ap ///Toggled ammo type
+	ammo_primary_def = /datum/ammo/bullet/smartgun/holo_target
+	ammo_secondary_def = /datum/ammo/bullet/smartgun/holo_target/ap
+	ammo_primary_alt = /datum/ammo/bullet/smartgun/holo_target/alt
+	ammo_secondary_alt = /datum/ammo/bullet/smartgun/holo_target/ap/alt
 	flags_gun_features = GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
-	icon = 'icons/obj/items/weapons/guns/guns_by_faction/twe_guns.dmi'
+	icon = 'icons/obj/items/weapons/guns/guns_by_faction/TWE/machineguns.dmi'
 	icon_state = "magsg"
 	item_state = "magsg"
 	starting_attachment_types = list(/obj/item/attachable/l56a2_smartgun)
@@ -752,3 +881,25 @@
 /obj/item/weapon/gun/smartgun/rmc/Initialize(mapload, ...)
 	. = ..()
 	MD.iff_signal = FACTION_TWE
+
+
+//  Solar devils SG, frontline mode only
+
+/obj/item/weapon/gun/smartgun/pve
+	desc = "The actual firearm in the 4-piece M56B Smartgun System. This is a variant used by the Solar Devils Batallion, utilizing a 'frontline only' IFF system that refuses to fire if a friendly would be hit.\nYou may toggle firing restrictions by using a special action.\nAlt-click it to open the feed cover and allow for reloading."
+	actions_types = list(
+		/datum/action/item_action/smartgun/toggle_accuracy_improvement,
+		/datum/action/item_action/smartgun/toggle_ammo_type,
+		/datum/action/item_action/smartgun/toggle_auto_aim,
+		/datum/action/item_action/smartgun/toggle_lethal_mode,
+		/datum/action/item_action/smartgun/toggle_motion_detector,
+		/datum/action/item_action/smartgun/toggle_recoil_compensation,
+	)
+
+/obj/item/weapon/gun/smartgun/pve/Initialize(mapload, ...)
+	. = ..()
+	toggle_frontline_mode(null, TRUE)
+
+/obj/item/weapon/gun/smartgun/pve/set_gun_config_values()
+	..()
+	damage_mult = BASE_BULLET_DAMAGE_MULT + BULLET_DAMAGE_MULT_TIER_3

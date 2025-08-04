@@ -6,11 +6,16 @@
 /turf/open/void/vehicle,
 /area/space)
 "b" = (
-/obj/structure/prop/vehicle/sensor_equipment,
-/turf/open/shuttle/vehicle{
-	icon_state = "floor_3_10_1"
+/obj/structure/bed/chair/vehicle{
+	dir = 1;
+	pixel_x = -8
 	},
-/area/vehicle/apc/command)
+/obj/structure/bed/chair/vehicle{
+	dir = 1;
+	pixel_x = 8
+	},
+/turf/open/shuttle/vehicle/floor_3_10_1,
+/area/interior/vehicle/apc/command)
 "c" = (
 /obj/structure/bed/chair/vehicle{
 	dir = 1;
@@ -20,10 +25,8 @@
 	dir = 1;
 	pixel_x = 8
 	},
-/turf/open/shuttle/vehicle{
-	icon_state = "floor_3_5"
-	},
-/area/vehicle/apc/command)
+/turf/open/shuttle/vehicle/floor_3_5,
+/area/interior/vehicle/apc/command)
 "d" = (
 /obj/structure/bed/chair/vehicle{
 	dir = 1;
@@ -33,10 +36,8 @@
 	dir = 1;
 	pixel_x = -8
 	},
-/turf/open/shuttle/vehicle{
-	icon_state = "floor_3_8_1"
-	},
-/area/vehicle/apc/command)
+/turf/open/shuttle/vehicle/floor_3_8_1,
+/area/interior/vehicle/apc/command)
 "e" = (
 /obj/structure/interior_wall/apc{
 	icon_state = "rear_1"
@@ -53,10 +54,8 @@
 /obj/structure/bed/chair/vehicle{
 	dir = 4
 	},
-/turf/open/shuttle/vehicle{
-	icon_state = "floor_3_12"
-	},
-/area/vehicle/apc/command)
+/turf/open/shuttle/vehicle/floor_3_12,
+/area/interior/vehicle/apc/command)
 "h" = (
 /obj/structure/interior_wall/apc{
 	icon_state = "rear_wheel_R";
@@ -74,12 +73,21 @@
 "j" = (
 /obj/structure/extinguisher_cabinet/lifeboat{
 	icon = 'icons/obj/vehicles/interiors/general.dmi';
+	pixel_y = 28;
+	pixel_x = -6
+	},
+/obj/structure/machinery/cm_vending/sorted/medical/wall_med/vehicle{
+	pixel_x = 6;
 	pixel_y = 28
 	},
-/turf/open/shuttle/vehicle{
-	icon_state = "floor_3_13"
+/obj/structure/bed/chair/vehicle{
+	pixel_x = -8
 	},
-/area/vehicle/apc/command)
+/obj/structure/bed/chair/vehicle{
+	pixel_x = 8
+	},
+/turf/open/shuttle/vehicle/floor_3_13,
+/area/interior/vehicle/apc/command)
 "k" = (
 /turf/open/void/vehicle,
 /area/space)
@@ -105,25 +113,29 @@
 /turf/open/void/vehicle,
 /area/space)
 "o" = (
-/obj/structure/surface/table/reinforced/prison{
-	pixel_y = -3
+/obj/structure/machinery/prop/almayer/CICmap{
+	explo_proof = 1;
+	unslashable = 1
 	},
-/obj/structure/machinery/computer/groundside_operations{
-	dir = 4;
-	indestructible = 1;
-	layer = 2.82;
-	pixel_y = -10
+/obj/structure/surface/table/reinforced/black,
+/obj/structure/transmitter/rotary/no_dnd{
+	pixel_x = -7;
+	pixel_y = -4;
+	phone_id = "APC overwatch telephone";
+	name = "APC overwatch telephone";
+	phone_category = "Vehicles"
 	},
-/obj/structure/machinery/computer/overwatch/almayer{
-	dir = 8;
-	indestructible = 1;
-	layer = 2.81;
-	pixel_y = 4
+/obj/item/clock{
+	pixel_y = 14;
+	pixel_x = 17
 	},
-/turf/open/shuttle/vehicle{
-	icon_state = "floor_3_7_1"
+/obj/item/device/trench_whistle,
+/obj/item/tool/pen,
+/obj/structure/machinery/computer/overwatch/apc{
+	pixel_y = 26
 	},
-/area/vehicle/apc/command)
+/turf/open/shuttle/vehicle/floor_3_7_1,
+/area/interior/vehicle/apc/command)
 "p" = (
 /obj/structure/interior_wall/apc{
 	icon_state = "rear_6"
@@ -132,30 +144,35 @@
 /area/space)
 "q" = (
 /obj/structure/vehicle_locker{
-	pixel_y = 28
+	pixel_y = 28;
+	pixel_x = 1
 	},
 /obj/effect/landmark/interior/spawn/vehicle_gunner_seat/armor{
 	dir = 4
 	},
-/turf/open/shuttle/vehicle{
-	icon_state = "floor_3_8_1"
+/obj/effect/landmark/interior/spawn/telephone{
+	pixel_x = -14;
+	pixel_y = 30
 	},
-/area/vehicle/apc/command)
+/turf/open/shuttle/vehicle/floor_3_8_1,
+/area/interior/vehicle/apc/command)
 "r" = (
-/turf/open/shuttle/vehicle{
-	icon_state = "floor_1_6"
-	},
-/area/vehicle/apc/command)
+/turf/open/shuttle/vehicle/floor_1_6,
+/area/interior/vehicle/apc/command)
 "s" = (
-/obj/structure/machinery/prop/almayer/CICmap{
-	indestructible = 1;
-	unslashable = 1
+/obj/structure/machinery/computer/intel/disk_reader{
+	dir = 4;
+	layer = 2.983;
+	pixel_x = -13;
+	pixel_y = -3
 	},
-/obj/structure/surface/table/reinforced/prison,
-/turf/open/shuttle/vehicle{
-	icon_state = "floor_3_6"
+/obj/structure/machinery/computer/squad_changer{
+	pixel_x = -13;
+	dir = 4;
+	pixel_y = 10
 	},
-/area/vehicle/apc/command)
+/turf/open/shuttle/vehicle/floor_1_13,
+/area/interior/vehicle/apc/command)
 "t" = (
 /obj/structure/interior_wall/apc{
 	icon_state = "wheel_back_top_1";
@@ -165,10 +182,8 @@
 /turf/open/void/vehicle,
 /area/space)
 "u" = (
-/turf/open/shuttle/vehicle{
-	icon_state = "floor_1_5"
-	},
-/area/vehicle/apc/command)
+/turf/open/shuttle/vehicle/floor_1_5,
+/area/interior/vehicle/apc/command)
 "v" = (
 /obj/structure/interior_wall/apc{
 	icon_state = "front_3"
@@ -176,38 +191,25 @@
 /turf/open/void/vehicle,
 /area/space)
 "w" = (
-/obj/structure/bed/chair/comfy{
-	dir = 8
+/obj/item/device/flashlight/lamp{
+	pixel_x = 12;
+	pixel_y = 16
 	},
-/obj/effect/landmark/interior/spawn/telephone{
-	pixel_x = -9;
-	pixel_y = 30
+/obj/structure/machinery/computer/overwatch/apc{
+	pixel_y = 26
 	},
-/obj/structure/machinery/cm_vending/sorted/medical/wall_med/vehicle{
-	pixel_x = 6;
-	pixel_y = 28
-	},
-/obj/effect/landmark/interior/spawn/interior_viewport{
-	pixel_x = -21;
-	pixel_y = 24
-	},
-/turf/open/shuttle/vehicle{
-	icon_state = "floor_3_5"
-	},
-/area/vehicle/apc/command)
+/obj/structure/machinery/computer/overwatch/groundside_operations/bulky,
+/turf/open/shuttle/vehicle/floor_3_5,
+/area/interior/vehicle/apc/command)
 "x" = (
 /obj/effect/landmark/interior/spawn/vehicle_driver_seat/armor{
 	dir = 4
 	},
-/turf/open/shuttle/vehicle{
-	icon_state = "floor_3_9_1"
-	},
-/area/vehicle/apc/command)
+/turf/open/shuttle/vehicle/floor_3_9_1,
+/area/interior/vehicle/apc/command)
 "y" = (
-/turf/open/shuttle/vehicle{
-	icon_state = "floor_1_14"
-	},
-/area/vehicle/apc/command)
+/turf/open/shuttle/vehicle/floor_1_14,
+/area/interior/vehicle/apc/command)
 "z" = (
 /obj/structure/interior_wall/apc{
 	alpha = 100;
@@ -231,10 +233,8 @@
 	pixel_y = 32;
 	tag = "left"
 	},
-/turf/open/shuttle/vehicle{
-	icon_state = "floor_1_11"
-	},
-/area/vehicle/apc/command)
+/turf/open/shuttle/vehicle/floor_1_11,
+/area/interior/vehicle/apc/command)
 "C" = (
 /obj/structure/interior_wall/apc{
 	icon_state = "front_1"
@@ -249,18 +249,18 @@
 /turf/open/void/vehicle,
 /area/space)
 "E" = (
-/turf/open/shuttle/vehicle{
-	icon_state = "floor_0_1_15"
-	},
-/area/vehicle/apc/command)
+/turf/open/shuttle/vehicle/floor_0_1_15,
+/area/interior/vehicle/apc/command)
 "F" = (
-/obj/structure/bed/chair/vehicle{
+/obj/structure/machinery/cm_vending/sorted/vehicle_supply{
+	pixel_y = 20
+	},
+/obj/structure/machinery/computer/squad_changer{
+	pixel_x = -8;
 	dir = 4
 	},
-/turf/open/shuttle/vehicle{
-	icon_state = "floor_3_11"
-	},
-/area/vehicle/apc/command)
+/turf/open/shuttle/vehicle/floor_3_11,
+/area/interior/vehicle/apc/command)
 "G" = (
 /obj/effect/landmark/interior/spawn/entrance{
 	alpha = 50;
@@ -273,20 +273,19 @@
 	pixel_x = 5;
 	pixel_y = 1
 	},
-/turf/open/shuttle/vehicle{
-	icon_state = "floor_1_12"
-	},
-/area/vehicle/apc/command)
-"H" = (
-/turf/open/shuttle/vehicle{
-	icon_state = "floor_1_13"
-	},
-/area/vehicle/apc/command)
+/turf/open/shuttle/vehicle/floor_1_12,
+/area/interior/vehicle/apc/command)
 "I" = (
-/turf/open/shuttle/vehicle{
-	icon_state = "floor_3_13"
+/obj/structure/bed/chair/vehicle{
+	dir = 1;
+	pixel_x = 8
 	},
-/area/vehicle/apc/command)
+/obj/structure/bed/chair/vehicle{
+	dir = 1;
+	pixel_x = -8
+	},
+/turf/open/shuttle/vehicle/floor_3_13,
+/area/interior/vehicle/apc/command)
 "J" = (
 /obj/structure/interior_wall/apc{
 	icon_state = "wall"
@@ -311,10 +310,8 @@
 	pixel_x = -14;
 	pixel_y = 38
 	},
-/turf/open/shuttle/vehicle{
-	icon_state = "floor_3_9_1"
-	},
-/area/vehicle/apc/command)
+/turf/open/shuttle/vehicle/floor_3_9_1,
+/area/interior/vehicle/apc/command)
 "M" = (
 /obj/structure/interior_wall/apc{
 	icon_state = "corner_small_R";
@@ -412,10 +409,14 @@
 /area/space)
 "Y" = (
 /obj/effect/landmark/interior/spawn/weapons_loader,
-/turf/open/shuttle/vehicle{
-	icon_state = "floor_3_6"
+/turf/open/shuttle/vehicle/floor_3_6,
+/area/interior/vehicle/apc/command)
+"Z" = (
+/obj/structure/bed/chair/wheelchair/officechair{
+	dir = 1
 	},
-/area/vehicle/apc/command)
+/turf/open/shuttle/vehicle/floor_1_5,
+/area/interior/vehicle/apc/command)
 
 (1,1,1) = {"
 p
@@ -439,7 +440,7 @@ k
 O
 D
 w
-H
+Z
 c
 h
 k

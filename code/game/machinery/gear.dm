@@ -33,3 +33,25 @@
 /obj/structure/machinery/elevator_strut/bottom
 	icon_state = "strut_bottom"
 
+/obj/structure/machinery/elevator_strut/tower
+	icon_state = "tower_strut"
+
+/obj/structure/machinery/elevator_strut/tower/ladder
+	name = "\improper ladder"
+	icon_state = "ladder"
+
+
+/obj/structure/machinery/elevator_strut/tower_tall
+	icon = 'icons/turf/tower_base.dmi'
+
+	icon_state = "tower_strut"
+
+/obj/structure/machinery/elevator_strut/tower_tall/pillar_l
+	icon_state = "pillar_left"
+
+/obj/structure/machinery/elevator_strut/tower_tall/pillar_r
+	icon_state = "pillar_right"
+
+/obj/structure/machinery/elevator_strut/tower_tall/ladder
+	name = "\improper ladder"
+	icon_state = "ladder"

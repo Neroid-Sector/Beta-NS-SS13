@@ -1,16 +1,37 @@
 {
     "override_map": true,
-    "map_name": "Unknown",
+    "map_name": "Lv-254",
+    "weather_holder": "/datum/weather_ss_map_holder/lv624",
     "survivor_types": [
         "/datum/equipment_preset/survivor/civilian",
         "/datum/equipment_preset/survivor/goon"
     ],
     "map_item_type": "/obj/item/map/big_red_map",
-    "announce_text": "We've lost contact with a Weyland-Yutani's research facility. The ###SHIPNAME### has been dispatched to assist.",
+    "announce_text": "USS Black Gold Wake-Up Commenced",
     "monkey_types": [
         "neaera"
     ],
-    "traits": [{ "Ground": true }],
+    "traits": [
+        {
+            "Ground": true,
+            "Up": 1
+        },
+        {
+            "Ground": true,
+            "Up": 1,
+            "Down": -1
+        },
+        {
+            "Ground": true,
+            "Up": 1,
+            "Down": -1
+        },
+        {
+            "Ground": true,
+            "Down": -1
+        }
+    ],
+    "camouflage": "jungle",
     "gamemodes": [
         "Distress Signal",
         "Hunter Games",

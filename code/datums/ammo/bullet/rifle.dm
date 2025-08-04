@@ -8,8 +8,8 @@
 	name = "rifle bullet"
 	headshot_state = HEADSHOT_OVERLAY_MEDIUM
 
-	damage = 40
-	penetration = ARMOR_PENETRATION_TIER_1
+	damage = 30
+	penetration = 0
 	accurate_range = 16
 	accuracy = HIT_ACCURACY_TIER_4
 	scatter = SCATTER_AMOUNT_TIER_10
@@ -21,11 +21,16 @@
 /datum/ammo/bullet/rifle/holo_target
 	name = "holo-targeting rifle bullet"
 	damage = 30
+	/// inflicts this many holo stacks per bullet hit
 	var/holo_stacks = 10
+	/// modifies the default cap limit of 100 by this amount
+	var/bonus_damage_cap_increase = 0
+	/// multiplies the default drain of 5 holo stacks per second by this amount
+	var/stack_loss_multiplier = 1
 
-/datum/ammo/bullet/rifle/holo_target/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/bullet/rifle/holo_target/on_hit_mob(mob/hit_mob, obj/projectile/bullet)
 	. = ..()
-	M.AddComponent(/datum/component/bonus_damage_stack, holo_stacks, world.time)
+	hit_mob.AddComponent(/datum/component/bonus_damage_stack, holo_stacks, world.time, bonus_damage_cap_increase, stack_loss_multiplier)
 
 /datum/ammo/bullet/rifle/holo_target/hunting
 	name = "holo-targeting hunting bullet"
@@ -54,7 +59,7 @@
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
 
-	damage = 30
+	damage = 25
 	penetration = ARMOR_PENETRATION_TIER_8
 
 // Basically AP but better. Focused at taking out armour temporarily
@@ -65,11 +70,11 @@
 
 /datum/ammo/bullet/rifle/ap/toxin/on_hit_mob(mob/M, obj/projectile/P)
 	. = ..()
-	M.AddComponent(/datum/component/toxic_buildup, acid_per_hit)
+	M.AddComponent(/datum/component/status_effect/toxic_buildup, acid_per_hit)
 
 /datum/ammo/bullet/rifle/ap/toxin/on_hit_turf(turf/T, obj/projectile/P)
 	. = ..()
-	if(T.flags_turf & TURF_ORGANIC)
+	if(T.turf_flags & TURF_ORGANIC)
 		P.damage *= organic_damage_mult
 
 /datum/ammo/bullet/rifle/ap/toxin/on_hit_obj(obj/O, obj/projectile/P)
@@ -82,7 +87,7 @@
 	name = "wall-penetrating rifle bullet"
 	shrapnel_chance = 0
 
-	damage = 35
+	damage = 30
 	penetration = ARMOR_PENETRATION_TIER_10
 
 /datum/ammo/bullet/rifle/ap/penetrating/set_bullet_traits()
@@ -100,17 +105,105 @@
 
 /datum/ammo/bullet/rifle/heap
 	name = "high-explosive armor-piercing rifle bullet"
+	sound_hit = 'sound/effects/thud1.ogg'
 
 	headshot_state = HEADSHOT_OVERLAY_HEAVY
-	damage = 55//big damage, doesn't actually blow up because thats stupid.
-	penetration = ARMOR_PENETRATION_TIER_8
+	damage = 35//big damage, doesn't actually blow up because thats stupid.
+	penetration = ARMOR_PENETRATION_TIER_10
+
+/datum/ammo/bullet/rifle/heap/on_hit_mob(mob/M, obj/projectile/P)
+	var/mob/living/carbon/human/target_human = M
+	if(target_human)
+		if(target_human.wear_suit)
+			if(prob(25))
+				if(istype(target_human.wear_suit, /obj/item/clothing/suit/storage/marine))
+					create_shrapnel(get_turf(M), 5, , ,/datum/ammo/bullet/shrapnel, P.weapon_cause_data)
+					var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+					s.set_up(10, 1, src)
+					s.start()
+	else
+		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+		s.set_up(3, 1, src)
+		s.start()
+
+/datum/ammo/bullet/rifle/heap/on_hit_obj(obj/O, obj/projectile/P)
+	if(!istype(O, /obj/vehicle/multitile))
+		if(prob(25))
+			create_shrapnel(get_turf(O), 3, , ,/datum/ammo/bullet/shrapnel, P.weapon_cause_data)
+			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+			s.set_up(3, 1, src)
+			s.start()
+			return
+	if(istype(O, /obj/vehicle/multitile/civvan))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/civtruck))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/van))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/atruck))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/miltruck))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/van/miljeep))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/crane))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/box_van))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/clf_van))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	return ..()
+
+/datum/ammo/bullet/rifle/heap/on_hit_turf(turf/T, obj/projectile/P)
+	if(prob(25))
+		if(T.density)
+			create_shrapnel(get_turf(T), 3, , ,/datum/ammo/bullet/shrapnel, P.weapon_cause_data)
+			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+			s.set_up(3, 1, src)
+			s.start()
 
 /datum/ammo/bullet/rifle/rubber
 	name = "rubber rifle bullet"
 	sound_override = 'sound/weapons/gun_c99.ogg'
 
 	damage = 0
-	stamina_damage = 15
+	stamina_damage = 20
 	shrapnel_chance = 0
 
 /datum/ammo/bullet/rifle/incendiary
@@ -137,7 +230,7 @@
 	flags_ammo_behavior = AMMO_BALLISTIC
 	accurate_range_min = 4
 
-	damage = 55
+	damage = 30
 	scatter = -SCATTER_AMOUNT_TIER_8
 	penetration= ARMOR_PENETRATION_TIER_7
 	shell_speed = AMMO_SPEED_TIER_6
@@ -146,7 +239,7 @@
 	name = "A19 high velocity incendiary bullet"
 	flags_ammo_behavior = AMMO_BALLISTIC
 
-	damage = 40
+	damage = 30
 	accuracy = HIT_ACCURACY_TIER_4
 	scatter = -SCATTER_AMOUNT_TIER_8
 	penetration= ARMOR_PENETRATION_TIER_5
@@ -169,15 +262,16 @@
 	shell_speed = AMMO_SPEED_TIER_6
 
 /datum/ammo/bullet/rifle/m4ra/impact/on_hit_mob(mob/M, obj/projectile/P)
-	knockback(M, P, 32) // Can knockback basically at max range
+	knockback(M, P, 32) // Can knockback basically at max range max range is 24 tiles...
 
 /datum/ammo/bullet/rifle/m4ra/impact/knockback_effects(mob/living/living_mob, obj/projectile/fired_projectile)
 	if(iscarbonsizexeno(living_mob))
 		var/mob/living/carbon/xenomorph/target = living_mob
 		to_chat(target, SPAN_XENODANGER("You are shaken and slowed by the sudden impact!"))
-		target.apply_effect(0.5, WEAKEN)
-		target.apply_effect(2, SUPERSLOW)
-		target.apply_effect(5, SLOW)
+		target.KnockDown(0.5-fired_projectile.distance_travelled/100) // purely for visual effect, noone actually cares
+		target.Stun(0.5-fired_projectile.distance_travelled/100)
+		target.apply_effect(2-fired_projectile.distance_travelled/20, SUPERSLOW)
+		target.apply_effect(5-fired_projectile.distance_travelled/10, SLOW)
 	else
 		if(!isyautja(living_mob)) //Not predators.
 			living_mob.apply_effect(1, SUPERSLOW)
@@ -188,23 +282,460 @@
 /datum/ammo/bullet/rifle/mar40
 	name = "heavy rifle bullet"
 
-	damage = 55
+	damage = 35
+
+/datum/ammo/bullet/rifle/mar40/ap
+	name = "heavy rifle bullet"
+
+	damage = 25
+	penetration = ARMOR_PENETRATION_TIER_8
 
 /datum/ammo/bullet/rifle/type71
 	name = "heavy rifle bullet"
 
-	damage = 55
+	damage = 25
 	penetration = ARMOR_PENETRATION_TIER_3
+
+/datum/ammo/bullet/rifle/type71/setup_faction_clash_values()
+	if(penetration <= ARMOR_PENETRATION_TIER_3) //so we only reduce AP of normal ammo here
+		penetration = ARMOR_PENETRATION_TIER_1
+	. = ..()
 
 /datum/ammo/bullet/rifle/type71/ap
 	name = "heavy armor-piercing rifle bullet"
 
-	damage = 40
+	damage = 25
 	penetration = ARMOR_PENETRATION_TIER_10
+
 
 /datum/ammo/bullet/rifle/type71/heap
 	name = "heavy high-explosive armor-piercing rifle bullet"
 
 	headshot_state = HEADSHOT_OVERLAY_HEAVY
-	damage = 65
+	damage = 45
 	penetration = ARMOR_PENETRATION_TIER_10
+
+/datum/ammo/bullet/rifle/type71/heap/on_hit_mob(mob/M, obj/projectile/P)
+	var/mob/living/carbon/human/target_human = M
+	if(target_human)
+		if(target_human.wear_suit)
+			if(prob(25))
+				if(istype(target_human.wear_suit, /obj/item/clothing/suit/storage/marine))
+					create_shrapnel(get_turf(M), 5, , ,/datum/ammo/bullet/shrapnel, P.weapon_cause_data)
+					var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+					s.set_up(10, 1, src)
+					s.start()
+	else
+		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+		s.set_up(10, 1, src)
+		s.start()
+
+/datum/ammo/bullet/rifle/type71/heap/on_hit_obj(obj/O, obj/projectile/P)
+	if(!istype(O, /obj/vehicle/multitile))
+		if(prob(25))
+			create_shrapnel(get_turf(O), 3, , ,/datum/ammo/bullet/shrapnel, P.weapon_cause_data)
+			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+			s.set_up(3, 1, src)
+			s.start()
+			return
+	if(istype(O, /obj/vehicle/multitile/civvan))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/civtruck))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/van))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/atruck))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/miltruck))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/van/miljeep))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/crane))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/box_van))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/clf_van))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	return ..()
+
+/datum/ammo/bullet/rifle/type71/heap/on_hit_turf(turf/T, obj/projectile/P)
+	if(prob(25))
+		if(T.density)
+			create_shrapnel(get_turf(T), 3, , ,/datum/ammo/bullet/shrapnel, P.weapon_cause_data)
+			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+			s.set_up(10, 1, src)
+			s.start()
+
+/datum/ammo/bullet/rifle/kramer
+	name = "heavy rifle bullet"
+
+	damage = 25
+	penetration = 0
+
+/datum/ammo/bullet/rifle/kramer/ap
+	name = "heavy armor-piercing rifle bullet"
+
+	damage = 30
+	penetration = ARMOR_PENETRATION_TIER_8
+
+/datum/ammo/bullet/rifle/kramer/heap
+	name = "heavy high-explosive armor-piercing rifle bullet"
+
+	headshot_state = HEADSHOT_OVERLAY_HEAVY
+	damage = 70
+	penetration = ARMOR_PENETRATION_TIER_10
+
+/datum/ammo/bullet/rifle/kramer/heap/on_hit_mob(mob/M, obj/projectile/P)
+	var/mob/living/carbon/human/target_human = M
+	if(target_human)
+		if(target_human.wear_suit)
+			if(prob(25))
+				if(istype(target_human.wear_suit, /obj/item/clothing/suit/storage/marine))
+					create_shrapnel(get_turf(M), 5, , ,/datum/ammo/bullet/shrapnel, P.weapon_cause_data)
+					var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+					s.set_up(10, 1, src)
+					s.start()
+	else
+		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+		s.set_up(10, 1, src)
+		s.start()
+
+/datum/ammo/bullet/rifle/kramer/heap/on_hit_obj(obj/O, obj/projectile/P)
+	if(!istype(O, /obj/vehicle/multitile))
+		if(prob(25))
+			create_shrapnel(get_turf(O), 3, , ,/datum/ammo/bullet/shrapnel, P.weapon_cause_data)
+			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+			s.set_up(3, 1, src)
+			s.start()
+			return
+	if(istype(O, /obj/vehicle/multitile/civvan))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/civtruck))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/van))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/atruck))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/miltruck))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/van/miljeep))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/crane))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/box_van))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/clf_van))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	return ..()
+
+/datum/ammo/bullet/rifle/kramer/heap/on_hit_turf(turf/T, obj/projectile/P)
+	if(prob(25))
+		if(T.density)
+			create_shrapnel(get_turf(T), 3, , ,/datum/ammo/bullet/shrapnel, P.weapon_cause_data)
+			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+			s.set_up(10, 1, src)
+			s.start()
+
+/datum/ammo/bullet/rifle/am35/plasma
+	name = "plasma bolt"
+	icon_state = "bluespace"
+	flags_ammo_behavior = AMMO_ENERGY
+	damage_type = BURN
+	damage = 75
+	penetration = ARMOR_PENETRATION_TIER_10
+	accurate_range = 21
+	effective_range_max = 21
+	max_range = 30
+	shell_speed = AMMO_SPEED_TIER_6
+	scatter = SCATTER_AMOUNT_TIER_9
+	accuracy = HIT_ACCURACY_TIER_9
+	damage_falloff = 99
+
+/datum/ammo/bullet/rifle/am35/plasma/set_bullet_traits()
+	. = ..()
+	LAZYADD(traits_to_give, list(
+		BULLET_TRAIT_ENTRY(/datum/element/bullet_trait_penetrating)
+	))
+
+/datum/ammo/bullet/rifle/am35/plasma/on_hit_mob(mob/living/M, obj/projectile/P)
+	..()
+	if(prob(50)) //small chance for one to ignite on hit
+		M.fire_act()
+
+/datum/ammo/bullet/rifle/am36/plasma
+	name = "plasma bolt"
+	icon_state = "bluespace"
+	flags_ammo_behavior = AMMO_ENERGY
+	damage_type = BURN
+	damage = 35
+	penetration = ARMOR_PENETRATION_TIER_10
+	accurate_range = 5
+	effective_range_max = 11
+	max_range = 10
+	shell_speed = AMMO_SPEED_TIER_4
+	scatter = SCATTER_AMOUNT_TIER_9
+	accuracy = HIT_ACCURACY_TIER_9
+	damage_falloff = 2
+
+/datum/ammo/bullet/rifle/am36/plasma/on_hit_mob(mob/living/M, obj/projectile/P)
+	..()
+	if(prob(75)) //small chance for one to ignite on hit
+		M.fire_act()
+
+//TWE Calibers\\
+
+/datum/ammo/bullet/rifle/l23
+	name = "8.88mm rifle bullet"
+
+	damage = 30
+	penetration = ARMOR_PENETRATION_TIER_2
+
+/datum/ammo/bullet/rifle/l23/ap
+	name = "8.88mm armor-piercing rifle bullet"
+
+	damage = 25
+	penetration = ARMOR_PENETRATION_TIER_10
+
+/datum/ammo/bullet/rifle/l23/heap
+	name = "8.88mm high-explosive armor-piercing rifle bullet"
+
+	headshot_state = HEADSHOT_OVERLAY_HEAVY
+	damage = 40
+	penetration = ARMOR_PENETRATION_TIER_10
+
+/datum/ammo/bullet/rifle/l23/heap/on_hit_mob(mob/M, obj/projectile/P)
+	var/mob/living/carbon/human/target_human = M
+	if(target_human)
+		if(target_human.wear_suit)
+			if(prob(25))
+				if(istype(target_human.wear_suit, /obj/item/clothing/suit/storage/marine))
+					create_shrapnel(get_turf(M), 5, , ,/datum/ammo/bullet/shrapnel, P.weapon_cause_data)
+					var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+					s.set_up(10, 1, src)
+					s.start()
+	else
+		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+		s.set_up(10, 1, src)
+		s.start()
+
+/datum/ammo/bullet/rifle/l23/heap/on_hit_obj(obj/O, obj/projectile/P)
+	if(!istype(O, /obj/vehicle/multitile))
+		if(prob(25))
+			create_shrapnel(get_turf(O), 3, , ,/datum/ammo/bullet/shrapnel, P.weapon_cause_data)
+			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+			s.set_up(3, 1, src)
+			s.start()
+			return
+	if(istype(O, /obj/vehicle/multitile/civvan))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/civtruck))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/van))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/atruck))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/miltruck))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/van/miljeep))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/crane))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/box_van))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/clf_van))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	return ..()
+
+/datum/ammo/bullet/rifle/l23/heap/on_hit_turf(turf/T, obj/projectile/P)
+	if(prob(25))
+		if(T.density)
+			create_shrapnel(get_turf(T), 3, , ,/datum/ammo/bullet/shrapnel, P.weapon_cause_data)
+			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+			s.set_up(10, 1, src)
+			s.start()
+
+/datum/ammo/bullet/rifle/l23/incendiary
+	name = "incendiary rifle bullet"
+	damage_type = BURN
+	shrapnel_chance = 0
+	flags_ammo_behavior = AMMO_BALLISTIC
+
+	damage = 30
+	shell_speed = AMMO_SPEED_TIER_4
+	accuracy = -HIT_ACCURACY_TIER_2
+	damage_falloff = DAMAGE_FALLOFF_TIER_10
+
+/datum/ammo/bullet/rifle/l23/incendiary/set_bullet_traits()
+	. = ..()
+	LAZYADD(traits_to_give, list(
+		BULLET_TRAIT_ENTRY(/datum/element/bullet_trait_incendiary)
+	))
+
+/datum/ammo/bullet/rifle/l23/ap/toxin
+	name = "toxic rifle bullet"
+	var/acid_per_hit = 7
+	var/organic_damage_mult = 3
+
+/datum/ammo/bullet/rifle/l23/ap/toxin/on_hit_mob(mob/M, obj/projectile/P)
+	. = ..()
+	M.AddComponent(/datum/component/status_effect/toxic_buildup, acid_per_hit)
+
+/datum/ammo/bullet/rifle/l23/ap/toxin/on_hit_turf(turf/T, obj/projectile/P)
+	. = ..()
+	if(T.turf_flags & TURF_ORGANIC)
+		P.damage *= organic_damage_mult
+
+/datum/ammo/bullet/rifle/l23/ap/toxin/on_hit_obj(obj/O, obj/projectile/P)
+	. = ..()
+	if(O.flags_obj & OBJ_ORGANIC)
+		P.damage *= organic_damage_mult
+
+/datum/ammo/bullet/rifle/l23/rubber
+	name = "8.88mm rubber rifle bullet"
+	sound_override = 'sound/weapons/gun_c99.ogg'
+
+	damage = 0
+	stamina_damage = 22
+	shrapnel_chance = 0
+
+/datum/ammo/bullet/rifle/explosive/xm99a
+	name = "plasma bolt"
+	icon_state = "bluespace"
+	damage_type = BURN
+
+	damage = 40
+	accurate_range = 22
+	accuracy = 0
+	shell_speed = AMMO_SPEED_TIER_2
+	damage_falloff = DAMAGE_FALLOFF_TIER_9
+	penetration = ARMOR_PENETRATION_TIER_10
+	shrapnel_chance = 0
+
+
+/datum/ammo/bullet/rifle/explosive/xm99a/on_hit_mob(mob/M, obj/projectile/P)
+	cell_explosion(get_turf(M), 25, 10, EXPLOSION_FALLOFF_SHAPE_LINEAR, P.dir, P.weapon_cause_data)
+	if(prob(50)) //small chance for one to ignite on hit
+		M.fire_act()
+
+/datum/ammo/bullet/rifle/explosive/xm99a/on_hit_obj(obj/O, obj/projectile/P)
+	cell_explosion(get_turf(O), 25, 10, EXPLOSION_FALLOFF_SHAPE_LINEAR, P.dir, P.weapon_cause_data)
+	if(istype(O, /obj/vehicle/multitile))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/bang.ogg', 100)
+		M.plasma_munition_interior_bullet_effect(cause_data = create_cause_data("Plasma Rifle"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		to_chat(P.firer, SPAN_WARNING("Bullseye!"))
+		return
+	return ..()
+
+/datum/ammo/bullet/rifle/explosive/xm99a/on_hit_turf(turf/T, obj/projectile/P)
+	if(T.density)
+		cell_explosion(T, 25, 10, EXPLOSION_FALLOFF_SHAPE_LINEAR, P.dir, P.weapon_cause_data)

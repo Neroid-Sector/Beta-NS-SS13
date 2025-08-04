@@ -2,10 +2,12 @@
 
 GLOBAL_LIST_INIT(cm_vending_gear_smartgun, list(
 		list("SMARTGUN SET (MANDATORY)", 0, null, null, null),
-		list("Essential Smartgunner Set", 0, /obj/item/storage/box/m56_system, MARINE_CAN_BUY_ESSENTIALS, VENDOR_ITEM_MANDATORY),
+		list("Essential Smartgunner Set", 0, /obj/effect/essentials_set/smartgunner/m56, MARINE_CAN_BUY_ESSENTIALS, VENDOR_ITEM_MANDATORY),
+		list("Essential xm99a gunner Set", 0, /obj/effect/essentials_set/smartgunner/xm99a, MARINE_CAN_BUY_ESSENTIALS, VENDOR_ITEM_MANDATORY),
 
-		list("SMARTGUN AMMUNITION", 0, null, null, null),
+		list("SUPPORT WEAPON AMMUNITION", 0, null, null, null),
 		list("M56 Smartgun Drum", 15, /obj/item/ammo_magazine/smartgun, null, VENDOR_ITEM_RECOMMENDED),
+		list("XM99A1 Plasmagun Canister", 25, /obj/item/ammo_magazine/rifle/xm99a, null, VENDOR_ITEM_RECOMMENDED),
 
 		list("GUN ATTACHMENTS (CHOOSE 1)", 0, null, null, null),
 		list("Laser Sight", 0, /obj/item/attachable/lasersight, MARINE_CAN_BUY_ATTACHMENT, VENDOR_ITEM_REGULAR),
@@ -21,20 +23,25 @@ GLOBAL_LIST_INIT(cm_vending_gear_smartgun, list(
 		list("M74 AGM-Incendiary Airburst Packet (x3 airburst grenades)", 20, /obj/item/storage/box/packet/airburst_incen, null, VENDOR_ITEM_REGULAR),
 		list("M74 AGM-Smoke Airburst Packet (x3 airburst grenades)", 10, /obj/item/storage/box/packet/airburst_smoke, null, VENDOR_ITEM_REGULAR),
 		list("M74 AGM-Hornet Airburst Packet (x3 airburst grenades", 20, /obj/item/storage/box/packet/hornet, null, VENDOR_ITEM_REGULAR),
-		list("M20 Mine Box (x4 mines)", 20, /obj/item/storage/box/explosive_mines, null, VENDOR_ITEM_REGULAR),
+		list("G2 Electroshock Grenade Packet (x3 grenades)",  16, /obj/item/storage/box/packet/sebb, null, VENDOR_ITEM_REGULAR),
+
+		list("RESTRICTED FIREARMS", 0, null, null, null),
+		list("VP78 Pistol", 15, /obj/item/storage/box/guncase/vp78, null, VENDOR_ITEM_REGULAR),
+		list("SU-6 Smart Pistol", 15, /obj/item/storage/box/guncase/smartpistol, null, VENDOR_ITEM_REGULAR),
+		list("XM51 breaching scattergun", 30, /obj/item/storage/box/guncase/xm51, null, VENDOR_ITEM_RECOMMENDED),
+		list("M240 Pyrotechnician Support Kit", 30, /obj/item/storage/box/kit/mini_pyro, null, VENDOR_ITEM_REGULAR),
 
 		list("CLOTHING ITEMS", 0, null, null, null),
-		list("Machete Scabbard (Full)", 6, /obj/item/storage/large_holster/machete/full, null, VENDOR_ITEM_REGULAR),
+		list("Smartgunner Machete Scabbard (Full)", 6, /obj/item/storage/large_holster/machete/smartgunner/full, null, VENDOR_ITEM_REGULAR),
 		list("Fuel Tank Strap Pouch", 5, /obj/item/storage/pouch/flamertank, null, VENDOR_ITEM_REGULAR),
 		list("Large General Pouch", 6, /obj/item/storage/pouch/general/large, null, VENDOR_ITEM_REGULAR),
+		list("M5 Camera Gear", 6, /obj/item/device/radio/headset/almayer/marine/overwatch_camera, null, VENDOR_ITEM_REGULAR),
 
 		list("UTILITIES", 0, null, null, null),
 		list("Range Finder", 10, /obj/item/device/binoculars/range, null, VENDOR_ITEM_REGULAR),
 		list("Laser Designator", 15, /obj/item/device/binoculars/range/designator, null, VENDOR_ITEM_REGULAR),
 		list("Fire Extinguisher (Portable)", 5, /obj/item/tool/extinguisher/mini, null, VENDOR_ITEM_REGULAR),
 		list("Whistle", 5, /obj/item/device/whistle, null, VENDOR_ITEM_REGULAR),
-		list("Roller Bed", 5, /obj/item/roller, null, VENDOR_ITEM_REGULAR),
-		list("Fulton Device Stack", 5, /obj/item/stack/fulton, null, VENDOR_ITEM_REGULAR),
 
 		list("HELMET OPTICS", 0, null, null, null),
 		list("Medical Helmet Optic", 15, /obj/item/device/helmet_visor/medical, null, VENDOR_ITEM_REGULAR),
@@ -56,7 +63,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_smartgun, list(
 	desc = "An automated gear rack for Squad Smartgunners."
 	icon_state = "sg_gear"
 	show_points = TRUE
-	vendor_role = list(JOB_SQUAD_SMARTGUN)
+	vendor_role = list(JOB_SQUAD_SMARTGUN, JOB_MS_SMARTGUNNER, JOB_TR_SMARTGUNNER, JOB_HD_SMARTGUNNER, JOB_TR_SMARTGUNNER)
 	req_access = list(ACCESS_MARINE_SMARTPREP)
 
 /obj/structure/machinery/cm_vending/gear/smartgun/get_listed_products(mob/user)
@@ -66,12 +73,13 @@ GLOBAL_LIST_INIT(cm_vending_gear_smartgun, list(
 
 GLOBAL_LIST_INIT(cm_vending_clothing_smartgun, list(
 		list("STANDARD EQUIPMENT (TAKE ALL)", 0, null, null, null),
-		list("Standard Marine Apparel", 0, list(/obj/item/clothing/under/marine, /obj/item/clothing/shoes/marine/knife, /obj/item/clothing/gloves/marine, /obj/item/device/radio/headset/almayer/marine, /obj/item/clothing/head/helmet/marine), MARINE_CAN_BUY_UNIFORM, VENDOR_ITEM_MANDATORY),
-		list("MRE", 0, /obj/item/storage/box/MRE, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
+		list("Standard Marine Apparel", 0, list(/obj/item/clothing/under/marine, /obj/item/clothing/shoes/marine/knife, /obj/item/clothing/gloves/marine, /obj/item/device/radio/headset/almayer/marine, /obj/item/clothing/ears/earmuffs/earplugs, /obj/item/clothing/head/cmcap/bridge, /obj/item/clothing/head/helmet/marine,  /obj/item/clothing/accessory/flak), MARINE_CAN_BUY_UNIFORM, VENDOR_ITEM_MANDATORY),
+		list("MRE", 0, /obj/item/storage/box/mre, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
 		list("Map", 0, /obj/item/map/current_map, MARINE_CAN_BUY_KIT, VENDOR_ITEM_MANDATORY),
 
 		list("BELT", 0, null, null, null),
 		list("M802 Smartgunner Sidearm Belt", 0, /obj/item/storage/belt/gun/smartgunner/full, MARINE_CAN_BUY_BELT, VENDOR_ITEM_MANDATORY),
+		list("M802 Plasmagunner Sidearm Belt", 0, /obj/item/storage/belt/gun/smartgunner/xm99/full, MARINE_CAN_BUY_BELT, VENDOR_ITEM_MANDATORY),
 		list("M280 Smartgunner Drum Belt", 0, /obj/item/storage/belt/marine/smartgunner, MARINE_CAN_BUY_BELT, VENDOR_ITEM_MANDATORY),
 
 		list("POUCHES (CHOOSE 2)", 0, null, null, null),
@@ -93,6 +101,7 @@ GLOBAL_LIST_INIT(cm_vending_clothing_smartgun, list(
 		list("Black Webbing Vest", 0, /obj/item/clothing/accessory/storage/black_vest, MARINE_CAN_BUY_ACCESSORY, VENDOR_ITEM_REGULAR),
 		list("Shoulder Holster", 0, /obj/item/clothing/accessory/storage/holster, MARINE_CAN_BUY_ACCESSORY, VENDOR_ITEM_REGULAR),
 		list("Webbing", 0, /obj/item/clothing/accessory/storage/webbing, MARINE_CAN_BUY_ACCESSORY, VENDOR_ITEM_REGULAR),
+		list("Black Webbing", 0, /obj/item/clothing/accessory/storage/webbing/black, MARINE_CAN_BUY_ACCESSORY, VENDOR_ITEM_REGULAR),
 		list("Drop Pouch", 0, /obj/item/clothing/accessory/storage/droppouch, MARINE_CAN_BUY_ACCESSORY, VENDOR_ITEM_REGULAR),
 
 		list("MASK (CHOOSE 1)", 0, null, null, null),
@@ -104,7 +113,7 @@ GLOBAL_LIST_INIT(cm_vending_clothing_smartgun, list(
 	name = "\improper ColMarTech Squad Smartgun Equipment Rack"
 	desc = "An automated rack hooked up to a colossal storage of Squad Smartgun standard-issue equipment."
 	req_access = list(ACCESS_MARINE_SMARTPREP)
-	vendor_role = list(JOB_SQUAD_SMARTGUN)
+	vendor_role = list(JOB_SQUAD_SMARTGUN, JOB_MS_SMARTGUNNER, JOB_TR_SMARTGUNNER, JOB_HD_SMARTGUNNER, JOB_TR_SMARTGUNNER)
 
 /obj/structure/machinery/cm_vending/clothing/smartgun/get_listed_products(mob/user)
 	return GLOB.cm_vending_clothing_smartgun
@@ -130,3 +139,16 @@ GLOBAL_LIST_INIT(cm_vending_clothing_smartgun, list(
 	headset_type = /obj/item/device/radio/headset/almayer/marine/delta
 
 //------------ESSENTIAL SETS---------------
+/obj/effect/essentials_set/smartgunner/m56
+	spawned_gear_list = list(
+		/obj/item/storage/box/m56_system,
+		/obj/item/device/whiskey_supply_beacon,
+		/obj/item/device/whiskey_supply_beacon,
+	)
+
+/obj/effect/essentials_set/smartgunner/xm99a
+	spawned_gear_list = list(
+		/obj/item/storage/box/xm99a_system,
+		/obj/item/device/whiskey_supply_beacon,
+		/obj/item/device/whiskey_supply_beacon,
+	)

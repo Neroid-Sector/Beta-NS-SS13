@@ -1,0 +1,125 @@
+"ah" = (/obj/structure/shuttle/part/argonne/left_outer_wing_connector,/turf/open/space/basic,/area/shuttle/drop_solano/argonne)
+"aq" = (/obj/structure/shuttle/part/argonne/transparent/outer_right_weapons,/obj/effect/attach_point/weapon/argonne/right_fore,/turf/template_noop,/area/shuttle/drop_solano/argonne)
+"aK" = (/obj/structure/shuttle/part/argonne/nose_front_left,/turf/template_noop,/area/shuttle/drop_solano/argonne)
+"bR" = (/obj/structure/machinery/computer/overwatch/almayer{dir = 8; pixel_x = -17; pixel_y = 20},/obj/structure/machinery/computer/groundside_operations{dir = 4; pixel_x = -17; pixel_y = 6},/obj/structure/machinery/computer/overwatch/almayer{dir = 8; pixel_x = -17; pixel_y = -10},/obj/structure/platform/ship{dir = 4},/obj/structure/bed/chair/dropship/passenger{dir = 8},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/argonne)
+"ct" = (/obj/structure/shuttle/part/argonne/transparent/middle_left_wing,/turf/template_noop,/area/shuttle/drop_solano/argonne)
+"cX" = (/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_solano/argonne)
+"ee" = (/obj/structure/shuttle/part/argonne/transparent/engine_left_exhaust,/turf/template_noop,/area/shuttle/drop_solano/argonne)
+"el" = (/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = -8},/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = 8},/obj/effect/decal/warning_stripes{icon_state = "S"},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/argonne)
+"fd" = (/turf/closed/shuttle/argonne{icon_state = "94"},/area/shuttle/drop_solano/argonne)
+"fw" = (/obj/structure/stairs/perspective{icon_state = "p_stair_full"},/obj/structure/platform{dir = 8},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_solano/argonne)
+"fz" = (/obj/effect/attach_point/fuel/argonne,/turf/closed/shuttle/argonne/transparent{icon_state = "28"},/area/shuttle/drop_solano/argonne)
+"fD" = (/turf/closed/shuttle/argonne/transparent{icon_state = "22"},/area/shuttle/drop_solano/argonne)
+"hC" = (/obj/structure/bed/chair/vehicle{pixel_x = 8},/obj/structure/bed/chair/vehicle{pixel_x = -8},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/argonne)
+"hW" = (/turf/closed/shuttle/argonne{icon_state = "64"},/area/shuttle/drop_solano/argonne)
+"if" = (/obj/effect/decal/warning_stripes{icon_state = "W"},/obj/structure/platform{dir = 4},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_solano/argonne)
+"is" = (/obj/structure/shuttle/part/argonne/transparent/nose_center,/turf/template_noop,/area/shuttle/drop_solano/argonne)
+"ix" = (/turf/closed/shuttle/argonne{icon_state = "62"},/area/shuttle/drop_solano/argonne)
+"jj" = (/obj/structure/machinery/cm_vending/sorted/cargo_guns/squad_prep{req_access = null; req_one_access = null},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/argonne)
+"kY" = (/turf/closed/shuttle/argonne/transparent{icon_state = "86"},/area/shuttle/drop_solano/argonne)
+"mb" = (/obj/effect/decal/warning_stripes{icon_state = "W"},/obj/structure/blocker/forcefield/multitile_vehicles,/turf/open/shuttle/dropship{icon_state = "rasputin4"},/area/shuttle/drop_solano/argonne)
+"mN" = (/obj/effect/decal/warning_stripes{icon_state = "W"},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_solano/argonne)
+"mS" = (/turf/closed/shuttle/argonne/transparent{icon_state = "34"},/area/shuttle/drop_solano/argonne)
+"ob" = (/turf/closed/shuttle/argonne{icon_state = "83"},/area/shuttle/drop_solano/argonne)
+"oI" = (/obj/structure/shuttle/part/argonne/transparent/left_outer_inner_wing,/turf/template_noop,/area/shuttle/drop_solano/argonne)
+"pV" = (/obj/structure/shuttle/part/argonne/transparent/middle_right_wing,/turf/template_noop,/area/shuttle/drop_solano/argonne)
+"qc" = (/obj/structure/stairs/perspective{icon_state = "p_stair_full"},/obj/structure/platform{dir = 4},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_solano/argonne)
+"qp" = (/obj/structure/shuttle/part/argonne/transparent/outer_left_weapons,/obj/effect/attach_point/weapon/argonne/left_fore,/turf/template_noop,/area/shuttle/drop_solano/argonne)
+"qP" = (/obj/effect/decal/warning_stripes{icon_state = "E"; pixel_x = 1},/obj/structure/blocker/forcefield/multitile_vehicles,/turf/open/shuttle/dropship{icon_state = "rasputin8"},/area/shuttle/drop_solano/argonne)
+"ru" = (/turf/closed/shuttle/argonne{icon_state = "72"},/area/shuttle/drop_solano/argonne)
+"rB" = (/obj/structure/shuttle/part/argonne/transparent/right_outer_bottom_wing,/turf/template_noop,/area/shuttle/drop_solano/argonne)
+"rI" = (/obj/structure/blocker/forcefield/multitile_vehicles,/turf/open/shuttle/dropship{icon_state = "floor8"},/area/shuttle/drop_solano/argonne)
+"se" = (/obj/structure/machinery/door_control{id = "dropship_argonne"; name = "Dropship Lockdown"; normaldoorcontrol = 3; pixel_y = -10; req_one_access_txt = "3;22"; throw_range = 15},/turf/closed/shuttle/argonne{icon_state = "81"},/area/shuttle/drop_solano/argonne)
+"st" = (/turf/closed/shuttle/argonne{icon_state = "48"},/area/shuttle/drop_solano/argonne)
+"sI" = (/turf/closed/shuttle/argonne{icon_state = "92"},/area/shuttle/drop_solano/argonne)
+"ti" = (/obj/structure/shuttle/part/argonne/right_inner_wing_connector,/turf/open/space/basic,/area/shuttle/drop_solano/argonne)
+"tj" = (/obj/docking_port/mobile/marine_dropship/argonne,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/argonne)
+"ul" = (/turf/open/shuttle/dropship{icon_state = "floor8"},/area/shuttle/drop_solano/argonne)
+"uo" = (/turf/closed/shuttle/argonne/transparent{icon_state = "98"},/area/shuttle/drop_solano/argonne)
+"up" = (/turf/closed/shuttle/argonne{icon_state = "24"},/area/shuttle/drop_solano/argonne)
+"uF" = (/obj/structure/shuttle/part/argonne/nose_front_right,/turf/template_noop,/area/shuttle/drop_solano/argonne)
+"vD" = (/turf/closed/shuttle/argonne{icon_state = "30"},/area/shuttle/drop_solano/argonne)
+"vR" = (/obj/effect/decal/warning_stripes{icon_state = "SE-out"; pixel_x = 1},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_solano/argonne)
+"wb" = (/obj/structure/machinery/door/airlock/dropship_hatch/two{dir = 8; id = "starboard_door"},/obj/structure/stairs{dir = 4},/obj/structure/blocker/forcefield/multitile_vehicles,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/argonne)
+"ww" = (/obj/effect/decal/warning_stripes{icon_state = "E"; pixel_x = 1},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_solano/argonne)
+"wD" = (/obj/structure/machinery/cm_vending/sorted/cargo_guns/squad{req_access = null; req_one_access = null},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/argonne)
+"xx" = (/turf/open/shuttle/dropship{icon_state = "rasputin6"},/area/shuttle/drop_solano/argonne)
+"yH" = (/turf/closed/shuttle/argonne{icon_state = "67"},/area/shuttle/drop_solano/argonne)
+"zF" = (/obj/structure/platform{dir = 1; layer = 2.8},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/argonne)
+"zS" = (/turf/closed/shuttle/argonne{icon_state = "31"},/area/shuttle/drop_solano/argonne)
+"zU" = (/obj/structure/machinery/door/airlock/dropship_hatch/two{id = "port_door"},/obj/structure/stairs{dir = 8; icon_state = "ramptop"},/obj/structure/blocker/forcefield/multitile_vehicles,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/argonne)
+"Af" = (/obj/structure/blocker/invisible_wall,/obj/structure/machinery/computer/shuttle/dropship/flight,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/argonne)
+"Ao" = (/turf/closed/shuttle/argonne{icon_state = "69"},/area/shuttle/drop_solano/argonne)
+"AG" = (/turf/closed/shuttle/argonne/transparent{icon_state = "35"},/area/shuttle/drop_solano/argonne)
+"AP" = (/turf/closed/shuttle/argonne/transparent{icon_state = "29"},/area/shuttle/drop_solano/argonne)
+"Bc" = (/obj/structure/shuttle/part/argonne/transparent/lower_left_wing,/obj/effect/attach_point/weapon/argonne/left_wing,/turf/template_noop,/area/shuttle/drop_solano/argonne)
+"BL" = (/obj/effect/decal/warning_stripes{icon_state = "SE-out"; pixel_x = 1},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/argonne)
+"BN" = (/obj/structure/blocker/invisible_wall,/obj/structure/machinery/computer/cameras/dropship/argonne,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/argonne)
+"Cc" = (/obj/effect/decal/warning_stripes{icon_state = "E"; pixel_x = 1},/obj/structure/platform{dir = 8},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_solano/argonne)
+"Cw" = (/turf/closed/shuttle/argonne/transparent{icon_state = "39"},/area/shuttle/drop_solano/argonne)
+"Dz" = (/obj/structure/bed/chair/dropship/pilot{dir = 1},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/argonne)
+"Ed" = (/obj/structure/shuttle/part/argonne/left_inner_wing_connector,/turf/open/space/basic,/area/shuttle/drop_solano/argonne)
+"ED" = (/obj/structure/shuttle/part/argonne/transparent/left_outer_bottom_wing,/turf/template_noop,/area/shuttle/drop_solano/argonne)
+"Ha" = (/turf/closed/shuttle/argonne/transparent{icon_state = "97"},/area/shuttle/drop_solano/argonne)
+"HZ" = (/obj/structure/shuttle/part/argonne/transparent/nose_top_left,/turf/template_noop,/area/shuttle/drop_solano/argonne)
+"Ic" = (/turf/closed/shuttle/argonne{icon_state = "37"},/area/shuttle/drop_solano/argonne)
+"IT" = (/turf/closed/shuttle/argonne{icon_state = "73"},/area/shuttle/drop_solano/argonne)
+"Kn" = (/obj/structure/shuttle/part/argonne/lower_right_wall,/turf/open/space/basic,/area/shuttle/drop_solano/argonne)
+"KE" = (/obj/structure/shuttle/part/argonne/transparent/right_inner_bottom_wing,/turf/template_noop,/area/shuttle/drop_solano/argonne)
+"Lz" = (/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = -8},/obj/structure/bed/chair/vehicle{dir = 1; pixel_x = 8},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/argonne)
+"LL" = (/turf/closed/shuttle/argonne{icon_state = "75"},/area/shuttle/drop_solano/argonne)
+"LP" = (/obj/structure/machinery/door/airlock/hatch/cockpit/two,/obj/structure/blocker/forcefield/multitile_vehicles,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/argonne)
+"LW" = (/turf/closed/shuttle/argonne/transparent{icon_state = "23"},/area/shuttle/drop_solano/argonne)
+"Nd" = (/obj/structure/shuttle/part/argonne/transparent/upper_right_wing,/obj/effect/attach_point/electronics/argonne,/turf/template_noop,/area/shuttle/drop_solano/argonne)
+"Ne" = (/obj/structure/shuttle/part/argonne/right_outer_wing_connector,/turf/open/space/basic,/area/shuttle/drop_solano/argonne)
+"PA" = (/obj/structure/extinguisher_cabinet/alt{pixel_x = -14; pixel_y = -9},/turf/closed/shuttle/argonne{icon_state = "81"},/area/shuttle/drop_solano/argonne)
+"PK" = (/obj/effect/decal/warning_stripes{icon_state = "SW-out"; pixel_x = -1},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/drop_solano/argonne)
+"PW" = (/turf/closed/shuttle/argonne/transparent{icon_state = "38"},/area/shuttle/drop_solano/argonne)
+"Qo" = (/obj/structure/shuttle/part/argonne/transparent/nose_top_right,/turf/template_noop,/area/shuttle/drop_solano/argonne)
+"Qt" = (/obj/effect/decal/warning_stripes,/obj/effect/attach_point/crew_weapon/argonne,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/argonne)
+"QA" = (/obj/structure/shuttle/part/argonne/transparent/lower_right_wing,/obj/effect/attach_point/weapon/argonne/right_wing,/turf/template_noop,/area/shuttle/drop_solano/argonne)
+"QE" = (/obj/structure/shuttle/part/argonne/transparent/upper_left_wing,/obj/effect/attach_point/electronics/argonne,/turf/template_noop,/area/shuttle/drop_solano/argonne)
+"QF" = (/obj/structure/stairs,/obj/structure/platform/ship{dir = 4},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/argonne)
+"QU" = (/obj/structure/transmitter/rotary{name = "Argonne Telephone"; phone_category = "Dropship"; phone_id = "Argonne"; pixel_x = 11; pixel_y = 16},/obj/structure/blocker/invisible_wall,/obj/structure/machinery/computer/dropship_weapons/argonne,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/argonne)
+"Rs" = (/turf/open/shuttle/dropship{icon_state = "rasputin7"},/area/shuttle/drop_solano/argonne)
+"RC" = (/obj/structure/machinery/cm_vending/sorted/medical/wall_med/vehicle{pixel_x = 5; pixel_y = -6},/turf/closed/shuttle/argonne{icon_state = "81"},/area/shuttle/drop_solano/argonne)
+"TA" = (/turf/closed/shuttle/argonne/transparent{icon_state = "96"},/area/shuttle/drop_solano/argonne)
+"TD" = (/turf/closed/shuttle/argonne/transparent{icon_state = "27"},/area/shuttle/drop_solano/argonne)
+"TN" = (/obj/effect/decal/warning_stripes{icon_state = "W"},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/argonne)
+"TT" = (/obj/structure/shuttle/part/argonne/lower_left_wall,/turf/open/space/basic,/area/shuttle/drop_solano/argonne)
+"TV" = (/turf/closed/shuttle/argonne/transparent{icon_state = "32"},/area/shuttle/drop_solano/argonne)
+"VO" = (/turf/closed/shuttle/argonne/transparent{icon_state = "89"},/area/shuttle/drop_solano/argonne)
+"Wp" = (/obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2{id = "aft_door"; name = "\improper Argonne cargo door"},/obj/effect/decal/warning_stripes{icon_state = "E"; pixel_x = 1},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/argonne)
+"WD" = (/turf/closed/shuttle/argonne/transparent{icon_state = "26"},/area/shuttle/drop_solano/argonne)
+"Xd" = (/obj/effect/attach_point/fuel/argonne{pixel_x = -33},/turf/closed/shuttle/argonne/transparent{icon_state = "33"},/area/shuttle/drop_solano/argonne)
+"XP" = (/turf/template_noop,/area/template_noop)
+"XW" = (/turf/closed/shuttle/argonne{icon_state = "47"},/area/shuttle/drop_solano/argonne)
+"XZ" = (/obj/structure/closet/fireaxecabinet{pixel_y = -10},/turf/closed/shuttle/argonne{icon_state = "81"},/area/shuttle/drop_solano/argonne)
+"Ya" = (/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/drop_solano/argonne)
+"Yn" = (/turf/closed/shuttle/argonne{icon_state = "25"},/area/shuttle/drop_solano/argonne)
+"Zr" = (/turf/closed/shuttle/argonne{icon_state = "36"},/area/shuttle/drop_solano/argonne)
+"Zz" = (/obj/structure/shuttle/part/argonne/transparent/engine_right_exhaust,/turf/template_noop,/area/shuttle/drop_solano/argonne)
+
+(1,1,1) = {"
+XPXPXPXPXPXPXPXPXPXPXP
+XPXPXPHZisisisQoXPXPXP
+XPXPXPaKTAHauouFXPXPXP
+XPXPXPsIBNAfQUfdXPXPXP
+XPXPqpkYDzYaDzVOaqXPXP
+XPXPLLXZseLPRCPAobXPXP
+XPQEruhCxxulRshCITNdXP
+XPctyHLzcXQtcXLzAopVXP
+XPBcixhCcXYacXhChWQAXP
+XPXPzUYacXQtcXYawbXPXP
+XPXPZrBLPKtjvRelIcXPXP
+XPXPZrQFmNQtwwwDIcXPXP
+XPXPZrbRmbrIqPjjIcXPXP
+XPXPTTXWfwzFqcstKnXPXP
+XPmSAGZrCcYaifIcPWCwXP
+XPfzAPvDCcYaifzSTVXdXP
+XPfDLWupCcYaifYnWDTDXP
+XPeeZzZrCcYaifIceeZzXP
+XPXPXPLLWpYaTNobXPXPXP
+XPXPXPEdXPXPXPtiXPXPXP
+XPEDoIahXPXPXPNeKErBXP
+"}

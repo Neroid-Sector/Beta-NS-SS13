@@ -1,7 +1,7 @@
 //Autodoc
 /obj/structure/machinery/medical_pod/autodoc
 	name = "\improper autodoc emergency medical system"
-	desc = "An emergency surgical device designed to perform life-saving treatments and basic surgeries on patients automatically, without the need of a surgeon. <br>It still requires someone with medical knowledge to program the treatments correctly; for this reason, colonies that use these often have paramedics trained in autodoc operation."
+	desc = "A fancy machine developed to be capable of operating on people with minimal human intervention. The interface is rather complex and would only be useful to trained Doctors however."
 	icon_state = "autodoc_open"
 
 	entry_timer = 2 SECONDS
@@ -35,6 +35,11 @@
 			icon_state = "autodoc_closed"
 	else
 		icon_state = "autodoc_open"
+
+/obj/structure/machinery/medical_pod/autodoc/get_examine_text(mob/user)
+	. = ..()
+	if(ishuman(user))
+		. += SPAN_NOTICE("It has [stored_metal] metal available for limb replacements.")
 
 /obj/structure/machinery/medical_pod/autodoc/Initialize()
 	. = ..()
@@ -237,11 +242,6 @@
 					if(organdamagesurgery > 0) continue // avoid duplicates
 					surgery_list += create_autodoc_surgery(L,ORGAN_SURGERY,"damage",0,I)
 					organdamagesurgery++
-
-			if(istype(L,/obj/limb/head))
-				var/obj/limb/head/H = L
-				if(H.disfigured)
-					surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,"facial")
 
 			if(L.status & LIMB_BROKEN)
 				surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,"broken")
@@ -500,20 +500,6 @@
 						if(!surgery) break
 						close_incision(H,S.limb_ref)
 
-					if("facial")
-						if(prob(30)) visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> speaks: Beginning Facial Reconstruction Surgery.");
-						if(S.unneeded)
-							sleep(UNNEEDED_DELAY)
-							visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b> speaks: Procedure has been deemed unnecessary.");
-							surgery_todo_list -= S
-							continue
-						if(istype(S.limb_ref, /obj/limb/head))
-							var/obj/limb/head/F = S.limb_ref
-							sleep(SCALPEL_MAX_DURATION + HEMOSTAT_MAX_DURATION + RETRACTOR_MAX_DURATION + CAUTERY_MAX_DURATION)
-							F.remove_all_bleeding(TRUE)
-							F.disfigured = 0
-							F.owner.name = F.owner.get_visible_name()
-
 					if("open")
 						if(prob(30)) visible_message("[icon2html(src, viewers(src))] \The <b>[src]</b>croaks: Closing surgical incision.");
 						close_encased(H,S.limb_ref)
@@ -714,9 +700,6 @@
 								if("shrapnel")
 									surgeryqueue["shrapnel"] = 1
 									dat += "Shrapnel Removal Surgery"
-								if("facial")
-									surgeryqueue["facial"] = 1
-									dat += "Facial Reconstruction Surgery"
 								if("open")
 									surgeryqueue["open"] = 1
 									dat += "Close Open Incisions"
@@ -730,10 +713,22 @@
 					dat += "<a href='?src=\ref[src];brute=1'>Brute Damage Treatment</a><br>"
 				if(isnull(surgeryqueue["burn"]))
 					dat += "<a href='?src=\ref[src];burn=1'>Burn Damage Treatment</a><br>"
+				dat += "<b>Orthopedic Surgeries</b>"
+				dat += "<br>"
+				if(isnull(surgeryqueue["broken"]))
+					dat += "<a href='?src=\ref[src];broken=1'>Broken Bone Surgery</a><br>"
+				if(isnull(surgeryqueue["internal"]))
+					dat += "<a href='?src=\ref[src];internal=1'>Internal Bleeding Surgery</a><br>"
 				if(isnull(surgeryqueue["open"]))
 					dat += "<a href='?src=\ref[src];open=1'>Close Open Incisions</a><br>"
 				if(isnull(surgeryqueue["shrapnel"]))
 					dat += "<a href='?src=\ref[src];shrapnel=1'>Shrapnel Removal Surgery</a><br>"
+				dat += "<b>Organ Surgeries</b>"
+				dat += "<br>"
+				if(isnull(surgeryqueue["eyes"]))
+					dat += "<a href='?src=\ref[src];eyes=1'>Corrective Eye Surgery</a><br>"
+				if(isnull(surgeryqueue["organdamage"]))
+					dat += "<a href='?src=\ref[src];organdamage=1'>Organ Damage Treatment</a><br>"
 				dat += "<b>Hematology Treatments</b>"
 				dat += "<br>"
 				if(isnull(surgeryqueue["blood"]))
@@ -743,6 +738,8 @@
 				if(isnull(surgeryqueue["toxin"]))
 					dat += "<a href='?src=\ref[src];toxin=1'>Bloodstream Toxin Removal</a><br>"
 				dat += "<br>"
+				if(isnull(surgeryqueue["missing"]))
+					dat += "<a href='?src=\ref[src];missing=1'>Limb Replacement Surgery</a><hr>"
 		else
 			dat += "The autodoc is empty."
 	dat += text("<a href='?src=\ref[];mach_close=sleeper'>Close</a>", user)
@@ -843,18 +840,6 @@
 				if(!needed)
 					N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,"shrapnel",1)
 				updateUsrDialog()
-
-			if(href_list["facial"])
-				for(var/obj/limb/L in connected.occupant.limbs)
-					if(L)
-						if(istype(L,/obj/limb/head))
-							var/obj/limb/head/J = L
-							if(J.disfigured)
-								N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,"facial")
-							else
-								N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,"facial",1)
-							updateUsrDialog()
-							break
 
 			if(href_list["open"])
 				for(var/obj/limb/L in connected.occupant.limbs)

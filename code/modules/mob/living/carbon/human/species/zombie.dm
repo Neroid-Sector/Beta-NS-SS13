@@ -45,16 +45,20 @@
 	zombie.faction = FACTION_ZOMBIE
 	zombie.faction_group = list(FACTION_ZOMBIE)
 
-	if(zombie.l_hand) zombie.drop_inv_item_on_ground(zombie.l_hand, FALSE, TRUE)
-	if(zombie.r_hand) zombie.drop_inv_item_on_ground(zombie.r_hand, FALSE, TRUE)
-	if(zombie.wear_id) qdel(zombie.wear_id)
-	if(zombie.gloves) zombie.drop_inv_item_on_ground(zombie.gloves, FALSE, TRUE)
-	if(zombie.head) zombie.drop_inv_item_on_ground(zombie.head, FALSE, TRUE)
-	if(zombie.glasses) zombie.drop_inv_item_on_ground(zombie.glasses, FALSE, TRUE)
-	if(zombie.wear_mask) zombie.drop_inv_item_on_ground(zombie.wear_mask, FALSE, TRUE)
-
-	if(zombie.lying)
-		zombie.lying = FALSE
+	if(zombie.l_hand)
+		zombie.drop_inv_item_on_ground(zombie.l_hand, FALSE, TRUE)
+	if(zombie.r_hand)
+		zombie.drop_inv_item_on_ground(zombie.r_hand, FALSE, TRUE)
+	if(zombie.wear_id)
+		qdel(zombie.wear_id)
+	if(zombie.gloves)
+		zombie.drop_inv_item_on_ground(zombie.gloves, FALSE, TRUE)
+	if(zombie.head)
+		zombie.drop_inv_item_on_ground(zombie.head, FALSE, TRUE)
+	if(zombie.glasses)
+		zombie.drop_inv_item_on_ground(zombie.glasses, FALSE, TRUE)
+	if(zombie.wear_mask)
+		zombie.drop_inv_item_on_ground(zombie.wear_mask, FALSE, TRUE)
 
 	var/obj/item/weapon/zombie_claws/ZC = new(zombie)
 	ZC.icon_state = "claw_r"
@@ -62,21 +66,22 @@
 	zombie.equip_to_slot_or_del(new /obj/item/weapon/zombie_claws(zombie), WEAR_L_HAND, TRUE)
 	zombie.equip_to_slot_or_del(new /obj/item/clothing/glasses/zombie_eyes(zombie), WEAR_EYES, TRUE)
 
-	var/datum/disease/black_goo/D = locate() in zombie.viruses
-	if(!D)
-		D = zombie.AddDisease(new /datum/disease/black_goo())
-	D.stage = 5
+	var/datum/disease/black_goo/zombie_infection = locate() in zombie.viruses
+	if(!zombie_infection)
+		zombie_infection = zombie.AddDisease(new /datum/disease/black_goo())
+	zombie_infection.stage = 4
 
-	var/datum/mob_hud/Hu = huds[MOB_HUD_MEDICAL_OBSERVER]
+	var/datum/mob_hud/Hu = GLOB.huds[MOB_HUD_MEDICAL_OBSERVER]
 	Hu.add_hud_to(zombie, zombie)
 
 	return ..()
 
 
+
 /datum/species/zombie/post_species_loss(mob/living/carbon/human/zombie)
 	..()
 	remove_from_revive(zombie)
-	var/datum/mob_hud/Hu = huds[MOB_HUD_MEDICAL_OBSERVER]
+	var/datum/mob_hud/Hu = GLOB.huds[MOB_HUD_MEDICAL_OBSERVER]
 	Hu.remove_hud_from(zombie, zombie)
 
 
@@ -116,7 +121,7 @@
 /datum/species/zombie/proc/revive_from_death(mob/living/carbon/human/zombie)
 	if(zombie && zombie.loc && zombie.stat == DEAD)
 		zombie.revive(TRUE)
-		zombie.stunned = 4
+		zombie.apply_effect(4, STUN)
 
 		zombie.make_jittery(500)
 		zombie.visible_message(SPAN_WARNING("[zombie] rises from the ground!"))
@@ -130,7 +135,7 @@
 	var/mob/dead/observer/ghost = zombie.get_ghost()
 	if(ghost?.client)
 		playsound_client(ghost.client, 'sound/effects/adminhelp_new.ogg')
-		to_chat(ghost, SPAN_BOLDNOTICE(FONT_SIZE_LARGE("Your body has risen! (Verbs -> Ghost -> Re-enter corpse, or <a href='?src=\ref[ghost];reentercorpse=1'>click here!</a>)")))
+		to_chat(ghost, SPAN_BOLDNOTICE(FONT_SIZE_LARGE("Your body has risen! (Verbs -> Ghost -> Re-enter corpse, or <a href='byond://?src=\ref[ghost];reentercorpse=1'>click here!</a>)")))
 
 /datum/species/zombie/proc/remove_from_revive(mob/living/carbon/human/zombie)
 	var/weak_ref = WEAKREF(zombie)
@@ -158,7 +163,8 @@
 		var/client/receiving_client = zombie.client
 		if(!receiving_client)
 			var/mob/dead/observer/ghost = zombie.get_ghost()
-			if(ghost) receiving_client = ghost.client
+			if(ghost)
+				receiving_client = ghost.client
 		if(receiving_client)
 			receiving_client.mob.play_screen_text("<span class='langchat' style=font-size:16pt;text-align:center valign='top'><u>Beheaded...</u></span><br>Your corpse will no longer rise.", /atom/movable/screen/text/screen_text/command_order, rgb(155, 0, 200))
 			to_chat(receiving_client, SPAN_BOLDNOTICE(FONT_SIZE_LARGE("You've been beheaded! Your body will no longer rise.")))

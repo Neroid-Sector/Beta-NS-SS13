@@ -10,7 +10,7 @@
 		var/list/T = list()
 		for(var/turf/open/O in range(1))
 			T += O
-		if(supply.len)
+		if(length(supply))
 			for(var/s in supply)
 				var/amount = supply[s]
 				for(var/i = 1, i <= amount, i++)
@@ -92,7 +92,7 @@
 
 /obj/structure/largecrate/supply/Initialize()
 	. = ..()
-	if(supplies.len)
+	if(length(supplies))
 		for(var/s in supplies)
 			var/amount = supplies[s]
 			for(var/i = 1, i <= amount, i++)
@@ -222,10 +222,61 @@
 	desc = "A case containing twenty-five 80mm incendiary mortar shells."
 	supplies = list(/obj/item/mortar_shell/incendiary = 25)
 
+
 /obj/structure/largecrate/supply/explosives/mortar_flare
 	name = "80mm flare mortar shell case (x25)"
 	desc = "A case containing twenty-five 80mm flare mortar shells."
 	supplies = list(/obj/item/mortar_shell/flare = 25)
+
+/obj/structure/largecrate/supply/explosives/mortar_cn20
+	name = "80mm cn20-gas mortar shell case (x25)"
+	desc = "A case containing twenty-five 80mm cn20 nerve gas mortar shells."
+	supplies = list(/obj/item/mortar_shell/nerve = 25)
+
+/obj/structure/largecrate/supply/explosives/mortar_mustard
+	name = "80mm mustard-gas mortar shell case (x25)"
+	desc = "A case containing twenty-five 80mm mustard gas mortar shells."
+	supplies = list(/obj/item/mortar_shell/mustard = 25)
+
+/obj/structure/largecrate/supply/explosives/mortar_smoke
+	name = "80mm smoke mortar shell case (x25)"
+	desc = "A case containing twenty-five 80mm smoke mortar shells."
+	supplies = list(/obj/item/mortar_shell/smoke = 25)
+
+/obj/structure/largecrate/supply/explosives/mortar_airburst
+	name = "80mm airburst mortar shell case (x25)"
+	desc = "A case containing twenty-five 80mm Airburst HE mortar shells."
+	supplies = list(/obj/item/mortar_shell/airburst = 25)
+
+/obj/structure/largecrate/supply/explosives/mortar_shaped
+	name = "80mm shaped-incendiary mortar shell case (x25)"
+	desc = "A case containing twenty-five 80mm shaped incediary shells."
+	supplies = list(/obj/item/mortar_shell/shaped = 25)
+
+/obj/structure/largecrate/supply/explosives/mortar_wp
+	name = "80mm WP mortar shell case (x25)"
+	desc = "A case containing twenty-five 80mm WP mortar shells."
+	supplies = list(/obj/item/mortar_shell/wp = 25)
+
+/obj/structure/largecrate/supply/explosives/mortar_chlorine
+	name = "80mm WP mortar shell case (x25)"
+	desc = "A case containing twenty-five 80mm chlorine gas mortar shells."
+	supplies = list(/obj/item/mortar_shell/chlorine = 25)
+
+/obj/structure/largecrate/supply/explosives/mortar_weedkiller
+	name = "80mm Starburst mortar shell case (x25)"
+	desc = "A case containing twenty-five 80mm C10-W Weedkiller mortar shells."
+	supplies = list(/obj/item/mortar_shell/weedkiller = 25)
+
+/obj/structure/largecrate/supply/explosives/mortar_miasma
+	name = "80mm CN20-X miasma (!!!DANGER!!!) shell case (x25)"
+	desc = "(Warning Store in Secure area!) A case containing twenty-five 80mm CN20-X miasma  mortar shells. REQUIRES OPERATION COMMANDER'S AUTHORIZATION TO DEPLOY!"
+	supplies = list(/obj/item/mortar_shell/miasma= 25)
+
+/obj/structure/largecrate/supply/explosives/mortar_flash
+	name = "80mm Starburst mortar shell case (x25)"
+	desc = "A case containing twenty-five 80mm Flashbang mortar shells."
+	supplies = list(/obj/item/mortar_shell/flash = 25)
 
 
 /obj/structure/largecrate/supply/supplies
@@ -261,6 +312,16 @@
 	name = "\improper USCM MRE crate (x60)"
 	desc = "A supply crate containing sixty USCM MRE packets."
 	supplies = list(/obj/item/ammo_box/magazine/misc/mre = 5)
+
+/obj/structure/largecrate/supply/supplies/mre/wy
+	name = "\improper W-Y brand rations crate (x60)"
+	desc = "A supply crate containing sixty W-Y brand ration packets."
+	supplies = list(/obj/item/ammo_box/magazine/misc/mre/wy = 5)
+
+/obj/structure/largecrate/supply/supplies/wy_emergency_food
+	name = "\improper WY emergency nutrition briquettes crate (x100)"
+	desc = "A supply crate containing one hundred WY emergency nutrition briquettes."
+	supplies = list(/obj/item/ammo_box/magazine/misc/mre/emergency = 5)
 
 /obj/structure/largecrate/supply/supplies/water
 	name = "\improper WY Bottled Water crate (x50)"
@@ -459,3 +520,49 @@
 
 	qdel(src)
 	return TRUE
+
+// Empty
+
+/obj/structure/largecrate/empty/secure
+	name = "secure supply crate"
+	desc = "A secure crate."
+	icon_state = "secure_crate_strapped"
+	var/strapped = TRUE
+
+/obj/structure/largecrate/empty/secure/attackby(obj/item/W as obj, mob/user as mob)
+	if (!strapped)
+		..()
+		return
+
+	if (!W.sharp)
+		to_chat(user, SPAN_NOTICE("You need something sharp to cut off the straps."))
+		return
+
+	to_chat(user, SPAN_NOTICE("You begin to cut the straps off [src]..."))
+
+	if (do_after(user, 1.5 SECONDS, INTERRUPT_ALL, BUSY_ICON_GENERIC))
+		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+		to_chat(user, SPAN_NOTICE("You cut the straps away."))
+		icon_state = "secure_crate"
+		strapped = FALSE
+
+/obj/structure/largecrate/empty/case
+	name = "storage case"
+	desc = "A black storage case."
+	icon_state = "case"
+
+/obj/structure/largecrate/empty/case/double
+	name = "cases"
+	desc = "A stack of black storage cases."
+	icon_state = "case_double"
+
+/obj/structure/largecrate/empty/case/double/unpack()
+	if(parts_type)
+		new parts_type(loc, 2)
+	for(var/obj/thing in contents)
+		thing.forceMove(loc)
+	new /obj/structure/largecrate/empty/case(loc)
+	playsound(src, unpacking_sound, 35)
+	qdel(src)
+
+//----------------------------------------------------//

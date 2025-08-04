@@ -3,11 +3,17 @@
 	desc = "An unlabeled 80mm mortar shell, probably a casing."
 	icon = 'icons/obj/structures/mortar.dmi'
 	icon_state = "mortar_ammo_cas"
+	item_icons = list(
+		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/weapons/ammo_lefthand.dmi',
+		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/weapons/ammo_righthand.dmi'
+		)
 	w_class = SIZE_HUGE
 	flags_atom = FPRINT|CONDUCT
 	var/datum/cause_data/cause_data
 	ground_offset_x = 7
 	ground_offset_y = 6
+	/// is it currently on fire and about to explode?
+	var/burning = FALSE
 
 
 /obj/item/mortar_shell/Destroy()
@@ -23,28 +29,77 @@
 		qdel(old_cam)
 	new /obj/structure/machinery/camera/mortar(T)
 
+//HE
+
 /obj/item/mortar_shell/he
 	name = "\improper 80mm high explosive mortar shell"
 	desc = "An 80mm mortar shell, loaded with a high explosive charge."
 	icon_state = "mortar_ammo_he"
+	item_state = "mortar_ammo_he"
 
 /obj/item/mortar_shell/he/detonate(turf/T)
 	explosion(T, 0, 3, 5, 7, explosion_cause_data = cause_data)
+
+//Cluster
+
+/obj/item/mortar_shell/airburst
+	name = "\improper 80mm air-burst mortar shell"
+	desc = "An 80mm mortar shell, loaded with a cluster charge."
+	icon_state = "mortar_ammo_air"
+	var/total_amount = 10 // how many times will the shell fire?
+	var/instant_amount = 2 // how many explosions per time it fires?
+	var/delay_between_clusters = 0.4 SECONDS // how long between each firing?
+
+/obj/item/mortar_shell/airburst/proc/start_cluster(turf/target)
+	set waitfor = 0
+
+	var/range_num = 7
+	var/list/turf_list = list()
+
+	for(var/turf/T in range(range_num, target))
+		turf_list += T
+
+	for(var/i = 1 to total_amount)
+		for(var/k = 1 to instant_amount)
+			var/turf/selected_turf = pick(turf_list)
+			if(protected_by_pylon(TURF_PROTECTION_MORTAR, selected_turf))
+				continue
+			var/area/selected_area = get_area(selected_turf)
+			if(CEILING_IS_PROTECTED(selected_area?.ceiling, CEILING_PROTECTION_TIER_2))
+				continue
+			fire_in_a_hole(selected_turf)
+
+		sleep(delay_between_clusters)
+	QDEL_IN(src, 5 SECONDS)
+
+/obj/item/mortar_shell/airburst/proc/fire_in_a_hole(turf/T)
+	explosion(T, 0, 0.05, 0.1, 2, explosion_cause_data = cause_data)
+
+/obj/item/mortar_shell/airburst/detonate(turf/T)
+	playsound(T, 'sound/effects/spike_spray.ogg', 50, 1, 4)
+	sleep(5)
+	start_cluster(T)
+
+//Frag
 
 /obj/item/mortar_shell/frag
 	name = "\improper 80mm fragmentation mortar shell"
 	desc = "An 80mm mortar shell, loaded with a fragmentation charge."
 	icon_state = "mortar_ammo_frag"
+	item_state = "mortar_ammo_frag"
 
 /obj/item/mortar_shell/frag/detonate(turf/T)
-	create_shrapnel(T, 60, cause_data = cause_data)
+	create_shrapnel(T, 60, cause_data = cause_data, shrapnel_type = /datum/ammo/bullet/shrapnel/breaching)
 	sleep(2)
 	cell_explosion(T, 60, 20, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, cause_data)
+
+//Incind
 
 /obj/item/mortar_shell/incendiary
 	name = "\improper 80mm incendiary mortar shell"
 	desc = "An 80mm mortar shell, loaded with a Type B napalm charge. Perfect for long-range area denial."
 	icon_state = "mortar_ammo_inc"
+	item_state = "mortar_ammo_inc"
 	var/radius = 5
 	var/flame_level = BURN_TIME_TIER_5 + 5 //Type B standard, 50 base + 5 from chemfire code.
 	var/burn_level = BURN_LEVEL_TIER_2
@@ -52,24 +107,280 @@
 	var/fire_type = FIRE_VARIANT_TYPE_B //Armor Shredding Greenfire
 
 /obj/item/mortar_shell/incendiary/detonate(turf/T)
+	flame_radius(cause_data, radius, T, flame_level, burn_level, flameshape, null, fire_type)
+	playsound(T, 'sound/weapons/gun_flamethrower2.ogg', 35, 1, 4)
+
+//Shaped charge
+
+/obj/item/mortar_shell/shaped
+	name = "\improper 80mm incendiary shaped blast mortar shell"
+	desc = "An 80mm mortar shell, loaded with a Shaped napalm charge. Perfect for clearing large areas and trenches, or cutting off advancing enemies."
+	icon_state = "mortar_ammo_shaped"
+	var/radius = 7
+	var/flame_level = BURN_TIME_TIER_1
+	var/burn_level = BURN_LEVEL_TIER_9
+	var/flameshape = FLAMESHAPE_STAR
+	var/fire_type = FIRE_VARIANT_DEFAULT
+
+/obj/item/mortar_shell/shaped/detonate(turf/T)
 	explosion(T, 0, 2, 4, 7, explosion_cause_data = cause_data)
 	flame_radius(cause_data, radius, T, flame_level, burn_level, flameshape, null, fire_type)
 	playsound(T, 'sound/weapons/gun_flamethrower2.ogg', 35, 1, 4)
+
+//Flare
 
 /obj/item/mortar_shell/flare
 	name = "\improper 80mm flare/camera mortar shell"
 	desc = "An 80mm mortar shell, loaded with an illumination flare / camera combo, attached to a parachute."
 	icon_state = "mortar_ammo_flr"
+	item_state = "mortar_ammo_flr"
 
 /obj/item/mortar_shell/flare/detonate(turf/T)
 	new /obj/item/device/flashlight/flare/on/illumination(T)
 	playsound(T, 'sound/weapons/gun_flare.ogg', 50, 1, 4)
 	deploy_camera(T)
 
+//Flashbang
+
+/obj/item/mortar_shell/flash
+	name = "\improper 80mm Nova-Flash Starburst mortar shell"
+	desc = "An 80mm mortar shell, loaded with a blinding phosphorus charge, that explodes extra loudly. Best used on rioters."
+	icon_state = "mortar_ammo_fsh"
+	var/strength = 50
+	var/no_damage = FALSE
+
+/obj/item/mortar_shell/flash/detonate(turf/T)
+	cell_explosion(T, 100, 100, EXPLOSION_FALLOFF_SHAPE_LINEAR, null,)
+
+	for(var/obj/structure/closet/L in hear(14, T))
+		SEND_SIGNAL(L, COMSIG_CLOSET_FLASHBANGED, src)
+
+	for(var/mob/living/carbon/M in hear(14, T))
+		bang(T, M)
+
+	playsound(src.loc, 'sound/effects/bang.ogg', 250, 1)
+
+	new/obj/effect/particle_effect/smoke/flashbang(T)
+	qdel(src)
+	return
+
+/obj/item/mortar_shell/flash/proc/bang(turf/T , mob/living/carbon/M)
+
+	if(isxeno(M))
+		return
+
+	to_chat(M, SPAN_WARNING("<B>BANG</B>"))
+
+	for(var/obj/item/device/chameleon/S in M)
+		S.disrupt(M)
+
+	var/trained_human = FALSE
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(skillcheck(H, SKILL_POLICE, SKILL_POLICE_SKILLED))
+			trained_human = TRUE
+
+		var/list/protections = list(H.glasses, H.wear_mask, H.head)
+		var/total_eye_protection = 0
+
+		for(var/obj/item/clothing/C in protections)
+			if(C && (C.flags_armor_protection & BODY_FLAG_EYES))
+				total_eye_protection += C.armor_energy
+
+		if(total_eye_protection >= strength)
+			to_chat(M, SPAN_HELPFUL("Your gear protects you from \the [src]."))
+			return
+
+	var/weaken_amount
+	var/paralyze_amount
+	var/deafen_amount
+
+	if(M.flash_eyes())
+		weaken_amount += 2
+		paralyze_amount += 10
+
+	if((get_dist(M, T) <= 2 || src.loc == M.loc || src.loc == M))
+		if(trained_human)
+			weaken_amount += 2
+			paralyze_amount += 1
+		else
+			weaken_amount += 10
+			paralyze_amount += 3
+			deafen_amount += 15
+			if(!no_damage)
+				if((prob(14) || (M == src.loc && prob(70))))
+					M.ear_damage += rand(1, 10)
+				else
+					M.ear_damage += rand(0, 5)
+
+	else if(get_dist(M, T) <= 5)
+		if(!trained_human)
+			weaken_amount += 8
+			deafen_amount += 10
+			if(!no_damage)
+				M.ear_damage += rand(0, 3)
+
+	else if(!trained_human)
+		weaken_amount += 4
+		deafen_amount += 5
+		if(!no_damage)
+			M.ear_damage += rand(0, 1)
+
+	if(HAS_TRAIT(M, TRAIT_EAR_PROTECTION))
+		weaken_amount *= 0.85
+		paralyze_amount *= 0.85
+		deafen_amount = 0
+		to_chat(M, SPAN_HELPFUL("Your gear protects you from the worst of the 'bang'."))
+
+	M.apply_effect(weaken_amount, WEAKEN)
+	M.apply_effect(paralyze_amount, PARALYZE)
+	M.apply_damage(10, BURN)
+	if(deafen_amount)
+		M.SetEarDeafness(max(M.ear_deaf, deafen_amount))
+
+//This really should be in mob not every check
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
+		if (E && E.damage >= E.min_bruised_damage)
+			to_chat(M, SPAN_WARNING("Your eyes start to burn badly!"))
+			if(!no_damage)
+				if (E.damage >= E.min_broken_damage)
+					to_chat(M, SPAN_WARNING("You can't see anything!"))
+	if (M.ear_damage >= 15)
+		to_chat(M, SPAN_WARNING("Your ears start to ring badly!"))
+		if(!no_damage)
+			if (prob(M.ear_damage - 10 + 5))
+				to_chat(M, SPAN_WARNING("You can't hear anything!"))
+				M.sdisabilities |= DISABILITY_DEAF
+	else
+		if (M.ear_damage >= 5)
+			to_chat(M, SPAN_WARNING("Your ears start to ring!"))
+
+//WP
+
+/obj/item/mortar_shell/wp
+	name = "\improper 80mm White Phosphorus mortar shell"
+	desc = "An 80mm mortar shell, loaded with a Willey Pete charge. Perfect for long-range area denial."
+	icon_state = "mortar_ammo_wp"
+	var/radius = 6
+	var/flame_level = BURN_TIME_TIER_4
+	var/burn_level = BURN_LEVEL_TIER_7
+	var/flameshape = FLAMESHAPE_DEFAULT
+	var/fire_type = FIRE_VARIANT_DEFAULT
+
+/obj/item/mortar_shell/wp/detonate(turf/T)
+	cell_explosion(T, 500, 250, EXPLOSION_FALLOFF_SHAPE_LINEAR, null,)
+	sleep(2)
+	spawn(5)
+		var/datum/effect_system/smoke_spread/phosphorus/weak/gas = new()
+		gas.set_up(6, 0, T, null)
+		gas.start()
+	flame_radius(cause_data, radius, T, flame_level, burn_level, flameshape, null, fire_type)
+
+//Smoke
+/obj/item/mortar_shell/smoke
+	name = "\improper 80mm smoke mortar shell"
+	desc = "An 80mm mortar shell, loaded with a smoke charge. Pefect for covering an infantry push."
+	icon_state = "mortar_ammo_smk"
+
+/obj/item/mortar_shell/smoke/detonate(turf/T)
+	cell_explosion(T, 500, 250, EXPLOSION_FALLOFF_SHAPE_LINEAR, null,)
+	spawn(5)
+		var/datum/effect_system/smoke_spread/gas = new()
+		gas.set_up(10, 0, T, null)
+		gas.start()
+	playsound(src.loc, 'sound/effects/smoke.ogg', 35, 1, 4)
+
+
+//---Gas Shells---\\
+
+//CN20
+
+/obj/item/mortar_shell/nerve
+	name = "\improper 80mm nerve gas mortar shell"
+	desc = "An 80mm mortar shell, loaded with a chlorine gas canister."
+	icon_state = "mortar_ammo_cn20"
+
+/obj/item/mortar_shell/nerve/detonate(turf/T)
+	cell_explosion(T, 500, 250, EXPLOSION_FALLOFF_SHAPE_LINEAR, null,)
+	spawn(5)
+		var/datum/effect_system/smoke_spread/cn20/gas = new()
+		gas.set_up(10, 0, T, null)
+		gas.start()
+	playsound(src.loc, 'sound/effects/smoke.ogg', 35, 1, 4)
+
+//Chlorine
+
+/obj/item/mortar_shell/chlorine
+	name = "\improper 80mm chlorine gas mortar shell"
+	desc = "An 80mm mortar shell, loaded with a chlorine gas canister."
+	icon_state = "mortar_ammo_gas"
+
+/obj/item/mortar_shell/chlorine/detonate(turf/T)
+	cell_explosion(T, 500, 250, EXPLOSION_FALLOFF_SHAPE_LINEAR, null,)
+	spawn(5)
+		var/datum/effect_system/smoke_spread/chlorine/gas = new()
+		gas.set_up(10, 0, T, null)
+		gas.start()
+	playsound(src.loc, 'sound/effects/smoke.ogg', 35, 1, 4)
+
+//Mustard
+
+/obj/item/mortar_shell/mustard
+	name = "\improper 80mm mustard gas mortar shell"
+	desc = "An 80mm mortar shell, loaded with a mustard gas canister. Perfect for clearing out entrenched foes."
+	icon_state = "mortar_ammo_must"
+
+
+/obj/item/mortar_shell/mustard/detonate(turf/T)
+	cell_explosion(T, 500, 250, EXPLOSION_FALLOFF_SHAPE_LINEAR, null,)
+	spawn(5)
+		var/datum/effect_system/smoke_spread/mustard/gas = new()
+		gas.set_up(10, 0, T, null)
+		gas.start()
+	playsound(src.loc, 'sound/effects/smoke.ogg', 35, 1, 4)
+
+
+//C10-W Weedkiller
+
+/obj/item/mortar_shell/weedkiller
+	name = "\improper 80mm C10-W Weedkiller mortar shell"
+	desc = "An 80mm mortar shell, loaded with a mustard gas canister, perfect for weed clearing."
+	icon_state = "mortar_ammo_wk"
+
+
+/obj/item/mortar_shell/weedkiller/detonate(turf/T)
+	cell_explosion(T, 500, 250, EXPLOSION_FALLOFF_SHAPE_LINEAR, null,)
+	spawn(5)
+		var/datum/effect_system/smoke_spread/weedkiller/gas = new()
+		gas.set_up(10, 0, T, null)
+		gas.start()
+	playsound(src.loc, 'sound/effects/smoke.ogg', 35, 1, 4)
+
+//Miasma
+
+/obj/item/mortar_shell/miasma
+	name = "\improper 80mm CN20-X miasma mortar shell (!!!DANGER!!!)"
+	desc = "An 80mm mortar shell, loaded with a canister of the Extremely deadly CN20-X. This shit will not clear for hours and will kill everything. USE ONLY WITH OPERATION COMMANDER'S AUTHORIZATION!!!"
+	icon_state = "mortar_ammo_x20"
+
+/obj/item/mortar_shell/miasma/detonate(turf/T)
+	cell_explosion(T, 500, 250, EXPLOSION_FALLOFF_SHAPE_LINEAR, null,)
+	spawn(5)
+		var/datum/effect_system/smoke_spread/miasma/gas = new()
+		gas.set_up(10, 0, T, null)
+		gas.start()
+	playsound(src.loc, 'sound/effects/smoke.ogg', 35, 1, 4)
+
+/datum/effect_system/smoke_spread/king_doom
+//Custom
+
 /obj/item/mortar_shell/custom
 	name = "\improper 80mm custom mortar shell"
 	desc = "An 80mm mortar shell."
 	icon_state = "mortar_ammo_custom"
+	item_state = "mortar_ammo_custom_locked"
 	matter = list("metal" = 18750) //5 sheets
 	var/obj/item/explosive/warhead/mortar/warhead
 	var/obj/item/reagent_container/glass/fuel
@@ -110,7 +421,7 @@
 	icon_state = initial(icon_state)
 
 /obj/item/mortar_shell/custom/attackby(obj/item/W as obj, mob/user)
-	if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_ENGI))
+	if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
 		to_chat(user, SPAN_WARNING("You do not know how to tinker with [name]."))
 		return
 	if(HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER))
@@ -153,6 +464,63 @@
 		to_chat(user, SPAN_DANGER("You add [W] to [name]."))
 		icon_state = initial(icon_state) +"_unlocked"
 		playsound(loc, 'sound/items/Screwdriver2.ogg', 25, 0, 6)
+
+/obj/item/mortar_shell/ex_act(severity, explosion_direction)
+	if(!burning)
+		burning = TRUE
+		handle_exploded()
+
+/obj/item/mortar_shell/attack_hand(mob/user)
+	if(burning)
+		to_chat(user, SPAN_DANGER("[src] is on fire and might explode!"))
+		return
+	return ..()
+
+/obj/item/mortar_shell/flamer_fire_act(dam, datum/cause_data/flame_cause_data)
+	if(burning)
+		return
+	burning = TRUE
+	cause_data = create_cause_data("Burning Mortar Shell", flame_cause_data.resolve_mob(), src)
+	handle_fire()
+
+/obj/item/mortar_shell/proc/handle_fire()
+	visible_message(SPAN_WARNING("[src] catches on fire and starts cooking off! It's gonna blow!"))
+	anchored = TRUE // don't want other explosions launching it elsewhere
+
+	var/datum/effect_system/spark_spread/sparks = new()
+	sparks.set_up(n = 10, loca = loc)
+	sparks.start()
+	new /obj/effect/warning/explosive(loc, 5 SECONDS)
+
+	addtimer(CALLBACK(src, PROC_REF(detonate), loc), 5 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), (src)), 5.5 SECONDS)
+
+/obj/item/mortar_shell/proc/handle_exploded()
+	visible_message(SPAN_WARNING("[src] cooks off! It's gonna blow!"))
+	anchored = TRUE // don't want other explosions launching it elsewhere
+
+	var/datum/effect_system/spark_spread/sparks = new()
+	sparks.set_up(n = 10, loca = loc)
+	sparks.start()
+	new /obj/effect/warning/explosive(loc, 2 SECONDS)
+
+	addtimer(CALLBACK(src, PROC_REF(detonate), loc), 2 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), (src)), 2.5 SECONDS)
+
+/obj/item/mortar_shell/proc/can_explode()
+	return TRUE
+
+/obj/item/mortar_shell/custom/can_explode()
+	for(var/obj/item/reagent_container/glass/container in warhead?.containers)
+		for(var/datum/reagent/reagent in container?.reagents?.reagent_list)
+			if(reagent.explosive)
+				return TRUE
+
+	return FALSE
+
+/obj/item/mortar_shell/airburst/can_explode()
+	cell_explosion(src, 100, 25, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, )
+	return FALSE
 
 /obj/structure/closet/crate/secure/mortar_ammo
 	name = "\improper M402 mortar ammo crate"
@@ -203,8 +571,6 @@
 	new /obj/item/mortar_shell/flare(src)
 	new /obj/item/mortar_shell/flare(src)
 	new /obj/item/mortar_shell/flare(src)
-	new /obj/item/device/encryptionkey/engi(src)
-	new /obj/item/device/encryptionkey/engi(src)
 	new jtac_key_type(src)
 	new jtac_key_type(src)
 	new /obj/item/device/binoculars/range(src)

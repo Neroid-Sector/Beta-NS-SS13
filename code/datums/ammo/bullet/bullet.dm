@@ -66,7 +66,7 @@
 	shake_camera(execution_target, 3, 4)
 	execution_target.update_headshot_overlay(headshot_state) //...and add a gory headshot overlay.
 
-	execution_target.visible_message(SPAN_HIGHDANGER(uppertext("[execution_target] WAS EXECUTED!")), \
+	execution_target.visible_message(SPAN_HIGHDANGER(uppertext("[execution_target] WAS EXECUTED!")),
 		SPAN_HIGHDANGER("You WERE EXECUTED!"))
 
 	user.count_niche_stat(STATISTICS_NICHE_EXECUTION, 1, firing_projectile.weapon_cause_data?.cause_name)
@@ -78,4 +78,85 @@
 
 	if(flags_ammo_behavior & AMMO_EXPLOSIVE)
 		execution_target.gib()
+
+/datum/ammo/bullet/on_hit_obj(obj/O, obj/projectile/P, mob/user)
+	if(!istype(O, /obj/vehicle/multitile))
+		if(prob(5))
+			user.visible_message(SPAN_BOLDWARNING("[src] bounces off of the [O]!"))
+			create_shrapnel(get_turf(O), 1, , ,/datum/ammo/bullet/shrapnel, P.weapon_cause_data)
+			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+			s.set_up(3, 1, src)
+			s.start()
+			return
+	if(istype(O, /obj/vehicle/multitile/civvan))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/civtruck))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/van))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/atruck))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/miltruck))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/van/miljeep))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/crane))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/box_van))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	if(istype(O, /obj/vehicle/multitile/clf_van))
+		var/obj/vehicle/multitile/M = O
+		playsound(M, 'sound/effects/Glassbr3.ogg', 50)
+		M.munition_interior_bullet_effect(cause_data = create_cause_data("Vehicle Spalling"))
+		M.ex_act(25, P.dir, P.weapon_cause_data, 10)
+		return
+	return ..()
+
+/datum/ammo/bullet/on_hit_mob(mob/M, obj/projectile/P, mob/user)
+	shake_camera(M, 3, 1)
+	var/mob/living/carbon/human/target_human = M
+	if(target_human)
+		if(target_human.wear_suit)
+			if(prob(5))
+				if(istype(target_human.wear_suit, /obj/item/clothing/suit/storage/marine))
+					user.visible_message(SPAN_BOLDWARNING("Fragments of shrapnel from [src] spray off of [M]'s armor!"))
+					create_shrapnel(get_turf(M), 3, , ,/datum/ammo/bullet/shrapnel, P.weapon_cause_data)
+
+/datum/ammo/bullet/on_hit_turf(turf/T, obj/projectile/P, mob/user)
+	if(prob(5))
+		if(T.density)
+			user.visible_message(SPAN_BOLDWARNING("[src] bounces off of the [T]!"))
+			create_shrapnel(get_turf(T), 1, , ,/datum/ammo/bullet/shrapnel, P.weapon_cause_data)
 

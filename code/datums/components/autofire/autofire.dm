@@ -38,6 +38,7 @@
 	RegisterSignal(parent, COMSIG_GUN_FIRE, PROC_REF(initiate_shot))
 	RegisterSignal(parent, COMSIG_GUN_STOP_FIRE, PROC_REF(stop_firing))
 	RegisterSignal(parent, COMSIG_GUN_INTERRUPT_FIRE, PROC_REF(hard_reset))
+	RegisterSignal(parent, COMSIG_GUN_NEXT_FIRE_MODIFIED, PROC_REF(set_next_fire))
 
 	src.auto_fire_shot_delay = auto_fire_shot_delay
 	src.burstfire_shot_delay = burstfire_shot_delay
@@ -82,6 +83,8 @@
 /datum/component/automatedfire/autofire/proc/initiate_shot()
 	SIGNAL_HANDLER
 	if(shooting)//if we are already shooting, it means the shooter is still on cooldown
+		if(bursting && (world.time > (next_fire + (burstfire_shot_delay * burst_shots_to_fire))))
+			hard_reset()
 		return
 	shooting = TRUE
 	process_shot()
@@ -109,6 +112,10 @@
 		callback_bursting.Invoke(FALSE)
 	shooting = FALSE
 
+///Manually sets firedelay
+/datum/component/automatedfire/autofire/proc/set_next_fire(gun, new_next_fire)
+	SIGNAL_HANDLER
+	next_fire = new_next_fire
 
 ///Ask the shooter to fire and schedule the next shot if need
 /datum/component/automatedfire/autofire/process_shot()
@@ -123,19 +130,19 @@
 		if(GUN_FIREMODE_BURSTFIRE)
 			shots_fired++
 			if(shots_fired == burst_shots_to_fire)
-				callback_bursting.Invoke(FALSE)
-				callback_display_ammo.Invoke()
+				callback_bursting?.Invoke(FALSE)
+				callback_display_ammo?.Invoke()
 				bursting = FALSE
 				stop_firing()
 				if(have_to_reset_at_burst_end)//We failed to reset because we were bursting, we do it now
-					callback_reset_fire.Invoke()
+					callback_reset_fire?.Invoke()
 					have_to_reset_at_burst_end = FALSE
 				return
-			callback_bursting.Invoke(TRUE)
+			callback_bursting?.Invoke(TRUE)
 			bursting = TRUE
 			next_fire = world.time + burstfire_shot_delay
 		if(GUN_FIREMODE_AUTOMATIC)
-			callback_set_firing.Invoke(TRUE)
+			callback_set_firing?.Invoke(TRUE)
 			next_fire = world.time + (auto_fire_shot_delay * automatic_delay_mult)
 		if(GUN_FIREMODE_SEMIAUTO)
 			return
