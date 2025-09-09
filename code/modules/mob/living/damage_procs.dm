@@ -15,6 +15,7 @@
 	Returns
 	standard 0 if fail
 */
+
 /mob/living/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, used_weapon = null, sharp = 0, edge = 0, force = FALSE)
 	if(!damage)
 		return FALSE

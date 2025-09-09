@@ -2303,6 +2303,8 @@
 #include "code\modules\nightmare\nmtasks\mapscheduler.dm"
 #include "code\modules\nightmare\nmtasks\nmtask.dm"
 #include "code\modules\nightmare\nmtasks\scheduler.dm"
+#include "code\modules\npc\npc_datums.dm"
+#include "code\modules\npc\npc_mob.dm"
 #include "code\modules\objectives\analyze_chems.dm"
 #include "code\modules\objectives\communications.dm"
 #include "code\modules\objectives\data_retrieval.dm"
