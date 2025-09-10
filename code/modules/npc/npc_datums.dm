@@ -23,7 +23,7 @@
 	f - Fast - omits windup. Good for combos. Parriable, and ideally should only appear after another indicated attack, but also viable for small rapidly attacking mobs that are meant to be one shot etc. Factor 1 should be used in last fast hits of a fast hit combo in cadences that have further attacks (so it resets the warning icon flashing properly)
 	g - Grab - If hits players immobilizes them and plays a "grab animation" depending on number subtype which includes multiple hits. Can be interrupted by incoming damage from another player controlled via the grab_durability var, sucessful interrupt breaks poise
 	*/
-	var/list/attack_cadence = list(list("10f","7f","7f1","20p"))
+	var/list/attack_cadence = list(list("10f"))
 	var/skip_warning = 0
 	var/attacking_flag = 0
 	var/attack_hit_time = 5 // Attack time animation.
@@ -1054,46 +1054,45 @@
 		if(NORTH,SOUTH)
 			new_turf = locate(ending_turf.x + 1,ending_turf.y,ending_turf.z)
 			for(var/atom/atom_to_test in new_turf)
-				if(atom_to_test.density == 1)
+				if(atom_to_test.density == 1 || istype(new_turf,/turf/closed))
 					new_turf = locate(ending_turf.x - 1,ending_turf.y,ending_turf.z)
 					for(var/atom/other_atom_to_test in new_turf)
-						if(atom_to_test.density == 1) return 1
+						if(atom_to_test.density == 1 || istype(new_turf,/turf/closed)) return 1
 		if(EAST,WEST)
 			new_turf = locate(ending_turf.x,ending_turf.y + 1,ending_turf.z)
 			for(var/atom/atom_to_test in new_turf)
-				if(atom_to_test.density == 1)
+				if(atom_to_test.density == 1 || istype(new_turf,/turf/closed))
 					new_turf = locate(ending_turf.x,ending_turf.y - 1,ending_turf.z)
 					for(var/atom/other_atom_to_test in new_turf)
-						if(atom_to_test.density == 1) return 1
+						if(atom_to_test.density == 1 || istype(new_turf,/turf/closed)) return 1
 		if(NORTHEAST)
 			new_turf = locate(ending_turf.x,ending_turf.y + 1,ending_turf.z)
 			for(var/atom/atom_to_test in new_turf)
-				if(atom_to_test.density == 1)
+				if(atom_to_test.density == 1 || istype(new_turf,/turf/closed))
 					new_turf = locate(ending_turf.x + 1,ending_turf.y,ending_turf.z)
 					for(var/atom/other_atom_to_test in new_turf)
-						if(atom_to_test.density == 1) return 1
+						if(atom_to_test.density == 1 || istype(new_turf,/turf/closed)) return 1
 		if(NORTHWEST)
 			new_turf = locate(ending_turf.x,ending_turf.y + 1,ending_turf.z)
 			for(var/atom/atom_to_test in new_turf)
-				if(atom_to_test.density == 1)
+				if(atom_to_test.density == 1 || istype(new_turf,/turf/closed))
 					new_turf = locate(ending_turf.x - 1,ending_turf.y,ending_turf.z)
 					for(var/atom/other_atom_to_test in new_turf)
-						if(atom_to_test.density == 1) return 1
+						if(atom_to_test.density == 1 || istype(new_turf,/turf/closed)) return 1
 		if(SOUTHEAST)
 			new_turf = locate(ending_turf.x, ending_turf.y - 1,ending_turf.z)
 			for(var/atom/atom_to_test in new_turf)
-				if(atom_to_test.density == 1)
+				if(atom_to_test.density == 1 || istype(new_turf,/turf/closed))
 					new_turf = locate(ending_turf.x + 1,ending_turf.y,ending_turf.z)
 					for(var/atom/other_atom_to_test in new_turf)
-						if(atom_to_test.density == 1) return 1
+						if(atom_to_test.density == 1 || istype(new_turf,/turf/closed)) return 1
 		if(SOUTHWEST)
 			new_turf = locate(ending_turf.x,ending_turf.y - 1,ending_turf.z)
 			for(var/atom/atom_to_test in new_turf)
-				if(atom_to_test.density == 1)
+				if(atom_to_test.density == 1 || istype(new_turf,/turf/closed))
 					new_turf = locate(ending_turf.x - 1,ending_turf.y,ending_turf.z)
 					for(var/atom/other_atom_to_test in new_turf)
-						if(atom_to_test.density == 1)
-							return 1
+						if(atom_to_test.density == 1 || istype(new_turf,/turf/closed)) return 1
 	animate_step(new_turf)
 
 
@@ -1101,20 +1100,23 @@
 /datum/combat_ai/proc/process_movement(turf/starting_turf,turf/ending_turf)
 
 	if(get_dist(starting_turf,ending_turf) > 1)
-		var/next_turf = get_step_towards(starting_turf,ending_turf)
+		var/turf/next_turf = get_step_towards(starting_turf,ending_turf)
 		for(var/atom/atom_to_test in next_turf)
-			if(atom_to_test.density == 1)
-				if(navigate_around(starting_turf, next_turf) != 1)
+			if(atom_to_test.density == 1 || istype(next_turf,/turf/closed))
+				if(navigate_around(starting_turf, next_turf) == 1)
 					turf_block = list()
 					target_player = null
+					sleep(mob_heartbeat)
 					return
 			else
 				for(var/mob/mob_in_area in next_turf)
-					if(mob_in_area && navigate_around(starting_turf, next_turf) != 1)
+					if(mob_in_area && navigate_around(starting_turf, next_turf) == 1)
 						target_player = null
+						turf_block = list()
+						sleep(mob_heartbeat)
 						return
-				animate_step(next_turf)
-				turf_block = list()
+		animate_step(next_turf)
+
 		return
 	if(get_dist(starting_turf,ending_turf) == 1)
 		return 1

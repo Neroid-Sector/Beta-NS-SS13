@@ -20,3 +20,10 @@
 /mob/living/npc/apply_damage(damage, damagetype, def_zone, used_weapon, sharp, edge, force)
 	if(!damage || !damagetype) return
 	ai_datum.process_damage(1, damagetype)
+
+/mob/living/npc/xeno_test
+
+	name = "Tester Xeno"
+	desc = "Ugly mfer that needs to be shot. Nuff said."
+	icon = 'icons/mob/xenos/castes/tier_1/drone.dmi'
+	icon_state = "Normal Drone Walking"
