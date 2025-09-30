@@ -23,7 +23,7 @@
 	f - Fast - omits windup. Good for combos. Parriable, and ideally should only appear after another indicated attack, but also viable for small rapidly attacking mobs that are meant to be one shot etc. Factor 1 should be used in last fast hits of a fast hit combo in cadences that have further attacks (so it resets the warning icon flashing properly)
 	g - Grab - If hits players immobilizes them and plays a "grab animation" depending on number subtype which includes multiple hits. Can be interrupted by incoming damage from another player controlled via the grab_durability var, sucessful interrupt breaks poise
 	*/
-	var/list/attack_cadence = list(list("5f1"))
+	var/list/attack_cadence = list(list("5n"))
 	var/skip_warning = 0
 	var/attacking_flag = 0
 	var/attack_hit_time = 5 // Attack time animation.
@@ -1158,14 +1158,33 @@
 										if(atom_to_test_4.density == 1 || istype(new_turf,/turf/closed)) return 1
 	animate_step(new_turf)
 
-
+/datum/combat_ai/proc/process_structure_attack(obj/target_structure)
+	if(!target_structure) return
+	var/obj/structure/attacked_structure = target_structure
+	var/turf/attacked_turf = get_turf(attacked_structure)
+	attacking_flag = 1
+	INVOKE_ASYNC(src, PROC_REF(attack_animation),owner,attacked_turf,"n",6)
+	sleep(6)
+	attacked_structure.deconstruct()
+	attacking_flag = 0
 
 /datum/combat_ai/proc/process_movement(turf/starting_turf,turf/ending_turf)
 
 	if(get_dist(starting_turf,ending_turf) > 1)
 		var/turf/next_turf = get_step_towards(starting_turf,ending_turf)
+		var/non_structure_atom = 0
 		for(var/atom/atom_to_test in next_turf)
-			if(atom_to_test.density == 1 || istype(next_turf,/turf/closed))
+			if(atom_to_test.density == 1)
+				if (istype(atom_to_test,/obj/structure/barricade/))
+					var/obj/structure/barricade/hit_cade
+					hit_cade.take_damage(20)
+					return
+				if (istype(atom_to_test,/obj/structure/))
+					var/obj/structure/structure_target = atom_to_test
+					process_structure_attack(structure_target)
+					return
+				non_structure_atom = 1
+			if(non_structure_atom == 1 || istype(next_turf,/turf/closed))
 				if(navigate_around(starting_turf, next_turf) == 1)
 					turf_block = list()
 					target_player = null

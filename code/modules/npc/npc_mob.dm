@@ -8,6 +8,7 @@
 	mouse_opacity = 1
 	melee_damage_lower = 5
 	melee_damage_upper = 10
+	wall_smash = 1
 	a_intent = INTENT_HARM
 	animate_movement = NO_STEPS
 
