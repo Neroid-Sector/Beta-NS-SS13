@@ -48,7 +48,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 	var/surge_setup_value
-	switch(tgui_input_list(usr, "Max:[GLOB.pve_active_npc_max]\nSpawned:[GLOB.pve_active_npc_number] out of [GLOB.pve_spawner_wave_npcs_total]", "SURGE", list("Global NPC Limit","Wave NPC limit","NPCs Per Wave","Total Waves","Wave Delay")))
+	switch(tgui_input_list(usr, "Max:[GLOB.pve_active_npc_max]\nSpawned:[GLOB.pve_active_npc_number] out of [GLOB.pve_spawner_wave_npcs_total]", "SURGE", list("Global NPC Limit","Wave NPC limit","Wave Delay")))
 		if(null)
 			return
 		if("Global NPC Limit")
@@ -56,18 +56,74 @@
 			if(surge_setup_value == null) return
 			GLOB.pve_active_npc_max = surge_setup_value
 		if("Wave NPC limit")
-			surge_setup_value = tgui_input_number(usr, "How many NPCs total to summon in the next wave. Reaching this number of spawns will complete the wave. If 0, will defer to NPCs per wave and max waves, if possible.", "SURGE",GLOB.pve_spawner_wave_npcs_total,timeout = 0)
+			surge_setup_value = tgui_input_number(usr, "How many NPCs total to summon in the next wave.", "SURGE",GLOB.pve_spawner_wave_npcs_total,timeout = 0)
 			if(surge_setup_value == null) return
 			GLOB.pve_spawner_wave_npcs_total = surge_setup_value
-		if("NPCs Per Wave")
-			surge_setup_value = tgui_input_number(usr, "How many NPCs per wave. 0 to summon up to the max npc limit (or wave limit, if lower than above) and keep it there until wave limit runs out.", "SURGE",GLOB.pve_spawner_npc_per_wave,timeout = 0)
-			if(surge_setup_value == null) return
-			GLOB.pve_spawner_npc_per_wave = surge_setup_value
-		if("Total Waves")
-			surge_setup_value = tgui_input_number(usr, "Total waves, if applicable. Ignored if NPCs per wave is 0. Determines max NPCs if Wave NPC limit is 0.", "SURGE",GLOB.pve_spawner_waves_total,timeout = 0)
-			if(surge_setup_value == null) return
-			GLOB.pve_spawner_waves_total = surge_setup_value
 		if("Wave Delay")
-			surge_setup_value = tgui_input_number(usr, "Delay between waves, if applicable. Ignored if waves are ignored, duh.", "SURGE",GLOB.pve_spawner_wave_delay,timeout = 0)
+			surge_setup_value = tgui_input_number(usr, "Delay between waves, set to 0 to always keep npcs up to global limit", "SURGE",GLOB.pve_spawner_wave_delay,timeout = 0)
 			if(surge_setup_value == null) return
 			GLOB.pve_spawner_wave_delay = surge_setup_value
+
+/proc/surge_loop()
+
+	while(GLOB.pve_active_wave == 1)
+		for (var/obj/structure/xenosurge_spawner/spawner in GLOB.pve_active_spawners)
+			if(!spawner)
+				GLOB.pve_active_wave = 0
+				return
+			if(GLOB.pve_active_npc_number < GLOB.pve_active_npc_max)
+				var/turf/spawner_turf = get_turf(spawner)
+				new /mob/living/npc/xeno_test(spawner_turf)
+				GLOB.pve_spawned_npcs_in_wave += 1
+				if(GLOB.pve_spawned_npcs_in_wave >= GLOB.pve_spawner_wave_npcs_total)
+					GLOB.pve_active_wave = 0
+					GLOB.pve_spawned_npcs_in_wave = 0
+					return
+				if(GLOB.pve_spawner_wave_delay != 0)
+					stoplag(GLOB.pve_spawner_wave_delay)
+				else
+					stoplag(1)
+			else
+				stoplag(5)
+
+
+
+/client/proc/start_surge()
+	set category = "DM.Xenosurge"
+	set name = "Surge - Start"
+	set desc = "Start Surge Wave."
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	if(GLOB.pve_active_wave == 1)
+		to_chat(usr, "Error: Surge in progress already.")
+		return
+
+	if(GLOB.pve_active_wave == 0)
+		GLOB.pve_active_wave = 1
+		INVOKE_ASYNC(src, PROC_REF(surge_loop))
+		to_chat(usr, "Surge Started")
+		return
+
+/client/proc/remove_spawners()
+	set category = "DM.Xenosurge"
+	set name = "Surge - Remove Spawners"
+	set desc = "Removes all Spawners"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	for(var/obj/structure/xenosurge_spawner/spawner_to_delete in GLOB.pve_active_spawners)
+		qdel(spawner_to_delete)
+
+/client/proc/remove_NPCs()
+	set category = "DM.Xenosurge"
+	set name = "Surge - Remove NPCs"
+	set desc = "Removes all Spawners"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	for(var/mob/living/npc/npc_to_delete in GLOB.pve_active_npc)
+		qdel(npc_to_delete)

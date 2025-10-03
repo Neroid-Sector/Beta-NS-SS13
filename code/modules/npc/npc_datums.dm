@@ -1233,7 +1233,7 @@
 		for(var/turf/turf_to_scan in turf_block)
 			for(var/mob/living/mob_in_range in turf_to_scan)
 				var/turf_in_range = get_turf(mob_in_range)
-				if(get_dist(anchor_turf,turf_in_range) <= return_distance && mob_in_range.client && mob_in_range.is_dead())
+				if(get_dist(anchor_turf,turf_in_range) <= return_distance && mob_in_range.client && !(mob_in_range.is_dead()))
 					potential_targets.Add(mob_in_range)
 					return_override = 0
 		if(potential_targets.len > 0)
@@ -1266,4 +1266,3 @@
 			process_attack()
 			if(target_player.is_dead()) target_player = null
 			if(attack_delay != 0) sleep(attack_delay)
-
