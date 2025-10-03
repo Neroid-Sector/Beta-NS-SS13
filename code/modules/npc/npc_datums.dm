@@ -27,7 +27,6 @@
 	var/skip_warning = 0
 	var/attacking_flag = 0
 	var/attack_hit_time = 5 // Attack time animation.
-	var/parry_time // As above, if different
 	var/attack_delay = 10 //This is a pause AFTER all the attacks in a single cadence, ie extra time between attack decisons. Individual attack loops are decided by cadence
 	var/grab_durability = 1 // Ammount of damage that needs to be dealt for the mob to break its grab
 	var/in_grab = 0
@@ -44,8 +43,12 @@
 	if(!owner_mob) return
 	owner = owner_mob
 	anchor_turf = get_turf(owner)
-	if(!parry_time)
-		parry_time = attack_hit_time
+	health = GLOB.pve_npc_hp
+	poise = GLOB.pve_npc_poise
+	owner.melee_damage_lower = GLOB.pve_npc_attack_lower
+	owner.melee_damage_upper = GLOB.pve_npc_attack_upper
+	attack_distance = GLOB.pve_npc_attack_distance
+	return_distance = GLOB.pve_npc_return_distance
 	INVOKE_ASYNC(src,PROC_REF(ai_loop))
 
 /datum/combat_ai/proc/combat_stun()
@@ -513,6 +516,10 @@
 	animate(owner, time = 4, pixel_x = displacement_x, pixel_y = displacement_y, transform = M, easing = QUAD_EASING|EASE_IN)
 	owner.density = 0
 	owner.animate_movement = SLIDE_STEPS
+	sleep(300)
+	animate(owner, time = 10, alpha = 0)
+	sleep(10)
+	qdel(owner)
 
 /datum/combat_ai/proc/process_damage(damage_number,damage_type)
 	if(!damage_number) return
@@ -551,7 +558,7 @@
 				health = 0
 				owner.add_splatter_floor(get_turf(owner),0)
 				playsound(owner,get_sfx("alien_growl"),50)
-				die()
+				INVOKE_ASYNC(src,PROC_REF(die))
 				return
 			else
 				health -= damage_number
@@ -1178,7 +1185,7 @@
 	sleep(6)
 	if (istype(target_structure,/obj/structure/barricade/))
 		var/obj/structure/barricade/hit_cade
-		hit_cade.take_damage(20)
+		hit_cade.take_damage(rand(owner.melee_damage_lower,owner.melee_damage_upper))
 		if(hit_cade.is_wired == 1)
 			process_damage(1)
 	else

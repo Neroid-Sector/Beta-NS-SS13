@@ -17,6 +17,15 @@
 /mob/living/npc/Initialize()
 	. = ..()
 	ai_datum = new(src)
+	GLOB.pve_active_npc.Add(src)
+	GLOB.pve_active_npc_number += 1
+
+/mob/living/npc/Destroy()
+	GLOB.pve_active_npc.Remove(src)
+	GLOB.pve_active_npc_number -= 1
+	if(GLOB.pve_active_npc_number < 0) GLOB.pve_active_npc_number = 0
+	. = ..()
+
 
 /mob/living/npc/apply_damage(damage, damagetype, def_zone, used_weapon, sharp, edge, force)
 	if(!damage || !damagetype) return
