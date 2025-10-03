@@ -37,6 +37,8 @@
 	var/return_distance = 20 // Ammount from anchor turf the NPC "protects", meaning they will disengage and return to their anchor when their target is this ammoutn away from it.
 	var/list/turf_block = list()
 
+	var/last_sound_played = 0
+
 /datum/combat_ai/New(mob/owner_mob)
 	. = ..()
 	if(!owner_mob) return
@@ -498,6 +500,7 @@
 			var/starting_y = target.pixel_y
 			var/displacement_x = starting_x + pick(-3,3)
 			var/displacement_y = starting_y + pick(-3,3)
+			playsound(target,pick('sound/bullets/bullet_armor3.ogg','sound/bullets/bullet_armor4.ogg'))
 			animate(target, time = 1, pixel_x = displacement_x, pixel_y = displacement_y)
 			animate(time = 1, pixel_x = starting_x, pixel_y = starting_y)
 
@@ -546,12 +549,16 @@
 			var/new_health = health - damage_number
 			if(new_health <= 0)
 				health = 0
-				owner.add_splatter_floor(get_turf(owner),null)
+				owner.add_splatter_floor(get_turf(owner),0)
+				playsound(owner,get_sfx("alien_growl"),50)
 				die()
 				return
 			else
 				health -= damage_number
 				owner.add_splatter_floor(get_turf(owner))
+				if((last_sound_played + 30) > world.time)
+					last_sound_played = world.time
+					playsound(owner,get_sfx("alien_hiss"),50)
 				INVOKE_ASYNC(src,PROC_REF(damage_animation),owner,"dam_hit")
 				return
 	if(damage_type == BURN)
@@ -861,7 +868,10 @@
 			if("n")
 				for(var/mob/living/attacked_mob in attacked_turf)
 					if(istype(attacked_mob,/mob/living/carbon/))
-						process_damage(2,"poise")
+						var/mob/living/carbon/attacked_carbon_mob = attacked_mob
+						INVOKE_ASYNC(src, PROC_REF(damage_animation),attacked_carbon_mob,"dam_hit")
+						attacked_carbon_mob.apply_damage(rand(owner.melee_damage_lower,owner.melee_damage_upper))
+						attacked_carbon_mob.add_splatter_floor(get_turf(attacked_carbon_mob))
 			if("a")
 				var/list/turfs_attacked = list()
 				var/turf/turf_to_add = get_step(owner,NORTHEAST)
@@ -885,6 +895,7 @@
 						if(istype(attacked_mob,/mob/living/carbon/))
 							var/mob/living/carbon/attacked_carbon_mob = attacked_mob
 							INVOKE_ASYNC(src, PROC_REF(damage_animation),attacked_carbon_mob,"dam_hit")
+							attacked_carbon_mob.apply_damage(ceil(owner.melee_damage_upper / 2))
 							attacked_carbon_mob.add_splatter_floor(get_turf(attacked_carbon_mob))
 							if(attack_factor == 1)
 								var/owner_turf = get_turf(owner)
@@ -1165,6 +1176,7 @@
 	attacking_flag = 1
 	INVOKE_ASYNC(src, PROC_REF(attack_animation),owner,attacked_turf,"n",6)
 	sleep(6)
+	playsound(attacked_structure,get_sfx("slam"),50)
 	attacked_structure.deconstruct()
 	attacking_flag = 0
 
@@ -1212,7 +1224,7 @@
 		for(var/turf/turf_to_scan in turf_block)
 			for(var/mob/living/mob_in_range in turf_to_scan)
 				var/turf_in_range = get_turf(mob_in_range)
-				if(get_dist(anchor_turf,turf_in_range) <= return_distance && mob_in_range.client)
+				if(get_dist(anchor_turf,turf_in_range) <= return_distance && mob_in_range.client && mob_in_range.is_dead())
 					potential_targets.Add(mob_in_range)
 					return_override = 0
 		if(potential_targets.len > 0)
@@ -1243,5 +1255,6 @@
 			continue
 		if(process_movement(own_turf,target_turf) == 1)
 			process_attack()
+			if(target_player.is_dead()) target_player = null
 			if(attack_delay != 0) sleep(attack_delay)
 
