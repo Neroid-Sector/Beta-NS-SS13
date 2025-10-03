@@ -1,4 +1,14 @@
 GLOBAL_LIST_EMPTY (pve_active_npc)
+GLOBAL_LIST_EMPTY (pve_active_spawners)
+
+GLOBAL_VAR_INIT (pve_active_wave, 0)
+
+GLOBAL_VAR_INIT (pve_spawner_number, 0)
+
+GLOBAL_VAR_INIT (pve_spawner_npc_per_wave, 0)
+GLOBAL_VAR_INIT (pve_spawner_wave_delay, 0)
+GLOBAL_VAR_INIT (pve_spawner_waves_total, 0)
+GLOBAL_VAR_INIT (pve_spawner_wave_npcs_total, 0)
 
 GLOBAL_VAR_INIT (pve_active_npc_number, 0)
 GLOBAL_VAR_INIT (pve_active_npc_max, 100)
