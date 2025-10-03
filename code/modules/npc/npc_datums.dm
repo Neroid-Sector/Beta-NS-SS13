@@ -1176,8 +1176,14 @@
 	attacking_flag = 1
 	INVOKE_ASYNC(src, PROC_REF(attack_animation),owner,attacked_turf,"n",6)
 	sleep(6)
+	if (istype(target_structure,/obj/structure/barricade/))
+		var/obj/structure/barricade/hit_cade
+		hit_cade.take_damage(20)
+		if(hit_cade.is_wired == 1)
+			process_damage(1)
+	else
+		attacked_structure.deconstruct()
 	playsound(attacked_structure,get_sfx("slam"),50)
-	attacked_structure.deconstruct()
 	attacking_flag = 0
 
 /datum/combat_ai/proc/process_movement(turf/starting_turf,turf/ending_turf)
@@ -1187,10 +1193,6 @@
 		var/non_structure_atom = 0
 		for(var/atom/atom_to_test in next_turf)
 			if(atom_to_test.density == 1)
-				if (istype(atom_to_test,/obj/structure/barricade/))
-					var/obj/structure/barricade/hit_cade
-					hit_cade.take_damage(20)
-					return
 				if (istype(atom_to_test,/obj/structure/))
 					var/obj/structure/structure_target = atom_to_test
 					process_structure_attack(structure_target)
