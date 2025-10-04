@@ -4,6 +4,7 @@
 	opacity = FALSE
 	density = FALSE
 	invisibility = INVISIBILITY_OBSERVER
+	icon = 'icons/obj/structures/bonfire.dmi'
 	icon_state = "brazier"
 	unacidable = TRUE
 	unslashable = TRUE
