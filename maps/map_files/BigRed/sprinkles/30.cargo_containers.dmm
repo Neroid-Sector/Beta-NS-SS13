@@ -7,8 +7,13 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
-"ab" = (
-/turf/open/floor/delivery,
+"ac" = (
+/obj/structure/machinery/light{
+	dir = 8
+	},
+/obj/structure/surface/table,
+/obj/effect/spawner/random/tool,
+/turf/open/floor,
 /area/bigredv2/outside/cargo)
 "ad" = (
 /obj/structure/pipes/standard/simple/hidden/green,
@@ -134,11 +139,12 @@
 /obj/structure/machinery/light{
 	dir = 8
 	},
-/obj/structure/surface/table,
-/obj/effect/spawner/random/tool,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "aC" = (
+/obj/structure/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/loadingarea,
 /area/bigredv2/outside/cargo)
 "aD" = (
@@ -201,6 +207,15 @@
 	},
 /turf/open/floor/bot/north,
 /area/bigredv2/outside/cargo)
+"aM" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/surface/table,
+/obj/structure/machinery/light{
+	dir = 4
+	},
+/obj/effect/spawner/random/toolbox,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
 "aN" = (
 /obj/structure/machinery/light{
 	dir = 1
@@ -257,24 +272,6 @@
 "aX" = (
 /turf/open/floor/bot/north,
 /area/bigredv2/outside/cargo)
-"aY" = (
-/obj/structure/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/loadingarea,
-/area/bigredv2/outside/cargo)
-"aZ" = (
-/obj/structure/surface/table,
-/obj/effect/spawner/random/bomb_supply,
-/turf/open/floor,
-/area/bigredv2/outside/cargo)
-"ba" = (
-/obj/structure/surface/table,
-/obj/item/stack/sheet/glass{
-	amount = 30
-	},
-/turf/open/floor,
-/area/bigredv2/outside/cargo)
 "bb" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/pipes/standard/simple/hidden/green,
@@ -301,28 +298,43 @@
 /obj/structure/cargo_container/kelland/right,
 /turf/open/floor/bot/north,
 /area/bigredv2/outside/cargo)
-"bh" = (
-/obj/structure/largecrate/random/barrel,
-/turf/open/floor,
+"bi" = (
+/turf/open/floor/floor4,
 /area/bigredv2/outside/cargo)
 "bj" = (
 /obj/structure/largecrate,
 /turf/open/floor/bot/north,
+/area/bigredv2/outside/cargo)
+"bl" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/floor4,
 /area/bigredv2/outside/cargo)
 "bm" = (
 /obj/item/device/flashlight,
 /obj/item/reagent_container/spray/cleaner,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"bp" = (
-/obj/structure/pipes/standard/manifold/hidden/green,
+"bn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/surface/table,
+/obj/effect/spawner/random/tool,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"bq" = (
+"bo" = (
 /obj/structure/pipes/standard/simple/hidden/green{
 	dir = 4
 	},
 /turf/open/floor/delivery,
+/area/bigredv2/outside/cargo)
+"bp" = (
+/obj/structure/pipes/standard/manifold/hidden/green,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"br" = (
+/obj/structure/pipes/standard/simple/hidden/green{
+	dir = 4
+	},
+/turf/open/floor/floor4,
 /area/bigredv2/outside/cargo)
 "bs" = (
 /obj/effect/decal/cleanable/dirt,
@@ -338,9 +350,28 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"bu" = (
+/obj/structure/pipes/standard/simple/hidden/green,
+/obj/structure/machinery/light{
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
 "bv" = (
 /obj/structure/pipes/standard/manifold/hidden/green{
 	dir = 8
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"bw" = (
+/obj/structure/surface/table,
+/obj/effect/spawner/random/bomb_supply,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"bx" = (
+/obj/structure/surface/table,
+/obj/item/stack/sheet/glass{
+	amount = 30
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -355,21 +386,25 @@
 /obj/effect/landmark/corpsespawner/security/marshal,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"bA" = (
-/obj/structure/machinery/light{
-	dir = 8
-	},
-/turf/open/floor,
-/area/bigredv2/outside/cargo)
 "bB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/device/megaphone,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"bC" = (
+/obj/structure/largecrate/random/barrel,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bD" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
+/area/bigredv2/outside/cargo)
+"bE" = (
+/turf/open/floor/delivery,
+/area/bigredv2/outside/cargo)
+"bF" = (
+/turf/open/floor/loadingarea,
 /area/bigredv2/outside/cargo)
 "bG" = (
 /obj/structure/surface/table,
@@ -390,9 +425,6 @@
 "bI" = (
 /obj/item/reagent_container/spray/cleaner,
 /obj/structure/pipes/standard/simple/hidden/green,
-/turf/open/floor/floor4,
-/area/bigredv2/outside/cargo)
-"bJ" = (
 /turf/open/floor/floor4,
 /area/bigredv2/outside/cargo)
 "bK" = (
@@ -417,13 +449,6 @@
 "bP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor,
-/area/bigredv2/outside/cargo)
-"bQ" = (
-/obj/structure/pipes/standard/simple/hidden/green,
-/obj/structure/machinery/light{
-	dir = 4
-	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bR" = (
@@ -620,31 +645,6 @@
 /obj/structure/pipes/standard/simple/hidden/green,
 /turf/open/floor/delivery,
 /area/bigredv2/outside/engineering)
-"zL" = (
-/obj/structure/pipes/standard/simple/hidden/green{
-	dir = 4
-	},
-/turf/open/floor/floor4,
-/area/bigredv2/outside/cargo)
-"AS" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/floor4,
-/area/bigredv2/outside/cargo)
-"Gu" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/surface/table,
-/obj/structure/machinery/light{
-	dir = 4
-	},
-/obj/effect/spawner/random/toolbox,
-/turf/open/floor,
-/area/bigredv2/outside/cargo)
-"KO" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/surface/table,
-/obj/effect/spawner/random/tool,
-/turf/open/floor,
-/area/bigredv2/outside/cargo)
 
 (1,1,1) = {"
 aa
@@ -657,7 +657,7 @@ aE
 ai
 ai
 ai
-bq
+bo
 by
 ai
 ai
@@ -668,20 +668,20 @@ ai
 ai
 "}
 (2,1,1) = {"
-ab
+bE
 al
-ab
+bE
 ai
 av
 av
 av
 ai
-aZ
-bA
+bw
+aB
 ax
 av
 bH
-aB
+ac
 ai
 aN
 av
@@ -692,16 +692,16 @@ ai
 av
 av
 av
-aY
+aC
 aF
 aO
 av
 ak
-ba
-bJ
-zL
-bJ
-bJ
+bx
+bi
+br
+bi
+bi
 av
 ai
 av
@@ -718,8 +718,8 @@ aG
 aP
 av
 ak
-bh
-bJ
+bC
+bi
 aI
 bb
 bI
@@ -734,16 +734,16 @@ cu
 ae
 av
 av
-aC
+bF
 aH
 aQ
 av
 ai
 av
-bJ
-zL
-bJ
-AS
+bi
+br
+bi
+bl
 bP
 ak
 cb
@@ -761,11 +761,11 @@ ad
 ad
 bR
 ad
-bQ
+bu
 bp
 bz
-KO
-Gu
+bn
+aM
 ak
 cb
 av
@@ -776,14 +776,14 @@ cu
 ag
 av
 av
-aC
+bF
 aJ
 aR
 aX
 ai
 ai
 ai
-bq
+bo
 by
 ai
 ai
@@ -806,7 +806,7 @@ av
 av
 ax
 af
-bA
+aB
 ae
 ai
 ak
@@ -818,7 +818,7 @@ ai
 av
 av
 av
-aC
+bF
 aK
 aS
 av
@@ -986,11 +986,11 @@ cv
 av
 at
 af
-ab
+bE
 af
 ar
 av
-ab
+bE
 av
 af
 bs

@@ -1,5 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
+/obj/structure/pipes/standard/simple/hidden/cyan{
+	dir = 4
+	},
 /turf/open/floor/damaged5,
 /area/lv624/lazarus/main_hall)
 "ab" = (
@@ -79,9 +82,6 @@
 /turf/open/floor/damaged5,
 /area/lv624/lazarus/main_hall)
 "ao" = (
-/obj/structure/pipes/standard/simple/hidden/cyan{
-	dir = 4
-	},
 /turf/open/floor/damaged5,
 /area/lv624/lazarus/main_hall)
 "ap" = (
@@ -893,7 +893,7 @@ OK
 HI
 zt
 bY
-aa
+ao
 ac
 zt
 KQ
@@ -971,7 +971,7 @@ zt
 Ie
 "}
 (7,1,1) = {"
-aa
+ao
 ac
 ab
 al
@@ -1040,7 +1040,7 @@ Cy
 "}
 (11,1,1) = {"
 zt
-aa
+ao
 ab
 aq
 ay
@@ -1149,7 +1149,7 @@ DY
 Ir
 ac
 by
-ao
+aa
 Ii
 Lq
 OK

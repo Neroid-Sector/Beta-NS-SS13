@@ -1,76 +1,79 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
+/turf/open/floor/corsat/squareswood/north,
+/area/desert_dam/interior/caves/temple)
+"ab" = (
 /obj/structure/closet/yautja,
 /obj/item/reagent_container/glass/rag/polishing_rag,
 /obj/item/reagent_container/glass/rag/polishing_rag,
 /obj/item/reagent_container/glass/rag/polishing_rag,
 /turf/open/floor/corsat/squareswood/north,
 /area/desert_dam/interior/caves/temple)
-"ab" = (
+"ac" = (
 /obj/structure/reagent_dispensers/watertank/yautja,
 /turf/open/floor/corsat/squareswood/north,
 /area/desert_dam/interior/caves/temple)
-"ac" = (
+"ad" = (
 /obj/structure/bed/chair/comfy/yautja{
 	dir = 8
 	},
-/turf/open/floor/corsat/squareswood/north,
-/area/desert_dam/interior/caves/temple)
-"ad" = (
-/obj/structure/surface/table/reinforced/prison{
-	color = "#6b675e"
-	},
-/obj/item/reagent_container/food/drinks/coffeecup,
 /turf/open/floor/corsat/squareswood/north,
 /area/desert_dam/interior/caves/temple)
 "ae" = (
 /obj/structure/surface/table/reinforced/prison{
 	color = "#6b675e"
 	},
-/obj/item/tool/crowbar/yautja,
+/obj/item/reagent_container/food/drinks/coffeecup,
 /turf/open/floor/corsat/squareswood/north,
 /area/desert_dam/interior/caves/temple)
 "af" = (
 /obj/structure/surface/table/reinforced/prison{
 	color = "#6b675e"
 	},
-/obj/item/tool/wrench/yautja,
+/obj/item/tool/crowbar/yautja,
 /turf/open/floor/corsat/squareswood/north,
 /area/desert_dam/interior/caves/temple)
 "ag" = (
 /obj/structure/surface/table/reinforced/prison{
 	color = "#6b675e"
 	},
-/obj/item/tool/wirecutters/yautja,
+/obj/item/tool/wrench/yautja,
 /turf/open/floor/corsat/squareswood/north,
 /area/desert_dam/interior/caves/temple)
 "ah" = (
+/obj/structure/surface/table/reinforced/prison{
+	color = "#6b675e"
+	},
+/obj/item/tool/wirecutters/yautja,
+/turf/open/floor/corsat/squareswood/north,
+/area/desert_dam/interior/caves/temple)
+"ai" = (
 /obj/item/skull/warrior{
 	pixel_y = 36;
 	anchored = 1
 	},
 /turf/open/floor/corsat/squareswood/north,
 /area/desert_dam/interior/caves/temple)
-"ai" = (
+"aj" = (
 /obj/item/skull/corroder{
 	pixel_y = 34;
 	anchored = 1
 	},
 /turf/open/floor/corsat/squareswood/north,
 /area/desert_dam/interior/caves/temple)
-"aj" = (
+"ak" = (
 /obj/structure/reagent_dispensers/fueltank/yautja,
 /turf/open/floor/strata/grey_multi_tiles,
 /area/desert_dam/interior/caves/temple)
-"ak" = (
+"al" = (
 /obj/structure/bed/bedroll,
 /turf/open/floor/corsat/squareswood/north,
 /area/desert_dam/interior/caves/temple)
-"al" = (
+"am" = (
 /obj/structure/closet/crate/critter,
 /turf/open/floor/corsat/squareswood/north,
 /area/desert_dam/interior/caves/temple)
-"am" = (
+"an" = (
 /obj/structure/surface/table/reinforced/prison{
 	color = "#6b675e"
 	},
@@ -144,6 +147,10 @@
 	},
 /turf/open/floor/corsat/squareswood/north,
 /area/desert_dam/interior/caves/temple)
+"eA" = (
+/obj/structure/platform/stone/runed_sandstone/north,
+/turf/open/floor/sandstone/runed,
+/area/desert_dam/interior/caves/temple)
 "fl" = (
 /obj/structure/surface/rack{
 	color = "#6b675e";
@@ -178,13 +185,22 @@
 	turf_flags = 16
 	},
 /area/desert_dam/interior/caves/temple)
-"hn" = (
-/obj/structure/platform/stone/runed_sandstone/east,
-/turf/open/floor/sandstone/runed,
-/area/desert_dam/interior/caves/temple)
-"iC" = (
-/obj/structure/platform_decoration/stone/runed_sandstone/west,
-/turf/open/gm/river/desert/deep,
+"ik" = (
+/obj/structure/showcase{
+	desc = "An ancient, dusty tomb with strange alien writing. It's best not to touch it.";
+	icon_state = "yaut";
+	icon = 'icons/obj/structures/morgue.dmi';
+	name = "alien sarcophagus"
+	},
+/obj/item/clothing/mask/gas/yautja/damaged{
+	anchored = 1;
+	color = "#880808";
+	desc = "A clan mask of uncertain origin, whoever wore it must have been cruel and sadistic.";
+	icon_state = "pred_mask_elder_tr";
+	name = "ancient clan mask";
+	pixel_y = 30
+	},
+/turf/open/floor/corsat/squareswood/north,
 /area/desert_dam/interior/caves/temple)
 "iM" = (
 /obj/structure/surface/table/reinforced/prison{
@@ -237,10 +253,6 @@
 "mB" = (
 /turf/open/floor/sandstone/runed,
 /area/desert_dam/interior/caves/temple)
-"mL" = (
-/obj/structure/showcase/yautja,
-/turf/open/floor/strata/grey_multi_tiles,
-/area/desert_dam/interior/caves/temple)
 "mQ" = (
 /obj/structure/surface/table/reinforced/prison{
 	color = "#6b675e"
@@ -280,6 +292,10 @@
 "oR" = (
 /turf/open/floor/strata/grey_multi_tiles,
 /area/desert_dam/interior/caves/temple)
+"pC" = (
+/obj/structure/showcase/yautja,
+/turf/open/floor/strata/grey_multi_tiles,
+/area/desert_dam/interior/caves/temple)
 "qv" = (
 /obj/effect/decal/remains/xeno{
 	pixel_x = 31
@@ -297,6 +313,10 @@
 /obj/effect/landmark/structure_spawner/setup/distress/xeno_weed_node,
 /turf/open/desert/dirt/desert_transition_edge1/west,
 /area/desert_dam/exterior/valley/valley_crashsite)
+"re" = (
+/obj/structure/platform_decoration/stone/runed_sandstone/north,
+/turf/open/floor/sandstone/runed,
+/area/desert_dam/interior/caves/temple)
 "rh" = (
 /obj/structure/surface/table/reinforced/prison{
 	color = "#6b675e"
@@ -330,13 +350,13 @@
 	},
 /turf/open/floor/strata/grey_multi_tiles,
 /area/desert_dam/interior/caves/temple)
-"sZ" = (
-/obj/structure/platform/stone/runed_sandstone/east,
-/turf/open/gm/river/desert/deep,
-/area/desert_dam/interior/caves/temple)
 "td" = (
 /turf/open/desert/rock,
 /area/desert_dam/interior/caves/central_caves)
+"tn" = (
+/obj/structure/platform_decoration/stone/runed_sandstone/west,
+/turf/open/gm/river/desert/deep,
+/area/desert_dam/interior/caves/temple)
 "tq" = (
 /obj/structure/closet/coffin/predator,
 /obj/item/storage/large_holster/katana,
@@ -378,8 +398,8 @@
 	},
 /turf/open/floor/corsat/squareswood/north,
 /area/desert_dam/interior/caves/temple)
-"wl" = (
-/obj/structure/platform_decoration/stone/runed_sandstone,
+"wi" = (
+/obj/structure/platform/stone/runed_sandstone/east,
 /turf/open/gm/river/desert/deep,
 /area/desert_dam/interior/caves/temple)
 "yT" = (
@@ -393,9 +413,9 @@
 "zg" = (
 /turf/closed/wall/mineral/sandstone/runed/decor,
 /area/desert_dam/interior/caves/temple)
-"zH" = (
-/obj/structure/platform/stone/runed_sandstone/north,
-/turf/open/floor/sandstone/runed,
+"An" = (
+/obj/structure/platform_decoration/stone/runed_sandstone,
+/turf/open/gm/river/desert/deep,
 /area/desert_dam/interior/caves/temple)
 "Ax" = (
 /obj/structure/surface/table/reinforced/prison{
@@ -413,9 +433,6 @@
 	},
 /turf/open/floor/corsat/squareswood/north,
 /area/desert_dam/interior/caves/temple)
-"AU" = (
-/turf/open/floor/corsat/squareswood/north,
-/area/desert_dam/interior/caves/temple)
 "Bm" = (
 /obj/structure/surface/rack{
 	color = "#6b675e";
@@ -431,27 +448,6 @@
 "Co" = (
 /turf/open/desert/dirt/dirt2,
 /area/desert_dam/exterior/valley/valley_crashsite)
-"CC" = (
-/obj/structure/platform_decoration/stone/runed_sandstone/north,
-/turf/open/floor/sandstone/runed,
-/area/desert_dam/interior/caves/temple)
-"CH" = (
-/obj/structure/showcase{
-	desc = "An ancient, dusty tomb with strange alien writing. It's best not to touch it.";
-	icon_state = "yaut";
-	icon = 'icons/obj/structures/morgue.dmi';
-	name = "alien sarcophagus"
-	},
-/obj/item/clothing/mask/gas/yautja/damaged{
-	anchored = 1;
-	color = "#880808";
-	desc = "A clan mask of uncertain origin, whoever wore it must have been cruel and sadistic.";
-	icon_state = "pred_mask_elder_tr";
-	name = "ancient clan mask";
-	pixel_y = 30
-	},
-/turf/open/floor/corsat/squareswood/north,
-/area/desert_dam/interior/caves/temple)
 "Dc" = (
 /obj/effect/landmark/structure_spawner/setup/distress/xeno_weed_node,
 /turf/open/desert/rock,
@@ -473,9 +469,23 @@
 	},
 /turf/open/floor/corsat/squareswood/north,
 /area/desert_dam/interior/caves/temple)
+"Eh" = (
+/obj/structure/surface/table/reinforced/prison{
+	color = "#6b675e"
+	},
+/obj/item/hunting_trap{
+	desc = "A bizarre alien device used for trapping and killing prey.";
+	name = "Alien Mine"
+	},
+/turf/open/floor/corsat/squareswood/north,
+/area/desert_dam/interior/caves/temple)
 "EB" = (
 /turf/closed/wall/rock/orange,
 /area/desert_dam/exterior/rock)
+"FE" = (
+/obj/structure/platform_decoration/stone/runed_sandstone/west,
+/turf/open/floor/sandstone/runed,
+/area/desert_dam/interior/caves/temple)
 "Gz" = (
 /obj/structure/bed/chair/comfy/yautja{
 	dir = 4
@@ -493,14 +503,6 @@
 	},
 /obj/item/xeno_egg,
 /turf/open/floor/corsat/squareswood/north,
-/area/desert_dam/interior/caves/temple)
-"Hn" = (
-/obj/structure/platform_decoration/stone/runed_sandstone/east,
-/turf/open/floor/sandstone/runed,
-/area/desert_dam/interior/caves/temple)
-"Im" = (
-/obj/structure/platform_decoration/stone/runed_sandstone,
-/turf/open/floor/sandstone/runed,
 /area/desert_dam/interior/caves/temple)
 "Ix" = (
 /obj/structure/surface/rack{
@@ -525,20 +527,6 @@
 /obj/item/stack/yautja_rope,
 /turf/open/floor/corsat/squareswood/north,
 /area/desert_dam/interior/caves/temple)
-"Jd" = (
-/obj/structure/surface/table/reinforced/prison{
-	color = "#6b675e"
-	},
-/obj/item/hunting_trap{
-	desc = "A bizarre alien device used for trapping and killing prey.";
-	name = "Alien Mine"
-	},
-/turf/open/floor/corsat/squareswood/north,
-/area/desert_dam/interior/caves/temple)
-"Jg" = (
-/obj/structure/platform/stone/runed_sandstone/west,
-/turf/open/floor/sandstone/runed,
-/area/desert_dam/interior/caves/temple)
 "Jh" = (
 /obj/structure/surface/table/reinforced/prison{
 	color = "#6b675e"
@@ -555,9 +543,17 @@
 /obj/item/clothing/head/hardhat,
 /turf/open/desert/rock,
 /area/desert_dam/interior/caves/central_caves)
+"JM" = (
+/obj/structure/platform/stone/runed_sandstone/east,
+/turf/open/floor/sandstone/runed,
+/area/desert_dam/interior/caves/temple)
 "JP" = (
 /obj/structure/xenoautopsy/tank/hugger/yautja,
 /turf/open/floor/strata/grey_multi_tiles,
+/area/desert_dam/interior/caves/temple)
+"JU" = (
+/obj/structure/platform/stone/runed_sandstone,
+/turf/open/floor/sandstone/runed,
 /area/desert_dam/interior/caves/temple)
 "JZ" = (
 /obj/structure/machinery/autolathe/yautja,
@@ -569,10 +565,6 @@
 	},
 /obj/item/weapon/chainofcommand,
 /turf/open/floor/corsat/squareswood/north,
-/area/desert_dam/interior/caves/temple)
-"Kl" = (
-/obj/structure/platform_decoration/stone/runed_sandstone/west,
-/turf/open/floor/sandstone/runed,
 /area/desert_dam/interior/caves/temple)
 "KA" = (
 /obj/structure/closet/coffin/predator,
@@ -641,15 +633,27 @@
 /obj/item/weapon/yautja/duelknife,
 /turf/open/floor/corsat/squareswood/north,
 /area/desert_dam/interior/caves/temple)
+"QT" = (
+/obj/structure/platform/stone/runed_sandstone/west,
+/turf/open/floor/sandstone/runed,
+/area/desert_dam/interior/caves/temple)
 "RB" = (
 /obj/structure/machinery/door/window{
 	dir = 8
 	},
 /turf/open/floor/corsat/squareswood/north,
 /area/desert_dam/interior/caves/temple)
+"SD" = (
+/obj/structure/platform_decoration/stone/runed_sandstone,
+/turf/open/floor/sandstone/runed,
+/area/desert_dam/interior/caves/temple)
 "TO" = (
 /obj/structure/xenoautopsy,
 /turf/open/floor/strata/grey_multi_tiles,
+/area/desert_dam/interior/caves/temple)
+"TU" = (
+/obj/structure/platform_decoration/stone/runed_sandstone/east,
+/turf/open/floor/sandstone/runed,
 /area/desert_dam/interior/caves/temple)
 "UB" = (
 /obj/structure/machinery/power/smes/magical{
@@ -682,10 +686,6 @@
 	pixel_y = -6
 	},
 /turf/open/floor/corsat/squareswood/north,
-/area/desert_dam/interior/caves/temple)
-"YH" = (
-/obj/structure/platform/stone/runed_sandstone,
-/turf/open/floor/sandstone/runed,
 /area/desert_dam/interior/caves/temple)
 "ZI" = (
 /turf/open/desert/dirt/desert_transition_corner1/east,
@@ -810,15 +810,15 @@ MH
 uK
 MH
 MH
-AU
-AU
+aa
+aa
 MH
-wl
-sZ
-sZ
-sZ
-sZ
-iC
+An
+wi
+wi
+wi
+wi
+tn
 MH
 "}
 (6,1,1) = {"
@@ -830,14 +830,14 @@ EB
 EB
 EB
 MH
-ak
-ak
-ak
+al
+al
+al
 mB
-AU
+aa
 MH
-ad
-AU
+ae
+aa
 MH
 MH
 mB
@@ -860,10 +860,10 @@ mB
 mB
 mB
 mB
-AU
+aa
 WV
-AU
-AU
+aa
+aa
 MH
 fX
 yT
@@ -883,15 +883,15 @@ EB
 MH
 MH
 mB
-AU
-AU
+aa
+aa
 mB
-AU
+aa
 MH
-ac
-ac
+ad
+ad
 MH
-AU
+aa
 mB
 mB
 mB
@@ -909,7 +909,7 @@ PO
 MH
 mn
 mB
-AU
+aa
 MH
 uK
 MH
@@ -917,7 +917,7 @@ MH
 MH
 MH
 MH
-aa
+ab
 mB
 mB
 mB
@@ -933,18 +933,18 @@ td
 td
 td
 WV
-ak
-mB
 al
+mB
+am
 MH
 mB
+ah
 ag
 af
-ae
 IW
 MH
-ab
-AU
+ac
+aa
 mB
 mB
 Ax
@@ -959,7 +959,7 @@ td
 td
 td
 MH
-ak
+al
 mB
 MH
 MH
@@ -967,10 +967,10 @@ mB
 mB
 mB
 mB
-AU
+aa
 MH
 MH
-AU
+aa
 mB
 mB
 by
@@ -1014,15 +1014,15 @@ MH
 MH
 MH
 MH
-AU
+aa
 mB
-Im
-hn
-Kl
+SD
+JM
+FE
 mB
-AU
+aa
 MH
-AU
+aa
 mB
 Gz
 mB
@@ -1037,19 +1037,19 @@ EB
 EB
 MH
 WV
-am
+an
 mB
 uK
 mB
 mB
-YH
-mL
-zH
+JU
+pC
+eA
 mB
-AU
+aa
 zg
 MH
-AU
+aa
 aZ
 IW
 MH
@@ -1066,14 +1066,14 @@ cg
 mB
 mB
 MH
-AU
+aa
 mB
-CC
-Jg
-Hn
+re
+QT
+TU
 mB
-AU
-Jd
+aa
+Eh
 MH
 MH
 MH
@@ -1093,12 +1093,12 @@ Ps
 mB
 WV
 Jh
-AU
+aa
 mB
 mB
 mB
 mB
-AU
+aa
 WV
 MH
 EB
@@ -1119,13 +1119,13 @@ Ps
 mB
 zg
 MH
-ah
+ai
 mB
 mB
 mB
 mB
-AU
-Jd
+aa
+Eh
 MH
 EB
 EB
@@ -1145,12 +1145,12 @@ mB
 mB
 Oj
 MH
-ai
+aj
 mB
 mB
 mB
 mB
-AU
+aa
 zg
 MH
 MH
@@ -1171,15 +1171,15 @@ mB
 mB
 Kj
 MH
-ah
-AU
+ai
+aa
 mB
 mB
 mB
 mB
 uK
-AU
-AU
+aa
+aa
 fl
 MH
 EB
@@ -1198,14 +1198,14 @@ MH
 MH
 MH
 MH
-AU
-AU
-AU
+aa
+aa
+aa
 MH
 MH
 MH
-AU
-AU
+aa
+aa
 oM
 MH
 EB
@@ -1217,9 +1217,9 @@ EB
 EB
 EB
 MH
-Jd
-AU
-AU
+Eh
+aa
+aa
 MH
 EB
 EB
@@ -1229,8 +1229,8 @@ WV
 PP
 MH
 TO
-AU
-AU
+aa
+aa
 jO
 Ml
 WV
@@ -1244,8 +1244,8 @@ EB
 EB
 zg
 KA
-AU
-AU
+aa
+aa
 MH
 MH
 MH
@@ -1255,8 +1255,8 @@ MH
 zg
 MH
 JP
-AU
-AU
+aa
+aa
 oq
 bE
 MH
@@ -1270,9 +1270,9 @@ EB
 EB
 kI
 KA
-AU
-AU
-AU
+aa
+aa
+aa
 MH
 Ix
 oR
@@ -1281,8 +1281,8 @@ MH
 EB
 MH
 TO
-AU
-AU
+aa
+aa
 rI
 MH
 MH
@@ -1296,9 +1296,9 @@ EB
 EB
 zg
 tq
-AU
-AU
-AU
+aa
+aa
+aa
 WM
 oR
 oq
@@ -1321,13 +1321,13 @@ EB
 EB
 EB
 MH
-AU
-AU
-AU
-AU
+aa
+aa
+aa
+aa
 MH
 Bm
-aj
+ak
 JZ
 MH
 EB
@@ -1347,7 +1347,7 @@ EB
 EB
 EB
 MH
-CH
+ik
 MH
 MH
 rh

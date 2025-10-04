@@ -30,6 +30,10 @@
 "ae" = (
 /turf/open/gm/dirt,
 /area/lv624/ground/colony/south_medbay_road)
+"af" = (
+/obj/structure/machinery/power/apc/no_power/north,
+/turf/open/floor/whitepurple/northeast,
+/area/lv624/lazarus/research)
 "ag" = (
 /obj/effect/decal/remains/xeno,
 /turf/open/gm/dirt,
@@ -332,10 +336,6 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/whitepurple/northeast,
 /area/lv624/lazarus/research)
-"Fm" = (
-/obj/structure/machinery/power/apc/no_power/north,
-/turf/open/floor/whitepurple/northeast,
-/area/lv624/lazarus/research)
 "Jv" = (
 /obj/effect/landmark/corpsespawner/scientist,
 /obj/effect/decal/cleanable/blood/splatter,
@@ -534,7 +534,7 @@ Mu
 ay
 aJ
 ab
-Fm
+af
 ak
 ay
 ab

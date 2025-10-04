@@ -96,10 +96,6 @@
 /obj/structure/machinery/power/apc/no_power/west,
 /turf/open/floor/cult,
 /area/lv624/lazarus/armory)
-"w" = (
-/obj/item/stack/sheet/metal,
-/turf/open/floor/cult,
-/area/lv624/lazarus/armory)
 "y" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -126,6 +122,10 @@
 	locked = 1;
 	name = "\improper Nexus Dome Armory"
 	},
+/turf/open/floor/cult,
+/area/lv624/lazarus/armory)
+"K" = (
+/obj/item/stack/sheet/metal,
 /turf/open/floor/cult,
 /area/lv624/lazarus/armory)
 "T" = (
@@ -183,7 +183,7 @@ a
 a
 l
 q
-w
+K
 p
 p
 p
@@ -195,10 +195,10 @@ a
 a
 o
 i
-w
-w
-w
-w
+K
+K
+K
+K
 p
 i
 "}

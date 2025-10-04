@@ -296,10 +296,6 @@
 "gX" = (
 /turf/open/floor/almayer/floor,
 /area/adminlevel/ert_station/shuttle_dispatch)
-"hp" = (
-/obj/effect/landmark/newplayer_start,
-/turf/open/space/basic,
-/area/start)
 "hH" = (
 /turf/open/floor/almayer/sterile_green_side/northwest,
 /area/adminlevel/ert_station)
@@ -342,6 +338,10 @@
 /obj/docking_port/stationary/emergency_response/idle_port2,
 /turf/open/floor/plating,
 /area/adminlevel/ert_station)
+"kx" = (
+/obj/effect/landmark/newplayer_start,
+/turf/open/space/basic,
+/area/start)
 "kN" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -2025,7 +2025,7 @@ aa
 aa
 aa
 aa
-hp
+kx
 "}
 (2,1,1) = {"
 aa

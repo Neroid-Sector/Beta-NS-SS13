@@ -2,6 +2,13 @@
 "a" = (
 /turf/template_noop,
 /area/template_noop)
+"b" = (
+/obj/structure/stairs/perspective{
+	dir = 9;
+	icon_state = "p_stair_full"
+	},
+/turf/open/floor/asteroidfloor/north,
+/area/bigredv2/outside/c)
 "c" = (
 /obj/structure/sign/safety/medical{
 	pixel_y = 32
@@ -11,6 +18,10 @@
 /area/bigredv2/outside/c)
 "d" = (
 /obj/structure/pipes/standard/simple/hidden/green,
+/obj/structure/stairs/perspective{
+	dir = 1;
+	icon_state = "p_stair_full"
+	},
 /turf/open/floor/asteroidfloor/north,
 /area/bigredv2/outside/c)
 "e" = (
@@ -23,6 +34,13 @@
 	},
 /turf/open/floor/asteroidfloor/north,
 /area/bigredv2/outside/c)
+"g" = (
+/obj/structure/stairs/perspective{
+	dir = 1;
+	icon_state = "p_stair_full"
+	},
+/turf/open/floor/asteroidfloor/north,
+/area/bigredv2/outside/c)
 "h" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor/north,
@@ -30,6 +48,10 @@
 "i" = (
 /obj/structure/pipes/standard/simple/hidden/green,
 /obj/effect/decal/cleanable/blood,
+/turf/open/floor/asteroidfloor/north,
+/area/bigredv2/outside/c)
+"j" = (
+/obj/structure/pipes/standard/simple/hidden/green,
 /turf/open/floor/asteroidfloor/north,
 /area/bigredv2/outside/c)
 "l" = (
@@ -40,21 +62,6 @@
 /obj/effect/decal/cleanable/blood/oil,
 /obj/structure/stairs/perspective{
 	dir = 5;
-	icon_state = "p_stair_full"
-	},
-/turf/open/floor/asteroidfloor/north,
-/area/bigredv2/outside/c)
-"n" = (
-/obj/structure/stairs/perspective{
-	dir = 9;
-	icon_state = "p_stair_full"
-	},
-/turf/open/floor/asteroidfloor/north,
-/area/bigredv2/outside/c)
-"w" = (
-/obj/structure/pipes/standard/simple/hidden/green,
-/obj/structure/stairs/perspective{
-	dir = 1;
 	icon_state = "p_stair_full"
 	},
 /turf/open/floor/asteroidfloor/north,
@@ -72,13 +79,6 @@
 "T" = (
 /turf/open/floor/white,
 /area/bigredv2/outside/admin_building)
-"X" = (
-/obj/structure/stairs/perspective{
-	dir = 1;
-	icon_state = "p_stair_full"
-	},
-/turf/open/floor/asteroidfloor/north,
-/area/bigredv2/outside/c)
 
 (1,1,1) = {"
 a
@@ -93,15 +93,15 @@ a
 a
 c
 h
-n
+b
 R
 "}
 (3,1,1) = {"
 a
 a
-d
+j
 i
-w
+d
 S
 "}
 (4,1,1) = {"
@@ -109,7 +109,7 @@ a
 a
 e
 l
-X
+g
 T
 "}
 (5,1,1) = {"

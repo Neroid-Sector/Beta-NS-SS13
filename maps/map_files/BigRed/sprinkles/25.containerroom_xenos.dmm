@@ -17,13 +17,6 @@
 /obj/structure/largecrate/random/barrel/red,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
-"f" = (
-/obj/structure/machinery/light{
-	dir = 1
-	},
-/obj/structure/largecrate/random/case/small,
-/turf/open/floor/plating,
-/area/bigredv2/outside/nw)
 "g" = (
 /obj/structure/xenoautopsy/tank/larva,
 /turf/open/floor/plating,
@@ -33,8 +26,12 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "i" = (
-/turf/closed/wall/solaris/reinforced,
-/area/bigredv2/outside/telecomm/warehouse)
+/obj/structure/machinery/light{
+	dir = 1
+	},
+/obj/structure/largecrate/random/case/small,
+/turf/open/floor/plating,
+/area/bigredv2/outside/nw)
 "j" = (
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -53,6 +50,14 @@
 "n" = (
 /turf/open/floor/plating/warnplate/west,
 /area/bigredv2/outside/nw)
+"o" = (
+/obj/effect/decal/warning_stripes{
+	icon_state = "NE-out";
+	pixel_x = 1;
+	pixel_y = 1
+	},
+/turf/open/floor/plating/warnplate/southwest,
+/area/bigredv2/outside/telecomm/warehouse)
 "p" = (
 /obj/structure/pipes/standard/simple/hidden/green{
 	dir = 4
@@ -76,6 +81,13 @@
 /obj/structure/pipes/standard/manifold/hidden/green,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
+"t" = (
+/obj/effect/decal/warning_stripes{
+	icon_state = "N";
+	pixel_y = 1
+	},
+/turf/open/floor/plating/warnplate,
+/area/bigredv2/outside/telecomm/warehouse)
 "u" = (
 /obj/structure/machinery/light{
 	dir = 8
@@ -112,29 +124,37 @@
 /obj/structure/machinery/light,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
-"D" = (
-/obj/effect/landmark/static_comms/net_one,
-/turf/open/floor/bcircuit,
-/area/bigredv2/outside/telecomm/warehouse)
-"H" = (
+"C" = (
 /obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	pixel_x = 1;
+	icon_state = "NW-out";
+	pixel_x = -1;
 	pixel_y = 1
 	},
-/turf/open/floor/plating/warnplate/southwest,
+/turf/open/floor/plating/warnplate/southeast,
 /area/bigredv2/outside/telecomm/warehouse)
-"K" = (
-/turf/open/floor/bcircuit,
-/area/bigredv2/outside/telecomm/warehouse)
-"O" = (
+"D" = (
 /obj/effect/decal/warning_stripes{
 	icon_state = "E";
 	pixel_x = 1
 	},
 /turf/open/floor/plating/warnplate/west,
 /area/bigredv2/outside/telecomm/warehouse)
-"S" = (
+"E" = (
+/obj/effect/landmark/static_comms/net_one,
+/turf/open/floor/bcircuit,
+/area/bigredv2/outside/telecomm/warehouse)
+"F" = (
+/turf/open/floor/bcircuit,
+/area/bigredv2/outside/telecomm/warehouse)
+"G" = (
+/obj/effect/decal/warning_stripes{
+	icon_state = "W";
+	layer = 2.5;
+	pixel_x = -1
+	},
+/turf/open/floor/plating/warnplate/east,
+/area/bigredv2/outside/telecomm/warehouse)
+"H" = (
 /obj/structure/machinery/power/apc/no_power/north,
 /obj/effect/decal/warning_stripes{
 	icon_state = "W";
@@ -143,28 +163,8 @@
 	},
 /turf/open/floor/plating/warnplate/east,
 /area/bigredv2/outside/telecomm/warehouse)
-"T" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NW-out";
-	pixel_x = -1;
-	pixel_y = 1
-	},
-/turf/open/floor/plating/warnplate/southeast,
-/area/bigredv2/outside/telecomm/warehouse)
-"V" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "N";
-	pixel_y = 1
-	},
-/turf/open/floor/plating/warnplate,
-/area/bigredv2/outside/telecomm/warehouse)
-"Z" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "W";
-	layer = 2.5;
-	pixel_x = -1
-	},
-/turf/open/floor/plating/warnplate/east,
+"I" = (
+/turf/closed/wall/solaris/reinforced,
 /area/bigredv2/outside/telecomm/warehouse)
 
 (1,1,1) = {"
@@ -180,10 +180,10 @@ b
 b
 "}
 (2,1,1) = {"
-i
-O
-O
-H
+I
+D
+D
+o
 q
 j
 u
@@ -192,10 +192,10 @@ a
 b
 "}
 (3,1,1) = {"
-i
-K
-D
-V
+I
+F
+E
+t
 q
 j
 v
@@ -204,10 +204,10 @@ y
 b
 "}
 (4,1,1) = {"
-i
-K
-K
-V
+I
+F
+F
+t
 q
 j
 j
@@ -216,10 +216,10 @@ j
 b
 "}
 (5,1,1) = {"
-i
-S
-Z
-T
+I
+H
+G
+C
 q
 j
 j
@@ -253,7 +253,7 @@ b
 "}
 (8,1,1) = {"
 b
-f
+i
 j
 j
 q
@@ -313,7 +313,7 @@ b
 "}
 (13,1,1) = {"
 b
-f
+i
 j
 j
 q
