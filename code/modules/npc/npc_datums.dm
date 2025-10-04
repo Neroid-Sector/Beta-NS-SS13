@@ -58,7 +58,7 @@
 	owner = null
 	anchor_turf = null
 	target_player = null
-	turf_block = null
+	turf_block = list()
 	. = ..()
 
 /datum/combat_ai/proc/combat_stun()
