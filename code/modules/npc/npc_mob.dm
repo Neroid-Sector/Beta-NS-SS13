@@ -26,6 +26,7 @@
 	if(GLOB.pve_active_npc_number < 0) GLOB.pve_active_npc_number = 0
 	if(ai_datum)
 		qdel(ai_datum)
+	ai_datum = null
 	. = ..()
 
 

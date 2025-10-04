@@ -56,6 +56,8 @@
 /datum/combat_ai/Destroy(force, ...)
 	owner = null
 	anchor_turf = null
+	target_player = null
+	turf_block = null
 	. = ..()
 
 /datum/combat_ai/proc/combat_stun()
@@ -1188,16 +1190,19 @@
 	var/obj/structure/attacked_structure = target_structure
 	var/turf/attacked_turf = get_turf(attacked_structure)
 	attacking_flag = 1
-	INVOKE_ASYNC(src, PROC_REF(attack_animation),owner,attacked_turf,"n",6)
-	sleep(6)
+	INVOKE_ASYNC(src, PROC_REF(attack_animation),owner,attacked_turf,"n",10)
+	sleep(10)
 	if (istype(target_structure,/obj/structure/barricade/))
 		var/obj/structure/barricade/hit_cade
 		hit_cade.take_damage(rand(owner.melee_damage_lower,owner.melee_damage_upper))
 		if(hit_cade.is_wired == 1)
 			process_damage(1)
 	else
-		attacked_structure.deconstruct()
-	playsound(attacked_structure,get_sfx("slam"),50)
+		attacked_structure.pve_hp -= 1
+		INVOKE_ASYNC(src, PROC_REF(damage_animation),attacked_structure,"dam_hit")
+		if(attacked_structure.pve_hp <= 0) attacked_structure.deconstruct()
+	var/turf/structure_turf = get_turf(attacked_structure)
+	playsound(structure_turf,get_sfx("slam"),50)
 	attacking_flag = 0
 
 /datum/combat_ai/proc/process_movement(turf/starting_turf,turf/ending_turf)

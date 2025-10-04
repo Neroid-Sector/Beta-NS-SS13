@@ -14,6 +14,9 @@
 	anchored = TRUE
 	projectile_coverage = PROJECTILE_COVERAGE_MEDIUM
 	can_block_movement = TRUE
+// +- Xenosurge addons
+	var/pve_hp = 3
+// -+ Xenosurge addons
 
 /obj/structure/Initialize(mapload, ...)
 	. = ..()
