@@ -54,6 +54,7 @@
 	INVOKE_ASYNC(src,PROC_REF(ai_loop))
 
 /datum/combat_ai/Destroy(force, ...)
+	loop_terminator = 1
 	owner = null
 	anchor_turf = null
 	target_player = null
