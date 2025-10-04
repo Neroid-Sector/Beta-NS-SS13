@@ -101,6 +101,7 @@
 					continue
 				defined_slots |= slot
 			defined_slots -= WEAR_AS_GARB // Already checked
+			/* +- Xenosurge:  Commented out since right now this test is useless due to the upstream icon changes
 			for(var/slot in defined_slots)
 				var/image/result = item.get_mob_overlay(slot=slot, default_bodytype="Human")
 				// States specified in item_state_slots and item_icons (warning only currently)
@@ -115,7 +116,7 @@
 				var/image/result = item.get_mob_overlay(slot=slot, default_bodytype="Human")
 				// States specified in additional_slots_to_test not already tested above (warning only currently)
 				check(obj_path, result.icon, result.icon_state, "This icon_state is needed in slot [slot]", variable_name="mob_state", warning_only=TRUE)
-
+			*/// -+ Xenosurge
 			// Attachable specific checks:
 			if(ispath(obj_path, /obj/item/attachable))
 				var/obj/item/attachable/attachable = spawned
