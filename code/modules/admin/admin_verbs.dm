@@ -159,6 +159,7 @@ GLOBAL_LIST_INIT(admin_verbs_major_event, list(
 // +- Xenosurge add ins
 	/client/proc/create_spawner,
 	/client/proc/setup_surge,
+	/client/proc/setup_npcs,
 	/client/proc/start_surge,
 	/client/proc/stop_surge,
 	/client/proc/remove_spawners,

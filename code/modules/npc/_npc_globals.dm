@@ -16,6 +16,8 @@ GLOBAL_VAR_INIT (pve_npc_hp, 5)
 GLOBAL_VAR_INIT (pve_npc_poise, 3)
 GLOBAL_VAR_INIT (pve_npc_attack_lower, 15)
 GLOBAL_VAR_INIT (pve_npc_attack_upper, 25)
+GLOBAL_VAR_INIT (pve_npc_movement_time, 3)
+GLOBAL_VAR_INIT (pve_npc_attack_cadence, "5n")
 
 GLOBAL_VAR_INIT (pve_npc_attack_distance, 30)
 GLOBAL_VAR_INIT (pve_npc_return_distance, 50)

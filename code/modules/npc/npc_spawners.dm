@@ -64,6 +64,34 @@
 			if(surge_setup_value == null) return
 			GLOB.pve_spawner_wave_delay = surge_setup_value
 
+/client/proc/setup_npcs()
+	set category = "DM.Xenosurge"
+	set name = "Surge - NPC Setup"
+	set desc = "Sets parameters for surge NPCs."
+
+	if(!check_rights(R_ADMIN))
+		return
+	var/npc_setup_value
+	switch(tgui_input_list(usr, "Attack Max:[GLOB.pve_npc_attack_upper] Attack Min:[GLOB.pve_npc_attack_lower]\nMove Speed:[GLOB.pve_npc_movement_time] Attack Cadence:[GLOB.pve_npc_attack_cadence]" , "NPC", list("Attack Min","Attack Max","Move Speed","Cadence")))
+		if(null)
+			return
+		if("Attack Min")
+			npc_setup_value = tgui_input_number(usr, "Edit Minimum damage value.", "NPC",GLOB.pve_npc_attack_lower,timeout = 0)
+			if(npc_setup_value == null) return
+			GLOB.pve_npc_attack_lower = npc_setup_value
+		if("Attack Max")
+			npc_setup_value = tgui_input_number(usr, "Edit Maximum damage value.", "NPC",GLOB.pve_npc_attack_upper,timeout = 0)
+			if(npc_setup_value == null) return
+			GLOB.pve_npc_attack_upper = npc_setup_value
+		if("Move Speed")
+			npc_setup_value = tgui_input_number(usr, "Edit Movement Speed.", "NPC",GLOB.pve_npc_movement_time,timeout = 0)
+			if(npc_setup_value == null) return
+			GLOB.pve_npc_movement_time = npc_setup_value
+		if("Cadence")
+			npc_setup_value = tgui_input_number(usr, "Edit Attack Cadence.", "NPC",GLOB.pve_npc_attack_cadence,timeout = 0)
+			if(npc_setup_value == null) return
+			GLOB.pve_npc_attack_cadence = npc_setup_value
+
 /proc/surge_loop()
 
 	while(GLOB.pve_active_wave == 1)
