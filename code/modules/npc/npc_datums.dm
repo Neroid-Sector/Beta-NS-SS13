@@ -53,6 +53,11 @@
 	attack_cadence = list(list("[GLOB.pve_npc_attack_cadence]"))
 	INVOKE_ASYNC(src,PROC_REF(ai_loop))
 
+/datum/combat_ai/Destroy(force, ...)
+	owner = null
+	anchor_turf = null
+	. = ..()
+
 /datum/combat_ai/proc/combat_stun()
 	loop_terminator = 1
 	in_grab = 0

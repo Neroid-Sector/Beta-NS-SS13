@@ -24,6 +24,8 @@
 	GLOB.pve_active_npc.Remove(src)
 	GLOB.pve_active_npc_number -= 1
 	if(GLOB.pve_active_npc_number < 0) GLOB.pve_active_npc_number = 0
+	if(ai_datum)
+		qdel(ai_datum)
 	. = ..()
 
 
