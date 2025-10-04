@@ -78,6 +78,7 @@
 				if(GLOB.pve_spawned_npcs_in_wave >= GLOB.pve_spawner_wave_npcs_total)
 					GLOB.pve_active_wave = 0
 					GLOB.pve_spawned_npcs_in_wave = 0
+					message_admins("Surge NPC limit reached. Surge finished.")
 					return
 				if(GLOB.pve_spawner_wave_delay != 0)
 					stoplag(GLOB.pve_spawner_wave_delay)
@@ -103,7 +104,24 @@
 	if(GLOB.pve_active_wave == 0)
 		GLOB.pve_active_wave = 1
 		INVOKE_ASYNC(src, PROC_REF(surge_loop))
-		to_chat(usr, "Surge Started")
+		message_admins("Surge Started")
+		return
+
+/client/proc/stop_surge()
+	set category = "DM.Xenosurge"
+	set name = "Surge - Stop"
+	set desc = "Stop Surge Wave."
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	if(GLOB.pve_active_wave == 0)
+		to_chat(usr, "Error: No Surge in progress")
+		return
+
+	if(GLOB.pve_active_wave == 0)
+		GLOB.pve_active_wave = 0
+		message_admins("Surge Stopped")
 		return
 
 /client/proc/remove_spawners()
@@ -117,7 +135,7 @@
 	for(var/obj/structure/xenosurge_spawner/spawner_to_delete in GLOB.pve_active_spawners)
 		qdel(spawner_to_delete)
 
-/client/proc/remove_NPCs()
+/client/proc/remove_npcs()
 	set category = "DM.Xenosurge"
 	set name = "Surge - Remove NPCs"
 	set desc = "Removes all Spawners"

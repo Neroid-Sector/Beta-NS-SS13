@@ -155,7 +155,15 @@ GLOBAL_LIST_INIT(admin_verbs_major_event, list(
 	/client/proc/enable_podlauncher,
 	/client/proc/change_taskbar_icon,
 	/client/proc/change_weather,
-	/client/proc/admin_blurb
+	/client/proc/admin_blurb,
+// +- Xenosurge add ins
+	/client/proc/create_spawner,
+	/client/proc/setup_surge,
+	/client/proc/start_surge,
+	/client/proc/stop_surge,
+	/client/proc/remove_spawners,
+	/client/proc/remove_npcs,
+// -+ Xenosurge add ins
 ))
 
 GLOBAL_LIST_INIT(admin_verbs_spawn, list(
